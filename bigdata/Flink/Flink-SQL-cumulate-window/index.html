@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="SQL12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455-- 创建订单表连接器  CREATE TABLE orders  (      order_id   STRING,      user_id    STRING,      amount">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FlinkSQL-cumulateWindow">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-SQL-cumulate-window/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="SQL12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455-- 创建订单表连接器  CREATE TABLE orders  (      order_id   STRING,      user_id    STRING,      amount">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/lang/attachments/%E6%88%AA%E5%B1%8F2025-07-10%2008.50.27.png">
+<meta property="article:published_time" content="2026-08-22T17:34:28.735Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.736Z">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/lang/attachments/%E6%88%AA%E5%B1%8F2025-07-10%2008.50.27.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-SQL-cumulate-window/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>FlinkSQL-cumulateWindow | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-cumulate-window/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FlinkSQL-cumulateWindow
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建订单表连接器  </span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> orders  </span><br><span class="line">(  </span><br><span class="line">    order_id   STRING,  </span><br><span class="line">    user_id    STRING,  </span><br><span class="line">    amount <span class="keyword">DOUBLE</span>,  </span><br><span class="line">    order_time <span class="type">TIMESTAMP</span>(<span class="number">3</span>),  </span><br><span class="line">    ptime <span class="keyword">as</span> PROCTIME(),  </span><br><span class="line">    rtime <span class="keyword">as</span> <span class="built_in">CAST</span>(order_time <span class="keyword">AS</span> TIMESTAMP_LTZ(<span class="number">3</span>)),  </span><br><span class="line">    WATERMARK <span class="keyword">FOR</span> rtime <span class="keyword">AS</span> rtime <span class="operator">-</span> <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">SECOND</span>  </span><br><span class="line">) <span class="keyword">WITH</span> (  </span><br><span class="line">      <span class="string">&#x27;connector&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;filesystem&#x27;</span>,  </span><br><span class="line">      <span class="string">&#x27;path&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;file://$&#123;order.file.path&#125;&#x27;</span>,  </span><br><span class="line">      <span class="string">&#x27;format&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;csv&#x27;</span>,  </span><br><span class="line">      <span class="string">&#x27;csv.ignore-parse-errors&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;true&#x27;</span>,  </span><br><span class="line">      <span class="string">&#x27;csv.allow-comments&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;true&#x27;</span>  </span><br><span class="line">      );  </span><br><span class="line"><span class="comment">--  </span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> console1  </span><br><span class="line">(  </span><br><span class="line">    user_id     STRING,  </span><br><span class="line">    date_date   STRING,  </span><br><span class="line">    date_time   STRING,  </span><br><span class="line">    msg_time    STRING,  </span><br><span class="line">    total_amount <span class="keyword">DOUBLE</span>,  </span><br><span class="line">    order_times <span class="type">BIGINT</span>  </span><br><span class="line">)  </span><br><span class="line">    <span class="keyword">with</span> (  </span><br><span class="line">        <span class="string">&#x27;connector&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;console&#x27;</span>,  </span><br><span class="line">        <span class="string">&#x27;connector.name&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;csl1&#x27;</span>  </span><br><span class="line">        );  </span><br><span class="line"><span class="comment">-- 统计一天内，各用户的交易总额和支付次数，10分钟一次输出  </span></span><br><span class="line"><span class="keyword">INSERT INTO</span> console1  </span><br><span class="line"><span class="keyword">SELECT</span> user_id  </span><br><span class="line">     , DATE_FORMAT(window_start, <span class="string">&#x27;yyyyMMdd&#x27;</span>)          <span class="keyword">AS</span> data_date  </span><br><span class="line">     , DATE_FORMAT(window_start, <span class="string">&#x27;HH:mm:ss&#x27;</span>)          <span class="keyword">AS</span> data_time  </span><br><span class="line">     , DATE_FORMAT(window_end, <span class="string">&#x27;yyyy-MM-dd HH:mm:ss&#x27;</span>) <span class="keyword">AS</span> msg_time  </span><br><span class="line">     , <span class="built_in">SUM</span>(amount)                                    <span class="keyword">AS</span> total_amount  </span><br><span class="line">     , <span class="built_in">count</span>(<span class="keyword">distinct</span> order_id)                       <span class="keyword">AS</span> video_exp_cnt  </span><br><span class="line"><span class="keyword">FROM</span>  </span><br><span class="line">    <span class="keyword">TABLE</span>(  </span><br><span class="line">            CUMULATE(  </span><br><span class="line">                <span class="keyword">TABLE</span> orders  </span><br><span class="line">            , DESCRIPTOR(  </span><br><span class="line">                rtime  </span><br><span class="line">            )  </span><br><span class="line">            , <span class="type">INTERVAL</span> <span class="string">&#x27;10&#x27;</span> MINUTES  </span><br><span class="line">            , <span class="type">INTERVAL</span> <span class="string">&#x27;1&#x27;</span> DAYS  </span><br><span class="line">            , <span class="type">INTERVAL</span> <span class="string">&#x27;0&#x27;</span> HOURS  </span><br><span class="line">            , <span class="literal">TRUE</span>  </span><br><span class="line">            )  </span><br><span class="line">    )  </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id  </span><br><span class="line">       , window_start  </span><br><span class="line">       , window_end</span><br></pre></td></tr></table></figure>
+
+<h2 id="RelNodes"><a href="#RelNodes" class="headerlink" title="RelNodes"></a>RelNodes</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Sink(<span class="keyword">table</span><span class="operator">=</span>[default_catalog.default_database.console1], fields<span class="operator">=</span>[user_id, data_date, data_time, msg_time, total_amount, video_exp_cnt])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Calc(<span class="keyword">select</span><span class="operator">=</span>[user_id, DATE_FORMAT(window_start, _UTF<span class="number">-16</span>LE<span class="string">&#x27;yyyyMMdd&#x27;</span>) <span class="keyword">AS</span> data_date, DATE_FORMAT(window_start, _UTF<span class="number">-16</span>LE<span class="string">&#x27;HH:mm:ss&#x27;</span>) <span class="keyword">AS</span> data_time, DATE_FORMAT(window_end, _UTF<span class="number">-16</span>LE<span class="string">&#x27;yyyy-MM-dd HH:mm:ss&#x27;</span>) <span class="keyword">AS</span> msg_time, total_amount, video_exp_cnt])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> GlobalWindowAggregate(groupBy<span class="operator">=</span>[user_id], <span class="keyword">window</span><span class="operator">=</span>[CUMULATE(slice_end<span class="operator">=</span>[$slice_end], max_size<span class="operator">=</span>[<span class="number">86400000</span> ms], step<span class="operator">=</span>[<span class="number">10</span> min], <span class="keyword">offset</span><span class="operator">=</span>[<span class="number">0</span> ms], allowLazyTriggering<span class="operator">=</span>[<span class="literal">true</span>])], <span class="keyword">select</span><span class="operator">=</span>[user_id, <span class="built_in">SUM</span>(sum$<span class="number">0</span>) <span class="keyword">AS</span> total_amount, <span class="built_in">COUNT</span>(<span class="keyword">distinct</span>$<span class="number">0</span> count$<span class="number">1</span>) <span class="keyword">AS</span> video_exp_cnt, <span class="keyword">start</span>(<span class="string">&#x27;w$) AS window_start, end(&#x27;</span>w$) <span class="keyword">AS</span> window_end])</span><br><span class="line">      <span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[hash[user_id]])</span><br><span class="line">         <span class="operator">+</span><span class="operator">-</span> LocalWindowAggregate(groupBy<span class="operator">=</span>[user_id], <span class="keyword">window</span><span class="operator">=</span>[CUMULATE(time_col<span class="operator">=</span>[order_time], max_size<span class="operator">=</span>[<span class="number">86400000</span> ms], step<span class="operator">=</span>[<span class="number">10</span> min], <span class="keyword">offset</span><span class="operator">=</span>[<span class="number">0</span> ms], allowLazyTriggering<span class="operator">=</span>[<span class="literal">true</span>])], <span class="keyword">select</span><span class="operator">=</span>[user_id, <span class="built_in">SUM</span>(amount) <span class="keyword">AS</span> sum$<span class="number">0</span>, <span class="built_in">COUNT</span>(<span class="keyword">distinct</span>$<span class="number">0</span> order_id) <span class="keyword">AS</span> count$<span class="number">1</span>, <span class="keyword">DISTINCT</span>(order_id) <span class="keyword">AS</span> <span class="keyword">distinct</span>$<span class="number">0</span>, slice_end(<span class="string">&#x27;w$) AS $slice_end])</span></span><br><span class="line"><span class="string">            +- Calc(select=[user_id, amount, order_id, order_time])</span></span><br><span class="line"><span class="string">               +- WatermarkAssigner(rowtime=[order_time], watermark=[-(order_time, 5000:INTERVAL SECOND)])</span></span><br><span class="line"><span class="string">                  +- TableSourceScan(table=[[default_catalog, default_database, orders]], fields=[order_id, user_id, amount, order_time])</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p><img src="/lang/attachments/%E6%88%AA%E5%B1%8F2025-07-10%2008.50.27.png"></p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><table>
+<thead>
+<tr>
+<th>Transformation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SourceTransformation</td>
+<td><code>[1]:TableSourceScan(table=[[default_catalog, default_database, orders]], fields=[order_id, user_id, amount, order_time])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[2]:Calc(select=[order_id, user_id, amount, order_time, PROCTIME() AS ptime, CAST(order_time AS TIMESTAMP_WITH_LOCAL_TIME_ZONE(3)) AS rtime])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[3]:WatermarkAssigner(rowtime=[rtime], watermark=[(rtime - 5000:INTERVAL SECOND)])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[4]:Calc(select=[user_id, amount, order_id, ptime])</code></td>
+</tr>
+<tr>
+<td>PartitionTransformation</td>
+<td><code>[5]:Exchange(distribution=[hash[user_id]])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[6]:WindowAggregate(groupBy=[user_id], window=[CUMULATE(time_col=[ptime], max_size=[86400000 ms], step=[10 min], offset=[0 ms], allowLazyTriggering=[true])], select=[user_id, SUM(amount) AS total_amount, COUNT(DISTINCT order_id) AS video_exp_cnt, start(&#39;w$) AS window_start, end(&#39;w$) AS window_end])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[7]:Calc(select=[user_id, DATE_FORMAT(window_start, &#39;yyyyMMdd&#39;) AS data_date, DATE_FORMAT(window_start, &#39;HH:mm:ss&#39;) AS data_time, DATE_FORMAT(window_end, &#39;yyyy-MM-dd HH:mm:ss&#39;) AS msg_time, total_amount, video_exp_cnt])</code></td>
+</tr>
+<tr>
+<td>LegacySinkTransformation</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>new Source  API</p>
+<ul>
+<li><input disabled="" type="checkbox"> 问题1： SQL -&gt; Operation -&gt; Transformation</li>
+</ul>
+<h2 id="Codegens"><a href="#Codegens" class="headerlink" title="Codegens"></a>Codegens</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line">Source: orders[<span class="number">1</span>] -&gt; WatermarkAssigner[<span class="number">2</span>] -&gt; Calc[<span class="number">3</span>] -&gt; LocalWindowAggregate[<span class="number">4</span>] (<span class="number">7</span>/<span class="number">8</span>)#<span class="number">0</span> - The compiled code <span class="keyword">for</span> StreamExecCalc$<span class="number">11</span>:   </span><br><span class="line"><span class="comment">/* 1 */</span>  </span><br><span class="line"><span class="comment">/* 2 */</span>      <span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StreamExecCalc$11</span> <span class="keyword">extends</span> <span class="title class_">org</span>.apache.flink.table.runtime.operators.TableStreamOperator  </span><br><span class="line"><span class="comment">/* 3 */</span>          <span class="keyword">implements</span> <span class="title class_">org</span>.apache.flink.streaming.api.operators.OneInputStreamOperator &#123;  </span><br><span class="line"><span class="comment">/* 4 */</span>  </span><br><span class="line"><span class="comment">/* 5 */</span>        <span class="keyword">private</span> <span class="keyword">final</span> Object[] references;  </span><br><span class="line"><span class="comment">/* 6 */</span>        <span class="keyword">private</span> <span class="keyword">transient</span> org.apache.flink.table.runtime.typeutils.StringDataSerializer typeSerializer$<span class="number">5</span>;  </span><br><span class="line"><span class="comment">/* 7 */</span>        org.apache.flink.table.data.<span class="type">BoxedWrapperRowData</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">org</span>.apache.flink.table.data.BoxedWrapperRowData(<span class="number">4</span>);  </span><br><span class="line"><span class="comment">/* 8 */</span>        <span class="keyword">private</span> <span class="keyword">final</span> org.apache.flink.streaming.runtime.streamrecord.<span class="type">StreamRecord</span> <span class="variable">outElement</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">org</span>.apache.flink.streaming.runtime.streamrecord.StreamRecord(<span class="literal">null</span>);  </span><br><span class="line"><span class="comment">/* 9 */</span>  </span><br><span class="line"><span class="comment">/* 10 */</span>        <span class="type">public</span> <span class="title function_">StreamExecCalc$11</span><span class="params">(  </span></span><br><span class="line"><span class="params"><span class="comment">/* 11 */</span>            Object[] references,  </span></span><br><span class="line"><span class="params"><span class="comment">/* 12 */</span>            org.apache.flink.streaming.runtime.tasks.StreamTask task,  </span></span><br><span class="line"><span class="params"><span class="comment">/* 13 */</span>            org.apache.flink.streaming.api.graph.StreamConfig config,  </span></span><br><span class="line"><span class="params"><span class="comment">/* 14 */</span>            org.apache.flink.streaming.api.operators.Output output,  </span></span><br><span class="line"><span class="params"><span class="comment">/* 15 */</span>            org.apache.flink.streaming.runtime.tasks.ProcessingTimeService processingTimeService)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line"><span class="comment">/* 16 */</span>          <span class="built_in">this</span>.references = references;  </span><br><span class="line"><span class="comment">/* 17 */</span>          typeSerializer$<span class="number">5</span> = (((org.apache.flink.table.runtime.typeutils.StringDataSerializer) references[<span class="number">0</span>]));  </span><br><span class="line"><span class="comment">/* 18 */</span>          <span class="built_in">this</span>.setup(task, config, output);  </span><br><span class="line"><span class="comment">/* 19 */</span>          <span class="keyword">if</span> (<span class="built_in">this</span> <span class="keyword">instanceof</span> org.apache.flink.streaming.api.operators.AbstractStreamOperator) &#123;  </span><br><span class="line"><span class="comment">/* 20 */</span>            ((org.apache.flink.streaming.api.operators.AbstractStreamOperator) <span class="built_in">this</span>)  </span><br><span class="line"><span class="comment">/* 21 */</span>              .setProcessingTimeService(processingTimeService);  </span><br><span class="line"><span class="comment">/* 22 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 23 */</span>        &#125;  </span><br><span class="line"><span class="comment">/* 24 */</span>  </span><br><span class="line"><span class="comment">/* 25 */</span>        <span class="meta">@Override</span>  </span><br><span class="line"><span class="comment">/* 26 */</span>        <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">open</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line"><span class="comment">/* 27 */</span>          <span class="built_in">super</span>.open();  </span><br><span class="line"><span class="comment">/* 28 */</span>            </span><br><span class="line"><span class="comment">/* 29 */</span>        &#125;  </span><br><span class="line"><span class="comment">/* 30 */</span>  </span><br><span class="line"><span class="comment">/* 31 */</span>        <span class="meta">@Override</span>  </span><br><span class="line"><span class="comment">/* 32 */</span>        <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">processElement</span><span class="params">(org.apache.flink.streaming.runtime.streamrecord.StreamRecord element)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line"><span class="comment">/* 33 */</span>          org.apache.flink.table.data.<span class="type">RowData</span> <span class="variable">in1</span> <span class="operator">=</span> (org.apache.flink.table.data.RowData) element.getValue();  </span><br><span class="line"><span class="comment">/* 34 */</span>            </span><br><span class="line"><span class="comment">/* 35 */</span>          org.apache.flink.table.data.binary.BinaryStringData field$<span class="number">4</span>;  </span><br><span class="line"><span class="comment">/* 36 */</span>          <span class="type">boolean</span> isNull$<span class="number">4</span>;  </span><br><span class="line"><span class="comment">/* 37 */</span>          org.apache.flink.table.data.binary.BinaryStringData field$<span class="number">6</span>;  </span><br><span class="line"><span class="comment">/* 38 */</span>          <span class="type">double</span> field$<span class="number">7</span>;  </span><br><span class="line"><span class="comment">/* 39 */</span>          <span class="type">boolean</span> isNull$<span class="number">7</span>;  </span><br><span class="line"><span class="comment">/* 40 */</span>          org.apache.flink.table.data.binary.BinaryStringData field$<span class="number">8</span>;  </span><br><span class="line"><span class="comment">/* 41 */</span>          <span class="type">boolean</span> isNull$<span class="number">8</span>;  </span><br><span class="line"><span class="comment">/* 42 */</span>          org.apache.flink.table.data.binary.BinaryStringData field$<span class="number">9</span>;  </span><br><span class="line"><span class="comment">/* 43 */</span>          org.apache.flink.table.data.TimestampData field$<span class="number">10</span>;  </span><br><span class="line"><span class="comment">/* 44 */</span>          <span class="type">boolean</span> isNull$<span class="number">10</span>;  </span><br><span class="line"><span class="comment">/* 45 */</span>            </span><br><span class="line"><span class="comment">/* 46 */</span>            </span><br><span class="line"><span class="comment">/* 47 */</span>            </span><br><span class="line"><span class="comment">/* 48 */</span>          isNull$<span class="number">8</span> = in1.isNullAt(<span class="number">0</span>);  </span><br><span class="line"><span class="comment">/* 49 */</span>          field$<span class="number">8</span> = org.apache.flink.table.data.binary.BinaryStringData.EMPTY_UTF8;  </span><br><span class="line"><span class="comment">/* 50 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">8</span>) &#123;  </span><br><span class="line"><span class="comment">/* 51 */</span>            field$<span class="number">8</span> = ((org.apache.flink.table.data.binary.BinaryStringData) in1.getString(<span class="number">0</span>));  </span><br><span class="line"><span class="comment">/* 52 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 53 */</span>          field$<span class="number">9</span> = field$<span class="number">8</span>;  </span><br><span class="line"><span class="comment">/* 54 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">8</span>) &#123;  </span><br><span class="line"><span class="comment">/* 55 */</span>            field$<span class="number">9</span> = (org.apache.flink.table.data.binary.BinaryStringData) (typeSerializer$<span class="number">5.</span>copy(field$<span class="number">9</span>));  </span><br><span class="line"><span class="comment">/* 56 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 57 */</span>                    </span><br><span class="line"><span class="comment">/* 58 */</span>          isNull$<span class="number">7</span> = in1.isNullAt(<span class="number">2</span>);  </span><br><span class="line"><span class="comment">/* 59 */</span>          field$<span class="number">7</span> = -<span class="number">1.0d</span>;  </span><br><span class="line"><span class="comment">/* 60 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">7</span>) &#123;  </span><br><span class="line"><span class="comment">/* 61 */</span>            field$<span class="number">7</span> = in1.getDouble(<span class="number">2</span>);  </span><br><span class="line"><span class="comment">/* 62 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 63 */</span>            </span><br><span class="line"><span class="comment">/* 64 */</span>          isNull$<span class="number">4</span> = in1.isNullAt(<span class="number">1</span>);  </span><br><span class="line"><span class="comment">/* 65 */</span>          field$<span class="number">4</span> = org.apache.flink.table.data.binary.BinaryStringData.EMPTY_UTF8;  </span><br><span class="line"><span class="comment">/* 66 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">4</span>) &#123;  </span><br><span class="line"><span class="comment">/* 67 */</span>            field$<span class="number">4</span> = ((org.apache.flink.table.data.binary.BinaryStringData) in1.getString(<span class="number">1</span>));  </span><br><span class="line"><span class="comment">/* 68 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 69 */</span>          field$<span class="number">6</span> = field$<span class="number">4</span>;  </span><br><span class="line"><span class="comment">/* 70 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">4</span>) &#123;  </span><br><span class="line"><span class="comment">/* 71 */</span>            field$<span class="number">6</span> = (org.apache.flink.table.data.binary.BinaryStringData) (typeSerializer$<span class="number">5.</span>copy(field$<span class="number">6</span>));  </span><br><span class="line"><span class="comment">/* 72 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 73 */</span>                    </span><br><span class="line"><span class="comment">/* 74 */</span>          isNull$<span class="number">10</span> = in1.isNullAt(<span class="number">3</span>);  </span><br><span class="line"><span class="comment">/* 75 */</span>          field$<span class="number">10</span> = <span class="literal">null</span>;  </span><br><span class="line"><span class="comment">/* 76 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">10</span>) &#123;  </span><br><span class="line"><span class="comment">/* 77 */</span>            field$<span class="number">10</span> = in1.getTimestamp(<span class="number">3</span>, <span class="number">3</span>);  </span><br><span class="line"><span class="comment">/* 78 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 79 */</span>            </span><br><span class="line"><span class="comment">/* 80 */</span>          out.setRowKind(in1.getRowKind());  </span><br><span class="line"><span class="comment">/* 81 */</span>            </span><br><span class="line"><span class="comment">/* 82 */</span>            </span><br><span class="line"><span class="comment">/* 83 */</span>            </span><br><span class="line"><span class="comment">/* 84 */</span>          <span class="comment">/*+ [CODE HINT START]  ROW_FIELD_0  */</span>  </span><br><span class="line"><span class="comment">/* 85 */</span>            </span><br><span class="line"><span class="comment">/* 86 */</span>          <span class="keyword">if</span> (isNull$<span class="number">4</span>) &#123;  </span><br><span class="line"><span class="comment">/* 87 */</span>            out.setNullAt(<span class="number">0</span>);  </span><br><span class="line"><span class="comment">/* 88 */</span>          &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">/* 89 */</span>            out.setNonPrimitiveValue(<span class="number">0</span>, field$<span class="number">6</span>);  </span><br><span class="line"><span class="comment">/* 90 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 91 */</span>          <span class="comment">/*+ [CODE HINT END]  ROW_FIELD_0  */</span>  </span><br><span class="line"><span class="comment">/* 92 */</span>                      </span><br><span class="line"><span class="comment">/* 93 */</span>            </span><br><span class="line"><span class="comment">/* 94 */</span>          <span class="comment">/*+ [CODE HINT START]  ROW_FIELD_1  */</span>  </span><br><span class="line"><span class="comment">/* 95 */</span>            </span><br><span class="line"><span class="comment">/* 96 */</span>          <span class="keyword">if</span> (isNull$<span class="number">7</span>) &#123;  </span><br><span class="line"><span class="comment">/* 97 */</span>            out.setNullAt(<span class="number">1</span>);  </span><br><span class="line"><span class="comment">/* 98 */</span>          &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">/* 99 */</span>            out.setDouble(<span class="number">1</span>, field$<span class="number">7</span>);  </span><br><span class="line"><span class="comment">/* 100 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 101 */</span>          <span class="comment">/*+ [CODE HINT END]  ROW_FIELD_1  */</span>  </span><br><span class="line"><span class="comment">/* 102 */</span>                      </span><br><span class="line"><span class="comment">/* 103 */</span>            </span><br><span class="line"><span class="comment">/* 104 */</span>          <span class="comment">/*+ [CODE HINT START]  ROW_FIELD_2  */</span>  </span><br><span class="line"><span class="comment">/* 105 */</span>            </span><br><span class="line"><span class="comment">/* 106 */</span>          <span class="keyword">if</span> (isNull$<span class="number">8</span>) &#123;  </span><br><span class="line"><span class="comment">/* 107 */</span>            out.setNullAt(<span class="number">2</span>);  </span><br><span class="line"><span class="comment">/* 108 */</span>          &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">/* 109 */</span>            out.setNonPrimitiveValue(<span class="number">2</span>, field$<span class="number">9</span>);  </span><br><span class="line"><span class="comment">/* 110 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 111 */</span>          <span class="comment">/*+ [CODE HINT END]  ROW_FIELD_2  */</span>  </span><br><span class="line"><span class="comment">/* 112 */</span>                      </span><br><span class="line"><span class="comment">/* 113 */</span>            </span><br><span class="line"><span class="comment">/* 114 */</span>          <span class="comment">/*+ [CODE HINT START]  ROW_FIELD_3  */</span>  </span><br><span class="line"><span class="comment">/* 115 */</span>            </span><br><span class="line"><span class="comment">/* 116 */</span>          <span class="keyword">if</span> (isNull$<span class="number">10</span>) &#123;  </span><br><span class="line"><span class="comment">/* 117 */</span>            out.setNullAt(<span class="number">3</span>);  </span><br><span class="line"><span class="comment">/* 118 */</span>          &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">/* 119 */</span>            out.setNonPrimitiveValue(<span class="number">3</span>, field$<span class="number">10</span>);  </span><br><span class="line"><span class="comment">/* 120 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 121 */</span>          <span class="comment">/*+ [CODE HINT END]  ROW_FIELD_3  */</span>  </span><br><span class="line"><span class="comment">/* 122 */</span>                      </span><br><span class="line"><span class="comment">/* 123 */</span>                    </span><br><span class="line"><span class="comment">/* 124 */</span>          output.collect(outElement.replace(out));  </span><br><span class="line"><span class="comment">/* 125 */</span>            </span><br><span class="line"><span class="comment">/* 126 */</span>            </span><br><span class="line"><span class="comment">/* 127 */</span>        &#125;  </span><br><span class="line"><span class="comment">/* 128 */</span>  </span><br><span class="line"><span class="comment">/* 129 */</span>          </span><br><span class="line"><span class="comment">/* 130 */</span>  </span><br><span class="line"><span class="comment">/* 131 */</span>        <span class="meta">@Override</span>  </span><br><span class="line"><span class="comment">/* 132 */</span>        <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">close</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line"><span class="comment">/* 133 */</span>           <span class="built_in">super</span>.close();  </span><br><span class="line"><span class="comment">/* 134 */</span>            </span><br><span class="line"><span class="comment">/* 135 */</span>        &#125;  </span><br><span class="line"><span class="comment">/* 136 */</span>  </span><br><span class="line"><span class="comment">/* 137 */</span>          </span><br><span class="line"><span class="comment">/* 138 */</span>      &#125;  </span><br><span class="line"><span class="comment">/* 139 */</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-Hive/" rel="prev" title="Flink hive connector">
+      <i class="fa fa-chevron-left"></i> Flink hive connector
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/actions/Flink%E5%AE%9E%E6%88%98%E5%90%88%E9%9B%86/" rel="next" title="【转载】Flink实时进阶文集合集">
+      【转载】Flink实时进阶文集合集 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">1.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RelNodes"><span class="nav-number">2.</span> <span class="nav-text">RelNodes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformations"><span class="nav-number">3.</span> <span class="nav-text">Transformations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Codegens"><span class="nav-number">4.</span> <span class="nav-text">Codegens</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

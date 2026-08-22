@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Flink-SQL语法Apache Flink SQL training group windowgroupByWindow会直接生成回撤流 12345678910111213insert       into    dim_result_lct_activy_config    select        Fact_id,        LAST_VALUE(Fact_name),">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink-语法糖">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-SQL-syntactic-sugar/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="Flink-SQL语法Apache Flink SQL training group windowgroupByWindow会直接生成回撤流 12345678910111213insert       into    dim_result_lct_activy_config    select        Fact_id,        LAST_VALUE(Fact_name),">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/image-20210928204455343.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/image-20210928204646114.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/image-20210928204703778.png">
+<meta property="article:published_time" content="2021-01-15T19:47:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.965Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/Flink/image-20210928204455343.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-SQL-syntactic-sugar/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Flink-语法糖 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-syntactic-sugar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flink-语法糖
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-01-15T19:47:00+00:00">2021-01-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Flink-SQL语法"><a href="#Flink-SQL语法" class="headerlink" title="Flink-SQL语法"></a>Flink-SQL语法</h1><p><a href="https://github.com/ververica/sql-training/wiki">Apache Flink SQL training</a></p>
+<h2 id="group-window"><a href="#group-window" class="headerlink" title="group window"></a>group window</h2><p>groupByWindow会直接生成回撤流</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert       </span></span><br><span class="line"><span class="keyword">into</span></span><br><span class="line">    dim_result_lct_activy_config</span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        Fact_id,</span><br><span class="line">        <span class="built_in">LAST_VALUE</span>(Fact_name),</span><br><span class="line">        regexp_Replace( <span class="built_in">LAST_VALUE</span>(Fact_start_time), <span class="string">&#x27;-|:|\s&#x27;</span>,<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> startTime,</span><br><span class="line">        regexp_Replace(<span class="built_in">LAST_VALUE</span>(Fact_end_time),<span class="string">&#x27;-|:|\s&#x27;</span>,<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> endTime,</span><br><span class="line">        <span class="built_in">LAST_VALUE</span>(Fstate)                               </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">        db_act_config_t_act_logic_config         </span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span></span><br><span class="line">        Fact_id</span><br></pre></td></tr></table></figure>
+
+<p>这是一个同步数据的demo，db_act_config_t_act_logic_config 是kafka数据源，来自源MySQL的变更数据；dim_result_lct_activy_config是目的表，Fact_id为主键。</p>
+<h4 id="group-window生成retract-stream"><a href="#group-window生成retract-stream" class="headerlink" title="group window生成retract stream"></a>group window生成retract stream</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert into</span> mysql_sink <span class="keyword">select</span> fkey,<span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> cnt <span class="keyword">from</span> kafka_source <span class="keyword">group</span> <span class="keyword">by</span> fkey</span><br></pre></td></tr></table></figure>
+
+<p>上述语句是一个group window, 每从kafka中过来一条数据，都会产生两条记录(<code>Tuple2&lt;Row,Boolean&gt;</code>), 删除旧记录，添加新记录。</p>
+<p>group window会产生 <code>retract stream</code>, 下游系统必须支持<code>retract stream</code>，(目前共有三种sink: <code>AppendStreamSink</code>, <code>UpsertStreamSink</code>, <code>RetractStreamSink</code> )</p>
+<p>Flink-connector-JDBC 使用的是<code>JDBCUpsertTableSink.java</code>写入MySQL, 支持Retract</p>
+<p> <a href="https://github.com/apache/flink/tree/master/flink-connectors/flink-jdbc/src/main/java/org/apache/flink/api/java/io/jdbc">https://github.com/apache/flink/tree/master/flink-connectors/flink-jdbc/src/main/java/org/apache/flink/api/java/io/jdbc</a> </p>
+<p>Flink-connector-kafka 实现的是 <code>AppendStreamSink</code>，只支持insert，不支持retract. 会报错</p>
+<p><code>AppendStreamTableSink requires that Table has only insert changes</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert into</span> mysql_sink <span class="keyword">select</span> fkey,<span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> cnt <span class="keyword">from</span> kafka_source</span><br></pre></td></tr></table></figure>
+
+<p>如果不带<code>group by</code>, 无法推导出unique key, 无法按照unique key更新</p>
+<p><a href="http://apache-flink.147419.n8.nabble.com/FlinkSQL-Upsert-Retraction-MySQL-td2785.html">http://apache-flink.147419.n8.nabble.com/FlinkSQL-Upsert-Retraction-MySQL-td2785.html</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * Get dialect upsert statement, the database has its own upsert syntax, such as Mysql </span></span><br><span class="line"><span class="comment"> * using DUPLICATE KEY UPDATE, and PostgresSQL using ON CONFLICT... DO UPDATE SET.. </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> None if dialect does not support upsert statement, the writer will degrade to </span></span><br><span class="line"><span class="comment"> * the use of select + update/insert, this performance is poor. </span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line"><span class="keyword">default</span> <span class="type">Optional</span>&lt;String&gt; <span class="title function_">getUpsertStatement</span><span class="params">( </span></span><br><span class="line"><span class="params">   String tableName, String[] fieldNames, String[] uniqueKeyFields)</span> &#123; </span><br><span class="line"><span class="keyword">return</span> Optional.empty(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>不同的数据库产品有不同的语句，所以默认实现是delete +insert </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">executeBatch</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123; </span><br><span class="line">  <span class="keyword">if</span> (keyToRows.size() &gt; <span class="number">0</span>) &#123; </span><br><span class="line">  <span class="keyword">for</span> (Map.Entry&lt;Row, Tuple2&lt;Boolean, Row&gt;&gt; entry : keyToRows.entrySet()) &#123; </span><br><span class="line">       <span class="type">Row</span> <span class="variable">pk</span> <span class="operator">=</span> entry.getKey(); </span><br><span class="line">       <span class="type">Tuple2</span>&lt;Boolean, Row&gt; <span class="variable">tuple</span> <span class="operator">=</span> entry.getValue(); </span><br><span class="line">       <span class="keyword">if</span> (tuple.f0) &#123; </span><br><span class="line">          processOneRowInBatch(pk, tuple.f1); </span><br><span class="line">       &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">          setRecordToStatement(deleteStatement, pkTypes, pk); </span><br><span class="line">          deleteStatement.addBatch(); </span><br><span class="line">       &#125; </span><br><span class="line">     &#125; </span><br><span class="line">     internalExecuteBatch(); </span><br><span class="line">     deleteStatement.executeBatch(); </span><br><span class="line">     keyToRows.clear(); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/images/bigdata/Flink/image-20210928204455343.png" alt="image-20210928204455343"></p>
+<p><img src="/images/bigdata/Flink/image-20210928204646114.png" alt="image-20210928204646114"></p>
+<p><img src="/images/bigdata/Flink/image-20210928204703778.png" alt="image-20210928204703778"></p>
+<h2 id="Over-window"><a href="#Over-window" class="headerlink" title="Over window"></a>Over window</h2><p><a href="https://zhuanlan.zhihu.com/p/92654574">SQL窗口函数</a> 传统SQL窗口函数的介绍</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">    to_char(SYSTIMESTAMP(),<span class="string">&#x27;yyyymmddhh24miss&#x27;</span>) fetl_time,</span><br><span class="line">    <span class="operator">*</span> </span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">select</span></span><br><span class="line">      <span class="operator">*</span>,</span><br><span class="line">          <span class="built_in">row_number</span>() <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> fid <span class="keyword">order</span> <span class="keyword">by</span> fmodify_time <span class="keyword">desc</span>,exp_time_stample_order <span class="keyword">desc</span>) rn </span><br><span class="line">  <span class="keyword">from</span> </span><br><span class="line">          db.table1 </span><br><span class="line">  <span class="keyword">where</span> </span><br><span class="line">          fdate<span class="operator">=</span><span class="number">20210101</span></span><br><span class="line">) t</span><br><span class="line"><span class="keyword">where</span> rn<span class="operator">=</span><span class="number">1</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(amount) <span class="keyword">OVER</span> (</span><br><span class="line">  <span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">user</span></span><br><span class="line">  <span class="keyword">ORDER</span> <span class="keyword">BY</span> proctime</span><br><span class="line">  <span class="keyword">ROWS</span> <span class="keyword">BETWEEN</span> <span class="number">2</span> PRECEDING <span class="keyword">AND</span> <span class="keyword">CURRENT</span> <span class="type">ROW</span>)</span><br><span class="line"><span class="keyword">FROM</span> Orders;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(amount) <span class="keyword">OVER</span> w, <span class="built_in">SUM</span>(amount) <span class="keyword">OVER</span> w</span><br><span class="line"><span class="keyword">FROM</span> Orders </span><br><span class="line"><span class="keyword">WINDOW</span> w <span class="keyword">AS</span> (</span><br><span class="line">  <span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">user</span></span><br><span class="line">  <span class="keyword">ORDER</span> <span class="keyword">BY</span> proctime</span><br><span class="line">  <span class="keyword">ROWS</span> <span class="keyword">BETWEEN</span> <span class="number">2</span> PRECEDING <span class="keyword">AND</span> <span class="keyword">CURRENT</span> <span class="type">ROW</span>)  ;</span><br></pre></td></tr></table></figure>
+
+<h3 id="OVER-窗口应用示例"><a href="#OVER-窗口应用示例" class="headerlink" title="OVER 窗口应用示例"></a>OVER 窗口应用示例</h3><p>首先通过 DDL 定义源数据表和结果表，如下输入是用户行为消息，输出到计算结果消息。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> `user_action` (</span><br><span class="line">    `user_id` <span class="type">VARCHAR</span>,</span><br><span class="line">    `page_id` <span class="type">VARCHAR</span>,</span><br><span class="line">    `action_type` <span class="type">VARCHAR</span>,</span><br><span class="line">    `event_time` <span class="type">TIMESTAMP</span>,</span><br><span class="line">    WATERMARK <span class="keyword">FOR</span> event_time <span class="keyword">AS</span> event_time <span class="operator">-</span> <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">SECOND</span></span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line">    <span class="string">&#x27;connector.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;kafka&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;connector.topic&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;user_action&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;connector.version&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;0.11&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;connector.properties.0.key&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;bootstrap.servers&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;connector.properties.0.value&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;xxx:9092&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;connector.startup-mode&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;latest-offset&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;update-mode&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;append&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;...&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;...&#x27;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE TABLE</span> `agg_result` (</span><br><span class="line">    `user_id` <span class="type">VARCHAR</span>,</span><br><span class="line">    `page_id` <span class="type">VARCHAR</span>,</span><br><span class="line">    `result_type` <span class="type">VARCHAR</span>,</span><br><span class="line">    `result_value` <span class="type">BIGINT</span></span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line">    <span class="string">&#x27;connector.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;kafka&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;connector.topic&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;agg_result&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;...&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;...&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>场景一，实时触发的最近2小时用户+页面维度的点击量，注意窗口是向前2小时，类似于实时触发的滑动窗口。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert into</span></span><br><span class="line">    agg_result</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    user_id,</span><br><span class="line">    page_id,</span><br><span class="line">    <span class="string">&#x27;click-type1&#x27;</span> <span class="keyword">as</span> result_type</span><br><span class="line">    <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">OVER</span> (</span><br><span class="line">        <span class="keyword">PARTITION</span> <span class="keyword">BY</span> user_id, page_id</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> event_time </span><br><span class="line">        <span class="keyword">RANGE</span> <span class="keyword">BETWEEN</span> <span class="type">INTERVAL</span> <span class="string">&#x27;2&#x27;</span> <span class="keyword">HOUR</span> PRECEDING <span class="keyword">AND</span> <span class="keyword">CURRENT</span> <span class="type">ROW</span></span><br><span class="line">    ) <span class="keyword">as</span> result_value</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">    user_action</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    action_type <span class="operator">=</span> <span class="string">&#x27;click&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>场景二，实时触发的当天用户+页面维度的浏览量，这就是开篇问题解法，其中多了一个日期维度分组条件，这样就做到输出结果从滑动时间转为固定时间（根据时间区间分组），因为 WATERMARK 机制，今天并不会有昨天数据到来（如果有都被自动抛弃），因此只会输出今天的分组结果。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert into</span></span><br><span class="line">    agg_result</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    user_id,</span><br><span class="line">    page_id,</span><br><span class="line">    <span class="string">&#x27;view-type1&#x27;</span> <span class="keyword">as</span> result_type</span><br><span class="line">    <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">OVER</span> (</span><br><span class="line">        <span class="keyword">PARTITION</span> <span class="keyword">BY</span> user_id, page_id, DATE_FORMAT(event_time, <span class="string">&#x27;yyyyMMdd&#x27;</span>)</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> event_time </span><br><span class="line">        <span class="keyword">RANGE</span> <span class="keyword">BETWEEN</span> <span class="type">INTERVAL</span> <span class="string">&#x27;1&#x27;</span> <span class="keyword">DAY</span> PRECEDING <span class="keyword">AND</span> <span class="keyword">CURRENT</span> <span class="type">ROW</span></span><br><span class="line">    ) <span class="keyword">as</span> result_value</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">    user_action</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    action_type <span class="operator">=</span> <span class="string">&#x27;view&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>场景三，实时触发的当天用户+页面点击率 CTR（Click-Through-Rate），这相比前面增加了多个 OVER 聚合计算，可以将窗口定义写在最后。注意示例中缺少了类型转换，因为除法结果是 decimal，也缺少精度处理函数 ROUND。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert into</span></span><br><span class="line">    agg_result</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    user_id,</span><br><span class="line">    page_id,</span><br><span class="line">    <span class="string">&#x27;ctr-type1&#x27;</span> <span class="keyword">as</span> result_type,</span><br><span class="line">    <span class="built_in">sum</span>(</span><br><span class="line">        <span class="keyword">case</span></span><br><span class="line">            <span class="keyword">when</span> action_type <span class="operator">=</span> <span class="string">&#x27;click&#x27;</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    ) <span class="keyword">OVER</span> w </span><br><span class="line">    <span class="operator">/</span> </span><br><span class="line">    if(</span><br><span class="line">        <span class="built_in">sum</span>(</span><br><span class="line">            <span class="keyword">case</span></span><br><span class="line">                <span class="keyword">when</span> action_type <span class="operator">=</span> <span class="string">&#x27;view&#x27;</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        ) <span class="keyword">OVER</span> w <span class="operator">=</span> <span class="number">0</span>,</span><br><span class="line">        <span class="number">1</span>,</span><br><span class="line">        <span class="built_in">sum</span>(</span><br><span class="line">            <span class="keyword">case</span></span><br><span class="line">                <span class="keyword">when</span> action_type <span class="operator">=</span> <span class="string">&#x27;view&#x27;</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        ) <span class="keyword">OVER</span> w</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">as</span> result_value</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">    user_action</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    <span class="number">1</span> <span class="operator">=</span> <span class="number">1</span> </span><br><span class="line"><span class="keyword">WINDOW</span> w <span class="keyword">AS</span> (</span><br><span class="line">        <span class="keyword">PARTITION</span> <span class="keyword">BY</span> user_id, page_id, DATE_FORMAT(event_time,<span class="string">&#x27;yyyyMMdd&#x27;</span>)</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> event_time </span><br><span class="line">        <span class="keyword">RANGE</span> <span class="keyword">BETWEEN</span> <span class="type">INTERVAL</span> <span class="string">&#x27;1&#x27;</span> <span class="keyword">DAY</span> PRECEDING <span class="keyword">AND</span> <span class="keyword">CURRENT</span> <span class="type">ROW</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<p>此外，OVER 窗口聚合还可以支持查询子句、关联查询、UNION ALL 等组合，并可以实现对关联出来的列进行聚合等复杂情况。</p>
+<h3 id="实时TopN"><a href="#实时TopN" class="headerlink" title="实时TopN"></a>实时TopN</h3><p><a href="https://blog.csdn.net/wangpei1949/article/details/105471974">SQL实时TopN</a></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create table</span> source_kafka </span><br><span class="line">( </span><br><span class="line">    userID String, </span><br><span class="line">    eventType String, </span><br><span class="line">    eventTime String, </span><br><span class="line">    productID String </span><br><span class="line">) <span class="keyword">with</span> ( </span><br><span class="line">    <span class="string">&#x27;connector.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;kafka&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;connector.version&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;0.10&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;connector.properties.bootstrap.servers&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;kafka01:9092&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;connector.properties.zookeeper.connect&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;kafka01:2181&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;connector.topic&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;test_1&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;connector.properties.group.id&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;c1_test_1&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;connector.startup-mode&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;latest-offset&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;format.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;json&#x27;</span> </span><br><span class="line">);</span><br><span class="line"><span class="keyword">create table</span> sink_mysql</span><br><span class="line">(</span><br><span class="line">    datetime STRING,</span><br><span class="line">    productID STRING,</span><br><span class="line">    userID STRING,</span><br><span class="line">    clickPV <span class="type">BIGINT</span></span><br><span class="line">) <span class="keyword">with</span> (</span><br><span class="line"><span class="string">&#x27;connector.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;jdbc&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;connector.url&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;jdbc:mysql://localhost:3306/bigdata&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;connector.table&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;t_product_click_topn&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;connector.username&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;connector.password&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;bigdata&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;connector.write.flush.max-rows&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;50&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;connector.write.flush.interval&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;2s&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;connector.write.max-retries&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">INSERT INTO</span> sink_mysql </span><br><span class="line"><span class="keyword">SELECT</span> datetime, productID, userID, clickPV </span><br><span class="line"><span class="keyword">FROM</span> ( </span><br><span class="line">  <span class="keyword">SELECT</span> <span class="operator">*</span>, </span><br><span class="line">     <span class="built_in">ROW_NUMBER</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> datetime, productID <span class="keyword">ORDER</span> <span class="keyword">BY</span> clickPV <span class="keyword">desc</span>) <span class="keyword">AS</span> rownum </span><br><span class="line">  <span class="keyword">FROM</span> ( </span><br><span class="line">        <span class="keyword">SELECT</span> <span class="built_in">SUBSTRING</span>(eventTime,<span class="number">1</span>,<span class="number">13</span>) <span class="keyword">AS</span> datetime, </span><br><span class="line">            productID, </span><br><span class="line">            userID, </span><br><span class="line">            <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">AS</span> clickPV </span><br><span class="line">        <span class="keyword">FROM</span> source_kafka </span><br><span class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="built_in">SUBSTRING</span>(eventTime,<span class="number">1</span>,<span class="number">13</span>), productID, userID </span><br><span class="line">    ) a </span><br><span class="line">) t </span><br><span class="line"><span class="keyword">WHERE</span> rownum <span class="operator">&lt;=</span> <span class="number">3</span>;               </span><br></pre></td></tr></table></figure>
+
+<h3 id="OVER-窗口问题和优化"><a href="#OVER-窗口问题和优化" class="headerlink" title="OVER 窗口问题和优化"></a>OVER 窗口问题和优化</h3><p>在底层实现中，所有细分 OVER 窗口的数据都是共享的，只存一份，这点不像滑动窗口会保存多份窗口数据。但是 OVER  窗口会把所有数据明细存在状态后端中（内存、RocksDB 或  HDFS），每一次窗口计算后会清除过期数据。因此如果向前窗口时间较大，或数据明细过多，可能会占用大量内存，即使通过 RocksDB  存在磁盘上，也有因为磁盘访问慢导致性能下降进而产生反压问题。在实现源码 <code>RowTimeRangeBoundedPrecedingFunction</code> 可以看到虽然每次窗口计算时新增聚合值和减少过期聚合值是增量式的，不用遍历全部窗口明细，但是为了计算过期数据，即超过 PRECEDING  的数据，仍然需要把存储的那些时间戳全部拿出来遍历，判断是否过期，以及是否要减少聚合值。我们尝试了通过数据有序性减少查询操作，但是效果并不明显，目前主要是配置调优和加大任务分片数进行优化。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-State-TTL/" rel="prev" title="Flink-state-ttl">
+      <i class="fa fa-chevron-left"></i> Flink-state-ttl
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SQL-inside/" rel="next" title="Flink SQL inside">
+      Flink SQL inside <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flink-SQL%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Flink-SQL语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#group-window"><span class="nav-number">1.1.</span> <span class="nav-text">group window</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#group-window%E7%94%9F%E6%88%90retract-stream"><span class="nav-number">1.1.1.</span> <span class="nav-text">group window生成retract stream</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Over-window"><span class="nav-number">1.2.</span> <span class="nav-text">Over window</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OVER-%E7%AA%97%E5%8F%A3%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">OVER 窗口应用示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%97%B6TopN"><span class="nav-number">1.2.2.</span> <span class="nav-text">实时TopN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OVER-%E7%AA%97%E5%8F%A3%E9%97%AE%E9%A2%98%E5%92%8C%E4%BC%98%E5%8C%96"><span class="nav-number">1.2.3.</span> <span class="nav-text">OVER 窗口问题和优化</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

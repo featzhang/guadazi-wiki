@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/PyFlink/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/PyFlink/" class="post-title-link" itemprop="url">PyFlink</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><input disabled="" type="checkbox"> <a href="https://github.com/huanglaoxie0503/pyflink-basic-introduction">https://github.com/huanglaoxie0503/pyflink-basic-introduction</a></li>
+<li><input disabled="" type="checkbox"> 开发效率</li>
+<li><input disabled="" type="checkbox"> UDF调用放大问题</li>
+</ul>
+<h2 id="0-1-Pemja"><a href="#0-1-Pemja" class="headerlink" title="0.1 Pemja"></a>0.1 Pemja</h2><p>Pemja本质是在Python进程中启动并嵌入JMV的库(通过JNI)，前提是Python是主进程，JMV是骑宠的一个组件</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-TopN-active/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-TopN-active/" class="post-title-link" itemprop="url">Flink TopN实现方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Flink-SQL中如何实现TopN"><a href="#Flink-SQL中如何实现TopN" class="headerlink" title="Flink SQL中如何实现TopN?"></a>Flink SQL中如何实现TopN?</h2><p>Flink SQL基于ANSI SQL标准语法，使用ROW_NUMBER的开窗聚合函数来解决分组TopN的问题, 语法:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	(</span><br><span class="line">		<span class="keyword">SELECT</span> <span class="operator">*</span>,</span><br><span class="line">	         <span class="built_in">ROW_NUMBER</span>() <span class="keyword">OVER</span> (</span><br><span class="line">				[<span class="keyword">PARTITION</span> <span class="keyword">BY</span> col1[, col2..]]</span><br><span class="line">				<span class="keyword">ORDER</span> <span class="keyword">BY</span>  col1 [<span class="keyword">asc</span><span class="operator">|</span><span class="keyword">desc</span>][, col2 [<span class="keyword">asc</span><span class="operator">|</span><span class="keyword">desc</span>]...]</span><br><span class="line">			) <span class="keyword">AS</span> rownum</span><br><span class="line">	    <span class="keyword">FROM</span> table_name</span><br><span class="line">	) ta</span><br><span class="line"><span class="keyword">WHERE</span> rownum <span class="operator">&lt;=</span> N [<span class="keyword">AND</span> conditions]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参数说明:<br><code>ROW_NUMBER()</code>: 是一个计算行号的OVER窗口函数，行号计算从1开始。<br><code>PARTITION BY col1[, col2..]</code> ： 指定分区的列，可以不指定。<br><code>ORDER BY col1 [asc|desc][, col2 [asc|desc]...]</code>: 指定排序的列，可以多列不同排序方向</p>
+</blockquote>
+<p>TopN 需要两层 query，子查询中使用<code>ROW_NUMBER()</code>开窗函数来为每条数据标上排名，排名的计算根据<code>PARTITION BY</code>和<code>ORDER BY</code>来指定分区列和排序列，也就是说每一条数据会计算其在所属分区中，根据排序列排序得到的排名。在外层查询中，对排名进行过滤，只取出排名小于 N 的，如 N&#x3D;10，那么就是取 Top 10 的数据。如果没有指定<code>PARTITION BY</code>那么就是一个全局 TopN 的计算，所以 ROW_NUMBER 在使用上更为灵活。</p>
+<p><strong>SQL范例</strong>:</p>
+<p>对全网商家根据行业按销售额排序，计算出每个行业销售额前十名的商家:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span>  </span><br><span class="line"><span class="keyword">FROM</span> (  </span><br><span class="line">	<span class="keyword">SELECT</span> <span class="operator">*</span>,  </span><br><span class="line">	 <span class="built_in">ROW_NUMBER</span>() <span class="keyword">OVER</span> (</span><br><span class="line">			<span class="keyword">PARTITION</span> <span class="keyword">BY</span> category </span><br><span class="line">			<span class="keyword">ORDER</span> <span class="keyword">BY</span> sales <span class="keyword">DESC</span></span><br><span class="line">		) <span class="keyword">AS</span> rownum  </span><br><span class="line">	<span class="keyword">FROM</span> shop_sales)  </span><br><span class="line"><span class="keyword">WHERE</span> rownum <span class="operator">&lt;=</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>ROW_NUMBER 方式的 TopN 语法非常灵活，能满足全局 TopN 和分组 TopN 的需求</p>
+<p><img src="/images/bigdata/Flink/20220227204726.png"></p>
+<p>LogicalWindow 会对所有数据进行排名，也就是说每当到达一个数据，就要对历史数据进行重排序，并输出历史数据的新的排名，然后 LogicalCalc 节点会根据排名进行过滤。这在性能上是非常糟糕的，因为这无限放大了流量。而我们知道，最优的流式 TopN 的计算只需要维护一个 N 元素大小的小根堆，每当有数据到达时，只需要与堆顶元素比较，如果比堆顶元素还小，则直接丢弃；如果比堆顶元素大，则更新小根堆，并输出更新后的排行榜。也就是说我们不需要分为两个节点进行计算，不需要将所有数据进行排序，只需要在一个节点中就可以高效地完成计算。所以我们在查询优化器中加入了一条规则，在使用 TopN 语法时，将 LogicalWindow 和 LogicalCalc 合并成了 LogicalRank 节点。LogicalRank 在翻译成物理执行计划时，会使用一个经过特殊设计的 TopN 算子</p>
+<p><img src="/images/bigdata/Flink/20220227204754.png"></p>
+<p>TopN 算子的实现上主要有两个数据结构，一个是 TreeMap，另一个是 MapState。TreeMap 的作用类似于上文的小根堆，有序地存放了排名前 N 的元素。但是 TreeMap 是个内存数据结构，在 failover 后会丢失，无法保证数据的一致性。因此我们还有一个 MapState 结构，MapState 是 Flink 提供的状态接口，用来存储 TopN 的数据（保证数据不丢）。当有 failover 发生后，MapState 能保证状态的恢复，而 TreeMap 会从 MapState 中重新构造出来。我们并有没有把顺序也存到状态中去，因为顺序是可以在恢复时重构的。因为每一次状态的读写操作都会涉及到序列化&#x2F;反序列化，往往是性能的瓶颈，所以 TreeMap 的主要作用是降低了对 MapState 状态的读写操作。对大部分数据来说都是与 TreeMap 进行交互，不需要对 MapState 进行读写的，全是内存操作，所以 TopN 的性能是非常高的。</p>
+<p><img src="/images/bigdata/Flink/20220227204812.png"></p>
+<p>TopN 算子的主要处理流程是，每当有数据到达时，会与 TreeMap 的最小的元素比较，如果比它小，那么该数据就不可能是 TopN 的一员，直接丢弃即可。如果比它大，那么就会先更新 TreeMap，同时更新 MapState 中的存的数据。最后输出更新后的排行榜。为了减少冗余数据的输出，我们只会输出排名发生变化的数据。例如原先的第7名上升到了第六名，那么只需要输出新的第六名和第七名即可</p>
+<h3 id="嵌套-TopN-解决热点问题"><a href="#嵌套-TopN-解决热点问题" class="headerlink" title="嵌套 TopN 解决热点问题"></a>嵌套 TopN 解决热点问题</h3><p>TopN 的计算与 GroupBy 的计算类似，如果数据存在倾斜，则会有计算热点的现象。比如全局 TopN，那么所有的数据只能汇集到一个节点进行 TopN 的计算，那么计算能力就会受限于单台机器，无法做到水平扩展。解决思路与 GroupBy 是类似的，就是使用嵌套 TopN，或者说两层 TopN。在原先的 TopN 前面，再加一层 TopN，用于分散热点。例如，计算全网排名前十的商铺，会导致单点的数据热点，那么可以先加一层分组 TopN，组的划分规则是根据店铺 ID 哈希取模后分成128组（并发的倍数）。第二层 TopN 与原先的写法一样，没有 PARTITION BY。第一层会计算出每一组的 TopN，而后在第二层中进行合并汇总，得到最终的全网前十。第二层虽然仍是单点，但是大量的计算量由第一层分担了，而第一层是可以水平扩展的。使用嵌套 TopN 的优化写法如下所示：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> tmp_topn <span class="keyword">AS</span>  </span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span>  </span><br><span class="line"><span class="keyword">FROM</span> (  </span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span>,  </span><br><span class="line"><span class="built_in">ROW_NUMBER</span>() <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> HASH_CODE(shop_id)<span class="operator">%</span><span class="number">128</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> sales <span class="keyword">DESC</span>) <span class="keyword">AS</span> rownum  </span><br><span class="line"><span class="keyword">FROM</span> shop_sales)  </span><br><span class="line"><span class="keyword">WHERE</span> rownum <span class="operator">&lt;=</span> <span class="number">10</span>  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span>  </span><br><span class="line"><span class="keyword">FROM</span> (  </span><br><span class="line"><span class="keyword">SELECT</span> shop_id, shop_name, sales,  </span><br><span class="line"><span class="built_in">ROW_NUMBER</span>() <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> sales <span class="keyword">DESC</span>) <span class="keyword">AS</span> rownum  </span><br><span class="line"><span class="keyword">FROM</span> tmp_topn)  </span><br><span class="line"><span class="keyword">WHERE</span> rownum <span class="operator">&lt;=</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Flink中如何实现TopN"><a href="#Flink中如何实现TopN" class="headerlink" title="Flink中如何实现TopN?"></a>Flink中如何实现TopN?</h2><p>windowall是一个全局并发为1的操作，所有的数据只能汇集到一个节点进行 TopN 的计算，那么计算能力就会受限于单台机器，容易产生数据热点问题</p>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="[参考文献]"></a>[参考文献]</h2><ol>
+<li><a href="https://cloud.tencent.com/developer/article/1780020">Flink SQL高效Top-N方案的实现原理</a></li>
+<li><a href="https://tianchi.aliyun.com/forum/postDetail?spm=5176.12282027.0.0.17e5379c1YN2um&postId=67713">Flink SQL 功能解密系列-流式 TopN 挑战与实现–阿里天池</a></li>
+<li><a href="https://mp.weixin.qq.com/s/Ppz5740WTB7lTTLHNL72Tg">基于Flink快速开发实时TopN</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-retraction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-retraction/" class="post-title-link" itemprop="url">Flink retraction</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="为什么需要retraction"><a href="#为什么需要retraction" class="headerlink" title="为什么需要retraction"></a>为什么需要retraction</h2><p><img src="/images/bigdata/Flink/202204302303239.png"></p>
+<p><img src="/images/bigdata/Flink/202204302305969.png"></p>
+<hr>
+<p>[参考文献]</p>
+<ol>
+<li><a href="https://mp.weixin.qq.com/s/fnx2GnbCWNcaptVPsSp7dw#circle=on">菜鸟供应链实时数据技术架构的演进</a></li>
+<li></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL-optimization/" class="post-title-link" itemprop="url">Flink SQL 优化引擎</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/bigdata/Flink/202204302313830.png"></p>
+<p><img src="/images/bigdata/Flink/202204302313098.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/actions/Flink-timeout-statistics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/actions/Flink-timeout-statistics/" class="post-title-link" itemprop="url">实时超时统计-事件没来的触发</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/bigdata/Flink/actions/202204302308204.png"></p>
+<p><img src="/images/bigdata/Flink/actions/202204302309080.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/actions/Flink-deduplication/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/actions/Flink-deduplication/" class="post-title-link" itemprop="url">Flink实践之去重</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Flink-去重"><a href="#Flink-去重" class="headerlink" title="Flink  去重"></a>Flink  去重</h1><h2 id="DataStream去重-timer"><a href="#DataStream去重-timer" class="headerlink" title="DataStream去重-timer"></a>DataStream去重-timer</h2><h2 id="DataStream-two-phase-aggregation"><a href="#DataStream-two-phase-aggregation" class="headerlink" title="DataStream-two-phase-aggregation"></a>DataStream-two-phase-aggregation</h2><h2 id="SQL-count-distinct"><a href="#SQL-count-distinct" class="headerlink" title="SQL-count-distinct"></a>SQL-count-distinct</h2><h2 id="SQL-group-by-latest"><a href="#SQL-group-by-latest" class="headerlink" title="SQL-group-by-latest"></a>SQL-group-by-latest</h2><h2 id="基数去重"><a href="#基数去重" class="headerlink" title="基数去重"></a>基数去重</h2><p>HypeLogLog基数: 一种基于概率的基数估计算法，用于高效统计大规模数据集中不重复元素的数量（基数），其核心思想是通过哈希函数和分桶策略，以极低的内存消耗（通常仅需几KB）实现近似计算。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/actions/Flink%E5%AE%9E%E6%88%98%E5%90%88%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/actions/Flink%E5%AE%9E%E6%88%98%E5%90%88%E9%9B%86/" class="post-title-link" itemprop="url">【转载】Flink实时进阶文集合集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p><a href="https://mp.weixin.qq.com/s/fnx2GnbCWNcaptVPsSp7dw">菜鸟供应链实时技术架构演进</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/s6YFOINMw9TKg-QVOkZT9A">趣头条实战-基于Flink+ClickHouse构建实时数据平台</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/NLwYpjzNgkR8O5zRg7RCoQ">ApacheFlink新场景-OLAP引擎</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/d_jzHb-b7LEGNz1CN34zMg">说说Flink DataStream的八种物理分区逻辑</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/eHPQx3kGKnhXeZpLhUNvng">State Processor API：如何读取，写入和修改 Flink 应用程序的状态</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/Q4k0xgPCOUQ-A2DQ-XaJgw">Flink滑动窗口原理与细粒度滑动窗口的性能问题</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/Ppz5740WTB7lTTLHNL72Tg">基于Flink快速开发实时TopN</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/kLjEceslHQxDDi3mRrjR-g">使用 Apache Flink 开发实时 ETL</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/kZQRQBVjYiXKfMhKM7SSqQ">Flink Source&#x2F;Sink探究与实践：RocketMQ数据写入HBase</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/GDylIWCDnjpX9_X6T9NmMA">Spark&#x2F;Flink广播实现作业配置动态更新</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/A6CIPsGf-aCWXkB7O-toVw">Flink全链路延迟的测量方式</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/5BlCzguYiEP1h48jwkos2w">Flink原理-Flink中的数据抽象及数据交换过程</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/UkpkS_JiRGR0ibZKYechbg">Flink SQL Window源码全解析</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/e-lyViKV4NPmOVwA5Jn6Qw">Flink DataStream维度表Join的简单方案</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/cBMrF814jGtEFdve0Lrr6g">Apache Flink的内存管理</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/e0BQoY5Y79NHhcQ9MqltFQ">Flink1.9整合Kafka实战</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/KbhmJCW80UmeFwRxM3jerg">Apache Flink在小米的发展和应用</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/BPzOBz7oTfn2_yW8tevEEw">基于Kafka+Flink+Redis的电商大屏实时计算案例</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/TsU_5N0Csfw-afN9AdAihw">Flink实战-贝壳找房基于Flink的实时平台建设</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/0M8XLTgpj6jWNcokNhyxAw">用Flink取代Spark Streaming！知乎实时数仓架构演进</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/Oom-TaEsT6GKGs95dJil5Q">Flink实时数仓-美团点评实战</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/13w43iYT3-riIj757HPGxw">来将可留姓名？Flink最强学习资源合集!</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/0VXqbzLBj5rZjjf4jAc3UQ">数据不撒谎，Flink-Kafka性能压测全记录!</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/2_8uOdDJwzYxUP-NLh6VhA">菜鸟在物流场景中基于Flink的流计算实践</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/Rhgt33y102WzR9-Zq15iVQ">基于Flink构建实时数据仓库</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/sjRV_F9tXEfqKL_00rJc7w">Flink&#x2F;Spark 如何实现动态更新作业配置</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/Rza4aozOuTI928542Q8eQA">Apache Flink结合Apache Kafka实现端到端的一致性语义</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/vRwWOf38Ay_f2wfgcCvEQQ">Flink在滴滴出行的应用与实践</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/pcr7xn2D5Nrvmsb5zPXJmQ">批流统一计算引擎的动力源泉—Flink Shuffle机制的重构与优化</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/CYLrUxYojxpYFlUXhqEesg">腾讯基于Flink的实时流计算平台演进之路</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/27sXcAZQJ33gOTfmGCAqPA">Flink进阶-Flink CEP(复杂事件处理)</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/Pbzd7aK42bcbvRf40w4EXw">Flink基于EventTime和WaterMark处理乱序事件和晚到的数据</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/d-zJ2ZGElARsfxTWb7VW-Q">Flink 最锋利的武器：Flink SQL 入门和实战</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/xkmLN2OJl_bwyCcgXx6ZeQ">Flink Back Pressure</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/_5Vxsz7hQytwZYQDZmRdyQ">最火的实时计算框架Flink和下一代分布式消息队列Pulsar的批流融合</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/tJwS9lGmcJ5uwLJfrsKK-g">Flink Exactly-Once 投递实现浅析</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/kQsWaqQWjF0agSmrzmpttw">Flink 网络传输优化技术</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/c9GhUuDONCtcS_4NaOMGlQ">Apache Flink 在快手的应用与实践</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/Rhgt33y102WzR9-Zq15iVQ">基于Flink构建实时数据仓库</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/2_8uOdDJwzYxUP-NLh6VhA">菜鸟在物流场景中基于Flink的流计算实践</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/0VXqbzLBj5rZjjf4jAc3UQ">数据不撒谎，Flink-Kafka性能压测全记录！</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/9UEouSK_yInR1GqoUYhmNQ">腾讯基于 Flink 的实时流计算平台演进之路</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/6_Wco8e1BX0NgrsXMI0haQ">Flink CEP在哈啰出行的应用</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/1oB5xyy2MPlfMBUXX3JI4w">基于Flink和Kafka构建批流一体的数据集成平台</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/D4gGgqdfNU8BD7rRScRzGQ">补齐短板 | 看阿里巴巴如何玩转Flink+Hive</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/Oom-TaEsT6GKGs95dJil5Q">Flink实时数仓 | 美团点评实战</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/0M8XLTgpj6jWNcokNhyxAw">用Flink取代Spark Streaming！知乎实时数仓架构演进</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/FVU2FpMUwkALoreyKSICFw">Flink CheckPoint奇技淫巧 | 原理和在生产中的应用</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/CwOTkmWaoPuHssgbF1-XKw">使用 Apache Flink 开发实时ETL</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/fnvmcmIq1y_Vkf3X1vgzRQ">使用 Kubernetes 部署 Flink 应用</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/TsU_5N0Csfw-afN9AdAihw">Flink 实战 | 贝壳找房基于Flink的实时平台建设</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-cumulate-window/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL-cumulate-window/" class="post-title-link" itemprop="url">FlinkSQL-cumulateWindow</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建订单表连接器  </span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> orders  </span><br><span class="line">(  </span><br><span class="line">    order_id   STRING,  </span><br><span class="line">    user_id    STRING,  </span><br><span class="line">    amount <span class="keyword">DOUBLE</span>,  </span><br><span class="line">    order_time <span class="type">TIMESTAMP</span>(<span class="number">3</span>),  </span><br><span class="line">    ptime <span class="keyword">as</span> PROCTIME(),  </span><br><span class="line">    rtime <span class="keyword">as</span> <span class="built_in">CAST</span>(order_time <span class="keyword">AS</span> TIMESTAMP_LTZ(<span class="number">3</span>)),  </span><br><span class="line">    WATERMARK <span class="keyword">FOR</span> rtime <span class="keyword">AS</span> rtime <span class="operator">-</span> <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">SECOND</span>  </span><br><span class="line">) <span class="keyword">WITH</span> (  </span><br><span class="line">      <span class="string">&#x27;connector&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;filesystem&#x27;</span>,  </span><br><span class="line">      <span class="string">&#x27;path&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;file://$&#123;order.file.path&#125;&#x27;</span>,  </span><br><span class="line">      <span class="string">&#x27;format&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;csv&#x27;</span>,  </span><br><span class="line">      <span class="string">&#x27;csv.ignore-parse-errors&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;true&#x27;</span>,  </span><br><span class="line">      <span class="string">&#x27;csv.allow-comments&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;true&#x27;</span>  </span><br><span class="line">      );  </span><br><span class="line"><span class="comment">--  </span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> console1  </span><br><span class="line">(  </span><br><span class="line">    user_id     STRING,  </span><br><span class="line">    date_date   STRING,  </span><br><span class="line">    date_time   STRING,  </span><br><span class="line">    msg_time    STRING,  </span><br><span class="line">    total_amount <span class="keyword">DOUBLE</span>,  </span><br><span class="line">    order_times <span class="type">BIGINT</span>  </span><br><span class="line">)  </span><br><span class="line">    <span class="keyword">with</span> (  </span><br><span class="line">        <span class="string">&#x27;connector&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;console&#x27;</span>,  </span><br><span class="line">        <span class="string">&#x27;connector.name&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;csl1&#x27;</span>  </span><br><span class="line">        );  </span><br><span class="line"><span class="comment">-- 统计一天内，各用户的交易总额和支付次数，10分钟一次输出  </span></span><br><span class="line"><span class="keyword">INSERT INTO</span> console1  </span><br><span class="line"><span class="keyword">SELECT</span> user_id  </span><br><span class="line">     , DATE_FORMAT(window_start, <span class="string">&#x27;yyyyMMdd&#x27;</span>)          <span class="keyword">AS</span> data_date  </span><br><span class="line">     , DATE_FORMAT(window_start, <span class="string">&#x27;HH:mm:ss&#x27;</span>)          <span class="keyword">AS</span> data_time  </span><br><span class="line">     , DATE_FORMAT(window_end, <span class="string">&#x27;yyyy-MM-dd HH:mm:ss&#x27;</span>) <span class="keyword">AS</span> msg_time  </span><br><span class="line">     , <span class="built_in">SUM</span>(amount)                                    <span class="keyword">AS</span> total_amount  </span><br><span class="line">     , <span class="built_in">count</span>(<span class="keyword">distinct</span> order_id)                       <span class="keyword">AS</span> video_exp_cnt  </span><br><span class="line"><span class="keyword">FROM</span>  </span><br><span class="line">    <span class="keyword">TABLE</span>(  </span><br><span class="line">            CUMULATE(  </span><br><span class="line">                <span class="keyword">TABLE</span> orders  </span><br><span class="line">            , DESCRIPTOR(  </span><br><span class="line">                rtime  </span><br><span class="line">            )  </span><br><span class="line">            , <span class="type">INTERVAL</span> <span class="string">&#x27;10&#x27;</span> MINUTES  </span><br><span class="line">            , <span class="type">INTERVAL</span> <span class="string">&#x27;1&#x27;</span> DAYS  </span><br><span class="line">            , <span class="type">INTERVAL</span> <span class="string">&#x27;0&#x27;</span> HOURS  </span><br><span class="line">            , <span class="literal">TRUE</span>  </span><br><span class="line">            )  </span><br><span class="line">    )  </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id  </span><br><span class="line">       , window_start  </span><br><span class="line">       , window_end</span><br></pre></td></tr></table></figure>
+
+<h2 id="RelNodes"><a href="#RelNodes" class="headerlink" title="RelNodes"></a>RelNodes</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Sink(<span class="keyword">table</span><span class="operator">=</span>[default_catalog.default_database.console1], fields<span class="operator">=</span>[user_id, data_date, data_time, msg_time, total_amount, video_exp_cnt])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Calc(<span class="keyword">select</span><span class="operator">=</span>[user_id, DATE_FORMAT(window_start, _UTF<span class="number">-16</span>LE<span class="string">&#x27;yyyyMMdd&#x27;</span>) <span class="keyword">AS</span> data_date, DATE_FORMAT(window_start, _UTF<span class="number">-16</span>LE<span class="string">&#x27;HH:mm:ss&#x27;</span>) <span class="keyword">AS</span> data_time, DATE_FORMAT(window_end, _UTF<span class="number">-16</span>LE<span class="string">&#x27;yyyy-MM-dd HH:mm:ss&#x27;</span>) <span class="keyword">AS</span> msg_time, total_amount, video_exp_cnt])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> GlobalWindowAggregate(groupBy<span class="operator">=</span>[user_id], <span class="keyword">window</span><span class="operator">=</span>[CUMULATE(slice_end<span class="operator">=</span>[$slice_end], max_size<span class="operator">=</span>[<span class="number">86400000</span> ms], step<span class="operator">=</span>[<span class="number">10</span> min], <span class="keyword">offset</span><span class="operator">=</span>[<span class="number">0</span> ms], allowLazyTriggering<span class="operator">=</span>[<span class="literal">true</span>])], <span class="keyword">select</span><span class="operator">=</span>[user_id, <span class="built_in">SUM</span>(sum$<span class="number">0</span>) <span class="keyword">AS</span> total_amount, <span class="built_in">COUNT</span>(<span class="keyword">distinct</span>$<span class="number">0</span> count$<span class="number">1</span>) <span class="keyword">AS</span> video_exp_cnt, <span class="keyword">start</span>(<span class="string">&#x27;w$) AS window_start, end(&#x27;</span>w$) <span class="keyword">AS</span> window_end])</span><br><span class="line">      <span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[hash[user_id]])</span><br><span class="line">         <span class="operator">+</span><span class="operator">-</span> LocalWindowAggregate(groupBy<span class="operator">=</span>[user_id], <span class="keyword">window</span><span class="operator">=</span>[CUMULATE(time_col<span class="operator">=</span>[order_time], max_size<span class="operator">=</span>[<span class="number">86400000</span> ms], step<span class="operator">=</span>[<span class="number">10</span> min], <span class="keyword">offset</span><span class="operator">=</span>[<span class="number">0</span> ms], allowLazyTriggering<span class="operator">=</span>[<span class="literal">true</span>])], <span class="keyword">select</span><span class="operator">=</span>[user_id, <span class="built_in">SUM</span>(amount) <span class="keyword">AS</span> sum$<span class="number">0</span>, <span class="built_in">COUNT</span>(<span class="keyword">distinct</span>$<span class="number">0</span> order_id) <span class="keyword">AS</span> count$<span class="number">1</span>, <span class="keyword">DISTINCT</span>(order_id) <span class="keyword">AS</span> <span class="keyword">distinct</span>$<span class="number">0</span>, slice_end(<span class="string">&#x27;w$) AS $slice_end])</span></span><br><span class="line"><span class="string">            +- Calc(select=[user_id, amount, order_id, order_time])</span></span><br><span class="line"><span class="string">               +- WatermarkAssigner(rowtime=[order_time], watermark=[-(order_time, 5000:INTERVAL SECOND)])</span></span><br><span class="line"><span class="string">                  +- TableSourceScan(table=[[default_catalog, default_database, orders]], fields=[order_id, user_id, amount, order_time])</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><p><img src="/lang/attachments/%E6%88%AA%E5%B1%8F2025-07-10%2008.50.27.png"></p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><table>
+<thead>
+<tr>
+<th>Transformation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SourceTransformation</td>
+<td><code>[1]:TableSourceScan(table=[[default_catalog, default_database, orders]], fields=[order_id, user_id, amount, order_time])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[2]:Calc(select=[order_id, user_id, amount, order_time, PROCTIME() AS ptime, CAST(order_time AS TIMESTAMP_WITH_LOCAL_TIME_ZONE(3)) AS rtime])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[3]:WatermarkAssigner(rowtime=[rtime], watermark=[(rtime - 5000:INTERVAL SECOND)])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[4]:Calc(select=[user_id, amount, order_id, ptime])</code></td>
+</tr>
+<tr>
+<td>PartitionTransformation</td>
+<td><code>[5]:Exchange(distribution=[hash[user_id]])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[6]:WindowAggregate(groupBy=[user_id], window=[CUMULATE(time_col=[ptime], max_size=[86400000 ms], step=[10 min], offset=[0 ms], allowLazyTriggering=[true])], select=[user_id, SUM(amount) AS total_amount, COUNT(DISTINCT order_id) AS video_exp_cnt, start(&#39;w$) AS window_start, end(&#39;w$) AS window_end])</code></td>
+</tr>
+<tr>
+<td>OneInputTransformation</td>
+<td><code>[7]:Calc(select=[user_id, DATE_FORMAT(window_start, &#39;yyyyMMdd&#39;) AS data_date, DATE_FORMAT(window_start, &#39;HH:mm:ss&#39;) AS data_time, DATE_FORMAT(window_end, &#39;yyyy-MM-dd HH:mm:ss&#39;) AS msg_time, total_amount, video_exp_cnt])</code></td>
+</tr>
+<tr>
+<td>LegacySinkTransformation</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>new Source  API</p>
+<ul>
+<li><input disabled="" type="checkbox"> 问题1： SQL -&gt; Operation -&gt; Transformation</li>
+</ul>
+<h2 id="Codegens"><a href="#Codegens" class="headerlink" title="Codegens"></a>Codegens</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line">Source: orders[<span class="number">1</span>] -&gt; WatermarkAssigner[<span class="number">2</span>] -&gt; Calc[<span class="number">3</span>] -&gt; LocalWindowAggregate[<span class="number">4</span>] (<span class="number">7</span>/<span class="number">8</span>)#<span class="number">0</span> - The compiled code <span class="keyword">for</span> StreamExecCalc$<span class="number">11</span>:   </span><br><span class="line"><span class="comment">/* 1 */</span>  </span><br><span class="line"><span class="comment">/* 2 */</span>      <span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StreamExecCalc$11</span> <span class="keyword">extends</span> <span class="title class_">org</span>.apache.flink.table.runtime.operators.TableStreamOperator  </span><br><span class="line"><span class="comment">/* 3 */</span>          <span class="keyword">implements</span> <span class="title class_">org</span>.apache.flink.streaming.api.operators.OneInputStreamOperator &#123;  </span><br><span class="line"><span class="comment">/* 4 */</span>  </span><br><span class="line"><span class="comment">/* 5 */</span>        <span class="keyword">private</span> <span class="keyword">final</span> Object[] references;  </span><br><span class="line"><span class="comment">/* 6 */</span>        <span class="keyword">private</span> <span class="keyword">transient</span> org.apache.flink.table.runtime.typeutils.StringDataSerializer typeSerializer$<span class="number">5</span>;  </span><br><span class="line"><span class="comment">/* 7 */</span>        org.apache.flink.table.data.<span class="type">BoxedWrapperRowData</span> <span class="variable">out</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">org</span>.apache.flink.table.data.BoxedWrapperRowData(<span class="number">4</span>);  </span><br><span class="line"><span class="comment">/* 8 */</span>        <span class="keyword">private</span> <span class="keyword">final</span> org.apache.flink.streaming.runtime.streamrecord.<span class="type">StreamRecord</span> <span class="variable">outElement</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">org</span>.apache.flink.streaming.runtime.streamrecord.StreamRecord(<span class="literal">null</span>);  </span><br><span class="line"><span class="comment">/* 9 */</span>  </span><br><span class="line"><span class="comment">/* 10 */</span>        <span class="type">public</span> <span class="title function_">StreamExecCalc$11</span><span class="params">(  </span></span><br><span class="line"><span class="params"><span class="comment">/* 11 */</span>            Object[] references,  </span></span><br><span class="line"><span class="params"><span class="comment">/* 12 */</span>            org.apache.flink.streaming.runtime.tasks.StreamTask task,  </span></span><br><span class="line"><span class="params"><span class="comment">/* 13 */</span>            org.apache.flink.streaming.api.graph.StreamConfig config,  </span></span><br><span class="line"><span class="params"><span class="comment">/* 14 */</span>            org.apache.flink.streaming.api.operators.Output output,  </span></span><br><span class="line"><span class="params"><span class="comment">/* 15 */</span>            org.apache.flink.streaming.runtime.tasks.ProcessingTimeService processingTimeService)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line"><span class="comment">/* 16 */</span>          <span class="built_in">this</span>.references = references;  </span><br><span class="line"><span class="comment">/* 17 */</span>          typeSerializer$<span class="number">5</span> = (((org.apache.flink.table.runtime.typeutils.StringDataSerializer) references[<span class="number">0</span>]));  </span><br><span class="line"><span class="comment">/* 18 */</span>          <span class="built_in">this</span>.setup(task, config, output);  </span><br><span class="line"><span class="comment">/* 19 */</span>          <span class="keyword">if</span> (<span class="built_in">this</span> <span class="keyword">instanceof</span> org.apache.flink.streaming.api.operators.AbstractStreamOperator) &#123;  </span><br><span class="line"><span class="comment">/* 20 */</span>            ((org.apache.flink.streaming.api.operators.AbstractStreamOperator) <span class="built_in">this</span>)  </span><br><span class="line"><span class="comment">/* 21 */</span>              .setProcessingTimeService(processingTimeService);  </span><br><span class="line"><span class="comment">/* 22 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 23 */</span>        &#125;  </span><br><span class="line"><span class="comment">/* 24 */</span>  </span><br><span class="line"><span class="comment">/* 25 */</span>        <span class="meta">@Override</span>  </span><br><span class="line"><span class="comment">/* 26 */</span>        <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">open</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line"><span class="comment">/* 27 */</span>          <span class="built_in">super</span>.open();  </span><br><span class="line"><span class="comment">/* 28 */</span>            </span><br><span class="line"><span class="comment">/* 29 */</span>        &#125;  </span><br><span class="line"><span class="comment">/* 30 */</span>  </span><br><span class="line"><span class="comment">/* 31 */</span>        <span class="meta">@Override</span>  </span><br><span class="line"><span class="comment">/* 32 */</span>        <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">processElement</span><span class="params">(org.apache.flink.streaming.runtime.streamrecord.StreamRecord element)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line"><span class="comment">/* 33 */</span>          org.apache.flink.table.data.<span class="type">RowData</span> <span class="variable">in1</span> <span class="operator">=</span> (org.apache.flink.table.data.RowData) element.getValue();  </span><br><span class="line"><span class="comment">/* 34 */</span>            </span><br><span class="line"><span class="comment">/* 35 */</span>          org.apache.flink.table.data.binary.BinaryStringData field$<span class="number">4</span>;  </span><br><span class="line"><span class="comment">/* 36 */</span>          <span class="type">boolean</span> isNull$<span class="number">4</span>;  </span><br><span class="line"><span class="comment">/* 37 */</span>          org.apache.flink.table.data.binary.BinaryStringData field$<span class="number">6</span>;  </span><br><span class="line"><span class="comment">/* 38 */</span>          <span class="type">double</span> field$<span class="number">7</span>;  </span><br><span class="line"><span class="comment">/* 39 */</span>          <span class="type">boolean</span> isNull$<span class="number">7</span>;  </span><br><span class="line"><span class="comment">/* 40 */</span>          org.apache.flink.table.data.binary.BinaryStringData field$<span class="number">8</span>;  </span><br><span class="line"><span class="comment">/* 41 */</span>          <span class="type">boolean</span> isNull$<span class="number">8</span>;  </span><br><span class="line"><span class="comment">/* 42 */</span>          org.apache.flink.table.data.binary.BinaryStringData field$<span class="number">9</span>;  </span><br><span class="line"><span class="comment">/* 43 */</span>          org.apache.flink.table.data.TimestampData field$<span class="number">10</span>;  </span><br><span class="line"><span class="comment">/* 44 */</span>          <span class="type">boolean</span> isNull$<span class="number">10</span>;  </span><br><span class="line"><span class="comment">/* 45 */</span>            </span><br><span class="line"><span class="comment">/* 46 */</span>            </span><br><span class="line"><span class="comment">/* 47 */</span>            </span><br><span class="line"><span class="comment">/* 48 */</span>          isNull$<span class="number">8</span> = in1.isNullAt(<span class="number">0</span>);  </span><br><span class="line"><span class="comment">/* 49 */</span>          field$<span class="number">8</span> = org.apache.flink.table.data.binary.BinaryStringData.EMPTY_UTF8;  </span><br><span class="line"><span class="comment">/* 50 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">8</span>) &#123;  </span><br><span class="line"><span class="comment">/* 51 */</span>            field$<span class="number">8</span> = ((org.apache.flink.table.data.binary.BinaryStringData) in1.getString(<span class="number">0</span>));  </span><br><span class="line"><span class="comment">/* 52 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 53 */</span>          field$<span class="number">9</span> = field$<span class="number">8</span>;  </span><br><span class="line"><span class="comment">/* 54 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">8</span>) &#123;  </span><br><span class="line"><span class="comment">/* 55 */</span>            field$<span class="number">9</span> = (org.apache.flink.table.data.binary.BinaryStringData) (typeSerializer$<span class="number">5.</span>copy(field$<span class="number">9</span>));  </span><br><span class="line"><span class="comment">/* 56 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 57 */</span>                    </span><br><span class="line"><span class="comment">/* 58 */</span>          isNull$<span class="number">7</span> = in1.isNullAt(<span class="number">2</span>);  </span><br><span class="line"><span class="comment">/* 59 */</span>          field$<span class="number">7</span> = -<span class="number">1.0d</span>;  </span><br><span class="line"><span class="comment">/* 60 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">7</span>) &#123;  </span><br><span class="line"><span class="comment">/* 61 */</span>            field$<span class="number">7</span> = in1.getDouble(<span class="number">2</span>);  </span><br><span class="line"><span class="comment">/* 62 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 63 */</span>            </span><br><span class="line"><span class="comment">/* 64 */</span>          isNull$<span class="number">4</span> = in1.isNullAt(<span class="number">1</span>);  </span><br><span class="line"><span class="comment">/* 65 */</span>          field$<span class="number">4</span> = org.apache.flink.table.data.binary.BinaryStringData.EMPTY_UTF8;  </span><br><span class="line"><span class="comment">/* 66 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">4</span>) &#123;  </span><br><span class="line"><span class="comment">/* 67 */</span>            field$<span class="number">4</span> = ((org.apache.flink.table.data.binary.BinaryStringData) in1.getString(<span class="number">1</span>));  </span><br><span class="line"><span class="comment">/* 68 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 69 */</span>          field$<span class="number">6</span> = field$<span class="number">4</span>;  </span><br><span class="line"><span class="comment">/* 70 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">4</span>) &#123;  </span><br><span class="line"><span class="comment">/* 71 */</span>            field$<span class="number">6</span> = (org.apache.flink.table.data.binary.BinaryStringData) (typeSerializer$<span class="number">5.</span>copy(field$<span class="number">6</span>));  </span><br><span class="line"><span class="comment">/* 72 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 73 */</span>                    </span><br><span class="line"><span class="comment">/* 74 */</span>          isNull$<span class="number">10</span> = in1.isNullAt(<span class="number">3</span>);  </span><br><span class="line"><span class="comment">/* 75 */</span>          field$<span class="number">10</span> = <span class="literal">null</span>;  </span><br><span class="line"><span class="comment">/* 76 */</span>          <span class="keyword">if</span> (!isNull$<span class="number">10</span>) &#123;  </span><br><span class="line"><span class="comment">/* 77 */</span>            field$<span class="number">10</span> = in1.getTimestamp(<span class="number">3</span>, <span class="number">3</span>);  </span><br><span class="line"><span class="comment">/* 78 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 79 */</span>            </span><br><span class="line"><span class="comment">/* 80 */</span>          out.setRowKind(in1.getRowKind());  </span><br><span class="line"><span class="comment">/* 81 */</span>            </span><br><span class="line"><span class="comment">/* 82 */</span>            </span><br><span class="line"><span class="comment">/* 83 */</span>            </span><br><span class="line"><span class="comment">/* 84 */</span>          <span class="comment">/*+ [CODE HINT START]  ROW_FIELD_0  */</span>  </span><br><span class="line"><span class="comment">/* 85 */</span>            </span><br><span class="line"><span class="comment">/* 86 */</span>          <span class="keyword">if</span> (isNull$<span class="number">4</span>) &#123;  </span><br><span class="line"><span class="comment">/* 87 */</span>            out.setNullAt(<span class="number">0</span>);  </span><br><span class="line"><span class="comment">/* 88 */</span>          &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">/* 89 */</span>            out.setNonPrimitiveValue(<span class="number">0</span>, field$<span class="number">6</span>);  </span><br><span class="line"><span class="comment">/* 90 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 91 */</span>          <span class="comment">/*+ [CODE HINT END]  ROW_FIELD_0  */</span>  </span><br><span class="line"><span class="comment">/* 92 */</span>                      </span><br><span class="line"><span class="comment">/* 93 */</span>            </span><br><span class="line"><span class="comment">/* 94 */</span>          <span class="comment">/*+ [CODE HINT START]  ROW_FIELD_1  */</span>  </span><br><span class="line"><span class="comment">/* 95 */</span>            </span><br><span class="line"><span class="comment">/* 96 */</span>          <span class="keyword">if</span> (isNull$<span class="number">7</span>) &#123;  </span><br><span class="line"><span class="comment">/* 97 */</span>            out.setNullAt(<span class="number">1</span>);  </span><br><span class="line"><span class="comment">/* 98 */</span>          &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">/* 99 */</span>            out.setDouble(<span class="number">1</span>, field$<span class="number">7</span>);  </span><br><span class="line"><span class="comment">/* 100 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 101 */</span>          <span class="comment">/*+ [CODE HINT END]  ROW_FIELD_1  */</span>  </span><br><span class="line"><span class="comment">/* 102 */</span>                      </span><br><span class="line"><span class="comment">/* 103 */</span>            </span><br><span class="line"><span class="comment">/* 104 */</span>          <span class="comment">/*+ [CODE HINT START]  ROW_FIELD_2  */</span>  </span><br><span class="line"><span class="comment">/* 105 */</span>            </span><br><span class="line"><span class="comment">/* 106 */</span>          <span class="keyword">if</span> (isNull$<span class="number">8</span>) &#123;  </span><br><span class="line"><span class="comment">/* 107 */</span>            out.setNullAt(<span class="number">2</span>);  </span><br><span class="line"><span class="comment">/* 108 */</span>          &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">/* 109 */</span>            out.setNonPrimitiveValue(<span class="number">2</span>, field$<span class="number">9</span>);  </span><br><span class="line"><span class="comment">/* 110 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 111 */</span>          <span class="comment">/*+ [CODE HINT END]  ROW_FIELD_2  */</span>  </span><br><span class="line"><span class="comment">/* 112 */</span>                      </span><br><span class="line"><span class="comment">/* 113 */</span>            </span><br><span class="line"><span class="comment">/* 114 */</span>          <span class="comment">/*+ [CODE HINT START]  ROW_FIELD_3  */</span>  </span><br><span class="line"><span class="comment">/* 115 */</span>            </span><br><span class="line"><span class="comment">/* 116 */</span>          <span class="keyword">if</span> (isNull$<span class="number">10</span>) &#123;  </span><br><span class="line"><span class="comment">/* 117 */</span>            out.setNullAt(<span class="number">3</span>);  </span><br><span class="line"><span class="comment">/* 118 */</span>          &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line"><span class="comment">/* 119 */</span>            out.setNonPrimitiveValue(<span class="number">3</span>, field$<span class="number">10</span>);  </span><br><span class="line"><span class="comment">/* 120 */</span>          &#125;  </span><br><span class="line"><span class="comment">/* 121 */</span>          <span class="comment">/*+ [CODE HINT END]  ROW_FIELD_3  */</span>  </span><br><span class="line"><span class="comment">/* 122 */</span>                      </span><br><span class="line"><span class="comment">/* 123 */</span>                    </span><br><span class="line"><span class="comment">/* 124 */</span>          output.collect(outElement.replace(out));  </span><br><span class="line"><span class="comment">/* 125 */</span>            </span><br><span class="line"><span class="comment">/* 126 */</span>            </span><br><span class="line"><span class="comment">/* 127 */</span>        &#125;  </span><br><span class="line"><span class="comment">/* 128 */</span>  </span><br><span class="line"><span class="comment">/* 129 */</span>          </span><br><span class="line"><span class="comment">/* 130 */</span>  </span><br><span class="line"><span class="comment">/* 131 */</span>        <span class="meta">@Override</span>  </span><br><span class="line"><span class="comment">/* 132 */</span>        <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">close</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line"><span class="comment">/* 133 */</span>           <span class="built_in">super</span>.close();  </span><br><span class="line"><span class="comment">/* 134 */</span>            </span><br><span class="line"><span class="comment">/* 135 */</span>        &#125;  </span><br><span class="line"><span class="comment">/* 136 */</span>  </span><br><span class="line"><span class="comment">/* 137 */</span>          </span><br><span class="line"><span class="comment">/* 138 */</span>      &#125;  </span><br><span class="line"><span class="comment">/* 139 */</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-Hive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-Hive/" class="post-title-link" itemprop="url">Flink hive connector</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Load module</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LOAD MODULE <span class="type">hive</span> <span class="title function_">WITH</span> <span class="params">(<span class="string">&#x27;hive-version&#x27;</span> = <span class="string">&#x27;3.1.2&#x27;</span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>org.apache.flink.table.api.internal.TableEnvironmentImpl#executeInternal(org.apache.flink.table.operations.Operation)</p>
+<p>org.apache.flink.table.api.internal.TableEnvironmentImpl#loadModule(org.apache.flink.table.operations.LoadModuleOperation)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Count/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL-Count/" class="post-title-link" itemprop="url">FlinkSQL-Count</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-Flink-SQL-查询iceberg-count语义"><a href="#1-Flink-SQL-查询iceberg-count语义" class="headerlink" title="1 Flink SQL 查询iceberg count语义"></a>1 Flink SQL 查询iceberg count语义</h1><h2 id="1-1-结论："><a href="#1-1-结论：" class="headerlink" title="1.1 结论："></a>1.1 结论：</h2><table>
+<thead>
+<tr>
+<th>查询</th>
+<th>方式</th>
+<th>是否读取数据</th>
+<th>能否识别数据列</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>count(字段)</td>
+<td>metadata</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>count(distinct 字段)</td>
+<td>datafile</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>count(*)&#x2F;count(1)</td>
+<td>metadata</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+</tbody></table>
+<p>Iceberg通过元数据优化:</p>
+<ul>
+<li>如果表启用了 <strong>count-based metadata optimization</strong>（例如通过 <code>TableScan</code> + <code>useSnapshotId</code> + manifest-level row count），Flink 可能直接从 manifest 获取总行数。</li>
+<li>但 Flink 当前（截至 Flink 1.18 &#x2F; Iceberg 1.4）对这类优化支持有限，<strong>多数情况下仍会触发 data file 扫描</strong>，除非手动启用特定优化或使用 Iceberg 的 <code>metadata table</code> 查询。</li>
+</ul>
+<p>执行计划:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line">count field 执行计划详情:</span><br><span class="line">EXPLAIN PLAN <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(name) <span class="keyword">FROM</span> iceberg_local_table</span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Abstract Syntax Tree <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">LogicalAggregate(<span class="keyword">group</span><span class="operator">=</span>[&#123;&#125;], EXPR$<span class="number">0</span><span class="operator">=</span>[<span class="built_in">COUNT</span>($<span class="number">0</span>)])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> LogicalProject(name<span class="operator">=</span>[$<span class="number">1</span>])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> LogicalTableScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table]])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Physical Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(name) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[name]]], fields<span class="operator">=</span>[name])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Execution Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(name) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[name]]], fields<span class="operator">=</span>[name])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line">count <span class="number">1</span> 执行计划详情:</span><br><span class="line">EXPLAIN PLAN <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="number">1</span>) <span class="keyword">FROM</span> iceberg_local_table</span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Abstract Syntax Tree <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">LogicalAggregate(<span class="keyword">group</span><span class="operator">=</span>[&#123;&#125;], EXPR$<span class="number">0</span><span class="operator">=</span>[<span class="built_in">COUNT</span>()])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> LogicalProject($f0<span class="operator">=</span>[<span class="number">0</span>])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> LogicalTableScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table]])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Physical Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[]]], fields<span class="operator">=</span>[])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Execution Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[]]], fields<span class="operator">=</span>[])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line">count star 执行计划详情:</span><br><span class="line">EXPLAIN PLAN <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> iceberg_local_table</span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Abstract Syntax Tree <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">LogicalAggregate(<span class="keyword">group</span><span class="operator">=</span>[&#123;&#125;], EXPR$<span class="number">0</span><span class="operator">=</span>[<span class="built_in">COUNT</span>()])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> LogicalProject($f0<span class="operator">=</span>[<span class="number">0</span>])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> LogicalTableScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table]])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Physical Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[]]], fields<span class="operator">=</span>[])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Execution Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[]]], fields<span class="operator">=</span>[])</span><br></pre></td></tr></table></figure>
+
+<p><code>select count(field)</code>的projection,可以拿到对应的字段<br><img src="/bigdata/Flink/attachments/6ff1d909ac58eb4274815fe73e123eaf_MD5.jpg"><br>● Flink与Iceberg的聚合下推问题</p>
+<p>୦ 目前Flink与Iceberg在聚合下推方面配合不佳，Flink的Source Function仅支持filter和project下推，不支持聚合下推。</p>
+<p>୦ Spark支持聚合下推优化，但Flink在1.15版本中仅支持project和filter下推，高版本（1.18+）实现了manifest和snapshot级别的count优化。</p>
+<p>୦ 当前Flink在project为空时会扫描全表数据，但未实际读取数据，导致性能问题。</p>
+<h2 id="1-2-AggFunction"><a href="#1-2-AggFunction" class="headerlink" title="1.2 AggFunction"></a>1.2 AggFunction</h2><h3 id="1-2-1-count-字段"><a href="#1-2-1-count-字段" class="headerlink" title="1.2.1 count(字段)"></a>1.2.1 <code>count(字段)</code></h3><ul>
+<li><strong>实现类</strong>：<code>CountAggFunction</code></li>
+<li><strong>行为</strong>：只统计<strong>非null值</strong></li>
+<li><strong>代码位置</strong>：</li>
+</ul>
+<p><code>/Users/averyzhang/workspace/flink/flink-1.15/flink-table/flink-table-planner/src/main/java/org/apache/flink/table/planner/functions/aggfunctions/CountAggFunction.java</code></p>
+<ul>
+<li><strong>关键逻辑</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">Expression</span>[] <span class="title function_">accumulateExpressions</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Expression</span>[] &#123;</span><br><span class="line">        <span class="comment">/* count = */</span> ifThenElse(isNull(operand(<span class="number">0</span>)), count, plus(count, literal(<span class="number">1L</span>)))</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-2-count-1-和count"><a href="#1-2-2-count-1-和count" class="headerlink" title="1.2.2 count(1)和count(*)"></a>1.2.2 <code>count(1)</code>和<code>count(*)</code></h3><ul>
+<li><strong>实现类</strong>：<code>Count1AggFunction</code></li>
+<li><strong>行为</strong>：统计<strong>所有记录</strong>，包括null值</li>
+<li><strong>代码位置</strong>：<code>/Users/averyzhang/workspace/flink/flink-1.15/flink-table/flink-table-planner/src/main/java/org/apache/flink/table/planner/functions/aggfunctions/Count1AggFunction.java</code></li>
+<li><strong>关键逻辑</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">Expression</span>[] <span class="title function_">accumulateExpressions</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Expression</span>[] &#123;<span class="comment">/* count1 = */</span> plus(count1, literal(<span class="number">1L</span>))&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-算子转换"><a href="#1-3-算子转换" class="headerlink" title="1.3 算子转换"></a>1.3 算子转换</h2><h3 id="1-3-1-count-字段"><a href="#1-3-1-count-字段" class="headerlink" title="1.3.1 count(字段)"></a>1.3.1 <code>count(字段)</code></h3><ul>
+<li><strong>算子</strong>：<code>CountAggFunction</code></li>
+<li><strong>优化规则</strong>：在<code>SplitAggregateRule</code>中，partial阶段使用COUNT，final阶段使用SUM0</li>
+</ul>
+<h3 id="1-3-2-count-1-和count"><a href="#1-3-2-count-1-和count" class="headerlink" title="1.3.2 count(1)和count(*)"></a>1.3.2 <code>count(1)</code>和count<code>(*)</code></h3><ul>
+<li><strong>算子</strong>：<code>Count1AggFunction</code></li>
+<li><strong>判断逻辑</strong>：在<code>FlinkRelBuilder.isCountStarAgg()</code>方法中判断是否为<code>count(*)</code></li>
+</ul>
+<h2 id="1-4-iceberg表的具体行为"><a href="#1-4-iceberg表的具体行为" class="headerlink" title="1.4 iceberg表的具体行为"></a>1.4 iceberg表的具体行为</h2><p>对于iceberg表，如果实现了<code>SupportsAggregatePushDown</code>接口<br>（代码位置：<code>/Users/averyzhang/workspace/flink/flink-1.15/flink-table/flink-table-common/src/main/java/org/apache/flink/table/connector/source/abilities/SupportsAggregatePushDown.java</code>）：</p>
+<h3 id="1-4-1-count-字段"><a href="#1-4-1-count-字段" class="headerlink" title="1.4.1 count(字段)"></a>1.4.1 <code>count(字段)</code></h3><ul>
+<li>如果字段有null值，需要扫描数据来判断</li>
+<li>如果字段没有null值约束，可能可以利用iceberg的列统计信息进行优化</li>
+</ul>
+<h3 id="1-4-2-count-1-和count"><a href="#1-4-2-count-1-和count" class="headerlink" title="1.4.2 count(1)和count(*)"></a>1.4.2 <code>count(1)</code>和count<code>(*)</code></h3><ul>
+<li><strong>最佳优化场景</strong>：可以直接利用iceberg表的文件级别统计信息（如row_count）</li>
+<li><strong>性能优势</strong>：可能不需要扫描实际数据，直接从元数据获取计数</li>
+</ul>
+<h2 id="1-5-关键代码位置总结"><a href="#1-5-关键代码位置总结" class="headerlink" title="1.5 关键代码位置总结"></a>1.5 关键代码位置总结</h2><ol>
+<li><p><strong>聚合函数实现</strong>：</p>
+<ul>
+<li>CountAggFunction: <code>flink-table-planner/src/main/java/org/apache/flink/table/planner/functions/aggfunctions/CountAggFunction.java</code></li>
+<li>Count1AggFunction: <code>flink-table-planner/src/main/java/org/apache/flink/table/planner/functions/aggfunctions/Count1AggFunction.java</code></li>
+</ul>
+</li>
+<li><p><strong><code>count(*)</code>判断逻辑</strong>：</p>
+<ul>
+<li><code>FlinkRelBuilder.isCountStarAgg()</code>: <code>flink-table-planner/src/main/java/org/apache/flink/table/planner/calcite/FlinkRelBuilder.java</code></li>
+</ul>
+</li>
+<li><p><strong>聚合下推接口</strong>：</p>
+<ul>
+<li><code>SupportsAggregatePushDown</code>: <code>flink-table-common/src/main/java/org/apache/flink/table/connector/source/abilities/SupportsAggregatePushDown.java</code></li>
+</ul>
+</li>
+<li><p><strong>聚合分割规则</strong>：</p>
+<ul>
+<li><code>SplitAggregateRule</code>: <code>flink-table-planner/src/main/scala/org/apache/flink/table/planner/plan/rules/logical/SplitAggregateRule.scala</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="1-6-元数据信息"><a href="#1-6-元数据信息" class="headerlink" title="1.6 元数据信息"></a>1.6 元数据信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ll  metadata</span><br><span class="line">total 60K</span><br><span class="line">-rw-r--r-- 1 root root  11K Dec 22 21:42 3031cf5a-37b0-4f97-8568-5af892f48244-m0.avro</span><br><span class="line">-rw-r--r-- 1 root root  11K Dec 22 21:40 56d0c3ef-8f73-44c8-8d20-553bbdbbd200-m0.avro</span><br><span class="line">-rw-r--r-- 1 root root 4.5K Dec 22 21:42 snap-7569084149956477108-1-3031cf5a-37b0-4f97-8568-5af892f48244.avro</span><br><span class="line">-rw-r--r-- 1 root root 4.4K Dec 22 21:40 snap-7985011370354105799-1-56d0c3ef-8f73-44c8-8d20-553bbdbbd200.avro</span><br><span class="line">-rw-r--r-- 1 root root 1.8K Dec 22 21:27 v1.metadata.json</span><br><span class="line">-rw-r--r-- 1 root root 2.7K Dec 22 21:40 v2.metadata.json</span><br><span class="line">-rw-r--r-- 1 root root 4.1K Dec 22 21:42 v3.metadata.json</span><br><span class="line">-rw-r--r-- 1 root root    1 Dec 22 21:42 version-hint.text</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="built_in">cat</span> v3.metadata.json </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// metadata.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;format-version&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;table-uuid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2bf9cc09-1099-454a-aae7-c13fe14f7f20&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;location&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:///tmp/iceberg_local_warehouse/default_database/iceberg_local_table&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;last-sequence-number&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;last-updated-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410956369</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;last-column-id&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;current-schema-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;schemas&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;struct&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;schema-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;id&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;long&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">3</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;category&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;create_time&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;timestamp&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;creator&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;default-spec-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;partition-specs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;spec-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;last-partition-id&quot;</span><span class="punctuation">:</span> <span class="number">999</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;default-sort-order-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;sort-orders&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;order-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;current-index-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;indexes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;index-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;index-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;empty&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;index-type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;index-properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;connector&quot;</span><span class="punctuation">:</span> <span class="string">&quot;iceberg&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;write.parquet.compression-codec&quot;</span><span class="punctuation">:</span> <span class="string">&quot;zstd&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;catalog-type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hadoop&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;keep-modified-paths&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:///tmp/iceberg_local_warehouse/default_database/iceberg_local_table&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;catalog-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;demo_catalog&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;warehouse&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:///tmp/iceberg_local_warehouse&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;current-snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7569084149956477108</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;refs&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7569084149956477108</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;branch&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;snapshots&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;sequence-number&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7985011370354105799</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410855548</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;summary&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;operation&quot;</span><span class="punctuation">:</span> <span class="string">&quot;append&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.checkpoint-timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1766410855378&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.operator-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a0e952a7da09b602686e75133408a70e&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flink-1.15&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;oceanus.job-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;8da0afd77543eb566e79c5dc0656bf1c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.job-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;8da0afd77543eb566e79c5dc0656bf1c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;streaming&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.max-committed-checkpoint-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9223372036854775807&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-small-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-records&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-files-size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;82584&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;changed-partition-count&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;root&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;8da0afd77543eb566e79c5dc0656bf1c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;insert-into_default_catalog.default_database.iceberg_local_table&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-records&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-files-size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;82584&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-delete-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-position-deletes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-equality-deletes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine-version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.15-tq-0.1.42&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flink&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;iceberg-version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Apache Iceberg 1.8.2-6-tq (commit 1f7547520767fe0d4537361e6c812962fa750d83)&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;manifest-list&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/metadata/snap-7985011370354105799-1-56d0c3ef-8f73-44c8-8d20-553bbdbbd200.avro&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;schema-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;sequence-number&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7569084149956477108</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;parent-snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7985011370354105799</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410956369</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;summary&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;operation&quot;</span><span class="punctuation">:</span> <span class="string">&quot;append&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.checkpoint-timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1766410956164&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.operator-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a0e952a7da09b602686e75133408a70e&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flink-1.15&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;oceanus.job-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;b95b354367e1fde2dcc30438f62e8e75&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.job-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;b95b354367e1fde2dcc30438f62e8e75&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;streaming&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.max-committed-checkpoint-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9223372036854775807&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-small-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-records&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-files-size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;82585&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;changed-partition-count&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;root&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;b95b354367e1fde2dcc30438f62e8e75&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;insert-into_default_catalog.default_database.iceberg_local_table&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-records&quot;</span><span class="punctuation">:</span> <span class="string">&quot;200&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-files-size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;165169&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;96&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-delete-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-position-deletes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-equality-deletes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine-version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.15-tq-0.1.42&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flink&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;iceberg-version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Apache Iceberg 1.8.2-6-tq (commit 1f7547520767fe0d4537361e6c812962fa750d83)&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;manifest-list&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/metadata/snap-7569084149956477108-1-3031cf5a-37b0-4f97-8568-5af892f48244.avro&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;schema-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;statistics&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;partition-statistics&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;snapshot-log&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410855548</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7985011370354105799</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410956369</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7569084149956477108</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;metadata-log&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410022055</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;metadata-file&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/metadata/v1.metadata.json&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410855548</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;metadata-file&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/metadata/v2.metadata.json&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">java -jar avro-tools.java tojson snap-7569084149956477108-1-3031cf5a-37b0-4f97-8568-5af892f48244.avro &gt; local_iceberg_schema.avro.json</span><br></pre></td></tr></table></figure>
+
+<p>每个数据文件，都会对应一行 avro 记录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line">// avro record of data file</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;status&quot;</span>: 1,</span><br><span class="line">    <span class="string">&quot;snapshot_id&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;long&quot;</span>: 7569084149956477108</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;sequence_number&quot;</span>: null,</span><br><span class="line">    <span class="string">&quot;file_sequence_number&quot;</span>: null,</span><br><span class="line">    <span class="string">&quot;min_sequence_number&quot;</span>: null,</span><br><span class="line">    <span class="string">&quot;data_file&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: 0,</span><br><span class="line">        <span class="string">&quot;file_path&quot;</span>: <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/data/00010-0-30b0e113-e15a-484a-a4db-9107ecbc3034-00001.parquet&quot;</span>,</span><br><span class="line">        <span class="string">&quot;file_format&quot;</span>: <span class="string">&quot;PARQUET&quot;</span>,</span><br><span class="line">        <span class="string">&quot;partition&quot;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&quot;record_count&quot;</span>: 2,</span><br><span class="line">        <span class="string">&quot;file_size_in_bytes&quot;</span>: 1705,</span><br><span class="line">        <span class="string">&quot;column_sizes&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 57</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 62</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 83</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 57</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 84</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;value_counts&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;null_value_counts&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;nan_value_counts&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;lower_bounds&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;\u000B\u0000\u0000\u0000\u0000\u0000\u0000\u0000&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;äº§å_11&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;å¾ä¹¦&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;èþMF\u0006\u0000&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;èµµå­&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;upper_bounds&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;;\u0000\u0000\u0000\u0000\u0000\u0000\u0000&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;äº§å_59&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;å¾ä¹¦&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;Ð¯\rNF\u0006\u0000&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;èµµå­&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;key_metadata&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;split_offsets&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                4</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;equality_ids&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;sort_order_id&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;int&quot;</span>: 0</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;referenced_data_file&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;schema_id&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;int&quot;</span>: 0</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;index_metadata&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;map&quot;</span>: &#123;&#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;extra_metadata&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;map&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;write.parquet.compression-codec&quot;</span>: <span class="string">&quot;ZSTD&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Iceberg文件级别元数据</p>
+<p>୦ Iceberg的datafile元数据中包含record count、字段大小等信息，Flink写入时已记录这些信息。</p>
+<p>୦ 未来可探讨利用manifest和文件级别元数据优化聚合下推功能。</p>
+<h1 id="2-Flink-SQL执行与iceberg关系"><a href="#2-Flink-SQL执行与iceberg关系" class="headerlink" title="2 Flink SQL执行与iceberg关系"></a>2 Flink SQL执行与iceberg关系</h1><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>动作</th>
+<th>输入</th>
+<th>输出</th>
+<th>关键类</th>
+<th>Iceberg调用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Parsing</strong></td>
+<td>词法解析与语法解析，构建SqlNode树</td>
+<td>SQL 字符串</td>
+<td><code>SqlNode</code> 树</td>
+<td><code>SqlParser</code><br><code>org.apache.flink.table.planner.parse.CalciteParser#parseSqlList</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Validation</strong></td>
+<td>语义验证<br>结合Catalog元数据(表、列、函数定义)</td>
+<td><code>SqlNode</code> + Catalog</td>
+<td>验证后的 <code>SqlNode</code><br>内部绑定:<br>1. 表的标识<br>2. 列的类型信息<br>3. 函数调用合法性确认</td>
+<td><strong><code>FlinkSqlValidator</code></strong><br><code>org.apache.flink.table.planner.calcite.FlinkPlannerImpl#validate</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Conversion</strong></td>
+<td>逻辑计划生成: 关系代数转换<br>1. 支持时间属性字段<br>2. 处理Watermark<br>3. 区分Append&#x2F;Update&#x2F;Retract流模式</td>
+<td><code>SqlNode</code></td>
+<td>逻辑 <code>RelNode</code> 树</td>
+<td><strong><code>FlinkSqlToRelConverter</code></strong><br><code>sqlToOperationConverter#convertValidatedSqlNode</code><br><code>FlinkPlannerImpl#rel</code></td>
+<td>创建<code>org.apache.iceberg.flink.source.IcebergTableSource</code></td>
+</tr>
+<tr>
+<td><strong>Optimization</strong></td>
+<td>HepPlanner基于规则做逻辑优化<br><strong>VolcanoPlanner</strong>代价模型做物理优化</td>
+<td>逻辑 <code>RelNode</code></td>
+<td>优化后 <code>RelNode</code>(<strong>Physical RelNode</strong>)</td>
+<td><code>org.apache.flink.table.planner.delegation.PlannerBase#optimize</code><br><code>org.apache.flink.table.planner.plan.optimize.program.FlinkChainedProgram</code><br><code>RelOptPlanner</code>, <br><code>RelOptRule</code>,<br><code>FlinkLogicalOptRuleSet</code><br><code>Convention</code>，<code>Trait</code></td>
+<td><code>IcebergTableSource#applyProjection</code><br><code>PushProjectIntoTableSourceScanRule</code></td>
+</tr>
+<tr>
+<td>CodeGen</td>
+<td>转换为DataStream API</td>
+<td><code>RelNode</code></td>
+<td><strong><code>JobGraph</code></strong></td>
+<td><strong><code>RelNode#translateToPlan</code></strong><br><code>ExecNode.translateToPlan()</code><br><code>translateToExecNodeGraph</code></td>
+<td>创建<code>InputFormatSourceFunction</code><br><code>IcebergTableSource#createDataStream</code></td>
+</tr>
+</tbody></table>
+<h2 id="2-1-优化"><a href="#2-1-优化" class="headerlink" title="2.1 优化"></a>2.1 优化</h2><p>优化的入口: <code>org.apache.flink.table.planner.plan.optimize.StreamCommonSubGraphBasedOptimizer#doOptimize</code></p>
+<h2 id="2-2-FlinkOptimizeProgram"><a href="#2-2-FlinkOptimizeProgram" class="headerlink" title="2.2 FlinkOptimizeProgram"></a>2.2 FlinkOptimizeProgram</h2><p>用于优化Stream Table Plan的Programs序列: <code>org.apache.flink.table.planner.plan.optimize.program.FlinkStreamProgram</code></p>
+<table>
+<thead>
+<tr>
+<th>FlinkChainedProgram</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>subquery_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>temporal_join_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>decorrelate</td>
+<td></td>
+</tr>
+<tr>
+<td>default_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>predicate_pushdown</td>
+<td></td>
+</tr>
+<tr>
+<td>join_reorder</td>
+<td></td>
+</tr>
+<tr>
+<td>project_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>logical</td>
+<td></td>
+</tr>
+<tr>
+<td>logical_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>time_indicator</td>
+<td></td>
+</tr>
+<tr>
+<td>physical</td>
+<td></td>
+</tr>
+<tr>
+<td>physical_rewrite</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="2-3-优化规则"><a href="#2-3-优化规则" class="headerlink" title="2.3 优化规则"></a>2.3 优化规则</h2><p><code>org.apache.flink.table.planner.plan.rules.FlinkStreamRuleSets</code></p>
+<p><code>org/apache/flink/table/planner/plan/rules/logic</code><br><code>org/apache/flink/table/planner/plan/rules/physical</code></p>
+<p>优化规则：本质是关系表达式的等价变换</p>
+<p>Rules 的本质是<strong>一种模式匹配与替换机制</strong>。</p>
+<ul>
+<li><strong>输入：</strong> 一棵逻辑算子树（由 <code>RelNode</code> 组成，如 <code>LogicalProject</code>, <code>LogicalFilter</code>）。</li>
+<li><strong>匹配（Matching）：</strong> 规则定义了一个 <code>RelOptRuleOperand</code>（操作数），用来描述它感兴趣的算子结构。例如，“一个 Filter 紧跟在另一个 Filter 之后”。</li>
+<li><strong>变换（Transformation）：</strong> 当匹配成功时，调用 <code>onMatch</code> 方法，将旧的算子树替换为等价但更优的新算子树。</li>
+</ul>
+<p>IcebergTableSource 支持了 SupportsProjectionPushDown, SupportsFilterPushDown, SupportsLimitPushDown 三种下推</p>
+<ol>
+<li>投影下推 (Projection PushDown)</li>
+</ol>
+<p>方法: <code>applyProjection(int[][] projectFields)</code><br>功能: 只读取需要的列，减少数据传输<br>实现: 通过projectedFields数组记录需要投影的列索引<br>2. 过滤条件下推 (Filter PushDown)<br>方法: <code>applyFilters(List&lt;ResolvedExpression&gt; flinkFilters)</code><br>功能: 将过滤条件推送到数据源层执行<br>实现: 将Flink表达式转换为Iceberg表达式，返回接受的过滤器列表<br>3. 限制下推 (Limit PushDown)<br>方法: <code>applyLimit(long newLimit)</code><br>功能: 限制返回的数据条数<br>实现: 设置limit字段值，在数据源层进行限制</p>
+<p>这三种pushdown功能最终在getScanRuntimeProvider方法中整合，通过FlinkSource.forRowData()构建数据流时应用相应的投影、过滤和限制条件，从而在数据源层面实现优化，减少网络传输和计算开销。</p>
+<h3 id="2-3-1-投影下推-Projection-PushDown-规则"><a href="#2-3-1-投影下推-Projection-PushDown-规则" class="headerlink" title="2.3.1 投影下推(Projection-PushDown)规则"></a>2.3.1 投影下推(Projection-PushDown)规则</h3><p><code>org.apache.flink.table.planner.plan.rules.logical.PushProjectIntoTableSourceScanRule</code></p>
+<ul>
+<li>减少I&#x2F;O开销: 只读取查询需要的列数据</li>
+<li>降低网络传输: 减少不必要的数据传输</li>
+<li>提高处理效率: 在数据源层面进行过滤</li>
+<li>支持复杂类型: 处理嵌套和变体数据结构的投影</li>
+</ul>
+<pre class="mermaid">graph LR
+    A[获取Project和Scan] --> B[检查嵌套投影支持]
+    B --> C[提取引用字段]
+    C --> D[处理变体字段]
+    D --> E[构建投影模式]
+    E --> F[执行投影下推]
+    F --> G[创建新的表源和扫描]
+    G --> H[重写投影表达式]
+    H --> I[返回优化结果]</pre>
+
+<pre class="mermaid">flowchart TB
+	subgraph ProjectionPushDown
+		direction LR
+		subgraph matches
+			direction LR
+			a1 --> a2
+		end
+		
+		subgraph onMatch
+			direction LR
+			a4 --> b3
+		end
+	end</pre>
+
+<h3 id="2-3-2-过滤下推"><a href="#2-3-2-过滤下推" class="headerlink" title="2.3.2 过滤下推"></a>2.3.2 过滤下推</h3><h3 id="2-3-3-Limit下推"><a href="#2-3-3-Limit下推" class="headerlink" title="2.3.3 Limit下推"></a>2.3.3 Limit下推</h3><h2 id="2-4-Iceberg读取数据"><a href="#2-4-Iceberg读取数据" class="headerlink" title="2.4 Iceberg读取数据"></a>2.4 Iceberg读取数据</h2><p>核心类： <code>org.apache.iceberg.flink.source.RowDataFileScanTaskReader</code></p>
+<ol>
+<li>初始化阶段<br>创建分区常量映射：从FileScanTask中提取分区信息，创建常量映射<br>创建删除过滤器：初始化FlinkDeleteFilter处理数据删除逻辑</li>
+<li>数据读取阶段<br>根据文件格式选择对应的Reader：<br>Parquet Reader：使用FlinkParquetReaders.buildReader<br>Avro Reader：使用FlinkAvroReader<br>ORC Reader：使用FlinkOrcReader</li>
+<li>过滤处理阶段<br>基础数据过滤：应用task.residual()表达式过滤或rowFilter过滤<br>删除过滤：处理行删除和位置删除逻辑</li>
+<li>投影转换阶段<br>投影转换：当requiredSchema与projectedSchema不一致时，应用RowDataProjection进行字段投影</li>
+</ol>
+<h2 id="2-5-代办"><a href="#2-5-代办" class="headerlink" title="2.5 代办"></a>2.5 代办</h2><ul>
+<li><input disabled="" type="checkbox"> org.apache.iceberg.flink.source.RowDataFileScanTaskReader#newParquetIterable 中Parquet读取数据的split操作?</li>
+<li><input disabled="" type="checkbox"> FunctionGen‎erator.scala 用于Function的CodeGen</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

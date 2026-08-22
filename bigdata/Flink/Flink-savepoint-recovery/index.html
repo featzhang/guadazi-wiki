@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Flink savepoint恢复运行日志分析正常的恢复12345678910111213141516171819202122232425262728[flink-akka.actor.default-dispatcher-2] org.apache.flink.runtime.jobmaster.JobMaster                 :236 - Initializing job">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink savepoint恢复过程解析">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-savepoint-recovery/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="Flink savepoint恢复运行日志分析正常的恢复12345678910111213141516171819202122232425262728[flink-akka.actor.default-dispatcher-2] org.apache.flink.runtime.jobmaster.JobMaster                 :236 - Initializing job">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-06-06T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.585Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-savepoint-recovery/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Flink savepoint恢复过程解析 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-savepoint-recovery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flink savepoint恢复过程解析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Flink-savepoint恢复"><a href="#Flink-savepoint恢复" class="headerlink" title="Flink savepoint恢复"></a>Flink savepoint恢复</h1><h2 id="运行日志分析"><a href="#运行日志分析" class="headerlink" title="运行日志分析"></a>运行日志分析</h2><h3 id="正常的恢复"><a href="#正常的恢复" class="headerlink" title="正常的恢复"></a>正常的恢复</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">236</span> - Initializing <span class="type">job</span> <span class="title function_">t_org_trade_day_dal_statistics_job</span> <span class="params">(000000000000eace000000000000001c)</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">164</span> - Using restart <span class="type">strategy</span> <span class="title function_">FixedDelayRestartStrategy</span><span class="params">(maxNumberRestartAttempts=<span class="number">10000</span>, delayBetweenRestartAttempts=<span class="number">20000</span>)</span> <span class="type">for</span> <span class="title function_">t_org_trade_day_dal_statistics_job</span> <span class="params">(000000000000eace000000000000001c)</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.yarn.YarnResourceManager                    :<span class="number">238</span> - Recovered <span class="number">0</span> containers from <span class="type">previous</span> <span class="title function_">attempts</span> <span class="params">([])</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy :<span class="number">81</span> - yarn.client.max-cached-nodemanagers-proxies : <span class="number">0</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.executiongraph.ExecutionGraph       :<span class="number">528</span> - Job recovers via failover strategy: full graph restart</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">203</span> - Running initialization on master <span class="keyword">for</span> <span class="type">job</span> <span class="title function_">t_org_trade_day_dal_statistics_job</span> <span class="params">(000000000000eace000000000000001c)</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">221</span> - Successfully ran initialization on master in <span class="number">0</span> ms.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.yarn.YarnResourceManager                    :<span class="number">1029</span> - ResourceManager akka.tcp:<span class="comment">//flink@9.44.10.157:35473/user/resourcemanager was granted leadership with fencing token 92d59c139e046177dbed78af07b744e8</span></span><br><span class="line">[main-EventThread] org.apache.flink.runtime.leaderservice.zookeeper.ZooKeeperLeaderElectionService :<span class="number">262</span> - org.apache.flink.yarn.YarnResourceManager@83ab9bf has been granted leadership.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.runtime.resourcemanager.slotmanager.SlotManagerImpl :<span class="number">215</span> - Starting the SlotManager.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.util.ZooKeeperUtils                 :<span class="number">301</span> - Initialized ZooKeeperCompletedCheckpointStore in <span class="string">&#x27;/checkpoints/000000000000eace000000000000001c&#x27;</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">200</span> - Using application-defined state backend: RocksDBStateBackend&#123;checkpointStreamBackend=File <span class="type">State</span> <span class="title function_">Backend</span> <span class="params">(checkpoints: <span class="string">&#x27;hdfs://qy-flink-1-v3/user/u_teg_tdbank/oceanus2/lj_cft_flink/fit-oceanus-prod/project-10001/job-60110/snapshots&#x27;</span>, savepoints: <span class="string">&#x27;null&#x27;</span>, asynchronous: UNDEFINED, fileStateThreshold: -<span class="number">1</span>)</span>, localRocksDbDirectories=<span class="literal">null</span>, enableIncrementalCheckpointing=UNDEFINED, numberOfTransferingThreads=-<span class="number">1</span>&#125;</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">207</span> - Configuring application-defined state backend with job/cluster config</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.contrib.streaming.state.RocksDBStateBackend :<span class="number">348</span> - Using predefined options: DEFAULT.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.contrib.streaming.state.RocksDBStateBackend :<span class="number">563</span> - Using <span class="keyword">default</span> options factory: DefaultConfigurableOptionsFactory&#123;configuredOptions=&#123;&#125;&#125;.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">128</span> - Recovering checkpoints from ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">146</span> - Found <span class="number">0</span> checkpoints in ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">163</span> - Trying to fetch <span class="number">0</span> checkpoints from storage.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1124</span> - Starting job 000000000000eace000000000000001c from savepoint hdfs:<span class="comment">//qy-flink-1-v3/user/u_teg_tdbank/oceanus2/lj_cft_flink/fit-oceanus-prod/project-10001/job-60110/snapshots/savepoint-000000-a5c820c4c53a (allowing non restored state)</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1139</span> - Reset the checkpoint ID of job 000000000000eace000000000000001c to <span class="number">370.</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">128</span> - Recovering checkpoints from ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">146</span> - Found <span class="number">1</span> checkpoints in ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">163</span> - Trying to fetch <span class="number">1</span> checkpoints from storage.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">336</span> - Trying to retrieve checkpoint <span class="number">369.</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1079</span> - Restoring job 000000000000eace000000000000001c from latest valid checkpoint: Checkpoint <span class="number">369</span> @ <span class="number">0</span> <span class="keyword">for</span> 000000000000eace000000000000001c.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">234</span> - No master state to restore</span><br><span class="line">[main-EventThread] org.apache.flink.runtime.jobmaster.JobManagerRunner          :<span class="number">298</span> - JobManager runner <span class="keyword">for</span> <span class="type">job</span> <span class="title function_">t_org_trade_day_dal_statistics_job</span> <span class="params">(000000000000eace000000000000001c)</span> was granted leadership with session id 3beb8d55-f7c2-<span class="number">4175</span>-9c7e-ac256f03e8bb at akka.tcp:<span class="comment">//flink@9.44.10.157:35473/user/jobmanager_0.</span></span><br><span class="line">[main-EventThread] org.apache.flink.runtime.leaderservice.zookeeper.ZooKeeperLeaderElectionService :<span class="number">262</span> - org.apache.flink.runtime.jobmaster.JobManagerRunner@548d10c7 has been granted leadership.</span><br></pre></td></tr></table></figure>
+
+<h3 id="JobGraph修改后恢复失败"><a href="#JobGraph修改后恢复失败" class="headerlink" title="JobGraph修改后恢复失败"></a>JobGraph修改后恢复失败</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">236</span> - Initializing job flake-sql-job-runner (000000000000eafb0000000000000011).</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">164</span> - Using restart <span class="type">strategy</span> <span class="title function_">FixedDelayRestartStrategy</span><span class="params">(maxNumberRestartAttempts=<span class="number">10000</span>, delayBetweenRestartAttempts=<span class="number">20000</span>)</span> <span class="keyword">for</span> flake-sql-job-runner (000000000000eafb0000000000000011).</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.executiongraph.ExecutionGraph       :<span class="number">528</span> - Job recovers via failover strategy: full graph restart</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">203</span> - Running initialization on master <span class="keyword">for</span> job flake-sql-job-runner (000000000000eafb0000000000000011).</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">221</span> - Successfully ran initialization on master in <span class="number">0</span> ms.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.yarn.YarnResourceManager                    :<span class="number">238</span> - Recovered <span class="number">0</span> containers from <span class="type">previous</span> <span class="title function_">attempts</span> <span class="params">([])</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy :<span class="number">81</span> - yarn.client.max-cached-nodemanagers-proxies : <span class="number">0</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.util.ZooKeeperUtils                 :<span class="number">301</span> - Initialized ZooKeeperCompletedCheckpointStore in <span class="string">&#x27;/checkpoints/000000000000eafb0000000000000011&#x27;</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">200</span> - Using application-defined state backend: </span><br><span class="line">RocksDBStateBackend&#123;</span><br><span class="line">checkpointStreamBackend=</span><br><span class="line">   File <span class="type">State</span> <span class="title function_">Backend</span> <span class="params">(</span></span><br><span class="line"><span class="params">      checkpoints: <span class="string">&#x27;hdfs://qy-flink-1-v3/user/u_teg_tdbank/oceanus2/lj_cft_flink/fit-oceanus-prod/project-10001/job-60155/snapshots&#x27;</span>, </span></span><br><span class="line"><span class="params">      savepoints: <span class="string">&#x27;null&#x27;</span>, </span></span><br><span class="line"><span class="params">      asynchronous: UNDEFINED, </span></span><br><span class="line"><span class="params">      fileStateThreshold: -<span class="number">1</span></span></span><br><span class="line"><span class="params">     )</span>, </span><br><span class="line">localRocksDbDirectories=<span class="literal">null</span>, </span><br><span class="line">enableIncrementalCheckpointing=UNDEFINED, </span><br><span class="line">numberOfTransferingThreads=-<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">207</span> - Configuring application-defined state backend with job/cluster config</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.contrib.streaming.state.RocksDBStateBackend :<span class="number">348</span> - Using predefined options: DEFAULT.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.contrib.streaming.state.RocksDBStateBackend :<span class="number">563</span> - Using <span class="keyword">default</span> options factory: DefaultConfigurableOptionsFactory&#123;configuredOptions=&#123;&#125;&#125;.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.yarn.YarnResourceManager                    :<span class="number">1029</span> - ResourceManager akka.tcp:<span class="comment">//flink@9.44.34.108:40622/user/resourcemanager was granted leadership with fencing token 9e26d17ff1120b75114052d13be242e0</span></span><br><span class="line">[main-EventThread] org.apache.flink.runtime.leaderservice.zookeeper.ZooKeeperLeaderElectionService :<span class="number">262</span> - org.apache.flink.yarn.YarnResourceManager@1a74bd90 has been granted leadership.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.runtime.resourcemanager.slotmanager.SlotManagerImpl :<span class="number">215</span> - Starting the SlotManager.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">128</span> - Recovering checkpoints from ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">146</span> - Found <span class="number">0</span> checkpoints in ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">163</span> - Trying to fetch <span class="number">0</span> checkpoints from storage.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1124</span> - Starting job 000000000000eafb0000000000000011 from savepoint hdfs:<span class="comment">//qy-flink-1-v3/user/u_teg_tdbank/oceanus2/lj_cft_flink/fit-oceanus-prod/project-10001/job-60155/snapshots/savepoint-000000-630ca6fb8b9c (allowing non restored state)</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">172</span> - Could not find ExecutionJobVertex. Including user-defined OperatorIDs in search.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator 749b2cad71aaee5be25025871420d4b2.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator f7ad6dac6ff3d8ada68fde148d943256.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator 5c72ff74f7b814cc2b15db0311cc0aaf.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator d6883e647f8d8dd07dbe048d4037223c.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator bb6ff7b6d8a06dd49e1764b59667cf62.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1139</span> - Reset the checkpoint ID of job 000000000000eafb0000000000000011 to <span class="number">5.</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">128</span> - Recovering checkpoints from ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">146</span> - Found <span class="number">1</span> checkpoints in ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">163</span> - Trying to fetch <span class="number">1</span> checkpoints from storage.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">336</span> - Trying to retrieve checkpoint <span class="number">4.</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1079</span> - Restoring job 000000000000eafb0000000000000011 from latest valid checkpoint: Checkpoint <span class="number">4</span> @ <span class="number">0</span> <span class="keyword">for</span> 000000000000eafb0000000000000011.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">234</span> - No master state to restore</span><br><span class="line">[main-EventThread] org.apache.flink.runtime.jobmaster.JobManagerRunner          :<span class="number">298</span> - JobManager runner <span class="keyword">for</span> job flake-sql-job-runner (000000000000eafb0000000000000011) was granted leadership with session id 9ecd11e9-590a-<span class="number">4186</span>-<span class="number">8270</span>-edff06b7a810 at akka.tcp:<span class="comment">//flink@9.44.34.108:40622/user/jobmanager_0.</span></span><br><span class="line">[main-EventThread] org.apache.flink.runtime.leaderservice.zookeeper.ZooKeeperLeaderElectionService :<span class="number">262</span> - org.apache.flink.runtime.jobmaster.JobManagerRunner@3da1e67a has been granted leadership.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">691</span> - Starting execution of job flake-sql-job-runner (000000000000eafb0000000000000011) under job master id 8270edff06b7a8109ecd11e9590a4186.</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-watermark/" rel="prev" title="Flink watermark">
+      <i class="fa fa-chevron-left"></i> Flink watermark
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-join/" rel="next" title="Flink stream API中Join实现方式">
+      Flink stream API中Join实现方式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flink-savepoint%E6%81%A2%E5%A4%8D"><span class="nav-number">1.</span> <span class="nav-text">Flink savepoint恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">运行日志分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E7%9A%84%E6%81%A2%E5%A4%8D"><span class="nav-number">1.1.1.</span> <span class="nav-text">正常的恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JobGraph%E4%BF%AE%E6%94%B9%E5%90%8E%E6%81%A2%E5%A4%8D%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.1.2.</span> <span class="nav-text">JobGraph修改后恢复失败</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="MinHash &#x2F; LSH 模糊去重一句话定位：面试高频必问。在十亿级文档里找出”内容近似重复”的文档簇——两两比对是 O(N²) 不可行，MinHash 把相似度压成签名、LSH 把候选集缩小到桶内，使近似去重在大规模下可行。去重能显著提升语言模型效果（减少记忆化、提高有效 token 占比）。 1. 完整流水线1 Shingling（分片）把文档切成长度为 k 的连续片段集合（k-s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MinHash &#x2F; LSH 模糊去重">
+<meta property="og:url" content="http://yoursite.com/AI/data-engineering/minhash-lsh-dedup/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="MinHash &#x2F; LSH 模糊去重一句话定位：面试高频必问。在十亿级文档里找出”内容近似重复”的文档簇——两两比对是 O(N²) 不可行，MinHash 把相似度压成签名、LSH 把候选集缩小到桶内，使近似去重在大规模下可行。去重能显著提升语言模型效果（减少记忆化、提高有效 token 占比）。 1. 完整流水线1 Shingling（分片）把文档切成长度为 k 的连续片段集合（k-s">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T11:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.820Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="LSH">
+<meta property="article:tag" content="MinHash">
+<meta property="article:tag" content="去重">
+<meta property="article:tag" content="大模型">
+<meta property="article:tag" content="数据工程">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/AI/data-engineering/minhash-lsh-dedup/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>MinHash / LSH 模糊去重 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/data-engineering/minhash-lsh-dedup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MinHash / LSH 模糊去重
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 11:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T11:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="MinHash-LSH-模糊去重"><a href="#MinHash-LSH-模糊去重" class="headerlink" title="MinHash &#x2F; LSH 模糊去重"></a>MinHash &#x2F; LSH 模糊去重</h1><p>一句话定位：面试高频必问。在十亿级文档里找出”内容近似重复”的文档簇——两两比对是 O(N²) 不可行，MinHash 把相似度压成签名、LSH 把候选集缩小到桶内，使近似去重在大规模下可行。去重能显著提升语言模型效果（减少记忆化、提高有效 token 占比）。</p>
+<h2 id="1-完整流水线"><a href="#1-完整流水线" class="headerlink" title="1. 完整流水线"></a>1. 完整流水线</h2><h3 id="1-Shingling（分片）"><a href="#1-Shingling（分片）" class="headerlink" title="1 Shingling（分片）"></a>1 Shingling（分片）</h3><p>把文档切成长度为 k 的连续片段集合（k-shingle &#x2F; k-gram，可按词或字符）。文档由此变成一个<strong>集合</strong>，文档相似度 &#x3D; 两集合的 <strong>Jaccard 相似度</strong> <code>J(A,B) = |A∩B| / |A∪B|</code>。</p>
+<p>k 的选择：k 太小则不同文档偶然共享大量 shingle（假阳性高）；k 太大则对微小改写过于敏感（召回下降）。</p>
+<h3 id="2-MinHash-签名"><a href="#2-MinHash-签名" class="headerlink" title="2 MinHash 签名"></a>2 MinHash 签名</h3><ul>
+<li>对集合施加一个哈希置换 h，取集合中所有元素哈希值的<strong>最小值</strong>作为一个签名分量。</li>
+<li>关键性质：<strong><code>P(minhash(A) == minhash(B)) = J(A,B)</code></strong>——两个集合最小哈希相等的概率恰好等于 Jaccard 相似度。</li>
+<li>用 n 个独立哈希函数得到长度为 n 的签名向量，则”签名相同分量的比例”就是 Jaccard 的无偏估计。<strong>作用是把任意大的集合压成定长 n 的签名</strong>，把集合比较变成定长向量比较。</li>
+</ul>
+<h3 id="3-分带（Banding）分桶"><a href="#3-分带（Banding）分桶" class="headerlink" title="3 分带（Banding）分桶"></a>3 分带（Banding）分桶</h3><p>把长度 n 的签名切成 <strong>b 个 band</strong>，每个 band 含 r 行（n &#x3D; b × r）。对每个 band 做哈希分桶：<strong>只要有任一 band 完全相同，两文档即成为候选对</strong>。</p>
+<p>碰撞概率（相似度为 s 的两文档成为候选的概率）：</p>
+<p><code>P(候选) = 1 - (1 - s^r)^b</code></p>
+<p>这是一条 <strong>S 形曲线</strong>，其陡峭的转折点（近似阈值）约在 <code>s ≈ (1/b)^(1/r)</code>。</p>
+<h3 id="4-桶内两两比对"><a href="#4-桶内两两比对" class="headerlink" title="4 桶内两两比对"></a>4 桶内两两比对</h3><p>只对落入同桶的候选对计算真实（或签名估计的）相似度，超过阈值判为重复。候选集远小于全量对，这是复杂度从 O(N²) 降下来的根本原因。</p>
+<h3 id="5-连通图求重复簇"><a href="#5-连通图求重复簇" class="headerlink" title="5 连通图求重复簇"></a>5 连通图求重复簇</h3><p>把”判定为重复”的文档对看作图的边，用<strong>并查集 &#x2F; 连通分量</strong>求出重复簇，每簇保留一篇代表文档（或按质量分挑最优），其余丢弃。</p>
+<h2 id="2-工程要点"><a href="#2-工程要点" class="headerlink" title="2. 工程要点"></a>2. 工程要点</h2><h3 id="2-1-签名长度-n-与-band-数-b-决定精确率-召回率权衡"><a href="#2-1-签名长度-n-与-band-数-b-决定精确率-召回率权衡" class="headerlink" title="2.1 签名长度 n 与 band 数 b 决定精确率&#x2F;召回率权衡"></a>2.1 签名长度 n 与 band 数 b 决定精确率&#x2F;召回率权衡</h3><p>由 <code>P = 1 - (1 - s^r)^b</code> 可知：</p>
+<ul>
+<li><strong>b 增大（r 减小）</strong> → 曲线阈值左移，更”宽松”：召回高、假阳性多、候选对暴涨（后续比对更贵）；</li>
+<li><strong>r 增大（b 减小）</strong> → 阈值右移，更”严格”：精确率高、漏掉中等相似的重复；</li>
+<li><strong>n 增大</strong> → 相似度估计方差更小（更准），但哈希计算与存储成本线性上升。</li>
+</ul>
+<p>调参思路：先定业务上的相似度阈值 s₀（如 0.8），再选 b、r 使 S 曲线的陡升区间对齐 s₀。</p>
+<h3 id="2-2-Hash-计算是-CPU-热点"><a href="#2-2-Hash-计算是-CPU-热点" class="headerlink" title="2.2 Hash 计算是 CPU 热点"></a>2.2 Hash 计算是 CPU 热点</h3><p>每篇文档要算 n 个（常见 128~256）MinHash，是<strong>纯 CPU 密集</strong>的大头。优化：用快速哈希（MurmurHash&#x2F;xxHash）、一次哈希多次置换的技巧（如 <code>(a*h + b) mod p</code>）、向量化与批处理、提高并行度。</p>
+<h3 id="2-3-桶内比对易数据倾斜"><a href="#2-3-桶内比对易数据倾斜" class="headerlink" title="2.3 桶内比对易数据倾斜"></a>2.3 桶内比对易数据倾斜</h3><p>分桶后桶大小<strong>严重不均</strong>：模板化页面、超高频近重复内容会让某些桶极度膨胀，桶内两两比对是 O(m²)，单个大桶就能拖死整个作业——这正是 1.2 数据倾斜的典型现场。</p>
+<p>治理手段可直接复用 1.2：</p>
+<ul>
+<li>对超大桶<strong>加盐拆分</strong>或做二次分桶；</li>
+<li>设<strong>桶大小上限</strong>，超限的桶采样或单独处理（隔离热键）；</li>
+<li>提前对桶大小分布做<strong>抽样探测</strong>，而非等作业跑挂（对应”提前发现而非事后救火”）。</li>
+</ul>
+<blockquote>
+<p>参考：《Mining of Massive Datasets》第 3 章（Finding Similar Items）；论文《Deduplicating Training Data Makes Language Models Better》(Lee et al., 2022)</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" rel="tag"># 大模型</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/" rel="tag"># 数据工程</a>
+              <a href="/tags/%E5%8E%BB%E9%87%8D/" rel="tag"># 去重</a>
+              <a href="/tags/MinHash/" rel="tag"># MinHash</a>
+              <a href="/tags/LSH/" rel="tag"># LSH</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/IO-optimization/" rel="prev" title="I/O 优化手段">
+      <i class="fa fa-chevron-left"></i> I/O 优化手段
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/AI/data-engineering/language-id-rule-filter/" rel="next" title="语言识别与规则过滤">
+      语言识别与规则过滤 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MinHash-LSH-%E6%A8%A1%E7%B3%8A%E5%8E%BB%E9%87%8D"><span class="nav-number">1.</span> <span class="nav-text">MinHash &#x2F; LSH 模糊去重</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%8C%E6%95%B4%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">1.1.</span> <span class="nav-text">1. 完整流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Shingling%EF%BC%88%E5%88%86%E7%89%87%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">1 Shingling（分片）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-MinHash-%E7%AD%BE%E5%90%8D"><span class="nav-number">1.1.2.</span> <span class="nav-text">2 MinHash 签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%88%86%E5%B8%A6%EF%BC%88Banding%EF%BC%89%E5%88%86%E6%A1%B6"><span class="nav-number">1.1.3.</span> <span class="nav-text">3 分带（Banding）分桶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%A1%B6%E5%86%85%E4%B8%A4%E4%B8%A4%E6%AF%94%E5%AF%B9"><span class="nav-number">1.1.4.</span> <span class="nav-text">4 桶内两两比对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%BF%9E%E9%80%9A%E5%9B%BE%E6%B1%82%E9%87%8D%E5%A4%8D%E7%B0%87"><span class="nav-number">1.1.5.</span> <span class="nav-text">5 连通图求重复簇</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B7%A5%E7%A8%8B%E8%A6%81%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">2. 工程要点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E7%AD%BE%E5%90%8D%E9%95%BF%E5%BA%A6-n-%E4%B8%8E-band-%E6%95%B0-b-%E5%86%B3%E5%AE%9A%E7%B2%BE%E7%A1%AE%E7%8E%87-%E5%8F%AC%E5%9B%9E%E7%8E%87%E6%9D%83%E8%A1%A1"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 签名长度 n 与 band 数 b 决定精确率&#x2F;召回率权衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Hash-%E8%AE%A1%E7%AE%97%E6%98%AF-CPU-%E7%83%AD%E7%82%B9"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 Hash 计算是 CPU 热点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%A1%B6%E5%86%85%E6%AF%94%E5%AF%B9%E6%98%93%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 桶内比对易数据倾斜</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

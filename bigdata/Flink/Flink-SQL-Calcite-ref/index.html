@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Flink SQL知其然知其所以然: Flink SQL + calcite一条 flink sql 的执行过程先了解整个流程，有了全局视角之后，后续会详述细节。 先来看看 flink datastream 任务的执行过程:  DataStream：  使用时要在 flink datastream api 提供的各种 udf（比如 flatmap，keyedProcessFunction 等）中自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转发】Flink SQL知其然知其所以然: Flink SQL + calcite">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-SQL-Calcite-ref/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="Flink SQL知其然知其所以然: Flink SQL + calcite一条 flink sql 的执行过程先了解整个流程，有了全局视角之后，后续会详述细节。 先来看看 flink datastream 任务的执行过程:  DataStream：  使用时要在 flink datastream api 提供的各种 udf（比如 flatmap，keyedProcessFunction 等）中自">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-30d3e4f2234e5cf5fca95f950f6c9428_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-2c720783c6dd02bb3b2bb83143d5bc16_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-85c6aecc57524d1c2e839a231c27eb00_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-88ba11c90fbebb85c23d6b5b719411a8_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-6f0f40cea79455fda9d2e74f4b8178ba_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-47528a42af5218d233ae947cb8f315d1_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-72a409b2c0852f01ce2e232fc0d3c134_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-2847033038463bbb1ae9047154bfa7fa_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-e6efd325be2d30f70ef08af9b118cbab_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-5f068ab253525ee0641b883afe6cfdee_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-747212a093d3378fac39a5d466f63d5f_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-05eb5153c0e9fb1453001ef5cdcaf49d_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-51ec31244d1df2118952c121cbf998e0_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-66221921a6d5d4dc1cec472391ad6f9b_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-84bfe788db6d74801e1a6dea56daac26_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-b72934e88a2dbc5e218bc0a2f26fc4c8_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-0196290ee952189e7dd017a8dea0e66e_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-5845e7ca8de729854167fa208fea7c43_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-df1e6cd1abf1f4eaaf98fa0eba59c06f_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-0b5d21508c63b1c97c3e1ac168fb33ff_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/vx_images/v2-51ec31244d1df2118952c121cbf998e0_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-dd8f941286e2e86737cb87d4e102cb14_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/vx_images/v2-84bfe788db6d74801e1a6dea56daac26_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-4d7455765e5a2de3cbc04a19aaefcf11_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/vx_images/v2-5845e7ca8de729854167fa208fea7c43_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-c45a05ca2b6ecebfd253d541e06f6c54_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-e44e237a90f491879149e4dda8b1dc5c_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-e0cdf7e1421cedab49c993557557fc2e_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-5b14150448d09ac1de5446760bc0d528_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-255033cde369d53b2242fdc9d3662a68_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-cbb56cd4c2be7647fd695ec9b8f78fb0_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-228f84e7278296e0a7ceb6ccd72e0875_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-063188f773c325fea434c47455a7cc88_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-677bd34a44bb4af41c0c80b49b3789d4_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/vx_images/v2-72a409b2c0852f01ce2e232fc0d3c134_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-12ecfe162ed2f37ad3a9d3b10fc68a27_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-171370458bf11ab61db7703cea1d9d25_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-7d2e03ed70c7d05dbd5ba9f5ac791ee8_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-d61f235c66728e255597f8e8284e5376_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-ce2234f61663349fb6db148a51774f98_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-efc5b28b38f409de7f24ad797d6f1635_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-a30428f685820143018cc70a25b34a9b_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-331353bc1f8c7bd1e673e4671ad29934_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-ae594fb4b8704e13bba65520bb93cdcb_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-02488f4fc74b819d0b2d12e2d28c2082_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-4ca179cbf5ae9792f790adb25309f5c3_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-952dbc244c659c442d0829c2908e8d09_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-285130b818d7d03b5974ede7f011061b_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-4f137b902900bf9d68ef820981a3229d_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-92d4b7ebfc24e1774e7ba14a5fa1c3a8_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-afb9084528c9cfd59a21f4a737950558_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-9ec77d323f562c0478ac7ecdbc9bc598_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-dd6615c1ffe6fbc5ed0173d9a10513f7_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-ed20385b0ae0e591d60ecd6012b39779_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-47fdf6603b67f434a8ac23a297d03400_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-3bef74e31b498451f28a12bee761524b_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/vx_images/v2-4f137b902900bf9d68ef820981a3229d_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-111ab8b2ab79d74c69e75b2fe987272e_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-f7f742ba2717776321ab0d569c4eb4a2_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-deddd4b8578a57192000661377ce647c_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-73e33f65c869ba3da10a6e2dc406d579_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-190f53714c2a53df53282379170ac86d_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-12e1818505a352953a1f4a0242fbde72_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-4f2ab833bc94028bb5ca8201b2c4e2a0_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-64ab09f326cdb95ae47cd78c53cababa_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-79d274f87f5e7ce244be79273707604a_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-66f719816397122c7d835a63fb201c4f_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-b0d4296687b1764c062a5d5496f60e49_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-f6898e8e9db958c226a2cec9e6a0cda9_720w.jpg">
+<meta property="article:published_time" content="2019-06-06T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.587Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/Flink/v2-30d3e4f2234e5cf5fca95f950f6c9428_720w.jpg">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Calcite-ref/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【转发】Flink SQL知其然知其所以然: Flink SQL + calcite | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Calcite-ref/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【转发】Flink SQL知其然知其所以然: Flink SQL + calcite
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Flink-SQL知其然知其所以然-Flink-SQL-calcite"><a href="#Flink-SQL知其然知其所以然-Flink-SQL-calcite" class="headerlink" title="Flink SQL知其然知其所以然: Flink SQL + calcite"></a>Flink SQL知其然知其所以然: Flink SQL + calcite</h1><h2 id="一条-flink-sql-的执行过程"><a href="#一条-flink-sql-的执行过程" class="headerlink" title="一条 flink sql 的执行过程"></a>一条 flink sql 的执行过程</h2><p>先了解整个流程，有了全局视角之后，后续会详述细节。</p>
+<p>先来看看 flink datastream 任务的执行过程:</p>
+<ul>
+<li><p><strong>DataStream</strong>：<br>  使用时要在 <code>flink datastream api</code> 提供的各种 <code>udf</code>（比如 <code>flatmap</code>，<code>keyedProcessFunction</code> 等）中自定义处理逻辑，具体的业务执行逻辑都是敲代码、 <code>java</code> 文件写的，然后编译在 <code>jvm</code> 中执行，就和一个普通的 <code>main</code> 函数应用一模一样的流程。因为代码执行逻辑都是自己写的，所以这一部分相对好理解。</p>
+</li>
+<li><p><strong>SQL</strong>：<br>  Java 编译器不能识别和编译一条 SQL 进行执行，那么一条 SQL 是咋执行的呢？</p>
+</li>
+</ul>
+<h2 id="2-1-先发挥自己的想象力"><a href="#2-1-先发挥自己的想象力" class="headerlink" title="2.1.先发挥自己的想象力"></a>2.1.先发挥自己的想象力</h2><p>我们逆向思维进行考虑，如果想让一条 <code>Flink SQL</code> 按照我们的预期在 jvm 中执行，需要哪些过程。</p>
+<ol>
+<li><strong>整体来说</strong>：参考 datastream，如果 jvm 能执行 datastream java code 编译后的 class 文件，那么加一个 sql 解析层，能将 sql 逻辑解析为 datastream 的各种算子，然后编译执行不就 vans 了。</li>
+<li><strong>sql parser</strong>：首先得有一个 sql parser 吧，得先能识别 sql 语法，将 sql 语法转化为 AST、具体的关系代数。</li>
+<li><strong>关系代数到 datastream 算子的映射</strong>：sql 逻辑解析为 datastream，需要有一个解析的映射逻辑吧。sql 是基于关系代数的，可以维护一个 sql 中的每个关系代数到具体 datastream 接口的映射关系，有了这些映射关系我们就可以将 sql 映射成一段可执行的 datastream 代码。举个例子：其可以将：</li>
+</ol>
+<ul>
+<li>sql select xxx 解析为类似 datastream 中的 map</li>
+<li>where xxx 解析为 filter</li>
+<li>group by 解析成 keyby</li>
+<li>sum（xx），count（xxx）可以解析为 datastream 中的 aggregate function</li>
+<li>etc…</li>
+<li><strong>代码生成</strong>：有了 sql AST，sql 到 datasretam 算子的映射关系之后，就要进行具体的代码生成了。比如去解析 sql AST 中具体哪些字段用作 where 逻辑，哪些字段用作 group by，都需要生成对应具体的 datastream 代码。</li>
+<li><strong>运行</strong>：经过上述流程之后，就可以将一个 sql 翻译成一个 datastream 作业了，happy 的执行。</li>
+</ul>
+<p>如下图所示，描绘了上述逻辑：</p>
+<p><img src="/images/bigdata/Flink/v2-30d3e4f2234e5cf5fca95f950f6c9428_720w.jpg" alt="img"></p>
+<p>12</p>
+<p>那么这个和 flink 实际实现有啥异同呢？</p>
+<p>flink 大致是这样做的，虽在 flink 本身的中间还有一些其他的流程，后来的版本也不是基于 datastream，但是整体的处理逻辑还是和上述一致的。</p>
+<p>所以不了解整体流程的同学可以先按照上述流程进行理解。</p>
+<p>按照 <code>博主的脑洞</code> 来总结一条 sql 的使命就是：<code>sql -&gt; AST -&gt; codegen(java code) -&gt; 让我们 run 起来好吗</code></p>
+<h2 id="2-2-看看-flink-的实现"><a href="#2-2-看看-flink-的实现" class="headerlink" title="2.2.看看 flink 的实现"></a>2.2.看看 flink 的实现</h2><p><img src="/images/bigdata/Flink/v2-2c720783c6dd02bb3b2bb83143d5bc16_720w.jpg" alt="img"></p>
+<p>26</p>
+<p>上面手绘可能看不清，下面这张图更清楚。</p>
+<p><img src="/images/bigdata/Flink/v2-85c6aecc57524d1c2e839a231c27eb00_720w.jpg" alt="img"></p>
+<p>28</p>
+<p>标准的一条 flink sql 运行起来的流程如下：</p>
+<blockquote>
+<p>Notes：刚开始对其中的 SqlNode，RelNode 概念可能比较模糊。先理解整个流程，后续会详细介绍这些概念。</p>
+</blockquote>
+<ol>
+<li><p><strong>sql 解析阶段</strong>：calcite parser 解析（sql -&gt; AST，AST 即 SqlNode Tree）</p>
+</li>
+<li><p><strong>SqlNode 验证阶段</strong>：calcite validator 校验（SqlNode -&gt; SqlNode，语法、表达式、表信息）</p>
+</li>
+<li><p><strong>语义分析阶段</strong>：SqlNode 转换为 RelNode，RelNode 即 Logical Plan（SqlNode -&gt; RelNode）</p>
+</li>
+<li><p><strong>优化阶段</strong>：calcite optimizer 优化（RelNode -&gt; RelNode，剪枝、谓词下推等）</p>
+</li>
+<li><p><strong>物理计划生成阶段</strong>：Logical Plan 转换为 Physical Plan（等同于 RelNode 转换成 DataSet\DataStream API）</p>
+</li>
+<li><p><strong>后续的运行逻辑与 datastream 一致</strong></p>
+</li>
+</ol>
+<p>可以发现 <code>flink 的实现</code> 比 <code>博主的脑洞</code> 整体主要框架上面是一致的。多出来的部分主要是 <strong>SqlNode 验证阶段</strong>，<strong>优化阶段</strong>。</p>
+<h2 id="3-简介篇-calcite-在-flink-sql-中的角色"><a href="#3-简介篇-calcite-在-flink-sql-中的角色" class="headerlink" title="3.简介篇-calcite 在 flink sql 中的角色"></a>3.简介篇-calcite 在 flink sql 中的角色</h2><p>大致了解了 <code>一条 flink sql 的运行流程</code> 之后，我们来看看 calcite 这玩意到底在 flink 里干了些啥。</p>
+<p>根据上文总结来说 calcite 在 flink sql 中担当了 <code>sql 解析、验证、优化</code>功能。</p>
+<p><img src="/images/bigdata/Flink/v2-88ba11c90fbebb85c23d6b5b719411a8_720w.jpg" alt="img"></p>
+<p>30</p>
+<p>看着 calcite 干了这么多事，那 calcite 是个啥东东，它的定位是啥？</p>
+<h2 id="3-1-calcite-是啥？"><a href="#3-1-calcite-是啥？" class="headerlink" title="3.1.calcite 是啥？"></a>3.1.calcite 是啥？</h2><p>calcite 是一个动态数据的管理框架，它可以用来构建数据库系统的不同的解析的模块，但是它不包含数据存储数据处理等功能。</p>
+<p>calcite 的目标是一种方案，适应所有的需求场景，希望能为不同计算平台和数据源提供统一的 sql 解析引擎，但是它只是提供查询引擎，而没有真正的去存储这些数据。</p>
+<p><img src="/images/bigdata/Flink/v2-6f0f40cea79455fda9d2e74f4b8178ba_720w.jpg" alt="img"></p>
+<p>61</p>
+<p>下图是目前使用了 calcite 能力的其他组件，也可见官网 <a href="https://link.zhihu.com/?target=https://calcite.apache.org/docs/powered_by.html">https://calcite.apache.org/docs/powered_by.html</a> 。</p>
+<p><img src="/images/bigdata/Flink/v2-47528a42af5218d233ae947cb8f315d1_720w.jpg" alt="img"></p>
+<p>4</p>
+<p>简单来说的话，可以先理解为 calcite 具有这几个功能（当然还有其他很牛逼的功能，感兴趣可以自查官网）。</p>
+<ol>
+<li><strong>自定义 sql 解析器</strong>：比如说我们新发明了一个引擎，然后我们要在这个引擎上来创造一套基于 sql 的接口，那么我们就可以使用直接 calcite，不用自己去写一套专门的 sql 的解析器，以及执行以及优化引擎，calcite 人都有。</li>
+<li><strong>sql parser（extends SqlAbstractParserImpl）</strong>：将 sql 的各种关系代数解析为具体的 AST，这些 AST 都能对应到具体的 java model，在 java 的世界里面，对象很重要，有了这些对象（<code>SqlSelect</code>、<code>SqlNode</code>），就可以根据这些对象做具体逻辑处理了。举个例子，如下图，一条简单的 <code>select c,d from source where a = &#39;6&#39;</code> sql，经过 calcite 的解析之后，就可以得到 AST model（SqlNode）。可以看到有 <code>SqlSelect</code>、<code>SqlIdentifier</code>、<code>SqlIdentifier</code>、<code>SqlCharStringLiteral</code>。</li>
+<li><strong>sql validator（extends SqlValidatorImpl）</strong>：根据语法、表达式、表信息进行 SqlNode 正确性校验。</li>
+<li><strong>sql optimizer</strong>：剪枝、谓词下推等优化</li>
+</ol>
+<p>上面的这些能力整体组成如下图所示：</p>
+<p><img src="/images/bigdata/Flink/v2-72a409b2c0852f01ce2e232fc0d3c134_720w.jpg" alt="img"></p>
+<p>29</p>
+<p>实际使用 calcite 解析一条 sql，跑起来看看。</p>
+<p><img src="/images/bigdata/Flink/v2-2847033038463bbb1ae9047154bfa7fa_720w.jpg" alt="img"></p>
+<p>2</p>
+<h2 id="3-2-flink-sql-为什么选择-calcite？"><a href="#3-2-flink-sql-为什么选择-calcite？" class="headerlink" title="3.2.flink sql 为什么选择 calcite？"></a>3.2.flink sql 为什么选择 calcite？</h2><ol>
+<li>不用重复造轮子。有限的精力应该放在有价值的事情上。</li>
+<li>calcite 有针对 stream 表的解决方案。具体可见 <a href="https://link.zhihu.com/?target=https://calcite.apache.org/docs/stream.html">https://calcite.apache.org/docs/stream.html</a>。</li>
+</ol>
+<h2 id="4-案例篇-calcite-的能力、案例"><a href="#4-案例篇-calcite-的能力、案例" class="headerlink" title="4.案例篇-calcite 的能力、案例"></a>4.案例篇-calcite 的能力、案例</h2><h2 id="4-1-先用用-calcite"><a href="#4-1-先用用-calcite" class="headerlink" title="4.1.先用用 calcite"></a>4.1.先用用 calcite</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">重中之重，在了解原理之前，先跑起来是王道，也会帮助我们逐步理解。</span><br></pre></td></tr></table></figure>
+
+<p>官网已经有一个 csv 的案例了。感兴趣的可以直达 <a href="https://link.zhihu.com/?target=https://calcite.apache.org/docs/tutorial.html">https://calcite.apache.org/docs/tutorial.html</a> 。</p>
+<p>跑完一个 csv demo，在详细了解 calcite 之前还需要了解下 sql，calcite 的支柱：关系代数。</p>
+<h2 id="4-2-关系代数"><a href="#4-2-关系代数" class="headerlink" title="4.2.关系代数"></a>4.2.关系代数</h2><p>sql 是基于关系代数的查询语言，是关系代数在工程上的一种很好的实现方案。在工程中，关系代数难表达，但是 sql 就易于理解。关系代数和 sql 的关系如下。</p>
+<ol>
+<li><p>可以将一条 sql 解析为一个关系代数表达式的组合。在 sql 中的操作都可以转化成关系代数的表达式。</p>
+</li>
+<li><p>sql 的执行优化（所有的优化的前提都是优化前和优化后最终执行结果相同，即等价交换）是基于关系代数运算的。</p>
+</li>
+</ol>
+<h3 id="4-2-1-常用关系代数"><a href="#4-2-1-常用关系代数" class="headerlink" title="4.2.1.常用关系代数"></a>4.2.1.常用关系代数</h3><p><strong>总结下，有哪些常用的关系代数：</strong></p>
+<p><img src="/images/bigdata/Flink/v2-e6efd325be2d30f70ef08af9b118cbab_720w.jpg" alt="img"></p>
+<p>50</p>
+<h3 id="4-2-2-sql-优化支柱之关系代数等价变换"><a href="#4-2-2-sql-优化支柱之关系代数等价变换" class="headerlink" title="4.2.2.sql 优化支柱之关系代数等价变换"></a>4.2.2.sql 优化支柱之关系代数等价变换</h3><p>关系代数等价变换是 calcite optimizer 的基础理论。</p>
+<p>下面是一些等价变换的例子。</p>
+<p>1.连接（<code>⋈</code>），笛卡尔积（<code>×</code>）的交换律</p>
+<p><img src="/images/bigdata/Flink/v2-5f068ab253525ee0641b883afe6cfdee_720w.jpg" alt="img"></p>
+<p>51</p>
+<p>2.连接（<code>⋈</code>），笛卡尔积（<code>×</code>）的结合律</p>
+<p><img src="/images/bigdata/Flink/v2-747212a093d3378fac39a5d466f63d5f_720w.jpg" alt="img"></p>
+<p>3.投影（<code>Π</code>）的串接定律</p>
+<p><img src="/images/bigdata/Flink/v2-05eb5153c0e9fb1453001ef5cdcaf49d_720w.jpg" alt="img"></p>
+<p>4.选择（<code>σ</code>）的串接定律</p>
+<p><img src="/images/bigdata/Flink/v2-51ec31244d1df2118952c121cbf998e0_720w.jpg" alt="img"></p>
+<p>5.选择（<code>σ</code>）与投影（<code>Π</code>）的交换</p>
+<p><img src="/images/bigdata/Flink/v2-66221921a6d5d4dc1cec472391ad6f9b_720w.jpg" alt="img"></p>
+<p>6.选择（<code>σ</code>）与笛卡尔积（<code>×</code>）的交换</p>
+<p><img src="/images/bigdata/Flink/v2-84bfe788db6d74801e1a6dea56daac26_720w.jpg" alt="img"></p>
+<p>7.选择（<code>σ</code>）与并（<code>∪</code>）的交换</p>
+<p><img src="/images/bigdata/Flink/v2-b72934e88a2dbc5e218bc0a2f26fc4c8_720w.jpg" alt="img"></p>
+<p>8.选择（<code>σ</code>）与差（<code>-</code>）的交换</p>
+<p><img src="/images/bigdata/Flink/v2-0196290ee952189e7dd017a8dea0e66e_720w.jpg" alt="img"></p>
+<p>9.投影（<code>Π</code>）与笛卡尔积（<code>×</code>）的交换</p>
+<p><img src="/images/bigdata/Flink/v2-5845e7ca8de729854167fa208fea7c43_720w.jpg" alt="img"></p>
+<p>10.投影（<code>Π</code>）与并（<code>∪</code>）的交换</p>
+<p><img src="/images/bigdata/Flink/v2-df1e6cd1abf1f4eaaf98fa0eba59c06f_720w.jpg" alt="img"></p>
+<p><strong>然后看一个基于关系代数优化的实际 sql 案例：</strong></p>
+<p>有三个关系 <code>A（a1,a2,a3,…）</code>、<code>B（b1,b2,b3, … ）</code>、<code>C（a1,b1,c1,c2, … ）</code></p>
+<p>有一个查询请求如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT A.a1 FROM A，B，C WHERE A.a1 = C.a1 AND B.b1 = C.b1 AND f(c1)</span><br></pre></td></tr></table></figure>
+
+<p>1.首先将 sql 转为关系代数的语法树。</p>
+<p><img src="/images/bigdata/Flink/v2-0b5d21508c63b1c97c3e1ac168fb33ff_720w.jpg" alt="img"></p>
+<p>36</p>
+<p>2.优化：选择（<code>σ</code>）的串接定律。</p>
+<p><img src="/vx_images/v2-51ec31244d1df2118952c121cbf998e0_720w.jpg" alt="img"></p>
+<p>47</p>
+<p><img src="/images/bigdata/Flink/v2-dd8f941286e2e86737cb87d4e102cb14_720w.jpg" alt="img"></p>
+<p>37</p>
+<p>3.优化：选择（<code>σ</code>）与笛卡尔积（<code>×</code>）的交换。</p>
+<p><img src="/vx_images/v2-84bfe788db6d74801e1a6dea56daac26_720w.jpg" alt="img"></p>
+<p>48</p>
+<p><img src="/images/bigdata/Flink/v2-4d7455765e5a2de3cbc04a19aaefcf11_720w.jpg" alt="img"></p>
+<p>38</p>
+<p>4.优化：投影（<code>π</code>）与笛卡尔积（<code>×</code>）的交换。</p>
+<p><img src="/vx_images/v2-5845e7ca8de729854167fa208fea7c43_720w.jpg" alt="img"></p>
+<p>49</p>
+<p><img src="/images/bigdata/Flink/v2-c45a05ca2b6ecebfd253d541e06f6c54_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-e44e237a90f491879149e4dda8b1dc5c_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-e0cdf7e1421cedab49c993557557fc2e_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-5b14150448d09ac1de5446760bc0d528_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-255033cde369d53b2242fdc9d3662a68_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-cbb56cd4c2be7647fd695ec9b8f78fb0_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-228f84e7278296e0a7ceb6ccd72e0875_720w.jpg" alt="img"></p>
+<p>关于关系代数我们就有了大致的了解。</p>
+<p>除此之外，对于更深入了解 flink sql，calcite 而言，我们还需要了解一下在 calcite 代码体系中有哪些重要 model。</p>
+<h2 id="4-3-calcite-必知的基础-model"><a href="#4-3-calcite-必知的基础-model" class="headerlink" title="4.3.calcite 必知的基础 model"></a>4.3.calcite 必知的基础 model</h2><p>calcite 中有两个最最基础、重要的 model 在我们理解 flink sql 解析流程时需要知道的。</p>
+<ol>
+<li><strong>SqlNode</strong>：sql 转化而成，可以理解为直观表达 sql 层次结构的的 model</li>
+<li><strong>RelNode</strong>：SqlNode 转化而成，可以理解为将 SqlNode 转化为关系代数，表达关系代数层次结构的 model</li>
+</ol>
+<p>举个例子来说明下，下面这条 flink sql，经过解析之后的 <strong>SqlNode</strong>，<strong>RelNode</strong> 如下图：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  sum(part_pv) as pv,</span><br><span class="line">  window_start</span><br><span class="line">FROM (</span><br><span class="line"> SELECT</span><br><span class="line">   count(1) as part_pv,</span><br><span class="line">   cast(tumble_start(rowtime, INTERVAL &#x27;60&#x27; SECOND) as bigint) * 1000 as window_start</span><br><span class="line"> FROM</span><br><span class="line">   source_db.source_table</span><br><span class="line"> GROUP BY</span><br><span class="line">   tumble(rowtime, INTERVAL &#x27;60&#x27; SECOND)</span><br><span class="line">   , mod(id, 1024)</span><br><span class="line">)</span><br><span class="line">GROUP BY</span><br><span class="line">  window_start</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/images/bigdata/Flink/v2-063188f773c325fea434c47455a7cc88_720w.jpg" alt="img"></p>
+<p>62</p>
+<p>可以看到 SqlNode 包含的内容是 sql 的层次结构，包括 <code>selectList</code>，<code>from</code>，<code>where</code>，<code>group by</code> 等。</p>
+<p>RelNode 包含的是关系代数的层次结构，每一层都有一个 input 来承接。结合上面优化案例的树状结构一样。</p>
+<p><img src="/images/bigdata/Flink/v2-677bd34a44bb4af41c0c80b49b3789d4_720w.jpg" alt="img"></p>
+<p>63</p>
+<h2 id="4-4-calcite-的处理流程（以-flink-sql-为例）"><a href="#4-4-calcite-的处理流程（以-flink-sql-为例）" class="headerlink" title="4.4.calcite 的处理流程（以 flink sql 为例）"></a>4.4.calcite 的处理流程（以 flink sql 为例）</h2><p><img src="/vx_images/v2-72a409b2c0852f01ce2e232fc0d3c134_720w.jpg" alt="img"></p>
+<p>29</p>
+<p>如上图所示，此处我们结合上节介绍的 calcite 的 model，以及 flink sql 的实现来走一遍其处理流程：</p>
+<ol>
+<li><strong>sql 解析阶段（sql –&gt; SqlNode）</strong></li>
+<li><strong>SqlNode 验证（SqlNode –&gt; SqlNode）</strong></li>
+<li><strong>语义分析（SqlNode –&gt; RelNode）</strong></li>
+<li><strong>优化阶段（RelNode –&gt; RelNode）</strong></li>
+</ol>
+<h3 id="4-4-1-flink-sql-demo"><a href="#4-4-1-flink-sql-demo" class="headerlink" title="4.4.1.flink sql demo"></a>4.4.1.flink sql demo</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">  sum(part_pv) as pv,</span><br><span class="line">  window_start</span><br><span class="line">FROM (</span><br><span class="line"> SELECT</span><br><span class="line">   count(1) as part_pv,</span><br><span class="line">   cast(tumble_start(rowtime, INTERVAL &#x27;60&#x27; SECOND) as bigint) * 1000 as window_start</span><br><span class="line"> FROM</span><br><span class="line">   source_db.source_table</span><br><span class="line"> GROUP BY</span><br><span class="line">   tumble(rowtime, INTERVAL &#x27;60&#x27; SECOND)</span><br><span class="line">   , mod(id, 1024)</span><br><span class="line">)</span><br><span class="line">GROUP BY</span><br><span class="line">  window_start</span><br></pre></td></tr></table></figure>
+
+<p>其中前三步解析和转化，都在 在执行 <code>TableEnvironment#sqlQuery</code> 进行。</p>
+<p>最后一步优化，在执行 sink 操作时进行，即在这个例子中是 <code>tEnv.toRetractStream(result, Row.class)</code>。</p>
+<p>源码公众号后台回复<strong>flink sql 知其所以然（六）| flink sql 约会 calcite</strong>获取。</p>
+<h3 id="4-4-2-sql-解析阶段（sql-–-SqlNode）"><a href="#4-4-2-sql-解析阶段（sql-–-SqlNode）" class="headerlink" title="4.4.2.sql 解析阶段（sql –&gt; SqlNode）"></a>4.4.2.sql 解析阶段（sql –&gt; SqlNode）</h3><p>sql 解析阶段使用 Sql Parser 将 sql 解析为 <code>SqlNode</code>。这一步在执行 <code>TableEnvironment#sqlQuery</code> 进行。</p>
+<p><img src="/images/bigdata/Flink/v2-12ecfe162ed2f37ad3a9d3b10fc68a27_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-171370458bf11ab61db7703cea1d9d25_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-7d2e03ed70c7d05dbd5ba9f5ac791ee8_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-d61f235c66728e255597f8e8284e5376_720w.jpg" alt="img"></p>
+<p>可以从上图看到 flink sql 具体实现类是 <code>FlinkSqlParserImpl</code>。</p>
+<p><img src="/images/bigdata/Flink/v2-ce2234f61663349fb6db148a51774f98_720w.jpg" alt="img"></p>
+<p>68</p>
+<p>具体 parse 得到 SqlNode 如上图。</p>
+<h3 id="4-4-3-SqlNode-验证（SqlNode-–-SqlNode）"><a href="#4-4-3-SqlNode-验证（SqlNode-–-SqlNode）" class="headerlink" title="4.4.3.SqlNode 验证（SqlNode –&gt; SqlNode）"></a>4.4.3.SqlNode 验证（SqlNode –&gt; SqlNode）</h3><p>上面的第一步生产的 SqlNode 对象是一个未经验证的，这一步就是语法检查阶段，语法检查前需要知道元数据信息，这个检查会包括表名、字段名、函数名、数据类型的检查。进行语法检查的实现如下：</p>
+<p><img src="/images/bigdata/Flink/v2-efc5b28b38f409de7f24ad797d6f1635_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-a30428f685820143018cc70a25b34a9b_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-331353bc1f8c7bd1e673e4671ad29934_720w.jpg" alt="img"></p>
+<p>可以从上图看到 flink sql 校验器的具体实现类是 <code>FlinkCalciteSqlValidator</code>，其中包含了元数据信息，从而可以进行元数据信息检查。</p>
+<h3 id="4-4-4-语义分析（SqlNode-–-RelNode）"><a href="#4-4-4-语义分析（SqlNode-–-RelNode）" class="headerlink" title="4.4.4.语义分析（SqlNode –&gt; RelNode）"></a>4.4.4.语义分析（SqlNode –&gt; RelNode）</h3><p>这一步就是将 SqlNode 转换成 RelNode，也就是生成相应的关系代数层面的逻辑（这里一般都叫做逻辑计划：Logical Plan）。</p>
+<p><img src="/images/bigdata/Flink/v2-ae594fb4b8704e13bba65520bb93cdcb_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-02488f4fc74b819d0b2d12e2d28c2082_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-4ca179cbf5ae9792f790adb25309f5c3_720w.jpg" alt="img"></p>
+<h3 id="4-4-5-优化阶段（RelNode-–-RelNode）"><a href="#4-4-5-优化阶段（RelNode-–-RelNode）" class="headerlink" title="4.4.5.优化阶段（RelNode –&gt; RelNode）"></a>4.4.5.优化阶段（RelNode –&gt; RelNode）</h3><p>这一步就是优化阶段。详细内容可以自己 debug 代码查看，此处不赘述。</p>
+<p><img src="/images/bigdata/Flink/v2-952dbc244c659c442d0829c2908e8d09_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-285130b818d7d03b5974ede7f011061b_720w.jpg" alt="img"></p>
+<h2 id="4-5-calcite-怎么做到这么通用？"><a href="#4-5-calcite-怎么做到这么通用？" class="headerlink" title="4.5.calcite 怎么做到这么通用？"></a>4.5.calcite 怎么做到这么通用？</h2><p>此处以 calcite parser 举例说明，其模块为什么这通用？其他的模块都是类似的方式。</p>
+<p><code>先说结论</code>：因为 calcite parser 模块提供了接口，具体的 parse 逻辑、规则是可以根据用户自定义进行配置的。大家可以看下图，博主画出了一张图进行详述。</p>
+<p><img src="/images/bigdata/Flink/v2-4f137b902900bf9d68ef820981a3229d_720w.jpg" alt="img"></p>
+<p>5</p>
+<p>如上图，引擎 sql 解析器的生成是有一个输入的，就是 <code>用户自定义语法分析规则变量</code>，具体引擎的 sql 解析器其实也是根据用户自定义的 <code>解析规则</code> 去生成的 <code>解析器</code>。其 <code>解析器</code> 的动态生成依赖 <code>javacc</code> 这样的组件。calcite 提供的是统一的 sql AST 模型、优化模型接口等，而具体的解析实现交给了用户自己去决定。</p>
+<p><code>javacc</code> 会根据 calcite 中定义的 <code>Parser.jj</code> 文件，生成具体的 sql parser 代码（如上图），这个 sql parser 的能力就是将 sql 转换成 AST （SqlNode）。关于 calcite 能力的更详细内容见 <a href="https://link.zhihu.com/?target=https://matt33.com/2019/03/07/apache-calcite-process-flow/">https://matt33.com/2019/03/07/apache-calcite-process-flow/</a> 。</p>
+<p>上图涉及到的文件大家可以下载 <code>calcite 源码</code> <a href="https://link.zhihu.com/?target=https://github.com/apache/calcite.git">https://github.com/apache/calcite.git</a> 之后，切换到 <code>core</code>module 之后查看。</p>
+<p><img src="/images/bigdata/Flink/v2-92d4b7ebfc24e1774e7ba14a5fa1c3a8_720w.jpg" alt="img"></p>
+<p>31</p>
+<h3 id="4-5-1-javacc-是啥？"><a href="#4-5-1-javacc-是啥？" class="headerlink" title="4.5.1.javacc 是啥？"></a>4.5.1.javacc 是啥？</h3><p><code>javacc</code> 是一个用 java 开发的最受欢迎的语法分析生成器。这个分析生成器工具可以读取上下文无关且有着特殊意义的语法并把它转换成可以识别且匹配该语法的 java 程序。它是 100% 的纯 java 代码，可以在多种平台上运行。</p>
+<p>简单解释 <code>javacc</code> 就是它是一个通用的语法分析生产器，用户可以使用 <code>javacc</code> 任意定义一套 DSL 及解析器。</p>
+<p>举个例子，如果哪天你觉得 sql 也不够简洁通用，你可以使用 <code>javacc</code> 自己定义一套更简洁的 <code>user-define-ql</code>。然后使用 javacc 作为你的 <code>user-define-ql</code> 的解析器。是不是很流批，可以自己去搞编译器了。</p>
+<h3 id="4-5-2-跑跑-javacc"><a href="#4-5-2-跑跑-javacc" class="headerlink" title="4.5.2.跑跑 javacc"></a>4.5.2.跑跑 javacc</h3><p>这里不介绍具体的 javacc 语法，直接以官网的 <code>Simple1.jj</code> 为案例。详细语法和功能可以参考官网（<a href="https://link.zhihu.com/?target=https://javacc.github.io/javacc/">https://javacc.github.io/javacc/</a>） 或者一下博客。</p>
+<ol>
+<li><a href="https://link.zhihu.com/?target=https://www.cnblogs.com/Gavin_Liu/archive/2009/03/07/1405029.html">https://www.cnblogs.com/Gavin_Liu&#x2F;archive&#x2F;2009&#x2F;03&#x2F;07&#x2F;1405029.html</a></li>
+<li><a href="https://link.zhihu.com/?target=https://www.yangguo.info/2014/12/13/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-Javacc%E4%BD%BF%E7%94%A8/">https://www.yangguo.info/2014/12/13/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86-Javacc%E4%BD%BF%E7%94%A8/</a></li>
+<li><a href="https://link.zhihu.com/?target=https://www.engr.mun.ca/~theo/JavaCC-Tutorial/javacc-tutorial.pdf">https://www.engr.mun.ca/~theo&#x2F;JavaCC-Tutorial&#x2F;javacc-tutorial.pdf</a></li>
+</ol>
+<p><code>Simple1.jj</code> 是用于识别一系列的 <code>&#123;相同数量的花括号&#125;</code>，之后跟着 0 个或多个行终结符。</p>
+<p><img src="/images/bigdata/Flink/v2-afb9084528c9cfd59a21f4a737950558_720w.jpg" alt="img"></p>
+<p>7</p>
+<p>下面是合法的字符串例子：</p>
+<p><code>&#123;&#125;</code>，<code>&#123;&#123;&#123;&#123;&#123;&#125;&#125;&#125;&#125;&#125;</code>，etc.</p>
+<p>下面是不合法的字符串例子：</p>
+<p><code>&#123;&#123;&#123;&#123;</code>，<code>&#123;&#125;&#123;&#125;</code>，<code>&#123;&#125;&#125;</code>，<code>&#123;&#123;&#125;&#123;&#125;&#125;</code>，etc.</p>
+<p>接下来让我们实际将 <code>Simple1.jj</code> 编译生成具体的规则代码。</p>
+<p>在 pom 中加入 javacc build 插件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;!-- This must be run AFTER the fmpp-maven-plugin --&gt;</span><br><span class="line">    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;javacc-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.4&lt;/version&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;phase&gt;generate-sources&lt;/phase&gt;</span><br><span class="line">            &lt;id&gt;javacc&lt;/id&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;javacc&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;sourceDirectory&gt;$&#123;project.build.directory&#125;/generated-sources/&lt;/sourceDirectory&gt;</span><br><span class="line">                &lt;includes&gt;</span><br><span class="line">                    &lt;include&gt;**/Simple1.jj&lt;/include&gt;</span><br><span class="line">                &lt;/includes&gt;</span><br><span class="line">                &lt;!-- This must be kept synced with Apache Calcite. --&gt;</span><br><span class="line">                &lt;lookAhead&gt;1&lt;/lookAhead&gt;</span><br><span class="line">                &lt;isStatic&gt;false&lt;/isStatic&gt;</span><br><span class="line">                &lt;outputDirectory&gt;$&#123;project.build.directory&#125;/generated-sources/&lt;/outputDirectory&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在 compile 之后，就会在 <code>generated-sources</code> 下生成代码：</p>
+<p><img src="/images/bigdata/Flink/v2-9ec77d323f562c0478ac7ecdbc9bc598_720w.jpg" alt="img"></p>
+<p>8</p>
+<p>然后把代码 copy 到 Sources 路径下：</p>
+<p><img src="/images/bigdata/Flink/v2-dd6615c1ffe6fbc5ed0173d9a10513f7_720w.jpg" alt="img"></p>
+<p>33</p>
+<p>执行下代码，可以看到 <code>&#123;&#125;</code>，<code>&#123;&#123;&#125;&#125;</code> 都可以校验通过，一旦出现不符合规则的 <code>&#123;&#123;</code> 输入，就会抛出异常。</p>
+<p><img src="/images/bigdata/Flink/v2-ed20385b0ae0e591d60ecd6012b39779_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-47fdf6603b67f434a8ac23a297d03400_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-3bef74e31b498451f28a12bee761524b_720w.jpg" alt="img"></p>
+<p>关于 javacc 基本上就了解个大概了。</p>
+<p>感兴趣的可以尝试自定义一个编译器。</p>
+<h3 id="4-5-3-fmpp-是啥？"><a href="#4-5-3-fmpp-是啥？" class="headerlink" title="4.5.3.fmpp 是啥？"></a>4.5.3.fmpp 是啥？</h3><p><img src="/vx_images/v2-4f137b902900bf9d68ef820981a3229d_720w.jpg" alt="img"></p>
+<p>5</p>
+<p>fmpp 就是一个基于 freemarker 的模板生产器。用户可以统一管理自己的变量，然后用 <code>ftl 模板 + 变量</code> 生成对应的最终文件。在 calcite 中使用 fmpp 作为变量 + 模板的统一管理器。然后基于 fmpp 来生成对应的 <code>Parser.jj</code> 文件。</p>
+<h2 id="5-原理剖析篇-calcite-在-flink-sql-中大展身手"><a href="#5-原理剖析篇-calcite-在-flink-sql-中大展身手" class="headerlink" title="5.原理剖析篇-calcite 在 flink sql 中大展身手"></a>5.原理剖析篇-calcite 在 flink sql 中大展身手</h2><p>博主画了一张图，包含了其中重要组件之间的依赖关系。</p>
+<p><img src="/images/bigdata/Flink/v2-111ab8b2ab79d74c69e75b2fe987272e_720w.jpg" alt="img"></p>
+<p>3</p>
+<p>你没猜错，还是上面那些流程，<code>fmpp（Parser.jj 模板生成）</code> -&gt; <code>javacc（Parser 生成）</code> -&gt; <code>calcite</code>。</p>
+<p>在介绍 Parser 生成流程之前，先看看 flink 最终生成的 Parser：<code>FlinkSqlParserImpl</code> （此处使用 Blink Planner）。</p>
+<h2 id="5-1-FlinkSqlParserImpl"><a href="#5-1-FlinkSqlParserImpl" class="headerlink" title="5.1.FlinkSqlParserImpl"></a>5.1.FlinkSqlParserImpl</h2><p>以下面这个案例出发（代码基于 flink 1.13.1 版本）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">public class ParserTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line"></span><br><span class="line">        env.setParallelism(10);</span><br><span class="line"></span><br><span class="line">        EnvironmentSettings settings = EnvironmentSettings</span><br><span class="line">                .newInstance()</span><br><span class="line">                .useBlinkPlanner()</span><br><span class="line">                .inStreamingMode()</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        StreamTableEnvironment tEnv = StreamTableEnvironment.create(env, settings);</span><br><span class="line"></span><br><span class="line">        DataStream&lt;Tuple3&lt;String, Long, Long&gt;&gt; tuple3DataStream =</span><br><span class="line">                env.fromCollection(Arrays.asList(</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 1L, 1627254000000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 1L, 1627218000000L + 5000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 101L, 1627218000000L + 6000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 201L, 1627218000000L + 7000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 301L, 1627218000000L + 7000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 301L, 1627218000000L + 7000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 301L, 1627218000000L + 7000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 301L, 1627218000000L + 7000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 301L, 1627218000000L + 7000L),</span><br><span class="line">                        Tuple3.of(&quot;2&quot;, 301L, 1627218000000L + 86400000 + 7000L)))</span><br><span class="line">                        .assignTimestampsAndWatermarks(</span><br><span class="line">                                new BoundedOutOfOrdernessTimestampExtractor&lt;Tuple3&lt;String, Long, Long&gt;&gt;(Time.seconds(0L)) &#123;</span><br><span class="line">                                    @Override</span><br><span class="line">                                    public long extractTimestamp(Tuple3&lt;String, Long, Long&gt; element) &#123;</span><br><span class="line">                                        return element.f2;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;);</span><br><span class="line"></span><br><span class="line">        tEnv.registerFunction(&quot;mod&quot;, new Mod_UDF());</span><br><span class="line"></span><br><span class="line">        tEnv.registerFunction(&quot;status_mapper&quot;, new StatusMapper_UDF());</span><br><span class="line"></span><br><span class="line">        tEnv.createTemporaryView(&quot;source_db.source_table&quot;, tuple3DataStream,</span><br><span class="line">                &quot;status, id, timestamp, rowtime.rowtime&quot;);</span><br><span class="line"></span><br><span class="line">        String sql = &quot;SELECT\n&quot;</span><br><span class="line">                + &quot;  count(1),\n&quot;</span><br><span class="line">                + &quot;  cast(tumble_start(rowtime, INTERVAL &#x27;1&#x27; DAY) as string)\n&quot;</span><br><span class="line">                + &quot;FROM\n&quot;</span><br><span class="line">                + &quot;  source_db.source_table\n&quot;</span><br><span class="line">                + &quot;GROUP BY\n&quot;</span><br><span class="line">                + &quot;  tumble(rowtime, INTERVAL &#x27;1&#x27; DAY)&quot;;</span><br><span class="line"></span><br><span class="line">        Table result = tEnv.sqlQuery(sql);</span><br><span class="line"></span><br><span class="line">        tEnv.toAppendStream(result, Row.class).print();</span><br><span class="line"></span><br><span class="line">        env.execute();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>debug 过程如之前分析 sql -&gt; SqlNode 过程所示，如下图直接定位到 SqlParser：</p>
+<p><img src="/images/bigdata/Flink/v2-f7f742ba2717776321ab0d569c4eb4a2_720w.jpg" alt="img"></p>
+<p>21</p>
+<p>如上图可以看到具体的 Parser 就是 <code>FlinkSqlParserImpl</code>。</p>
+<p>定位到具体的代码如下图所示（<code>flink-table-palnner-blink-2.11-1.13.1.jar</code>）。</p>
+<p><img src="/images/bigdata/Flink/v2-deddd4b8578a57192000661377ce647c_720w.jpg" alt="img"></p>
+<p>34</p>
+<p>最终 parse 的结果 SqlNode 如下图。</p>
+<p><img src="/images/bigdata/Flink/v2-73e33f65c869ba3da10a6e2dc406d579_720w.jpg" alt="img"></p>
+<p>22</p>
+<p><img src="/images/bigdata/Flink/v2-190f53714c2a53df53282379170ac86d_720w.jpg" alt="img"></p>
+<p><img src="/images/bigdata/Flink/v2-12e1818505a352953a1f4a0242fbde72_720w.jpg" alt="img"></p>
+<p>再来看看 <code>FlinkSqlParserImpl</code> 是怎么使用 calcite 生成的。</p>
+<p>具体到 flink 中的实现，位于源码中的 <code>flink-table</code>.<code>flink-sql-parser</code> 模块（源码基于 flink 1.13.1）。</p>
+<p>flink 是依赖 maven 插件实现的上面的整体流程。</p>
+<h2 id="5-2-FlinkSqlParserImpl-的生成"><a href="#5-2-FlinkSqlParserImpl-的生成" class="headerlink" title="5.2.FlinkSqlParserImpl 的生成"></a>5.2.FlinkSqlParserImpl 的生成</h2><p><img src="/images/bigdata/Flink/v2-4f2ab833bc94028bb5ca8201b2c4e2a0_720w.jpg" alt="img"></p>
+<p>14</p>
+<p>接下来看看整个 Parser 生成流程。</p>
+<h3 id="5-2-1-flink-引入-calcite"><a href="#5-2-1-flink-引入-calcite" class="headerlink" title="5.2.1.flink 引入 calcite"></a>5.2.1.flink 引入 calcite</h3><p>使用 <code>maven-dependency-plugin</code> 将 calcite 解压到 flink 项目 build 目录下。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;!-- Extract parser grammar template from calcite-core.jar and put</span><br><span class="line">         it under $&#123;project.build.directory&#125; where all freemarker templates are. --&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;id&gt;unpack-parser-template&lt;/id&gt;</span><br><span class="line">            &lt;phase&gt;initialize&lt;/phase&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;unpack&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;artifactItems&gt;</span><br><span class="line">                    &lt;artifactItem&gt;</span><br><span class="line">                        &lt;groupId&gt;org.apache.calcite&lt;/groupId&gt;</span><br><span class="line">                        &lt;artifactId&gt;calcite-core&lt;/artifactId&gt;</span><br><span class="line">                        &lt;type&gt;jar&lt;/type&gt;</span><br><span class="line">                        &lt;overWrite&gt;true&lt;/overWrite&gt;</span><br><span class="line">                        &lt;outputDirectory&gt;$&#123;project.build.directory&#125;/&lt;/outputDirectory&gt;</span><br><span class="line">                        &lt;includes&gt;**/Parser.jj&lt;/includes&gt;</span><br><span class="line">                    &lt;/artifactItem&gt;</span><br><span class="line">                &lt;/artifactItems&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/images/bigdata/Flink/v2-64ab09f326cdb95ae47cd78c53cababa_720w.jpg" alt="img"></p>
+<p>15</p>
+<h3 id="5-2-2-fmpp-生成-Parser-jj"><a href="#5-2-2-fmpp-生成-Parser-jj" class="headerlink" title="5.2.2.fmpp 生成 Parser.jj"></a>5.2.2.fmpp 生成 Parser.jj</h3><p>使用 <code>maven-resources-plugin</code> 将 <code>Parser.jj</code> 代码生成。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;id&gt;copy-fmpp-resources&lt;/id&gt;</span><br><span class="line">            &lt;phase&gt;initialize&lt;/phase&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;copy-resources&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;outputDirectory&gt;$&#123;project.build.directory&#125;/codegen&lt;/outputDirectory&gt;</span><br><span class="line">                &lt;resources&gt;</span><br><span class="line">                    &lt;resource&gt;</span><br><span class="line">                        &lt;directory&gt;src/main/codegen&lt;/directory&gt;</span><br><span class="line">                        &lt;filtering&gt;false&lt;/filtering&gt;</span><br><span class="line">                    &lt;/resource&gt;</span><br><span class="line">                &lt;/resources&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;com.googlecode.fmpp-maven-plugin&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;fmpp-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0&lt;/version&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.freemarker&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;freemarker&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;2.3.28&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;id&gt;generate-fmpp-sources&lt;/id&gt;</span><br><span class="line">            &lt;phase&gt;generate-sources&lt;/phase&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;generate&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;cfgFile&gt;$&#123;project.build.directory&#125;/codegen/config.fmpp&lt;/cfgFile&gt;</span><br><span class="line">                &lt;outputDirectory&gt;target/generated-sources&lt;/outputDirectory&gt;</span><br><span class="line">                &lt;templateDirectory&gt;$&#123;project.build.directory&#125;/codegen/templates&lt;/templateDirectory&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/images/bigdata/Flink/v2-79d274f87f5e7ce244be79273707604a_720w.jpg" alt="img"></p>
+<p>16</p>
+<h3 id="5-2-3-javacc-生成-parser"><a href="#5-2-3-javacc-生成-parser" class="headerlink" title="5.2.3.javacc 生成 parser"></a>5.2.3.javacc 生成 parser</h3><p>使用 javacc 将根据 <code>Parser.jj</code> 文件生成 Parser。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;!-- This must be run AFTER the fmpp-maven-plugin --&gt;</span><br><span class="line">    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;javacc-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.4&lt;/version&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;phase&gt;generate-sources&lt;/phase&gt;</span><br><span class="line">            &lt;id&gt;javacc&lt;/id&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;javacc&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;sourceDirectory&gt;$&#123;project.build.directory&#125;/generated-sources/&lt;/sourceDirectory&gt;</span><br><span class="line">                &lt;includes&gt;</span><br><span class="line">                    &lt;include&gt;**/Parser.jj&lt;/include&gt;</span><br><span class="line">                &lt;/includes&gt;</span><br><span class="line">                &lt;!-- This must be kept synced with Apache Calcite. --&gt;</span><br><span class="line">                &lt;lookAhead&gt;1&lt;/lookAhead&gt;</span><br><span class="line">                &lt;isStatic&gt;false&lt;/isStatic&gt;</span><br><span class="line">                &lt;outputDirectory&gt;$&#123;project.build.directory&#125;/generated-sources/&lt;/outputDirectory&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/images/bigdata/Flink/v2-66f719816397122c7d835a63fb201c4f_720w.jpg" alt="img"></p>
+<p>17</p>
+<h3 id="5-2-4-看看-Parser"><a href="#5-2-4-看看-Parser" class="headerlink" title="5.2.4.看看 Parser"></a>5.2.4.看看 Parser</h3><p>最终生成的 <code>Parser</code> 就是 <code>FlinkSqlParserImpl</code>。</p>
+<p><img src="/images/bigdata/Flink/v2-b0d4296687b1764c062a5d5496f60e49_720w.jpg" alt="img"></p>
+<p>18</p>
+<h3 id="5-2-5-blink-planner-引入-flink-sql-parser"><a href="#5-2-5-blink-planner-引入-flink-sql-parser" class="headerlink" title="5.2.5.blink planner 引入 flink-sql-parser"></a>5.2.5.blink planner 引入 flink-sql-parser</h3><p>blink planner（<code>flink-table-planner-blink</code>） 在打包时将 <code>flink-sql-parser</code>、<code>flink-sql-parser-hive</code> 打包进去。</p>
+<p><img src="/images/bigdata/Flink/v2-f6898e8e9db958c226a2cec9e6a0cda9_720w.jpg" alt="img"></p>
+<p>35</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SQL-Catalog/" rel="prev" title="Flink SQL的catalog">
+      <i class="fa fa-chevron-left"></i> Flink SQL的catalog
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-HeartbeatTimeout/" rel="next" title="从TimeoutException看Flink的心跳机制">
+      从TimeoutException看Flink的心跳机制 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flink-SQL%E7%9F%A5%E5%85%B6%E7%84%B6%E7%9F%A5%E5%85%B6%E6%89%80%E4%BB%A5%E7%84%B6-Flink-SQL-calcite"><span class="nav-number">1.</span> <span class="nav-text">Flink SQL知其然知其所以然: Flink SQL + calcite</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E6%9D%A1-flink-sql-%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">一条 flink sql 的执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%85%88%E5%8F%91%E6%8C%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E6%83%B3%E8%B1%A1%E5%8A%9B"><span class="nav-number">1.2.</span> <span class="nav-text">2.1.先发挥自己的想象力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E7%9C%8B%E7%9C%8B-flink-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">2.2.看看 flink 的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%AE%80%E4%BB%8B%E7%AF%87-calcite-%E5%9C%A8-flink-sql-%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2"><span class="nav-number">1.4.</span> <span class="nav-text">3.简介篇-calcite 在 flink sql 中的角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-calcite-%E6%98%AF%E5%95%A5%EF%BC%9F"><span class="nav-number">1.5.</span> <span class="nav-text">3.1.calcite 是啥？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-flink-sql-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-calcite%EF%BC%9F"><span class="nav-number">1.6.</span> <span class="nav-text">3.2.flink sql 为什么选择 calcite？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A1%88%E4%BE%8B%E7%AF%87-calcite-%E7%9A%84%E8%83%BD%E5%8A%9B%E3%80%81%E6%A1%88%E4%BE%8B"><span class="nav-number">1.7.</span> <span class="nav-text">4.案例篇-calcite 的能力、案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%85%88%E7%94%A8%E7%94%A8-calcite"><span class="nav-number">1.8.</span> <span class="nav-text">4.1.先用用 calcite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="nav-number">1.9.</span> <span class="nav-text">4.2.关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-%E5%B8%B8%E7%94%A8%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="nav-number">1.9.1.</span> <span class="nav-text">4.2.1.常用关系代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-sql-%E4%BC%98%E5%8C%96%E6%94%AF%E6%9F%B1%E4%B9%8B%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%AD%89%E4%BB%B7%E5%8F%98%E6%8D%A2"><span class="nav-number">1.9.2.</span> <span class="nav-text">4.2.2.sql 优化支柱之关系代数等价变换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-calcite-%E5%BF%85%E7%9F%A5%E7%9A%84%E5%9F%BA%E7%A1%80-model"><span class="nav-number">1.10.</span> <span class="nav-text">4.3.calcite 必知的基础 model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-calcite-%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BB%A5-flink-sql-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">4.4.calcite 的处理流程（以 flink sql 为例）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-flink-sql-demo"><span class="nav-number">1.11.1.</span> <span class="nav-text">4.4.1.flink sql demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-sql-%E8%A7%A3%E6%9E%90%E9%98%B6%E6%AE%B5%EF%BC%88sql-%E2%80%93-SqlNode%EF%BC%89"><span class="nav-number">1.11.2.</span> <span class="nav-text">4.4.2.sql 解析阶段（sql –&gt; SqlNode）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3-SqlNode-%E9%AA%8C%E8%AF%81%EF%BC%88SqlNode-%E2%80%93-SqlNode%EF%BC%89"><span class="nav-number">1.11.3.</span> <span class="nav-text">4.4.3.SqlNode 验证（SqlNode –&gt; SqlNode）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-4-%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%EF%BC%88SqlNode-%E2%80%93-RelNode%EF%BC%89"><span class="nav-number">1.11.4.</span> <span class="nav-text">4.4.4.语义分析（SqlNode –&gt; RelNode）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-5-%E4%BC%98%E5%8C%96%E9%98%B6%E6%AE%B5%EF%BC%88RelNode-%E2%80%93-RelNode%EF%BC%89"><span class="nav-number">1.11.5.</span> <span class="nav-text">4.4.5.优化阶段（RelNode –&gt; RelNode）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-calcite-%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E8%BF%99%E4%B9%88%E9%80%9A%E7%94%A8%EF%BC%9F"><span class="nav-number">1.12.</span> <span class="nav-text">4.5.calcite 怎么做到这么通用？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-1-javacc-%E6%98%AF%E5%95%A5%EF%BC%9F"><span class="nav-number">1.12.1.</span> <span class="nav-text">4.5.1.javacc 是啥？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-2-%E8%B7%91%E8%B7%91-javacc"><span class="nav-number">1.12.2.</span> <span class="nav-text">4.5.2.跑跑 javacc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-3-fmpp-%E6%98%AF%E5%95%A5%EF%BC%9F"><span class="nav-number">1.12.3.</span> <span class="nav-text">4.5.3.fmpp 是啥？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90%E7%AF%87-calcite-%E5%9C%A8-flink-sql-%E4%B8%AD%E5%A4%A7%E5%B1%95%E8%BA%AB%E6%89%8B"><span class="nav-number">1.13.</span> <span class="nav-text">5.原理剖析篇-calcite 在 flink sql 中大展身手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-FlinkSqlParserImpl"><span class="nav-number">1.14.</span> <span class="nav-text">5.1.FlinkSqlParserImpl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-FlinkSqlParserImpl-%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">1.15.</span> <span class="nav-text">5.2.FlinkSqlParserImpl 的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-flink-%E5%BC%95%E5%85%A5-calcite"><span class="nav-number">1.15.1.</span> <span class="nav-text">5.2.1.flink 引入 calcite</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-fmpp-%E7%94%9F%E6%88%90-Parser-jj"><span class="nav-number">1.15.2.</span> <span class="nav-text">5.2.2.fmpp 生成 Parser.jj</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-javacc-%E7%94%9F%E6%88%90-parser"><span class="nav-number">1.15.3.</span> <span class="nav-text">5.2.3.javacc 生成 parser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-4-%E7%9C%8B%E7%9C%8B-Parser"><span class="nav-number">1.15.4.</span> <span class="nav-text">5.2.4.看看 Parser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-5-blink-planner-%E5%BC%95%E5%85%A5-flink-sql-parser"><span class="nav-number">1.15.5.</span> <span class="nav-text">5.2.5.blink planner 引入 flink-sql-parser</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

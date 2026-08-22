@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/data-asset-standardization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/data-asset-standardization/" class="post-title-link" itemprop="url">数据资产化与标准化方法论</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 17:20:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:20:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据资产化与标准化方法论"><a href="#数据资产化与标准化方法论" class="headerlink" title="数据资产化与标准化方法论"></a>数据资产化与标准化方法论</h1><p>一句话定位：数据资产化是一条”标准化 → 流程化 → 资产化”的递进路径——先统一接口消除碎片化，再把流程固化成可复用模板，最后让数据&#x2F;算子本身变成可检索、可复用、可计量的资产，而不是散落在各团队手里的一次性脚本。</p>
+<h2 id="1-标准化：统一-Schema-算子接口"><a href="#1-标准化：统一-Schema-算子接口" class="headerlink" title="1. 标准化：统一 Schema &#x2F; 算子接口"></a>1. 标准化：统一 Schema &#x2F; 算子接口</h2><ul>
+<li>第一步是消除”每个团队各写一套清洗&#x2F;转换逻辑”的碎片化状态：统一数据的 Schema 定义规范、统一算子的输入输出接口约定，让不同团队产出的数据和算子能互相拼接使用。</li>
+<li>没有这一步，后面的”流程化”和”资产化”都无从谈起——接口不统一，流程模板无法复用，资产也无法被别的团队直接拿来用。</li>
+</ul>
+<h2 id="2-流程化：可编排的模板与-SOP"><a href="#2-流程化：可编排的模板与-SOP" class="headerlink" title="2. 流程化：可编排的模板与 SOP"></a>2. 流程化：可编排的模板与 SOP</h2><ul>
+<li>把常见的处理流程（如”数据接入 → 清洗 → 打标 → 输出”）沉淀成可参数化配置的编排模板，新业务接入时不需要从零写代码，而是配置模板参数即可复用整条流程。</li>
+<li>配套 SOP（标准作业流程）文档，让”怎么接入一份新数据源、怎么发布一个新算子”有标准路径可循，降低对个人经验的依赖。</li>
+</ul>
+<h2 id="3-资产化：可检索、可复用、可计量"><a href="#3-资产化：可检索、可复用、可计量" class="headerlink" title="3. 资产化：可检索、可复用、可计量"></a>3. 资产化：可检索、可复用、可计量</h2><ul>
+<li><strong>可检索</strong>：数据&#x2F;算子要有清晰的元数据描述（用途、负责人、更新频率、质量分），能通过搜索&#x2F;目录找到，而不是只有知道内部代号的人才能用。</li>
+<li><strong>可复用</strong>：以标准化接口为前提，其他团队可以直接调用已有的数据&#x2F;算子资产，而不是重复造轮子。</li>
+<li><strong>可计量</strong>：资产的使用频次、被多少下游依赖、产生的业务价值可以被统计，这是资产化”证明自己有价值”、争取资源投入的关键依据。</li>
+</ul>
+<h2 id="4-配套治理能力"><a href="#4-配套治理能力" class="headerlink" title="4. 配套治理能力"></a>4. 配套治理能力</h2><ul>
+<li><strong>元数据管理</strong>：记录资产的定义、来源、责任人。</li>
+<li><strong>血缘（Lineage）</strong>：追溯一份数据&#x2F;一个模型是经过哪些算子加工产生的，出问题时能定位到源头（与 8.1 的模型血缘是同一套思路在数据层的应用）。</li>
+<li><strong>质量分</strong>：给数据资产打质量评分，让下游使用者能快速判断”这份数据能不能放心用”。</li>
+<li><strong>权限治理</strong>：资产共享的同时要控制访问权限，尤其涉及敏感数据（呼应 2.5 数据脱敏）。</li>
+</ul>
+<h2 id="5-面试落点-我的素材"><a href="#5-面试落点-我的素材" class="headerlink" title="5. 面试落点 &#x2F; 我的素材"></a>5. 面试落点 &#x2F; 我的素材</h2><ul>
+<li><strong>素材</strong>：uqs 的 SQL 模板引擎（把 SQL 生成标准化为可配置模板）+ ADR 驱动的平台抽象（用架构决策文档固化设计规范）+ DeepOps 平台经验（流程化巡检与治理），三者组合正好覆盖”标准化 → 流程化 → 资产化”的完整链路，可以直接对应到 JD 中”AI 数据资产体系构建”这一要求。</li>
+<li>可迁移话术：这套方法论和”数据中台”的核心理念完全一致，只是资产对象从传统结构化数据表扩展到了 AI 场景的多模态数据与处理算子。</li>
+</ul>
+<blockquote>
+<p>参考：《数据中台》行业白皮书；Netflix Tech Blog《Machine Learning Platform》系列文章</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/cicd-for-ai-platform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/cicd-for-ai-platform/" class="post-title-link" itemprop="url">CI/CD 在 AI 平台的落地</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 17:10:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:10:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CI-CD-在-AI-平台的落地"><a href="#CI-CD-在-AI-平台的落地" class="headerlink" title="CI&#x2F;CD 在 AI 平台的落地"></a>CI&#x2F;CD 在 AI 平台的落地</h1><p>一句话定位：AI 平台的 CI&#x2F;CD 比传统软件多了”数据”和”模型”两个需要版本化联动的维度，评估门禁则是防止”代码没 Bug 但模型效果变差”这类 AI 特有风险上线的关键卡点。</p>
+<h2 id="1-代码-数据-模型三者版本联动"><a href="#1-代码-数据-模型三者版本联动" class="headerlink" title="1. 代码&#x2F;数据&#x2F;模型三者版本联动"></a>1. 代码&#x2F;数据&#x2F;模型三者版本联动</h2><ul>
+<li>传统 CI&#x2F;CD 只需要管理代码版本；AI 平台还要让<strong>数据版本</strong>（训练用的是哪份数据）和<strong>模型版本</strong>（哪次训练产出的权重）与代码版本绑定，三者任意一个变化都要能触发对应的流水线，且能追溯”这次上线的模型是用哪个代码 + 哪份数据训出来的”（对应 8.1 的血缘能力）。</li>
+</ul>
+<h2 id="2-流水线触发条件"><a href="#2-流水线触发条件" class="headerlink" title="2. 流水线触发条件"></a>2. 流水线触发条件</h2><ul>
+<li>代码变更（如推理服务逻辑更新）→ 触发构建 + 部署流水线。</li>
+<li>新数据到位或定期重训 → 触发训练流水线。</li>
+<li>触发条件需要明确区分，避免”改了一行推理代码却触发了整个重训流程”这类资源浪费。</li>
+</ul>
+<h2 id="3-离线评估门禁（核心差异点）"><a href="#3-离线评估门禁（核心差异点）" class="headerlink" title="3. 离线评估门禁（核心差异点）"></a>3. 离线评估门禁（核心差异点）</h2><ul>
+<li>这是 AI 平台 CI&#x2F;CD 与传统软件 CI&#x2F;CD 最大的不同：传统软件只要测试用例通过就能发布，AI 模型即使代码没 Bug，新训练出的模型效果也可能不如旧版本。</li>
+<li><strong>评估门禁</strong>：训练流水线产出新模型后，必须先跑离线基准测试（对应 5.4 的性能基线思路，但评估对象是效果指标而非性能指标），<strong>效果指标不达标就不允许进入部署阶段</strong>，杜绝”未经验证的模型效果退化直接上线”。</li>
+</ul>
+<h2 id="4-渐进式发布"><a href="#4-渐进式发布" class="headerlink" title="4. 渐进式发布"></a>4. 渐进式发布</h2><ul>
+<li>门禁通过后也不是直接全量上线，而是配合 8.2 提到的多版本灰度机制，从小流量开始逐步放量，同时持续监控线上效果指标，异常则自动&#x2F;人工触发回滚。</li>
+</ul>
+<h2 id="5-面试落点"><a href="#5-面试落点" class="headerlink" title="5. 面试落点"></a>5. 面试落点</h2><ul>
+<li>能讲清”AI 平台 CI&#x2F;CD 比传统 CI&#x2F;CD 多了什么”：数据&#x2F;模型版本联动 + 效果评估门禁，这是最容易被问到、也最能体现 AI 平台工程理解深度的点。</li>
+<li>可迁移话术：评估门禁的设计思路和大数据平台”上线前必须过数据质量校验才能进入下游”的门禁思路一致，只是校验对象从数据质量变成了模型效果。</li>
+</ul>
+<blockquote>
+<p>参考：Google《MLOps: Continuous delivery and automation pipelines in machine learning》；Kubeflow 官方文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/heterogeneous-compute-orchestration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/heterogeneous-compute-orchestration/" class="post-title-link" itemprop="url">异构算力编排（CPU/GPU/NPU）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 17:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="异构算力编排（CPU-GPU-NPU）"><a href="#异构算力编排（CPU-GPU-NPU）" class="headerlink" title="异构算力编排（CPU&#x2F;GPU&#x2F;NPU）"></a>异构算力编排（CPU&#x2F;GPU&#x2F;NPU）</h1><p>一句话定位：异构算力编排的核心是”按算子画像分类调度”——先识别每个处理环节是 CPU 密集还是 GPU 密集，再把它们分离到对应的资源池，避免互相抢占和资源浪费。</p>
+<h2 id="1-按算子画像分类调度"><a href="#1-按算子画像分类调度" class="headerlink" title="1. 按算子画像分类调度"></a>1. 按算子画像分类调度</h2><ul>
+<li><strong>CPU 密集型环节</strong>：清洗、格式转换、去重（Hash 计算）、Tokenization 等，这些环节用 GPU 资源是浪费。</li>
+<li><strong>GPU 密集型环节</strong>：内容打标、质量评分、embedding 生成等依赖模型推理的环节，需要 GPU&#x2F;NPU 算力。</li>
+<li>先对整条数据处理流水线做”画像”（每个算子主要消耗什么资源），再决定资源池划分方案，而不是笼统地给整条流水线分配同构资源。</li>
+</ul>
+<h2 id="2-资源池分离与撮合"><a href="#2-资源池分离与撮合" class="headerlink" title="2. 资源池分离与撮合"></a>2. 资源池分离与撮合</h2><ul>
+<li>把 CPU 密集型任务和 GPU 密集型任务分别调度到不同的资源池（对应大数据里 YARN&#x2F;K8s 的资源队列隔离思路），避免 CPU 任务占满节点导致 GPU 任务的 CPU 辅助逻辑（如数据预取、后处理）被拖慢，也避免反过来 GPU 任务空等 CPU 资源。</li>
+<li>资源撮合还要考虑亲和性（数据本地性、GPU 与其绑定的 CPU&#x2F;内存的 NUMA 亲和性）以降低跨节点传输开销。</li>
+</ul>
+<h2 id="3-异构卡型的能力抽象与自动降级"><a href="#3-异构卡型的能力抽象与自动降级" class="headerlink" title="3. 异构卡型的能力抽象与自动降级"></a>3. 异构卡型的能力抽象与自动降级</h2><ul>
+<li>不同代际、不同厂商的 GPU&#x2F;NPU 算力和显存差异很大，平台需要对”卡型能力”做抽象（如统一描述算力、显存、支持的精度类型），让上层调度不需要为每种卡型写专门逻辑。</li>
+<li><strong>自动降级</strong>：当高端卡型资源不足时，能自动切换到低端卡型 + 调整 batch size&#x2F;精度等参数，保证任务仍能跑完（可能慢一些），而不是直接失败。</li>
+</ul>
+<h2 id="4-失败恢复与断点续跑"><a href="#4-失败恢复与断点续跑" class="headerlink" title="4. 失败恢复与断点续跑"></a>4. 失败恢复与断点续跑</h2><ul>
+<li>大规模异构任务运行时间长、涉及节点多，故障率不可忽视；需要支持任务级的检查点（定期保存处理进度），故障后从检查点恢复而不是从头重跑，这对百亿级数据处理的成本控制至关重要。</li>
+</ul>
+<h2 id="5-面试落点"><a href="#5-面试落点" class="headerlink" title="5. 面试落点"></a>5. 面试落点</h2><ul>
+<li><strong>素材</strong>：把 DeepOps 巡检&#x2F;失败监控 + DAG 编排经验包装成”百亿级数据异构卡型自动化处理”的故事——具体讲清”如何画出算子的资源画像、如何设计资源池隔离、如何做失败恢复”三个层次。</li>
+<li>可迁移话术：这套”按资源类型分池调度 + 失败恢复”的经验和大数据平台的 YARN 队列隔离、任务失败重试机制是完全同构的能力迁移，唯一新增的是”卡型异构”这个新变量。</li>
+</ul>
+<blockquote>
+<p>参考：无固定单一文献来源，综合自异构计算调度通用实践与本人 DeepOps 平台经验</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/omni-modal-data-processing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/omni-modal-data-processing/" class="post-title-link" itemprop="url">全模态数据处理认知</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 16:50:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T16:50:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="全模态数据处理认知"><a href="#全模态数据处理认知" class="headerlink" title="全模态数据处理认知"></a>全模态数据处理认知</h1><p>一句话定位：全模态数据处理的核心矛盾是<strong>存储与 I&#x2F;O 成本</strong>（尤其视频&#x2F;3D）以及<strong>跨模态语义对齐</strong>，这两点决定了全模态平台的架构设计重心，与纯文本数据处理有本质差异。</p>
+<h2 id="1-各模态的特征提取与预处理算子差异"><a href="#1-各模态的特征提取与预处理算子差异" class="headerlink" title="1. 各模态的特征提取与预处理算子差异"></a>1. 各模态的特征提取与预处理算子差异</h2><ul>
+<li><strong>图像</strong>：解码（JPEG&#x2F;PNG → 像素矩阵）、缩放&#x2F;裁剪归一化、色彩空间转换；相对成熟，算子标准化程度高。</li>
+<li><strong>视频</strong>：抽帧（按固定间隔或关键帧检测抽取代表帧，避免逐帧处理带来的天量数据）、时序信息保留（部分任务需要帧间关系而非孤立帧）；存储和处理成本比图像高一到两个数量级。</li>
+<li><strong>音频</strong>：重采样（统一采样率）、频谱变换（如 Mel 频谱图，把时域信号转成模型更易处理的频域表示）。</li>
+<li><strong>3D</strong>：点云体素化（把不规则点云离散化成规则网格便于卷积等操作处理）或转 Mesh 表示；数据量和处理复杂度通常是几种模态里最高的。</li>
+</ul>
+<h2 id="2-跨模态对齐（Cross-modal-Alignment）"><a href="#2-跨模态对齐（Cross-modal-Alignment）" class="headerlink" title="2. 跨模态对齐（Cross-modal Alignment）"></a>2. 跨模态对齐（Cross-modal Alignment）</h2><ul>
+<li>不同模态的数据要能在同一个语义空间里比较（如”一段文字描述”和”一张对应的图片”要能计算相似度），这就是跨模态对齐要解决的问题。</li>
+<li><strong>CLIP 式对比学习</strong>：用大量”图文对”数据训练，让配对的图片和文字在向量空间中距离更近、不配对的距离更远（对比损失），最终图片和文字可以映射到同一个向量空间直接比较——这是当前跨模态检索（如 8.4 提到的”多模态检索”）最主流的技术路线。</li>
+</ul>
+<h2 id="3-多模态训练数据的组装与质量校验"><a href="#3-多模态训练数据的组装与质量校验" class="headerlink" title="3. 多模态训练数据的组装与质量校验"></a>3. 多模态训练数据的组装与质量校验</h2><ul>
+<li><strong>配对组装</strong>：需要保证不同模态数据之间的对应关系正确（如视频的字幕&#x2F;语音是否与画面真实对应），错误配对会直接污染训练数据质量。</li>
+<li><strong>质量校验</strong>：除了单模态自身的质量（如图片是否清晰、音频是否有噪声），还要校验跨模态配对的一致性（如自动生成的图片描述是否真的匹配图片内容），后者往往需要额外的校验模型或人工抽检。</li>
+</ul>
+<h2 id="4-存储与-I-O：平台设计的主要矛盾"><a href="#4-存储与-I-O：平台设计的主要矛盾" class="headerlink" title="4. 存储与 I&#x2F;O：平台设计的主要矛盾"></a>4. 存储与 I&#x2F;O：平台设计的主要矛盾</h2><ul>
+<li>视频&#x2F;3D 数据的体量远超文本，直接决定了全模态平台不能照搬文本数据平台的存储&#x2F;传输方案：需要考虑分片存储、按需流式加载（而非一次性全量读入内存）、专用编解码硬件加速。</li>
+<li>这也是 EB 级全模态平台架构设计里，”高性能可扩展”具体落地到工程细节的地方。</li>
+</ul>
+<h2 id="5-面试落点-我的缺口"><a href="#5-面试落点-我的缺口" class="headerlink" title="5. 面试落点 &#x2F; 我的缺口"></a>5. 面试落点 &#x2F; 我的缺口</h2><ul>
+<li>原条目标注”我的缺口”，学习路径是借 Flink stream-native-AI &#x2F; FLIP-577 多模态处理方向深入（该方向直接对口全模态数据算子设计）。</li>
+<li>可迁移话术：视频抽帧策略 ≈ 大数据里的采样策略（用代表性子集降低处理量）；3D 点云体素化 ≈ 数据分桶&#x2F;分区思路的空间版本；存储分层（热&#x2F;冷、按需流式加载）与大数据的冷热数据分层存储完全同构。</li>
+</ul>
+<blockquote>
+<p>参考：暂无固定单一论文来源，综合自 CLIP 论文思路（对比学习跨模态对齐）与多模态数据工程通用实践；深入路径见 FLIP-577（Flink 社区多模态数据处理提案）</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/rag-retrieval-pipeline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/rag-retrieval-pipeline/" class="post-title-link" itemprop="url">RAG 检索增强链路</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 16:40:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T16:40:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="RAG-检索增强链路"><a href="#RAG-检索增强链路" class="headerlink" title="RAG 检索增强链路"></a>RAG 检索增强链路</h1><p>一句话定位：RAG 的核心价值是让模型的回答<strong>基于真实检索到的文档</strong>而不是内部记忆生成，链路上每一环（切片、召回、重排）质量都直接决定最终答案的忠实度。</p>
+<h2 id="1-完整链路"><a href="#1-完整链路" class="headerlink" title="1. 完整链路"></a>1. 完整链路</h2><ol>
+<li><strong>切片策略</strong>：把长文档切成适合检索和塞入上下文的小块。<ul>
+<li>固定长度切片：简单但可能把语义完整的一段话切断。</li>
+<li>语义切片：按段落&#x2F;章节等语义边界切分，更贴合内容结构。</li>
+<li>重叠切片（overlap）：相邻切片间保留一定重叠内容，避免关键信息刚好落在切片边界被切碎。</li>
+</ul>
+</li>
+<li><strong>Embedding 模型选型</strong>：把文本切片转成向量，选型要看语义相似度效果、向量维度（影响存储成本）、是否支持中文&#x2F;多语言、是否支持长文本。</li>
+<li><strong>混合召回</strong>：向量检索（语义相似）+ 关键词检索（BM25 等，精确匹配专有名词&#x2F;数字效果更好）结合，弥补纯向量检索对精确匹配不敏感的短板。</li>
+<li><strong>Rerank 重排</strong>：召回阶段为了效率通常召回较多候选（如 top 50），再用更精细但更慢的模型（Cross-Encoder）对候选重新打分排序，取 top-k（如 top 5）送入生成阶段，平衡效率与精度。</li>
+<li><strong>上下文组装</strong>：把重排后的文档片段按相关性排序拼接进 Prompt，注意控制总长度不超过上下文窗口。</li>
+<li><strong>生成</strong>：模型基于拼接好的上下文生成最终答案。</li>
+</ol>
+<h2 id="2-评估维度"><a href="#2-评估维度" class="headerlink" title="2. 评估维度"></a>2. 评估维度</h2><ul>
+<li><strong>召回率（Recall）</strong>：真正相关的文档有多大比例被召回进候选集，是链路上限的天花板——召回没找到的信息，后面无论怎么优化都补不回来。</li>
+<li><strong>忠实度（Faithfulness）</strong>：生成的答案是否完全基于检索到的上下文，而不是模型凭内部记忆编造（幻觉的直接度量）。</li>
+<li><strong>答案相关性</strong>：生成的答案是否真正回应了用户的问题（即使忠实于上下文，也可能答非所问）。</li>
+</ul>
+<h2 id="3-面试落点-我的缺口"><a href="#3-面试落点-我的缺口" class="headerlink" title="3. 面试落点 &#x2F; 我的缺口"></a>3. 面试落点 &#x2F; 我的缺口</h2><ul>
+<li>这是目前的知识缺口（原条目标注”需做最小落地项目”），面试中应诚实说明”这是近期重点补齐的方向”（呼应第 5 章表达五原则第 4 条），同时展示对链路和评估体系的清晰理解。</li>
+<li>目标产出：一个”多模态检索 + RAG”最小可用项目作为差异化素材（结合 8.5 全模态数据处理认知）。</li>
+<li>可迁移话术：切片策略 ≈ 大数据里的分区&#x2F;分片设计；混合召回 ≈ 数据库的”索引扫描 + 全文检索”组合查询思路；Rerank 的”先粗筛再精排”模式和搜索&#x2F;推荐系统的”召回-排序”两阶段架构完全一致。</li>
+</ul>
+<blockquote>
+<p>参考：暂无固定论文来源，链路设计综合自主流 RAG 工程实践（LangChain&#x2F;LlamaIndex 文档、Pinecone&#x2F;Milvus 检索增强指南）</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/vector-database-selection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/vector-database-selection/" class="post-title-link" itemprop="url">向量数据库选型与应用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 16:30:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T16:30:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="向量数据库选型与应用"><a href="#向量数据库选型与应用" class="headerlink" title="向量数据库选型与应用"></a>向量数据库选型与应用</h1><p>一句话定位：向量数据库的选型核心是在<strong>召回率、延迟、内存成本</strong>三者之间做权衡，索引结构决定了这个权衡的基本形态，自建 vs 托管则是运维成本与灵活性的权衡。</p>
+<h2 id="1-索引结构：HNSW-vs-IVF-PQ"><a href="#1-索引结构：HNSW-vs-IVF-PQ" class="headerlink" title="1. 索引结构：HNSW vs IVF-PQ"></a>1. 索引结构：HNSW vs IVF-PQ</h2><ul>
+<li><strong>HNSW（Hierarchical Navigable Small World，图索引）</strong>：构建多层近邻图，查询时从顶层稀疏图逐层下探到底层稠密图，<strong>延迟低、召回率高</strong>，但需要把完整向量和图结构都放在内存里，<strong>内存占用大</strong>。</li>
+<li><strong>IVF-PQ（倒排文件 + 乘积量化）</strong>：先用聚类把向量分桶（倒排），查询只在候选桶内搜索；用乘积量化压缩向量存储（有损压缩），<strong>省内存</strong>，但召回率和精度略有损失，适合超大规模、内存敏感的场景。</li>
+<li>选型判断：数据量在千万级以内且对延迟&#x2F;召回率要求高 → HNSW；数据量上亿、内存成本敏感、能接受召回率略降 → IVF-PQ。</li>
+</ul>
+<h2 id="2-召回率-vs-延迟的调参"><a href="#2-召回率-vs-延迟的调参" class="headerlink" title="2. 召回率 vs 延迟的调参"></a>2. 召回率 vs 延迟的调参</h2><ul>
+<li>HNSW 的 <code>ef_search</code>（搜索时探索的候选数）越大，召回率越高但延迟越高；IVF 的 <code>nprobe</code>（搜索的桶数）同理。</li>
+<li>实践中要先定业务可接受的延迟上限，再反向调参数找到该延迟预算下的最高召回率，而不是先追求”召回率最高”再看延迟能不能接受。</li>
+</ul>
+<h2 id="3-过滤条件与向量检索结合"><a href="#3-过滤条件与向量检索结合" class="headerlink" title="3. 过滤条件与向量检索结合"></a>3. 过滤条件与向量检索结合</h2><ul>
+<li>实际业务常需要”向量相似 + 满足某些结构化过滤条件”（如”语义相似 + 时间在近 7 天 + 用户属于某分组”），即混合查询。</li>
+<li>实现方式一是先过滤再向量搜索（过滤后候选集小则快，候选集仍大则退化成暴力搜索）；二是把过滤条件也编码进索引结构（如带 payload 过滤的图索引），各产品支持程度不同，选型时要专门核实。</li>
+</ul>
+<h2 id="4-写入与索引重建成本"><a href="#4-写入与索引重建成本" class="headerlink" title="4. 写入与索引重建成本"></a>4. 写入与索引重建成本</h2><ul>
+<li>HNSW 类图索引的增量写入和删除相对复杂（删除通常是软删除标记，需要定期重建索引清理），这是运维时容易被低估的成本点。</li>
+</ul>
+<h2 id="5-自建（Milvus）vs-托管（Pinecone）"><a href="#5-自建（Milvus）vs-托管（Pinecone）" class="headerlink" title="5. 自建（Milvus）vs 托管（Pinecone）"></a>5. 自建（Milvus）vs 托管（Pinecone）</h2><ul>
+<li><strong>自建</strong>：可控性强、成本可能更低（大规模下），但需要自己承担运维、扩缩容、高可用的工程投入。</li>
+<li><strong>托管</strong>：开箱即用、免运维，但成本随规模线性增长且数据出境&#x2F;合规需额外考虑（尤其是国内业务场景）。</li>
+</ul>
+<h2 id="6-面试落点"><a href="#6-面试落点" class="headerlink" title="6. 面试落点"></a>6. 面试落点</h2><ul>
+<li>能讲清楚 HNSW&#x2F;IVF-PQ 的核心 Tradeoff（延迟&#x2F;召回率 vs 内存），并给出具体场景的选型建议，而不是只说”用 Milvus”。</li>
+<li>可迁移话术：这套”索引结构决定查询性能形态”的思路和大数据里”选 B+树索引还是 LSM 索引”的权衡是同一类工程决策模式。</li>
+</ul>
+<blockquote>
+<p>参考：Milvus 官方文档；Pinecone《Vector database fundamentals》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/model-hosting-service-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/model-hosting-service-design/" class="post-title-link" itemprop="url">模型托管服务设计要点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 16:20:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T16:20:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="模型托管服务设计要点"><a href="#模型托管服务设计要点" class="headerlink" title="模型托管服务设计要点"></a>模型托管服务设计要点</h1><p>一句话定位：模型托管服务的核心设计目标是”让上层业务像调用普通 API 一样调用模型”，背后要解决环境标准化、弹性伸缩、多版本灰度、多租户隔离、统一网关五个工程问题。</p>
+<h2 id="1-镜像与环境标准化"><a href="#1-镜像与环境标准化" class="headerlink" title="1. 镜像与环境标准化"></a>1. 镜像与环境标准化</h2><ul>
+<li>把模型 + 推理框架（vLLM&#x2F;TensorRT-LLM 等）+ 依赖打包成标准化镜像，避免”在我机器上能跑”的环境漂移问题。</li>
+<li>标准化后才能谈自动化部署、弹性伸缩，否则每次部署都是手工事故现场。</li>
+</ul>
+<h2 id="2-弹性伸缩与冷启动"><a href="#2-弹性伸缩与冷启动" class="headerlink" title="2. 弹性伸缩与冷启动"></a>2. 弹性伸缩与冷启动</h2><ul>
+<li>根据流量自动增减推理实例数量，应对峰谷差异，控制成本。</li>
+<li><strong>冷启动</strong>是关键痛点：大模型加载到显存本身就需要较长时间，扩容时新实例”来不及热身”会导致请求超时；常见缓解手段包括预留最小实例数（Warm Pool）、模型分层加载、镜像预热。</li>
+</ul>
+<h2 id="3-多版本灰度与-A-B"><a href="#3-多版本灰度与-A-B" class="headerlink" title="3. 多版本灰度与 A&#x2F;B"></a>3. 多版本灰度与 A&#x2F;B</h2><ul>
+<li>同时运行新旧版本模型，按流量比例分配（如 5% 流量走新版本），观察效果指标无异常后逐步放量，异常则快速回滚。</li>
+<li>这是控制”模型更新风险”的核心手段，尤其在效果指标滞后（需要积累数据才能判断好坏）的场景更重要。</li>
+</ul>
+<h2 id="4-资源配额与多租户隔离"><a href="#4-资源配额与多租户隔离" class="headerlink" title="4. 资源配额与多租户隔离"></a>4. 资源配额与多租户隔离</h2><ul>
+<li>多个业务&#x2F;团队共享同一套推理基础设施时，需要配额限制（避免一个业务占满所有资源）和隔离机制（避免一个业务的异常流量拖垮其他业务）。</li>
+</ul>
+<h2 id="5-推理网关：统一鉴权与限流"><a href="#5-推理网关：统一鉴权与限流" class="headerlink" title="5. 推理网关：统一鉴权与限流"></a>5. 推理网关：统一鉴权与限流</h2><ul>
+<li>所有推理请求统一走网关层做鉴权、限流、路由，业务方不需要关心底层有多少个模型实例、部署在哪。</li>
+</ul>
+<h2 id="6-面试落点"><a href="#6-面试落点" class="headerlink" title="6. 面试落点"></a>6. 面试落点</h2><ul>
+<li>能讲清”从零设计一个模型托管服务”要覆盖的核心模块，而不是只说”用 K8s 部署一下”。</li>
+<li>可迁移话术：多版本灰度 ≈ 大数据平台里新旧计算引擎并行验证再切流的思路；资源配额隔离 ≈ YARN&#x2F;K8s 的资源池隔离经验直接迁移。</li>
+</ul>
+<blockquote>
+<p>参考：华为云 ModelArts 官方文档；AWS SageMaker 官方文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/mlops-full-pipeline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/mlops-full-pipeline/" class="post-title-link" itemprop="url">AI 平台全流程架构（MLOps）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 16:10:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T16:10:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="AI-平台全流程架构（MLOps）"><a href="#AI-平台全流程架构（MLOps）" class="headerlink" title="AI 平台全流程架构（MLOps）"></a>AI 平台全流程架构（MLOps）</h1><p>一句话定位：MLOps 的核心是把”数据标注 → 训练 → 评估 → 部署 → 监控 → 反馈”变成一个<strong>闭环流水线</strong>，而不是一次性的人工串联，关键能力是可复现、可追溯、可回滚。</p>
+<h2 id="1-全流程六个环节"><a href="#1-全流程六个环节" class="headerlink" title="1. 全流程六个环节"></a>1. 全流程六个环节</h2><ul>
+<li><strong>数据标注</strong>：原始数据到可训练样本的加工，需要标注质量校验与一致性检查。</li>
+<li><strong>训练</strong>：实验管理（超参、代码版本、数据版本三者绑定），保证任意一次训练<strong>可复现</strong>。</li>
+<li><strong>评估</strong>：离线基准测试 + 人工评审，作为是否允许上线的门禁（对应 8.7 的评估门禁）。</li>
+<li><strong>部署</strong>：模型打包、灰度发布、多版本并存。</li>
+<li><strong>监控</strong>：线上效果指标（业务指标 + 模型指标）与资源指标（延迟、吞吐、错误率）双线监控。</li>
+<li><strong>反馈闭环</strong>：线上数据&#x2F;用户反馈回流成为下一轮训练的数据来源，形成”越用越好”的迭代循环。</li>
+</ul>
+<h2 id="2-关键能力：血缘与可追溯"><a href="#2-关键能力：血缘与可追溯" class="headerlink" title="2. 关键能力：血缘与可追溯"></a>2. 关键能力：血缘与可追溯</h2><ul>
+<li><strong>模型版本与血缘</strong>：任意一个上线模型，要能追溯到”用哪份数据、哪个代码版本、哪套超参训练出来的”，这是排查线上问题（效果突然下降）的前提。</li>
+<li><strong>实验可复现</strong>：同样的代码 + 数据 + 超参，任何人任何时候跑出来的结果应该一致（或在可接受误差内），否则无法信任对比实验的结论。</li>
+</ul>
+<h2 id="3-面试落点"><a href="#3-面试落点" class="headerlink" title="3. 面试落点"></a>3. 面试落点</h2><ul>
+<li>能画出这六个环节的闭环图，并指出每个环节最容易出问题的地方（标注质量、训练不可复现、评估门禁形同虚设、监控缺失导致线上问题发现滞后）。</li>
+<li>可迁移话术：这套闭环和大数据平台的”数据接入 → ETL → 存储 → 查询 → 监控告警”全链路思路是同构的，只是流转的对象从数据变成了模型，多了”训练”和”评估门禁”两个 AI 特有环节。</li>
+</ul>
+<blockquote>
+<p>参考：Google Cloud《MLOps: Continuous delivery and automation pipelines in machine learning》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/agent/agent-reliability-safeguards/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/agent/agent-reliability-safeguards/" class="post-title-link" itemprop="url">Agent 可靠性保障</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 16:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T16:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Agent-可靠性保障"><a href="#Agent-可靠性保障" class="headerlink" title="Agent 可靠性保障"></a>Agent 可靠性保障</h1><p>一句话定位：Agent 可靠性不是靠单一手段解决的，而是”幻觉控制 + 异常处理 + 人工介入 + 可观测”四条防线组合，其中<strong>人工介入关键节点</strong>是金融等高风险场景不可省略的最后一道防线。</p>
+<h2 id="1-幻觉控制"><a href="#1-幻觉控制" class="headerlink" title="1. 幻觉控制"></a>1. 幻觉控制</h2><ul>
+<li><strong>检索接地（Grounding）</strong>：让回答基于检索到的真实文档而非模型的内部记忆生成，是 RAG（8.4）最直接的幻觉控制手段。</li>
+<li><strong>结构化输出约束</strong>：用 JSON Schema &#x2F; 正则等强制模型输出符合格式规范的结果，减少模型”自由发挥”编造字段的空间。</li>
+<li><strong>自校验（Self-check）</strong>：让模型（或另一个 Agent）对自己的输出做二次校验，或要求模型给出引用来源以便交叉核对。</li>
+</ul>
+<h2 id="2-异常处理"><a href="#2-异常处理" class="headerlink" title="2. 异常处理"></a>2. 异常处理</h2><ul>
+<li><strong>超时</strong>：工具调用&#x2F;模型推理设置合理超时，避免任务无限挂起。</li>
+<li><strong>重试</strong>：区分”可重试错误”（网络抖动）与”不可重试错误”（参数错误、权限不足），只对前者做有限次重试。</li>
+<li><strong>降级</strong>：多次失败后走降级路径（返回明确的”暂不可用”提示，而不是硬凑一个错误答案）。</li>
+</ul>
+<h2 id="3-Human-in-the-loop（人工介入）"><a href="#3-Human-in-the-loop（人工介入）" class="headerlink" title="3. Human-in-the-loop（人工介入）"></a>3. Human-in-the-loop（人工介入）</h2><ul>
+<li>在关键节点（如涉及资金操作、不可逆动作）设置人工确认检查点，Agent 执行到该节点时暂停并等待人工审核后才继续（对应 7.3 LangGraph 的 Checkpoint 机制）。</li>
+<li>金融场景尤其要强调<strong>可审计</strong>：每一步 Thought&#x2F;Action&#x2F;Observation 都要留痕，方便事后追溯”Agent 为什么做出了这个决策”。</li>
+</ul>
+<h2 id="4-全链路可观测与回放"><a href="#4-全链路可观测与回放" class="headerlink" title="4. 全链路可观测与回放"></a>4. 全链路可观测与回放</h2><ul>
+<li>记录每次 Agent 运行的完整轨迹（输入、每一步推理、工具调用参数与结果、最终输出），支持事后回放定位问题根因。</li>
+<li>这和大数据&#x2F;线上系统的全链路日志追踪（Trace）是同一套工程思路，只是记录对象从”请求链路”变成了”Agent 推理链路”。</li>
+</ul>
+<h2 id="5-面试落点"><a href="#5-面试落点" class="headerlink" title="5. 面试落点"></a>5. 面试落点</h2><ul>
+<li>能针对”金融场景 Agent 如何控制风险”给出体系化答案，而不是只说”加个 prompt 让它别瞎说”。</li>
+<li>可迁移话术：这四条防线本质上和传统系统可靠性工程（熔断&#x2F;降级&#x2F;重试&#x2F;可观测）是同构的，只是多了”幻觉”这个 LLM 特有的新问题类型，其余方法论完全可以从工程可靠性经验迁移过来。</li>
+</ul>
+<blockquote>
+<p>参考：论文《Survey of Hallucination in Natural Language Generation》；LangChain 官方文档《Human-in-the-loop》章节</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/agent/agent-memory-mechanism/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/agent/agent-memory-mechanism/" class="post-title-link" itemprop="url">Agent 记忆机制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 15:50:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T15:50:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Agent-记忆机制"><a href="#Agent-记忆机制" class="headerlink" title="Agent 记忆机制"></a>Agent 记忆机制</h1><p>一句话定位：Agent 记忆分短期（上下文窗口）和长期（外部存储）两层，MemGPT 的关键洞察是把这两层当成”内存 vs 磁盘”来做分页调度——用有限的上下文窗口，管理无限增长的历史信息。</p>
+<h2 id="1-短期记忆：上下文窗口"><a href="#1-短期记忆：上下文窗口" class="headerlink" title="1. 短期记忆：上下文窗口"></a>1. 短期记忆：上下文窗口</h2><ul>
+<li>直接把最近的对话历史塞进 Prompt，简单直接，但受上下文窗口长度限制，历史一长就要做取舍。</li>
+<li>常见策略：滑动窗口（只保留最近 N 轮）、摘要压缩（把较早的历史用 LLM 总结成一段摘要再保留），后者是更常见的生产做法。</li>
+</ul>
+<h2 id="2-长期记忆：向量库存储-相关性召回"><a href="#2-长期记忆：向量库存储-相关性召回" class="headerlink" title="2. 长期记忆：向量库存储 + 相关性召回"></a>2. 长期记忆：向量库存储 + 相关性召回</h2><ul>
+<li>把历史交互、用户画像等信息切片、embedding 后存入向量库；当前轮对话时，用当前问题去检索最相关的历史片段，动态拼进上下文。</li>
+<li>本质是把”记忆”从”必须全部塞进上下文”变成”按需检索”，这正是 RAG（8.4）思路在记忆场景的应用。</li>
+</ul>
+<h2 id="3-MemGPT-的核心思路：把上下文当”内存”"><a href="#3-MemGPT-的核心思路：把上下文当”内存”" class="headerlink" title="3. MemGPT 的核心思路：把上下文当”内存”"></a>3. MemGPT 的核心思路：把上下文当”内存”</h2><ul>
+<li>类比操作系统的虚拟内存分页：上下文窗口 &#x3D; 有限的物理内存（快但小），外部存储（向量库&#x2F;数据库）&#x3D; 磁盘（慢但几乎无限大）。</li>
+<li>MemGPT 让 Agent 自己决定”什么时候把当前不常用的上下文换出到外部存储，什么时候把需要的历史信息换入上下文”，通过自我调用的”分页”函数管理这个过程，从而让 Agent 拥有远超单次上下文窗口长度的”有效记忆”。</li>
+</ul>
+<h2 id="4-面试落点"><a href="#4-面试落点" class="headerlink" title="4. 面试落点"></a>4. 面试落点</h2><ul>
+<li>能清楚区分短期&#x2F;长期记忆的实现方式与各自的取舍（窗口限制 vs 检索延迟与召回质量）。</li>
+<li>可迁移话术：这套”内存 vs 磁盘”分页管理思路，和 3.2&#x2F;3.5 里 GPU 显存的分页管理（PagedAttention）、大数据里”热数据在内存、冷数据落盘”的分层存储设计是同一个思想在不同层次的复用——这是一个很好的跨知识域连接点，面试时可以主动串联。</li>
+</ul>
+<blockquote>
+<p>参考：论文《MemGPT: Towards LLMs as Operating Systems》；LangChain 官方文档《Memory》章节</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

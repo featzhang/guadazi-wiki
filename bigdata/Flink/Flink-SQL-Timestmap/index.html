@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="date created: 2025-12-23 09:47tags:  时间 Timestmap Flink 时区category: Bigdatadate updated: 2026-08-17 20:24title: 各引擎timestamp格式名称对齐  1 各引擎timestamp格式名称对齐1.1.1 Timestmap   Flink Iceberg Spark MySQL    t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-SQL-Timestmap/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="date created: 2025-12-23 09:47tags:  时间 Timestmap Flink 时区category: Bigdatadate updated: 2026-08-17 20:24title: 各引擎timestamp格式名称对齐  1 各引擎timestamp格式名称对齐1.1.1 Timestmap   Flink Iceberg Spark MySQL    t">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T17:34:28.641Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.642Z">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Timestmap/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title> | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Timestmap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>date created: 2025-12-23 09:47<br>tags:</p>
+<ul>
+<li>时间</li>
+<li>Timestmap</li>
+<li>Flink</li>
+<li>时区<br>category: Bigdata<br>date updated: 2026-08-17 20:24<br>title: 各引擎timestamp格式名称对齐</li>
+</ul>
+<h1 id="1-各引擎timestamp格式名称对齐"><a href="#1-各引擎timestamp格式名称对齐" class="headerlink" title="1 各引擎timestamp格式名称对齐"></a>1 各引擎timestamp格式名称对齐</h1><h3 id="1-1-1-Timestmap"><a href="#1-1-1-Timestmap" class="headerlink" title="1.1.1 Timestmap"></a>1.1.1 Timestmap</h3><table>
+<thead>
+<tr>
+<th>Flink</th>
+<th>Iceberg</th>
+<th>Spark</th>
+<th>MySQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>timestmap 默认就是毫秒精度</td>
+<td>timestamp</td>
+<td>timestampntz</td>
+<td>DATETIME(3)</td>
+</tr>
+<tr>
+<td>timestampltz</td>
+<td>timestamptz</td>
+<td>timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>从DLA拉取元数据时，默认精度为MILLIS</p>
+<h3 id="1-1-2-时间精度"><a href="#1-1-2-时间精度" class="headerlink" title="1.1.2 时间精度"></a>1.1.2 时间精度</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>精度</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TIMESTAMP(0)</code></td>
+<td>0 位小数</td>
+<td>秒</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(1)</code></td>
+<td>1 位小数</td>
+<td>0.1 秒（100ms）</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(2)</code></td>
+<td>2 位小数</td>
+<td>10ms</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(3)</code></td>
+<td>3 位小数</td>
+<td><strong>毫秒（ms）</strong></td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(6)</code></td>
+<td>6 位小数</td>
+<td>微秒（μs）</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(9)</code></td>
+<td>9 位小数</td>
+<td>纳秒（ns）</td>
+</tr>
+</tbody></table>
+<h3 id="1-1-3-避免隐式转换"><a href="#1-1-3-避免隐式转换" class="headerlink" title="1.1.3 避免隐式转换"></a>1.1.3 避免隐式转换</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> TEMPORARY <span class="keyword">VIEW</span> SalesDataSource <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  (</span><br><span class="line">    <span class="keyword">VALUES</span></span><br><span class="line">      (<span class="number">1766073600000</span>),</span><br><span class="line">      (<span class="number">1766080800000</span>)</span><br><span class="line">  ) <span class="keyword">AS</span> T(testt);</span><br><span class="line"><span class="keyword">insert into</span> mysql_table</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">	<span class="built_in">CAST</span>(FROM_UNIXTIME(testt<span class="operator">/</span><span class="number">1000</span>) <span class="keyword">AS</span> <span class="type">DATE</span>) <span class="keyword">as</span> day_time</span><br><span class="line"><span class="keyword">from</span>  SalesDataSource</span><br></pre></td></tr></table></figure>
+
+<p>MySQL中day_time的字段类型是<code>DATE</code>或<code>DATETIME</code>，输入的结果总是<code>1970</code></p>
+<ul>
+<li><code>testt</code> 是 <code>BIGINT</code>（毫秒时间戳）</li>
+<li><code>FROM_UNIXTIME(testt/1000)</code> 返回的是 <code>TIMESTAMP</code></li>
+<li><code>CAST(... AS DATE)</code> 会变成 Flink 的 <code>DATE</code> 类型</li>
+<li>如果 MySQL 字段是 <code>DATETIME</code> 或 <code>TIMESTAMP</code>，写入时 Flink JDBC connector 会把 <code>DATE</code> 转换为 0，显示成 <code>1970-01-01</code></li>
+</ul>
+<p>解决方案: 避免隐式转换</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Flink的Timestamp 对应的类型就是 DateTime(3), 无需强制转换</span></span><br><span class="line">FROM_UNIXTIME(testt<span class="operator">/</span><span class="number">1000</span>) <span class="keyword">AS</span> day_time</span><br><span class="line"><span class="comment">-- 显示Cast成TIMESTAMP(3)也可以</span></span><br><span class="line"><span class="built_in">CAST</span>(FROM_UNIXTIME(testt<span class="operator">/</span><span class="number">1000</span>) <span class="keyword">AS</span> <span class="type">TIMESTAMP</span>(<span class="number">3</span>)) <span class="keyword">AS</span> day_time</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-4-Flink-JDBC-Connector-类型映射"><a href="#1-1-4-Flink-JDBC-Connector-类型映射" class="headerlink" title="1.1.4 Flink JDBC Connector 类型映射"></a>1.1.4 Flink JDBC Connector 类型映射</h3><table>
+<thead>
+<tr>
+<th>Flink SQL</th>
+<th>Connector&#x2F;Java</th>
+<th>MySQL</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DATE</td>
+<td>java.sql.Date</td>
+<td>DATE</td>
+<td>只有年月日，精度到天</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>java.sql.Timestamp</td>
+<td>DATETIME或TIMESTAMP</td>
+<td>精度到毫秒</td>
+</tr>
+</tbody></table>
+<p>Flink SQL中使用<code>CAST(... AS DATE)</code>写入MySQL <code>DATETIME</code>, JDBC Sink会把毫秒部分丢掉，甚至映射失败，默认值会变成<code>0</code>-&gt;<code>1970-01-01</code></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SQL-submit/" rel="prev" title="Flink SQL之任务提交">
+      <i class="fa fa-chevron-left"></i> Flink SQL之任务提交
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SQL-Count/" rel="next" title="FlinkSQL-Count">
+      FlinkSQL-Count <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%90%84%E5%BC%95%E6%93%8Etimestamp%E6%A0%BC%E5%BC%8F%E5%90%8D%E7%A7%B0%E5%AF%B9%E9%BD%90"><span class="nav-number">1.</span> <span class="nav-text">1 各引擎timestamp格式名称对齐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-Timestmap"><span class="nav-number">1.1.</span> <span class="nav-text">1.1.1 Timestmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-%E6%97%B6%E9%97%B4%E7%B2%BE%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">1.1.2 时间精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-%E9%81%BF%E5%85%8D%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">1.1.3 避免隐式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-Flink-JDBC-Connector-%E7%B1%BB%E5%9E%8B%E6%98%A0%E5%B0%84"><span class="nav-number">1.4.</span> <span class="nav-text">1.1.4 Flink JDBC Connector 类型映射</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

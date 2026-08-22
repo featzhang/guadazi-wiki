@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/%E8%AE%A9%E6%80%A7%E8%83%BD%E8%B5%B7%E9%A3%9E%E7%9A%84%E8%89%BA%E6%9C%AF-%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%90%91%E9%87%8F%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E8%AE%A9%E6%80%A7%E8%83%BD%E8%B5%B7%E9%A3%9E%E7%9A%84%E8%89%BA%E6%9C%AF-%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%90%91%E9%87%8F%E5%8C%96/" class="post-title-link" itemprop="url">让性能起飞的艺术</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-让性能飞起来：从异步、向量化到性能优化的完整蓝图​-​"><a href="#1-让性能飞起来：从异步、向量化到性能优化的完整蓝图​-​" class="headerlink" title="1 让性能飞起来：从异步、向量化到性能优化的完整蓝图​**​"></a>1 让性能飞起来：从异步、向量化到性能优化的完整蓝图​**​</h1><p>​深入CPU与操作系统底层，掌握高并发与高性能计算的核心艺术​​</p>
+<p>在构建高性能服务的道路上，我们总会遇到两个神奇的词：​<strong>​异步​</strong>​ 和 ​<strong>​向量化​</strong>​。看似高深，实则蕴含着计算机系统最底层的效率哲学。</p>
+<p>接下来，从CPU的视角，彻底讲清楚它们为何能极大提升性能，并为你描绘一份完整的性能优化全景图。</p>
+<h2 id="1-1-​​第一部分：异步优化-解决“等待”的艺术​​"><a href="#1-1-​​第一部分：异步优化-解决“等待”的艺术​​" class="headerlink" title="1.1 ​​第一部分：异步优化 - 解决“等待”的艺术​​"></a>1.1 ​<strong>​第一部分：异步优化 - 解决“等待”的艺术​</strong>​</h2><p>想象一下，你是工厂的CEO，你的核心目标是让最昂贵的资产——​<strong>​CPU（工人）​</strong>​——永远保持高效运转。</p>
+<p>​<strong>​1. 同步模式：笨拙的流水线​</strong>​</p>
+<ul>
+<li><p>一个工人（线程）接到任务，需要等待远程仓库（下游服务）送货。</p>
+</li>
+<li><p>在等待的几十分钟里，这个工人​<strong>​只能干站着​</strong>​，但工资（CPU时间片）照发，工位（内存资源）照占。</p>
+</li>
+<li><p>当订单量（并发请求）暴增时，你不得不雇佣成千上万个工人，但管理成本（线程上下文切换）飙升，工厂（服务器）最终被拖垮。</p>
+</li>
+</ul>
+<p>​<strong>​<code>CPU视角：</code>​</strong>​ 大量时间在​<strong>​空转和调度​</strong>​中浪费，而非有效计算。</p>
+<p>​<strong>​2. 异步模式：高效的调度中心​</strong>​</p>
+<ul>
+<li><p>工人不再干等。他发出送货请求后，立即处理其他已准备好物料的任务。</p>
+</li>
+<li><p>一位高效的​<strong>​调度员（Event Loop）​</strong>​ 负责跟踪所有送货请求，谁到货了就通知对应的工人来继续处理。</p>
+</li>
+<li><p>结果：用​<strong>​极少的工人​</strong>​（少量线程），完成了海量订单的调度，吞吐量倍增。</p>
+</li>
+</ul>
+<p>​<strong>​<code>技术本质：</code>​</strong>​</p>
+<p>异步的核心是 ​<strong>​I&#x2F;O多路复用​</strong>​（如 <code>epoll</code>）。它将CPU从漫长的I&#x2F;O等待中解放出来，把原本​<strong>​串行​</strong>​的“计算-等待-计算”流程，变成了​<strong>​并行​</strong>​的“计算与等待重叠进行”。它完美解决了​<strong>​I&#x2F;O密集型​</strong>​应用的瓶颈。</p>
+<hr>
+<h2 id="1-2-​​第二部分：向量化计算-碾压“计算”的暴力美学​​"><a href="#1-2-​​第二部分：向量化计算-碾压“计算”的暴力美学​​" class="headerlink" title="1.2 ​​第二部分：向量化计算 - 碾压“计算”的暴力美学​​"></a>1.2 ​<strong>​第二部分：向量化计算 - 碾压“计算”的暴力美学​</strong>​</h2><p>如果说异步是管理大师，那么向量化就是改造生产线的天才工程师。它的目标不是减少等待，而是让​<strong>​单位时间内的计算量翻倍​</strong>​。</p>
+<p>​<strong>​1. 标量计算：一次搬一块砖​</strong>​</p>
+<ul>
+<li>传统代码如 <code>for (i=0; i&lt;4; i++) { c[i] = a[i] + b[i]; }</code>，就像工人一次只搬一块砖，来回跑4趟。</li>
+</ul>
+<p>​<strong>​2. 向量化计算：一次运一卡车砖​</strong>​</p>
+<ul>
+<li><p>向量化利用CPU的 ​<strong>​SIMD​</strong>​ 指令，可以一次性对一组数据（如4个浮点数）执行同一条指令（如加法）。</p>
+</li>
+<li><p>这就好比开上一辆卡车，一次就能把4块砖同时运过去。只需一趟，完成工作。</p>
+</li>
+</ul>
+<p>​<strong>​<code>性能飙升的秘密：</code>​</strong>​</p>
+<ul>
+<li><p>​<strong>​指令级并行​</strong>​：在单个CPU核心上，实现了“一心多用”，一条指令完成多个操作。</p>
+</li>
+<li><p>​<strong>​减少指令开销​</strong>​：循环次数和解码指令次数锐减。</p>
+</li>
+<li><p>​<strong>​缓存友好​</strong>​：连续的内存访问模式，完美契合CPU缓存的工作方式。</p>
+</li>
+</ul>
+<p>​<strong>​<code>应用场景：</code>​</strong>​</p>
+<p>图像处理、科学计算、音视频编解码、数据库分析等​<strong>​计算密集型​</strong>​任务，是向量化的主场。</p>
+<hr>
+<h2 id="1-3-​​第三部分：性能优化的完整武器库​​"><a href="#1-3-​​第三部分：性能优化的完整武器库​​" class="headerlink" title="1.3 ​​第三部分：性能优化的完整武器库​​"></a>1.3 ​<strong>​第三部分：性能优化的完整武器库​</strong>​</h2><p>异步和向量化是两把尖刀，但真正的性能优化是一个系统工程。下面这份清单，请你收好。</p>
+<p>​<strong>​1. 连接池​</strong>​</p>
+<ul>
+<li>​<strong>​哲学​</strong>​：空间换时间。预先建立好昂贵的数据库连接，避免频繁创建销毁的巨大开销。</li>
+</ul>
+<p>​<strong>​2. 缓存​</strong>​</p>
+<ul>
+<li>​<strong>​哲学​</strong>​：空间换时间。将热点数据置于内存（如Redis），让慢速磁盘I&#x2F;O或远程调用再无出头之日。</li>
+</ul>
+<p>​<strong>​3. 批处理​</strong>​</p>
+<ul>
+<li>​<strong>​哲学​</strong>​：减少浪费。将多次零散的I&#x2F;O操作合并为一次批量操作，大幅降低网络往返和系统调用开销。</li>
+</ul>
+<p>​<strong>​4. 水平扩展​</strong>​</p>
+<ul>
+<li>​<strong>​哲学​</strong>​：大力出奇迹。通过负载均衡，将流量分散到多个服务器实例，提升系统整体容量。</li>
+</ul>
+<p>​<strong>​5. 零拷贝​</strong>​</p>
+<ul>
+<li>​<strong>​哲学​</strong>​：减少浪费。让数据在内核态直接发送到网卡，跳过耗时的用户态拷贝，尤其适合文件传输。</li>
+</ul>
+<p>​<strong>​6. 选择合适的序列化协议​</strong>​</p>
+<ul>
+<li>​<strong>​哲学​</strong>​：减少浪费。用Protobuf、Avro等高效二进制协议替代JSON&#x2F;XML，节省CPU和带宽。</li>
+</ul>
+<p>​<strong>​7. JVM&#x2F;运行时调优​</strong>​</p>
+<ul>
+<li>针对Java等语言，选择合适的垃圾回收器（如G1, ZGC）至关重要。</li>
+</ul>
+<p>​<strong>​8. 硬件升级​</strong>​</p>
+<ul>
+<li>最直接的方式：SSD硬盘、万兆网卡、更多CPU核心，是性能最坚实的基石。</li>
+</ul>
+<hr>
+<h2 id="1-4-​道与术：性能优化的核心哲学​​"><a href="#1-4-​道与术：性能优化的核心哲学​​" class="headerlink" title="1.4 ​道与术：性能优化的核心哲学​​"></a>1.4 ​道与术：性能优化的核心哲学​​</h2><p>万变不离其宗，所有优化手段都遵循着几条核心哲学：</p>
+<ol>
+<li><p>​<strong>​空间换时间​</strong>​：用内存等空间资源（缓存、连接池）换取宝贵的CPU和时间。</p>
+</li>
+<li><p>​<strong>​时间换空间​</strong>​：用CPU时间（压缩）换取网络或磁盘空间。</p>
+</li>
+<li><p>​<strong>​并行化​</strong>​：让多个任务同时进行（多线程、向量化、水平扩展）。</p>
+</li>
+<li><p>​<strong>​减少浪费​</strong>​：消除一切不必要的开销（异步、零拷贝、批处理）。</p>
+</li>
+<li><p>​<strong>​就近访问​</strong>​：让数据离计算单元越近越好（CDN、缓存）。</p>
+</li>
+</ol>
+<h2 id="1-5-​​结语：没有银弹，只有平衡​​"><a href="#1-5-​​结语：没有银弹，只有平衡​​" class="headerlink" title="1.5 ​​结语：没有银弹，只有平衡​​"></a>1.5 ​​结语：没有银弹，只有平衡​​</h2><p>回到开头，异步与向量化并非互斥，而是互补的利器：</p>
+<ul>
+<li><p>在一个大数据平台中，可用​<strong>​异步I&#x2F;O​</strong>​高速读取数据，然后用​<strong>​向量化​</strong>​库进行极致计算，最后再通过​<strong>​异步​</strong>​将结果写出。</p>
+</li>
+<li><p>它们分别在 ​<strong>​I&#x2F;O路径​</strong>​ 和 ​<strong>​计算路径​</strong>​ 上发挥着不可替代的作用。</p>
+</li>
+</ul>
+<p>真正的架构师，需要像一位厨师一样，精准判断系统的瓶颈所在（是I&#x2F;O太慢？还是CPU算力不足？），然后从这份丰富的“武器库”中，挑选最合适的组合，最终烹制出高性能的饕餮盛宴。</p>
+<p>希望这份蓝图，能为你接下来的性能优化之旅照亮道路。欢迎在评论区分享你的实战经验！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Home/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Home/" class="post-title-link" itemprop="url">Home</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="🏠-Home"><a href="#🏠-Home" class="headerlink" title="🏠 Home"></a>🏠 Home</h1><blockquote>
+<p>个人知识库总入口 —— 从这里出发，按主题或工作流找到任何笔记。</p>
+</blockquote>
+<h2 id="主题地图（按技术领域）"><a href="#主题地图（按技术领域）" class="headerlink" title="主题地图（按技术领域）"></a>主题地图（按技术领域）</h2><ul>
+<li>[[Flink-MOC|🌊 Flink 实时计算]]</li>
+<li>[[BigData-MOC|🗄️ 大数据生态]]</li>
+<li>[[Java-MOC|☕ Java 语言与并发]]</li>
+<li>[[Distributed-MOC|🕸️ 分布式系统]]</li>
+<li>[[Database-MOC|💾 数据库]]</li>
+<li>[[Algorithm-MOC|🧩 算法与设计模式]]</li>
+</ul>
+<h2 id="工作流（GTD-六层）"><a href="#工作流（GTD-六层）" class="headerlink" title="工作流（GTD 六层）"></a>工作流（GTD 六层）</h2><ul>
+<li>[[GTD-MOC|📥 GTD 工作流]]</li>
+<li>[[Current-MOC|🎯 当前工作]]</li>
+<li>[[Knowledge-MOC|📚 知识沉淀]]</li>
+<li>[[Raise-MOC|🚀 晋升与应聘]]</li>
+<li>[[Trading-MOC|📈 分享与交易]]</li>
+</ul>
+<h2 id="最近更新"><a href="#最近更新" class="headerlink" title="最近更新"></a>最近更新</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TABLE file.mtime AS &quot;更新时间&quot;, file.folder AS &quot;目录&quot;</span><br><span class="line">WHERE !contains(file.folder, &quot;copilot&quot;) AND !contains(file.folder, &quot;.&quot;)</span><br><span class="line">SORT file.mtime DESC</span><br><span class="line">LIMIT 15</span><br></pre></td></tr></table></figure>
+
+<h2 id="工具箱"><a href="#工具箱" class="headerlink" title="工具箱"></a>工具箱</h2><ul>
+<li>[[nav&#x2F;index|🔗 网址导航]] —— 常用网站收藏</li>
+<li>[[00-GTD&#x2F;00.笔记管理规范|📝 笔记管理规范]]</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata-outline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata-outline/" class="post-title-link" itemprop="url">Bigdata outline</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Outline/" itemprop="url" rel="index"><span itemprop="name">Outline</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-基础技术栈"><a href="#1-基础技术栈" class="headerlink" title="1 基础技术栈"></a>1 基础技术栈</h1><h2 id="1-1-Java"><a href="#1-1-Java" class="headerlink" title="1.1 Java"></a>1.1 Java</h2><blockquote>
+<p><a href="https://pdai.tech/">Java 全栈知识体系</a></p>
+</blockquote>
+<h2 id="1-2-数据结构"><a href="#1-2-数据结构" class="headerlink" title="1.2 数据结构"></a>1.2 数据结构</h2><h3 id="1-2-1-LSM-Tree"><a href="#1-2-1-LSM-Tree" class="headerlink" title="1.2.1 LSM Tree"></a>1.2.1 LSM Tree</h3><h3 id="1-2-2-B-Tree"><a href="#1-2-2-B-Tree" class="headerlink" title="1.2.2 B-Tree"></a>1.2.2 B-Tree</h3><h2 id="1-3-底层存储引擎"><a href="#1-3-底层存储引擎" class="headerlink" title="1.3 底层存储引擎"></a>1.3 底层存储引擎</h2><h3 id="1-3-1-LevelDB"><a href="#1-3-1-LevelDB" class="headerlink" title="1.3.1 LevelDB"></a>1.3.1 LevelDB</h3><h3 id="1-3-2-RocksDB"><a href="#1-3-2-RocksDB" class="headerlink" title="1.3.2 RocksDB"></a>1.3.2 RocksDB</h3><p><a href="https://github.com/facebook/rocksdb/wiki/">https://github.com/facebook/rocksdb/wiki/</a><br><a href="https://alexstocks.github.io/html/rocksdb.html">https://alexstocks.github.io/html/rocksdb.html</a></p>
+<h2 id="1-4-硬件与存储"><a href="#1-4-硬件与存储" class="headerlink" title="1.4 硬件与存储"></a>1.4 硬件与存储</h2><h3 id="1-4-1-OSS-对象存储"><a href="#1-4-1-OSS-对象存储" class="headerlink" title="1.4.1 OSS 对象存储"></a>1.4.1 OSS 对象存储</h3><h1 id="2-分布式协调"><a href="#2-分布式协调" class="headerlink" title="2 分布式协调"></a>2 分布式协调</h1><h2 id="2-1-Zookeeper"><a href="#2-1-Zookeeper" class="headerlink" title="2.1 Zookeeper"></a>2.1 Zookeeper</h2><h1 id="3-存储层"><a href="#3-存储层" class="headerlink" title="3 存储层"></a>3 存储层</h1><h2 id="3-1-HDFS"><a href="#3-1-HDFS" class="headerlink" title="3.1 HDFS"></a>3.1 HDFS</h2><p>分布式文件系统,大数据存储的基础设施</p>
+<h1 id="4-消息队列"><a href="#4-消息队列" class="headerlink" title="4 消息队列"></a>4 消息队列</h1><h2 id="4-1-Kafka"><a href="#4-1-Kafka" class="headerlink" title="4.1 Kafka"></a>4.1 Kafka</h2><h2 id="4-2-Pulsar"><a href="#4-2-Pulsar" class="headerlink" title="4.2 Pulsar"></a>4.2 Pulsar</h2><blockquote>
+<p><a href="bigdata/Pulsar/Pulsar">详情</a></p>
+</blockquote>
+<h1 id="5-批处理引擎"><a href="#5-批处理引擎" class="headerlink" title="5 批处理引擎"></a>5 批处理引擎</h1><h2 id="5-1-Spark"><a href="#5-1-Spark" class="headerlink" title="5.1 Spark"></a>5.1 Spark</h2><blockquote>
+<p>深入理解 <strong>Spark</strong>（Spark SQL 优化、数据倾斜处理）和 <strong>Hive</strong>（调优、存储格式如 Parquet&#x2F;ORC）。</p>
+</blockquote>
+<h3 id="5-1-1-Spark-Core"><a href="#5-1-1-Spark-Core" class="headerlink" title="5.1.1 Spark Core"></a>5.1.1 Spark Core</h3><ul>
+<li><a href="bigdata/Spark/Spark-execution-model.md">执行模型</a>：DAG 构建、Stage 划分、Shuffle 与 AQE</li>
+<li><a href="bigdata/Spark/Spark-task_split_block.md">并发度概念</a>：File&#x2F;Block&#x2F;Split&#x2F;Task&#x2F;Partition 的换算</li>
+</ul>
+<h3 id="5-1-2-Spark-SQL"><a href="#5-1-2-Spark-SQL" class="headerlink" title="5.1.2 Spark SQL"></a>5.1.2 Spark SQL</h3><h3 id="5-1-3-性能优化"><a href="#5-1-3-性能优化" class="headerlink" title="5.1.3 性能优化"></a>5.1.3 性能优化</h3><ul>
+<li>数据倾斜处理</li>
+<li>算子优化</li>
+<li>资源调优</li>
+</ul>
+<h1 id="6-流处理引擎"><a href="#6-流处理引擎" class="headerlink" title="6 流处理引擎"></a>6 流处理引擎</h1><h2 id="6-1-Flink"><a href="#6-1-Flink" class="headerlink" title="6.1 Flink"></a>6.1 Flink</h2><blockquote>
+<p>需要掌握其状态管理（State）、容错机制（Checkpoint）以及 Exactly-once 语义。</p>
+</blockquote>
+<blockquote>
+<p><a href="bigdata/Flink/Flink">详情</a></p>
+</blockquote>
+<h3 id="6-1-1-Runtime-架构"><a href="#6-1-1-Runtime-架构" class="headerlink" title="6.1.1 Runtime 架构"></a>6.1.1 Runtime 架构</h3><h4 id="6-1-1-1-Memory-Management"><a href="#6-1-1-1-Memory-Management" class="headerlink" title="6.1.1.1 Memory Management"></a>6.1.1.1 Memory Management</h4><h3 id="6-1-2-Flink-SQL"><a href="#6-1-2-Flink-SQL" class="headerlink" title="6.1.2 Flink SQL"></a>6.1.2 Flink SQL</h3><h3 id="6-1-3-State-Checkpoint"><a href="#6-1-3-State-Checkpoint" class="headerlink" title="6.1.3 State &amp; Checkpoint"></a>6.1.3 State &amp; Checkpoint</h3><h4 id="6-1-3-1-状态管理"><a href="#6-1-3-1-状态管理" class="headerlink" title="6.1.3.1 状态管理"></a>6.1.3.1 状态管理</h4><h4 id="6-1-3-2-容错机制"><a href="#6-1-3-2-容错机制" class="headerlink" title="6.1.3.2 容错机制"></a>6.1.3.2 容错机制</h4><h4 id="6-1-3-3-Exactly-once-语义"><a href="#6-1-3-3-Exactly-once-语义" class="headerlink" title="6.1.3.3 Exactly-once 语义"></a>6.1.3.3 Exactly-once 语义</h4><h3 id="6-1-4-RocksDB-State-Backend"><a href="#6-1-4-RocksDB-State-Backend" class="headerlink" title="6.1.4 RocksDB State Backend"></a>6.1.4 RocksDB State Backend</h3><h1 id="7-湖仓一体架构"><a href="#7-湖仓一体架构" class="headerlink" title="7 湖仓一体架构"></a>7 湖仓一体架构</h1><blockquote>
+<p><strong>存储与湖仓一体：</strong> 掌握 <strong>Data Lakehouse</strong> 架构（如 <strong>Iceberg、Hudi、Delta Lake</strong>），解决近实时更新和流批统一的问题。</p>
+</blockquote>
+<h2 id="7-1-Apache-Iceberg"><a href="#7-1-Apache-Iceberg" class="headerlink" title="7.1 Apache Iceberg"></a>7.1 Apache Iceberg</h2><h2 id="7-2-Apache-Hudi"><a href="#7-2-Apache-Hudi" class="headerlink" title="7.2 Apache Hudi"></a>7.2 Apache Hudi</h2><h2 id="7-3-Apache-Paimon"><a href="#7-3-Apache-Paimon" class="headerlink" title="7.3 Apache Paimon"></a>7.3 Apache Paimon</h2><h2 id="7-4-Delta-Lake"><a href="#7-4-Delta-Lake" class="headerlink" title="7.4 Delta Lake"></a>7.4 Delta Lake</h2><h1 id="8-OLAP-分析引擎"><a href="#8-OLAP-分析引擎" class="headerlink" title="8 OLAP 分析引擎"></a>8 OLAP 分析引擎</h1><p>为了满足秒级响应的分析需求，架构师需要根据场景（并发量、延迟、数据量）选择合适的引擎：</p>
+<h2 id="8-1-ClickHouse"><a href="#8-1-ClickHouse" class="headerlink" title="8.1 ClickHouse"></a>8.1 ClickHouse</h2><p>极致的单表查询性能</p>
+<h2 id="8-2-Apache-Doris"><a href="#8-2-Apache-Doris" class="headerlink" title="8.2 Apache Doris"></a>8.2 Apache Doris</h2><p>优秀的国产自研引擎，支持高并发、流批一体和极简运维</p>
+<p><a href="https://mp.weixin.qq.com/s/7h6cNnK4jiiQsrompo_r4A">Doris为什么那么快？</a></p>
+<h2 id="8-3-StarRocks"><a href="#8-3-StarRocks" class="headerlink" title="8.3 StarRocks"></a>8.3 StarRocks</h2><p>优秀的国产自研引擎，支持高并发、流批一体和极简运维</p>
+<p><a href="https://zhuanlan.zhihu.com/p/421469439">Apache Doris和Clickhouse的深度分析</a></p>
+<h2 id="8-4-Presto-Trino"><a href="#8-4-Presto-Trino" class="headerlink" title="8.4 Presto &#x2F; Trino"></a>8.4 Presto &#x2F; Trino</h2><p>适用于跨数据源的联邦查询</p>
+<h1 id="9-云原生大数据"><a href="#9-云原生大数据" class="headerlink" title="9 云原生大数据"></a>9 云原生大数据</h1><h2 id="9-1-容器化部署"><a href="#9-1-容器化部署" class="headerlink" title="9.1 容器化部署"></a>9.1 容器化部署</h2><h2 id="9-2-Kubernetes-调度"><a href="#9-2-Kubernetes-调度" class="headerlink" title="9.2 Kubernetes 调度"></a>9.2 Kubernetes 调度</h2><h2 id="9-3-资源弹性伸缩"><a href="#9-3-资源弹性伸缩" class="headerlink" title="9.3 资源弹性伸缩"></a>9.3 资源弹性伸缩</h2><h2 id="9-4-Ray"><a href="#9-4-Ray" class="headerlink" title="9.4 Ray"></a>9.4 Ray</h2><h1 id="10-数据治理与架构设计"><a href="#10-数据治理与架构设计" class="headerlink" title="10 数据治理与架构设计"></a>10 数据治理与架构设计</h1><h2 id="10-1-数据治理与全生命周期管理"><a href="#10-1-数据治理与全生命周期管理" class="headerlink" title="10.1 数据治理与全生命周期管理"></a>10.1 数据治理与全生命周期管理</h2><p>架构师的价值往往体现在”如何管好数据”而非仅仅”存下数据”。</p>
+<h3 id="10-1-1-元数据管理"><a href="#10-1-1-元数据管理" class="headerlink" title="10.1.1 元数据管理"></a>10.1.1 元数据管理</h3><p>构建数据字典，实现血缘追踪（Data Lineage）</p>
+<h3 id="10-1-2-数据质量"><a href="#10-1-2-数据质量" class="headerlink" title="10.1.2 数据质量"></a>10.1.2 数据质量</h3><p>建立监控体系，涵盖完整性、准确性和一致性</p>
+<h3 id="10-1-3-数据安全"><a href="#10-1-3-数据安全" class="headerlink" title="10.1.3 数据安全"></a>10.1.3 数据安全</h3><ul>
+<li>权限控制（Ranger）</li>
+<li>数据脱敏</li>
+<li>数据加密</li>
+<li>隐私计算</li>
+</ul>
+<h3 id="10-1-4-数仓建模"><a href="#10-1-4-数仓建模" class="headerlink" title="10.1.4 数仓建模"></a>10.1.4 数仓建模</h3><ul>
+<li>离线数仓建模</li>
+<li>实时数仓建模</li>
+<li>维度建模（Kimball）</li>
+<li>Data Vault</li>
+</ul>
+<h2 id="10-2-架构设计思维"><a href="#10-2-架构设计思维" class="headerlink" title="10.2 架构设计思维"></a>10.2 架构设计思维</h2><p>这是专家级与高级开发的本质区别：</p>
+<h3 id="10-2-1-选型能力"><a href="#10-2-1-选型能力" class="headerlink" title="10.2.1 选型能力"></a>10.2.1 选型能力</h3><p>能够在不同的业务场景（如电商大促、金融风控、物联网监控）下给出最合适的方案</p>
+<h3 id="10-2-2-高可用与灾备"><a href="#10-2-2-高可用与灾备" class="headerlink" title="10.2.2 高可用与灾备"></a>10.2.2 高可用与灾备</h3><p>设计具备容错能力的多活架构</p>
+<h3 id="10-2-3-成本优化"><a href="#10-2-3-成本优化" class="headerlink" title="10.2.3 成本优化"></a>10.2.3 成本优化</h3><p>通过冷热数据分级存储、资源弹性伸缩（FinOps）降低云账单成本</p>
+<h1 id="11-参考资料"><a href="#11-参考资料" class="headerlink" title="11 参考资料"></a>11 参考资料</h1><p><a href="00-GTD/C2-%E6%97%A5%E6%B8%85%E5%8D%95%E4%B8%8E%E5%A4%87%E5%BF%98%E5%BD%95/C2.1-daily/2025Q2-06.md">Daily-0609~0615</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/AI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/AI/" class="post-title-link" itemprop="url">AI开发技术图谱</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>岗位评估、项目素材库、面试执行手册等内容已拆分至 <a href="/03.raise/AI%E5%B2%97%E4%BD%8D%E8%AF%84%E4%BC%B0">AI 岗位评估</a>，本文档只保留知识体系本体。</p>
+</blockquote>
+<h1 id="1-分布式计算基础（存量强项，巩固为面试语言）"><a href="#1-分布式计算基础（存量强项，巩固为面试语言）" class="headerlink" title="1 分布式计算基础（存量强项，巩固为面试语言）"></a>1 分布式计算基础（存量强项，巩固为面试语言）</h1><p>一句话定位：这是我的地基，面试中要把它讲成”可迁移到 GPU&#x2F;AI 平台的调优方法论”，而不是单纯的框架使用经验。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.1 Spark 核心执行模型</strong> → <a href="/bigdata/Spark/Spark-execution-model">详见</a><blockquote>
+<p>要点：DAG 构建 → Stage 按宽依赖切分 → Task 并行执行；Shuffle 是 Stage 边界，也是绝大多数性能问题的发源地。<br><strong>面试点</strong>：优化只有三条路——减少 Shuffle 次数（Broadcast Join）、减少 Shuffle 数据量（map 端预聚合 + 列裁剪）、让 Shuffle 后分区均匀（倾斜治理 + AQE）。<br><strong>类比</strong>：Stage 同步屏障 ≈ GPU Kernel 同步点；Task 长尾 ≈ 静态 Batching 木桶效应；Shuffle 磁盘&#x2F;网络开销 ≈ HBM 读写瓶颈（对应 3.7 FlashAttention）。<br>参考：Apache Spark 官方文档 RDD Programming Guide &#x2F; Tuning Guide</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.2 数据倾斜的成因与治理</strong> → <a href="/bigdata/Spark/Spark-data-skew">详见</a><blockquote>
+<p>要点：成因是 key 分布不均导致单 Task 长尾；手段包括加盐打散、两阶段聚合（局部+全局）、Broadcast Join 消除 Shuffle、倾斜 key 单独处理。<br><strong>面试点</strong>：能说清如何<strong>提前抽样发现</strong>倾斜，而非事后救火。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.3 Spark 内存管理与 GC 调优</strong> → <a href="/bigdata/Spark/Spark-memory-gc">详见</a><blockquote>
+<p>要点：Executor 内存模型（执行内存 &#x2F; 存储内存的统一动态借用、堆外内存）；GC 频繁通常源于分区过小、对象过多或缓存过量。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.4 Flink 流批一体与状态管理</strong> → <a href="/bigdata/Flink/Flink-stream-batch-state">详见</a><blockquote>
+<p>要点：State Backend 选型（内存&#x2F;RocksDB）、Checkpoint 的 Barrier 对齐机制、Exactly-Once 语义如何达成。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.5 Ray 分布式计算核心概念</strong> → <a href="/bigdata/Ray/Ray">详见</a><blockquote>
+<p>要点：Actor 模型（有状态）vs Task（无状态）、分布式对象存储（Plasma）、动态任务图调度。<br><strong>面试点</strong>：<strong>为什么 AI 数据处理链路里 Ray 常比 Spark 更合适</strong>（异构资源、Python 原生、细粒度动态调度）。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.6 I&#x2F;O 优化手段</strong> → <a href="/bigdata/IO-optimization">详见</a><blockquote>
+<p>要点：列式存储的投影下推&#x2F;谓词下推收益来源、压缩算法选型（Snappy 快 vs Zstd 压缩比高）、小文件合并对元数据与调度开销的影响、异步预取与 MMap。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.7 数据格式对比：JSONL &#x2F; Parquet &#x2F; Arrow &#x2F; ORC</strong> → <a href="/bigdata/data-format-comparison">详见</a><blockquote>
+<p>要点：JSONL 需逐行解析（CPU 瓶颈），Parquet 列式+压缩（存储与扫描友好），Arrow 内存零拷贝列式（跨语言传输友好），ORC 与 Hive 生态强绑定。<br><strong>面试点</strong>：<strong>JSONL→Parquet&#x2F;Arrow 的吞吐提升主要来自”消除文本解析 + 只读需要的列 + 零拷贝”三点</strong>。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.8 资源调度与执行计划优化</strong> → <a href="/bigdata/Spark/Spark-scheduling-aqe">详见</a><blockquote>
+<p>要点：YARN&#x2F;K8s 的资源撮合逻辑、任务优先级与抢占、AQE（自适应查询执行）如何在运行时改分区数与 Join 策略。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>1.9 数据管道全链路设计范式</strong> → <a href="/bigdata/data-pipeline-design">详见</a><blockquote>
+<p>要点：接入→清洗→转换→输出的分层解耦、算子抽象与可复用性、幂等与重试设计、CPU 密集与 GPU 密集环节的资源池分离。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="2-大模型数据工程（预训练全流程）"><a href="#2-大模型数据工程（预训练全流程）" class="headerlink" title="2 大模型数据工程（预训练全流程）"></a>2 大模型数据工程（预训练全流程）</h1><p>一句话定位：这是岗位 B&#x2F;C 的日常工作主体，必须能<strong>从原始网页一口气讲到 Token ID</strong>，并在每个环节标出瓶颈与优化手段。</p>
+<p><strong>全流程主干</strong>：采集 → 格式提取 → 语言识别 → 规则过滤 → 质量过滤 → 去重 → 脱敏 → 配比混合 → Tokenization → 二进制打包</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.1 预训练数据采集与来源</strong> → <a href="/AI/data-engineering/pretrain-data-collection">详见</a><blockquote>
+<p>要点：网页（Common Crawl）&#x2F; 文档 &#x2F; 代码等多源异构；WARC 格式提取正文的难点（去模板、去导航）。<br>参考：Common Crawl 官方文档；论文《The Pile: An 800GB Dataset of Diverse Text》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.2 语言识别与规则过滤</strong> → <a href="/AI/data-engineering/language-id-rule-filter">详见</a><blockquote>
+<p>要点：fastText 语言分类器打分 + 阈值；规则过滤维度（长度、符号占比、重复行、停用词密度）。瓶颈：纯 CPU 密集，靠并行度与批量化提速。<br>参考：fastText 官方文档；论文《CCNet》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.3 数据质量过滤</strong> → <a href="/AI/data-engineering/data-quality-filter">详见</a><blockquote>
+<p>要点：分类器打分（以高质量语料为正样本训练轻量分类器）+ 规则组合；核心 Tradeoff 是召回质量 vs 数据量损失。<br>参考：GPT-3 论文附录数据过滤方法；论文《The RefinedWeb Dataset for Falcon LLM》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.4 MinHash &#x2F; LSH 模糊去重</strong>（高频必问） → <a href="/AI/data-engineering/minhash-lsh-dedup">详见</a><blockquote>
+<p>要点：Shingling → MinHash 签名（用最小哈希估计 Jaccard 相似度）→ 分带（Banding）分桶 → 桶内两两比对 → 连通图求重复簇。工程要点：签名长度与 band 数决定精确率&#x2F;召回率的权衡；Hash 计算是 CPU 热点，桶内比对易数据倾斜。<br>参考：《Mining of Massive Datasets》第 3 章；论文《Deduplicating Training Data Makes Language Models Better》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.5 数据脱敏（PII）</strong> → <a href="/AI/data-engineering/pii-scrubbing">详见</a><blockquote>
+<p>要点：正则 + NER 双路识别（邮箱&#x2F;手机号&#x2F;身份证&#x2F;密钥），替换而非删除以保持文本结构；需权衡误杀率。<br>参考：Microsoft Presidio 官方文档；论文《Scrubbing Sensitive PII from Large Datasets》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.6 数据配比与混合策略</strong> → <a href="/AI/data-engineering/data-mixing-strategy">详见</a><blockquote>
+<p>要点：各域（网页&#x2F;书籍&#x2F;代码&#x2F;多语言）采样权重与重复轮次（epoch）设计；Data Mixing Laws 思路是用小规模实验预测混合比例对最终 loss 的影响。<br>参考：论文《The Pile》配比章节；论文《Data Mixing Laws》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.7 Tokenization：BPE 原理</strong> → <a href="/AI/data-engineering/tokenization-bpe">详见</a><blockquote>
+<p>要点：从字符起始，贪心合并语料中频率最高的相邻符号对，直到词表大小达标；解决 OOV 与词表爆炸。<br>参考：论文《Neural Machine Translation of Rare Words with Subword Units》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.8 Tokenization：SentencePiece 原理</strong> → <a href="/AI/data-engineering/tokenization-sentencepiece">详见</a><blockquote>
+<p>要点：直接在原始文本（无需预分词）上训练，支持 Unigram 语言模型式的概率化子词切分，天然适配中日韩等无空格语言。对比 BPE：Unigram 是概率最优切分，BPE 是频率贪心合并。<br>参考：论文《SentencePiece》；官方 GitHub 文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>2.9 DataLoader 参数调优</strong> → <a href="/AI/data-engineering/dataloader-tuning">详见</a><blockquote>
+<p>要点：<code>num_workers</code>（并行加载子进程数，过高会抢 CPU 与内存）、<code>pin_memory</code>（锁页内存让 H2D 拷贝可异步 DMA）、<code>prefetch_factor</code>（每 worker 预取批数，掩盖 I&#x2F;O 延迟）。判断依据：GPU 利用率呈锯齿状 → 数据供给不足。<br>参考：PyTorch 官方文档 <code>torch.utils.data.DataLoader</code></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><strong>全流程瓶颈图（面试白板可直接画）</strong>：格式提取（CPU&#x2F;解析）→ 语言识别（CPU&#x2F;模型推理）→ 质量过滤（GPU&#x2F;批量推理）→ 去重（CPU Hash + Shuffle 倾斜）→ Tokenization（CPU 密集）→ 打包（I&#x2F;O + 格式）。</p>
+</blockquote>
+<h1 id="3-GPU-推理与-CUDA-体系（最大缺口，P0）"><a href="#3-GPU-推理与-CUDA-体系（最大缺口，P0）" class="headerlink" title="3 GPU 推理与 CUDA 体系（最大缺口，P0）"></a>3 GPU 推理与 CUDA 体系（最大缺口，P0）</h1><p>一句话定位：<strong>用大数据的调度&#x2F;内存&#x2F;批处理直觉去理解 GPU</strong>，是我最快的学习路径，也是面试中最好的表达桥梁。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.1 CUDA 编程模型基础</strong> → <a href="/AI/gpu-inference/cuda-programming-model">详见</a><blockquote>
+<p>要点：Grid → Block → Thread 三层层次，Warp（32 线程）是真实调度单位，SM 是执行硬件；显存层次为寄存器 &gt; 共享内存 &gt; L2 &gt; 全局内存，速度差数量级。<br><strong>类比</strong>：Warp 调度 ≈ Spark Task 调度；显存层次 ≈ 内存&#x2F;磁盘分层存储。<br>参考：《CUDA C++ Programming Guide》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.2 显存管理与 OOM 排查</strong> → <a href="/AI/gpu-inference/gpu-memory-oom">详见</a><blockquote>
+<p>要点：常见成因——batch&#x2F;序列过长、显存碎片化、中间张量未释放、缓存分配器未归还；排查手段——<code>nvidia-smi</code>、PyTorch 显存快照与 <code>memory_summary</code>、分析分配器保留内存 vs 实际使用内存的差值。<br>参考：PyTorch 官方文档 CUDA semantics</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.3 性能瓶颈定位方法（利用率&#x2F;吞吐&#x2F;并发&#x2F;调度&#x2F;通信）</strong> → <a href="/AI/gpu-inference/perf-bottleneck-diagnosis">详见</a><blockquote>
+<p>要点：先判定瓶颈类别——GPU 利用率低但 CPU 满 → 数据供给或前处理瓶颈；Kernel 间有空隙 → 调度&#x2F;同步问题；多卡场景吞吐不线性 → 通信瓶颈。<br><strong>面试点</strong>：必须能回答”你怎么知道是 GPU 而不是 CPU 瓶颈”。<br>参考：Nsight Systems 用户指南；nvidia-smi 手册</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.4 KV Cache 机制与优化</strong> → <a href="/AI/gpu-inference/kv-cache">详见</a><blockquote>
+<p>要点：自回归生成中缓存历史 token 的 K&#x2F;V 避免重复计算，代价是显存随 batch × 序列长度线性增长，成为吞吐上限的主因；优化方向包括分页管理、量化 KV、共享前缀复用。<br>参考：PagedAttention 论文；Hugging Face 博客《LLM 推理中的 KV Cache 详解》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.5 vLLM 与 PagedAttention</strong> → <a href="/AI/gpu-inference/vllm-pagedattention">详见</a><blockquote>
+<p>要点：借鉴操作系统虚拟内存分页，把 KV Cache 切成固定大小 block 非连续存放，消除显存碎片与预留浪费，显存利用率大幅提升；配合前缀共享（Copy-on-Write）。<br>参考：论文《Efficient Memory Management for LLM Serving with PagedAttention》(Kwon et al., 2023)；vLLM 官方文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.6 Continuous &#x2F; Dynamic Batching</strong> → <a href="/AI/gpu-inference/continuous-dynamic-batching">详见</a><blockquote>
+<p>要点：静态 Batching 需等最长序列跑完（木桶效应，GPU 空转）；Continuous Batching 在<strong>迭代粒度</strong>上完成即出队、新请求即插入，显著提升吞吐。Dynamic Batching 则是服务层按时间窗口&#x2F;队列深度聚合请求。<br><strong>类比</strong>：≈ 流式微批 vs 攒批处理。<br>参考：NVIDIA Triton Inference Server 文档 Dynamic Batching 章节</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.7 FlashAttention 原理</strong> → <a href="/AI/gpu-inference/flashattention">详见</a><blockquote>
+<p>要点：Attention 的瓶颈是 HBM 读写而非算力（IO-bound）；通过 Tiling 分块 + 在片上 SRAM 内融合 softmax（online softmax）避免物化 N×N 注意力矩阵，减少显存读写并降低显存占用，且是<strong>精确</strong>而非近似。不要求推公式，要能说清优化动机。<br>参考：论文《FlashAttention》(Dao et al., 2022) 及 FlashAttention-2</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.8 TensorRT-LLM 架构与部署流程</strong> → <a href="/AI/gpu-inference/tensorrt-llm">详见</a><blockquote>
+<p>要点：编译式优化路线——图优化与算子融合、Kernel 自动选优、量化集成、In-flight Batching、多 GPU 并行策略封装；流程为模型转换 → 构建 Engine → 部署（常配 Triton）。代价是编译耗时与灵活性下降。<br>参考：NVIDIA TensorRT-LLM 官方文档与 GitHub</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.9 SGLang 架构与适用场景</strong> → <a href="/AI/gpu-inference/sglang">详见</a><blockquote>
+<p>要点：面向<strong>结构化&#x2F;多轮&#x2F;复杂控制流</strong>的 LLM 程序，核心是 RadixAttention 前缀树复用 KV Cache + 前端 DSL 编排，适合 Agent、批量结构化抽取等前缀高度重复的场景。<br>参考：论文《SGLang: Efficient Execution of Structured Language Model Programs》；官方文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>3.10 多卡&#x2F;多机的通信与调度瓶颈</strong> → <a href="/AI/gpu-inference/multi-gpu-communication">详见</a><blockquote>
+<p>要点：张量并行（TP，通信密集，宜同机 NVLink）vs 流水并行（PP，气泡问题）；NCCL 的 AllReduce&#x2F;AllGather 原语与拓扑感知；判断通信瓶颈的方法是看扩展效率是否线性。<br>参考：NCCL 官方文档；论文《DeepSpeed-Inference》</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><strong>面试串讲路径（一次推理请求的一生）</strong>：请求进入 → 服务层 Dynamic Batching 聚合 → 调度器按 Continuous Batching 组 batch → Prefill（FlashAttention 计算，写入 KV Cache 分页 block）→ Decode 逐 token 迭代（复用 KV Cache）→ 完成即出队释放 block → 返回。能画出这张图并标注每个位置的优化点，3 章基本过关。</p>
+</blockquote>
+<h1 id="4-模型压缩与量化"><a href="#4-模型压缩与量化" class="headerlink" title="4 模型压缩与量化"></a>4 模型压缩与量化</h1><p>一句话定位：面试考的不是算法推导，而是**”效果&#x2F;成本&#x2F;吞吐&#x2F;稳定性”四维 Tradeoff 的量化评估能力**。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>4.1 量化基础：INT8&#x2F;INT4 数值表示与精度损失</strong> → <a href="/AI/quantization/quantization-basics">详见</a><blockquote>
+<p>要点：用 scale&#x2F;zero-point 把浮点范围映射到低位整数；精度损失来自动态范围截断与舍入，异常值（outlier）是主要杀手；对称&#x2F;非对称、逐张量&#x2F;逐通道&#x2F;逐组粒度的取舍。收益：显存减半以上 + 带宽降低 + 低精度算力更高。<br>参考：论文《A Survey of Quantization Methods for Efficient Neural Network Inference》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>4.2 PTQ（训练后量化）</strong> → <a href="/AI/quantization/ptq">详见</a><blockquote>
+<p>要点：仅需少量校准集统计激活分布，成本极低、不改训练流程，适合快速上线；INT8 通常损失可控，INT4 需更精细算法。<br>参考：NVIDIA TensorRT 量化文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>4.3 QAT（量化感知训练）</strong> → <a href="/AI/quantization/qat">详见</a><blockquote>
+<p>要点：训练中插入伪量化节点，用 STE 近似梯度，让模型自适应量化噪声；精度保留更好但需训练资源与数据，适合精度敏感场景。<br>参考：PyTorch 官方文档 Quantization（QAT 章节）</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>4.4 GPTQ 算法</strong> → <a href="/AI/quantization/gptq">详见</a><blockquote>
+<p>要点：逐层、逐列量化并用二阶信息（Hessian 近似）对未量化权重做<strong>误差补偿</strong>，使 INT4 也能保持较好精度；一次校准即可，无需训练。<br>参考：论文《GPTQ》(Frantar et al., 2022)</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>4.5 知识蒸馏</strong> → <a href="/AI/quantization/knowledge-distillation">详见</a><blockquote>
+<p>要点：Teacher 输出软标签（带温度的概率分布）承载类间相似性信息，Student 用软标签 + 硬标签联合 Loss 学习；适合把大模型能力迁到小模型以降本。<br>参考：论文《Distilling the Knowledge in a Neural Network》(Hinton et al., 2015)</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>4.6 模型剪枝</strong> → <a href="/AI/quantization/model-pruning">详见</a><blockquote>
+<p>要点：非结构化剪枝压缩率高但稀疏不规则，<strong>通用硬件难获实际加速</strong>；结构化剪枝（整通道&#x2F;整头&#x2F;整层）能真实提速但精度损失更大。<br><strong>面试点</strong>：区分”理论 FLOPs 下降”与”实际墙钟加速”。<br>参考：论文《The State of Sparsity in Deep Neural Networks》；综述《A Survey on Deep Neural Network Pruning》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>4.7 压缩方案的四维评估体系</strong> → <a href="/AI/quantization/compression-evaluation-framework">详见</a><blockquote>
+<p>要点：建立「效果损失% × 成本降低% × 吞吐提升倍数 × 稳定性（长尾&#x2F;异常率）」评估表，配合业务可接受阈值（如效果损失&lt;1% 换成本降 40%）；小模型替换也纳入同一框架比较。<br>产出物：一份「压缩方式 × 四维」选型对比表模板。<br>参考：MLPerf Inference Benchmark 方法论</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="5-Profiling-与性能分析（方法论比工具更重要）"><a href="#5-Profiling-与性能分析（方法论比工具更重要）" class="headerlink" title="5 Profiling 与性能分析（方法论比工具更重要）"></a>5 Profiling 与性能分析（方法论比工具更重要）</h1><p>一句话定位：面试真正考的是**”不凭感觉优化”**——先量化基线，再定位，再验证收益。</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>5.1 PyTorch Profiler</strong> → <a href="/AI/profiling/pytorch-profiler">详见</a><blockquote>
+<p>要点：采集 CPU&#x2F;GPU 时间线、算子耗时排序、显存占用趋势、Kernel 与 Python 栈关联；关键指标是 GPU Kernel 占比与算子 Top-N 耗时。<br>参考：PyTorch 官方 Profiler 教程</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>5.2 Nsight Systems</strong> → <a href="/AI/profiling/nsight-systems">详见</a><blockquote>
+<p>要点：系统级时间线，看 Kernel 执行、H2D&#x2F;D2H 拷贝、CUDA Stream 并发与同步点；<strong>Kernel 之间的空隙就是 GPU 空转</strong>，是首要优化目标。<br>参考：NVIDIA Nsight Systems 用户指南</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>5.3 大数据工具 → GPU 工具的概念映射</strong>（我的表达优势） → <a href="/AI/profiling/bigdata-to-gpu-mapping">详见</a><blockquote>
+<p>要点映射表：Spark UI 的 Stage&#x2F;Task 耗时分布 ↔ Nsight 的 Kernel 时间线；Shuffle 读写量 ↔ 显存带宽&#x2F;拷贝量；长尾 Task ↔ 长尾 Kernel &#x2F; 木桶效应 batch；Executor 内存溢出 ↔ 显存 OOM。<br>参考：Spark 官方文档 Web UI 章节；Flink 官方文档 Web UI 章节</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>5.4 性能基线（Benchmark）建设方法论</strong> → <a href="/AI/profiling/benchmark-methodology">详见</a><blockquote>
+<p>要点：固定输入分布、固定环境、区分预热与稳定态、报告 P50&#x2F;P99 而非仅均值、明确吞吐与延迟的取舍点。<br>参考：MLPerf Benchmark 方法论</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>5.5 Profiling 驱动优化的标准动作</strong> → <a href="/AI/profiling/profiling-driven-optimization">详见</a><blockquote>
+<p>要点：采集基线 → 定位 Top 耗时算子&#x2F;Stage → 提出假设与预期收益 → 单变量验证 → 前后对比数据留档 → 沉淀为工具&#x2F;模板。<br><strong>面试点</strong>：这套动作在 Spark 和 GPU 上完全同构，是我最强的可迁移叙事。<br>参考：NVIDIA《GPU Performance Analysis and Optimization》博客系列</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="6-系统级语言（P2，达到”能读能聊”即可）"><a href="#6-系统级语言（P2，达到”能读能聊”即可）" class="headerlink" title="6 系统级语言（P2，达到”能读能聊”即可）"></a>6 系统级语言（P2，达到”能读能聊”即可）</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>6.1 C++ 内存管理</strong> → <a href="/AI/systems/cpp-memory-management">详见</a><blockquote>
+<p>要点：RAII（资源获取即初始化，靠析构自动释放）；<code>unique_ptr</code> 独占所有权、<code>shared_ptr</code> 引用计数（注意循环引用用 <code>weak_ptr</code> 破除）。<br>参考：《Effective Modern C++》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>6.2 C++ 并发原语</strong> → <a href="/AI/systems/cpp-concurrency-primitives">详见</a><blockquote>
+<p>要点：线程池的任务队列与工作窃取；<code>mutex</code> 适合临界区较大，<code>atomic</code> 适合简单计数&#x2F;标志；内存序概念存在感知即可。<br>参考：《C++ Concurrency in Action》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>6.3 Rust 所有权机制</strong>（若岗位倾向 Rust） → <a href="/AI/systems/rust-ownership">详见</a><blockquote>
+<p>要点：所有权 + 借用检查在编译期消除数据竞争与悬垂指针；与 C++ 手工管理的对比是核心话术。<br>参考：《The Rust Programming Language》(The Book)</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>6.4 CUDA Kernel 代码阅读能力</strong> → <a href="/AI/systems/cuda-kernel-reading">详见</a><blockquote>
+<p>要点：找向量加法、朴素矩阵乘、reduction 三段代码，读懂全局索引计算（<code>blockIdx*blockDim+threadIdx</code>）、边界判断、共享内存复用、内存访问是否合并（coalesced）。<br>产出物：能口头讲清一段 CUDA Kernel 的执行逻辑与访存模式。<br>参考：《CUDA C++ Programming Guide》；NVIDIA CUDA Samples</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="7-AI-Agent-架构（岗位-A-核心，C-加分）"><a href="#7-AI-Agent-架构（岗位-A-核心，C-加分）" class="headerlink" title="7 AI Agent 架构（岗位 A 核心，C 加分）"></a>7 AI Agent 架构（岗位 A 核心，C 加分）</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>7.1 Agent 基本范式</strong> → <a href="/AI/agent/agent-basic-paradigm">详见</a><blockquote>
+<p>要点：感知 → 规划 → 执行 → 观察的闭环；ReAct 让推理（Thought）与行动（Action）交替，使决策过程可追踪、可干预。<br>参考：论文《ReAct: Synergizing Reasoning and Acting in Language Models》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>7.2 LangChain 核心组件</strong> → <a href="/AI/agent/langchain-core-components">详见</a><blockquote>
+<p>要点：Chain（任务链组合）、Memory（会话状态）、Retriever（检索增强）、Tool（外部能力）；本质是 LLM 调用的编排与抽象层。<br>参考：LangChain 官方文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>7.3 LangGraph 状态机式编排</strong> → <a href="/AI/agent/langgraph-state-machine">详见</a><blockquote>
+<p>要点：把 Agent 流程建模为带状态的图，支持条件分支、循环、检查点与人工介入；相比线性 Chain 更适合复杂可控流程。<br><strong>类比</strong>：≈ 大数据任务调度的 DAG 编排 + 状态回放。<br>参考：LangGraph 官方文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>7.4 工具调用（Function Calling &#x2F; Tool Use）</strong> → <a href="/AI/agent/function-calling-tool-use">详见</a><blockquote>
+<p>要点：以 JSON Schema 描述工具，模型生成结构化参数，框架校验并路由执行，结果回填上下文再次推理；难点是参数幻觉与失败重试。<br>参考：OpenAI 官方文档 Function calling；论文《Toolformer》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>7.5 多 Agent 协作模式</strong> → <a href="/AI/agent/multi-agent-collaboration-patterns">详见</a><blockquote>
+<p>要点：Supervisor 模式（主 Agent 分派与汇总，职责清晰易控）、辩论&#x2F;互评模式（多 Agent 交叉校验提升事实性，代价是成本翻倍）；选型看任务是否可分解与对准确性的要求。<br>参考：论文《AutoGen》；论文《Improving Factuality and Reasoning through Multiagent Debate》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>7.6 Agent 记忆机制</strong> → <a href="/AI/agent/agent-memory-mechanism">详见</a><blockquote>
+<p>要点：短期记忆 &#x3D; 上下文窗口（需摘要压缩）；长期记忆 &#x3D; 向量库存储历史交互并按相关性召回；MemGPT 思路是把上下文当”内存”、外部存储当”磁盘”做分页调度。<br>参考：论文《MemGPT》；LangChain Memory 文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>7.7 Agent 可靠性保障</strong> → <a href="/AI/agent/agent-reliability-safeguards">详见</a><blockquote>
+<p>要点：幻觉控制（检索接地、结构化输出约束、自校验）、异常处理（超时&#x2F;重试&#x2F;降级）、Human-in-the-loop 关键节点人工确认、全链路可观测与回放。金融场景尤其要强调可审计。<br>参考：论文《Survey of Hallucination in NLG》；LangChain Human-in-the-loop 文档</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="8-AI-平台-多模态-RAG（岗位-A、C-的复习重心）"><a href="#8-AI-平台-多模态-RAG（岗位-A、C-的复习重心）" class="headerlink" title="8 AI 平台 &#x2F; 多模态 &#x2F; RAG（岗位 A、C 的复习重心）"></a>8 AI 平台 &#x2F; 多模态 &#x2F; RAG（岗位 A、C 的复习重心）</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>8.1 AI 平台全流程架构（MLOps）</strong> → <a href="/AI/platform/mlops-full-pipeline">详见</a><blockquote>
+<p>要点：数据标注 → 训练 → 评估 → 部署 → 监控 → 反馈闭环；关键能力是实验可复现、模型版本与血缘、自动化流水线、线上效果监控与回滚。<br>参考：Google Cloud《MLOps: Continuous delivery and automation pipelines in machine learning》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>8.2 模型托管服务设计要点</strong> → <a href="/AI/platform/model-hosting-service-design">详见</a><blockquote>
+<p>要点：镜像与环境标准化、弹性伸缩与冷启动、多版本灰度与 A&#x2F;B、资源配额与多租户隔离、推理网关统一鉴权与限流。<br>参考：华为云 ModelArts 文档；AWS SageMaker 文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>8.3 向量数据库选型与应用</strong> → <a href="/AI/platform/vector-database-selection">详见</a><blockquote>
+<p>要点：索引结构（HNSW 图索引低延迟高内存 &#x2F; IVF-PQ 省内存有损）、召回率 vs 延迟调参、过滤条件与向量检索的结合、写入与重建索引成本；自建（Milvus）vs 托管（Pinecone）的取舍。<br>参考：Milvus 官方文档；Pinecone《Vector database fundamentals》</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>8.4 RAG 检索增强链路</strong>（我的缺口，需做最小落地项目） → <a href="/AI/platform/rag-retrieval-pipeline">详见</a><blockquote>
+<p>要点：切片策略（长度&#x2F;语义&#x2F;重叠）→ Embedding 模型选型 → 向量+关键词混合召回 → Rerank 重排 → 上下文组装 → 生成；评估维度是召回率、忠实度（faithfulness）、答案相关性。<br>目标：产出一个”多模态检索 + RAG”最小可用项目作为面试差异化素材。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>8.5 全模态数据处理认知</strong>（我的缺口） → <a href="/AI/platform/omni-modal-data-processing">详见</a><blockquote>
+<p>要点：图像&#x2F;视频&#x2F;音频&#x2F;3D 的特征提取与预处理算子差异（解码、抽帧、重采样、点云体素化）；跨模态对齐（cross-modal embedding，CLIP 式对比学习）；多模态训练数据的配对组装与质量校验。视频&#x2F;3D 的存储与 I&#x2F;O 成本是平台设计的主要矛盾。<br>路径：借 Flink stream-native-AI &#x2F; FLIP-577 多模态处理方向深入。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>8.6 异构算力编排（CPU&#x2F;GPU&#x2F;NPU）</strong> → <a href="/AI/platform/heterogeneous-compute-orchestration">详见</a><blockquote>
+<p>要点：按算子画像分类调度（CPU 密集清洗 vs GPU 密集打标）、资源池分离与撮合、异构卡型的能力抽象与自动降级、失败恢复与断点续跑。<br>素材：把 DeepOps 巡检&#x2F;失败监控 + DAG 编排包装成”百亿级数据异构卡型自动化处理”的故事。</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>8.7 CI&#x2F;CD 在 AI 平台的落地</strong> → <a href="/AI/platform/cicd-for-ai-platform">详见</a><blockquote>
+<p>要点：代码&#x2F;数据&#x2F;模型三者版本联动、流水线触发条件、离线评估门禁（不达标不上线）、渐进式发布。<br>参考：Google MLOps 白皮书；Kubeflow 官方文档</p>
+</blockquote>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>8.8 数据资产化与标准化方法论</strong> → <a href="/AI/platform/data-asset-standardization">详见</a><blockquote>
+<p>要点：标准化（统一 Schema&#x2F;算子接口）→ 流程化（可编排的模板与 SOP）→ 资产化（可检索、可复用、可计量的数据与算子资产）；配套元数据、血缘、质量分与权限治理。<br>素材：uqs SQL 模板引擎 + ADR 驱动的平台抽象 + DeepOps 平台经验。<br>参考：《数据中台》行业白皮书；Netflix Tech Blog《Machine Learning Platform》系列</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/prompts/supplement-knowledge-point.prompt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/prompts/supplement-knowledge-point.prompt/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="知识点补充文档生成-Prompt"><a href="#知识点补充文档生成-Prompt" class="headerlink" title="知识点补充文档生成 Prompt"></a>知识点补充文档生成 Prompt</h1><blockquote>
+<p>用途：根据《AI开发技术图谱》(<code>AI/AI.md</code>) 中标记未完成（<code>[ ]</code>）的知识点，生成对应的深度补充文档，并把索引回写到图谱。可单条或批量执行。</p>
+</blockquote>
+<h2 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h2><p>你是一名知识库维护工程师，拥有对知识库文件的读取、搜索、创建、编辑权限。你的目标是把图谱里”只有提纲”的知识点，补齐成”可点进去深挖”的系统性笔记，并保证索引、链接、目录全部自洽。</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><ul>
+<li>必填：<code>目标知识点引用</code>，格式为「章节号 + 标题」，例如 <code>1.1.2 数据倾斜的成因与治理</code>。</li>
+<li>可选：<code>批量引用</code>，可一次传入多个知识点（换行或逗号分隔，逐个执行）。</li>
+</ul>
+<h2 id="知识库关键约定（必须遵守）"><a href="#知识库关键约定（必须遵守）" class="headerlink" title="知识库关键约定（必须遵守）"></a>知识库关键约定（必须遵守）</h2><ul>
+<li><strong>根目录</strong>：本仓库根（即 <code>AI/AI.md</code> 所在的父目录）。所有文档链接以根目录为起点。</li>
+<li><strong>链接格式（Hexo 兼容）</strong>：<code>/目录/文件名</code>（<strong>必须以 <code>/</code> 开头，且去掉结尾的 <code>.md</code></strong>）。<br>例：文档位于 <code>bigdata/Spark/Spark-data-skew.md</code> → 链接写作 <code>/bigdata/Spark/Spark-data-skew</code>。</li>
+<li><strong>索引条目格式</strong>（<code>AI/AI.md</code>）：<ul>
+<li>未完成：<code>- [ ] **1.1.2 数据倾斜的成因与治理**</code></li>
+<li>已完成：<code>- [x] **1.1.1 Spark 核心执行模型** → 详见 [Spark 核心执行模型](/bigdata/Spark/Spark-execution-model)</code></li>
+</ul>
+</li>
+<li><strong>新文档 frontmatter 模板</strong>（与仓库既有文档保持一致）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">layout: post</span><br><span class="line">title: &quot;知识点标题&quot;</span><br><span class="line">date: YYYY-MM-DD HH:MM:SS</span><br><span class="line">category: 所属领域</span><br><span class="line">tags:</span><br><span class="line"> - 标签1</span><br><span class="line"> - 标签2</span><br><span class="line">share: false</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="执行步骤"><a href="#执行步骤" class="headerlink" title="执行步骤"></a>执行步骤</h2><ol>
+<li><strong>锁定原文要点</strong>：读取 <code>AI/AI.md</code>，定位目标条目，完整摘录其下所有 <code>&gt; 要点：</code>、<code>&gt; 面试落点：</code>、<code>&gt; 可迁移话术：</code>、<code>&gt; 参考：</code> 等子项。这是内容<strong>唯一权威来源</strong>——不得遗漏任一要点，也不得自行引入与方案无关的扩展。</li>
+<li><strong>判定归属与目录</strong>：<ul>
+<li>优先复用已有领域库目录（如 1.1 分布式计算 → <code>bigdata/Spark/</code>、<code>bigdata/Flink/</code>；1.2~1.8 的 AI 专属主题 → 在 <code>AI/</code> 下新建语义化子目录，如 <code>AI/gpu-inference/</code>、<code>AI/data-engineering/</code>、<code>AI/agent/</code>、<code>AI/platform/</code>、<code>AI/quantization/</code>）。</li>
+<li>先用搜索确认目标目录是否已有相关文档；目录名统一小写英文 + 连字符。</li>
+</ul>
+</li>
+<li><strong>检索存量文档</strong>：在目标目录（<code>search_file</code>&#x2F;<code>search_content</code>）查找是否已有主题匹配的 <code>.md</code>。<ul>
+<li>若存在且主题贴合 → <strong>更新&#x2F;扩充</strong>该文档（在相关小节或末尾追加，不破坏其原有结构、不重复已有内容）。</li>
+<li>若不存在 → <strong>新建</strong>语义化文件名（kebab-case 或 PascalCase）的 <code>.md</code>，写入上面的 frontmatter。</li>
+</ul>
+</li>
+<li><strong>撰写文档内容</strong>：言简意赅、确保准确。建议结构：<ul>
+<li>一句话定义 &#x2F; 定位</li>
+<li>核心机制（逐条覆盖原条目全部要点，可用小标题 &#x2F; 列表）</li>
+<li>面试落点 &#x2F; 可迁移话术（原条目有则保留）</li>
+<li>参考来源（保留原条目 <code>&gt; 参考：</code>）</li>
+<li>以”讲清机制 + 给出关键 Tradeoff &#x2F; 数字”为度，避免冗长与编造。</li>
+</ul>
+</li>
+<li><strong>回写索引（关键）</strong>：<ul>
+<li>在 <code>AI/AI.md</code> 把目标条目改为完成态并加链接，保留其下全部 <code>&gt; 要点</code> 速记不动：<br><code>- [x] **1.1.2 数据倾斜的成因与治理** → 详见 [数据倾斜的成因与治理](/bigdata/Spark/Spark-data-skew)</code></li>
+<li>若该知识点所属知识域（如 1.1）设有<strong>汇总 &#x2F; 摘要小节（或规划中的索引节）</strong>，在该小节同步补一句摘要 + 同一链接；若无此类小节则仅更新条目本身。</li>
+<li><strong>只改动目标条目及必要的摘要小节，不触碰 <code>AI/AI.md</code> 其它内容。</strong></li>
+</ul>
+</li>
+<li><strong>输出结果</strong>（供后续流程消费，置于回复末尾的 HTML 注释块中，便于程序解析）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- SUPPLEMENT_RESULT</span><br><span class="line">knowledge_point: 1.1.2 数据倾斜的成因与治理</span><br><span class="line">action: created | updated</span><br><span class="line">doc_path: bigdata/Spark/Spark-data-skew.md</span><br><span class="line">doc_link: /bigdata/Spark/Spark-data-skew</span><br><span class="line">index_entry: AI/AI.md</span><br><span class="line">summary: 一句话摘要（含核心手段与面试落点）</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="质量红线"><a href="#质量红线" class="headerlink" title="质量红线"></a>质量红线</h2><ul>
+<li>链接必须真实存在、指向刚创建 &#x2F; 更新的文档；格式严格为 <code>/路径/无md</code>。</li>
+<li>内容不得偏离 <code>AI/AI.md</code> 原条目要点；宁可简短，不可编造。</li>
+<li>不生成与已有文档重复的冗余文件；能复用则复用。</li>
+</ul>
+<h2 id="示例调用"><a href="#示例调用" class="headerlink" title="示例调用"></a>示例调用</h2><blockquote>
+<p>请补充 <strong>1.1.2 数据倾斜的成因与治理</strong>：在知识库中找到合适的存放位置（优先复用 <code>bigdata/Spark/</code>），若无存量文档则新建；内容言简意赅且准确覆盖原条目要点；在 <code>AI/AI.md</code> 对应条目处改为完成态并加 <code>/</code> 开头、去 <code>.md</code> 的链接，若 1.1 节有摘要位置也补摘要与链接；最后按 <code>SUPPLEMENT_RESULT</code> 格式输出结果。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Spark/Spark-Shuffle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Spark/Spark-Shuffle/" class="post-title-link" itemprop="url">Spark Shuffle过程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/bigdata/Spark/attachments/9b118d5e78eed4afdeacf11a06cf7fb3_MD5.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Spark/Spark-execution-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Spark/Spark-execution-model/" class="post-title-link" itemprop="url">Spark 核心执行模型</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-一句话主线"><a href="#1-一句话主线" class="headerlink" title="1 一句话主线"></a>1 一句话主线</h1><p><strong>用户代码 → DAG → 按宽依赖切 Stage → Stage 内并行跑 Task → Shuffle 落盘作为 Stage 边界 → 下游 Stage 拉取。</strong></p>
+<p>理解 Spark 性能问题，本质就是理解这条链路上”哪一环把并行变成了串行、把内存变成了磁盘、把本地变成了网络”。</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>触发者</th>
+<th>数量决定因素</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Application</td>
+<td><code>spark-submit</code> 一次提交</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Job</td>
+<td>每个 <strong>Action</strong> 算子（<code>count</code>&#x2F;<code>collect</code>&#x2F;<code>save</code>）</td>
+<td>Action 个数</td>
+</tr>
+<tr>
+<td>Stage</td>
+<td>每个 <strong>宽依赖</strong>（Shuffle）</td>
+<td>Shuffle 次数 + 1</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>Stage 内每个 partition</td>
+<td>上游分区数 &#x2F; <code>spark.sql.shuffle.partitions</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>概念对齐与并发度换算（Executor &#x2F; core &#x2F; partition 的关系）见 <a href="/bigdata/Spark/Spark-task_split_block">Spark task split block</a>。</p>
+</blockquote>
+<h1 id="2-DAG-的构建：惰性求值"><a href="#2-DAG-的构建：惰性求值" class="headerlink" title="2 DAG 的构建：惰性求值"></a>2 DAG 的构建：惰性求值</h1><h2 id="2-1-Transformation-只记账，Action-才算账"><a href="#2-1-Transformation-只记账，Action-才算账" class="headerlink" title="2.1 Transformation 只记账，Action 才算账"></a>2.1 Transformation 只记账，Action 才算账</h2><p>RDD 上的 <code>map</code>&#x2F;<code>filter</code>&#x2F;<code>join</code> 等 Transformation <strong>不触发计算</strong>，只在 Driver 端记录”血缘”（Lineage）——即当前 RDD 由哪个父 RDD、经何种变换得来。只有遇到 Action 时，DAGScheduler 才回溯血缘生成执行计划并提交。</p>
+<p>这带来两个关键工程后果：</p>
+<ol>
+<li><strong>可优化</strong>：Driver 拿到的是完整算子链，可以做流水线融合（多个窄依赖算子合并进一个 Task，中间结果不落地，见 <a href="/bigdata/Spark/Spark-Codegen">Spark Codegen</a>）。</li>
+<li><strong>可容错</strong>：不需要 Checkpoint，丢失的 partition 可以按血缘重算。代价是血缘过长时重算成本高——这是 <code>cache</code>&#x2F;<code>checkpoint</code> 的存在理由。</li>
+</ol>
+<p>调试血缘：<code>rdd.toDebugString</code> 可打印依赖链与 Stage 边界。</p>
+<h2 id="2-2-三层调度对象"><a href="#2-2-三层调度对象" class="headerlink" title="2.2 三层调度对象"></a>2.2 三层调度对象</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Driver</span><br><span class="line"> ├── DAGScheduler   —— 面向 Stage：切分 DAG、提交 TaskSet、处理 Stage 失败重试</span><br><span class="line"> ├── TaskScheduler  —— 面向 Task：把 Task 分发到 Executor、处理推测执行/黑名单</span><br><span class="line"> └── SchedulerBackend —— 与集群管理器（YARN/K8s）交互申请资源</span><br></pre></td></tr></table></figure>
+
+<p>面试常考的分工边界：<strong>Stage 级失败重试属于 DAGScheduler，Task 级重试与推测执行属于 TaskScheduler</strong>。</p>
+<h1 id="3-Stage-划分：宽窄依赖是唯一标准"><a href="#3-Stage-划分：宽窄依赖是唯一标准" class="headerlink" title="3 Stage 划分：宽窄依赖是唯一标准"></a>3 Stage 划分：宽窄依赖是唯一标准</h1><h2 id="3-1-判定规则"><a href="#3-1-判定规则" class="headerlink" title="3.1 判定规则"></a>3.1 判定规则</h2><p>看<strong>父 RDD 的一个 partition 是否被多个子 partition 使用</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>依赖类型</th>
+<th>特征</th>
+<th>典型算子</th>
+<th>是否 Stage 边界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>窄依赖 Narrow</td>
+<td>父 partition → 唯一子 partition</td>
+<td><code>map</code>&#x2F;<code>filter</code>&#x2F;<code>mapPartitions</code>&#x2F;<code>union</code>、co-partitioned 的 join</td>
+<td>否，可流水线执行</td>
+</tr>
+<tr>
+<td>宽依赖 Wide &#x2F; Shuffle</td>
+<td>父 partition → 多个子 partition，需按 key 重分布</td>
+<td><code>groupByKey</code>&#x2F;<code>reduceByKey</code>&#x2F;<code>join</code>&#x2F;<code>distinct</code>&#x2F;<code>repartition</code></td>
+<td><strong>是</strong></td>
+</tr>
+</tbody></table>
+<h2 id="3-2-划分算法（反向回溯）"><a href="#3-2-划分算法（反向回溯）" class="headerlink" title="3.2 划分算法（反向回溯）"></a>3.2 划分算法（反向回溯）</h2><p>DAGScheduler 从 Action 对应的 final RDD 出发<strong>逆向遍历</strong>血缘：</p>
+<ol>
+<li>遇窄依赖 → 把该 RDD 并入当前 Stage，继续向父回溯；</li>
+<li>遇宽依赖 → 在此<strong>断开</strong>，当前 Stage 结束（成为 ResultStage 或 ShuffleMapStage），为父 RDD 新建一个 ShuffleMapStage，递归处理；</li>
+<li>结果是一个 Stage 级 DAG，无父 Stage 的先执行，有依赖的按拓扑序等待。</li>
+</ol>
+<p>因此有 <strong>Stage 数 &#x3D; Shuffle 次数 + 1</strong>（单 Job 内、无分支时）。</p>
+<h2 id="3-3-两类-Stage"><a href="#3-3-两类-Stage" class="headerlink" title="3.3 两类 Stage"></a>3.3 两类 Stage</h2><ul>
+<li><strong>ShuffleMapStage</strong>：输出写入 Shuffle 文件，供下游拉取；输出位置注册到 <code>MapOutputTracker</code>。</li>
+<li><strong>ResultStage</strong>：执行 Action 本身，结果返回 Driver 或写外部存储。</li>
+</ul>
+<p>一个附带收益：ShuffleMapStage 的输出会被复用。同一 RDD 被多个 Job 使用时，已完成的 ShuffleMapStage 可被<strong>跳过</strong>（Spark UI 中显示 <code>Skipped Stages</code>），这是”为什么第二次 Action 变快了”的答案。</p>
+<h1 id="4-Shuffle：Stage-边界上发生了什么"><a href="#4-Shuffle：Stage-边界上发生了什么" class="headerlink" title="4 Shuffle：Stage 边界上发生了什么"></a>4 Shuffle：Stage 边界上发生了什么</h1><p>Shuffle 是<strong>跨 Stage 的数据重分布</strong>，也是性能问题的主要发源地——它同时引入了磁盘 I&#x2F;O、网络传输、序列化三重开销，并且是<strong>必须全部完成才能进入下游</strong>的同步屏障。</p>
+<h2 id="4-1-Write-侧（上游-ShuffleMapTask）"><a href="#4-1-Write-侧（上游-ShuffleMapTask）" class="headerlink" title="4.1 Write 侧（上游 ShuffleMapTask）"></a>4.1 Write 侧（上游 ShuffleMapTask）</h2><p>每个 map task 按分区器（默认 <code>HashPartitioner</code>）计算目标 reduce 分区，写出<strong>一个数据文件 + 一个索引文件</strong>（Sort Shuffle）：</p>
+<table>
+<thead>
+<tr>
+<th>写入器</th>
+<th>触发条件</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>BypassMergeSortShuffleWriter</code></td>
+<td>分区数少（默认 ≤ 200）且无 map 端聚合</td>
+<td>每分区一临时文件，最后合并，跳过排序</td>
+</tr>
+<tr>
+<td><code>UnsafeShuffleWriter</code></td>
+<td>无聚合、无排序、支持序列化重定位</td>
+<td>在序列化后的二进制上排序，Tungsten 路径</td>
+</tr>
+<tr>
+<td><code>SortShuffleWriter</code></td>
+<td>兜底（需 map 端聚合&#x2F;排序时）</td>
+<td>内存缓冲 + 溢写（spill）+ 归并</td>
+</tr>
+</tbody></table>
+<p>关键点：<strong>内存不足时会 spill 到磁盘</strong>，spill 次数是判断 Shuffle 是否健康的重要指标（Spark UI 的 Spill (Memory)&#x2F;Spill (Disk) 两列）。</p>
+<h2 id="4-2-Read-侧（下游-ShuffleReduceTask）"><a href="#4-2-Read-侧（下游-ShuffleReduceTask）" class="headerlink" title="4.2 Read 侧（下游 ShuffleReduceTask）"></a>4.2 Read 侧（下游 ShuffleReduceTask）</h2><ol>
+<li>向 Driver 的 <code>MapOutputTracker</code> 查询自己那个分区的数据都在哪些 Executor 上；</li>
+<li>通过 Netty 并发拉取（<code>spark.reducer.maxSizeInFlight</code> 限制在途数据量）；</li>
+<li>需聚合则边拉边聚合，需排序则用 <code>ExternalSorter</code>（同样可能 spill）。</li>
+</ol>
+<h2 id="4-3-从执行模型看-Shuffle-的三类病症"><a href="#4-3-从执行模型看-Shuffle-的三类病症" class="headerlink" title="4.3 从执行模型看 Shuffle 的三类病症"></a>4.3 从执行模型看 Shuffle 的三类病症</h2><table>
+<thead>
+<tr>
+<th>症状</th>
+<th>执行模型层面的解释</th>
+<th>对策方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>少数 Task 拖尾（99&#x2F;100 completed 卡住）</td>
+<td>分区器把大量同 key 数据打到同一 reduce 分区 → 单 Task 数据量畸大</td>
+<td>见 <a href="/bigdata/Spark/Spark-data-skew">Spark 数据倾斜</a>：加盐打散、两阶段聚合、Broadcast Join 消除 Shuffle</td>
+</tr>
+<tr>
+<td>Shuffle 数据量巨大 &#x2F; 磁盘打满</td>
+<td>宽依赖过多，且未做 map 端预聚合</td>
+<td><code>reduceByKey</code> 替代 <code>groupByKey</code>（map 端 combine）；提前列裁剪与过滤下推</td>
+</tr>
+<tr>
+<td>分区数不合理</td>
+<td><code>spark.sql.shuffle.partitions</code> 默认 200，与实际数据量脱节：过大产生大量空 Task 调度开销，过小则单 Task OOM</td>
+<td>开启 AQE 让运行时动态合并&#x2F;拆分分区</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Shuffle 全过程图见 <a href="/bigdata/Spark/Spark-Shuffle">Spark Shuffle</a>。</p>
+</blockquote>
+<h1 id="5-AQE：让静态计划变成运行时自适应"><a href="#5-AQE：让静态计划变成运行时自适应" class="headerlink" title="5 AQE：让静态计划变成运行时自适应"></a>5 AQE：让静态计划变成运行时自适应</h1><p>Spark 3.x 的 Adaptive Query Execution 正是在<strong>Stage 边界</strong>上做决策——因为 Shuffle 写完后，Driver 首次掌握了真实的数据统计（各分区实际字节数），可以据此改写尚未执行的下游计划：</p>
+<ol>
+<li><strong>动态合并分区</strong>（Coalesce Partitions）：把 200 个小分区合并成少数几个，消除空 Task；</li>
+<li><strong>动态切换 Join 策略</strong>：发现一侧真实体积远小于阈值，把 Sort-Merge Join 改为 Broadcast Join，直接省掉一次 Shuffle；</li>
+<li><strong>动态处理倾斜 Join</strong>（Skew Join）：把超大分区自动拆成多个子分区并复制另一侧数据。</li>
+</ol>
+<p>这也解释了 AQE 的能力边界：<strong>它只能在 Stage 边界生效，无法优化 Stage 内部</strong>。</p>
+<blockquote>
+<p>执行计划层的规则优化（列裁剪、谓词下推、Join Reorder）见 <a href="/bigdata/Spark/Spark-SQL">Spark SQL</a>。</p>
+</blockquote>
+<h1 id="6-面试速答模板"><a href="#6-面试速答模板" class="headerlink" title="6 面试速答模板"></a>6 面试速答模板</h1><p><strong>问：讲讲 Spark 的执行模型。</strong></p>
+<blockquote>
+<p>从 Action 触发说起：Transformation 只构建血缘 DAG，Action 触发 DAGScheduler 逆向回溯，以宽依赖为界切出 Stage——窄依赖能流水线融合所以合并进同一 Stage，宽依赖需要跨节点按 key 重分布所以必须断开。每个 Stage 按 partition 展开成 TaskSet 交给 TaskScheduler 分发，Stage 之间通过 Shuffle 文件衔接，是个同步屏障。所以性能优化的落点很明确：<strong>减少 Shuffle 次数、减少 Shuffle 数据量、让 Shuffle 后的分区分布均匀</strong>，这三条分别对应 Broadcast Join、map 端预聚合与列裁剪、以及倾斜治理和 AQE。</p>
+</blockquote>
+<p><strong>追问：为什么宽依赖一定要切 Stage？</strong></p>
+<blockquote>
+<p>因为子 partition 的输入依赖多个父 partition，必须等父 Stage <strong>全部</strong> task 完成才能确定数据完整——无法像窄依赖那样一条记录来了就往下走。这个”全部完成”就是同步屏障，也是长尾 Task 会阻塞整个作业的根因。</p>
+</blockquote>
+<h1 id="7-可迁移的方法论"><a href="#7-可迁移的方法论" class="headerlink" title="7 可迁移的方法论"></a>7 可迁移的方法论</h1><p>这套模型不止用于 Spark，它是<strong>所有分布式执行引擎的通用骨架</strong>，横向迁移时只需替换名词：</p>
+<table>
+<thead>
+<tr>
+<th>Spark</th>
+<th>Flink</th>
+<th>GPU 推理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stage 边界（同步屏障）</td>
+<td>算子链断点 &#x2F; Checkpoint Barrier</td>
+<td>Kernel 间的同步点</td>
+</tr>
+<tr>
+<td>Task 长尾</td>
+<td>反压（Backpressure）与热点 subtask</td>
+<td>静态 Batching 的木桶效应</td>
+</tr>
+<tr>
+<td>Shuffle 磁盘 + 网络开销</td>
+<td>网络 Shuffle &#x2F; 状态访问</td>
+<td>HBM 读写（FlashAttention 优化的对象）</td>
+</tr>
+<tr>
+<td>Executor 内存 OOM</td>
+<td>TaskManager 堆外内存超限</td>
+<td>显存 OOM</td>
+</tr>
+<tr>
+<td>Spark UI 定位 Top 耗时 Stage</td>
+<td>Flink Web UI 反压面板</td>
+<td>Nsight Systems Kernel 时间线</td>
+</tr>
+</tbody></table>
+<p><strong>共同的排查动作是同构的</strong>：采集基线 → 找到最慢的那个执行单元 → 判断它慢在计算&#x2F;内存&#x2F;I-O&#x2F;通信哪一层 → 单变量验证优化收益。</p>
+<blockquote>
+<p>与 Flink 的抽象差异对比见 <a href="/bigdata/Flink/Flink-VS-Spark">Flink VS Spark</a>；面试中的应用场景见 <a href="/AI/AI">AI 开发技术图谱</a> 1.1.1。</p>
+</blockquote>
+<h1 id="8-参考资料"><a href="#8-参考资料" class="headerlink" title="8 参考资料"></a>8 参考资料</h1><ol>
+<li>Apache Spark 官方文档 —— RDD Programming Guide &#x2F; Tuning Guide</li>
+<li>《Spark 性能优化指南——高级篇》（美团技术团队）</li>
+<li>Matei Zaharia et al., <em>Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</em>, NSDI 2012</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-Sql-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-Sql-Model/" class="post-title-link" itemprop="url">Flink SQL支持model</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-Flink-SQL支持Model"><a href="#1-Flink-SQL支持Model" class="headerlink" title="1 Flink SQL支持Model"></a>1 Flink SQL支持Model</h1><h2 id="1-1-支持Model语法"><a href="#1-1-支持Model语法" class="headerlink" title="1.1 支持Model语法"></a>1.1 支持Model语法</h2><p><a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-437%3A+Support+ML+Models+in+Flink+SQL">https://cwiki.apache.org/confluence/display/FLINK/FLIP-437%3A+Support+ML+Models+in+Flink+SQL</a></p>
+<p><a href="https://issues.apache.org/jira/browse/FLINK-34992">https://issues.apache.org/jira/browse/FLINK-34992</a></p>
+<p>PR ID: 34993|35014|35016|35019</p>
+<h2 id="1-2-支持ML-predict"><a href="#1-2-支持ML-predict" class="headerlink" title="1.2 支持ML_predict"></a>1.2 支持ML_predict</h2><p><a href="https://issues.apache.org/jira/browse/FLINK-37777">https://issues.apache.org/jira/browse/FLINK-37777</a></p>
+<h2 id="1-3-Flink-agents"><a href="#1-3-Flink-agents" class="headerlink" title="1.3 Flink agents"></a>1.3 Flink agents</h2><p><a href="https://github.com/apache/flink-agents">https://github.com/apache/flink-agents</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Flink 时区问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>table.local-time-zone</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL-summary/" class="post-title-link" itemprop="url">Flink SQL summary</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

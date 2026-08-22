@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/35/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/35/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/multithread/32.multithreadWaitedSample02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/multithread/32.multithreadWaitedSample02/" class="post-title-link" itemprop="url">Java多线程等待的N种打开方式(2)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-08-12 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-12T00:00:00+00:00">2015-08-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h2><h2 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h2><p><code>CountDownLatch</code> 的作用：当一个线程需要另外一个或多个线程完成后，再开始执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">CountDownLatch</span> <span class="variable">countDownLatch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CountDownLatch</span>(<span class="number">2</span>); <span class="comment">//等待2次countdown</span></span><br><span class="line"><span class="keyword">final</span> <span class="type">Thread</span> <span class="variable">ta</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">  countDownLatch.countDown();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">final</span> <span class="type">Thread</span> <span class="variable">tb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  countDownLatch.countDown();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">final</span> <span class="type">Thread</span> <span class="variable">tc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    countDownLatch.await();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> InterruptedException e1) &#123;</span><br><span class="line">    e1.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">  doWork(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">ta.start();</span><br><span class="line">tb.start();</span><br><span class="line">tc.start();</span><br></pre></td></tr></table></figure>
+
+<h3 id="CountDownLatch实现原理"><a href="#CountDownLatch实现原理" class="headerlink" title="CountDownLatch实现原理"></a>CountDownLatch实现原理</h3><p><code>CountDownLatch</code>是通过<code>AQS</code>实现的。 <code>AQS</code> 全称 <code>AbstractQueuedSynchronizer</code>，是 <code>java.util.concurrent</code> 中提供的一种高效且可扩展的同步机制。它可以用来实现依赖 int 状态(<code>state</code>)的同步器，除了<code>CountDownLatch</code>，<code>ReentrantLock</code>、<code>Semaphore</code> 等功能实现都使用了它。</p>
+<p>在调用 <code>awit()</code>和<code>countDown()</code>的时候，发生了几个关键的调用关系</p>
+<p><img src="/images/Java/multithread/273364-20180608074920780-931190535.png" alt="img"></p>
+<p>首先在 <code>CountDownLatch</code> 类内部定义了一个 <code>Sync</code> 内部类，这个内部类就是继承自 <code>AbstractQueuedSynchronizer</code> 的，并且重写了方法 <code>tryAcquireShared</code>和<code>tryReleaseShared</code>。当调用 <code>awit()</code>方法时，<code>CountDownLatch</code> 会调用内部类<code>Sync</code> 的 <code>acquireSharedInterruptibly()</code> 方法，然后在这个方法中会调用 <code>tryAcquireShared</code> 方法，这个方法就是 <code>CountDownLatch</code> 的内部类 <code>Sync</code> 里重写的 <code>AbstractQueuedSynchronizer</code> 的方法。调用 <code>countDown()</code> 方法同理。</p>
+<h4 id="AQS的使用方法"><a href="#AQS的使用方法" class="headerlink" title="AQS的使用方法"></a>AQS的使用方法</h4><p>使用 <code>AbstractQueuedSynchronizer</code> 的标准化方式，大致分为两步：</p>
+<ol>
+<li><p>内部持有继承自 <code>AbstractQueuedSynchronizer</code> 的对象 <code>Sync</code>；</p>
+</li>
+<li><p>并在 <code>Sync</code> 内重写 <code>AbstractQueuedSynchronizer</code> 的<code>protected</code> 部分或全部方法，这些方法包括如下几个：</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">tryAcquire</span><span class="params">(<span class="type">int</span> arg)</span> &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">tryRelease</span><span class="params">(<span class="type">int</span> arg)</span> &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="type">int</span> <span class="title function_">tryAcquireShared</span><span class="params">(<span class="type">int</span> arg)</span> &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">tryReleaseShared</span><span class="params">(<span class="type">int</span> arg)</span> &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">isHeldExclusively</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用者可以通过重写这些方法，加入自己的判断逻辑，例如 <code>CountDownLatch</code> 在 <code>tryAcquireShared</code>中加入了判断，判断 <code>state</code> 是否不为0，如果不为0，才符合调用条件。</p>
+<ul>
+<li><p><code>tryAcquire</code>和<code>tryRelease</code>是对应的，前者是独占模式获取，后者是独占模式释放。</p>
+</li>
+<li><p><code>tryAcquireShared</code>和<code>tryReleaseShared</code>是对应的，前者是共享模式获取，后者是共享模式释放。</p>
+</li>
+</ul>
+<p> <code>CountDownLatch</code> 重写的方法 <code>tryAcquireShared</code> 实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="type">int</span> <span class="title function_">tryAcquireShared</span><span class="params">(<span class="type">int</span> acquires)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (getState() == <span class="number">0</span>) ? <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>判断 <code>state</code> 值是否为0，为0 返回1，否则返回 -1。<code>state</code> 值是 <code>AbstractQueuedSynchronizer</code> 类中的一个 <code>volatile</code> 变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="type">int</span> state;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>CountDownLatch</code> 中这个 <code>state</code> 值就是计数器，在调用 <code>await</code> 方法的时候，将值赋给 <code>state</code> 。</p>
+<h2 id="等待线程入队"><a href="#等待线程入队" class="headerlink" title="等待线程入队"></a><strong>等待线程入队</strong></h2><p>调用 <code>await()</code> 方法时，先去获取 <code>state</code> 的值，当计数器不为0的时候，说明还有需要等待的线程在运行，则调用 <code>doAcquireSharedInterruptibly</code> 方法，尝试加入等待队列 ，即调用 <code>addWaiter()</code>方法， 源码如下：</p>
+<p><strong>AQS 的核心部分</strong>: AQS 用内部的一个 Node 类维护一个 CHL Node FIFO 队列。将当前线程加入等待队列，并通过 <code>parkAndCheckInterrupt（）</code>方法实现当前线程的阻塞。下面一大部分都是在说明 CHL 队列的实现，里面用 CAS 实现队列出入不会发生阻塞。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">void</span> <span class="title function_">doAcquireSharedInterruptibly</span><span class="params">(<span class="type">int</span> arg)</span></span><br><span class="line">        <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">    	<span class="comment">//加入等待队列 				      </span></span><br><span class="line">        <span class="keyword">final</span> <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> addWaiter(Node.SHARED);</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">failed</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    	<span class="comment">// 进入 CAS 循环</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">                <span class="comment">//当一个节点(关联一个线程)进入等待队列后， 获取此节点的 prev 节点 </span></span><br><span class="line">                <span class="keyword">final</span> <span class="type">Node</span> <span class="variable">p</span> <span class="operator">=</span> node.predecessor();</span><br><span class="line">                <span class="comment">// 如果获取到的 prev 是 head，也就是队列中第一个等待线程</span></span><br><span class="line">                <span class="keyword">if</span> (p == head) &#123;</span><br><span class="line">                    <span class="comment">// 再次尝试申请 反应到 CountDownLatch 就是查看是否还有线程需要等待(state是否为0)</span></span><br><span class="line">                    <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> tryAcquireShared(arg);</span><br><span class="line">                    <span class="comment">// 如果 r &gt;=0 说明 没有线程需要等待了 state==0</span></span><br><span class="line">                    <span class="keyword">if</span> (r &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="comment">//尝试将第一个线程关联的节点设置为 head </span></span><br><span class="line">                        setHeadAndPropagate(node, r);</span><br><span class="line">                        p.next = <span class="literal">null</span>; <span class="comment">// help GC</span></span><br><span class="line">                        failed = <span class="literal">false</span>;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//经过自旋tryAcquireShared后，state还不为0，就会到这里，第一次的时候，waitStatus是0，那么node的waitStatus就会被置为SIGNAL，第二次再走到这里，就会用LockSupport的park方法把当前线程阻塞住</span></span><br><span class="line">                <span class="keyword">if</span> (shouldParkAfterFailedAcquire(p, node) &amp;&amp;</span><br><span class="line">                    parkAndCheckInterrupt())</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InterruptedException</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (failed)</span><br><span class="line">                cancelAcquire(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>我看看到上面先执行了 addWaiter() 方法，就是将当前线程加入等待队列，源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Marker to indicate a node is waiting in shared mode */</span></span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Node</span> <span class="variable">SHARED</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>();</span><br><span class="line"> <span class="comment">/** Marker to indicate a node is waiting in exclusive mode */</span></span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Node</span> <span class="variable">EXCLUSIVE</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">Node</span> <span class="title function_">addWaiter</span><span class="params">(Node mode)</span> &#123;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(Thread.currentThread(), mode);</span><br><span class="line">        <span class="comment">// 尝试快速入队操作，因为大多数时候尾节点不为 null</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">pred</span> <span class="operator">=</span> tail;</span><br><span class="line">        <span class="keyword">if</span> (pred != <span class="literal">null</span>) &#123;</span><br><span class="line">            node.prev = pred;</span><br><span class="line">            <span class="keyword">if</span> (compareAndSetTail(pred, node)) &#123;</span><br><span class="line">                pred.next = node;</span><br><span class="line">                <span class="keyword">return</span> node;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="comment">//如果尾节点为空(也就是队列为空) 或者尝试CAS入队失败(由于并发原因)，进入enq方法</span></span><br><span class="line">        enq(node);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面是向等待队列中添加等待者（waiter）的方法。首先构造一个 Node 实体，参数为当前线程和一个mode，这个mode有两种形式，一个是 SHARED ，一个是 EXCLUSIVE，请看上面的代码。然后执行下面的入队操作 addWaiter，和 enq() 方法的 else 分支操作是一样的，这里的操作如果成功了，就不用再进到 enq() 方法的循环中去了，可以提高性能。如果没有成功，再调用 enq() 方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">Node</span> <span class="title function_">enq</span><span class="params">(<span class="keyword">final</span> Node node)</span> &#123;</span><br><span class="line">    	<span class="comment">// 死循环+CAS保证所有节点都入队</span></span><br><span class="line">        <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">t</span> <span class="operator">=</span> tail;</span><br><span class="line">            <span class="comment">// 如果队列为空 设置一个空节点作为 head</span></span><br><span class="line">            <span class="keyword">if</span> (t == <span class="literal">null</span>) &#123; <span class="comment">// Must initialize</span></span><br><span class="line">                <span class="keyword">if</span> (compareAndSetHead(<span class="keyword">new</span> <span class="title class_">Node</span>()))</span><br><span class="line">                    tail = head;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//加入队尾</span></span><br><span class="line">                node.prev = t;</span><br><span class="line">                <span class="keyword">if</span> (compareAndSetTail(t, node)) &#123;</span><br><span class="line">                    t.next = node;</span><br><span class="line">                    <span class="keyword">return</span> t;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明：循环加 CAS 操作是实现乐观锁的标准方式，CAS 是为了实现原子操作而出现的，所谓的原子操作指操作执行期间，不会受其他线程的干扰。Java 实现的 CAS 是调用 unsafe 类提供的方法，底层是调用 c++ 方法，直接操作内存，在 cpu 层面加锁，直接对内存进行操作。</p>
+<p>上面是 AQS 等待队列入队方法，操作在无限循环中进行，如果入队成功则返回新的队尾节点，否则一直自旋，直到入队成功。假设入队的节点为 node ，上来直接进入循环，在循环中，先拿到尾节点。</p>
+<p>1、if 分支，如果尾节点为 null，说明现在队列中还没有等待线程，则尝试 CAS 操作将头节点初始化，然后将尾节点也设置为头节点，因为初始化的时候头尾是同一个，这和 AQS 的设计实现有关， AQS 默认要有一个虚拟节点。此时，尾节点不在为空，循环继续，进入 else 分支；</p>
+<p>2、else 分支，如果尾节点不为 null， node.prev &#x3D; t ，也就是将当前尾节点设置为待入队节点的前置节点。然后又是利用 CAS 操作，将待入队的节点设置为队列的尾节点，如果 CAS 返回 false，表示未设置成功，继续循环设置，直到设置成功，接着将之前的尾节点（也就是倒数第二个节点）的 next 属性设置为当前尾节点，对应 t.next &#x3D; node 语句，然后返回当前尾节点，退出循环。</p>
+<p>setHeadAndPropagate 方法负责将自旋等待或被 LockSupport 阻塞的线程唤醒。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">void</span> <span class="title function_">setHeadAndPropagate</span><span class="params">(Node node, <span class="type">int</span> propagate)</span> &#123;</span><br><span class="line">    	<span class="comment">//备份现在的 head</span></span><br><span class="line">        <span class="type">Node</span> <span class="variable">h</span> <span class="operator">=</span> head;  </span><br><span class="line">    	<span class="comment">//抢到锁的线程被唤醒 将这个节点设置为head</span></span><br><span class="line">        setHead(node)</span><br><span class="line">    	<span class="comment">// propagate 一般都会大于0 或者存在可被唤醒的线程</span></span><br><span class="line">        <span class="keyword">if</span> (propagate &gt; <span class="number">0</span> || h == <span class="literal">null</span> || h.waitStatus &lt; <span class="number">0</span> ||</span><br><span class="line">            (h = head) == <span class="literal">null</span> || h.waitStatus &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">s</span> <span class="operator">=</span> node.next;</span><br><span class="line">            <span class="comment">// 只有一个节点 或者是共享模式 释放所有等待线程 各自尝试抢占锁</span></span><br><span class="line">            <span class="keyword">if</span> (s == <span class="literal">null</span> || s.isShared())</span><br><span class="line">                doReleaseShared();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Node 对象中有一个属性是 waitStatus ，它有四种状态，分别是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程已被 cancelled ，这种状态的节点将会被忽略，并移出队列</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">CANCELLED</span> <span class="operator">=</span>  <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 表示当前线程已被挂起，并且后继节点可以尝试抢占锁</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">SIGNAL</span>    <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line"><span class="comment">//线程正在等待某些条件</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">CONDITION</span> <span class="operator">=</span> -<span class="number">2</span>;</span><br><span class="line"><span class="comment">//共享模式下 无条件所有等待线程尝试抢占锁</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">PROPAGATE</span> <span class="operator">=</span> -<span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="等待线程被唤醒"><a href="#等待线程被唤醒" class="headerlink" title="等待线程被唤醒"></a><strong>等待线程被唤醒</strong></h3><p>当执行 CountDownLatch 的 countDown（）方法，将计数器减一，也就是state减一，当减到0的时候，等待队列中的线程被释放。是调用 AQS 的 releaseShared 方法来实现的，下面代码中的方法是按顺序调用的，摘到了一起，方便查看：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AQS类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="title function_">releaseShared</span><span class="params">(<span class="type">int</span> arg)</span> &#123;</span><br><span class="line">    	<span class="comment">// arg 为固定值 1</span></span><br><span class="line">    	<span class="comment">// 如果计数器state 为0 返回true，前提是调用 countDown() 之前不能已经为0</span></span><br><span class="line">        <span class="keyword">if</span> (tryReleaseShared(arg)) &#123;</span><br><span class="line">            <span class="comment">// 唤醒等待队列的线程</span></span><br><span class="line">            doReleaseShared();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CountDownLatch 重写的方法</span></span><br><span class="line"><span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">tryReleaseShared</span><span class="params">(<span class="type">int</span> releases)</span> &#123;</span><br><span class="line">            <span class="comment">// Decrement count; signal when transition to zero</span></span><br><span class="line">    		<span class="comment">// 依然是循环+CAS配合 实现计数器减1</span></span><br><span class="line">            <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> getState();</span><br><span class="line">                <span class="keyword">if</span> (c == <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                <span class="type">int</span> <span class="variable">nextc</span> <span class="operator">=</span> c-<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (compareAndSetState(c, nextc))</span><br><span class="line">                    <span class="keyword">return</span> nextc == <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// AQS类</span></span><br><span class="line"> <span class="keyword">private</span> <span class="type">void</span> <span class="title function_">doReleaseShared</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">h</span> <span class="operator">=</span> head;</span><br><span class="line">            <span class="keyword">if</span> (h != <span class="literal">null</span> &amp;&amp; h != tail) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">ws</span> <span class="operator">=</span> h.waitStatus;</span><br><span class="line">                <span class="comment">// 如果节点状态为SIGNAL，则他的next节点也可以尝试被唤醒</span></span><br><span class="line">                <span class="keyword">if</span> (ws == Node.SIGNAL) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!compareAndSetWaitStatus(h, Node.SIGNAL, <span class="number">0</span>))</span><br><span class="line">                        <span class="keyword">continue</span>;            <span class="comment">// loop to recheck cases</span></span><br><span class="line">                    unparkSuccessor(h);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 将节点状态设置为PROPAGATE，表示要向下传播，依次唤醒</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (ws == <span class="number">0</span> &amp;&amp;</span><br><span class="line">                         !compareAndSetWaitStatus(h, <span class="number">0</span>, Node.PROPAGATE))</span><br><span class="line">                    <span class="keyword">continue</span>;                <span class="comment">// loop on failed CAS</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (h == head)                   <span class="comment">// loop if head changed</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为这是共享型的，当计数器为 0 后，会唤醒等待队列里的所有线程，所有调用了 await() 方法的线程都被唤醒，并发执行。这种情况对应到的场景是，有多个线程需要等待一些动作完成，比如一个线程完成初始化动作，其他5个线程都需要用到初始化的结果，那么在初始化线程调用 countDown 之前，其他5个线程都处在等待状态。一旦初始化线程调用了 countDown ，其他5个线程都被唤醒，开始执行。</p>
+<h2 id="Lock-condition"><a href="#Lock-condition" class="headerlink" title="Lock.condition"></a>Lock.condition</h2><h2 id="CyclicBarrier循环屏障"><a href="#CyclicBarrier循环屏障" class="headerlink" title="CyclicBarrier循环屏障"></a>CyclicBarrier循环屏障</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">CyclicBarrier</span> <span class="variable">cyclicBarrier</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CyclicBarrier</span>(<span class="number">2</span>, () -&gt; doWork(<span class="string">&quot;C&quot;</span>));</span><br><span class="line"><span class="keyword">final</span> <span class="type">Thread</span> <span class="variable">ta</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    cyclicBarrier.await();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> InterruptedException | BrokenBarrierException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">final</span> <span class="type">Thread</span> <span class="variable">tb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    cyclicBarrier.await();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (InterruptedException | BrokenBarrierException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ta.start();</span><br><span class="line">tb.start();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Semaphore信号量"><a href="#Semaphore信号量" class="headerlink" title="Semaphore信号量"></a>Semaphore信号量</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">Semaphore</span> <span class="variable">semaphore</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Semaphore</span>(<span class="number">2</span>);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">ta</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    semaphore.acquire();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (InterruptedException e1) &#123;</span><br><span class="line">    e1.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">  doWork(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">  semaphore.release();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">tb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    semaphore.acquire();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (InterruptedException e1) &#123;</span><br><span class="line">    e1.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">  doWork(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  semaphore.release();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">tc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    semaphore.acquire(<span class="number">2</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (InterruptedException e1) &#123;</span><br><span class="line">    e1.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">  doWork(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">ta.start();</span><br><span class="line">tb.start();</span><br><span class="line">tc.start();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ThreadPoolExecutor</span> <span class="variable">executor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>(<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, TimeUnit.MINUTES, <span class="keyword">new</span> <span class="title class_">LinkedBlockingDeque</span>&lt;&gt;());</span><br><span class="line"><span class="type">Future</span>&lt;Boolean&gt; <span class="variable">aFuture</span> <span class="operator">=</span> executor.submit(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="type">Future</span>&lt;Boolean&gt; <span class="variable">bFuture</span> <span class="operator">=</span> executor.submit(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br><span class="line">executor.execute(() -&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    aFuture.get();</span><br><span class="line">    bFuture.get();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (InterruptedException | ExecutionException e1) &#123;</span><br><span class="line">    e1.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">  doWork(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">LinkedBlockingDeque</span>&lt;Integer&gt; <span class="variable">queue</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LinkedBlockingDeque</span>&lt;&gt;(<span class="number">2</span>);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">ta</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">  queue.add(<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">tb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  queue.add(<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">tc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    queue.take();</span><br><span class="line">    queue.take();</span><br><span class="line">  &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">  doWork(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">ta.start();</span><br><span class="line">tb.start();</span><br><span class="line">tc.start();</span><br></pre></td></tr></table></figure>
+
+<h2 id="LockSupport"><a href="#LockSupport" class="headerlink" title="LockSupport"></a>LockSupport</h2><h2 id="ListenableFuture"><a href="#ListenableFuture" class="headerlink" title="ListenableFuture"></a>ListenableFuture</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://docs.oracle.com/javase/8/docs/">https://docs.oracle.com/javase/8/docs/</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/multithread/31.multithreadWaitedSample01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/multithread/31.multithreadWaitedSample01/" class="post-title-link" itemprop="url">Java多线程等待的N种打开方式(第一篇)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-08-12 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-12T00:00:00+00:00">2015-08-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>单核CPU就是”一根筋”，只是简单的一条一条的串行执行机器指令，且每个时钟周期内只执行一条指令，如果一个进程不间断的运行，那么就只能运行一个任务；</p>
+<p>将CPU的运行时间划分成一个个的时间段，这就是时间片(time slice)，进程通过抢占时间片，以达到交替执行的效果，宏观上，多个任务同时运行，JVM正是采用抢占式调度的方式根据优先级来”有限”的控制线程的运行。</p>
+<p>为了提高代码的执行效率，编译器会在编译时做指令重排等优化，这就造成了在多线程运行时，出现与单线程运行不一致的情况。再加上，为了优化多核执行效率，造成各个线程访问的变量值与内存主存的值不一致的情况，就出现<strong>内存可见性</strong>问题。</p>
+<p>JMM通过内存屏障、CAS和mutex lock指令等手段，实现各种各样的锁，究竟Java提供了哪些方法可以实现线程的等待呢，接下来以一个样例场景打开”Java多线程等待的N中方式”。</p>
+<h2 id="题目与约定"><a href="#题目与约定" class="headerlink" title="题目与约定"></a>题目与约定</h2><blockquote>
+<p> 假设有A、B、C三个线程，C必须等待A和B都结束时才能运行，</p>
+<p> 约定每个线程的耗时操作为方法<code>doWork(String threadName)</code></p>
+</blockquote>
+<p>接下来将以此样例分析实现方法和Java实现的原理：</p>
+<ol>
+<li>第一篇: monitor</li>
+</ol>
+<ul>
+<li>Thread.join等待线程完成</li>
+<li>Object.wait-notify等待唤醒</li>
+<li>LockSupport</li>
+</ul>
+<ol start="2">
+<li>第二篇: AQS</li>
+</ol>
+<ul>
+<li>CountDownLatch</li>
+<li>ReentrantLock</li>
+<li>Semaphore</li>
+<li>CyclicBarrier循环屏障</li>
+</ul>
+<ol start="3">
+<li>第三篇: 队列</li>
+</ol>
+<ul>
+<li>Future</li>
+<li>BlockingDeque</li>
+<li>ListenableFuture</li>
+</ul>
+<h2 id="Thread-Join等待线程完成"><a href="#Thread-Join等待线程完成" class="headerlink" title="Thread.Join等待线程完成"></a>Thread.Join等待线程完成</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">void</span> <span class="title function_">join</span><span class="params">(<span class="type">long</span> millis,<span class="type">int</span> nanos)</span> <span class="keyword">throws</span> InterruptedException</span><br></pre></td></tr></table></figure>
+
+<p>等待最多<code>millis</code>毫秒+<code>nanos</code>纳秒等待完成完成，通过循环调用<code>this.wait</code>等待<code>this.isAlive</code>条件完成，当调用<code>this.notifyAll</code>方法时，此线程终止。建议应用程序不要在线程实例上使用<code>wait</code>、<code>notify</code>或<code>notifyAll</code>。</p>
+<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">Thread</span> <span class="variable">threadA</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">final</span> <span class="type">Thread</span> <span class="variable">threadB</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">final</span> <span class="type">Thread</span> <span class="variable">threadC</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    threadA.join(); <span class="comment">// 等待A结束</span></span><br><span class="line">    threadB.join(); <span class="comment">// 等待B结束</span></span><br><span class="line">  &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line">  doWork(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 启动A、B两个线程</span></span><br><span class="line">threadA.start();</span><br><span class="line">threadB.start();</span><br><span class="line"><span class="comment">// 启动C线程</span></span><br><span class="line">threadC.start();</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Thread A starting </span><br><span class="line">Thread B starting </span><br><span class="line">Thread B finished</span><br><span class="line">Thread A finished</span><br><span class="line">Thread C starting </span><br><span class="line">Thread C finished</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Thread</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">void</span> <span class="title function_">join</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        join(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">synchronized</span> <span class="type">void</span> <span class="title function_">join</span><span class="params">(<span class="type">long</span> millis)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">base</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        <span class="type">long</span> <span class="variable">now</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (millis &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;timeout value is negative&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (millis == <span class="number">0</span>) &#123; <span class="comment">// 0表示没有设置超时时间</span></span><br><span class="line">            <span class="keyword">while</span> (isAlive()) &#123;<span class="comment">//isAlive获取线程状态，无限等待直到previousThread线程结束</span></span><br><span class="line">                wait(<span class="number">0</span>); <span class="comment">//调用Object中的wait方法实现线程的阻塞</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">//阻塞直到超时</span></span><br><span class="line">            <span class="keyword">while</span> (isAlive()) &#123; </span><br><span class="line">                <span class="type">long</span> <span class="variable">delay</span> <span class="operator">=</span> millis - now;</span><br><span class="line">                <span class="keyword">if</span> (delay &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                wait(delay);</span><br><span class="line">                now = System.currentTimeMillis() - base;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试此线程是否存活，如果此线程started并且还没有死亡，则存活</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  &lt;code&gt;true&lt;/code&gt; 如果此线程存活;</span></span><br><span class="line"><span class="comment">     *          &lt;code&gt;false&lt;/code&gt; 否则.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="type">boolean</span> <span class="title function_">isAlive</span><span class="params">()</span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;      </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Object</span> &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 导致当前线程等待，直到另一个线程调用此对象的notify()方法或notifyAll()方法</span></span><br><span class="line"><span class="comment">     * 当前线程必须拥有此对象的监视器。当前线程释放此监视器的所有权，并等待，直到另一个线程通过调用notify方法或notifyAll方法唤通知等待此对象的监视器的线程唤醒。然后，线程等待，直到它可以重新获得监视器的所有权并继续执行</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="type">void</span> <span class="title function_">wait</span><span class="params">(<span class="type">long</span> timeout)</span> <span class="keyword">throws</span> InterruptedException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">JavaThread::exit</span><span class="params">(<span class="type">bool</span> destroy_vm, ExitType exit_type)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">assert</span>(<span class="keyword">this</span> == JavaThread::<span class="built_in">current</span>(),  <span class="string">&quot;thread consistency check&quot;</span>);</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 在线程对象上通知等待者。必须在线程上调用exit()之后执行此操作（如果该线程是守护线程组中的最后一个线程，则通知等待对象之前，线程组应设置已破坏的位）。</span></span><br><span class="line">  <span class="built_in">ensure_join</span>(<span class="keyword">this</span>); </span><br><span class="line">  <span class="built_in">assert</span>(!<span class="keyword">this</span>-&gt;<span class="built_in">has_pending_exception</span>(), <span class="string">&quot;ensure_join should have cleared&quot;</span>);</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>join</code>方法本质是调用的<code>Object</code>中的<code>wait</code>方法实现线程的阻塞，调用wait方法必须要获取锁，所以<code>join</code>方法是被<code>synchronized</code>修饰的，<code>synchronized</code>修饰在方法层面相当于<code>synchronized(this)</code>,<code>this</code>就是<code>previousThread</code>本身的实例，两次调用join的<code>previousThread</code>分别是A和B两个线程，此时<code>previousThread</code>线程对象的监视器也就只有一个C线程在等待，因此当<code>previousThread</code>执行完的时候，通过<code>notify</code>和<code>notifyAll</code>会立即唤醒(只有一个线程嘛)。</p>
+<p>此例子中，有两把锁存在，分别等待<code>threadA</code>和<code>threadB</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">threadA.join(); <span class="comment">// 调用threadA.wait(),threadA运行完后,默认会唤醒threadA对象上等待的threadC</span></span><br><span class="line">threadB.join(); <span class="comment">// 调用threadB.wait(),threadB运行完后,默认会唤醒threadB对象上等待的threadC</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：建议调用<code>Thread.join</code>的时候，不要在线程实例上同时调用<code>wait</code>、<code>nofity</code>和<code>notifyAll</code>方法</p>
+</blockquote>
+<h2 id="Object-wait-notify等待唤醒"><a href="#Object-wait-notify等待唤醒" class="headerlink" title="Object.wait-notify等待唤醒"></a>Object.wait-notify等待唤醒</h2><p><code>wait-nofity</code>是Object中的等待唤醒组合，实现等待两个线程完成，可以使用一把锁，也可以使用两把锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一把锁的解法</span></span><br><span class="line"><span class="comment">// finishedCount是一个数组对象，可以通过这个对象实现C等待A和B完成，C循环扫描完成个数</span></span><br><span class="line"><span class="type">int</span>[] <span class="variable">finishedCount</span> <span class="operator">=</span> &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">Thread</span> <span class="variable">aThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">  <span class="keyword">synchronized</span> (finishedCount) &#123;</span><br><span class="line">    <span class="comment">// 完成一个，加一</span></span><br><span class="line">    finishedCount[<span class="number">0</span>]++;</span><br><span class="line">    <span class="comment">// 唤醒C</span></span><br><span class="line">    finishedCount.notify();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">bThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  doWork(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">  <span class="keyword">synchronized</span> (finishedCount) &#123;</span><br><span class="line">    <span class="comment">// 完成一个，加一</span></span><br><span class="line">    finishedCount[<span class="number">0</span>]++;</span><br><span class="line">    <span class="comment">// 唤醒C</span></span><br><span class="line">    finishedCount.notify();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">cThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">  <span class="comment">// 循环扫描完成个数，只到两个都完成</span></span><br><span class="line">  <span class="keyword">while</span> (finishedCount[<span class="number">0</span>] &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (finishedCount) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        finishedCount.wait();</span><br><span class="line">      &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  doWork(<span class="string">&quot;C&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">aThread.start();</span><br><span class="line">bThread.start();</span><br><span class="line">cThread.start();</span><br></pre></td></tr></table></figure>
+
+<p>C在对象<code>finishedCount</code>上等待，A和B完成时，首先把<code>finishedCount</code>加一，然后唤醒C</p>
+<p>C被唤醒时，判断A和B已经完成（<code>finishedCount</code>是否为2），完成则开始执行C的任务</p>
+<h3 id="Object-wait-notify实现原理"><a href="#Object-wait-notify实现原理" class="headerlink" title="Object.wait-notify实现原理"></a>Object.wait-notify实现原理</h3><p><img src="/Users/averyzhang/yun_sync/wiki-own/images/java/multithread/monitor/monitor_lock_diy.png"></p>
+<p>在HotSpot虚拟机中，<code>monitor</code>采用<code>ObjectMonitor</code>实现。</p>
+<p><code>ObjectMonitor</code>对象中有两个队列，都用来保存<code>ObjectWaiter</code>对象，分别是<code>WaitSet</code> 和 <code>EntrySet</code>。<code>_owner</code>用来指向获得ObjectMonitor对象的线程</p>
+<p><code>ObjectWaiter</code>对象是双向链表结构，保存了<code>_thread</code>（当前线程）以及当前的状态<code>TState</code>等数据， 每个等待锁的线程都会被封装成<code>ObjectWaiter</code>对象。<br><code>_WaitSet</code> ：处于wait状态的线程，会被加入到wait set；</p>
+<p><code>_EntrySet</code>：处于等待锁block状态的线程，会被加入到entry set；</p>
+<h4 id="wait方法实现"><a href="#wait方法实现" class="headerlink" title="wait方法实现"></a>wait方法实现</h4><p><code>lock.wait()</code>方法最终通过<code>ObjectMonitor</code>的 <code>wait(jlong millis, bool interruptable, TRAPS)</code>实现</p>
+<ol>
+<li><p>将当前线程封装成<code>ObjectWaiter</code>对象node</p>
+</li>
+<li><p>通过<code>ObjectMonitor::AddWaiter</code>方法将node添加到<code>_WaitSet</code>列表中</p>
+</li>
+<li><p>通过<code>ObjectMonitor::exit</code>方法释放当前的<code>ObjectMonitor</code>对象，这样其它竞争线程就可以获取该<code>ObjectMonitor</code>对象</p>
+</li>
+<li><p>最终底层的<code>park</code>方法会挂起线程</p>
+</li>
+</ol>
+<p><code>ObjectSynchorizer::wait</code>方法通过<code>Object</code>对象找到<code>ObjectMonitor</code>对象来调用方法 <code>ObjectMonitor::wait()</code>，通过调用<code>ObjectMonitor::AddWaiter()</code>可以把新建的<code>ObjectWaiter</code>对象，放入到<code>_WaitSet</code>队列的末尾，然后在<code>ObjectMonitor::exit</code>释放锁，接着通过执行<code>thread_ParkEvent-&gt;park</code>来挂起线程，也就是进行<code>wait</code>。</p>
+<h4 id="notify方法实现"><a href="#notify方法实现" class="headerlink" title="notify方法实现"></a>notify方法实现</h4><p><code>lock.notify()</code>方法最终通过ObjectMonitor的<code>void notify(TRAPS)</code>实现：<br>1、如果当前_WaitSet为空，即没有正在等待的线程，则直接返回；<br>2、通过<code>ObjectMonitor::DequeueWaiter</code>方法，获取_<code>WaitSet</code>列表中的第一个<code>ObjectWaiter</code>节点，实现也很简单。</p>
+<blockquote>
+<p>这里需要注意的是，在jdk的notify方法注释是随机唤醒一个线程，其实是第一个ObjectWaiter节点</p>
+</blockquote>
+<p>3、根据不同的策略，将取出来的<code>ObjectWaiter</code>节点，加入到<code>_EntryList</code>或则通过<code>Atomic::cmpxchg_ptr</code>指令进行自旋操作cxq，具体代码实现有点长，这里就不贴了，有兴趣的同学可以看objectMonitor::notify方法；</p>
+<h4 id="notifyAll方法实现"><a href="#notifyAll方法实现" class="headerlink" title="notifyAll方法实现"></a>notifyAll方法实现</h4><p><code>lock.notifyAll()</code>方法最终通过<code>ObjectMonitor</code>的<code>void notifyAll(TRAPS)</code>实现：<br>通过<code>for</code>循环取出<code>_WaitSet</code>的<code>ObjectWaiter</code>节点，并根据不同策略，加入到<code>_EntryList</code>或则进行自旋操作。</p>
+<p>从JVM的方法实现中，可以发现：<code>notify</code>和<code>notifyAll</code>并不会释放所占有的<code>ObjectMonitor</code>对象，其实真正释放<code>ObjectMonitor</code>对象的时间点是在执行<code>monitorexit</code>指令，一旦释放<code>ObjectMonitor</code>对象了，entry set中<code>ObjectWaiter</code>节点所保存的线程就可以开始竞争ObjectMonitor对象进行加锁操作了。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://docs.oracle.com/javase/8/docs/">https://docs.oracle.com/javase/8/docs/</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/io/java-zip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/io/java-zip/" class="post-title-link" itemprop="url">Java 压缩</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-04-06 11:28:00" itemprop="dateCreated datePublished" datetime="2015-04-06T11:28:00+00:00">2015-04-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:27" itemprop="dateModified" datetime="2026-08-22T17:34:27+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="/Java/advanced-engineer-outline/">&lt;&lt; Java高级软件工程师知识结构</a></p>
+<ol>
+<li>掌握InputStream、OutputStream、Reader、Writer的继承体系。</li>
+<li>掌握字节流(FileInputStream、DataInputStream、BufferedInputStream、FileOutputSteam、DataOutputStream、BufferedOutputStream)和 字符流(BufferedReader、InputStreamReader、FileReader、BufferedWriter、OutputStreamWriter、PrintWriter、FileWriter)，并熟练运用。</li>
+<li>掌握NIO实现原理及使用方法。</li>
+</ol>
+<p>Java IO包括:</p>
+<ul>
+<li><a href="/Java/io/IO-Model/">IO Model</a></li>
+<li><a href="/Java/io/BIO/">Java BIO</a></li>
+<li><a href="/Java/io/NIO/">Java NIO</a></li>
+<li><a href="/Java/io/AIO/">Java AIO</a></li>
+<li><a href="/Java/io/java-zip/">Java压缩</a></li>
+<li><a href="/Java/io/object-serialization/">Java序列化</a></li>
+<li><a href="/Java/io/java-XML-JSON/">Java XML与JSON</a></li>
+</ul>
+<p>【案例】ZipOutputStream类<br>先看一下ZipOutputStream类的继承关系<br>java.lang.Object<br>java.io.OutputStream<br>java.io.FilterOutputStream<br>java.util.zip.DeflaterOutputStream<br>java.util.zip.ZipOutputStream</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipEntry;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipOutputStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ZipOutputStreamDemo1</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">       <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> + File.separator +<span class="string">&quot;hello.txt&quot;</span>);</span><br><span class="line">       <span class="type">File</span> <span class="variable">zipFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> + File.separator +<span class="string">&quot;hello.zip&quot;</span>);</span><br><span class="line">       <span class="type">InputStream</span> <span class="variable">input</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(file);</span><br><span class="line">       <span class="type">ZipOutputStream</span> <span class="variable">zipOut</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(</span><br><span class="line">                zipFile));</span><br><span class="line">       zipOut.putNextEntry(<span class="keyword">new</span> <span class="title class_">ZipEntry</span>(file.getName()));</span><br><span class="line">       <span class="comment">// 设置注释</span></span><br><span class="line">       zipOut.setComment(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">       <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>((temp = input.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">           zipOut.write(temp);</span><br><span class="line">       &#125;</span><br><span class="line">       input.close();</span><br><span class="line">       zipOut.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>【案例】ZipOutputStream类压缩多个文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipEntry;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipOutputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一次性压缩多个文件</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ZipOutputStreamDemo2</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">       <span class="comment">// 要被压缩的文件夹</span></span><br><span class="line">       <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> + File.separator +<span class="string">&quot;temp&quot;</span>);</span><br><span class="line">       <span class="type">File</span> <span class="variable">zipFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> + File.separator + <span class="string">&quot;zipFile.zip&quot;</span>);</span><br><span class="line">       <span class="type">InputStream</span> <span class="variable">input</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">       <span class="type">ZipOutputStream</span> <span class="variable">zipOut</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(</span><br><span class="line">                zipFile));</span><br><span class="line">       zipOut.setComment(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">       <span class="keyword">if</span>(file.isDirectory())&#123;</span><br><span class="line">           <span class="type">File</span>[] <span class="variable">files</span> <span class="operator">=</span> file.listFiles();</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; files.length; ++i)&#123;</span><br><span class="line">                input = newFileInputStream(files[i]);</span><br><span class="line">                zipOut.putNextEntry(newZipEntry(file.getName()</span><br><span class="line">                        + File.separator +files[i].getName()));</span><br><span class="line">               <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>((temp = input.read()) !=-<span class="number">1</span>)&#123;</span><br><span class="line">                    zipOut.write(temp);</span><br><span class="line">                &#125;</span><br><span class="line">                input.close();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       zipOut.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>【案例】ZipFile类展示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipFile;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *ZipFile演示</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ZipFileDemo</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">       <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> + File.separator +<span class="string">&quot;hello.zip&quot;</span>);</span><br><span class="line">       <span class="type">ZipFile</span> <span class="variable">zipFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipFile</span>(file);</span><br><span class="line">       System.out.println(<span class="string">&quot;压缩文件的名称为：&quot;</span> + zipFile.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>【案例】解压缩文件（压缩文件中只有一个文件的情况）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipEntry;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipFile;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解压缩文件（压缩文件中只有一个文件的情况）</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ZipFileDemo2</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">       <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> + File.separator +<span class="string">&quot;hello.zip&quot;</span>);</span><br><span class="line">       <span class="type">File</span> <span class="variable">outFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> + File.separator +<span class="string">&quot;unZipFile.txt&quot;</span>);</span><br><span class="line">       <span class="type">ZipFile</span> <span class="variable">zipFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipFile</span>(file);</span><br><span class="line">       <span class="type">ZipEntry</span> <span class="variable">entry</span> <span class="operator">=</span>zipFile.getEntry(<span class="string">&quot;hello.txt&quot;</span>);</span><br><span class="line">       <span class="type">InputStream</span> <span class="variable">input</span> <span class="operator">=</span> zipFile.getInputStream(entry);</span><br><span class="line">       <span class="type">OutputStream</span> <span class="variable">output</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(outFile);</span><br><span class="line">       <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>((temp = input.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">           output.write(temp);</span><br><span class="line">       &#125;</span><br><span class="line">       input.close();</span><br><span class="line">       output.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>【案例】ZipInputStream类解压缩一个压缩文件中包含多个文件的情况</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipEntry;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipFile;</span><br><span class="line"><span class="keyword">import</span> java.util.zip.ZipInputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解压缩一个压缩文件中包含多个文件的情况</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ZipFileDemo3</span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">        <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> +File.separator + <span class="string">&quot;zipFile.zip&quot;</span>);</span><br><span class="line">       <span class="type">File</span> <span class="variable">outFile</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">       <span class="type">ZipFile</span> <span class="variable">zipFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipFile</span>(file);</span><br><span class="line">       <span class="type">ZipInputStream</span> <span class="variable">zipInput</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(file));</span><br><span class="line">       <span class="type">ZipEntry</span> <span class="variable">entry</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">input</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">       <span class="type">OutputStream</span> <span class="variable">output</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">       <span class="keyword">while</span>((entry = zipInput.getNextEntry()) != <span class="literal">null</span>)&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;解压缩&quot;</span> + entry.getName() + <span class="string">&quot;文件&quot;</span>);</span><br><span class="line">           outFile = <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;d:&quot;</span> + File.separator + entry.getName());</span><br><span class="line">           <span class="keyword">if</span>(!outFile.getParentFile().exists())&#123;</span><br><span class="line">               outFile.getParentFile().mkdir();</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span>(!outFile.exists())&#123;</span><br><span class="line">                outFile.createNewFile();</span><br><span class="line">           &#125;</span><br><span class="line">           input = zipFile.getInputStream(entry);</span><br><span class="line">           output = <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(outFile);</span><br><span class="line">           <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">           <span class="keyword">while</span>((temp = input.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">                output.write(temp);</span><br><span class="line">           &#125;</span><br><span class="line">           input.close();</span><br><span class="line">           output.close();</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>[参考文献]:</p>
+<ol>
+<li>Think in Java</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/database/memcached/base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/database/memcached/base/" class="post-title-link" itemprop="url">Memcached(迭代更新)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-12-19 00:00:00" itemprop="dateCreated datePublished" datetime="2014-12-19T00:00:00+00:00">2014-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DataBase/" itemprop="url" rel="index"><span itemprop="name">DataBase</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a>通信协议</h1><h1 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/Java/" class="post-title-link" itemprop="url">Java软件工程师知识结构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2014-05-30 12:26:00" itemprop="dateCreated datePublished" datetime="2014-05-30T12:26:00+00:00">2014-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:27" itemprop="dateModified" datetime="2026-08-22T17:34:27+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-Java基础"><a href="#1-Java基础" class="headerlink" title="1 Java基础"></a>1 Java基础</h1><h2 id="1-1-Collection和Map"><a href="#1-1-Collection和Map" class="headerlink" title="1.1 Collection和Map"></a>1.1 Collection和Map</h2><ol>
+<li>掌握Collection和Map的继承体系。<a href="/Java/collection/collection-map">Java Collection与map</a></li>
+<li>掌握ArrayList、LinkedList、Vector、Stack、PriorityQueue、HashSet、LinkedHashSet、TreeSet、HashMap、LinkedHashMap、TreeMap、WeakHashMap、EnumMap、TreeMap(红黑树)、HashTable的特点和实现原理。</li>
+<li>掌握CopyOnWriteArrayList、CopyOnWriteArraySet、<a href="/Java/collection/ConcurrentHashMap">ConcurrentHashMap</a>的实现原理和适用场景。</li>
+<li>Java并发容器</li>
+</ol>
+<h2 id="1-2-IO"><a href="#1-2-IO" class="headerlink" title="1.2 IO"></a>1.2 IO</h2><ol>
+<li>掌握InputStream、OutputStream、Reader、Writer的继承体系:<br> <a href="/Java/io/BIO">Java IO</a> ,<br> <a href="/Java/io/java-zip">Java 压缩</a> ,<br> <a href="/Java/io/java-XML-JSON">Java XML与JSON</a>,<br> <a href="/Java/io/object-serialization">Java序列化</a></li>
+<li>掌握字节流(FileInputStream、DataInputStream、BufferedInputStream、FileOutputSteam、DataOutputStream、BufferedOutputStream)和 字符流(BufferedReader、InputStreamReader、FileReader、BufferedWriter、OutputStreamWriter、PrintWriter、FileWriter)，并熟练运用。</li>
+<li>掌握NIO实现原理及使用方法。<br> <a href="/Java/io/IO-Model">IO模式</a><br> <a href="/Java/io/NIO">Java NIO</a></li>
+<li>Netty原理 <a href="">这可能是目前最透彻的Netty原理架构解析</a></li>
+<li>IO理论 <a href="/Java/io/high-performance-network-programming">高性能网络编程</a></li>
+</ol>
+<h2 id="1-3-异常"><a href="#1-3-异常" class="headerlink" title="1.3 异常"></a>1.3 异常</h2><ol>
+<li>掌握Throwable继承体系。<a href="http://blog.csdn.net/hguisu/article/details/6155636">深入理解java异常处理机制</a></li>
+<li>掌握异常工作原理。</li>
+<li>了解常见受检异常(比如FileNotFoundException)、非受检异常(比如NullPointerException)和错误(比如IOError)。</li>
+</ol>
+<h2 id="1-4-多线程"><a href="#1-4-多线程" class="headerlink" title="1.4 多线程"></a>1.4 多线程</h2><ol>
+<li><p><a href="/Java/multithread/05.ThreadPool">线程池的实现原理、参数配置、平滑关机</a><br> 了解Executors可以创建的三种 (JAVA8增加了一种，共四种)线程池的特点及适用范围。<br> <a href="/Java/multithread/05.ThreadPool">Java多线程5: 线程池</a></p>
+</li>
+<li><p>掌握多线程同步机制，并熟练运用。</p>
+<ul>
+<li><a href="/Java/multithread/cpu_context_switch_user_mode_and_kernel_mode">CPU上下文切换、内核态和用户态</a></li>
+<li>CPU、操作系统锁机制与Java编译优化(指令重排与内存栅栏)</li>
+<li><a href="/Java/multithread/01.thread-lifecycle">线程生命周期</a></li>
+<li><a href="/Java/multithread/03.volatile">volatile</a></li>
+<li><a href="/Java/multithread/01.1.monitor-synchronized">monitor与Synchronized: 实现原理、偏向锁-轻型锁-重型锁</a></li>
+<li><a href="/Java/multithread/monitor-synchronized-2">Java中的偏向锁、轻量级锁、重量级锁的特点和跃升过程</a></li>
+<li><a href="http://www.cnblogs.com/waterystone/p/4920797.html">AQS</a></li>
+<li>CAS</li>
+<li><a href="https://blog.csdn.net/fuyuwei2015/article/details/83719444">RetreentLock</a>、ReadAndWriteLook</li>
+<li>CountDownLatch、Atomic、Semaphore</li>
+<li>Fork&#x2F;Join</li>
+<li><a href="/Java/multithread/06.BlockingQueue">阻塞队列</a></li>
+<li>Disruptor队列</li>
+<li>生产者消费者模式</li>
+<li><a href="/Java/multithread/02.Lock-Semaphore-Atomic">Java多线程2: Lock、信号量、原子量与队列</a></li>
+<li><a href="/Java/multithread/04.thread-synchronization">Java多线程4: 同步锁与Java线程同步方法比较</a></li>
+<li><a href="/Java/multithread/06.BlockingQueue">Java多线程6: Java阻塞队列与生产者消费者模式</a></li>
+<li>Java多线程7: 分段锁</li>
+<li><a href="https://www.jianshu.com/p/b3c4dd85901e">CompletableFuture</a> 、<a href="https://blog.csdn.net/CoderBruis/article/details/103181520">深入解读CompletableFuture源码与原理</a></li>
+<li>Quartz定时任务内部实现</li>
+<li>Guava并发包</li>
+</ul>
+</li>
+<li><p>并发包</p>
+</li>
+</ol>
+<h2 id="1-5-Socket"><a href="#1-5-Socket" class="headerlink" title="1.5 Socket"></a>1.5 Socket</h2><ol>
+<li>掌握Socket通信原理。<a href="/Java/Socket">Java Socket</a></li>
+<li>熟练使用多线程结合Socket进行编程。</li>
+</ol>
+<h2 id="1-6-Stream-API"><a href="#1-6-Stream-API" class="headerlink" title="1.6 Stream API"></a>1.6 Stream API</h2><ol>
+<li>Lambda 实现原理</li>
+<li>懒加载实现原理</li>
+</ol>
+<h1 id="2-Java虚拟机"><a href="#2-Java虚拟机" class="headerlink" title="2 Java虚拟机"></a>2 Java虚拟机</h1><h2 id="2-1-JVM内存区域划分"><a href="#2-1-JVM内存区域划分" class="headerlink" title="2.1 JVM内存区域划分"></a>2.1 JVM内存区域划分</h2><p><a href="/Java/jvm/JVM">深入理解JVM(Java虚拟机)</a><br><a href="Java/metric/01_java_performance_tuner.md">Java性能专题</a></p>
+<ol>
+<li>掌握JMM分区: 程序计数器、堆、虚拟机栈、本地方法栈、方法区（JAVA8已移除）、元空间（JAVA8新增）的作用及基本原理。</li>
+<li>掌握堆的划分：新生代（Eden、Survivor1、Survivor2）和老年代的作用及工作原理。</li>
+<li>垃圾回收：常见算法与策略、<a href="/Java/metric/02_CMS_GC">CMS GC</a>、G1</li>
+<li>[重点] 掌握JVM内存参数设置及调优<ul>
+<li>Eden与Survivor分配</li>
+<li><a href="/Java/metric/jstack">JStack</a>、Jstat、vmstat、jmap、jutil</li>
+<li>线上排查</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-2-类加载"><a href="#2-2-类加载" class="headerlink" title="2.2 类加载"></a>2.2 类加载</h2><ol>
+<li>掌握类的加载阶段：加载、链接（验证、准备、解析）、初始化、使用、卸载。</li>
+<li>掌握类加载器分类及其应用：启动类加载器、扩展类加载器、应用程序类加载器、自定义加载器。</li>
+<li>双亲委派</li>
+<li>动态加载</li>
+<li>CodeGen</li>
+</ol>
+<h1 id="3-J2EE"><a href="#3-J2EE" class="headerlink" title="3 J2EE"></a>3 J2EE</h1><ol>
+<li>掌握JSP内置对象、动作及相关特点和工作原理。<a href="/JavaWeb/JSP">JSP</a></li>
+<li>掌握Servlet的特点和工作原理。 <a href="/JavaWeb/Servlet">Servlet</a></li>
+<li>Spring: IOC和AOP实现原理（控制反转和动态代理）。 <a href="/JavaWeb/Spring/base">Spring</a></li>
+<li>MVC框架（Spring MVC，Struts等）的工作原理，并熟练运用。 <a href="/JavaWeb/Struts2-basic">Struts2</a> <a href="1">Spring MVC</a>工作原理、事务</li>
+<li>Spring MVC: 线程安全、请求原理、事务与传递、异步</li>
+<li>ORM框架(Hibernate，MyBatis等)的工作原理，并熟练运用。 <a href="/JavaWeb/Hibernate/concept">Hibernate基本概念</a> <a href="/JavaWeb/Hibernate/Association-Relationship">Hibernate关联关系XML实现</a> <a href="/JavaWeb/Hibernate/Annotation">Hibernate注解</a> <a href="1">MyBatis原理与缓存</a></li>
+</ol>
+<h1 id="4-数据结构与算法"><a href="#4-数据结构与算法" class="headerlink" title="4 数据结构与算法"></a>4 数据结构与算法</h1><ol>
+<li>掌握<a href="http://www.docin.com/p-1532910757.html">线性表</a>和<a href="http://www.docin.com/p-682548027.html">树</a>的特点并熟练运用: B-Tree节点结构</li>
+<li>掌握<a href="/data-struct/SortAndSearchAlgrithom">常用排序和查找算法</a>：插入排序(直接插入排序、希尔排序)、选择排序(直接选择排序、堆排序)、交换排序(冒泡排序、快速排序)、归并排序，顺序查找、二分查找、二叉查找树、哈希查找。广度优先搜索(队列实现)</li>
+<li>熟练运用常见排序和查找算法思想解决编程问题: Top K问题、大数组查找TopN、数组去重、跳台阶问题、不定长字符串转定长字符串</li>
+<li>了解<a href="/data-struct/BasicAlgrithom">几大基本算法</a>：贪心算法、分治策略、动态规划、蓄水池抽样</li>
+<li>LeetCode</li>
+</ol>
+<h1 id="5-计算机网络"><a href="#5-计算机网络" class="headerlink" title="5 计算机网络"></a>5 计算机网络</h1><ol>
+<li>掌握网络的分层结构，及每层的功能特点。<a href="/network/base">计算机网络基础知识</a></li>
+<li>Http报文、状态码</li>
+<li>掌握TCP&#x2F;IP的通信原理(三次握手、四次挥手)</li>
+<li><a href="/network/security/HTTPS-SSL" title="HTTPS与SSL">HTTPS</a>,<br> <a href="/network/security/encrypt-decrypt-signature-certificate">加密、验签与证书</a></li>
+<li><a href="/base/network/HTTPS/the-process-of-establishing-a-connection">Https创建连接的过程</a></li>
+</ol>
+<h1 id="6-数据库"><a href="#6-数据库" class="headerlink" title="6 数据库"></a>6 数据库</h1><ol>
+<li>掌握复杂的SQL语句编写。<a href="/database/MySQL/base">MySQL</a>   <a href="/database/concept">数据库设计</a></li>
+<li>掌握数据库的优化（SQL层面和表设计层面）。<a href="http://www.jb51.net/article/24392.htm">MySQL 性能优化的最佳20多条经验</a></li>
+<li><a href="/database/MySQL/base">MySQL</a><ul>
+<li>InnoDB数据结构、索引</li>
+<li>InnoDB与MyASIM区别</li>
+<li>行级锁与表级锁</li>
+</ul>
+</li>
+<li>MySQL集群<ul>
+<li>集群</li>
+<li>读写分离与实现</li>
+<li>双写</li>
+</ul>
+</li>
+<li>熟悉高并发、大数据情况下的数据库开发。</li>
+</ol>
+<h1 id="7-Web技术"><a href="#7-Web技术" class="headerlink" title="7 Web技术"></a>7 Web技术</h1><ol>
+<li>掌握<a href="/web/AJAX">AJAX</a>的工作原理。</li>
+<li>至少熟悉一款JS框架(比如JQuery)。<a href="/web/JQuery">JQuery</a></li>
+</ol>
+<h1 id="8-设计模式"><a href="#8-设计模式" class="headerlink" title="8 设计模式"></a>8 设计模式</h1><ol>
+<li>熟悉常见的<a href="/design-pattern/base">设计模式</a>。</li>
+<li>会将设计模式理论应用到实际开发中。</li>
+</ol>
+<h1 id="9-Linux"><a href="#9-Linux" class="headerlink" title="9 Linux"></a>9 Linux</h1><ol>
+<li>熟练运用Linux常见命令。</li>
+<li>熟悉Linux操作系统基本概念及特点。</li>
+<li>熟悉<a href="http://www.codeceo.com/article/shell-learn-30-mins.html">Shell脚本</a>。</li>
+</ol>
+<h1 id="10-操作系统"><a href="#10-操作系统" class="headerlink" title="10 操作系统"></a>10 <a href="/base/os/os-base">操作系统</a></h1><ol>
+<li>掌握操作系统的进程管理。</li>
+<li>了解操作系统的I&#x2F;O。</li>
+<li>Linux系统调优: 命令与方法</li>
+<li><a href="/base/os/os-base">用户态与核心态</a></li>
+</ol>
+<h1 id="11-正则表达式"><a href="#11-正则表达式" class="headerlink" title="11 正则表达式"></a>11 正则表达式</h1><ol>
+<li>掌握常见正则表达式符号。</li>
+<li>熟练运用正则表达式解决实际问题(比如匹配电话号码、邮箱、域名等)。<a href="/Java/regular-expression">常用的正则表达式与Java中的运用</a></li>
+</ol>
+<h1 id="12-安全"><a href="#12-安全" class="headerlink" title="12 安全"></a>12 安全</h1><ol>
+<li><a href="/web/XSS">XSS</a></li>
+<li><a href="/web/JSONP">CROS</a></li>
+<li>RTFS</li>
+<li>加密解密与验签</li>
+<li>HTTPS</li>
+<li>跨域请求的方法</li>
+</ol>
+<h1 id="13-分布式"><a href="#13-分布式" class="headerlink" title="13 分布式"></a>13 分布式</h1><ol>
+<li>分布式事务<ul>
+<li>分布式锁：基于DB事务、基于Redis、基于ZooKeeper</li>
+<li>ACID</li>
+<li>CAP、BASE</li>
+<li>TCC</li>
+</ul>
+</li>
+<li>微服务</li>
+<li>Nginx: 原理、负载均衡算法、动态切换</li>
+<li>消息中间件 Kafka、ActiveMQ</li>
+<li>分布式缓存及其集群: 雪崩、穿透、Master选举切换</li>
+<li><a href="/database/Redis/base">Redis</a>：集群、并发竞争问题、事务与CAS操作、持久化、订阅、缓存失败策略</li>
+<li><a href="/database/memcached/base">Memcached</a>: 数据结构</li>
+<li>ZooKeeper: 数据结构、集群、Master选举切换</li>
+<li><a href="/distributed/RPC">RPC</a>：<a href="">WebService: SOAP、UUDI、WSDL</a>等</li>
+<li>服务治理SOA框架的使用与原理<ul>
+<li><a href="1">Dubbo</a>: 架构、雪崩、服务异常与逻辑异常追踪、服务降级、服务发现</li>
+</ul>
+</li>
+<li>分库分表<ul>
+<li>常见分库分表方案：水平分表与垂直分表的业务设计</li>
+<li>扩容与迁移</li>
+<li>MyCat</li>
+<li>Sharding-JDBC</li>
+</ul>
+</li>
+<li>唯一主键生成器</li>
+<li>算法: 一致性hash、轮询、Paxos、fast leader、raft</li>
+<li>系统设计<ul>
+<li>高可用</li>
+<li>可扩展</li>
+<li>限流(滑动窗口、漏桶、令牌桶)</li>
+<li>幂等</li>
+</ul>
+</li>
+<li>常见场景<ul>
+<li>电商</li>
+</ul>
+</li>
+<li>Docker</li>
+</ol>
+<h1 id="14-大数据"><a href="#14-大数据" class="headerlink" title="14 大数据"></a>14 大数据</h1><ol>
+<li><a href="/database/sql-case">复杂SQL语句</a></li>
+<li>实时计算: 基数算法</li>
+<li>Storm 原理</li>
+<li>Hadoop<ul>
+<li>NameNode动态切换</li>
+<li>MapReduce与shuffle、数据倾斜问题</li>
+</ul>
+</li>
+<li>Yarn</li>
+<li>HBase</li>
+<li>Kylin</li>
+<li>Hive</li>
+<li>Lucene、solar、ElasticSearch</li>
+<li>爬虫</li>
+<li>推荐算法：协同过滤</li>
+<li>画像系统原理</li>
+</ol>
+<h2 id="14-1-Flink"><a href="#14-1-Flink" class="headerlink" title="14.1 Flink"></a>14.1 Flink</h2><p><a href="/bigdata/Flink/Flink">Flink知识图谱</a></p>
+<h2 id="14-2-ES"><a href="#14-2-ES" class="headerlink" title="14.2 ES"></a>14.2 ES</h2><ol>
+<li><a href="https://cloud.tencent.com/developer/article/1676915">es分页机制</a></li>
+</ol>
+<h2 id="14-3-Kafka"><a href="#14-3-Kafka" class="headerlink" title="14.3 Kafka"></a>14.3 Kafka</h2><ol>
+<li><a href="/bigdata/Kafka/kafka-base">ack机制</a></li>
+<li><a href="https://segmentfault.com/a/1190000023547448">Kafka生产者ack机制剖析</a></li>
+</ol>
+<h1 id="15-机器学习"><a href="#15-机器学习" class="headerlink" title="15 机器学习"></a>15 机器学习</h1><h1 id="16-其他"><a href="#16-其他" class="headerlink" title="16 其他"></a>16 其他</h1><ol>
+<li>Quartz 原理：调度与分布式</li>
+<li>缓存: Ehcache、Spring Data cache、Guava-cache<ul>
+<li>LRUCache</li>
+<li>FastLRUCache</li>
+</ul>
+</li>
+<li>连接池：Druid</li>
+<li><a href="/interview/index">虐菜</a></li>
+<li>软件工程基本知识</li>
+<li>CORBAR</li>
+<li>WebSocket</li>
+<li>Tomcat实现原理</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/%E7%A7%92%E6%9E%81%E7%9B%91%E6%8E%A7%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/%E7%A7%92%E6%9E%81%E7%9B%91%E6%8E%A7%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">【草稿】妙极监控设计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-08-10 14:58:00" itemprop="dateCreated datePublished" datetime="2010-08-10T14:58:00+00:00">2010-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="妙极监控设计"><a href="#妙极监控设计" class="headerlink" title="妙极监控设计"></a>妙极监控设计</h1><p>TDE是一个全内存的分布式KV存储系统，写操作即put单台机器能力为6.6万笔&#x2F;秒，读操作即get达到38万笔&#x2F;秒。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-connector-kuduSink/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-connector-kuduSink/" class="post-title-link" itemprop="url">【草稿】FlinkKuduSink</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-08-10 14:58:00" itemprop="dateCreated datePublished" datetime="2010-08-10T14:58:00+00:00">2010-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="FlinkKuduSink"><a href="#FlinkKuduSink" class="headerlink" title="FlinkKuduSink"></a>FlinkKuduSink</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--kudu.cache.size 2000 </span><br><span class="line">--kudu.write.thread.cnt 10 </span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/bigdata/Flink/20210425095426.png" alt="image-20210425095426335"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">org.apache.kudu.client.NonRecoverableException: Couldn<span class="string">&#x27;t find a valid master in (9.7.185.196:7050). Exceptions received: [org.apache.kudu.client.RpcRemoteException: [peer master-] server sent error Service unavailable: service kudu.master.MasterService not registered on TabletServer]</span></span><br><span class="line"><span class="string">	at org.apache.kudu.client.KuduException.transformException(KuduException.java:110)</span></span><br><span class="line"><span class="string">	at org.apache.kudu.client.KuduClient.joinAndHandleException(KuduClient.java:413)</span></span><br><span class="line"><span class="string">	at org.apache.kudu.client.KuduClient.tableExists(KuduClient.java:229)</span></span><br><span class="line"><span class="string">	at org.apache.flink.connectors.kudu.connector.writer.KuduWriter.obtainTable(KuduWriter.java:74)</span></span><br><span class="line"><span class="string">	at org.apache.flink.connectors.kudu.connector.writer.KuduWriter.&lt;init&gt;(KuduWriter.java:59)</span></span><br><span class="line"><span class="string">	at org.apache.flink.connectors.kudu.streaming.KuduSink.open(KuduSink.java:62)</span></span><br><span class="line"><span class="string">	at org.apache.flink.api.common.functions.util.FunctionUtils.openFunction(FunctionUtils.java:36)</span></span><br><span class="line"><span class="string">	at org.apache.flink.streaming.api.operators.AbstractUdfStreamOperator.open(AbstractUdfStreamOperator.java:102)</span></span><br><span class="line"><span class="string">	at org.apache.flink.streaming.api.operators.StreamSink.open(StreamSink.java:48)</span></span><br><span class="line"><span class="string">	at org.apache.flink.streaming.runtime.tasks.StreamTask.openAllOperators(StreamTask.java:426)</span></span><br><span class="line"><span class="string">	at org.apache.flink.streaming.runtime.tasks.StreamTask.invoke(StreamTask.java:292)</span></span><br><span class="line"><span class="string">	at org.apache.flink.runtime.taskmanager.Task.run(Task.java:726)</span></span><br><span class="line"><span class="string">	at java.lang.Thread.run(Thread.java:748)</span></span><br><span class="line"><span class="string">	Suppressed: org.apache.kudu.client.KuduException$OriginalException: Original asynchronous stack trace</span></span><br><span class="line"><span class="string">		at org.apache.kudu.client.ConnectToCluster.incrementCountAndCheckExhausted(ConnectToCluster.java:244)</span></span><br><span class="line"><span class="string">		at org.apache.kudu.client.ConnectToCluster.access$100(ConnectToCluster.java:49)</span></span><br><span class="line"><span class="string">		at org.apache.kudu.client.ConnectToCluster$ConnectToMasterErrCB.call(ConnectToCluster.java:363)</span></span><br><span class="line"><span class="string">		at org.apache.kudu.client.ConnectToCluster$ConnectToMasterErrCB.call(ConnectToCluster.java:352)</span></span><br><span class="line"><span class="string">		at com.stumbleupon.async.Deferred.doCall(Deferred.java:1280)</span></span><br><span class="line"><span class="string">		at com.stumbleupon.async.Deferred.runCallbacks(Deferred.java:1259)</span></span><br><span class="line"><span class="string">		at com.stumbleupon.async.Deferred.handleContinuation(Deferred.java:1315)</span></span><br><span class="line"><span class="string">		at com.stumbleupon.async.Deferred.doCall(Deferred.java:1286)</span></span><br><span class="line"><span class="string">		at com.stumbleupon.async.Deferred.runCallbacks(Deferred.java:1259)</span></span><br><span class="line"><span class="string">		at com.stumbleupon.async.Deferred.callback(Deferred.java:1002)</span></span><br><span class="line"><span class="string">		at org.apache.kudu.client.KuduRpc.handleCallback(KuduRpc.java:275)</span></span><br><span class="line"><span class="string">		at org.apache.kudu.client.KuduRpc.errback(KuduRpc.java:329)</span></span><br><span class="line"><span class="string">		at org.apache.kudu.client.RpcProxy.responseReceived(RpcProxy.java:247)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">org.apache.kudu.client.NonRecoverableException: must specify at least one key column</span><br><span class="line">	at org.apache.kudu.client.KuduException.transformException(KuduException.java:<span class="number">110</span>)</span><br><span class="line">	at org.apache.kudu.client.KuduClient.joinAndHandleException(KuduClient.java:<span class="number">413</span>)</span><br><span class="line">	at org.apache.kudu.client.KuduClient.createTable(KuduClient.java:<span class="number">118</span>)</span><br><span class="line">	at org.apache.flink.connectors.kudu.connector.writer.KuduWriter.obtainTable(KuduWriter.java:<span class="number">78</span>)</span><br><span class="line">	at org.apache.flink.connectors.kudu.connector.writer.KuduWriter.&lt;init&gt;(KuduWriter.java:<span class="number">59</span>)</span><br><span class="line">	at org.apache.flink.connectors.kudu.streaming.KuduSink.open(KuduSink.java:<span class="number">62</span>)</span><br><span class="line">	at org.apache.flink.api.common.functions.util.FunctionUtils.openFunction(FunctionUtils.java:<span class="number">36</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.AbstractUdfStreamOperator.open(AbstractUdfStreamOperator.java:<span class="number">102</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.StreamSink.open(StreamSink.java:<span class="number">48</span>)</span><br><span class="line">	at org.apache.flink.streaming.runtime.tasks.StreamTask.openAllOperators(StreamTask.java:<span class="number">426</span>)</span><br><span class="line">	at org.apache.flink.streaming.runtime.tasks.StreamTask.invoke(StreamTask.java:<span class="number">292</span>)</span><br><span class="line">	at org.apache.flink.runtime.taskmanager.Task.run(Task.java:<span class="number">726</span>)</span><br><span class="line">	at java.lang.Thread.run(Thread.java:<span class="number">748</span>)</span><br><span class="line">	Suppressed: org.apache.kudu.client.KuduException$OriginalException: Original asynchronous stack trace</span><br><span class="line">		at org.apache.kudu.client.RpcProxy.dispatchMasterError(RpcProxy.java:<span class="number">386</span>)</span><br><span class="line">		at org.apache.kudu.client.RpcProxy.responseReceived(RpcProxy.java:<span class="number">279</span>)</span><br><span class="line">		at org.apache.kudu.client.RpcProxy.access$<span class="number">000</span>(RpcProxy.java:<span class="number">59</span>)</span><br><span class="line">		at org.apache.kudu.client.RpcProxy$<span class="number">1.</span>call(RpcProxy.java:<span class="number">149</span>)</span><br><span class="line">		at org.apache.kudu.client.RpcProxy$<span class="number">1.</span>call(RpcProxy.java:<span class="number">145</span>)</span><br><span class="line">		at org.apache.kudu.client.Connection.messageReceived(Connection.java:<span class="number">390</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:<span class="number">70</span>)</span><br><span class="line">		at org.apache.kudu.client.Connection.handleUpstream(Connection.java:<span class="number">238</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:<span class="number">564</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:<span class="number">791</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:<span class="number">296</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.handler.codec.oneone.OneToOneDecoder.handleUpstream(OneToOneDecoder.java:<span class="number">70</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:<span class="number">564</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:<span class="number">791</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:<span class="number">296</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:<span class="number">462</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:<span class="number">443</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:<span class="number">303</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:<span class="number">70</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:<span class="number">564</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.DefaultChannelPipeline$DefaultChannelHandlerContext.sendUpstream(DefaultChannelPipeline.java:<span class="number">791</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:<span class="number">296</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.handler.codec.frame.FrameDecoder.unfoldAndFireMessageReceived(FrameDecoder.java:<span class="number">462</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.handler.codec.frame.FrameDecoder.callDecode(FrameDecoder.java:<span class="number">443</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.handler.codec.frame.FrameDecoder.messageReceived(FrameDecoder.java:<span class="number">303</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.SimpleChannelUpstreamHandler.handleUpstream(SimpleChannelUpstreamHandler.java:<span class="number">70</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:<span class="number">564</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.DefaultChannelPipeline.sendUpstream(DefaultChannelPipeline.java:<span class="number">559</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:<span class="number">268</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.Channels.fireMessageReceived(Channels.java:<span class="number">255</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:<span class="number">88</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:<span class="number">108</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:<span class="number">337</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:<span class="number">89</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:<span class="number">178</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:<span class="number">108</span>)</span><br><span class="line">		at org.apache.kudu.shaded.org.jboss.netty.util.internal.DeadLockProofWorker$<span class="number">1.</span>run(DeadLockProofWorker.java:<span class="number">42</span>)</span><br><span class="line">		at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:<span class="number">1149</span>)</span><br><span class="line">		at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:<span class="number">624</span>)</span><br><span class="line">		... <span class="number">1</span> more</span><br><span class="line"></span><br><span class="line">Rows per page:</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">1</span> - <span class="number">1</span> of <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/StreamProcessingWithApacheFlink/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/StreamProcessingWithApacheFlink/" class="post-title-link" itemprop="url">【草稿】Stream processing with Apache Flink</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-08-10 14:58:00" itemprop="dateCreated datePublished" datetime="2010-08-10T14:58:00+00:00">2010-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-Stream-processing-with-Apache-Flink"><a href="#1-Stream-processing-with-Apache-Flink" class="headerlink" title="1 Stream processing with Apache Flink"></a>1 Stream processing with Apache Flink</h1><h2 id="1-1-状态-重放是保证exactly-once的基础"><a href="#1-1-状态-重放是保证exactly-once的基础" class="headerlink" title="1.1 状态+重放是保证exactly once的基础"></a>1.1 状态+重放是保证exactly once的基础</h2><p>Connecting a stateful streaming application running on Flink and an event log is interesting for multiple reasons.<br>In this architecture the event log persists the input events and can replay them in deterministic order.<br>In case of a failure, Flink recovers a stateful streaming application by restoring its state from a previous checkpoint and resetting the read position on the event log.<br>The application will replay (and fast forward) the input events from the event log until it reaches the tail of the stream.<br>This technique is used to recover from failures but can also be leveraged to update an application, fix bugs and repair previously emitted results, migrate an application to a different cluster, or perform A&#x2F;B tests with different application versions.</p>
+<p>将运行在Flink上的有状态流应用程序与事件日志连接起来非常有趣，原因有很多。在这种体系结构中，事件日志保存输入事件，并可以以确定的顺序重播它们。在失败的情况下，Flink通过从以前的检查点恢复有状态流应用程序的状态并重新设置事件日志上的读位置来恢复有状态流应用程序。应用程序将重播(并快进)事件日志中的输入事件，直到它到达流的尾部。此技术用于从故障中恢复，但也可用于更新应用程序、修复bug和修复以前发出的结果、将应用程序迁移到不同的集群或使用不同的应用程序版本执行a&#x2F;B测试。</p>
+<h2 id="1-2-事件驱动"><a href="#1-2-事件驱动" class="headerlink" title="1.2 事件驱动"></a>1.2 事件驱动</h2><p>Event-driven applications offer several benefits compared to transactional applications or microservices. Local state access provides very good performance compared to reading and writing queries against remote datastores. Scaling and fault tolerance are handled by the stream processor, and by leveraging an event log as the input source the complete input of an application is reliably stored and can be deterministically replayed. Furthermore, Flink can reset the state of an application to a previous savepoint, making it possible to evolve or rescale an application without losing its state.</p>
+<p>与事务性应用程序或微服务相比，事件驱动应用程序有几个优点。与对远程数据存储读写查询相比，本地状态访问提供了非常好的性能。扩展和容错由流处理器处理，通过利用事件日志作为输入源，应用程序的完整输入被可靠地存储并可以确定地重播。此外，Flink可以将应用程序的状态重置为以前的保存点，从而可以在不丢失状态的情况下演化或重新调整应用程序</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 一句话主线用户代码 → DAG → 按宽依赖切 Stage → Stage 内并行跑 Task → Shuffle 落盘作为 Stage 边界 → 下游 Stage 拉取。 理解 Spark 性能问题，本质就是理解这条链路上”哪一环把并行变成了串行、把内存变成了磁盘、把本地变成了网络”。    层级 触发者 数量决定因素    Application spark-submit 一次提交 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark 核心执行模型">
+<meta property="og:url" content="http://yoursite.com/bigdata/Spark/Spark-execution-model/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="1 一句话主线用户代码 → DAG → 按宽依赖切 Stage → Stage 内并行跑 Task → Shuffle 落盘作为 Stage 边界 → 下游 Stage 拉取。 理解 Spark 性能问题，本质就是理解这条链路上”哪一环把并行变成了串行、把内存变成了磁盘、把本地变成了网络”。    层级 触发者 数量决定因素    Application spark-submit 一次提交 1">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T17:34:29.620Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.621Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="RDD">
+<meta property="article:tag" content="Shuffle">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Spark/Spark-execution-model/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Spark 核心执行模型 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Spark/Spark-execution-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spark 核心执行模型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-一句话主线"><a href="#1-一句话主线" class="headerlink" title="1 一句话主线"></a>1 一句话主线</h1><p><strong>用户代码 → DAG → 按宽依赖切 Stage → Stage 内并行跑 Task → Shuffle 落盘作为 Stage 边界 → 下游 Stage 拉取。</strong></p>
+<p>理解 Spark 性能问题，本质就是理解这条链路上”哪一环把并行变成了串行、把内存变成了磁盘、把本地变成了网络”。</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>触发者</th>
+<th>数量决定因素</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Application</td>
+<td><code>spark-submit</code> 一次提交</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Job</td>
+<td>每个 <strong>Action</strong> 算子（<code>count</code>&#x2F;<code>collect</code>&#x2F;<code>save</code>）</td>
+<td>Action 个数</td>
+</tr>
+<tr>
+<td>Stage</td>
+<td>每个 <strong>宽依赖</strong>（Shuffle）</td>
+<td>Shuffle 次数 + 1</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>Stage 内每个 partition</td>
+<td>上游分区数 &#x2F; <code>spark.sql.shuffle.partitions</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>概念对齐与并发度换算（Executor &#x2F; core &#x2F; partition 的关系）见 <a href="/bigdata/Spark/Spark-task_split_block">Spark task split block</a>。</p>
+</blockquote>
+<h1 id="2-DAG-的构建：惰性求值"><a href="#2-DAG-的构建：惰性求值" class="headerlink" title="2 DAG 的构建：惰性求值"></a>2 DAG 的构建：惰性求值</h1><h2 id="2-1-Transformation-只记账，Action-才算账"><a href="#2-1-Transformation-只记账，Action-才算账" class="headerlink" title="2.1 Transformation 只记账，Action 才算账"></a>2.1 Transformation 只记账，Action 才算账</h2><p>RDD 上的 <code>map</code>&#x2F;<code>filter</code>&#x2F;<code>join</code> 等 Transformation <strong>不触发计算</strong>，只在 Driver 端记录”血缘”（Lineage）——即当前 RDD 由哪个父 RDD、经何种变换得来。只有遇到 Action 时，DAGScheduler 才回溯血缘生成执行计划并提交。</p>
+<p>这带来两个关键工程后果：</p>
+<ol>
+<li><strong>可优化</strong>：Driver 拿到的是完整算子链，可以做流水线融合（多个窄依赖算子合并进一个 Task，中间结果不落地，见 <a href="/bigdata/Spark/Spark-Codegen">Spark Codegen</a>）。</li>
+<li><strong>可容错</strong>：不需要 Checkpoint，丢失的 partition 可以按血缘重算。代价是血缘过长时重算成本高——这是 <code>cache</code>&#x2F;<code>checkpoint</code> 的存在理由。</li>
+</ol>
+<p>调试血缘：<code>rdd.toDebugString</code> 可打印依赖链与 Stage 边界。</p>
+<h2 id="2-2-三层调度对象"><a href="#2-2-三层调度对象" class="headerlink" title="2.2 三层调度对象"></a>2.2 三层调度对象</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Driver</span><br><span class="line"> ├── DAGScheduler   —— 面向 Stage：切分 DAG、提交 TaskSet、处理 Stage 失败重试</span><br><span class="line"> ├── TaskScheduler  —— 面向 Task：把 Task 分发到 Executor、处理推测执行/黑名单</span><br><span class="line"> └── SchedulerBackend —— 与集群管理器（YARN/K8s）交互申请资源</span><br></pre></td></tr></table></figure>
+
+<p>面试常考的分工边界：<strong>Stage 级失败重试属于 DAGScheduler，Task 级重试与推测执行属于 TaskScheduler</strong>。</p>
+<h1 id="3-Stage-划分：宽窄依赖是唯一标准"><a href="#3-Stage-划分：宽窄依赖是唯一标准" class="headerlink" title="3 Stage 划分：宽窄依赖是唯一标准"></a>3 Stage 划分：宽窄依赖是唯一标准</h1><h2 id="3-1-判定规则"><a href="#3-1-判定规则" class="headerlink" title="3.1 判定规则"></a>3.1 判定规则</h2><p>看<strong>父 RDD 的一个 partition 是否被多个子 partition 使用</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>依赖类型</th>
+<th>特征</th>
+<th>典型算子</th>
+<th>是否 Stage 边界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>窄依赖 Narrow</td>
+<td>父 partition → 唯一子 partition</td>
+<td><code>map</code>&#x2F;<code>filter</code>&#x2F;<code>mapPartitions</code>&#x2F;<code>union</code>、co-partitioned 的 join</td>
+<td>否，可流水线执行</td>
+</tr>
+<tr>
+<td>宽依赖 Wide &#x2F; Shuffle</td>
+<td>父 partition → 多个子 partition，需按 key 重分布</td>
+<td><code>groupByKey</code>&#x2F;<code>reduceByKey</code>&#x2F;<code>join</code>&#x2F;<code>distinct</code>&#x2F;<code>repartition</code></td>
+<td><strong>是</strong></td>
+</tr>
+</tbody></table>
+<h2 id="3-2-划分算法（反向回溯）"><a href="#3-2-划分算法（反向回溯）" class="headerlink" title="3.2 划分算法（反向回溯）"></a>3.2 划分算法（反向回溯）</h2><p>DAGScheduler 从 Action 对应的 final RDD 出发<strong>逆向遍历</strong>血缘：</p>
+<ol>
+<li>遇窄依赖 → 把该 RDD 并入当前 Stage，继续向父回溯；</li>
+<li>遇宽依赖 → 在此<strong>断开</strong>，当前 Stage 结束（成为 ResultStage 或 ShuffleMapStage），为父 RDD 新建一个 ShuffleMapStage，递归处理；</li>
+<li>结果是一个 Stage 级 DAG，无父 Stage 的先执行，有依赖的按拓扑序等待。</li>
+</ol>
+<p>因此有 <strong>Stage 数 &#x3D; Shuffle 次数 + 1</strong>（单 Job 内、无分支时）。</p>
+<h2 id="3-3-两类-Stage"><a href="#3-3-两类-Stage" class="headerlink" title="3.3 两类 Stage"></a>3.3 两类 Stage</h2><ul>
+<li><strong>ShuffleMapStage</strong>：输出写入 Shuffle 文件，供下游拉取；输出位置注册到 <code>MapOutputTracker</code>。</li>
+<li><strong>ResultStage</strong>：执行 Action 本身，结果返回 Driver 或写外部存储。</li>
+</ul>
+<p>一个附带收益：ShuffleMapStage 的输出会被复用。同一 RDD 被多个 Job 使用时，已完成的 ShuffleMapStage 可被<strong>跳过</strong>（Spark UI 中显示 <code>Skipped Stages</code>），这是”为什么第二次 Action 变快了”的答案。</p>
+<h1 id="4-Shuffle：Stage-边界上发生了什么"><a href="#4-Shuffle：Stage-边界上发生了什么" class="headerlink" title="4 Shuffle：Stage 边界上发生了什么"></a>4 Shuffle：Stage 边界上发生了什么</h1><p>Shuffle 是<strong>跨 Stage 的数据重分布</strong>，也是性能问题的主要发源地——它同时引入了磁盘 I&#x2F;O、网络传输、序列化三重开销，并且是<strong>必须全部完成才能进入下游</strong>的同步屏障。</p>
+<h2 id="4-1-Write-侧（上游-ShuffleMapTask）"><a href="#4-1-Write-侧（上游-ShuffleMapTask）" class="headerlink" title="4.1 Write 侧（上游 ShuffleMapTask）"></a>4.1 Write 侧（上游 ShuffleMapTask）</h2><p>每个 map task 按分区器（默认 <code>HashPartitioner</code>）计算目标 reduce 分区，写出<strong>一个数据文件 + 一个索引文件</strong>（Sort Shuffle）：</p>
+<table>
+<thead>
+<tr>
+<th>写入器</th>
+<th>触发条件</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>BypassMergeSortShuffleWriter</code></td>
+<td>分区数少（默认 ≤ 200）且无 map 端聚合</td>
+<td>每分区一临时文件，最后合并，跳过排序</td>
+</tr>
+<tr>
+<td><code>UnsafeShuffleWriter</code></td>
+<td>无聚合、无排序、支持序列化重定位</td>
+<td>在序列化后的二进制上排序，Tungsten 路径</td>
+</tr>
+<tr>
+<td><code>SortShuffleWriter</code></td>
+<td>兜底（需 map 端聚合&#x2F;排序时）</td>
+<td>内存缓冲 + 溢写（spill）+ 归并</td>
+</tr>
+</tbody></table>
+<p>关键点：<strong>内存不足时会 spill 到磁盘</strong>，spill 次数是判断 Shuffle 是否健康的重要指标（Spark UI 的 Spill (Memory)&#x2F;Spill (Disk) 两列）。</p>
+<h2 id="4-2-Read-侧（下游-ShuffleReduceTask）"><a href="#4-2-Read-侧（下游-ShuffleReduceTask）" class="headerlink" title="4.2 Read 侧（下游 ShuffleReduceTask）"></a>4.2 Read 侧（下游 ShuffleReduceTask）</h2><ol>
+<li>向 Driver 的 <code>MapOutputTracker</code> 查询自己那个分区的数据都在哪些 Executor 上；</li>
+<li>通过 Netty 并发拉取（<code>spark.reducer.maxSizeInFlight</code> 限制在途数据量）；</li>
+<li>需聚合则边拉边聚合，需排序则用 <code>ExternalSorter</code>（同样可能 spill）。</li>
+</ol>
+<h2 id="4-3-从执行模型看-Shuffle-的三类病症"><a href="#4-3-从执行模型看-Shuffle-的三类病症" class="headerlink" title="4.3 从执行模型看 Shuffle 的三类病症"></a>4.3 从执行模型看 Shuffle 的三类病症</h2><table>
+<thead>
+<tr>
+<th>症状</th>
+<th>执行模型层面的解释</th>
+<th>对策方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>少数 Task 拖尾（99&#x2F;100 completed 卡住）</td>
+<td>分区器把大量同 key 数据打到同一 reduce 分区 → 单 Task 数据量畸大</td>
+<td>见 <a href="/bigdata/Spark/Spark-data-skew">Spark 数据倾斜</a>：加盐打散、两阶段聚合、Broadcast Join 消除 Shuffle</td>
+</tr>
+<tr>
+<td>Shuffle 数据量巨大 &#x2F; 磁盘打满</td>
+<td>宽依赖过多，且未做 map 端预聚合</td>
+<td><code>reduceByKey</code> 替代 <code>groupByKey</code>（map 端 combine）；提前列裁剪与过滤下推</td>
+</tr>
+<tr>
+<td>分区数不合理</td>
+<td><code>spark.sql.shuffle.partitions</code> 默认 200，与实际数据量脱节：过大产生大量空 Task 调度开销，过小则单 Task OOM</td>
+<td>开启 AQE 让运行时动态合并&#x2F;拆分分区</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Shuffle 全过程图见 <a href="/bigdata/Spark/Spark-Shuffle">Spark Shuffle</a>。</p>
+</blockquote>
+<h1 id="5-AQE：让静态计划变成运行时自适应"><a href="#5-AQE：让静态计划变成运行时自适应" class="headerlink" title="5 AQE：让静态计划变成运行时自适应"></a>5 AQE：让静态计划变成运行时自适应</h1><p>Spark 3.x 的 Adaptive Query Execution 正是在<strong>Stage 边界</strong>上做决策——因为 Shuffle 写完后，Driver 首次掌握了真实的数据统计（各分区实际字节数），可以据此改写尚未执行的下游计划：</p>
+<ol>
+<li><strong>动态合并分区</strong>（Coalesce Partitions）：把 200 个小分区合并成少数几个，消除空 Task；</li>
+<li><strong>动态切换 Join 策略</strong>：发现一侧真实体积远小于阈值，把 Sort-Merge Join 改为 Broadcast Join，直接省掉一次 Shuffle；</li>
+<li><strong>动态处理倾斜 Join</strong>（Skew Join）：把超大分区自动拆成多个子分区并复制另一侧数据。</li>
+</ol>
+<p>这也解释了 AQE 的能力边界：<strong>它只能在 Stage 边界生效，无法优化 Stage 内部</strong>。</p>
+<blockquote>
+<p>执行计划层的规则优化（列裁剪、谓词下推、Join Reorder）见 <a href="/bigdata/Spark/Spark-SQL">Spark SQL</a>。</p>
+</blockquote>
+<h1 id="6-面试速答模板"><a href="#6-面试速答模板" class="headerlink" title="6 面试速答模板"></a>6 面试速答模板</h1><p><strong>问：讲讲 Spark 的执行模型。</strong></p>
+<blockquote>
+<p>从 Action 触发说起：Transformation 只构建血缘 DAG，Action 触发 DAGScheduler 逆向回溯，以宽依赖为界切出 Stage——窄依赖能流水线融合所以合并进同一 Stage，宽依赖需要跨节点按 key 重分布所以必须断开。每个 Stage 按 partition 展开成 TaskSet 交给 TaskScheduler 分发，Stage 之间通过 Shuffle 文件衔接，是个同步屏障。所以性能优化的落点很明确：<strong>减少 Shuffle 次数、减少 Shuffle 数据量、让 Shuffle 后的分区分布均匀</strong>，这三条分别对应 Broadcast Join、map 端预聚合与列裁剪、以及倾斜治理和 AQE。</p>
+</blockquote>
+<p><strong>追问：为什么宽依赖一定要切 Stage？</strong></p>
+<blockquote>
+<p>因为子 partition 的输入依赖多个父 partition，必须等父 Stage <strong>全部</strong> task 完成才能确定数据完整——无法像窄依赖那样一条记录来了就往下走。这个”全部完成”就是同步屏障，也是长尾 Task 会阻塞整个作业的根因。</p>
+</blockquote>
+<h1 id="7-可迁移的方法论"><a href="#7-可迁移的方法论" class="headerlink" title="7 可迁移的方法论"></a>7 可迁移的方法论</h1><p>这套模型不止用于 Spark，它是<strong>所有分布式执行引擎的通用骨架</strong>，横向迁移时只需替换名词：</p>
+<table>
+<thead>
+<tr>
+<th>Spark</th>
+<th>Flink</th>
+<th>GPU 推理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stage 边界（同步屏障）</td>
+<td>算子链断点 &#x2F; Checkpoint Barrier</td>
+<td>Kernel 间的同步点</td>
+</tr>
+<tr>
+<td>Task 长尾</td>
+<td>反压（Backpressure）与热点 subtask</td>
+<td>静态 Batching 的木桶效应</td>
+</tr>
+<tr>
+<td>Shuffle 磁盘 + 网络开销</td>
+<td>网络 Shuffle &#x2F; 状态访问</td>
+<td>HBM 读写（FlashAttention 优化的对象）</td>
+</tr>
+<tr>
+<td>Executor 内存 OOM</td>
+<td>TaskManager 堆外内存超限</td>
+<td>显存 OOM</td>
+</tr>
+<tr>
+<td>Spark UI 定位 Top 耗时 Stage</td>
+<td>Flink Web UI 反压面板</td>
+<td>Nsight Systems Kernel 时间线</td>
+</tr>
+</tbody></table>
+<p><strong>共同的排查动作是同构的</strong>：采集基线 → 找到最慢的那个执行单元 → 判断它慢在计算&#x2F;内存&#x2F;I-O&#x2F;通信哪一层 → 单变量验证优化收益。</p>
+<blockquote>
+<p>与 Flink 的抽象差异对比见 <a href="/bigdata/Flink/Flink-VS-Spark">Flink VS Spark</a>；面试中的应用场景见 <a href="/AI/AI">AI 开发技术图谱</a> 1.1.1。</p>
+</blockquote>
+<h1 id="8-参考资料"><a href="#8-参考资料" class="headerlink" title="8 参考资料"></a>8 参考资料</h1><ol>
+<li>Apache Spark 官方文档 —— RDD Programming Guide &#x2F; Tuning Guide</li>
+<li>《Spark 性能优化指南——高级篇》（美团技术团队）</li>
+<li>Matei Zaharia et al., <em>Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</em>, NSDI 2012</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Spark/" rel="tag"># Spark</a>
+              <a href="/tags/RDD/" rel="tag"># RDD</a>
+              <a href="/tags/Shuffle/" rel="tag"># Shuffle</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-Sql-Model/" rel="prev" title="Flink SQL支持model">
+      <i class="fa fa-chevron-left"></i> Flink SQL支持model
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Spark/Spark-Shuffle/" rel="next" title="Spark Shuffle过程">
+      Spark Shuffle过程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%B8%80%E5%8F%A5%E8%AF%9D%E4%B8%BB%E7%BA%BF"><span class="nav-number">1.</span> <span class="nav-text">1 一句话主线</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-DAG-%E7%9A%84%E6%9E%84%E5%BB%BA%EF%BC%9A%E6%83%B0%E6%80%A7%E6%B1%82%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">2 DAG 的构建：惰性求值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Transformation-%E5%8F%AA%E8%AE%B0%E8%B4%A6%EF%BC%8CAction-%E6%89%8D%E7%AE%97%E8%B4%A6"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Transformation 只记账，Action 才算账</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E4%B8%89%E5%B1%82%E8%B0%83%E5%BA%A6%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 三层调度对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Stage-%E5%88%92%E5%88%86%EF%BC%9A%E5%AE%BD%E7%AA%84%E4%BE%9D%E8%B5%96%E6%98%AF%E5%94%AF%E4%B8%80%E6%A0%87%E5%87%86"><span class="nav-number">3.</span> <span class="nav-text">3 Stage 划分：宽窄依赖是唯一标准</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E5%88%A4%E5%AE%9A%E8%A7%84%E5%88%99"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 判定规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%88%92%E5%88%86%E7%AE%97%E6%B3%95%EF%BC%88%E5%8F%8D%E5%90%91%E5%9B%9E%E6%BA%AF%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 划分算法（反向回溯）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E4%B8%A4%E7%B1%BB-Stage"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 两类 Stage</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Shuffle%EF%BC%9AStage-%E8%BE%B9%E7%95%8C%E4%B8%8A%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">4.</span> <span class="nav-text">4 Shuffle：Stage 边界上发生了什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Write-%E4%BE%A7%EF%BC%88%E4%B8%8A%E6%B8%B8-ShuffleMapTask%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Write 侧（上游 ShuffleMapTask）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Read-%E4%BE%A7%EF%BC%88%E4%B8%8B%E6%B8%B8-ShuffleReduceTask%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Read 侧（下游 ShuffleReduceTask）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E4%BB%8E%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%9E%8B%E7%9C%8B-Shuffle-%E7%9A%84%E4%B8%89%E7%B1%BB%E7%97%85%E7%97%87"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 从执行模型看 Shuffle 的三类病症</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-AQE%EF%BC%9A%E8%AE%A9%E9%9D%99%E6%80%81%E8%AE%A1%E5%88%92%E5%8F%98%E6%88%90%E8%BF%90%E8%A1%8C%E6%97%B6%E8%87%AA%E9%80%82%E5%BA%94"><span class="nav-number">5.</span> <span class="nav-text">5 AQE：让静态计划变成运行时自适应</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E9%9D%A2%E8%AF%95%E9%80%9F%E7%AD%94%E6%A8%A1%E6%9D%BF"><span class="nav-number">6.</span> <span class="nav-text">6 面试速答模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E5%8F%AF%E8%BF%81%E7%A7%BB%E7%9A%84%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="nav-number">7.</span> <span class="nav-text">7 可迁移的方法论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">8.</span> <span class="nav-text">8 参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

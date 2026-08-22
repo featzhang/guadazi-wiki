@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="hudi源码走读  index 用来检索哪部分文件的？  Flink dataStream.transform 的作用  Flink hudi pipeline  hoodie key生成规则：recordKey + partition Key  recordKeyField &#x3D; primary key  FileId如何生成的？  km文章-Apache Hudi 快速入门https:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hudi论文">
+<meta property="og:url" content="http://yoursite.com/bigdata/hudi/Hudi/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="hudi源码走读  index 用来检索哪部分文件的？  Flink dataStream.transform 的作用  Flink hudi pipeline  hoodie key生成规则：recordKey + partition Key  recordKeyField &#x3D; primary key  FileId如何生成的？  km文章-Apache Hudi 快速入门https:">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/20220320203739.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/ec21e183c714850dda2ce8962b793f44.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/6e95931ab74519ef194c35f428343e44.png">
+<meta property="article:published_time" content="2019-08-10T14:58:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.493Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Hudi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/hudi/20220320203739.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/hudi/Hudi/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Hudi论文 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/hudi/Hudi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hudi论文
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-10 14:58:00" itemprop="dateCreated datePublished" datetime="2019-08-10T14:58:00+00:00">2019-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="hudi源码走读"><a href="#hudi源码走读" class="headerlink" title="hudi源码走读"></a>hudi源码走读</h2><ul>
+<li><input disabled="" type="checkbox"> index 用来检索哪部分文件的？</li>
+<li><input disabled="" type="checkbox"> Flink dataStream.transform 的作用</li>
+<li><input disabled="" type="checkbox"> Flink hudi pipeline</li>
+<li><input disabled="" type="checkbox"> hoodie key生成规则：recordKey + partition Key</li>
+<li><input disabled="" type="checkbox"> recordKeyField &#x3D; primary key</li>
+<li><input disabled="" type="checkbox"> FileId如何生成的？</li>
+</ul>
+<h2 id="km文章-Apache-Hudi-快速入门"><a href="#km文章-Apache-Hudi-快速入门" class="headerlink" title="km文章-Apache Hudi 快速入门"></a>km文章-Apache Hudi 快速入门</h2><p><a href="https://km.woa.com/group/51977/articles/show/510278">https://km.woa.com/group/51977/articles/show/510278</a></p>
+<ul>
+<li>增量更新 如何发现变动的数据，定期启动下游任务</li>
+<li>增量更新 实时任务如何触发</li>
+<li>现有小时粒度更新，如何处理延迟数据</li>
+<li>面向应用层的数据每天输出一次，如何确定时机</li>
+<li>监管场景 重点需要了解</li>
+<li>Flink写hudi回放时，如何确保exactly once?</li>
+<li>timeline 支持的增量查询时间区间如何选择</li>
+<li>数据已经cleans了，还能不能找到旧的timeline</li>
+<li>parquet文件大小与查询性能关系</li>
+<li>索引是用来定位文件组，文件组是个啥？</li>
+<li>record key如何确定?</li>
+<li>hudi upsert如何添加合并逻辑</li>
+<li>spark和flink如何指定timeline时间来增量读取</li>
+<li>三种视图无法满足业务对同一份数据的多种使用方式吧？数据摄取、查询性能和成本 不可调和，compaction异步也无法解决全部问题</li>
+<li>增量视图 为什么只能是cow？</li>
+<li>mor模式读取时是由presto或者spark来做读时合并？合并过程中新文件如何处理？</li>
+<li>hudi 与 iceberg 混合查询能否可行？</li>
+</ul>
+<p>日期: 5月7日, 08:10</p>
+<p><a href="https://www.infoq.cn/article/08t12zv6ev9spxalpklq">Hudi论文</a></p>
+<p><a href="https://github.com/leesf/hudi-resources">lessf 收集的材料</a></p>
+<p>hudi, 原名: hoodie,  <code>Hadoop Upsert Delete and Incremental</code></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Uber希望在存储上做到流批统一，<strong>需要让负责批量写入的存储系统也能支持实时写入</strong>，这就产生了update和delete的需求。为什么呢？有多种原因，例如实时计算常有的<strong>迟到数据</strong>，还有<strong>业务时效性要求</strong>以及一些<strong>合规需求</strong>（GDPR要求平台允许用户删除自己的数据）。而众所众知的是，无论是HDFS还是云平台的对象存储（例如aws的s3，阿里云的oss等），都不支持update而只能overwrite，<strong>因此要实现update和delete功能，就必须在底层存储之上做文章</strong>。Hudi于是应运而生</p>
+<h3 id="Upsert-hudi的招牌"><a href="#Upsert-hudi的招牌" class="headerlink" title="Upsert - hudi的招牌"></a>Upsert - hudi的招牌</h3><blockquote>
+<p>如何在一个只能overwrite的文件系统上实现update操作?</p>
+</blockquote>
+<blockquote>
+<p>hudi的思想:<br>把一个完整的文件拆分为多个“小文件”，当需要更新其中某条记录时，只要把包含这条记录的“小文件”给重写一遍即可</p>
+</blockquote>
+<h3 id="COW-Copy-On-Write"><a href="#COW-Copy-On-Write" class="headerlink" title="COW: Copy On Write"></a>COW: Copy On Write</h3><p>RECORDKEY_FIELD_OPT_KEY: 作为recordKey的字段名, 如txn_id</p>
+<p>PARTITIONPATH_FIELD_OPT_KEY: 作为partitionPath的字段名, 如 fdate</p>
+<p>Upsert的过程整体分为3步（这里省略了很多不太重要的步骤）：</p>
+<ol>
+<li>根据<code>partitionPath</code>进行重新分区</li>
+<li>Tagging: 根据recordKey确定哪些记录需要插入，哪些记录需要更新。对于需要更新的记录，还需要找到旧的记录所在的文件.<br> tagging需要在已有的数据里寻找key相同的record，<strong>如果表的数据量比较大时会非常耗时</strong></li>
+<li>把记录写入实际的文件</li>
+</ol>
+<h3 id="MOR-Merge-On-Read"><a href="#MOR-Merge-On-Read" class="headerlink" title="MOR: Merge On Read"></a>MOR: Merge On Read</h3><p>0.3.5版本开始引入</p>
+<p><strong>主要是写入性能</strong></p>
+<p><strong>COW表每次在写入时，会把新写入的数据和老数据合并以后，再写成新的文件。</strong> 单单是写入的过程（不包含前期的repartition和tagging过程），就包含至少三个步骤：</p>
+<ol>
+<li>读取老数据的parquet文件（涉及对parquet文件解码，<strong>不轻松</strong></li>
+<li>将老数据和新数据合并</li>
+<li>将合并后的数据重新写成parquet文件（又涉及parquet文件编码，<strong>也不轻松</strong>）</li>
+</ol>
+<p><strong>upsert时把变更内容写入log文件，然后定期合并log文件和base文件。</strong> 这样的好处是避免了写入时读取老数据，也就避免了parquet文件<strong>不轻松</strong>的编解码过程，只需要把变更记录写入一个文件即可（而且是顺序写入）。显然是 <strong>轻松了不少</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">warehouse</span><br><span class="line">├── .hoodie</span><br><span class="line">├── 20220101</span><br><span class="line">│   ├── fileId1_001.parquet</span><br><span class="line">│   ├── .fileId1_20220312163419285.log</span><br><span class="line">│   └── .fileId1_20220312172212361.log</span><br><span class="line">└── 20220102</span><br><span class="line">    ├── fileId2_001.parquet</span><br><span class="line">    └── .fileId2_20220312163512913.log</span><br></pre></td></tr></table></figure>
+
+<p>MOR表在更新时只会把更新的那部分数据写入一个<code>.log</code>文件，因为<code>.log</code>文件不包含老数据，也不涉及<code>tagging</code>，又是顺序写入的，所以写入会非常快。而当客户端要读取数据时，会有两种选择：</p>
+<p><strong>读取时merge，同时定期地compact</strong></p>
+<ol>
+<li>读取时动态地把.log文件和原始数据文件（称为base文件）进行merge<ul>
+<li>数据保证最新，缺点是读取的性能较差</li>
+</ul>
+</li>
+<li>异步地把.log文件和base文件merge，如果merge还没完成，只能读到上个版本的数据</li>
+</ol>
+<ul>
+<li>异步merge(称为compaction)有一定的延迟</li>
+</ul>
+<p>Merge on read: <strong>Hudi的读取过程是实时地把base数据和log数据合并起来，并返回给用户</strong></p>
+<p>实时合并的实现方式是把所有log文件读入内存，放在一个HashMap里，然后遍历base文件，把base数据和缓存在内存里的log数据进行join，最后才得到合并后的结果。难免会影响到读取效率。</p>
+<p>对于MOR表，Hudi支持3种query类型，分别是:</p>
+<ol>
+<li>Snapshot Query</li>
+<li>Incremental Query</li>
+<li>Read Optimized Query</li>
+</ol>
+<p>其中: 1和3就是为了平衡读和写之间的取舍。这两者的区别是：<br>Snapshot Query和上文所说的一样，读取时进行“实时合并”；<br>Read Optimized Query则不同，<strong>只读取base文件，不读取log文件</strong>，因此读取效率和COW表相同，但读到的数据可能不是最新的。</p>
+<p><img src="/images/bigdata/hudi/20220320203739.png"></p>
+<h3 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h3><p>Tagging过程中，需要使用Index判断一条数据是否已经插入过。</p>
+<p>Bloom Index：实现原理是bloom filter。优点是效率高，缺点是bloom filter固有的假阳性问题，所以Hudi对bloom filter里存在的key，还需要回溯原文件再查找一遍。<strong>Hudi默认使用的是Bloom Index</strong>。</p>
+<p>Simple Index：实现原理是把新数据和老数据进行join。优点是实现最简单，无需额外的资源。缺点是性能比较差。</p>
+<p>HBase Index：实现原理是把index存放在HBase里面。优点是性能最高，缺点是需要外部的系统，增加了运维压力。</p>
+<p>global index里面存放了一张表里所有record的key，而non-global index是每个partition都有一个对应的index，里面只存放了本partition的key。如果用户使用non-global index，<strong>就必须保证同一个key的record不会出现在多个partition里面</strong>。<br>non-global index主要是出于index的维护成本和写入性能考虑。因为维护一个global index的难度更大，对写入性能的影响也更大。</p>
+<h3 id="事务-Transactional"><a href="#事务-Transactional" class="headerlink" title="事务: Transactional"></a>事务: Transactional</h3><p>Timeline</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原子性</td>
+<td>写入即使失败，也不会造成数据损坏</td>
+</tr>
+<tr>
+<td>隔离性</td>
+<td>读写分离，写入不影响读取，不会读到写入中途的数据</td>
+</tr>
+<tr>
+<td>回滚</td>
+<td>可以回滚变更，把数据恢复到旧版本</td>
+</tr>
+<tr>
+<td>时间旅行</td>
+<td>可以读取旧版本的数据（但太老的版本会被清理掉）</td>
+</tr>
+<tr>
+<td>存档</td>
+<td>可以长期保存旧版本数据（存档的版本不会被自动清理）</td>
+</tr>
+<tr>
+<td>增量读取</td>
+<td>可以读取任意两个版本之间的差分数据</td>
+</tr>
+</tbody></table>
+<p>Hudi在这张表的timeline里（实际存放在.hoodie目录下）会记录下v1和v2对应的文件列表。<strong>当client读取数据时，首先会查看timeline里最新的commit是哪个，从最新的commit里获得对应的文件列表，再去这些文件读取真正的数据。</strong></p>
+<p>多版本隔离的能力。当一个client正在读取v1的数据时，另一个client可以同时写入新的数据，新的数据会被写入新的文件里，不影响v1用到的数据文件。只有当数据全部写完以后，v2才会被commit到timeline里面。后续的client再读取时，读到的就是v2的数据。</p>
+<p>顺带一提的是，尽管Hudi具备多版本数据管理的能力，但旧版本的数据不会无限制地保留下去。Hudi会在新的commit完成时开始清理旧的数据，默认的策略是“<strong>清理早于10个commit前的数据</strong>”。</p>
+<h2 id="Incremental-Query（增量查询）"><a href="#Incremental-Query（增量查询）" class="headerlink" title="Incremental Query（增量查询）"></a>Incremental Query（<strong>增量查询</strong>）</h2><p>其实Hudi对每一条数据，都有<strong>一个隐藏字段_hoodie_commit_time用于记录commit时间</strong>，这个字段会和其他数据字段一起保存在parquet文件里<br>Hudi在读取parquet文件时，会同时用这个字段对结果进行过滤，把不属于时间范围内的记录都过滤掉。</p>
+<hr>
+<p>不仅仅是 表格式</p>
+<p>表格式 包括表的布局、表的Schema和对表更高的元数据跟踪</p>
+<p>Hudi 使用 Avro 格式来存储、管理和演进表的schema<br>Hudi 强制执行 schema-on-write </p>
+<p><img src="/images/bigdata/hudi/ec21e183c714850dda2ce8962b793f44.png"></p>
+<h1 id="timeline"><a href="#timeline" class="headerlink" title="timeline"></a>timeline</h1><p>索引时间线</p>
+<h2 id="索引机制"><a href="#索引机制" class="headerlink" title="索引机制"></a>索引机制</h2><p>[[hudi-indexing-mechanisms]]<br><img src="/images/bigdata/hudi/6e95931ab74519ef194c35f428343e44.png"></p>
+<h2 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h2><h1 id="集成Presto"><a href="#集成Presto" class="headerlink" title="集成Presto"></a>集成Presto</h1><p><a href="https://prestodb.io/blog/2020/08/04/prestodb-and-hudi">https://prestodb.io/blog/2020/08/04/prestodb-and-hudi</a></p>
+<hr>
+<h3 id="【参考文献】"><a href="#【参考文献】" class="headerlink" title="【参考文献】"></a>【参考文献】</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/5LQH50gZkNulDMLlcKABeg">聊一聊Apache Hudi的原理（1）</a></li>
+<li><a href="https://mp.weixin.qq.com/s/wg5peO98IQympM-iUwvQSw">聊一聊 Apache Hudi 的原理（2）</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+              <a href="/tags/Hudi/" rel="tag"># Hudi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/kudu/kudu/" rel="prev" title="kudu">
+      <i class="fa fa-chevron-left"></i> kudu
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Spark/Spark-usage/" rel="next" title="Spark 使用">
+      Spark 使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hudi%E6%BA%90%E7%A0%81%E8%B5%B0%E8%AF%BB"><span class="nav-number">1.</span> <span class="nav-text">hudi源码走读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#km%E6%96%87%E7%AB%A0-Apache-Hudi-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">km文章-Apache Hudi 快速入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Upsert-hudi%E7%9A%84%E6%8B%9B%E7%89%8C"><span class="nav-number">3.1.</span> <span class="nav-text">Upsert - hudi的招牌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COW-Copy-On-Write"><span class="nav-number">3.2.</span> <span class="nav-text">COW: Copy On Write</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOR-Merge-On-Read"><span class="nav-number">3.3.</span> <span class="nav-text">MOR: Merge On Read</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Index"><span class="nav-number">3.4.</span> <span class="nav-text">Index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1-Transactional"><span class="nav-number">3.5.</span> <span class="nav-text">事务: Transactional</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Incremental-Query%EF%BC%88%E5%A2%9E%E9%87%8F%E6%9F%A5%E8%AF%A2%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">Incremental Query（增量查询）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#timeline"><span class="nav-number">5.</span> <span class="nav-text">timeline</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%9C%BA%E5%88%B6"><span class="nav-number">5.1.</span> <span class="nav-text">索引机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6"><span class="nav-number">5.2.</span> <span class="nav-text">并发控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E6%88%90Presto"><span class="nav-number">6.</span> <span class="nav-text">集成Presto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E3%80%91"><span class="nav-number">6.1.</span> <span class="nav-text">【参考文献】</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

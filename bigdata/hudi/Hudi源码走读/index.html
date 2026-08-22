@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="构建本地模拟环境hudi代码走读 创建本地模拟环境，一步一步调试主程序12345678910111213141516171819202122232425262728String sourceTable &#x3D; &quot;source_01&quot;; ParameterTool pt &#x3D; ParameterTool.fromArgs(args); String database &#x3D; pt.get(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hudi源码走读-Flink数据写入">
+<meta property="og:url" content="http://yoursite.com/bigdata/hudi/Hudi%E6%BA%90%E7%A0%81%E8%B5%B0%E8%AF%BB/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="构建本地模拟环境hudi代码走读 创建本地模拟环境，一步一步调试主程序12345678910111213141516171819202122232425262728String sourceTable &#x3D; &quot;source_01&quot;; ParameterTool pt &#x3D; ParameterTool.fromArgs(args); String database &#x3D; pt.get(">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/clip_image002.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/clip_image004.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/clip_image006.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/clip_image008.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/clip_image010.jpg">
+<meta property="article:published_time" content="2022-09-23T20:40:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.495Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Hudi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/hudi/clip_image002.jpg">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/hudi/Hudi%E6%BA%90%E7%A0%81%E8%B5%B0%E8%AF%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>hudi源码走读-Flink数据写入 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/hudi/Hudi%E6%BA%90%E7%A0%81%E8%B5%B0%E8%AF%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hudi源码走读-Flink数据写入
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-23 20:40:00" itemprop="dateCreated datePublished" datetime="2022-09-23T20:40:00+00:00">2022-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="构建本地模拟环境"><a href="#构建本地模拟环境" class="headerlink" title="构建本地模拟环境"></a>构建本地模拟环境</h2><p>hudi代码走读</p>
+<h2 id="创建本地模拟环境，一步一步调试"><a href="#创建本地模拟环境，一步一步调试" class="headerlink" title="创建本地模拟环境，一步一步调试"></a>创建本地模拟环境，一步一步调试</h2><h3 id="主程序"><a href="#主程序" class="headerlink" title="主程序"></a>主程序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sourceTable</span> <span class="operator">=</span> <span class="string">&quot;source_01&quot;</span>;</span><br><span class="line"> <span class="type">ParameterTool</span> <span class="variable">pt</span> <span class="operator">=</span> ParameterTool.fromArgs(args);</span><br><span class="line"> <span class="type">String</span> <span class="variable">database</span> <span class="operator">=</span> pt.get(<span class="string">&quot;database&quot;</span>, <span class="string">&quot;ods_glory&quot;</span>);</span><br><span class="line"> <span class="type">String</span> <span class="variable">table</span> <span class="operator">=</span> pt.get(<span class="string">&quot;table&quot;</span>, <span class="string">&quot;ods_glory_t1&quot;</span>);</span><br><span class="line"> <span class="type">String</span> <span class="variable">hudiDemoHome</span> <span class="operator">=</span> <span class="string">&quot;apps/data/hudi&quot;</span>;</span><br><span class="line"> <span class="type">String</span> <span class="variable">tablePath</span> <span class="operator">=</span> String.format(<span class="string">&quot;%s/%s/%s.db/%s&quot;</span>, System.getProperty(<span class="string">&quot;user.home&quot;</span>), hudiDemoHome, database, table);</span><br><span class="line"> log.info(<span class="string">&quot;userParameter: &#123;&#125;&quot;</span>, pt.toMap());</span><br><span class="line"> <span class="comment">//</span></span><br><span class="line"> <span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span></span><br><span class="line">     StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line"> <span class="type">StreamTableEnvironment</span> <span class="variable">tableEnv</span> <span class="operator">=</span> StreamTableEnvironment.create(env);</span><br><span class="line"> env.setParallelism(<span class="number">1</span>);</span><br><span class="line"> env.enableCheckpointing(<span class="number">10000</span>, CheckpointingMode.EXACTLY_ONCE);</span><br><span class="line"> <span class="type">Configuration</span> <span class="variable">configuration</span> <span class="operator">=</span> tableEnv.getConfig().getConfiguration();</span><br><span class="line"> configuration.setString(<span class="string">&quot;table.dynamic-table-options.enabled&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line"> configuration.setString(PipelineOptions.NAME.key(), <span class="string">&quot;flake-hudi-1.13&quot;</span>);</span><br><span class="line"> log.info(<span class="string">&quot;envConfig: &#123;&#125;.&quot;</span>, configuration.toMap());</span><br><span class="line"> <span class="comment">//</span></span><br><span class="line"> tableEnv.executeSql(sourceDdl());</span><br><span class="line"> <span class="type">String</span> <span class="variable">targetDal</span> <span class="operator">=</span> sinkTableDdl(table, tablePath, database);</span><br><span class="line"> log.info(<span class="string">&quot;targetDal:&#123;&#125;.&quot;</span>, targetDal);</span><br><span class="line"> tableEnv.executeSql(targetDal);</span><br><span class="line"> <span class="comment">// tableEnv.executeSql(String.format(&quot;select *,DATE_FORMAT(ts, &#x27;yyyyMMdd&#x27;) as dt from %s&quot;, table, sourceTable))</span></span><br><span class="line"> <span class="comment">// System.out.println(tableEnv.explain(tableEnv.from(table)));</span></span><br><span class="line"> <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> String.format(<span class="string">&quot;insert into %s select *,DATE_FORMAT(ts, &#x27;yyyyMMdd&#x27;) as dt from %s&quot;</span>, table,</span><br><span class="line">     sourceTable);</span><br><span class="line"> tableEnv.executeSql(sql);</span><br><span class="line"> System.out.println(env.getExecutionPlan());</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="创建数据源"><a href="#创建数据源" class="headerlink" title="创建数据源"></a>创建数据源</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="title function_">sourceDdl</span><span class="params">()</span> &#123;</span><br><span class="line">     <span class="type">String</span> <span class="variable">sourceTable</span> <span class="operator">=</span> <span class="string">&quot;source_01&quot;</span>;</span><br><span class="line">     <span class="keyword">return</span> String.format(<span class="string">&quot;CREATE TABLE %s (\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; uuid varchar(20),\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; facc_time STRING ,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; facc_time_rongduan STRING,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; facc_type BIGINT ,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; fact_info STRING ,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; ts timestamp(3)\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot;) WITH (\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; &#x27;connector&#x27; = &#x27;datagen&#x27;,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; &#x27;rows-per-second&#x27; = &#x27;100&#x27;\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot;)&quot;</span>, sourceTable);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="创建hudi表"><a href="#创建hudi表" class="headerlink" title="创建hudi表"></a>创建hudi表</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="title function_">sinkTableDdl</span><span class="params">(String targetTable, String basePath, String dbName)</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> String.format(<span class="string">&quot;create table %s(\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; uuid STRING,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; facc_time STRING ,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; facc_time_rongduan STRING,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; facc_type BIGINT ,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; fact_info STRING ,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; ts timestamp(3),\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; dt string,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; PRIMARY KEY(uuid) NOT ENfORCED&quot;</span> +</span><br><span class="line">       <span class="string">&quot;)\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; PARTITIONED BY (`dt`)\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; with (\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;connector&#x27; = &#x27;hudi&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;path&#x27; = &#x27;%s&#x27;, -- 替换成的绝对路径\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;table.type&#x27; = &#x27;MERGE_ON_READ&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;write.bucket_assign.tasks&#x27; = &#x27;8&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;write.tasks&#x27; = &#x27;8&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;write.operation&#x27; = &#x27;upsert&#x27;, -- upsert/insert\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;changelog.enabled&#x27; = &#x27;true&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;read.streaming.enabled&#x27; = &#x27;true&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;read.streaming.check-interval&#x27; = &#x27;1&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;compaction.tasks&#x27; = &#x27;8&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;compaction.trigger.strategy&#x27;=&#x27;num_commits&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;compaction.delta_commits&#x27; =&#x27;5&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;compaction.max_memory&#x27; = &#x27;3096&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;clean.retain_commits&#x27; = &#x27;30&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.enable&#x27; = &#x27;false&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.mode&#x27; = &#x27;hms&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.db&#x27; = &#x27;%s&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.table&#x27; = &#x27;%s&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.metastore.uris&#x27; = &#x27;%s&#x27;\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot;)&quot;</span>, targetTable, basePath, dbName, targetTable, <span class="string">&quot;metastoreUrl&quot;</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>go on，跟进调试</p>
+<p>&#x2F;&#x2F; TODO 整理到 flink demo</p>
+<h2 id="Flink-HoodieTableFactory"><a href="#Flink-HoodieTableFactory" class="headerlink" title="Flink-HoodieTableFactory"></a>Flink-HoodieTableFactory</h2><p><img src="/images/bigdata/hudi/clip_image002.jpg" alt="img"></p>
+<p><img src="/images/bigdata/hudi/clip_image004.jpg" alt="img"></p>
+<h3 id="org-apache-hudi-table-HoodieTableSink"><a href="#org-apache-hudi-table-HoodieTableSink" class="headerlink" title="org.apache.hudi.table.HoodieTableSink"></a>org.apache.hudi.table.HoodieTableSink</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bootstrap</span></span><br><span class="line"> <span class="keyword">final</span> <span class="type">DataStream</span>&lt;HoodieRecord&gt; <span class="variable">hoodieRecordDataStream</span> <span class="operator">=</span></span><br><span class="line">   Pipelines.bootstrap(conf, rowType, parallelism, dataStream, context.isBounded(), overwrite);</span><br><span class="line"> <span class="comment">// write pipeline</span></span><br><span class="line"> <span class="type">DataStream</span>&lt;Object&gt; <span class="variable">pipeline</span> <span class="operator">=</span> Pipelines.hoodieStreamWrite(conf, parallelism, hoodieRecordDataStream);</span><br><span class="line"> <span class="comment">// compaction</span></span><br><span class="line"> <span class="keyword">if</span> (StreamerUtil.needsAsyncCompaction(conf)) &#123;</span><br><span class="line">  <span class="keyword">return</span> Pipelines.compact(conf, pipeline);</span><br><span class="line"> &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> Pipelines.clean(conf, pipeline);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/bigdata/hudi/clip_image006.jpg" alt="img"></p>
+<p>org.apache.flink.table.planner.plan.nodes.exec.common.CommonExecSink#createSinkTransformation</p>
+<p><img src="/images/bigdata/hudi/clip_image008.jpg" alt="img"></p>
+<p>经历三步： bootstrap → hoodieStreamWrite → compact &#x2F; clean</p>
+<h4 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h4><ol>
+<li>row_data_to_hoodie_record过程如下:</li>
+</ol>
+<p>Flink rowData 转换为 HoodieRecord: org.apache.hudi.sink.transform.RowDataToHoodieFunction#toHoodieRecord</p>
+<p>数据最终类型为: HoodieAvroRecord</p>
+<ol start="2">
+<li>如果配置了 index.bootstrap.enabled，会增加一个 index_bootstrap 节点，用于在flink state中保存instant信息(lastInstantTime)</li>
+</ol>
+<h4 id="StreamWrite"><a href="#StreamWrite" class="headerlink" title="StreamWrite"></a>StreamWrite</h4><p>org.apache.hudi.sink.utils.Pipelines#hoodieStreamWrite</p>
+<h4 id="compact"><a href="#compact" class="headerlink" title="compact"></a>compact</h4><h4 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h4><p>org.apache.hudi.sink.utils.Pipelines#bootstrap(org.apache.flink.configuration.Configuration, org.apache.flink.table.types.logical.RowType, int, org.apache.flink.streaming.api.datastream.DataStream&lt;org.apache.flink.table.data.RowData&gt;, boolean, boolean)</p>
+<p><img src="/images/bigdata/hudi/clip_image010.jpg" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">org.apache.hudi.sink.transform.RowDataToHoodieFunction</span><br><span class="line"></span><br><span class="line">org.apache.hudi.sink.bootstrap.BootstrapOperator 这个需要继续分析</span><br><span class="line"></span><br><span class="line"><span class="comment">// org.apache.hudi.sink.utils.Pipelines#hoodieStreamWrite</span></span><br><span class="line"> dataStream</span><br><span class="line"> .keyBy(HoodieRecord::getRecordKey) <span class="comment">// hoodieKey 需要单独分析</span></span><br><span class="line"> .transform(<span class="string">&quot;bucket_assigner&quot;</span>, TypeInformation.of(HoodieRecord.class), <span class="keyword">new</span> <span class="title class_">KeyedProcessOperator</span>(<span class="keyword">new</span> <span class="title class_">BucketAssignFunction</span>(conf)))</span><br><span class="line"> <span class="comment">// org.apache.hudi.sink.partitioner.BucketAssignFunction#processRecord</span></span><br><span class="line"> <span class="comment">// hoodieKey 的 recordKey 和 partitionPath 代表是什么意思?</span></span><br><span class="line"> <span class="comment">// org.apache.hudi.common.model.HoodieRecordLocation 和 org.apache.hudi.common.model.HoodieRecordGlobalLocation</span></span><br><span class="line"> .uid(<span class="string">&quot;uid_bucket_assigner_&quot;</span> + conf.getString(FlinkOptions.TABLE_NAME))</span><br><span class="line"> .setParallelism((Integer)conf.getOptional(FlinkOptions.BUCKET_ASSIGN_TASKS).orElse(defaultParallelism))</span><br><span class="line"> .keyBy((record) -&gt; &#123; <span class="keyword">return</span> record.getCurrentLocation().getFileId(); &#125;)</span><br><span class="line"> .transform(<span class="string">&quot;stream_write&quot;</span>, TypeInformation.of(Object.class), operatorFactory)</span><br><span class="line"> <span class="comment">// org.apache.flink.streaming.api.operators.SimpleUdfStreamOperatorFactory</span></span><br><span class="line"> <span class="comment">// Flink的单UDF的StreamOperatorFactory</span></span><br><span class="line"> <span class="comment">// org.apache.hudi.sink.common.WriteOperatorFactory#createStreamOperator</span></span><br><span class="line"> .uid(<span class="string">&quot;uid_stream_write&quot;</span> + conf.getString(FlinkOptions.TABLE_NAME))</span><br><span class="line"> .setParallelism(conf.getInteger(FlinkOptions.WRITE_TASKS)); </span><br><span class="line"> </span><br><span class="line"> dataStream</span><br><span class="line"> .transform(<span class="string">&quot;compact_plan_generate&quot;</span>, TypeInformation.of(CompactionPlanEvent.class), <span class="keyword">new</span> <span class="title class_">CompactionPlanOperator</span>(conf))</span><br><span class="line"> .setParallelism(<span class="number">1</span>)</span><br><span class="line"> .rebalance()</span><br><span class="line"> .transform(<span class="string">&quot;compact_task&quot;</span>, TypeInformation.of(CompactionCommitEvent.class), <span class="keyword">new</span> <span class="title class_">ProcessOperator</span>(<span class="keyword">new</span> <span class="title class_">CompactFunction</span>(conf)))</span><br><span class="line"> .setParallelism(conf.getInteger(FlinkOptions.COMPACTION_TASKS))</span><br><span class="line"> .addSink(<span class="keyword">new</span> <span class="title class_">CompactionCommitSink</span>(conf))</span><br><span class="line"> .name(<span class="string">&quot;compact_commit&quot;</span>)</span><br><span class="line"> .setParallelism(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// org.apache.hudi.sink.partitioner.BucketAssignFunction#processRecord</span></span><br><span class="line"> <span class="type">HoodieRecord</span>&lt;?&gt; <span class="variable">deleteRecord</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HoodieAvroRecord</span>(<span class="keyword">new</span> <span class="title class_">HoodieKey</span>(recordKey, oldLoc.getPartitionPath()), <span class="built_in">this</span>.payloadCreation.createDeletePayload((BaseAvroPayload)record.getData()));</span><br><span class="line"> deleteRecord.setCurrentLocation(oldLoc.toLocal(<span class="string">&quot;U&quot;</span>));</span><br><span class="line"> deleteRecord.seal();</span><br><span class="line"> out.collect(deleteRecord);</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F; stream_write<br> &#x2F;&#x2F; org.apache.hudi.sink.StreamWriteFunction<br> org.apache.hudi.sink.StreamWriteFunction#bufferRecord</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+              <a href="/tags/Hudi/" rel="tag"># Hudi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/paimon/Flink-TableStore-V0.2/" rel="prev" title="Flink:TableStore V0.2">
+      <i class="fa fa-chevron-left"></i> Flink:TableStore V0.2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Java/jvm/GC-anasyer-tools/" rel="next" title="GC分析工具">
+      GC分析工具 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%A8%A1%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">构建本地模拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%A8%A1%E6%8B%9F%E7%8E%AF%E5%A2%83%EF%BC%8C%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%B0%83%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">创建本地模拟环境，一步一步调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.1.</span> <span class="nav-text">主程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-number">2.2.</span> <span class="nav-text">创建数据源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAhudi%E8%A1%A8"><span class="nav-number">2.3.</span> <span class="nav-text">创建hudi表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink-HoodieTableFactory"><span class="nav-number">3.</span> <span class="nav-text">Flink-HoodieTableFactory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#org-apache-hudi-table-HoodieTableSink"><span class="nav-number">3.1.</span> <span class="nav-text">org.apache.hudi.table.HoodieTableSink</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bootstrap"><span class="nav-number">3.1.1.</span> <span class="nav-text">bootstrap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StreamWrite"><span class="nav-number">3.1.2.</span> <span class="nav-text">StreamWrite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#compact"><span class="nav-number">3.1.3.</span> <span class="nav-text">compact</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clean"><span class="nav-number">3.1.4.</span> <span class="nav-text">clean</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

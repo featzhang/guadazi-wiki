@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Timestmap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL-Timestmap/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>date created: 2025-12-23 09:47<br>tags:</p>
+<ul>
+<li>时间</li>
+<li>Timestmap</li>
+<li>Flink</li>
+<li>时区<br>category: Bigdata<br>date updated: 2026-08-17 20:24<br>title: 各引擎timestamp格式名称对齐</li>
+</ul>
+<h1 id="1-各引擎timestamp格式名称对齐"><a href="#1-各引擎timestamp格式名称对齐" class="headerlink" title="1 各引擎timestamp格式名称对齐"></a>1 各引擎timestamp格式名称对齐</h1><h3 id="1-1-1-Timestmap"><a href="#1-1-1-Timestmap" class="headerlink" title="1.1.1 Timestmap"></a>1.1.1 Timestmap</h3><table>
+<thead>
+<tr>
+<th>Flink</th>
+<th>Iceberg</th>
+<th>Spark</th>
+<th>MySQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>timestmap 默认就是毫秒精度</td>
+<td>timestamp</td>
+<td>timestampntz</td>
+<td>DATETIME(3)</td>
+</tr>
+<tr>
+<td>timestampltz</td>
+<td>timestamptz</td>
+<td>timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>从DLA拉取元数据时，默认精度为MILLIS</p>
+<h3 id="1-1-2-时间精度"><a href="#1-1-2-时间精度" class="headerlink" title="1.1.2 时间精度"></a>1.1.2 时间精度</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>精度</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TIMESTAMP(0)</code></td>
+<td>0 位小数</td>
+<td>秒</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(1)</code></td>
+<td>1 位小数</td>
+<td>0.1 秒（100ms）</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(2)</code></td>
+<td>2 位小数</td>
+<td>10ms</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(3)</code></td>
+<td>3 位小数</td>
+<td><strong>毫秒（ms）</strong></td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(6)</code></td>
+<td>6 位小数</td>
+<td>微秒（μs）</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP(9)</code></td>
+<td>9 位小数</td>
+<td>纳秒（ns）</td>
+</tr>
+</tbody></table>
+<h3 id="1-1-3-避免隐式转换"><a href="#1-1-3-避免隐式转换" class="headerlink" title="1.1.3 避免隐式转换"></a>1.1.3 避免隐式转换</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> TEMPORARY <span class="keyword">VIEW</span> SalesDataSource <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  (</span><br><span class="line">    <span class="keyword">VALUES</span></span><br><span class="line">      (<span class="number">1766073600000</span>),</span><br><span class="line">      (<span class="number">1766080800000</span>)</span><br><span class="line">  ) <span class="keyword">AS</span> T(testt);</span><br><span class="line"><span class="keyword">insert into</span> mysql_table</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">	<span class="built_in">CAST</span>(FROM_UNIXTIME(testt<span class="operator">/</span><span class="number">1000</span>) <span class="keyword">AS</span> <span class="type">DATE</span>) <span class="keyword">as</span> day_time</span><br><span class="line"><span class="keyword">from</span>  SalesDataSource</span><br></pre></td></tr></table></figure>
+
+<p>MySQL中day_time的字段类型是<code>DATE</code>或<code>DATETIME</code>，输入的结果总是<code>1970</code></p>
+<ul>
+<li><code>testt</code> 是 <code>BIGINT</code>（毫秒时间戳）</li>
+<li><code>FROM_UNIXTIME(testt/1000)</code> 返回的是 <code>TIMESTAMP</code></li>
+<li><code>CAST(... AS DATE)</code> 会变成 Flink 的 <code>DATE</code> 类型</li>
+<li>如果 MySQL 字段是 <code>DATETIME</code> 或 <code>TIMESTAMP</code>，写入时 Flink JDBC connector 会把 <code>DATE</code> 转换为 0，显示成 <code>1970-01-01</code></li>
+</ul>
+<p>解决方案: 避免隐式转换</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Flink的Timestamp 对应的类型就是 DateTime(3), 无需强制转换</span></span><br><span class="line">FROM_UNIXTIME(testt<span class="operator">/</span><span class="number">1000</span>) <span class="keyword">AS</span> day_time</span><br><span class="line"><span class="comment">-- 显示Cast成TIMESTAMP(3)也可以</span></span><br><span class="line"><span class="built_in">CAST</span>(FROM_UNIXTIME(testt<span class="operator">/</span><span class="number">1000</span>) <span class="keyword">AS</span> <span class="type">TIMESTAMP</span>(<span class="number">3</span>)) <span class="keyword">AS</span> day_time</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-4-Flink-JDBC-Connector-类型映射"><a href="#1-1-4-Flink-JDBC-Connector-类型映射" class="headerlink" title="1.1.4 Flink JDBC Connector 类型映射"></a>1.1.4 Flink JDBC Connector 类型映射</h3><table>
+<thead>
+<tr>
+<th>Flink SQL</th>
+<th>Connector&#x2F;Java</th>
+<th>MySQL</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DATE</td>
+<td>java.sql.Date</td>
+<td>DATE</td>
+<td>只有年月日，精度到天</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>java.sql.Timestamp</td>
+<td>DATETIME或TIMESTAMP</td>
+<td>精度到毫秒</td>
+</tr>
+</tbody></table>
+<p>Flink SQL中使用<code>CAST(... AS DATE)</code>写入MySQL <code>DATETIME</code>, JDBC Sink会把毫秒部分丢掉，甚至映射失败，默认值会变成<code>0</code>-&gt;<code>1970-01-01</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-submit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL-submit/" class="post-title-link" itemprop="url">Flink SQL之任务提交</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>阿土登录流计算平台后，看到平台上面可以编写 <code>Sql</code> 语法，于是就写了一个简单的 <code>sql。</code></p>
+<p><img src="/images/bigdata/Flink/156_640.webp" alt="图片"></p>
+<p>他发现旁边有个<strong>校验功能</strong>这时平台弹出 <code>SQL</code> 语法效验正确。</p>
+<p><code>SQL</code> 语法效验完成后，阿土点击提交按钮，流计算平台提示，<code>SQl</code> 语法效验正确，已成功提交集群。</p>
+<p><strong>Flink sql 代码居然提交到yarn集群上了？？？</strong></p>
+<p><img src="/images/bigdata/Flink/627_640.webp" alt="图片"></p>
+<ol>
+<li><p>Flink Sql解析器</p>
+</li>
+<li><p>Flink Planner 和 Blink Planner</p>
+</li>
+<li><p>Blink Sql提交流程</p>
+</li>
+</ol>
+<h2 id="1-Flink-Sql解析器"><a href="#1-Flink-Sql解析器" class="headerlink" title="1. Flink Sql解析器"></a>1. Flink Sql解析器</h2><p><strong>1.1、了解Calcite</strong></p>
+<p>为方便用户使用 <code>Flink</code> 流计算组件，<code>Flink</code> 社区设计了四种抽象，在这些抽象中，<code>Sql API</code> 属于<code>Flink</code>的最上层抽象，是 <code>Flink</code> 的一等公民，这就方便用户或者开发者直接通过 <code>Sql</code> 编写来提交任务。</p>
+<p><img src="/images/bigdata/Flink/23_640.webp" alt="图片"></p>
+<p>但经过阿土的调查后 发现，<code>Flink sql</code> 在提交任务时，并不是向 <code>DataStream API</code> 那样，直接被转为 <code>StreamGraph</code>，经过优化生成 <code>JobGraph</code> 提交到集群的,而是需要对编写的 <code>Sql</code> 进行解析、验证、优化等操作，在这中间，社区引入了一个强大的解析器，那就是<code>Calcite</code>。</p>
+<p><strong>1.2、Calcite执行步骤</strong></p>
+<p><code>Calcite</code>的执行流程，主要涉及5个部分 <strong>SQL解析、SQL校验、SQL查询优化、SQL生成、执行</strong>等。</p>
+<p><img src="/images/bigdata/Flink/452_640.webp" alt="图片"></p>
+<p><strong>在这个流程中，Calcite各阶段扮演的角色如下：</strong></p>
+<ol>
+<li><p>SQL解析。通过 <code>JavaCC</code> 实现，使用 JavaCC 编写 SQL 语法描述文件，将 SQL 解析成未经校验的 <code>AST 语法树</code>。</p>
+</li>
+<li><p>SQL校验。通过与元数据结合<code>验证</code> SQL 中的 Schema、Field、 Function 是否存在，输入输出类型是否匹配等。</p>
+</li>
+<li><p>SQL优化。<code>对上个步骤的输出( RelNode ，逻辑计划树)进行优化</code>，使用两种规则：基于规则优化 和 基于代价优化，得到优化后的物理执行计划。</p>
+</li>
+<li><p>SQL生成。<code>将物理执行计划生成为在特定平台/引擎的可执行程序</code>，如生成符合 MySQL 或 Oracle 等不同平台规则的 SQL 查询语句等。</p>
+</li>
+<li><p>执行。执行是通过各个执行平台执行查询，得到输出结果。</p>
+</li>
+</ol>
+<p>其中，Calcite再与其他处理引擎结合时，到<strong>SQL优化</strong>阶段就已经结束。所以流程图简化为：</p>
+<p><img src="/images/bigdata/Flink/395_640.webp" alt="图片"></p>
+<h2 id="2-Flink-Planner-和-Blink-Planner"><a href="#2-Flink-Planner-和-Blink-Planner" class="headerlink" title="2. Flink Planner 和 Blink Planner"></a>2. Flink Planner 和 Blink Planner</h2><p>Calcite是怎么在Flink中扮演的角色呢？Flink1.13.2<code>的</code>Flink Sql&#96;源码</p>
+<p><strong>2.1 Flink Planner和Blink Planner</strong></p>
+<p>在1.9.0版本以前，社区使用<code>Flink Planner</code>作为查询处理器，通过与<code>Calcite</code>进行连接，为<code>Table/SQL API</code>提供完整的解析、优化和执行环境，使其SQL被转为<code>DataStream API</code>的 <code>Transformation</code>，然后再经过<code>StreamJraph -&gt; JobGraph -&gt; ExecutionGraph</code>等一系列流程，最终被提交到集群。</p>
+<p>在1.9.0版本，社区引入阿里巴巴的<code>Blink</code>，对<code>FIink TabIe &amp; SQL</code>模块做了重大的重构，保留了 <code>Flink Planner</code> 的同时，引入了 <code>Blink Planner</code>，没引入以前，<code>Flink</code> 没考虑流批作业统一，针对流批作业，底层实现两套代码，引入后，基于流批一体理念，重新设计算子，以流为核心，流作业和批作业最终都会被转为<code>transformation</code>。</p>
+<p><strong>2.2 Blink Planner与Calcite关系</strong></p>
+<p>在之后的版本，为了实现Flink流批一体的愿景，通过Blink Planner与Calcite进行对接,对接流程如下：</p>
+<ol>
+<li><p>在Table&#x2F;SQL 编写完成后，<strong>通过Calcite 中的parse、validate、rel阶段，以及Blink额外添加的convert阶段,将其先转为Operation</strong>；</p>
+</li>
+<li><p>通过Blink Planner 的<code>translateToRel</code>、<code>optimize</code>、<code>translateToExecNodeGraph</code>和<code>translateToPlan</code>四个阶段，<strong>将Operation转换成DataStream API的 Transformation</strong>；</p>
+</li>
+<li><p>再经过StreamGraph -&gt; JobGraph -&gt; ExecutionGraph等一系列流程，SQL最终被提交到集群。</p>
+</li>
+</ol>
+<p>SQL执行流程图</p>
+<p><img src="/images/bigdata/Flink/729_640.webp" alt="图片"></p>
+<h2 id="3-Blink-Sql提交流程（源码分析）"><a href="#3-Blink-Sql提交流程（源码分析）" class="headerlink" title="3. Blink Sql提交流程（源码分析）"></a>3. Blink Sql提交流程（源码分析）</h2><p>根据对源码的分析后，发现无论是Flink SQL执行DDL操作、还是DQL操作或者DML操作、最终都可以将其总结为两个阶段：</p>
+<ol>
+<li><p>SQL 语句到 Operation 过程，即Parse阶段；</p>
+</li>
+<li><p>Operation 到 Transformations 过程，即Translate阶段。</p>
+</li>
+</ol>
+<h3 id="3-1、Parse阶段"><a href="#3-1、Parse阶段" class="headerlink" title="3.1、Parse阶段"></a>3.1、Parse阶段</h3><p>在Parse阶段一共包含parse、validate、rel、convert部分</p>
+<p><img src="/images/bigdata/Flink/897_640.webp" alt="图片"></p>
+<p><code>Calcite的 parse 解析模块是基于javacc实现的</code>。javacc是一个<strong>词法分析生成器</strong>和<strong>语法分析生成器</strong>。词法分析器于将输入字符流解析成一个一个的token，以下面这段SQL语句为例:</p>
+<p><strong>示例1 ：</strong></p>
+<p><img src="/images/bigdata/Flink/139_640.webp" alt="图片"></p>
+<p>在 parse 部分，上面的SQL语句最后会被解析为如下一组token：</p>
+<p><img src="/images/bigdata/Flink/530_640.webp" alt="图片"></p>
+<p>接下来<strong>语法分析器</strong>会以<strong>词法分析器</strong>解析出来的token序列作为输入来进行语法分析。分析过程使用<strong>递归下降语法</strong>解析，LL(k)。</p>
+<p>其中，第一个<code>L</code>表示从左到右扫描输入；第二个<code>L</code>表示每次都进行最左推导(在推导语法树的过程中每次都替换句型中最左的非终结符为终结符。类似还有最右推导)；</p>
+<p><code>k</code>表示的是每次向前探索(lookahead)<code>k</code> 个终结符。</p>
+<p>分析所依赖的的词法法则定义在一个parser.jj文件中。</p>
+<p><img src="/images/bigdata/Flink/38_640.webp" alt="图片"></p>
+<p>在经过词法分析和语法分析后，一段 SQL 语句会被解析成一颗<code>抽象语法树</code>（Abstract Syntax Tree，AST），树的节点类型在 Calcite 中以 SqlNode 来表示，不同节点以不同子类型的SqlNode来表示。</p>
+<p>同样以上面的SQL为例，在这段SQL中:</p>
+<ol>
+<li><p>id, score, T 等为 SqlIdentifier，表示一个字段名或表名的标识符;</p>
+</li>
+<li><p>select和cast()为<code>SqlCall</code>，表示一个行为或动作，其中cast()为一个<code>SqlBasicCall</code>，表示一个函数调用，具体调用的是什么函数，由其内部的SqlOperator决定，比如这里是一个二元操作符“&lt;”，对应SqlBinaryOperator，operator的名字是“&lt;”，类别是SqlKind.LESS_THAN;</p>
+</li>
+<li><p>int 为 <code>SqlDataTypeSpec</code>，表示一个类型定义;</p>
+</li>
+<li><p>‘hello’和 10 为<code>SqlLiteral</code>，表示一个常量;</p>
+</li>
+</ol>
+<p>在Calcite中，所有的操作都是一个<code>SqlCall</code>, 如查询是一个 <code>SqlSelect</code>, 删除是一个 <code>SqlDelete</code> 等，它们都是 <code>SqlCall</code> 的子类型。select的查询条件等为 <code>SqlCall</code> 中的参数。示例1 的 SQL 语句最终生成的语法树形式如下：</p>
+<p><img src="/images/bigdata/Flink/640.png" alt="图片"></p>
+<p>如果把示例1中的直接从一个表查询数据，改为从两张表的关联结果中查询数据，例如：</p>
+<p><strong>示例2：</strong></p>
+<p><img src="/images/bigdata/Flink/277_640.webp" alt="图片"></p>
+<p>则相应的AST形式如下：</p>
+<p><img src="/images/bigdata/Flink/521_640.webp" alt="图片"></p>
+<p>其中只有FROM子树部分由原来的<code>SqlIdentifier</code>节点变成了一棵<code>SqlJoin</code>子树，其他部分与示例1相同所以在图中省略了。</p>
+<p><strong>校验（validate）阶段</strong></p>
+<p><img src="/images/bigdata/Flink/989_640.webp" alt="图片"></p>
+<p>对经过parser解析出的AST进行有效性验证，验证的方面主要包括以下两方面：</p>
+<ol>
+<li><p>表名、字段名、函数名是否正确，<strong>如在某个查询的字段在当前<code>SQL</code>位置上是否存在或有歧义</strong>（当前可见的多个数据源中同时存在该名称的字段）</p>
+</li>
+<li><p>特定类型操作自身的合法性，如<code>group by</code>聚合中的聚合函数是否存在嵌套调用，使用<code>AS</code>重命名时，<strong>新名字是否是x.y的形式等</strong></p>
+</li>
+</ol>
+<p>针对上面的第一种情况，在校验过程中首先需要明确两个最重要的概念：<strong>NameSpace</strong>和<strong>Scope</strong>。</p>
+<p><code>NameSpace</code>代表一个逻辑上的数据源，可以是一张表，也可以是一个子查询，而<code>Scope</code>则代表了在 <code>SQL</code> 的某个位置，表和字段的可见范围。</p>
+<p>从概念中可以看出，在某个 <code>SQL</code>位置上，某个字段所对应的 <code>scope</code> 可能包含多个 <code>namespace</code>。在 <code>validate</code> 阶段解析出来的 <code>scope</code> 和 <code>namespace</code> 信息会被保存下来，在后面转换成逻辑执行计划的时候还会用到。</p>
+<p>通过一个示例来看什么是 <code>NameSpace</code> 和 <code>scope</code></p>
+<p><strong>示例3</strong></p>
+<p><img src="/images/bigdata/Flink/339_640.webp" alt="图片"></p>
+<p>在上面这样一段SQL语句中包含四个namespace：</p>
+<p><img src="/images/bigdata/Flink/630_640.webp" alt="图片"></p>
+<p>对于SQL中的不同表达式，根据它们所在的位置，它们所对应的scope如下：</p>
+<p><img src="/images/bigdata/Flink/822_640.webp" alt="图片"></p>
+<p>那么在校验第一种情况的时候，整个校验过程的核心就在于<strong>为不同的SqlNode节点生成其对应的namespace和scope</strong>，然后对该<code>SqlNode</code>涉及的字段和<code>namespace</code>与<code>scope</code>的对应关系进行校验。</p>
+<p>对于第二种情况的校验，则需要根据具体的节点类型分别实现了。</p>
+<p>在Calcite中，validator的具体实现类是<code>SqlValidatorImpl</code>，namespace和scope分别由接口<code>SqlValidatorNamespace</code>和<code>SqlValidatorScope</code>表示，图中涉及到的xxxNamespace和xxxScope分别是这两个类的子类。</p>
+<p>下图是从调用validator.validate(sqlNode)开始，对一段查询语句的表名和字段名进行校验的时序图。</p>
+<p><img src="/images/bigdata/Flink/640.webp" alt="图片"></p>
+<p>大体过程都已经在图中的注解里进行了说明，需要补充的一点是，在通过 emptyScope.resolve解析表名时，表信息是通过具体的catalogReader从catalog的schema中查找出来的。</p>
+<p><strong>具体使用什么catalog和catalogReader，是在validator创建之初决定的</strong>。</p>
+<p>在flink中，根据用户的配置，catalog可能是 <code>GenericInMemoryCatalog</code>（基于内存的catalog）或<code>HiveCatalog</code>（基于hive metastore的catalog）。</p>
+<p>如下图所示：</p>
+<p><img src="/images/bigdata/Flink/669_640.webp" alt="图片"></p>
+<p><code>rel</code>阶段是将<code>SqlNode</code>组成的一棵<code>抽象语法树</code>转化为一棵<code>由RelNode和RexNode</code>组成的<code>关系代数树</code>，或者称为执行计划。RelNode表示关系表达式，如投影（Project），即SELECT，和连接（JOIN）等；</p>
+<p>RexNode表示行表达式，如示例中的 <strong>CAST(score AS INT)、T1.id &lt; 10</strong>。</p>
+<p>以示例2的语法树为例，在经过rel阶段转换后会生成下图所示的执行计划：</p>
+<p><img src="/images/bigdata/Flink/401_640.webp" alt="图片"></p>
+<p><strong>rel阶段只处理DML和DQL</strong></p>
+<p>因为<code>DDL</code>实际上可以认为是对元数据的修改，不涉及复杂关系查询，也就不用进行关系代数转换来优化执行，所以也无需转换为表示，根据对应的SqlNode中保存的信息已经可以直接执行了。</p>
+<p>在calcite中，SqlToRelConverter用于对关系表达式进行转换。Flink中通过如下方式使用calcite将AST转换成逻辑执行计划，如下图源码所示。</p>
+<p><img src="/images/bigdata/Flink/848_640.webp" alt="图片"></p>
+<p><strong>从Flink1.13.2源码</strong>中可以看到转换的入口是<code>convertQuery</code>方法。</p>
+<p><code>SqlToRelConverter</code>中的简单的转换流程如下图所示:</p>
+<p><img src="/images/bigdata/Flink/496_640.webp" alt="图片"></p>
+<p>针对每种可能的根节点类型都有对应的转换方法。其中<code>DELETE</code>、<code>UPDATE</code>、<code>MERGE</code>、<code>WITH</code>和<code>VALUES</code>这几种语法在flink流式SQL中还不支持，并且其转换过程也比较简单，后文不再详细分析。</p>
+<p>对于一棵转换后得到的逻辑执行计划树中的节点，其实在<code>AST</code>中都是可以一一对应的找到对应的节点的，所以转换过程本身并不涉及很复杂的算法，大部分过程是提取已有<code>SqlNode</code>节点中记录的信息，然后生成对应的<code>RelNode</code>和<code>RexNode</code>，并设置<code>RelNode</code>间的父子关系。</p>
+<p>从图中也可以看出在<code>calcite</code>里最终都会生成一个<code>LogicalModify</code>节点，通过节点内的<code>operation</code>属性来标识不同的含义。但是目前<code>flink</code>支持的<code>DML</code>只有insert语句，而且并不会生成<code>LogicalModify</code>节点，而是直接转换成了<code>ModifyOperation</code>，并在需要的时候转换成<code>flink</code>内部自己定义的节点类型<code>LogicalSink</code>。也因为这个原因，对于<code>DML</code>的转换流程图中是略有简化的，<code>insert</code>、<code>delete</code>、<code>update</code>和<code>merge</code>本身都可以带查询语句，因此实际转换的时候都会递归地先对查询部分进行转换。</p>
+<p>上图所示流程中只展示了对关系表达式的转换，但是每个关系节点（RelNode）中的行表达式同样需要经过转换得来。</p>
+<p><strong>Calcite中行表达式的转换依赖于两个对象：<code>BlackBoard</code>和<code>SqlNodeToRexConverter</code></strong>。</p>
+<p><code>BlackBoard</code>是对<code>select</code>进行转换时的一个临时工作空间，它就像一块“黑板”一样，可以临时记录下转换过程中需要的信息，比如<code>select</code>依赖的<code>scope</code>、当前的<code>root</code>节点、当前节点是否是<code>top</code>节点等。</p>
+<p><code>BlackBoard</code>本身还是一个<code>shuttle</code>，针对不同类型的<code>SqlNode</code>，其内部都有对应的<code>visit</code>方法。其中除<code>SqlCall</code>、<code>SqlLiteral</code>、<code>SqlIntervalQualifier</code>外，都可由<code>BlackBoard</code>和<code>SqlToRelConverter</code>中定义的各种<code>convertXXX</code>方法进行转换，这三种类型的<code>SqlNode</code>则需要借助<code>SqlNodeToRexConverter</code>来进行转换。</p>
+<p><code>SqlLiteral</code>、<code>SqlIntervalQualifier</code>的转换比较简单，就是从原来的<code>SqlNode</code>中提取信息进行简单的处理和转换，然后生成对应的<code>RexNode</code>。</p>
+<p><strong>重点：这一步负责将RelNode tree转换成operation</strong></p>
+<p><img src="/images/bigdata/Flink/723_640.webp" alt="图片"></p>
+<p>RelNode转换成Operation的过程很简单，针对四种类型的操作，其各自的转换过程如下：·</p>
+<ol>
+<li><p>CreateTable @convertCreateTable</p>
+<p><strong>如果AST的根节点是SqlCreateTable</strong>，提取节点中记录的<code>schema</code>、<code>properties</code>、<code>comment</code>、<code>primary</code> <code>keys</code>、<code>if not exists</code>信息，创建CatalogTable对象，然后<code>创建CreateTableOperation</code></p>
+</li>
+<li><p>DropTable @convertDropTable</p>
+<p><strong>如果AST的根节点是SqlDropTable</strong>，提取节点中记录的<code>full table name</code>、<code>if exists</code>信息，<code>创建DropTableOperation对象</code></p>
+</li>
+<li><p>Insert @convertInsert</p>
+<p><strong>如果AST的根节点是RichSqlInsert</strong>，提取节点中记录的目标表的完整路径和查询表达式，先将查询表达式通过<code>convertSqlQuery</code>转换成<code>QueryOperation</code>，然后以转换后的<code>QueryOperation</code>为子节点创建<code>ModifyOperation</code>对象。</p>
+</li>
+</ol>
+<p>这里分两种情况:</p>
+<blockquote>
+<p>(1)使用SQL API执行了 insert into 语句，将数据写入已经通过 TableEnvironment注册过的表中，此时创建的是CatalogSinkModifyOperation</p>
+</blockquote>
+<blockquote>
+<p>(2)使用Table API的toXXXStream将table对象转换成了DataStream，创建的是OutputConversionModifyOperation</p>
+</blockquote>
+<ol start="4">
+<li><p>Query @convertSqlQuery</p>
+<p><strong>如果根节点的SqlKind是SqlKind.Query</strong>，先通过FlinkPlannerImpl.rel将SqlNode转换成RelNode，然后创建PlannerQueryOperation对象</p>
+</li>
+</ol>
+<h3 id="3-2、Translate阶段"><a href="#3-2、Translate阶段" class="headerlink" title="3.2、Translate阶段"></a>3.2、Translate阶段</h3><p>在Translate阶段，通过Blink Planner 的<code>translateToRel</code>、<code>optimize</code>、<code>translateToExecNodeGraph</code>和<code>translateToPlan</code>四个阶段:<strong>将Operation转换成 Transformations。</strong></p>
+<p><strong>重点</strong>：</p>
+<ol>
+<li><p>从operation开始，先将ModifyOperation通过translateToRel方法转换成Calcite RelNode逻辑计划树，在对应转换成FlinkLogicalRel（RelNode逻辑计划树）；</p>
+</li>
+<li><p>然后经过 调用optimize方法将FlinkLogicalRel 优化成FlinkPhysicalRel。</p>
+</li>
+<li><p>再调用translateToExecNodeGraph方法将FlinkPhysicalRel转为execGraph</p>
+</li>
+<li><p>最后调用translateToPlan方法将execGraph转为transformations</p>
+</li>
+</ol>
+<p><img src="/images/bigdata/Flink/192_640.webp" alt="图片"></p>
+<p><img src="/images/bigdata/Flink/304_640.png" alt="图片"></p>
+<p>从逻辑计划变成物理计划（RelNode），</p>
+<p><img src="/images/bigdata/Flink/575_640.webp" alt="图片"></p>
+<p>Flink1.13.2源码如下：</p>
+<p><img src="/images/bigdata/Flink/776_640.webp" alt="图片"></p>
+<p><strong>、</strong></p>
+<p>这个过程可以看成是<code>convert: RelNode =&gt; Operation</code>的逆过程。</p>
+<p>逻辑也很简单，<strong>无论是使用SQL API还是Table API，最终生成的operation的根节点一定是ModifyOperation</strong>，因为只有insert语句或者将Table转换成DataStream后，在DataStream结果上面写入sink才能触发执行。</p>
+<p>前文提到过<strong>ModifyOperation</strong>最终都会被转换成<code>flink</code>内自定义的<code>LogicalSink</code>节点，该节点主要记录数据输出信息，核心在于需要创建出表示数据输出的<code>sink</code>。所以针对三种<code>ModifyOperation</code>类型分别创建sink的过程如下：</p>
+<ol>
+<li><p><code>UnregisteredSinkModifyOperation</code>：</p>
+<p>这个operation中直接记录了sink信息，因此直接提取出来创建LogicalSink即可。</p>
+</li>
+<li><p><code>CatalogSinkModifyOperation</code>：</p>
+<p>根据operation中记录的table path找到对应的<code>table</code>，然后根据table创建出<code>table sink</code>，最后使用table sink创建出<code>LogicalSink</code>节点。</p>
+<p>这个过程中涉及到了在catalog中解析table和使用ServiceLoader根据table信息在classpath中查找并用于创建table sink的TableSinkFactory的过程，具体如下图所示。</p>
+</li>
+</ol>
+<p><img src="/images/bigdata/Flink/942_640.webp" alt="图片"></p>
+<p><strong>、</strong></p>
+<p>会使用两个优化器:<strong>RBO(基于规则的优化器) 和 CBO(基于代价的优化器)</strong></p>
+<ol>
+<li><code>RBO</code>(基于规则的优化器)会将原有表达式裁剪掉，遍历一系列规则<code>（Rule）</code>，只要满足条件就转换，生成最终的执行计划。一些常见的规则包括分区裁剪<code>（Partition Prune）</code>、列裁剪、谓词下推<code>（Predicate Pushdown）</code>、投影下推<code>（Projection Pushdown）</code>、聚合下推、limit下推、sort下推、常量折叠（Constant Folding）、子查询内联转join等。</li>
+</ol>
+<p>2.<code>CBO</code>(基于代价的优化器)会将原有表达式保留，基于统计信息和代价模型，尝试探索生成等价关系表达式，最终取代价最小的执行计划。<strong>CBO的实现有两种模型，Volcano模型，Cascades模型</strong>。这两种模型思想很是相似，不同点在于Cascades模型一边遍历SQL逻辑树，一边优化，从而进一步裁剪掉一些执行计划。</p>
+<p>源码如下：</p>
+<p><img src="/images/bigdata/Flink/503_640.webp" alt="图片"></p>
+<p>调用translateToExecNodeGraph方法将FlinkPhysicalRel转为execGraph</p>
+<p><img src="/images/bigdata/Flink/837_640.webp" alt="图片"></p>
+<p>调用translateToPlan方法将execGraph转为transformations</p>
+<p><img src="/images/bigdata/Flink/32_640.webp" alt="图片"></p>
+<p>通过上述四个步骤，实现<strong>将Operation转换成 Transformations。</strong></p>
+<p>小笨猪通过完整的流程分析后，终于搞懂了Flink sql的解析和转换过程，最终SQL被转为Transformations,后面的步骤就变成了Flink DataStream的提交流程，小笨猪还是比较了解的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-obtain-plan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-obtain-plan/" class="post-title-link" itemprop="url">Flink本地编译获取plan</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line">org.apache.flink.streaming.api.environment.StreamExplainEnvironment</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">try</span> &#123;  </span><br><span class="line">    streamExplainEnvironment.setAsContext();  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">try</span> &#123;  </span><br><span class="line">        <span class="comment">// do something.</span></span><br><span class="line">		streamExplainEnvironment.execute(<span class="string">&quot;&quot;</span>); </span><br><span class="line">    &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;  </span><br><span class="line">        <span class="type">Throwable</span> <span class="variable">throwable</span> <span class="operator">=</span> e.getCause();  </span><br><span class="line">        <span class="keyword">while</span> (throwable != <span class="literal">null</span>) &#123;  </span><br><span class="line">            <span class="keyword">if</span> (throwable <span class="keyword">instanceof</span> ProgramExecutedException) &#123;  </span><br><span class="line">                <span class="type">StreamGraph</span> <span class="variable">streamGraph</span> <span class="operator">=</span> streamExplainEnvironment.getPlan(); </span><br><span class="line">            &#125;  </span><br><span class="line">  </span><br><span class="line">            throwable = throwable.getCause();  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">throw</span> e.getTargetException();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;  </span><br><span class="line">    streamExplainEnvironment.unsetAsContext();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-on-k8s/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-on-k8s/" class="post-title-link" itemprop="url">Flink on kubernetes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-kubernetes"><a href="#1-kubernetes" class="headerlink" title="1 kubernetes"></a>1 kubernetes</h1><p><img src="/bigdata/Flink/attachments/k8s-arch.svg" alt="架构图"></p>
+<h2 id="1-1-pod"><a href="#1-1-pod" class="headerlink" title="1.1 pod"></a>1.1 pod</h2><p>Pod 是 Kubernetes 定义的“容器运行模型”，Docker（或 containerd）只是把模型落地成 Linux 进程的工具。 Pod 运行时不安装操作系统；容器只携带用户态环境，所有 Pod 都运行在宿主机同一个 Linux 内核之上。</p>
+<p>docker runc 使用的是：Linux namespaces 或 cgroups</p>
+<p><strong>Pod 可以认为是容器的封装，一个 Pod 中可以存在一个或者多个容器</strong>。</p>
+<h2 id="1-2-Namespace"><a href="#1-2-Namespace" class="headerlink" title="1.2 Namespace"></a>1.2 Namespace</h2><p>Namespace 是 kubernetes 系统中的一种非常重要资源，它的主要作用是用来实现<strong>多套环境的资源隔离</strong>或者<strong>多租户的资源隔离</strong>。</p>
+<p>默认情况下，kubernetes 集群中的所有的 Pod 都是可以相互访问的。但是在实际中，可能不想让两个 Pod 之间进行互相的访问，那此时就可以将两个 Pod 划分到不同的 namespace 下。kubernetes 通过将集群内部的资源分配到不同的 Namespace 中，可以形成逻辑上的”组”，以方便不同的组的资源进行隔离使用和管理。</p>
+<h2 id="1-3-Deployment"><a href="#1-3-Deployment" class="headerlink" title="1.3 Deployment"></a>1.3 Deployment</h2><h1 id="2-Flink-on-k8s"><a href="#2-Flink-on-k8s" class="headerlink" title="2 Flink on k8s"></a>2 Flink on k8s</h1><p><img src="/bigdata/Flink/attachments/2497d6cbc29b06cefadb4f67b5e9e8de_MD5.jpg"></p>
+<p><a href="https://juejin.cn/post/7038404897628225573">https://juejin.cn/post/7038404897628225573</a></p>
+<p><a href="https://juejin.cn/post/7199235461045960759">https://juejin.cn/post/7199235461045960759</a></p>
+<p><a href="https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-main/docs/concepts/architecture/">https://nightlies.apache.org/flink/flink-kubernetes-operator-docs-main/docs/concepts/architecture/</a></p>
+<h2 id="2-1-Flink-on-Kubernetes的两种模式"><a href="#2-1-Flink-on-Kubernetes的两种模式" class="headerlink" title="2.1 Flink on Kubernetes的两种模式"></a>2.1 Flink on Kubernetes的两种模式</h2><h3 id="2-1-1-Application模式"><a href="#2-1-1-Application模式" class="headerlink" title="2.1.1 Application模式"></a>2.1.1 Application模式</h3><p><img src="/bigdata/Flink/attachments/Pasted%20image%2020240327151131.png"></p>
+<h3 id="2-1-2-Session模式"><a href="#2-1-2-Session模式" class="headerlink" title="2.1.2 Session模式"></a>2.1.2 Session模式</h3><p><img src="/bigdata/Flink/attachments/Pasted%20image%2020240327160725.png"></p>
+<h3 id="2-1-3-峰峦-pre-job模式"><a href="#2-1-3-峰峦-pre-job模式" class="headerlink" title="2.1.3 峰峦(pre-job模式)"></a>2.1.3 峰峦(pre-job模式)</h3><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>原理</th>
+<th>优点</th>
+<th>缺点</th>
+<th>对我们</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Application模式</td>
+<td>每个作业各有一个JM</td>
+<td>1. 资源隔离,负载均衡保证<br/>2. 作业间彼此独立，互不影响</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Session模式</td>
+<td>所有作业共享一个JM</td>
+<td></td>
+<td>资源隔离差，作业间相互影响</td>
+<td></td>
+</tr>
+<tr>
+<td>峰峦Pre-job模式</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="2-2-Kubernetes-vs-Yarn"><a href="#2-2-Kubernetes-vs-Yarn" class="headerlink" title="2.2 Kubernetes vs Yarn"></a>2.2 Kubernetes vs Yarn</h2><blockquote>
+<p>what is Kubernetes API? how to use?<br>what is 峰峦?</p>
+</blockquote>
+<h2 id="2-3-Oceanus-Flink调度峰峦资源"><a href="#2-3-Oceanus-Flink调度峰峦资源" class="headerlink" title="2.3 Oceanus&#x2F;Flink调度峰峦资源"></a>2.3 Oceanus&#x2F;Flink调度峰峦资源</h2><p><img src="/bigdata/Flink/attachments/Pasted%20image%2020240327161236.png"></p>
+<h2 id="2-4-Kubernetes调度过程"><a href="#2-4-Kubernetes调度过程" class="headerlink" title="2.4 Kubernetes调度过程"></a>2.4 Kubernetes调度过程</h2><p><strong>K8S不仅能将用户提供的单个容器运行起来，将其对外暴露出去提供服务。还提供了：路由网关、集群监控、灾难恢复，以及应用的水平扩展等能力。</strong></p>
+<p><img src="/bigdata/Flink/attachments/k8s-arch.png"></p>
+<p><img src="/bigdata/Flink/attachments/Pasted%20image%2020240328153010.png"></p>
+<h2 id="2-5-参考文献"><a href="#2-5-参考文献" class="headerlink" title="2.5 [参考文献]"></a>2.5 [参考文献]</h2><ol>
+<li><a href="https://www.cnblogs.com/ZhuChangwu/p/16441181.html">一文讲明白K8S各核心架构组件</a></li>
+<li><a href="https://km.woa.com/articles/show/561316">【2022年度技术突破奖】弹性·峰峦云原生大数据平台项目团队</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-Practice-LatencyStatistics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-Practice-LatencyStatistics/" class="post-title-link" itemprop="url">Flink实践之延迟统计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-Flink实践之延迟统计"><a href="#1-Flink实践之延迟统计" class="headerlink" title="1 Flink实践之延迟统计"></a>1 Flink实践之延迟统计</h1><p>流计算是基于消息触发计算的，若没有消息到达到则无法计算，这类指标恰好是要求在指定的超时时间计算出有多少未达到的消息。</p>
+<h2 id="1-1-常见场景"><a href="#1-1-常见场景" class="headerlink" title="1.1 常见场景"></a>1.1 常见场景</h2><h3 id="1-1-1-菜鸟-物流单配送超时统计"><a href="#1-1-1-菜鸟-物流单配送超时统计" class="headerlink" title="1.1.1 菜鸟-物流单配送超时统计"></a>1.1.1 菜鸟-物流单配送超时统计</h3><blockquote>
+<p>实时数仓的建设难度: 链路复杂、实操节点多、汇总维度多、考核逻辑复杂的特点</p>
+</blockquote>
+<p>仓配实时数据已覆盖了绝大多数场景，但是有这样一类特殊指标：“晚点超时指标”（例如：出库超 6 小时未揽收的订单量），仍存在实时汇总计算困难。<br>这类指标对于指导实操有着重要意义，可以告知运营小二当前多少订单积压在哪些作业节点，应该督促哪些实操人员加快作业，这对于物流的时效 KPI 达成至关重要。</p>
+<h3 id="1-1-2-财付通-资金流账龄超时监控"><a href="#1-1-2-财付通-资金流账龄超时监控" class="headerlink" title="1.1.2 财付通-资金流账龄超时监控"></a>1.1.2 财付通-资金流账龄超时监控</h3><h2 id="1-2-解决方案"><a href="#1-2-解决方案" class="headerlink" title="1.2 解决方案"></a>1.2 解决方案</h2><h2 id="1-3-方案一-MQ延迟发送"><a href="#1-3-方案一-MQ延迟发送" class="headerlink" title="1.3 方案一: MQ延迟发送"></a>1.3 方案一: MQ延迟发送</h2><blockquote>
+<p>菜鸟的解决方案图<br><img src="/vx_images/394953508278701.png"></p>
+</blockquote>
+<pre class="mermaid">graph LR
+
+T1[订单表]
+T2[清洗表]
+T3[订单延迟表]
+T4[结果表]
+
+J1(任务一: 数据清洗)
+J2(任务二: 延迟6小时)
+J3(任务三: 汇总计算)
+
+T1 --> J1
+J1 --> T2
+T2 --> J2
+J2 --> T3
+T3 --> J3
+T2 --> J3
+J3 --> T4</pre>
+
+
+
+<p>简化版:</p>
+<pre class="mermaid">graph LR
+
+T1[订单表]
+T3[Datagen 定时数据表<br/>每秒生成一条数据:<br/>以当前时间作为事件时间]
+T4[结果表<br/>需支持数据回撤]
+
+J1(清洗/过滤)
+T1 --> J1
+
+subgraph 计算任务
+J2(指定事件时间)
+J3(T1 left join T3<br/>)
+
+J1 --> J2
+T3 --> J3
+J2 --> J3
+
+
+end
+J3 --> T4</pre>
+
+
+
+
+<h2 id="1-4-方案二-FlinkState-TimeService"><a href="#1-4-方案二-FlinkState-TimeService" class="headerlink" title="1.4 方案二: FlinkState+TimeService"></a>1.4 方案二: FlinkState+TimeService</h2><h2 id="1-5-方案三-Flink-CEP"><a href="#1-5-方案三-Flink-CEP" class="headerlink" title="1.5 方案三:Flink CEP"></a>1.5 方案三:Flink CEP</h2><h2 id="1-6-方案四-OLAP"><a href="#1-6-方案四-OLAP" class="headerlink" title="1.6 方案四: OLAP"></a>1.6 方案四: OLAP</h2><hr>
+<h2 id="1-7-参考文献"><a href="#1-7-参考文献" class="headerlink" title="1.7 [参考文献]:"></a>1.7 [参考文献]:</h2><p><a href="https://flink-learning.org.cn/activity/detail/0ab621d17a16e502dcc6e5e2980e643c?tab=ce84125f7d83480f7ccf34685cce43f6&city=&page=xiangguanhuodong">https://flink-learning.org.cn/activity/detail/0ab621d17a16e502dcc6e5e2980e643c?tab=ce84125f7d83480f7ccf34685cce43f6&amp;city=&amp;page=xiangguanhuodong</a></p>
+<p><a href="https://files.alicdn.com/tpsservice/0f9d6f504576175dbf6d084c3e2a43fa.pdf?spm=a2csy.flink.0.0.7f395badaF3TXC&file=0f9d6f504576175dbf6d084c3e2a43fa.pdf">https://files.alicdn.com/tpsservice/0f9d6f504576175dbf6d084c3e2a43fa.pdf?spm=a2csy.flink.0.0.7f395badaF3TXC&amp;file=0f9d6f504576175dbf6d084c3e2a43fa.pdf</a></p>
+<p>利用Flink实现实时超时统计场景</p>
+<ol>
+<li><a href="https://developer.aliyun.com/article/692413">利用 blink+MQ 实现流计算中的超时统计问题</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SourceSinkAPI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SourceSinkAPI/" class="post-title-link" itemprop="url">Flink Source Sink API</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="SourceCoordinator"><a href="#SourceCoordinator" class="headerlink" title="SourceCoordinator"></a>SourceCoordinator</h2><h2 id="OperaterCoordincator"><a href="#OperaterCoordincator" class="headerlink" title="OperaterCoordincator"></a>OperaterCoordincator</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-state-processor-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-state-processor-api/" class="post-title-link" itemprop="url">State Processor API</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="State-Processor-API"><a href="#State-Processor-API" class="headerlink" title="State Processor API"></a><a href="https://mp.weixin.qq.com/s/eHPQx3kGKnhXeZpLhUNvng">State Processor API</a></h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/hudi/hudi-upsert/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/hudi/hudi-upsert/" class="post-title-link" itemprop="url">[转载]hudi upsert</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p><a href="https://blog.csdn.net/h335146502/article/details/116572114">17张图带你彻底搞懂hudi upsert源码</a></p>
+</blockquote>
+<p>如果要深入了解<a href="https://so.csdn.net/so/search?q=apache&spm=1001.2101.3001.7020">apache</a> hudi技术的应用或是性能调优，那么明白源码中的原理对我们会有很大的帮助。在apache hudi 中upsert 是他的核心功能之一，主要完成增量数据在hdfs上的修改，并可以支持事务。在hive中修改数据需要重新分区或重新整个表，但是对于hudi更新可以是文件级别的重写或是数据先进行追加后续再重写，对比Hive 大大地提高了更新性能。upsert支持两种模式的写入copy on write和merge on read ，下面本文将介绍Apache Hudi 在spark中upsert的内核原理。</p>
+<p>对于hudi upsert 操作整理了比较核心的几个操作如图：</p>
+<p><img src="/images/bigdata/hudi/423_watermark.png" alt="在这里插入图片描述"></p>
+<ol start="2">
+<li><p>构造HoodieRecord Rdd对象：hudi 会根据元数据信息构造HoodieRecord Rdd 对象，方便后续数据去重和数据合并。</p>
+</li>
+<li><p>数据去重:一批增量数据中可能会有重复的数据，hudi会根据主键对数据进行去重避免重复数据写入hudi 表。</p>
+</li>
+<li><p>数据fileId位置信息获取:在修改记录中可以根据索引获取当前记录所属文件的fileid，在数据合并时需要知道数据update操作向那个fileId文件写入新的快照文件。</p>
+</li>
+<li><p>数据合并：hudi 有两种模式cow和mor。在cow模式中会<a href="https://so.csdn.net/so/search?q=%E9%87%8D%E5%86%99&spm=1001.2101.3001.7020">重写</a>索引命中的fileId快照文件；在mor 模式中根据fileId 追加到分区中的log 文件。</p>
+</li>
+<li><p>完成提交：在元数据中生成xxxx.commit文件，只有生成commit 元数据文件，查询引擎才能根据元数据查询到刚刚upsert 后的数据。</p>
+</li>
+<li><p>compaction压缩：主要是mor 模式中才会有，他会将mor模式中的xxx.log 数据合并到xxx.parquet 快照文件中去。</p>
+</li>
+<li><p>hive元数据同步：hive 的元素数据同步这个步骤需要配置非必需操作，主要是对于hive 和presto 等查询引擎，需要依赖hive 元数据才能进行查询。所以在hive 中的同步就是构造外表提供查询。</p>
+</li>
+</ol>
+<p><img src="/images/bigdata/hudi/390_watermark.png" alt="在这里插入图片描述"></p>
+<p>介绍完hudi的upsert运行流程，在来看下hudi如何进行存储并且保证事务，在每次upsert完成后都会产生commit 文件记录每次重新的快照文件。</p>
+<p>例如上图时间1初始化写入三个分区文件分别是xxx-1.parquet，在时间3场景如果会修改分区1和分区2xxx-1.parquet的数据，那么写入完成后会生成新的快照文件分别是分区1和分区2xxx-3.parquet文件。（上述是cow模式的过程，而对于MOR模式的更新会生成log文件，如果log文件存在追加数据）。如果时间5在去修改分区1的数据那么同理会生成分区1下的新快照文件。可以看出对于hudi 每次修改都是会在文件级别重新写入数据快照。查询的时候就会根据最后一次快照元数据加载每个分区小于等于当前的元数据的parquet文件。hudi事务的原理就是通过元数据mvcc多版本控制写入新的快照文件，在每个时间阶段根据最近的元数据查找快照文件。因为是重写数据所以同一时间只能保证一个事务去重写parquet 文件。不过当前hudi版本加入了并发写机制，原理是zookeeper分布锁控制或者HMS提供锁的方式， 会保证同一个文件的修改只有一个事务会写入成功。</p>
+<p>下面将根据spark 调用write方法开始剖析upsert操作每个步骤的执行流程。</p>
+<h2 id="2-1-开始提交-数据回滚"><a href="#2-1-开始提交-数据回滚" class="headerlink" title="2.1 开始提交&amp;数据回滚"></a>2.1 开始提交&amp;数据回滚</h2><p>在构造好spark 的rdd 后会调用 <code>df.write.format(&quot;hudi&quot;)</code> 方法执行数据的写入，实际会调用Hudi<code>HoodieSparkSqlWriter#write</code>方法实现。在执行任务前hudi 会创建HoodieWriteClient 对象，并构造HoodieTableMetaClient调用startCommitWithTime方法开始一次事务。在开始提交前会获取hoodie 目录下的元数据信息，判断上一次写入操作是否成功，判断的标准是上次任务的快照元数据有xxx.commit后缀的元数据文件。如果不存在那么hudi 会触发回滚机制，回滚是将不完整的事务元数据文件删除，并新建xxx.rollback元数据文件。如果有数据写入到快照parquet 文件中也会一起删除。</p>
+<p><img src="/images/bigdata/hudi/183_watermark.png" alt="在这里插入图片描述"></p>
+<h2 id="2-2-构造HoodieRecord-Rdd-对象"><a href="#2-2-构造HoodieRecord-Rdd-对象" class="headerlink" title="2.2 构造HoodieRecord Rdd 对象"></a>2.2 构造HoodieRecord Rdd 对象</h2><p>HoodieRecord Rdd 对象得构造先是通过map 算子，提取spark dataframe中的schema和数据,构造avro的genericRecords Rdd， 然后hudi会在进行map算子封装为HoodierRecord Rdd。对于HoodileRecord Rdd 主要由currentlocation,newlocation,hoodiekey,data 组成。HoodileRecord数据结构是为后续数据去重和数据合并时提供基础。</p>
+<p><img src="/images/bigdata/hudi/894_watermark.png" alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>currentLocation 当前数据位置信息</strong>：只有数据在当前hudi表中存在才会有，主要存放parquet文件的fileId，构造时默认为空，在查找索引位置信息时被赋予数据。</li>
+<li><strong>newLocation 数据新位置信息</strong>：与currentLocation不同不管是否存在都会被赋值，newLocation是存放当前数据需要被写入到那个fileID文件中的位置信息，构造时默认为空，在merge阶段会被赋予位置信息。</li>
+<li><strong>HoodieKey 主键信息</strong>：主要包含recordKey 和patitionPath 。recordkey 是由hoodie.datasource.write.recordkey.field 配置项根据列名从记录中获取的主键值。patitionPath 是分区路径。hudi 会根据hoodie.datasource.write.partitionpath.field 配置项的列名从记录中获取的值作为分区路径。</li>
+<li><strong>data 数据</strong>：data是一个泛型对象，泛型对象需要实现HoodieRecordPayload类，主要是实现合并方法和比较方法。默认实现OverwriteWithLatestAvroPayload类，需要配置hoodie.datasource.write.precombine.field配置项获取记录中列的值用于比较数据大小，去重和合并都是需要保留值最大的数据。</li>
+</ul>
+<h2 id="2-3-数据去重"><a href="#2-3-数据去重" class="headerlink" title="2.3 数据去重"></a>2.3 数据去重</h2><p>在upsert 场景中数据去重是默认要做的操作，如果不进行去重会导致数据重复写入parquet文件中。当然upsert 数据中如果没有重复数据是可以关闭去重操作。配置是否去重参数为<code>hoodie.combine.before.upsert</code>，默认为true开启。</p>
+<p><img src="/images/bigdata/hudi/208_watermark.png" alt="在这里插入图片描述"></p>
+<p>在spark client调用upsert 操作是hudi会创建HoodieTable对象,并且调用upsert 方法。对于HooideTable 的实现分别有cor和mor 两种模式的实现。但是在数据去重阶段和索引查找阶段的操作都是一样的。调用HoodieTable upsert方法后底层的实现都是spark AbstractWriteHelper。在去重操作中，会先使用map 算子提取HoodieRecord中的HoodieatestAvroPayload的实现是保留时间戳最大的记录。**这里要注意如果我们配置的是全局类型的索引map 中的key 值是 HoodieKey 对象中的recordKey。**因为全局索引是需要保证所有分区中的主键都是唯一的，避免不同分区数据重复。当然如果是非分区表，没有必要使用全局索引。</p>
+<h2 id="2-4-数据位置信息索引查找"><a href="#2-4-数据位置信息索引查找" class="headerlink" title="2.4 数据位置信息索引查找"></a>2.4 数据位置信息索引查找</h2><p>对于hudi 索引主要分为两大类：</p>
+<ul>
+<li>**非全局索引：**索引在查找数据位置信息时，只会检索当前分区的索引，索引只保证当前分区内数据做upsert。如果记录的分区值发生变更就会导致数据重复。</li>
+<li>**全局索引：**顾名思义在查找索引时会加载所有分区的索引，用于定位数据位置信息，即使发生分区值变更也能定位数据位置信息。这种方式因为要加载所有分区文件的索引，对查找性能会有影响（hbase 索引除外）。</li>
+</ul>
+<p><img src="/images/bigdata/hudi/651_watermark.png" alt="在这里插入图片描述"></p>
+<p>spark 索引实现主要有如下几种：布隆索引（BloomIndex），全局布隆索引（GlobalBloomIndex），简易索引（SimpleIndex），简易全局索引（GlobalSimpleIndex），简易全局索引（GlobalSimpleIndex)，hbase 索引(HbaseIndex)，内存索引(InMemoryHashIndex)。下面会对索引的实现方式做一一介绍。</p>
+<h3 id="2-4-1-布隆索引（BloomIndex）"><a href="#2-4-1-布隆索引（BloomIndex）" class="headerlink" title="2.4.1 布隆索引（BloomIndex）"></a>2.4.1 布隆索引（BloomIndex）</h3><p>spark 布隆索引的实现类是SparkHoodieBloomIndex ,要想知道布隆索引需要了解下布隆算法一般用于判断数据是否存在的场景，在Hudi中用来判断数据在parquet 文件中是否存在。其原理是计算RecordKey的hash值然后将其存储到bitmap中去，key值做hash可能出现hash 碰撞的问题，为了较少hash 值的碰撞使用多个hash算法进行计算后将hash值存入BitMap，一般三次hash最佳，算法详细参考《<a href="https://mp.weixin.qq.com/s?__biz=MzIxMjE5MTE1Nw==&mid=2653191316&idx=1&sn=6b407704c99bda58440e97a2d6dd6ee9&chksm=8c990e4ebbee8758bf207b7fed8267bc1bda957f5864c00b467e2de6f0ae93563740b5527f25&scene=21#wechat_redirect">漫画：什么是布隆算法？</a>》。但是索引任然有hash 碰撞的问题，但是误判率极低可以保证99%以上的数据判断是正确的。即使有个别数据发生了误判也没有关系在合并操作中如果匹配不到也会被丢弃。</p>
+<p><img src="/images/bigdata/hudi/686_watermark.png" alt="在这里插入图片描述"></p>
+<p>索引实现类调用tagLocation开始查找索引记录存在哪个parquet 文件中，步骤如下</p>
+<p>1.提取所有的分区路径和主键值，然后计算每个分区路径中需要根据主键查找的索引的数量。</p>
+<p>2.有了需要加载的分区后，调用LoadInvolvedFiles 方法加载分区下所有的parquet 文件。在加载paquet文件只是加载文件中的页脚信息，页脚存放的有布隆过滤器、记录最小值、记录最大值。对于布隆过滤器其实是存放的是bitmap序列化的对象。</p>
+<p>3.加载好parquet 的页脚信息后会根据最大值和最小值构造线段树。</p>
+<p>4.根据Rdd 中RecordKey 进行数据匹配查找数据属于那个parqeut 文件中，对于RecordKey查找只有符合最大值和最小值范围才会去查找布隆过滤器中的bitmap ，RecordKey小于最小值找左子树，RecordKey大于最大值的key找右子树。递归查询后如果查找到节点为空说明RecordKey在当前分区中不存在，当前Recordkey是新增数据。查找索引时spark会自定义分区避免大量数据在一个分区查找导致分区数据倾斜。查找到RecordKey位置信息后会构造&lt;HoodieKey,HoodieRecordLocation&gt;Rdd 对象。</p>
+<p><img src="/images/bigdata/hudi/watermark.jpg" alt="在这里插入图片描述"></p>
+<p>5.以 Rdd 为左表和&lt;HoodieKey,HoodieRecordLocation&gt;Rdd 做左关联，提取HoodieRecordLocation位置信息赋值到HoodieRecord 的currentLocation变量上,最后得到新的HoodieRecord Rdd。在HoodieRecordLocation对象中包含文件fileID 和快照时间。</p>
+<p>说明下parquet 文件名称组成，主要是36位fileId、文件编号、spark 任务自定义分区编号、spark 任务stage 编号、spark 任务attempt id、commit时间。</p>
+<h3 id="2-4-2-全局布隆索引（GlobalBloomIndex）"><a href="#2-4-2-全局布隆索引（GlobalBloomIndex）" class="headerlink" title="2.4.2 全局布隆索引（GlobalBloomIndex）"></a>2.4.2 全局布隆索引（GlobalBloomIndex）</h3><p>对于全局布隆索引底层算法和布隆索引是一样的，只是全局布隆索引在查找每个RecordKey 属于那个parquet 文件中，会加载所有parquet文件的页脚信息构造线段树，然后在去查询索引。因为hudi需要加载所有的parquet文件和线段树节点变多对于查找性能会比普通的布隆索引要差。但是对于分区字段的值发生了修改，如果还是使用普通的布隆索引会导致在当前分区查询不到当成新增数据写入hudi表。这样我们的数据就重复了，在很多业务场景是不被允许的。所以在选择那个字段做分区列时，尽量选择列值永远不会发生变更的，这样我们使用普通布隆索引就可以了。</p>
+<p><img src="/images/bigdata/hudi/watermark.png" alt="在这里插入图片描述"></p>
+<p>全局布隆的实现是继承布隆索引的实现，重写了索引数据的加载和HoodieRecord Rdd左关联部分。加载所有文件的页脚信息刚刚已经提到过了，数据不在知道在哪个分区所以要加载全部文件进行判断。在左关联操作中与普通布隆索引不同的是，如果分区发生了变更，默认情况下会修改HoodieKey 中的partitionPath,数据是不会写到变更后的分区路径下，而是会重写到之前的分区路径下，但是数据的内容还是会更新。如果希望删除旧分区数据，新数据写入当前记录的分区。需要设置hoodie.bloom.index.update.partition.path配置项为true，允许分区数据变更到其他分区。此时，关联查询会在原有的基础上在生成一条删除记录，删除记录HoodieRecordPayload的实现类是EmptyHoodieRecordPayload。EmptyHoodieRecordPayload只会存放hoodieKey的主键信息，在数据合并时会被忽略，达到数据硬删除的目的。这里可以根据业务场景选择是否开启分区变更。</p>
+<h3 id="2-4-3-简易索引（SimpleIndex）"><a href="#2-4-3-简易索引（SimpleIndex）" class="headerlink" title="2.4.3 简易索引（SimpleIndex）"></a>2.4.3 简易索引（SimpleIndex）</h3><p>简易索引与布隆索引的不同是直接加载分区中所有的parquet数据然后在与当前的数据比较是否存在。这个实现比较简单，我想也是因为这样才这么命名的。以下是简易索引的执行步骤：</p>
+<p>1.提取所有的分区路径和主键值。</p>
+<p>2.根据分区路径加载所有涉及分区路径的parquet文件的数据主要是HooieKey和fileID两列的数据，构造&lt;HoodieKey,HoodieRecordLocation&gt; Rdd 对象。</p>
+<p>3.同布隆索引一样以 Rdd 为左表和&lt;HoodieKey,HoodieRecordLocation&gt;Rdd 做左关联，提取HoodieRecordLocation位置信息赋值到HoodieRecord 的currentLocation变量上,最后得到新的HoodieRecord Rdd</p>
+<p><img src="/images/bigdata/hudi/47_watermark.png" alt="在这里插入图片描述"></p>
+<h3 id="2-4-4-简易全局索引（GlobalSimpleIndex）"><a href="#2-4-4-简易全局索引（GlobalSimpleIndex）" class="headerlink" title="2.4.4 简易全局索引（GlobalSimpleIndex）"></a>2.4.4 简易全局索引（GlobalSimpleIndex）</h3><p>简易全局索引同布隆全局索引一样，需要加载所有分区的parquet 文件数据，构造&lt;HoodieKey,HoodieRecordLocation&gt;Rdd然后后进行关联。在简易索引中hoodie.simple.index.update.partition.path配置项也是可以选择是否允许分区数据变更。数据文件比较多数据量很大，这个过程会很耗时。</p>
+<h3 id="2-4-5-hbase-索引-HbaseIndex"><a href="#2-4-5-hbase-索引-HbaseIndex" class="headerlink" title="2.4.5 hbase 索引(HbaseIndex)"></a>2.4.5 hbase 索引(HbaseIndex)</h3><p>​ hbase 索引与布隆索引、简易索引不同，本身就是一个全局索引，那种场景都可以用。但是需要额外hbase 服务来存储hudi的索引信息，一旦hbase 出现故障hudi upsert 是会无法工作的。不管在布隆索引或简易索引中索引是和parquet 文件是一体的，要么一起成功，要么一起失败。但是在hbase索引中文件和索引是分开在特定的情况下可能有一致性的问题（什么特定情况？）。不过hbase索引最大程度的避免了这一问题。</p>
+<p><img src="/images/bigdata/hudi/539_watermark.png" alt="在这里插入图片描述"></p>
+<p>hbase 索引实现步骤如下：</p>
+<p>1.连接hbase 数据库。</p>
+<p>2.批量请求hbase 数据库。</p>
+<p>3.检查get 获取的数据是否为有效索引，这时hudi 会连接元数据检查commit时间是否有效，如果无效currentLocation将不会被赋值。检查是否为有效索引的目的是当索引更新一半hbase 宕机导致任务失败，保证不会加载过期索引。避免hbase 索引和数据不一致导致数据进入错误的分区。</p>
+<p>4.检查是否开启允许分区变更，这里的做法和全局布隆索引、全局简易索引的实现方式一样。</p>
+<p>在hudi中使用hbase索引需要提前建表，hbase表的列簇为_s。示例如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create &#x27;table_name&#x27;,&#x27;_s&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hoodie.index.hbase.zkquorum   必填项：zk连接地址</span><br><span class="line">hoodie.index.hbase.zkport    必填项：zk连接端口</span><br><span class="line">hoodie.index.hbase.zknode.path  必填项:zookeeper znode路径</span><br><span class="line">hoodie.index.hbase.table  必填项：hbase中的表名</span><br><span class="line">hoodie.index.hbase.get.batch.size   默认值100 ：每批量请求大小</span><br><span class="line">hoodie.hbase.index.update.partition.path  默认值false： 是否允许分区变更 </span><br><span class="line">hoodie.index.hbase.put.batch.size.autocompute  默认值false ：是否开启自动计算每个批次大小</span><br><span class="line">hoodie.index.hbase.rollback.sync   默认值false：rollback阶段是否开启同步索引。如果设置为true在写入hbase索引导致hbase 宕机或者jvm oom任务失败，在触发rollback 阶段 会删除失败任务的索引保证索引和数据一致。在上次任务失败且数据分区字段值反复变更时可以避免数据重复。</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-6-内存索引-InMemoryHashIndex"><a href="#2-4-6-内存索引-InMemoryHashIndex" class="headerlink" title="2.4.6 内存索引(InMemoryHashIndex)"></a>2.4.6 内存索引(InMemoryHashIndex)</h3><p>内存索引目前spark 的实现只是构造的一个ConcurrentMap在内存中，不会加载parquet 文件中的索引，当调用tagLocation方法会在map 中判断key值是否存在。spark 内存索引当前只是用来测试的索引。</p>
+<h3 id="2-4-7-索引的选择"><a href="#2-4-7-索引的选择" class="headerlink" title="2.4.7 索引的选择"></a>2.4.7 索引的选择</h3><p><strong>普通索引</strong>：主要用于非分区表和分区不会发生分区列值变更的表。当然如果你不关心多分区主键重复的情况也是可以使用。他的优势是只会加载upsert数据中的分区下的每个文件中的索引，相对于全局索引需要扫描的文件少。并且索引只会命中当前分区的fileid 文件，需要重写的快照也少相对全局索引高效。但是某些情况下我们的设置的分区列的值就是会变那么必须要使用全局索引保证数据不重复，这样upsert 写入速度就会慢一些。其实对于非分区表他就是个分区列值不会变且只有一个分区的表，很适合普通索引，如果非分区表硬要用全局索引其实和普通索引性能和效果是一样的。</p>
+<p><strong>全局索引</strong>：分区表场景要考虑分区值变更，需要加载所有分区文件的索引比普通索引慢。</p>
+<p><strong>布隆索引</strong>：加载fileid 文件页脚布隆过滤器，加载少量数据数据就能判断数据是否在文件存在。缺点是有一定的误判，但是merge机制可以避免重复数据写入。parquet文件多会影响索引加载速度。适合没有分区变更和非分区表。主键如果是类似自增的主键布隆索引可以提供更高的性能，因为布隆索引记录的有最大key和最小key加速索引查找。</p>
+<p><strong>全局布隆索引</strong>：解决分区变更场景，原理和布隆索引一样，在分区表中比普通布隆索引慢。</p>
+<p><strong>简易索引</strong>：直接加载文件里的数据不会像布隆索引一样误判，但是加载的数据要比布隆索引要多，left join 关联的条数也要比布隆索引多。大多数场景没布隆索引高效，但是极端情况命中所有的parquet文件，那么此时还不如使用简易索引加载所有文件里的数据进行判断。</p>
+<p><strong>全局简易索引</strong>：解决分区变更场景，原理和简易索引一样，在分区表中比普通简易索引慢。建议优先使用全局布隆索引。</p>
+<p><strong>hbase索引</strong>：不受分区变跟场景的影响，操作算子要比布隆索引少，在大量的分区和文件的场景中比布隆全局索引高效。因为每条数据都要查询hbase ，upsert数据量很大会对hbase有负载的压力需要考虑hbase集群承受压力，适合微批分区表的写入场景 。在非分区表中数量不大文件也少，速度和布隆索引差不多，这种情况建议用布隆索引。</p>
+<p><strong>内存索引</strong>：用于测试不适合生产环境</p>
+<h2 id="2-5-数据合并"><a href="#2-5-数据合并" class="headerlink" title="2.5 数据合并"></a>2.5 数据合并</h2><p>​ cow模式 和mor模式在前面的操作都是一样的，不过在合并的时候hudi构造的执行器就不一样了。对于cow 会根据位置信息中fileId 重写parquet文件，在重写中如果数据是更新会比较parquet文件的数据和当前的数据的大小进行更新，完成更新数据和插入数据。而mor模式会根据fileId 生成一个log 文件，将数据直接写入到log文件中，如果fileID的log文件已经存在，追加数据写入到log 文件中。与cow 模式相比少了数据比较的工作所以性能要好，但是在log 文件中可能保存多次写有重复数据在读log数据时候就不如cow模式了。还有在mor模式中log文件和parquet 文件都是存在的，log 文件的数据会达到一定条件和parqeut 文件合并。所以mor有两个视图，ro后缀的视图是读优化视图（read-optimized）只查询parquet 文件的数据。rt后缀的视图是实时视图（real-time）查询parquet 和log 日志中的内容。</p>
+<h3 id="2-5-1-copy-on-write模式"><a href="#2-5-1-copy-on-write模式" class="headerlink" title="2.5.1 copy on write模式"></a>2.5.1 copy on write模式</h3><p>cow模式数据合并实现逻辑调用BaseSparkCommitActionExecutor类的excute方法，实现步骤如下：</p>
+<p><img src="/images/bigdata/hudi/684_watermark.png" alt="在这里插入图片描述"></p>
+<p>1.通过countByKey 算子提取分区路径和文件位置信息并统计条数，用于后续根据分区文件写入的数据量大小评估如何分桶。</p>
+<p>2.统计完成后会将结果写入到workLoadProfile 对象的map 中，这个时候已经完成合并数据的前置条件。hudi会调用saveWorkloadProfileMetadataToInfilght 方法写入infight标识文件到.hoodie元数据目录中。在workLoadProfile的统计信息中套用的是类似双层map数据结构， 统计是到fileid 文件级别。</p>
+<p>3.根据workLoadProfile统计信息生成自定义分区 ，这个步骤就是分桶的过程。首先会对更新的数据做分桶，因为是更新数据在合并时要么覆盖老数据要么丢弃，所以不存在parquet文件过于膨胀，这个过程会给将要发生修改的fileId都会添加一个桶。然后会对新增数据分配桶，新增数据分桶先获取分区路径下所有的fileid 文件， 判断数据是否小于100兆。小于100兆会被认为是小文件后续新增数据会被分配到这个文件桶中，大于100兆的文件将不会被分配桶。获取到小文件后会计算每个fileid 文件还能存少数据然后分配一个桶。如果小文件fileId 的桶都分配完了还不够会根据数据量大小分配n个新增桶。最后分好桶后会将桶信息存入一个map 集合中，当调用自定义实现getpartition方法时直接向map 中获取。所以spark在运行的时候一个桶会对应一个分区的合并计算。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hoodie.parquet.small.file.limit   默认104857600（100兆）：小于100兆的文件会被认为小文件，有新增数据时会被分配数据插入。</span><br><span class="line">hoodie.copyonwrite.record.size.estimate   默认1024 （1kb）： 预估一条数据大小多大，用来计算一个桶可以放多少条数据。</span><br><span class="line">hoodie.record.size.estimation.threshold   默认为1： 数据最开始的时候parquet文件没有数据会去用默认的1kb预估一条数据的大小，如果有fileid的文件大小大于 (hoodie.record.size.estimation.threshold*hoodie.parquet.small.file.limit) 一条记录的大小将会根据（fileid文件大小/文件的总条数）来计算，所以这里是一个权重值。</span><br><span class="line">hoodie.parquet.max.file.size   默认120 * 1024 * 1024（120兆）：文件的最大大小，在分桶时会根据这个大小减去当前fileId文件大小除以预估每条数据大小来计算当前文件还能插入多少数据。因为每条数据大小是预估计算平均值的，所以这里最大文件的大小控制只能接近与你所配置的大小。</span><br><span class="line">hoodie.copyonwrite.insert.split.size   默认500000 ：精确控制一个fileid文件存放多少条数据，前提必须关闭hoodie.copyonwrite.insert.auto.split 自动分桶。</span><br><span class="line">hoodie.copyonwrite.insert.auto.split   默认true : 是否开启自动分桶。</span><br></pre></td></tr></table></figure>
+
+<p>4.分桶结束后调用handleUpsertPartition合并数据。首先会获取map 集合中的桶信息，桶类型有两种新增和修改两种。如果桶fileid文件只有新增数据操作，直接追加文件或新建parquet文件写入就好，这里会调用handleInsert方法。如果桶fileid文件既有新增又有修改或只有修改一定会走handUpdate方法。这里设计的非常的巧妙对于新增多修改改少的场景大部分的数据直接可以走新增的逻辑可以很好的提升性能。对于handUpdate方法的处理会先构造HoodieMergeHandle对象初始化一个map集合，这个map集合很特殊拥有存在内存的map集合和存在磁盘的map 集合，这个map集合是用来存放所有需要update数据的集合用来遍历fileid旧文件时查询文件是否存在要不要覆盖旧数据。这里使用内存加磁盘为了避免update桶中数据特别大情况可以将一部分存磁盘避免jvm oom。update 数据会优先存放到内存map如果内存map不够才会存在磁盘map，而内存Map默认大小是1g 。DiskBasedMap 存储是key信息存放的还是record key ,value 信息存放value 的值存放到那个文件上，偏移量是多少、存放大小和时间。这样如果命中了磁盘上map就可以根据value存放的信息去获取hoodieRecord了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hoodie.memory.spillable.map.path   默认值 /tmp/ ： 存放DiskBasedMap的路径</span><br><span class="line">hoodie.memory.merge.max.size       默认值 1024*1024*1024（1g）：内存map的最大容量</span><br></pre></td></tr></table></figure>
+
+<p>5.构造sparkMergHelper 开始合并数据写入到新的快照文件。在SparkMergHelper 内部会构造一个BoundedInMemoryExecutor 的队列，在这个队列中会构造多个生产者和一个消费者（file 文件一般情况只有一个文件所以生产者也会是一个）。producers 会加载老数据的fileId文件里的数据构造一个迭代器，执行的时候先调用producers 完成初始化后调用consumer。而consumer被调用后会比较数据是否存在ExternalSpillableMap 中如果不存在重新写入数据到新的快照文件，如果存在调用当前的HoodileRecordPayload 实现类combineAndGetUpdateValue 方法进行比较来确定是写入老数据还是新数据，默认比较那个数据时间大。这里有个特别的场景就是硬删除，对于硬删除里面的数据是空的，比较后会直接忽略写入达到数据删除的目的。</p>
+<h3 id="2-5-2-merge-on-read模式"><a href="#2-5-2-merge-on-read模式" class="headerlink" title="2.5.2 merge on read模式"></a>2.5.2 merge on read模式</h3><p>在Mor模式中的实现和前面cow模式分桶阶段都是共用的逻辑，这里主要说下最后的合并和cow 模式不一样的操作。在mor 合并是调用AbstarctSparkDeltaCommitActionExecutor 的execute方法，会构造HoodieAppaendHandle 对象。在写入时调用append 向log日志文件追加数据，如果日志文件不存在将新建log文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hoodie.logfile.max.size   默认值：1024 * 1024 * 1024（1g） 日志文件最大大小</span><br><span class="line">hoodie.logfile.data.block.max.size  默认值：256 * 1024 * 1024（256兆） 写入多少数据后刷一次磁盘</span><br></pre></td></tr></table></figure>
+
+<p>分桶相关参数与cow模式通用</p>
+<p><img src="/images/bigdata/hudi/786_watermark.png" alt="在这里插入图片描述"></p>
+<h2 id="2-6-索引更新"><a href="#2-6-索引更新" class="headerlink" title="2.6 索引更新"></a>2.6 索引更新</h2><p><img src="/images/bigdata/hudi/644_watermark.png" alt="在这里插入图片描述"></p>
+<p>​ 数据写入到log文件或者是parquet 文件，这个时候需要更新索引。简易索引和布隆索引对于他们来说索引在parquet文件中是不需要去更新索引的。这里索引更新只有hbase索引 和内存索引需要更新。内存索引是更新通过map 算子写入到内存map上，hbase索引通过map算子put到hbase上。</p>
+<h2 id="2-7-完成提交"><a href="#2-7-完成提交" class="headerlink" title="2.7 完成提交"></a>2.7 完成提交</h2><h3 id="2-7-1-提交-元数据信息归档"><a href="#2-7-1-提交-元数据信息归档" class="headerlink" title="2.7.1 提交&amp;元数据信息归档"></a>2.7.1 提交&amp;元数据信息归档</h3><p>上述操作如果都成功且写入时writeStatus中没有任何错误记录，hudi 会进行完成事务的提交和元数据归档操作，步骤如下：</p>
+<p>1.sparkRddWriteClient 调用commit 方法，首先会向<a href="https://so.csdn.net/so/search?q=Hdfs&spm=1001.2101.3001.7020">Hdfs</a> 上提交一个.commit 后缀的文件，里面记录的是writeStatus的信息包括写入多少条数据、fileID快照的信息、Schema结构等等。当commit 文件写入成功就意味着一次upsert 已经成功，hudi 内的数据就可以查询到。</p>
+<p>2.为了不让元数据一直增长下去需要对元数据做归档操作。元数据归档会先创建HoodieTimelineArchiveLog对象，通过HoodieTableMetaClient 获取.hoodie目录下所有的元数据信息，根据这些元数据信息来判断是否达到归档条件。如果达到条件构造HooieLogFormatWrite对象对archived文件进行追加。每个元数据文件会封装成 HoodieLogBlock 对象批量写入。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hoodie.keep.max.commits   默认30：最多保留多少个commit元数据，默认会在第31个commit的时候会触发一次元数据归档操作，由这个参数来控制元数据归档时机。</span><br><span class="line">hoodie.keep.min.commits   默认20： 最少保留多少个commit元数据，默认会将当前所有的commimt提交的个数减去20，剩下的11个元数据被归档，这个参数间接控制每次回收元数据个数。</span><br><span class="line">hoodie.commits.archival.batch  默认10 ：每多少个元数据写入一次到archived文件里，这里就是一个刷盘的间隔。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/bigdata/hudi/366_watermark.png" alt="在这里插入图片描述"></p>
+<h3 id="2-7-2-数据清理"><a href="#2-7-2-数据清理" class="headerlink" title="2.7.2 数据清理"></a>2.7.2 数据清理</h3><p>元数据清理后parquet 文件也是要去清理，在hudi 有专有spark任务去清理文件。因为是通过spark 任务去清理文件也有对应XXX.clean.request、xxx.clean.infight、xxx.clean元数据来标识任务的每个任务阶段。数据清理步骤如下：</p>
+<p>1.构造baseCleanPanActionExecutor 执行器，并调用requestClean方法获取元数据生成清理计划对象HoodieCleanPlan。判断HoodieCleanPlan对象满足触发条件会向元数据写入xxx.request 标识，表示可以开始清理计划。</p>
+<p>2.生成执行计划后调用baseCleanPanActionExecutor 的继承类clean方法完成执行spark任务前的准备操作，然后向hdfs 写入xxx.clean.inflight对象准备执行spark任务。</p>
+<p>3.spark 任务获取HoodieCleanPlan中所有分区序列化成为Rdd并调用flatMap迭代每个分区的文件。然后在mapPartitions算子中调用deleteFilesFunc方法删除每一个分区的过期的文件。最后reduceBykey汇总删除文件的结果构造成HoodieCleanStat对象，将结果元数据写入xxx.clean中完成数据清理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hoodie.clean.automatic  默认true :是否开启自动数据清理，如果关闭upsert 不会执行清理任务。</span><br><span class="line">hoodie.clean.async   默认false: 是否异步清理文件。开启异步清理文件的原理是开启一个后台线程，在client执行upsert时就会被调用。</span><br><span class="line">hoodie.cleaner.policy  默认 HoodieCleaningPolicy.KEEP_LATEST_COMMITS ：数据清理策略参数，清理策略参数有两个配置KEEP_LATEST_FILE_VERSIONS和KEEP_LATEST_COMMITS。</span><br><span class="line">hoodie.cleaner.commits.retained 默认10 ：在KEEP_LATEST_COMMITS策略中配置生效，根据commit提交次数计算保留多少个fileID版本文件。因为是根据commit提交次数来计算，参数不能大于hoodie.keep.min.commits（最少保留多少次commmit元数据）。</span><br><span class="line">hoodie.cleaner.fileversions.retained  默认3 :在KEEP_LATEST_FILE_VERSIONS策略中配置生效,根据文件版本数计算保留多少个fileId版本文件。 </span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/bigdata/hudi/890_watermark.png" alt="在这里插入图片描述"></p>
+<h3 id="2-7-3-数据压缩"><a href="#2-7-3-数据压缩" class="headerlink" title="2.7.3 数据压缩"></a>2.7.3 数据压缩</h3><p>数据压缩是mor 模式才会有的操作，目的是让log文件合并到新的fileId快照文件中。因为数据压缩也是spark 任务完成的，所以在运行时也对应的xxx.compaction.requet、xxx.compaction.clean、xxx.compaction元数据生成记录每个阶段。数据压缩实现步骤如下：</p>
+<p>1.sparkRDDwirteClient 调用compaction方法构造BaseScheduleCompationActionExecutor对象并调用scheduleCompaction方法，计算是否满足数据压缩条件生成HoodieCompactionPlan执行计划元数据。如果满足条件会向hdfs 写入xxx.compation.request元数据标识请求提交spark任务。</p>
+<p>2.BaseScheduleCompationActionExecutor会调用继承类SparkRunCompactionExecutor类并调用compact方法构造HoodieSparkMergeOnReadTableCompactor 对象来实现压缩逻辑，完成一切准备操作后向hdfs写入xxx.compation.inflight标识。</p>
+<p>3.spark任务执行parallelize加载HooideCompactionPlan 的执行计划,然后调用compact迭代执行每个分区中log的合并逻辑。在 compact会构造HoodieMergelogRecordScanner 扫描文件对象，加载分区中的log构造迭代器遍历log中的数据写入ExtemalSpillableMap。这个ExtemalSpillableMap和cow 模式中内存加载磁盘的map 是一样的。至于合并逻辑是和cow模式的合并逻辑是一样的，这里不重复阐述都是调用cow模式的handleUpdate方法。</p>
+<p>4.完成合并操作会构造writeStatus结果信息，并写入xxx.compaction标识到hdfs中完成合并操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hoodie.compact.inline  默认false：是否在一个事务完成后内联执行压缩操作，这里开启并不一定每次都会触发索引操作后面还有策略判断。</span><br><span class="line">hoodie.compact.inline.trigger.strategy  默认CompactionTriggerStrategy.NUM_COMMITS: 压缩策略参数。该参数有NUM_COMMITS、TIME_ELAPSED、NUM_AND_TIME、NUM_OR_TIME。NUM_COMMITS根据提交次数来判断是否进行压缩;TIME_ELAPSED根据实际来判断是否进行压缩;NUM_AND_TIME 根据提交次数和时间来判断是否进行压缩；NUM_OR_TIME根据提交次数或时间来判断是否进行压缩。</span><br><span class="line">hoodie.compact.inline.max.delta.commits  默认5 ：设置提交多少次后触发压缩策略。在NUM_COMMITS、NUM_AND_TIME和NUM_OR_TIME策略中生效。</span><br><span class="line">hoodie.compact.inline.max.delta.seconds  默认60 * 60（1小时）：设置在经过多长时间后触发压缩策略。在TIME_ELAPSED、NUM_AND_TIME和NUM_OR_TIME策略中生效。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/bigdata/hudi/82_watermark.png" alt="在这里插入图片描述"></p>
+<h2 id="2-8-hive元数据同步"><a href="#2-8-hive元数据同步" class="headerlink" title="2.8 hive元数据同步"></a>2.8 hive元数据同步</h2><p>​ 实现原理比较简单就是根据hive外表和hudi表当前表结构和分区做比较，是否有新增字段和新增分区如果有会添加字段和分区到hive外表。如果不同步hudi新写入的分区无法查询。在cow模式 中只会有ro表（读优化视图，而在mor模式中有ro表（读优化视图）和rt表（实时视图）。</p>
+<h2 id="2-9-提交成功通知回调"><a href="#2-9-提交成功通知回调" class="headerlink" title="2.9 提交成功通知回调"></a>2.9 提交成功通知回调</h2><p>​ 当事务提交成功后向外部系统发送通知消息，通知的方式有两种，一种是发送http服务消息，一种是发送kafka 消息。这个通知过程我们可以把清理操作、压缩操作、hive元数据操作，都交给外部系统异步处理或者做其他扩展。也可以自己实现HoodieWriteCommitCallback的接口，自定义实现。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">hoodie.write.commit.callback.on   默认false：是否开启提交成功后向外部系统发送回调指令。</span><br><span class="line">hoodie.write.commit.callback.class   默认org.apache.hudi.callback.impl.HoodieWriteCommitHttpCallback： 配置回调实现类，默认通过Http的方式发送消息到外部系统</span><br><span class="line">http实现类配置参数</span><br><span class="line">hoodie.write.commit.callback.http.url   无默认配置项：外部服务http url地址。</span><br><span class="line">hoodie.write.commit.callback.http.api.key  默认hudi_write_commit_http_callback：外部服务http请求头HUDI-CALLBACK-KEY的值，可用于服务请求验签使用。</span><br><span class="line">hoodie.write.commit.callback.http.timeout.seconds  默认3秒：请求超时时间。</span><br><span class="line">kafka实现类配置参数</span><br><span class="line">hoodie.write.commit.callback.kafka.bootstrap.servers      无默认值：配置kafka broker 服务地址。</span><br><span class="line">hoodie.write.commit.callback.kafka.topic   无默认值：配置kafka topic名称。</span><br><span class="line">hoodie.write.commit.callback.kafka.partition  无默认值：配置发送到那个kafka broker分区。</span><br><span class="line">hoodie.write.commit.callback.kafka.acks    默认值all：配置kafka ack。</span><br><span class="line">hoodie.write.commit.callback.kafka.retries  默认值值3：配置kafka 失败重试次数。</span><br></pre></td></tr></table></figure>
+
+<p>在分析spark upsert<a href="https://so.csdn.net/so/search?q=%E6%BA%90%E7%A0%81&spm=1001.2101.3001.7020">源码</a>中还有很多细节是略过，如时间线服务、并发写机制、cluster模式、Hfile格式的写入和merge等等。篇幅有限先解析这么多，希望本文能帮你了解spark upsert的内核原理。谢谢大家阅读本文。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/%E5%88%97%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/%E5%88%97%E5%AD%98/" class="post-title-link" itemprop="url">列存储</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-列存"><a href="#1-列存" class="headerlink" title="1 列存"></a>1 列存</h1><p>列存具有「读友好，写不友好」的特点。这个特点使列存和 AP 数据库仿佛王八看绿豆一样——对上眼了。因为 AP 数据库正好重视读性能（大查询吞吐量），不重视写性能（能容忍 T+1h&#x2F;1d 更新）。于是，列存顺理成章地霸占了 AP 数据库的存储底座。</p>
+<p>近年来，随着业务的发展，越来越多的业务场景霸道地要求 AP 数据库必须具备实时分析能力。为此，AP 数据库必须把上游 TP 数据库产生的写入和更新实时地导入进来。这对 AP 数据库的列存更新效率制造了新的挑战。</p>
+<p>本文将介绍迎接这个挑战诞生的列存高效更新技术。探讨内容包括：</p>
+<ol>
+<li><p>列存更新的难点。</p>
+</li>
+<li><p>一种低效更新方案。</p>
+</li>
+<li><p>四类高效更新方案，并介绍这些方案在业界数据库中的实现。涉及数据库包括 Iceberg，Hudi，Kudu，Doris，ADB，Hologres 等。</p>
+</li>
+<li><p>比较总结所有方案。</p>
+</li>
+</ol>
+<p>希望本文能对读者了解列存更新技术有所帮助。</p>
+<h1 id="2-列存更新的难点"><a href="#2-列存更新的难点" class="headerlink" title="2 列存更新的难点"></a>2 列存更新的难点</h1><p>我认为主要面临两个难点：一个是写放大，另一个是无法简单地做 in-place update。<br><img src="/vx_images/339414025546078.png" alt="Image"></p>
+<p>首先这里的写放大特指 IO 次数的放大，具体来说：</p>
+<ul>
+<li><p>传统列存（每列一个文件）：写入需要每列一次磁盘 IO。尽管可以通过攒批来均摊开销，但大宽表（成百上千列）场景仍然力不从心。</p>
+</li>
+<li><p>行列混存（PAX 格式）：文件被切分成很多 block，一行的所有列数据按列存格式塞到同一个 block 里面。写入需要在内存中攒满一个列存 block，然后以 block 为单位压缩并刷盘。所有列一次 IO 搞定。尽管这种做法优化了磁盘 IO 次数，但在内存 IO 次数方面还是有放大，因为内存 block 不是行存。</p>
+</li>
+</ul>
+<blockquote>
+<p>下文所有数据库的列存格式均属于行列混存。</p>
+</blockquote>
+<p>其次是无法简单地做 in-place update。原因有二：</p>
+<ol>
+<li><p>容易造成比较大的写放大。列存的 block 非常大，因为面向读场景优化，追求高压缩率。哪怕是 in-place update 一个 field，也有可能导致大 block 内数据的 reorganize。重写大 block 会带来比较大的写放大。</p>
+</li>
+<li><p>最致命的，AP 数据库的趋势都是 share-storage 架构，基于 HDFS&#x2F;S3。这类分布式存储本身就不支持 in-place update。所以没得选了，只能做 out-of-place update。</p>
+</li>
+</ol>
+<blockquote>
+<p>下文所有列存更新技术均属于 out-of-place update。</p>
+</blockquote>
+<h1 id="3-低效更新技术"><a href="#3-低效更新技术" class="headerlink" title="3 低效更新技术"></a>3 低效更新技术</h1><blockquote>
+<p>想了解什么是高效更新技术，必须先了解什么是低效更新技术。—— 黄金架构师（知乎和公众号同名）</p>
+</blockquote>
+<p>最简单的 out-of-place update 方案是 file-level COW(copy-on-write) 。这种方案简单来说就是更新时无论更新一行还是一批，都直接把原文件拷贝出来更新，然后生成一个新文件。</p>
+<p>File-level COW 方案在业界的典型代表是 Hudi COW 表。<br><img src="/vx_images/337394480712595.png" alt="Image"></p>
+<p>Hudi COW 表的实现概述如下：</p>
+<ol>
+<li><p>宏观上看，一张表的数据存储在 HDFS&#x2F;S3 上的很多列存文件中。</p>
+</li>
+<li><p>更新时重写整个列存文件。因为要做写写冲突检测（ww-conflict check；为实现 snapshot isolation），更新需要保证可串行化。Hudi COW 通过 file-level 乐观锁来保证这一点。更新文件期间不加锁，commit 时检查有没有并发写事务抢先更新了相同的文件，如果有，那么自己就 abort。换句话说，不支持对同一文件的并发更新。</p>
+</li>
+<li><p>读取时，按快照选取适当版本的文件。</p>
+</li>
+</ol>
+<p>这个方案的优点是读性能非常棒，文件级别多版本使得读完全不受写的影响。缺点是写性能很差，因为写放大很大，并且写并发度低。</p>
+<p>显然，file-level COW 是一种低效更新方案。如果用这个方案来应对实时场景，那无异于以卵击石。</p>
+<p>到现在为止，我们已经具备了低效更新技术的认知。那么，接下来我们就可以往高效更新技术的殿堂进发了。</p>
+<h1 id="4-高效更新技术"><a href="#4-高效更新技术" class="headerlink" title="4 高效更新技术"></a>4 高效更新技术</h1><p>我们可以思考一下，要想高效，应该做好哪些事情？我认为，主要是两件事情：</p>
+<ol>
+<li><p>降低写放大，提升写并发。单线程性能靠降低写放大来优化，多线程性能靠提升写并发来优化。单线程和多线程都在手，性能我有。</p>
+</li>
+<li><p>尽量少损害读性能。毕竟咱是 AP 数据库，读性能至关重要，还要靠它来吃饭。</p>
+</li>
+</ol>
+<p>为了做好这两件事情，我们应该追求：</p>
+<ol>
+<li><p>更细粒度的更新。Hudi COW 拷贝更新整个文件算是 file-level update。如果我们能做到 block-level，tuple-level，甚至是 field-level，写放大会显著优化。</p>
+</li>
+<li><p>更细粒度的并发。Hudi COW 加 file-level 的锁，算是 file-level concurrency。如果我们能做到 block-level，tuple-level，写并发会显著提升。（没有 filed-level，复杂且开销不一定小）。当然我们也要清醒地认识到，细粒度的并发需要细粒度的锁，细粒度的锁对于批量更新没有那么友好（想象一下更新整张表的数据，为每一行加一个行锁）。因此这里存在一些取舍的空间。</p>
+</li>
+</ol>
+<p>上述思考很有意思。我运用这个思考框架，再结合业界数据库的实际情况，把业界数据库的高效更新方案按照写并发和更新粒度分成了四类，分别是：</p>
+<ol>
+<li><p>Table-level concurrency + tuple-level update.</p>
+</li>
+<li><p>File-level concurrency + tuple-level update.</p>
+</li>
+<li><p>Tuple-level concurrency + field-level update.</p>
+</li>
+<li><p>Unlimited concurrency + tuple-level update.  (Unlimited concurrency 看起来非常唬人，其含义我们下文再细说。)</p>
+</li>
+</ol>
+<p>这四类方案在各家数据库中都是怎么实现的呢？接下来我们挨个分析一下具体的案例。</p>
+<h2 id="4-1-Table-level-concurrency-tuple-level-update"><a href="#4-1-Table-level-concurrency-tuple-level-update" class="headerlink" title="4.1 Table-level concurrency + tuple-level update"></a>4.1 Table-level concurrency + tuple-level update</h2><p>这类方案的典型代表是 Iceberg MOR 表。</p>
+<p>使用这类方案的数据库绝对地重视批量更新，轻视并发更新和单行更新，因此更新通过表锁来实现，仅支持 table-level concurrency。<img src="/vx_images/334364507637307.png" alt="Image"><br>Iceberg MOR 表的实现概述如下：</p>
+<ol>
+<li><p>宏观看是两个存储结构：存储主要数据的列存文件（data file）和存储标记删除的文件（delete file）。data file 和它对应的 delete file 会定期合并成新的 data file。</p>
+</li>
+<li><p>更新流程：update 看做 delete + insert。先向 delete file 追加一条 delete mark 删除老版本，然后把新版本写入 data file。</p>
+</li>
+</ol>
+<ul>
+<li><p>Iceberg 的 delete mark 有两种：1. position delete：记录删除行在 data file 中的行号，行号需要在更新的时候从 data file 中查到。2. equation delete：记录删除的等值条件。equation delete 的写入更高效，尤其是在根据非主键（唯一键）的等值删除场景。这个场景下一个等值条件会匹配很多行。equation delete 只记录一个等值条件，而 position delete 需要为每行查行号并为每行记录 delete mark。</p>
+</li>
+<li><p>Iceberg 采用 table-level 乐观锁。更新操作完成后，需要把新增的 delete file 文件登记到表的元数据里面去。如果此时发现别的并发事务往这张表已经登记过元数据，那么自己就 abort（某些情况下会挣扎重试一下）。</p>
+</li>
+<li><p>delete mark  和新版本 tuple 加起来的数据量级约等于一个 tuple，所以是 tuple-level update，写放大很小。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取流程：需要 merge 一下 data file 和 delete file（这也是 MOR(merge on read) 名称的由来）。</li>
+</ol>
+<ul>
+<li><p>如果是 position delete，只需要按行号顺序地归并 一下（因为行号天然有序）。</p>
+</li>
+<li><p>如果是 equation delete，需要为每一行计算可能很多（每删除一次就多一个）的等值条件是否匹配。</p>
+</li>
+<li><p>二者对比，显然 position delete 的读取更高效。</p>
+</li>
+</ul>
+<p>相比 Hudi COW，Iceberg 的并发能力差了些。抛开并发不谈，Iceberg 算是牺牲了一些读取的性能（需要 merge on read），换取更新的性能。在这个基础上，Iceberg 还提供了 position delete 和 equation delete 两种方式，给用户提供了 MOR 模式下进一步在读友好和写友好之间权衡的空间，这个做法很「用户友好」。</p>
+<h2 id="4-2-File-level-concurrency-tuple-level-update"><a href="#4-2-File-level-concurrency-tuple-level-update" class="headerlink" title="4.2 File-level concurrency + tuple-level update"></a>4.2 File-level concurrency + tuple-level update</h2><p>这类方案的典型代表是 Hudi MOR 表。</p>
+<p>这类数据库的特点是重视批量更新，但没有 Iceberg 那么极端，所以并发度稍高一点，做到了 file-level。<img src="/vx_images/331333726872229.png" alt="Image"><br>Hudi MOR 表的实现概述如下：</p>
+<ol>
+<li><p>宏观看是两个存储结构：存储主要数据的列存文件（base file）和存储增量更新的行存文件（log file）。log file 采用行存对写比较友好。base file 和它对应的 log file 会定期合并成新的 base file。</p>
+</li>
+<li><p>更新流程：update 看做 delete + insert。先向 log file 插入一条 delete mark 来标记删除老版本，然后再向 log file 写入新版本。</p>
+</li>
+</ol>
+<ul>
+<li><p>delete mark 记的是主键。但 log file 中的数据是 append 的，并不按照主键排序。</p>
+</li>
+<li><p>更新和 Hudi COW 一样，是 file-level OCC，因此是 file-level concurrency。</p>
+</li>
+<li><p>写入数据量是 delete mark 加新版本的 tuple，因此是 tuple-level update。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取流程：需要 merge 一下 base file 和 log file，实现上是 base file 和 log file 按主键做 hash join。由于 log file 中的数据是无序的，即便通过 zone-map 过滤后只需要读一个 base file 的 block，也要 join 整个 log file。</li>
+</ol>
+<p>除了并发度比 Iceberg 高以外，Hudi MOR 和 Iceberg 主要有两个区别。</p>
+<p>第一个区别是 <strong>delete mark 的实现不同</strong>。</p>
+<p>写性能方面，Iceberg position delete &lt; Hudi 主键 delete &lt; Iceberg equation delete。</p>
+<p>position delete &lt; 主键 delete，是因为 AP 数据库的更新大多数情况下是提供了整行数据的 upsert，这种情况下，主键 delete 可以做到不需要去 base file 中读数据，直接写 log file 就搞定，而 position delete 还得去读行号。</p>
+<p>主键 delete &lt; equation delete，这个显而易见，equation delete 在根据非主键（唯一键）的等值删除场景具有绝对的优势。</p>
+<p>读性能方面，Iceberg position delete &gt; Hudi 主键 delete &gt; Iceberg equation delete。</p>
+<p>因为主键 delete 需要 base file 和 log file 做 hash join，得构建 hash table 和按行 probe。而 position delete 只需要按天然有序的行号归并，因此更快。equation delete 需要每一行计算很多的等值条件，因此更慢。</p>
+<p>第二个区别是<strong>同一主键的新老版本存储位置不同</strong>。Hudi 能保证新老版本逻辑上在同一个 base file 中（在 base file 或者它对应的 log file 中），而 Iceberg 新版本可能出现在不同的 data file 中。相比之下，Iceberg 在实现主键行级别的索引，主键 zone-map 过滤方面出于劣势。</p>
+<p>综合来看，没有明显的胜者，二者互有胜负。</p>
+<h2 id="4-3-Tuple-level-concurrency-Field-level-update"><a href="#4-3-Tuple-level-concurrency-Field-level-update" class="headerlink" title="4.3 Tuple-level concurrency + Field-level update"></a>4.3 Tuple-level concurrency + Field-level update</h2><p>这类方案的唯一代表是 Kudu。一个数据库自成一类。</p>
+<p>这类数据库非常重视单行更新，因此通过行锁来实现并发，实现了 tuple-level concurrency。（注意：我不确定 Kudu 是否还支持表锁，通过 cost 判断该加表锁还是行锁。感兴趣的读者可以自行研究一下。）</p>
+<p>这类数据库非常「吝惜」存储空间，因此更新时只记录被更新的 field。</p>
+<p><img src="/vx_images/327303890883570.png" alt="Image"><br>Kudu 的实现概述如下</p>
+<ol>
+<li><p>宏观看有点像一个只有 L0 层的 LSM-tree，但 Kudu 对于写入和更新分类处理。写入和更新分别使用自己的 memtable 和文件。写入写到行存 MemRowSet（Masstree 实现），定期刷盘成为 DiskRowSet 列存文件。更新写到行存 DeltaMemStore，定期刷盘成为 DiskRowSet 对应的 REDO records 文件。DiskRowSet 文件内嵌一个主键 B-tree 索引，用来加速主键点查。DiskRowSet 和 REDO records 文件会被周期性地合并。</p>
+</li>
+<li><p>更新流程：先根据主键查询在 DiskRowSet 中的行号，然后在 DeltaMemStore 中记录行号以及更新后的 field。因为只记了更新后的 field，有点像 redo log，所以文件名叫 REDO records。</p>
+</li>
+</ol>
+<ul>
+<li><p>通过行锁来保证并发更新的事务性，所以是 tuple-level concurrency。</p>
+</li>
+<li><p>写入的数据量只是更新后的 filed，所以是 field-level update。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取流程：需要按行号顺序地归并 DiskRowSet 和 REDO records。</li>
+</ol>
+<p>Kudu 的方案是我最喜欢的方案。这个方案写并发高，写放大最小。此外，field-level update 非常有利于大宽表的部分列更新场景，因为不需要花费大量的 IO（每列一次 IO）去补全其他列数据。如果非要找出一个缺点，那就是行锁对批量更新没那么友好。不过这也可以通过动态地选择表锁或者行锁来优化。</p>
+<h2 id="4-4-Unlimited-concurrency-tuple-level-update"><a href="#4-4-Unlimited-concurrency-tuple-level-update" class="headerlink" title="4.4 Unlimited concurrency + tuple-level update"></a>4.4 Unlimited concurrency + tuple-level update</h2><p>这类方案的典型代表是 Doris 和阿里云 ADB。</p>
+<p>我创造的 unlimited concurrency 这个术语有点唬人。其实这个术语翻译成人话就是不支持并发更新的事务性——不加任何锁，不检测写写冲突，允许丢失更新（lost-update）。</p>
+<p>比如 Doris，并发更新采用 last writer wins 策略，同一行的并发更新，后来的更新会覆盖前面的更新，造成前面的更新丢失。</p>
+<p>至于 ADB，我没有看到 ADB 论文中提到并发更新，找官方文档也没找到（也有点迷路了，ADB 有很多版本，MySQL，Postgres 等等，弄晕我了），所以我<strong>猜测</strong>它也不支持并发更新的事务性，不然没理由不高调宣传。因此，我将 ADB 也归类到了这里。尽管我不能 100% 确定它属于这个分类，但我认为分类错了也问题不大，它不影响本文的核心思想。</p>
+<p>由于不支持更新的事务性，这类数据库的单行更新和批量更新都比较快。</p>
+<blockquote>
+<p>提问：牺牲事务性，换取更新的性能，你认为值得吗？欢迎留言讨论。</p>
+</blockquote>
+<p><img src="/vx_images/323263652875791.png" alt="Image"><br>Doris MOR(unique-key 表) 的实现方式概述如下：</p>
+<ol>
+<li><p>宏观上看是一个 LSM-tree，只有 memtable 和 L0 层列存文件。</p>
+</li>
+<li><p>更新流程：采用 LSM-tree 的做法，直接写入新版本，覆盖旧版本。</p>
+</li>
+</ol>
+<ul>
+<li><p>每个版本上带着一个 sequence number，作为版本排序的依据。</p>
+</li>
+<li><p>Doris 默认<strong>不支持</strong>并发更新（官方文档）。如有需求，可以通过开关打开，但会有丢失更新的异象。因为不支持并发更新的事务性，所以我把 Doris 划分为 unlimited concurrency。</p>
+</li>
+<li><p>写入数据量只是一个 tuple，所以是 tuple-level update。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取流程：需要 merge 多个文件以及 memtable 来找到同一主键的最新版本。</li>
+</ol>
+<p>抛开对并发更新事务性的支持不谈，Doris MOR 方案的优点是更新非常快。甚至写入不需要关心是否违反主键唯一约束，因为同一主键的新版本总会覆盖旧版本，保证了绝对的唯一。此外，在提供整行数据的 upsert 场景，Doris 也不需要读老版本数据，直接写新版本就可以搞定。Doris MOR 的缺点是读取的并行度不高，无法做到 file-level 独立并行读。因为文件之间存在依赖，需要多个文件合并到一起，才能找到最新版本的数据。在这个限制下，聚合函数无法下推到文件层并行计算，读性能比较差。</p>
+<p><img src="/vx_images/320244834118106.png" alt="Image"><br>ADB 的实现概述如下：</p>
+<ol>
+<li><p>宏观看存储是两个结构：磁盘上的列存文件（detail file）和内存中的 delete bitmap。delete bitmap 被切分成很多 compressed segment。</p>
+</li>
+<li><p>更新流程：update 看做 delete + insert。先在 delete bitmap 标记删除老版本（把删除行的对应 bit 置 1 表示删除），然后写入新版本。</p>
+</li>
+</ol>
+<ul>
+<li><p>delete bitmap 自身的更新通过 segment-level COW 实现，有一定的内存空间开销。</p>
+</li>
+<li><p>疑似不支持并发更新的事务性，所以我把它划分到 unlimited concurrency。</p>
+</li>
+<li><p>写入的数据量是内存 bitmap 的一个 compressed segment，以及磁盘上的一个 tuple。因为我重点关注磁盘的写入量，所以这个方案被分类为 tuple-level update。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取需要 merge 列存文件和对应的 delete bitmap segments。</li>
+</ol>
+<p>ADB 方案最特别之处在于 in-memory delete bitmap，优点是标记删除的读写性能都很棒，毕竟内存数据结构的威力不可小觑。缺点是内存开销比较大。</p>
+<p>相比与 Doris，ADB 可以实现文件级别甚至更细粒度的并行读。虽然同一主键的新老版本也可能会出现在不同的文件中，但每个文件有自己的 delete bitmap，可用来过滤被删除的数据。每个文件都知道自己的数据要么是新版本的，要么是被删除的，不依赖别的文件来确定，所以可直接并行读。</p>
+<p>In-memory delete bitmap + segment-level COW 的内存开销很大。一种优化的思路是将其转化为 on-disk bitmap。Hologres 就采用了 on-disk bitmap 的方案，每个文件一个 delete bitmap（roaring bitmap 实现），存储在整张表一个的 LSM-tree 中。为了省空间，delete bitmap 的更新不是通过 COW 来实现，而是通过 MOR 来实现，即每个增量更新都会生成一个新版本的 bitmap，读的时候合并所有版本。感兴趣的可以阅读下 Hologres 的论文。更进一步地，Doris MOW(merge on write) 表在 Hologres 方案的基础上，为了减小合并多个 bitmap 的开销，还会把合并后的结果缓存起来，详情可以参考 Doris MOW 的设计文档。</p>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h1><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>file-level concurrency + file-level update</th>
+<th>table-level concurrency + tuple-level update</th>
+<th>file-level concurrency + tuple-level update</th>
+<th>tuple-level concurrency + field-level update</th>
+<th>unlimited concurrency + tuple-level update</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>典型代表</td>
+<td>Hudi COW</td>
+<td>Iceberg</td>
+<td>Hudi MOR</td>
+<td>Kudu</td>
+<td>Doris MOR, ADB</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>读友好</td>
+<td>批量更新友好，并发更新差</td>
+<td>批量更新友好，并发更新中</td>
+<td>单行更新友好，部分列更新友好，并发更新友好，批量更新一般</td>
+<td>单行批量更新都友好，事务支持差（不支持并发更新或并发更新异常）</td>
+</tr>
+</tbody></table>
+<h1 id="6-参考"><a href="#6-参考" class="headerlink" title="6 参考"></a>6 参考</h1><ol>
+<li><p><a href="https://www.dremio.com/blog/">https://www.dremio.com/blog/</a></p>
+</li>
+<li><p><a href="https://hudi.apache.org/docs/concepts/">https://hudi.apache.org/docs/concepts/</a></p>
+</li>
+<li><p><a href="https://kudu.apache.org/kudu.pdf">https://kudu.apache.org/kudu.pdf</a></p>
+</li>
+<li><p><a href="https://cwiki.apache.org/confluence/display/DORIS">https://cwiki.apache.org/confluence/display/DORIS</a></p>
+</li>
+<li><p><a href="https://www.vldb.org/pvldb/vol12/p2059-zhan.pdf">https://www.vldb.org/pvldb/vol12/p2059-zhan.pdf</a></p>
+</li>
+<li><p><a href="https://kai-zeng.github.io/papers/hologres.pdf">https://kai-zeng.github.io/papers/hologres.pdf</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/MySQL-Driver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/MySQL-Driver/" class="post-title-link" itemprop="url">MySQL JDBC Driver源码解读</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:27" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:27+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MySQL-JDBC-Driver源码解读"><a href="#MySQL-JDBC-Driver源码解读" class="headerlink" title="MySQL JDBC Driver源码解读"></a>MySQL JDBC Driver源码解读</h1><p>You can get the source code from Github: <a href="https://github.com/mysql/mysql-connector-j">https://github.com/mysql/mysql-connector-j</a></p>
+<p>当调用<code>com.mysql.cj.jdbc.Driver</code>类时, 静态代码块会默认加载驱动.</p>
+<h2 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h2><p><code>DriverManager.getConnection</code>时，会通过SPI获取</p>
+<blockquote>
+<p>无需手动注册</p>
+</blockquote>
+<p><code>ClassLoader</code>加载<code>com.mysql.cj.jdbc.Driver</code>时，会通过静态内部类注册。<br>也就是说，SPI扫到这个类，就会注册.</p>
+<blockquote>
+<p>设计比较巧妙的一点:</p>
+</blockquote>
+<pre class="mermaid">classDiagram
+
+NonRegisteringDriver <|-- Driver
+
+NonRegisteringDriver: Connection connect(String url, Properties info)</pre>
+
+<h2 id="创建Connection"><a href="#创建Connection" class="headerlink" title="创建Connection"></a>创建Connection</h2><pre class="mermaid">sequenceDiagram
+  participant ClientImpl
+  participant DriverManager
+  participant Driver
+  participant Connection
+  participant NativeSession
+  participant NativeProtocol
+  participant StatementImpl
+
+alt 创建连接
+ClientImpl ->> DriverManager:  getConnection()
+DriverManager ->> DriverManager: 加载MySQL的Driver
+DriverManager ->> Driver: connect()
+Driver ->> Connection: <init>()
+Connection ->> NativeSession: connect()
+NativeSession ->> NativeProtocol: connect()
+end
+
+alt 执行查询
+ClientImpl ->> Connection:  createStatement()
+Connection ->> StatementImpl: <init>()
+Connection -->> ClientImpl:  Statement
+
+ClientImpl ->> StatementImpl:  execute()
+StatementImpl ->> NativeSession: execSQL()获取结果
+end
+
+alt 查询结果
+ClientImpl ->> StatementImpl: getResultSet()
+StatementImpl -->> ClientImpl: ResultSet
+end</pre>
+
+<h3 id="构建ConnectionUrl"><a href="#构建ConnectionUrl" class="headerlink" title="构建ConnectionUrl"></a>构建ConnectionUrl</h3><p>数据库Url和连接参数 的容器<br>根据schema来区分ConnectionUrl的类型<code>ConnectionUrl.Type</code>, Type中定义了创建不同ConnectionUrl的类名和参数。</p>
+<h3 id="构建Connection"><a href="#构建Connection" class="headerlink" title="构建Connection"></a>构建Connection</h3><p>Connection代表与特定数据库的会话。在 Connection 的上下文中，执行 SQL 语句并返回结果。</p>
+<p>没有Connection持有一个NativeSession</p>
+<p>创建新的socket链接 -&gt; 与服务端握手 -&gt; 构建与服务端的通信协议 -&gt; 通过MySQL协议与服务端连接</p>
+<h3 id="NativeSession"><a href="#NativeSession" class="headerlink" title="NativeSession"></a>NativeSession</h3><p>与SocketServer的会话</p>
+<h3 id="NativeSocketConnection"><a href="#NativeSocketConnection" class="headerlink" title="NativeSocketConnection"></a>NativeSocketConnection</h3><p>持有与服务端链接的InputStream和OutputStream</p>
+<h3 id="SocketFactory"><a href="#SocketFactory" class="headerlink" title="SocketFactory"></a>SocketFactory</h3><p>允许在驱动程序中创建可插入套接字的接口</p>
+<p>创建Socket链接</p>
+<h3 id="com-mysql-cj-protocol-Protocol"><a href="#com-mysql-cj-protocol-Protocol" class="headerlink" title="com.mysql.cj.protocol.Protocol"></a>com.mysql.cj.protocol.Protocol</h3><p>协议提供与 MySQL 服务器通信的设施</p>
+<p>充斥着好多pocket相关的类</p>
+<h2 id="DNS更新后新ip未生效问题"><a href="#DNS更新后新ip未生效问题" class="headerlink" title="DNS更新后新ip未生效问题"></a>DNS更新后新ip未生效问题</h2><p>在<code>StandardSocketFactory.connect</code>方法中通过域名获取ip地址。</p>
+<p><code>https://github.com/mysql/mysql-connector-j/blob/805f872a57875f311cb82487efcfb070411a3fa0/src/main/core-impl/java/com/mysql/cj/protocol/StandardSocketFactory.java#L130</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InetAddress</span>[] <span class="variable">possibleAddresses</span> <span class="operator">=</span> InetAddress.getAllByName(<span class="built_in">this</span>.host);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// look-up or remove from cache  </span></span><br><span class="line">Addresses addrs;  </span><br><span class="line"><span class="keyword">if</span> (useCache) &#123;  </span><br><span class="line">    addrs = cache.get(host);  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">    addrs = cache.remove(host);  </span><br><span class="line">    <span class="keyword">if</span> (addrs != <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="keyword">if</span> (addrs <span class="keyword">instanceof</span> CachedAddresses) &#123;  </span><br><span class="line">            <span class="comment">// try removing from expirySet too if CachedAddresses  </span></span><br><span class="line">            expirySet.remove(addrs);  </span><br><span class="line">        &#125;  </span><br><span class="line">        addrs = <span class="literal">null</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> (addrs == <span class="literal">null</span>) &#123;  </span><br><span class="line">    <span class="comment">// create a NameServiceAddresses instance which will look up  </span></span><br><span class="line">    <span class="comment">// the name service and install it within cache...    Addresses oldAddrs = cache.putIfAbsent(  </span></span><br><span class="line">        host,  </span><br><span class="line">        addrs = <span class="keyword">new</span> <span class="title class_">NameServiceAddresses</span>(host, reqAddr)  </span><br><span class="line">    );  </span><br><span class="line">    <span class="keyword">if</span> (oldAddrs != <span class="literal">null</span>) &#123; <span class="comment">// lost putIfAbsent race  </span></span><br><span class="line">        addrs = oldAddrs;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// ask Addresses to get an array of InetAddress(es) and clone it  </span></span><br><span class="line"><span class="keyword">return</span> addrs.get().clone();</span><br></pre></td></tr></table></figure>
+
+<p>#InetAddress 带了缓存</p>
+<blockquote>
+<p>在Java中，<code>InetAddress</code> 类用于处理IP地址，其内部实现了DNS缓存机制以提高域名解析的效率。通过设置JVM参数或者系统属性，可以调整<code>InetAddress</code>的DNS缓存行为。</p>
+</blockquote>
+<h3 id="1-JVM参数设置"><a href="#1-JVM参数设置" class="headerlink" title="1. JVM参数设置"></a>1. JVM参数设置</h3><p>可以通过在启动Java应用程序时传递JVM参数来设置DNS缓存的行为。以下是常用的JVM参数：</p>
+<ul>
+<li><code>java -Dnetworkaddress.cache.ttl=10 -jar test.jar</code>：这个参数设置了DNS缓存的时间为10秒。默认情况下，如果不解设，缓存时间为30秒。</li>
+<li><code>java -Dnetworkaddress.cache.ttl=0 -jar test.jar</code>：设置为0意味着不缓存解析成功的结果，每次解析都会访问DNS服务器。</li>
+<li><code>java -Dnetworkaddress.cache.ttl=-1 -jar test.jar</code>：设置为-1表示永久缓存解析成功的结果，直到应用程序重启。</li>
+</ul>
+<h3 id="2-系统属性设置"><a href="#2-系统属性设置" class="headerlink" title="2. 系统属性设置"></a>2. 系统属性设置</h3><p>除了JVM参数，还可以通过设置系统属性来调整DNS缓存策略：</p>
+<ul>
+<li><code>Security.setProperty(&quot;networkaddress.cache.ttl&quot;, &quot;-1&quot;)</code>：通过编程方式设置DNS缓存时间为永久。</li>
+</ul>
+<h3 id="3-源码级别的设置"><a href="#3-源码级别的设置" class="headerlink" title="3. 源码级别的设置"></a>3. 源码级别的设置</h3><p>在Java代码中，可以通过修改<code>InetAddressCachePolicy</code>类的行为来控制DNS缓存策略。例如，可以通过修改<code>cachePolicy</code>静态变量的值来控制缓存时间。</p>
+<h3 id="4-安全管理器（SecurityManager）的影响"><a href="#4-安全管理器（SecurityManager）的影响" class="headerlink" title="4. 安全管理器（SecurityManager）的影响"></a>4. 安全管理器（SecurityManager）的影响</h3><p>当设置了安全管理器（<code>SecurityManager</code>）时，对于DNS缓存时间的默认行为会有所改变：</p>
+<ul>
+<li>如果设置了<code>SecurityManager</code>，默认的<code>CachePolicy</code>为<code>FOREVER</code>，即永久缓存DNS的结果，直到进程终止。</li>
+<li>如果没有设置<code>SecurityManager</code>，可以通过修改<code>java.security</code>文件中的相关属性来控制DNS缓存行为。</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>永久缓存DNS结果（<code>FOREVER</code>）可能会导致应用程序无法响应DNS变化，因此在生产环境中应谨慎使用。</li>
+<li>缓存策略的设置应该根据应用程序的实际需求和网络环境来决定，以确保既高效又安全。</li>
+<li>在设置DNS缓存策略时，还应考虑无效DNS缓存时间的设置，即当DNS解析失败时的缓存时间，默认情况下这个时间为10秒。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>创建对象，大量使用反射的原因?<br>灵活</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

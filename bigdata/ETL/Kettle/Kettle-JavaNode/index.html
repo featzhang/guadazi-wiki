@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Kettle中Java节点生成 一、问题背景 现有的Transformer无法满足需求，需要购买第三方插件、开发插件、自定义Java类等办法，自定义Java类，因其代价小且门槛较低而成为最为常用的定制方法。 二、原理剖析 Kettle转换的核心对象&#x2F;脚本类别，属于典型的需要编程基础才能掌控的Transformer类型。而Java代码Transformer，适用于熟悉Java语言的开发人员">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kettle中的Java节点与代码生成">
+<meta property="og:url" content="http://yoursite.com/bigdata/ETL/Kettle/Kettle-JavaNode/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="Kettle中Java节点生成 一、问题背景 现有的Transformer无法满足需求，需要购买第三方插件、开发插件、自定义Java类等办法，自定义Java类，因其代价小且门槛较低而成为最为常用的定制方法。 二、原理剖析 Kettle转换的核心对象&#x2F;脚本类别，属于典型的需要编程基础才能掌控的Transformer类型。而Java代码Transformer，适用于熟悉Java语言的开发人员">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/ETL/Kettle/kettle_demo.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/ETL/Kettle/bf545e9e617f44cfb6076be97db14c33.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/ETL/Kettle/0c02af73c63443a5bb3b644be86f16bc.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/ETL/Kettle/e127ebb6b4f543ba9bb7e41323752827.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/ETL/Kettle/00f6d1eeaf2e4143b460b9213bde16b7.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/ETL/Kettle/66f7355876924583aaf097725a4d7b97.png">
+<meta property="article:published_time" content="2019-06-06T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.045Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Distributed">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="mapReducer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/ETL/Kettle/kettle_demo.jpg">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/ETL/Kettle/Kettle-JavaNode/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Kettle中的Java节点与代码生成 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/ETL/Kettle/Kettle-JavaNode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kettle中的Java节点与代码生成
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Kettle中Java节点生成"><a href="#Kettle中Java节点生成" class="headerlink" title="Kettle中Java节点生成"></a>Kettle中Java节点生成</h1><p><img src="/images/bigdata/ETL/Kettle/kettle_demo.jpg" alt="Pentaho – Kettle | TechBI - Business Intelligence"></p>
+<p>一、问题背景</p>
+<p>现有的Transformer无法满足需求，需要购买第三方插件、开发插件、自定义Java类等办法，自定义Java类，因其代价小且门槛较低而成为最为常用的定制方法。</p>
+<p>二、原理剖析</p>
+<p>Kettle转换的核心对象&#x2F;脚本类别，属于典型的需要编程基础才能掌控的Transformer类型。而Java代码Transformer，适用于熟悉Java语言的开发人员，用好这个Transformer，需要对类、接口、多线程等语言相关知识有所掌握，并且需要对Kettle的基础框架有所理解。</p>
+<p>Kettle转换的执行，有以下三个核心的生命周期节点：</p>
+<p>1、初始化</p>
+<p>Kettle转换在执行前，会有一个各Transformer的初始化动作，为Transformer执行前的准备工作创造机会。为提高初始化的性能，Kettle为每个Transformer启用一个初始化线程，从而并行完成所有Transformer的初始化。初始化的主要内容就是调用一次Transformer的以下方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">init</span><span class="params">( StepMetaInterface meta, StepDataInterfacedata)</span></span><br></pre></td></tr></table></figure>
+
+<p>此方法包含两个参数。其中，meta为元数据，data为数据。如果返回true，那么代表初始化成功，否则代表初始化失败。任何一个Transformer初始化失败，都会导致整个转换停止执行（在停止前，会调用每一个转换的资源释放方法dispose）。</p>
+<p>2、执行</p>
+<p>执行阶段是每一个Transformer实现特定价值的时候。为提高效率，Kettle为每一个Transformer单独启动一个工作线程来执行任务。Java程序员都了解，线程的核心代码是覆盖run方法。为简化起见，我将不重要的代码删除，得到工作线程run方法核心代码：</p>
+<p><img src="/images/bigdata/ETL/Kettle/bf545e9e617f44cfb6076be97db14c33.png" alt="img"></p>
+<p>可以看出，线程一直在执行Transformer的processRow方法，直到出现以下情况之一：</p>
+<p>· processRow方法返回false</p>
+<p>· isStopped方法返回true</p>
+<p>· processRow方法执行过程中出现异常，</p>
+<p>其中，第一种情况代表工作已经正常完成；第二种情况，代表Transformer被强制停止；第三种情况，代表执行过程中出现错误，Kettle将调用stopAll方法，从而导致整个转换的所有工作线程停止执行。</p>
+<p>执行方法的声明如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">processRow</span><span class="params">( StepMetaInterface meta,StepDataInterfacedata )</span> <span class="keyword">throws</span> KettleException;</span><br></pre></td></tr></table></figure>
+
+<p>每一个Transformer，都会在processRow方法中各显神通。一般的过程是，从输入行集中拿出一行，进行特定处理，然后将新的行放入输出行集中。从输入行集中取数据可以调用getRow方法。如果getRow方法返回值不为null，则Transformer应将该行数据进行处理，并调用putRow方法将处理结果存入输出行集，然后返回true，以继续为下一行输入数据处理提供机会。如果getRow方法返回null，代表输入行集已经处理完毕，这时可以调用setOutputDone，标识本Transformer执行完毕，并返回false，以结束本工作线程的执行。</p>
+<p>3、资源释放</p>
+<p>从上述工作线程的核心代码可以看出，不管工作线程是正常执行完毕还是异常执行完毕，最终会调用dispose方法。该方法声明如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void dispose( StepMetaInterface meta, StepDataInterfacedata);</span><br></pre></td></tr></table></figure>
+
+<p>Transformer应该在需要时覆盖此方法，并释放相关资源。</p>
+<p>了解上述原理后，撰写Java类Transformer中的代码时将胸有成竹。综上所述，一般情况下重写processRow方法即可满足需求，如果用到了一些重量级的资源，最好在init方法中初始化，并在dispose方法中释放。</p>
+<p>由于Kettle使用Janino框架为自定义Java转换Transformer类动态定义了类名，并指定父类为TransformClassBase，所以在撰写代码时，只需要提供类的内容即可，无需class声明。</p>
+<p>既然自动建立了父类，那么父类的成员、方法都可以在代码中重用。父类常用的成员包括以下三个实例：</p>
+<p>parent：代表容器对象</p>
+<p>meta：代表容器元数据对象</p>
+<p>data：代表容器数据对象</p>
+<p>常用的方法包括：</p>
+<p>getRow：从输入行集中取一行数据</p>
+<p>putRow：存银行数据到输出行集</p>
+<p>stopAll：停止所有工作线程</p>
+<p>setOutputDone：标记本Transformer工作完成</p>
+<p>logBasic：输出基本日志</p>
+<p>logError：输出错误日志</p>
+<p>getInputRowMeta：得到输入行的元数据</p>
+<p>createOutputRow：创建一个输出行数据</p>
+<p>其实，常用的方法（如下图1所示），基本上都在Transformer属性对话框左侧Code Snippits中。一般情况下，可以双击其中的Main节点，从processRow方法的重写开始，需要其他代码时，在左侧找到对应代码块，双击即可加入。</p>
+<p><img src="/images/bigdata/ETL/Kettle/0c02af73c63443a5bb3b644be86f16bc.png" alt="img"></p>
+<p>三、案例分享</p>
+<p>本文使用一个Kettle集成JMS的案例来进行实战演练。假设需要两个转换：一个转换名为Send，实现从文本文件输入流读取数据，并发送到ActiveMQ的队列；另外一个转换名为Receive，实现从队列读取数据，并发送到文本文件输出流。两个转换截图如下：</p>
+<p><img src="/images/bigdata/ETL/Kettle/e127ebb6b4f543ba9bb7e41323752827.png" alt="img"></p>
+<p>由于两个转换中用到的文本文件输入、输出都非常简单，这里只做简单描述。Send转换中，S01读取本地文本文件，包含两个String类型的字段ID、MENU_NAME。Receive转换中，S02输出文件到转换所在目录，仅包含一个名为MENU_NAME的String类型字段。</p>
+<p>下文着重描述两个Java代码Transformer。第一个Transformer是Send转换中的S02，其主要代码注释如下：</p>
+<p><img src="/images/bigdata/ETL/Kettle/00f6d1eeaf2e4143b460b9213bde16b7.png" alt="img"></p>
+<p>第二个Transformer是Receive转换中的S01Transformer。主要代码注释如下：</p>
+<p><img src="/images/bigdata/ETL/Kettle/66f7355876924583aaf097725a4d7b97.png" alt="img"></p>
+<p>注意，由于本文使用了ActiveMQ作为JMS服务器，所以为保证实例能够正常运行，需要自行下载服务器安装程序，并将对应jar文件拷贝到Kettle的lib目录下（本例使用activemq-all-5.8.0.jar）。代码中，需要的import指令如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util. * ;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Connection;</span><br><span class="line"><span class="keyword">import</span> javax.jms.ConnectionFactory;</span><br><span class="line"><span class="keyword">import</span> javax.jms.DeliveryMode;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Destination;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MapMessage;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MessageProducer;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Session;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnection;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>四、总结</p>
+<p>本文在具备程序员背景知识的数据工程师在运用Kettle进行定制开发时，可以参考。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+              <a href="/tags/Distributed/" rel="tag"># Distributed</a>
+              <a href="/tags/mapReducer/" rel="tag"># mapReducer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/lambda_VS_kappa/" rel="prev" title="Kappa架构原文《质疑Lambda架构》解读">
+      <i class="fa fa-chevron-left"></i> Kappa架构原文《质疑Lambda架构》解读
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/actions/%E5%AE%9E%E6%97%B6%E5%8F%8D%E6%AC%BA%E8%AF%88/" rel="next" title="玖富实时反欺诈">
+      玖富实时反欺诈 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kettle%E4%B8%ADJava%E8%8A%82%E7%82%B9%E7%94%9F%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">Kettle中Java节点生成</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

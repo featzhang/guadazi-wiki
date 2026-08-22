@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="hudi-indexing-mechanisms  Apache #Hudi 使用索引来定位更删操作所在的文件组。对于Copy-On-Write表，索引能加快更删的操作，因为避免了通过连接整个数据集来决定哪些文件需要重写。对于Merge-On-Read表，这个设计，对于任意给定的基文件，能限定要与其合并的记录数量。具体地，一个给定的基文件只需要和其所包含的记录的更新合并。相比之下，没有索引的设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hudi索引机制">
+<meta property="og:url" content="http://yoursite.com/bigdata/hudi/hudi-indexing-mechanisms/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="hudi-indexing-mechanisms  Apache #Hudi 使用索引来定位更删操作所在的文件组。对于Copy-On-Write表，索引能加快更删的操作，因为避免了通过连接整个数据集来决定哪些文件需要重写。对于Merge-On-Read表，这个设计，对于任意给定的基文件，能限定要与其合并的记录数量。具体地，一个给定的基文件只需要和其所包含的记录的更新合并。相比之下，没有索引的设计">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/23976735473472.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/20924729712712.gif">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/18906205607384.gif">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/hudi/15865545924363.gif">
+<meta property="article:published_time" content="2021-04-20T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.497Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="HFile">
+<meta property="article:tag" content="Hudi">
+<meta property="article:tag" content="Index">
+<meta property="article:tag" content="MOR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/hudi/23976735473472.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/hudi/hudi-indexing-mechanisms/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Hudi索引机制 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/hudi/hudi-indexing-mechanisms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hudi索引机制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-20 12:00:00" itemprop="dateCreated datePublished" datetime="2021-04-20T12:00:00+00:00">2021-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>hudi-indexing-mechanisms</p>
+</blockquote>
+<p>Apache #Hudi 使用索引来定位更删操作所在的文件组。对于Copy-On-Write表，索引能加快更删的操作，因为避免了通过连接整个数据集来决定哪些文件需要重写。对于Merge-On-Read表，这个设计，对于任意给定的基文件，能限定要与其合并的记录数量。具体地，一个给定的基文件只需要和其所包含的记录的更新合并。相比之下，没有索引的设计（比如<a href="https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions">Apache Hive ACID</a>），可能会导致需要把所有基文件与所有更删操作合并。</p>
+<p>从高角度看，索引把一个记录的键加一个可选的分区路径映射到存储上的文件组ID（更多细节参考<a href="https://hudi.apache.org/docs/concepts.html">这里</a>）。在写入过程中，我们查找这个映射然后把更删操作导向基文件附带的日志文件（MOR表），或者导向最新的需要被合并的基文件（COW表）。索引也使得Hudi可以根据记录键来规定一些唯一性的限制。</p>
+<p><img src="/images/bigdata/hudi/23976735473472.png" alt="在这里插入图片描述"></p>
+<p>记录更新（黄色块）和基文件（白色块）合并消耗的对比</p>
+<p>目前Hudi已经支持了几种不同的索引机制，并且在工具库中不断地完善和增加更多机制，在本文余下的篇幅中将根据我们的经验介绍几种不同作业场景下索引机制的选择。我们也会穿插一些对已有限制、即将开展的工作、以及优化和权衡方面的评论。</p>
+<h2 id="Hudi的索引类型"><a href="#Hudi的索引类型" class="headerlink" title="Hudi的索引类型"></a>Hudi的索引类型</h2><p>目前Hudi支持以下几种索引类型。</p>
+<ul>
+<li><code>布隆索引</code>（默认）：使用以记录的键生成的布隆过滤器，也可以用记录键对可能对应的文件进行剪枝操作。</li>
+<li><code>简单索引</code>：对更删的记录和存储上的表里提取的键进行轻量级的连接。</li>
+<li><code>HBase索引</code>：使用外部的Apache HBase表来管理索引映射。</li>
+</ul>
+<p>写入器可以通过<code>hoodie.index.type</code>来设置以上的类型。此外，自定义的索引实现可以通过<code>hoodie.index.class</code>来配置。对Apache Spark写入器需提供<code>SparkHoodieIndex</code>的子类。</p>
+<p>另一个需要了解的关键点是区分全局索引和非全局索引。<code>布隆索引</code>和<code>简单索引</code>都有一个全局选项，分别是<code>hoodie.index.type=GLOBAL_BLOOM</code>和<code>hoodie.index.type=GLOBAL_SIMPLE</code>。<code>HBase索引</code>本质上就是全局索引。</p>
+<ul>
+<li><strong>全局索引</strong>：全局索引在全表的所有分区范围下强制要求键的唯一性，也就是确保对给定的键有且只有一个对应的记录。全局索引提供了更强的保证，而更删的消耗随着表的大小增加而增加（O(表的大小)），但仍可能对小表适用。</li>
+<li><strong>非全局索引</strong>：这个默认的索引实现只在一个分区里强制要求了这样的限制。由此可见，非全局索引依靠写入器为同一个记录的更删提供一致的分区路径，但由此同时大幅提高了效率，因为索引查询复杂度成了O(更删的记录数量)且可以很好地应对写入量的扩展。</li>
+</ul>
+<p>由于数据可能有着不同的体量、速度和读取规律，不同索引会适用于不同的作业场景。接下来让我们分析几个不同的场景来讨论如何选择适合的Hudi索引。</p>
+<h2 id="作业场景：对事实表的延迟更新"><a href="#作业场景：对事实表的延迟更新" class="headerlink" title="作业场景：对事实表的延迟更新"></a>作业场景：对事实表的延迟更新</h2><p>许多公司会在NoSQL数据存储中存放大量的交易数据。例如共享出行的行程表、股票买卖记录的表、和电商的订单表。这些表通常一直在增长，且大部分的更新随机发生在较新的记录上，而对旧记录有着长尾分布型的更新。这通常是源于交易关闭或者数据更正的延迟性。换句话说，大部分更新会发生在最新的几个分区上而小部分会在旧的分区。</p>
+<p><img src="/images/bigdata/hudi/20924729712712.gif" alt="在这里插入图片描述"></p>
+<p>典型的事实表的更新样式。</p>
+<p>对于这样的作业模式，<code>布隆索引</code>就能表现地很好，因为查询索引可以靠设置得当的布隆过滤器来剪枝很多数据文件。另外，如果生成的键可以以某种顺序排列，参与比较的文件数会进一步通过范围剪枝而减少。Hudi用所有文件的键域来构造区间树，这样能来高效地依据输入的更删记录的键域来排除不匹配的文件。</p>
+<p>为了高效地把记录键和布隆过滤器进行比对，即尽量减少过滤器的读取和均衡执行器间的工作量，Hudi缓存了输入记录并使用了自定义分区器和统计规律来解决数据的偏斜。有时，如果布隆过滤器的伪正率过高，查询会增加数据的打乱操作。Hudi支持动态布隆过滤器（设置<code>hoodie.bloom.index.filter.type=DYNAMIC_V0</code>）。它可以根据文件里存放的记录数量来调整大小从而达到设定的伪正率。</p>
+<p>在不久的将来，我们计划引入一个更快的布隆索引机制。该机制会在Hudi内部的元数据表中跟踪记录布隆过滤器和取值范围从而进行快速的点查询。这可以避免因从基文件中读取布隆过滤器和取值范围而导致的查询的局限性。（总体设计请参考<a href="https://cwiki.apache.org/confluence/display/HUDI/RFC+-+15%3A+HUDI+File+Listing+and+Query+Planning+Improvements?src=contextnavpagetreemode">RFC-15</a>）</p>
+<h2 id="作业场景：对事件表的去重"><a href="#作业场景：对事件表的去重" class="headerlink" title="作业场景：对事件表的去重"></a>作业场景：对事件表的去重</h2><p>事件流无处不在。从Apache Kafka或其他类似的消息总线发出的事件数通常是事实表大小的10-100倍。事件通常把时间（到达时间、处理时间）作为首类处理对象，比如物联网的事件流、点击流数据、广告曝光数等等。由于这些大部分都是仅追加的数据，插入和更新只存在于最新的几个分区中。由于重复事件可能发生在整个数据管道的任一节点，在存放到数据湖前去重是一个常见的需求。</p>
+<p><img src="/images/bigdata/hudi/18906205607384.gif" alt="在这里插入图片描述"></p>
+<p>上图演示了事件表的更新分布情况。</p>
+<p>总的来说，低消耗去重一个非常挑战的工作。尽管甚至可以用一个键值存储来实现去重（即<code>HBase索引</code>），但索引存储的消耗会随着事件数增长而线性增长以至于变得不可行。事实上，有范围剪枝功能的<code>布隆索引</code>是最佳的解决方案。我们可以利用作为首类处理对象的时间来构造由事件时间戳和事件id（<code>event_ts+event_id</code>)组成的键，这样插入的记录就有了单调增长的键。这会在最新的几个分区里大幅提高剪枝文件的效益。</p>
+<h2 id="作业场景：对维度表的随机更删"><a href="#作业场景：对维度表的随机更删" class="headerlink" title="作业场景：对维度表的随机更删"></a>作业场景：对维度表的随机更删</h2><p>这种类型的表通常包含高纬度的数据和数据链接，比如用户资料、商家信息等。这些都是高保真度的表。它们的更新量通常很小但所接触的分区和数据文件会很多，范围涉及从旧到新的整个数据集。有时因为没有很好的分区条件，这些表也会不分区。</p>
+<p><img src="/images/bigdata/hudi/15865545924363.gif" alt="在这里插入图片描述"></p>
+<p>上图演示了维度表的更新分布情况。</p>
+<p>正如之前提到的，如果范围比较不能剪枝许多文件的话，那么<code>布隆索引</code>并不能带来很好的效益。在这样一个随机写入的作业场景下，更新操作通常会触及表里大多数文件从而导致布隆过滤器依据输入的更新对所有文件标明真正(true positive)。最终会导致，即使采用了范围比较，也还是检查了所有文件。使用<code>简单索引</code>对此场景更合适，因为它不采用提前的剪枝操作，而是直接和所有文件的所需字段连接。如果额外的运维成本可以接受的话，也可以采用<code>HBase索引</code>，其对这些表能提供更加优越的查询效率。</p>
+<p>当使用全局索引时，用户也可以考虑通过设置<code>hoodie.bloom.index.update.partition.path=true</code>或者<code>hoodie.simple.index.update.partition.path=true</code>（Global Bloom）<code>hoodie.hbase.index.update.partition.path=true</code>（HBase）或者<code>hoodie.hbase.index.update.partition.path=true</code> 或者来处理分区路径需要更新的情况；例如对于以所在城市分区的用户表，会有用户迁至另一座城市的情况。这些表也非常适合采用Merge-On-Read表型。</p>
+<p>将来我们计划在Hudi内实现记录层的索引机制，以此提高索引查询效率，同时也将省去维护额外系统（比如HBase）的开销。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>若没有索引功能，Hudi就不可能在<a href="https://eng.uber.com/apache-hudi-graduation/">超大扩展规模</a>上实现更删操作。希望这篇文章为目前的索引机制提供了足够的背景知识和对不同权衡取舍的解释。</p>
+<p>以下是一些颇具意义的相关工作：</p>
+<ul>
+<li>基于Apache Flink并建立在RocksDB状态存储上的索引机制将带来真正意义上的数据湖流式插入更新。</li>
+<li>全新的元数据索引将基于Hudi元数据全面翻新现有的布隆索引机制。</li>
+<li>记录层的索引实现，用另一个Hudi表作为二级索引。</li>
+</ul>
+<p>在接下来的开发中，项目组会对这个领域保持积极的投入。我们始终期待更多贡献者的加入以及推进路线图中的项目。如果有意参与，欢迎与我们的社区<a href="https://hudi.apache.org/community.html">联系</a>。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hudi/" rel="tag"># Hudi</a>
+              <a href="/tags/HFile/" rel="tag"># HFile</a>
+              <a href="/tags/Index/" rel="tag"># Index</a>
+              <a href="/tags/MOR/" rel="tag"># MOR</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SQL-Calcite/" rel="prev" title="Flink-SQL原理之Calcite">
+      <i class="fa fa-chevron-left"></i> Flink-SQL原理之Calcite
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-Table-BuildInFunctions/" rel="next" title="[原理]Flink-内置函数">
+      [原理]Flink-内置函数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hudi%E7%9A%84%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">Hudi的索引类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E5%9C%BA%E6%99%AF%EF%BC%9A%E5%AF%B9%E4%BA%8B%E5%AE%9E%E8%A1%A8%E7%9A%84%E5%BB%B6%E8%BF%9F%E6%9B%B4%E6%96%B0"><span class="nav-number">2.</span> <span class="nav-text">作业场景：对事实表的延迟更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E5%9C%BA%E6%99%AF%EF%BC%9A%E5%AF%B9%E4%BA%8B%E4%BB%B6%E8%A1%A8%E7%9A%84%E5%8E%BB%E9%87%8D"><span class="nav-number">3.</span> <span class="nav-text">作业场景：对事件表的去重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A%E5%9C%BA%E6%99%AF%EF%BC%9A%E5%AF%B9%E7%BB%B4%E5%BA%A6%E8%A1%A8%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%9B%B4%E5%88%A0"><span class="nav-number">4.</span> <span class="nav-text">作业场景：对维度表的随机更删</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

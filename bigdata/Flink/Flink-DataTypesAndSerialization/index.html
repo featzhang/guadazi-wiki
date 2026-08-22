@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Flink Data Types &amp; Serialization使用case class的坑123case class Event(id: Int) &#123;  val lb &#x3D; new ListBuffer[Int]&#125;  1213:00:43,342 INFO  org.apache.flink.api.java.typeutils.TypeExtractor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink:数据类型与序列化">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-DataTypesAndSerialization/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="Flink Data Types &amp; Serialization使用case class的坑123case class Event(id: Int) &#123;  val lb &#x3D; new ListBuffer[Int]&#125;  1213:00:43,342 INFO  org.apache.flink.api.java.typeutils.TypeExtractor">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/3236554239295.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/189658239295.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/3456940796818.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20220320004003.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20220320004029.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20220320004203.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20220320004259.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20220320004744.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20220320004820.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20220320004928.png">
+<meta property="article:published_time" content="2019-08-10T14:58:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.519Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/Flink/3236554239295.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-DataTypesAndSerialization/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Flink:数据类型与序列化 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-DataTypesAndSerialization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flink:数据类型与序列化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-10 14:58:00" itemprop="dateCreated datePublished" datetime="2019-08-10T14:58:00+00:00">2019-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Flink-Data-Types-Serialization"><a href="#Flink-Data-Types-Serialization" class="headerlink" title="Flink Data Types &amp; Serialization"></a>Flink Data Types &amp; Serialization</h1><h2 id="使用case-class的坑"><a href="#使用case-class的坑" class="headerlink" title="使用case class的坑"></a>使用case class的坑</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span>(<span class="params">id: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> lb = <span class="keyword">new</span> <span class="type">ListBuffer</span>[<span class="type">Int</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">13:00:43,342 INFO  org.apache.flink.api.java.typeutils.TypeExtractor             - class org.myorg.quickstart.Event does not contain a setter for field id</span><br><span class="line">13:00:43,343 INFO  org.apache.flink.api.java.typeutils.TypeExtractor             - Class class org.myorg.quickstart.Event cannot be used as a POJO type because not all fields are valid POJO fields, and must be processed as GenericType. Please read the Flink documentation on &quot;Data Types &amp; Serialization&quot; for details of the effect on performance.</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示信息：找不到setter，对于POJO类型必须所有的字段必须要有setter和getter</strong><br>命名是case class啊</p>
+<p>再看生产环境的例子： 折腾了一下午</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span>(<span class="params">uin: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 sPid: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 applyId: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 bankType: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 transactionId: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 amount: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 createTime: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 bizType: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 modifyTime: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">                 equ: <span class="type">ListBuffer</span>[<span class="type">Int</span>]</span></span></span><br><span class="line"><span class="params"><span class="class">                </span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">this</span></span>(uin: <span class="type">String</span>,</span><br><span class="line">           sPid: <span class="type">String</span>,</span><br><span class="line">           applyId: <span class="type">String</span>,</span><br><span class="line">           bankType: <span class="type">Long</span>,</span><br><span class="line">           transactionId: <span class="type">String</span>,</span><br><span class="line">           amount: <span class="type">Long</span>,</span><br><span class="line">           createTime: <span class="type">Long</span>,</span><br><span class="line">           bizType: <span class="type">Long</span>,</span><br><span class="line">           modifyTime: <span class="type">String</span>,</span><br><span class="line">           equ: <span class="type">List</span>[<span class="type">Int</span>]</span><br><span class="line">          ) = &#123;</span><br><span class="line">    <span class="keyword">this</span>(uin, sPid, applyId, bankType, transactionId, amount, createTime, bizType, modifyTime)</span><br><span class="line">    <span class="keyword">if</span> (equ != <span class="literal">null</span>) &#123;</span><br><span class="line">      equities.appendAll(equ)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> _active = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">val</span> equities: <span class="type">ListBuffer</span>[<span class="type">Int</span>] = <span class="keyword">new</span> <span class="type">ListBuffer</span>[<span class="type">Int</span>]</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">addEquity</span></span>(id: <span class="type">Int</span>): <span class="type">Event</span> = &#123;</span><br><span class="line">    equities.append(id)</span><br><span class="line">    <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">equityString</span></span>(separator: <span class="type">String</span>): <span class="type">String</span> = &#123;</span><br><span class="line">    equities.mkString(separator)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setActive</span></span>(): <span class="type">Event</span> = &#123;</span><br><span class="line">    _active = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setActive</span></span>(active: <span class="type">String</span>): <span class="type">Event</span> = &#123;</span><br><span class="line">    _active = <span class="string">&quot;1&quot;</span>.equals(active)</span><br><span class="line">    <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isActive</span></span>() = &#123;</span><br><span class="line">    _active</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用的是flink 1.6版本的，case class识别出来了，但是equities没有传递到下一个算子中，始终没有值</p>
+<p>老老实实的修改成普通类</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Event</span>(<span class="params">_uin: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">            _sPid: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">            _applyId: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">            _bankType: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">            _transactionId: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">            _amount: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">            _createTime: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">            _bizType: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="class">            _modifyTime: <span class="type">String</span></span></span></span><br><span class="line"><span class="params"><span class="class">           </span>) <span class="keyword">extends</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> equities: <span class="type">ListBuffer</span>[<span class="type">Int</span>] = <span class="keyword">new</span> <span class="type">ListBuffer</span>[<span class="type">Int</span>]</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> uin: <span class="type">String</span> = _uin</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> sPid: <span class="type">String</span> = _sPid</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> applyId: <span class="type">String</span> = _applyId</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> bankType: <span class="type">Long</span> = _bankType</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> transactionId: <span class="type">String</span> = _transactionId</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> amount: <span class="type">Long</span> = _amount</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> createTime: <span class="type">Long</span> = _createTime</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> bizType: <span class="type">Long</span> = _bizType</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> modifyTime: <span class="type">String</span> = _modifyTime</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> _active = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">this</span></span>(uin: <span class="type">String</span>,</span><br><span class="line">           sPid: <span class="type">String</span>,</span><br><span class="line">           applyId: <span class="type">String</span>,</span><br><span class="line">           bankType: <span class="type">Long</span>,</span><br><span class="line">           transactionId: <span class="type">String</span>,</span><br><span class="line">           amount: <span class="type">Long</span>,</span><br><span class="line">           createTime: <span class="type">Long</span>,</span><br><span class="line">           bizType: <span class="type">Long</span>,</span><br><span class="line">           modifyTime: <span class="type">String</span>,</span><br><span class="line">           equ: <span class="type">List</span>[<span class="type">Int</span>]</span><br><span class="line">          ) = &#123;</span><br><span class="line">    <span class="keyword">this</span>(uin, sPid, applyId, bankType, transactionId, amount, createTime, bizType, modifyTime)</span><br><span class="line">    <span class="keyword">if</span> (equ != <span class="literal">null</span>) &#123;</span><br><span class="line">      equities.appendAll(equ)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getUin</span></span>: <span class="type">String</span> = uin</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setUin</span></span>(<span class="type">Uin</span>: <span class="type">String</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.uin = <span class="type">Uin</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getSPid</span></span>: <span class="type">String</span> = sPid</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setSPid</span></span>(<span class="type">SPid</span>: <span class="type">String</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.sPid = <span class="type">SPid</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getApplyId</span></span>: <span class="type">String</span> = applyId</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setApplyId</span></span>(<span class="type">ApplyId</span>: <span class="type">String</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.applyId = <span class="type">ApplyId</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getBankType</span></span>: <span class="type">Long</span> = bankType</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setBankType</span></span>(<span class="type">BankType</span>: <span class="type">Long</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.bankType = <span class="type">BankType</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getTransactionId</span></span>: <span class="type">String</span> = transactionId</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setTransactionId</span></span>(<span class="type">TransactionId</span>: <span class="type">String</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.transactionId = <span class="type">TransactionId</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getAmount</span></span>: <span class="type">Long</span> = amount</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setAmount</span></span>(<span class="type">Amount</span>: <span class="type">Long</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.amount = <span class="type">Amount</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getCreateTime</span></span>: <span class="type">Long</span> = createTime</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setCreateTime</span></span>(<span class="type">CreateTime</span>: <span class="type">Long</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.createTime = <span class="type">CreateTime</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getBizType</span></span>: <span class="type">Long</span> = bizType</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setBizType</span></span>(<span class="type">BizType</span>: <span class="type">Long</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.bizType = <span class="type">BizType</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getModifyTime</span></span>: <span class="type">String</span> = modifyTime</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setModifyTime</span></span>(<span class="type">ModifyTime</span>: <span class="type">String</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.modifyTime = <span class="type">ModifyTime</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">addEquity</span></span>(id: <span class="type">Int</span>): <span class="type">Event</span> = &#123;</span><br><span class="line">    equities.append(id)</span><br><span class="line">    <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">equityString</span></span>(separator: <span class="type">String</span>): <span class="type">String</span> = &#123;</span><br><span class="line">    equities.mkString(separator)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setActive</span></span>(): <span class="type">Event</span> = &#123;</span><br><span class="line">    _active = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setActive</span></span>(active: <span class="type">String</span>): <span class="type">Event</span> = &#123;</span><br><span class="line">    _active = <span class="string">&quot;1&quot;</span>.equals(active)</span><br><span class="line">    <span class="keyword">this</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isActive</span></span>() = &#123;</span><br><span class="line">    _active</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">rights</span></span>(split: <span class="type">String</span>) = &#123;</span><br><span class="line">    <span class="type">RightEvent</span>(<span class="keyword">this</span>, equities.mkString(split))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getEquities</span> </span>= equities</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">setEquities</span></span>(equities: <span class="type">ListBuffer</span>[<span class="type">Int</span>]) = &#123;</span><br><span class="line">    <span class="keyword">this</span>.equities = equities</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以了</p>
+<p>初步估计，序列化除了问题</p>
+<p>flink 类型和序列化机制<br>flink 支持的数据类型</p>
+<p>Java Tuples 跟 Scala Case 类<br>Java POJOs<br>基础类型(Primitive Types : int&#x2F;long&#x2F;string&#x2F;char&#x2F;short&#x2F;boolean 等)<br>普通的类(非POJO)<br>Values<br>Hadoop Writable<br>特殊类型(Scala : Either, Option, Try; Java : List, Map)<br>flink 支持的序列化</p>
+<p>Tuple<br>Row<br>Pojo<br>Avro<br>Protobuf (via Kryo)<br>Thrift (via Kryo)<br>Kryo</p>
+<p><img src="/images/bigdata/Flink/3236554239295.png"><br>flink 序列化性能<br>flink serialization performance results</p>
+<p>可以看到 flink 内置的 Tuple 跟 Row 性能最好, POJO 次之,<br>一般 Tuple 跟 POJO使用的频率最高, 但是只有POJO 跟 Avro 支持 Schema 升级<br>POJO 一不小心就可能回退到 Kryo<br>POJO 第一个要求是符合 Java Bean 规范, 但是目前(1.12.2) 还不支持特殊的类型(List, Map等)<br>为了避免 POJO序列化回退, 开发过程中可以开启</p>
+<p>env.getConfig().disableGenericTypes();<br>当POJO 中包含List&#x2F;Map 处理方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Pojo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; names</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">ExecutionConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExecutionConfig</span>();</span><br><span class="line">    config.disableGenericTypes();</span><br><span class="line"></span><br><span class="line">    <span class="type">TypeInformation</span>&lt;Pojo1&gt; <span class="variable">information</span> <span class="operator">=</span> Types.POJO(Pojo1.class);</span><br><span class="line"><span class="comment">//    TypeInformation&lt;Pojo1&gt; information = TypeInformation.of(Pojo1.class);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//Generic types have been disabled in the ExecutionConfig and type java.util.List is treated as a generic type.</span></span><br><span class="line">    <span class="type">TypeSerializer</span>&lt;Pojo1&gt; <span class="variable">serializer</span> <span class="operator">=</span> information.createSerializer(config);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为POJO包含了不支持的List该序列化, names 字段序列化会回退到 Kryo序列化</p>
+<p>解决方案</p>
+<p>1: 把 List 换成 Array</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Pojo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> id;</span><br><span class="line"><span class="comment">//    public List&lt;String&gt; names;</span></span><br><span class="line">    <span class="keyword">public</span> String[] names;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">ExecutionConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExecutionConfig</span>();</span><br><span class="line">    config.disableGenericTypes();</span><br><span class="line"></span><br><span class="line">    <span class="type">TypeInformation</span>&lt;Pojo1&gt; <span class="variable">information</span> <span class="operator">=</span> Types.POJO(Pojo1.class);</span><br><span class="line"></span><br><span class="line">    <span class="type">TypeSerializer</span>&lt;Pojo1&gt; <span class="variable">serializer</span> <span class="operator">=</span> information.createSerializer(config);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>2: 指定 POJO 字段 TypeInformation</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">ExecutionConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExecutionConfig</span>();</span><br><span class="line">    config.disableGenericTypes();</span><br><span class="line"></span><br><span class="line">    <span class="type">Map</span>&lt;String, TypeInformation&lt;?&gt;&gt; <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;id&quot;</span>, Types.INT);</span><br><span class="line">    map.put(<span class="string">&quot;names&quot;</span>, Types.LIST(Types.STRING));</span><br><span class="line">    <span class="type">TypeInformation</span>&lt;Pojo1&gt; <span class="variable">information</span> <span class="operator">=</span> Types.POJO(Pojo1.class, map);</span><br><span class="line"></span><br><span class="line">    <span class="type">TypeSerializer</span>&lt;Pojo1&gt; <span class="variable">serializer</span> <span class="operator">=</span> information.createSerializer(config);</span><br><span class="line">  &#125;</span><br><span class="line">```  </span><br><span class="line"><span class="number">3</span>: 自定义 TypeInfoFactory</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">  <span class="meta">@TypeInfo(MyPojo1Factory.class)</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Pojo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; names;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">MyPojo1Factory</span> <span class="keyword">extends</span> <span class="title class_">TypeInfoFactory</span>&lt;Pojo1&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">TypeInformation</span>&lt;Pojo1&gt; <span class="title function_">createTypeInfo</span><span class="params">(Type t, Map&lt;String, TypeInformation&lt;?&gt;&gt; genericParameters)</span> &#123;</span><br><span class="line">      <span class="type">Map</span>&lt;String, TypeInformation&lt;?&gt;&gt; <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">      map.put(<span class="string">&quot;id&quot;</span>, Types.INT);</span><br><span class="line">      map.put(<span class="string">&quot;names&quot;</span>, Types.LIST(Types.STRING));</span><br><span class="line">      <span class="type">TypeInformation</span>&lt;Pojo1&gt; <span class="variable">information</span> <span class="operator">=</span> Types.POJO(Pojo1.class, map);</span><br><span class="line">      <span class="keyword">return</span> information;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">ExecutionConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExecutionConfig</span>();</span><br><span class="line">    config.disableGenericTypes();</span><br><span class="line"></span><br><span class="line">    <span class="type">TypeInformation</span>&lt;Pojo1&gt; <span class="variable">information</span> <span class="operator">=</span> Types.POJO(Pojo1.class);</span><br><span class="line"><span class="comment">//    TypeInformation&lt;Pojo1&gt; information = TypeInformation.of(Pojo1.class);</span></span><br><span class="line">    <span class="type">TypeSerializer</span>&lt;Pojo1&gt; <span class="variable">serializer</span> <span class="operator">=</span> information.createSerializer(config);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>引用<br><a href="https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/types_serialization.html">https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/types_serialization.html</a><br><a href="https://flink.apache.org/news/2020/04/15/flink-serialization-tuning-vol-1.html">https://flink.apache.org/news/2020/04/15/flink-serialization-tuning-vol-1.html</a></p>
+<p>Flink的序列化<br>Flink实现了自己的序列化框架，并结合自身的内存模型，实现了对象的密集存储也高效操作。</p>
+<p>Flink序列化框架</p>
+<p><img src="/images/bigdata/Flink/189658239295.png"></p>
+<p>可以看出这种序列化方式存储密度是相当紧凑的。其中 int 占4字节，double 占8字节，POJO多个一个字节的header，PojoSerializer只负责将header序列化进去，并委托每个字段对应的serializer对字段进行序列化。<br>memory pool 内存池 memorySegment的数据结构，由两部分组成，一部分是存储key+pointer（完整二进制数据的指针以及定长的序列化后的key），第二部分是对象的二进制数据<br>如下图：</p>
+<p><img src="/images/bigdata/Flink/3456940796818.png"></p>
+<p>使用内存池管理内存和使用二进制存储数据的的好处：<br>避免oom，所有的运行时数据结构和算法只能通过内存池申请内存，保证了其使用的内存大小是固定的，不会因为运行时数据结构和算法而发生OOM。在内存吃紧的情况下，算法（sort&#x2F;join等）会高效地将一大批内存块写到磁盘，之后再读回来。因此，OutOfMemoryErrors可以有效地被避免。<br>节省内存空间，Java 对象在存储上有很多额外的消耗，使用二进制可以避免。<br>高效的二进制操作 <code>&amp;</code> 缓存友好的计算，第一，交换定长块（key+pointer）更高效，不用交换真实的数据也不用移动其他key和pointer。第二，这样做是缓存友好的，因为key都是连续存储在内存中的，可以大大减少 cache miss（cpu读取L1,L2,L3高速缓存速度高于读取主内存速度几个数量级，使用key+pointer极大提高缓存L1,L2,L3命中率）<br>注意：Flink 中，排序会先用 key 比大小，这样就可以直接用二进制的key比较而不需要反序列化出整个对象。因为key是定长的，如果key相同（或者没有提供二进制key），那就必须将真实的二进制数据反序列化出来，然后再做比较。之后，只需要交换key+pointer就可以达到排序的效果，真实的数据不用移动。</p>
+<h3 id="Flink-SQL为什么与DataStream使用不同的类型系统"><a href="#Flink-SQL为什么与DataStream使用不同的类型系统" class="headerlink" title="Flink SQL为什么与DataStream使用不同的类型系统?"></a>Flink SQL为什么与DataStream使用不同的类型系统?</h3><p>1）该类型系统与SQL的兼容性不好。<br>2）无法控制Decimal类型的精度。<br>3）无法区分char和varchar类型。<br>4）物理类型和逻辑类型紧耦合。<br>5）物理类型是类型描述，而不是类型的序列化&#x2F;反序列化器。</p>
+<p>Flink SQL引入了新的LogicalTypes类型系统<br>TypeInformation类型系统是为DataStream&#x2F;DataSet API设计的</p>
+<p>DataType有两个职责：<br>1）声明逻辑类型LogicalType。<br>2）运行时逻辑转换类，允许为空。</p>
+<p><img src="/images/bigdata/Flink/20220320004003.png"></p>
+<p><img src="/images/bigdata/Flink/20220320004029.png"></p>
+<p><strong>类型推断：</strong></p>
+<p>Java的Flink应用使用反射机制获取Function的输入和输出类型。Scala使用Scala Macro类提取类型。</p>
+<p><strong>类型提取:</strong></p>
+<p><img src="/images/bigdata/Flink/20220320004203.png"></p>
+<p><strong>泛型的类型推断：</strong></p>
+<p>Java的泛型机制是在编译级别实现的。编译器生成的字节码在运行期间并不包含泛型的类型信息<br>使用TypeHint的匿名类来获取泛型的类型信息</p>
+<p><img src="/images/bigdata/Flink/20220320004259.png"></p>
+<p><strong>Lambda函数的类型提取</strong></p>
+<p>Eclipse的JDT编译器会把Lambda函数的泛型签名等信息写入编译后的字节码中，而对于javac等常见的其他编译器，则不会这样做，因而Flink就无法获取具体类型信息了</p>
+<p><strong>（1）Java类型擦除的原因</strong></p>
+<p>1）避免JVM的重构。如果JVM将泛型类型延续到运行期，那么到运行期时JVM就需要进行大量的重构工作，提高了运行期的效率。<br>2）版本兼容。在编译期擦除可以更好地支持原生类型（Raw Type）。</p>
+<p><strong>（2）Java泛型类型擦除规则</strong><br>1）如果是继承基类而来的泛型，就用getGenericSuperclass（）, 转型为ParameterizedType来获得实际类型。<br>2）如果是实现接口而来的泛型，就用getGenericInterfaces（）, 针对其中的元素转型为ParameterizedType来获得实际类型。<br>3）Java泛型在字节码中会被擦除，并不总是擦除为Object类型，而是擦除到上限类型。</p>
+<p><strong>显示类型:</strong></p>
+<p>Flink提供了等价的Types类<br>（<code>org.apache.flink.api.common.typeinfo.Types</code>），Types作为类型声明的统一入口，基本涵盖了常用类型。</p>
+<p><strong>类型擦除带来的问题</strong></p>
+<ol>
+<li>Lambda函数的类型提取因为类型擦除导致Lambda函数的类型提取并不能总是有效的，有时候需要手动指定类型。</li>
+<li>Kryo的JavaSerializer在Flink下存在Bug，可能导致ClassNotFound异常推荐使用<code>org.apache.flink.api.java.typeutils.runtime.kryo.JavaSerializer</code>,而非<code>com.esot-ericsoftware.kryo.serializers.JavaSerializer</code>，以防止与Flink不兼容</li>
+</ol>
+<h3 id="SQL类型系统"><a href="#SQL类型系统" class="headerlink" title="SQL类型系统"></a>SQL类型系统</h3><p>Flink SQL中则使用DataType中的LogicalType类型系统来描述类型信息<br>LogicalType类型系统与SQL标准基本保持一致，同时增加了一些额外的信息，如是否可以为null等，目的是提高scala expression（标量表达式）的处理效率。</p>
+<p>Flink SQL执行时，最终转换为了FlinkDataStream&#x2F;DataSet应用，此时就需要TypeInfomation类型信息来实现序列化&#x2F;反序列化，所以SQL逻辑类型LogicalType需要转换为TypeInfomation</p>
+<p><img src="/images/bigdata/Flink/20220320004744.png"></p>
+<p>1）org.apache.flink.types.Row：在Flink Planner中使用，是1.9版本之前FlinkSQL使用的Row结构，在SQL相关的算子、UDF函数、代码生成中都是使用该套Row结构。<br>2）org.apache.flink.table.dataformat.BaseRow及其子类：是在Blink Runtime和Blink Planner中使用的新的Row类型数据结构，在Blink算子、UDF函数和代码生成中使用此结构。</p>
+<p>Blink Row总览</p>
+<p><img src="/images/bigdata/Flink/20220320004820.png"></p>
+<p><strong>ColumnarRow</strong></p>
+<p>ColumnarRow是一种内存列式存储结构，每一列的抽象结构为ColumnVector。在当前的实现中，只支持堆上ColumnVector，堆外的ColumnVector尚不被支持。堆上ColumnVector本质上是使用Java原始类型数据保存一列的数据。Orc类型的列式存储使用了ColumnarRow。对于查询类的请求，使用列式存储能够提高CPU缓存命中率。CPU的数据预读取策略总是尝试将相邻的数据预读取到缓存中，因为列式存储形式中一列数据总是紧邻的，与行式数据相比，访问同一个字段的时候，CPU缓存命中率更高，因此CPU就无须浪费宝贵的事件周期去等待数据从内存加载，从而提高计算效率，如图5-8所示。</p>
+<h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p><img src="/images/bigdata/Flink/20220320004928.png"></p>
+<p>MapFunction使用了匿名内部类的方式实现，默认内部类会持有一个外部对象的引用this$0，如果外部对象不实现序列化接口，内部类的序列化会失败，所在Flink中使用ASM操作字节码将匿名内部类中的this$0设置为null。在FlinkDataStreamp的map、filter、keyBy等接口中都使用了ClosureCleaner#clean方法来设置this$0。</p>
+<p>如果开发者在编写Flink应用过程中使用了自定义类型，并且又没有提供类型的注册和序列化&#x2F;反序列化方法，Flink就无法对该类型进行该自定义序列化&#x2F;反序列化。此时为了Flink的正常运行，对于这一类的数据类型，无法识别的类型就会交给Kryo进行序列化。Kryo可以对任意类型的Java对象进行序列化，是一种Java中的通用序列化方式，缺点是序列化&#x2F;反序列化效率相对较低。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-Connector-HBase/" rel="prev" title="Flink:HBaseConnectors">
+      <i class="fa fa-chevron-left"></i> Flink:HBaseConnectors
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/database/sql-case-ref/" rel="next" title="大数据SQL">
+      大数据SQL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flink-Data-Types-Serialization"><span class="nav-number">1.</span> <span class="nav-text">Flink Data Types &amp; Serialization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8case-class%E7%9A%84%E5%9D%91"><span class="nav-number">1.1.</span> <span class="nav-text">使用case class的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Flink-SQL%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8EDataStream%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">Flink SQL为什么与DataStream使用不同的类型系统?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">SQL类型系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">1.1.3.</span> <span class="nav-text">序列化</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

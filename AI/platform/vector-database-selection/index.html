@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="向量数据库选型与应用一句话定位：向量数据库的选型核心是在召回率、延迟、内存成本三者之间做权衡，索引结构决定了这个权衡的基本形态，自建 vs 托管则是运维成本与灵活性的权衡。 1. 索引结构：HNSW vs IVF-PQ HNSW（Hierarchical Navigable Small World，图索引）：构建多层近邻图，查询时从顶层稀疏图逐层下探到底层稠密图，延迟低、召回率高，但需要把完整向量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="向量数据库选型与应用">
+<meta property="og:url" content="http://yoursite.com/AI/platform/vector-database-selection/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="向量数据库选型与应用一句话定位：向量数据库的选型核心是在召回率、延迟、内存成本三者之间做权衡，索引结构决定了这个权衡的基本形态，自建 vs 托管则是运维成本与灵活性的权衡。 1. 索引结构：HNSW vs IVF-PQ HNSW（Hierarchical Navigable Small World，图索引）：构建多层近邻图，查询时从顶层稀疏图逐层下探到底层稠密图，延迟低、召回率高，但需要把完整向量">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T16:30:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.710Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="AI平台">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="向量数据库">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/AI/platform/vector-database-selection/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>向量数据库选型与应用 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/vector-database-selection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          向量数据库选型与应用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 16:30:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T16:30:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="向量数据库选型与应用"><a href="#向量数据库选型与应用" class="headerlink" title="向量数据库选型与应用"></a>向量数据库选型与应用</h1><p>一句话定位：向量数据库的选型核心是在<strong>召回率、延迟、内存成本</strong>三者之间做权衡，索引结构决定了这个权衡的基本形态，自建 vs 托管则是运维成本与灵活性的权衡。</p>
+<h2 id="1-索引结构：HNSW-vs-IVF-PQ"><a href="#1-索引结构：HNSW-vs-IVF-PQ" class="headerlink" title="1. 索引结构：HNSW vs IVF-PQ"></a>1. 索引结构：HNSW vs IVF-PQ</h2><ul>
+<li><strong>HNSW（Hierarchical Navigable Small World，图索引）</strong>：构建多层近邻图，查询时从顶层稀疏图逐层下探到底层稠密图，<strong>延迟低、召回率高</strong>，但需要把完整向量和图结构都放在内存里，<strong>内存占用大</strong>。</li>
+<li><strong>IVF-PQ（倒排文件 + 乘积量化）</strong>：先用聚类把向量分桶（倒排），查询只在候选桶内搜索；用乘积量化压缩向量存储（有损压缩），<strong>省内存</strong>，但召回率和精度略有损失，适合超大规模、内存敏感的场景。</li>
+<li>选型判断：数据量在千万级以内且对延迟&#x2F;召回率要求高 → HNSW；数据量上亿、内存成本敏感、能接受召回率略降 → IVF-PQ。</li>
+</ul>
+<h2 id="2-召回率-vs-延迟的调参"><a href="#2-召回率-vs-延迟的调参" class="headerlink" title="2. 召回率 vs 延迟的调参"></a>2. 召回率 vs 延迟的调参</h2><ul>
+<li>HNSW 的 <code>ef_search</code>（搜索时探索的候选数）越大，召回率越高但延迟越高；IVF 的 <code>nprobe</code>（搜索的桶数）同理。</li>
+<li>实践中要先定业务可接受的延迟上限，再反向调参数找到该延迟预算下的最高召回率，而不是先追求”召回率最高”再看延迟能不能接受。</li>
+</ul>
+<h2 id="3-过滤条件与向量检索结合"><a href="#3-过滤条件与向量检索结合" class="headerlink" title="3. 过滤条件与向量检索结合"></a>3. 过滤条件与向量检索结合</h2><ul>
+<li>实际业务常需要”向量相似 + 满足某些结构化过滤条件”（如”语义相似 + 时间在近 7 天 + 用户属于某分组”），即混合查询。</li>
+<li>实现方式一是先过滤再向量搜索（过滤后候选集小则快，候选集仍大则退化成暴力搜索）；二是把过滤条件也编码进索引结构（如带 payload 过滤的图索引），各产品支持程度不同，选型时要专门核实。</li>
+</ul>
+<h2 id="4-写入与索引重建成本"><a href="#4-写入与索引重建成本" class="headerlink" title="4. 写入与索引重建成本"></a>4. 写入与索引重建成本</h2><ul>
+<li>HNSW 类图索引的增量写入和删除相对复杂（删除通常是软删除标记，需要定期重建索引清理），这是运维时容易被低估的成本点。</li>
+</ul>
+<h2 id="5-自建（Milvus）vs-托管（Pinecone）"><a href="#5-自建（Milvus）vs-托管（Pinecone）" class="headerlink" title="5. 自建（Milvus）vs 托管（Pinecone）"></a>5. 自建（Milvus）vs 托管（Pinecone）</h2><ul>
+<li><strong>自建</strong>：可控性强、成本可能更低（大规模下），但需要自己承担运维、扩缩容、高可用的工程投入。</li>
+<li><strong>托管</strong>：开箱即用、免运维，但成本随规模线性增长且数据出境&#x2F;合规需额外考虑（尤其是国内业务场景）。</li>
+</ul>
+<h2 id="6-面试落点"><a href="#6-面试落点" class="headerlink" title="6. 面试落点"></a>6. 面试落点</h2><ul>
+<li>能讲清楚 HNSW&#x2F;IVF-PQ 的核心 Tradeoff（延迟&#x2F;召回率 vs 内存），并给出具体场景的选型建议，而不是只说”用 Milvus”。</li>
+<li>可迁移话术：这套”索引结构决定查询性能形态”的思路和大数据里”选 B+树索引还是 LSM 索引”的权衡是同一类工程决策模式。</li>
+</ul>
+<blockquote>
+<p>参考：Milvus 官方文档；Pinecone《Vector database fundamentals》</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI%E5%B9%B3%E5%8F%B0/" rel="tag"># AI平台</a>
+              <a href="/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 向量数据库</a>
+              <a href="/tags/RAG/" rel="tag"># RAG</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/AI/platform/model-hosting-service-design/" rel="prev" title="模型托管服务设计要点">
+      <i class="fa fa-chevron-left"></i> 模型托管服务设计要点
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/AI/platform/rag-retrieval-pipeline/" rel="next" title="RAG 检索增强链路">
+      RAG 检索增强链路 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%89%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">向量数据库选型与应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84%EF%BC%9AHNSW-vs-IVF-PQ"><span class="nav-number">1.1.</span> <span class="nav-text">1. 索引结构：HNSW vs IVF-PQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%AC%E5%9B%9E%E7%8E%87-vs-%E5%BB%B6%E8%BF%9F%E7%9A%84%E8%B0%83%E5%8F%82"><span class="nav-number">1.2.</span> <span class="nav-text">2. 召回率 vs 延迟的调参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%BF%87%E6%BB%A4%E6%9D%A1%E4%BB%B6%E4%B8%8E%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%BB%93%E5%90%88"><span class="nav-number">1.3.</span> <span class="nav-text">3. 过滤条件与向量检索结合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%86%99%E5%85%A5%E4%B8%8E%E7%B4%A2%E5%BC%95%E9%87%8D%E5%BB%BA%E6%88%90%E6%9C%AC"><span class="nav-number">1.4.</span> <span class="nav-text">4. 写入与索引重建成本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%87%AA%E5%BB%BA%EF%BC%88Milvus%EF%BC%89vs-%E6%89%98%E7%AE%A1%EF%BC%88Pinecone%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">5. 自建（Milvus）vs 托管（Pinecone）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E9%9D%A2%E8%AF%95%E8%90%BD%E7%82%B9"><span class="nav-number">1.6.</span> <span class="nav-text">6. 面试落点</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

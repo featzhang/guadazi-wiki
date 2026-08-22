@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 概述1.1 Flink的优势Apache Flink优势(Apache Flink Advantages)    优势 详情    统一框架(Unified framework) - 用户API统一(Unified User API)- 执行引擎统一(Unified Runtime Engine)   方便集成(Easy integration) - 丰富的Connectors（e.g. fi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink-outline">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="1 概述1.1 Flink的优势Apache Flink优势(Apache Flink Advantages)    优势 详情    统一框架(Unified framework) - 用户API统一(Unified User API)- 执行引擎统一(Unified Runtime Engine)   方便集成(Easy integration) - 丰富的Connectors（e.g. fi">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/bigdata/Flink/attachments/19ed4f5514a6170a4aab9ea38adfa673_MD5.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/202204302245852.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/wecom-temp-78dc7df03a5a086c378c88b03a772656.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/flink-dynamic-table.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20220517134802.png">
+<meta property="article:published_time" content="2021-10-15T19:47:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.740Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="FlinkSQL">
+<meta property="article:tag" content="FlinkStreaming">
+<meta property="article:tag" content="Outline">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/bigdata/Flink/attachments/19ed4f5514a6170a4aab9ea38adfa673_MD5.jpg">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Flink-outline | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flink-outline
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-10-15T19:47:00+00:00">2021-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><h2 id="1-1-Flink的优势"><a href="#1-1-Flink的优势" class="headerlink" title="1.1 Flink的优势"></a>1.1 Flink的优势</h2><p><strong>Apache Flink优势(Apache Flink Advantages)</strong></p>
+<table>
+<thead>
+<tr>
+<th>优势</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>统一框架(Unified framework)</td>
+<td>- 用户API统一(Unified User API)<br>- 执行引擎统一(Unified Runtime Engine)</td>
+</tr>
+<tr>
+<td>方便集成(Easy integration)</td>
+<td>- 丰富的Connectors（e.g. file, mq, db） （Various connectors）<br>- 方便对接现有 Catalog （Easy to use existing catalog）</td>
+</tr>
+<tr>
+<td>多层次API （Layered APIs）</td>
+<td>- SQL<br>- Java&#x2F;Python Table API<br>- DataStream API</td>
+</tr>
+<tr>
+<td>灵活的 Failover 策略 （Flexible failover strategy）</td>
+<td>- 支持快速 failover （Fast failover on Pipeline mode）<br>- 支持 Shuffle 数据落盘 （Spill to disk for shuffling data）</td>
+</tr>
+<tr>
+<td>高性能 （Excellent performance）</td>
+<td>- 内存计算 （In-Memory computing）<br>- 代价模型优化器（Cost-based Optimizer）<br>- 代码动态生成 （Code-gen）</td>
+</tr>
+<tr>
+<td>易部署维护 （Easy deployment &amp; maintenance）</td>
+<td>- 灵活的部署方案（Flexible deployment）<br>- 支持高可用（High-availability）</td>
+</tr>
+</tbody></table>
+<h2 id="1-2-Flink-OLAP的优势"><a href="#1-2-Flink-OLAP的优势" class="headerlink" title="1.2 Flink OLAP的优势"></a>1.2 Flink OLAP的优势</h2><p>Flink做OLAP的优势</p>
+<p><strong>Apache Flink做OLAP引擎优势(The advantages of Apache Flink as an OLAP engine)</strong></p>
+<p><strong>统一引擎(Unified Framework)</strong></p>
+<ul>
+<li>降低学习成本(Easy to learn)</li>
+<li>提高开发效率(Improve development efficiency)</li>
+<li>提高维护效率(Improve maintenance effciency)</li>
+</ul>
+<p><strong>既有优势(Existing strengths)</strong></p>
+<ul>
+<li>内存计算(In-Memory computing)</li>
+<li>Pipeline</li>
+<li>代码动态生产(Code-gen)</li>
+<li>…</li>
+</ul>
+<p><strong>相互增强(Mutual reinforcement)</strong></p>
+<ul>
+<li>无统计信息的优化(Optimization without statistic)</li>
+<li>更高效的算子(More efficient operators)</li>
+<li>更通用的框架(More general framework)</li>
+</ul>
+<h2 id="1-3-Flink-vs-Spark"><a href="#1-3-Flink-vs-Spark" class="headerlink" title="1.3 Flink vs Spark"></a>1.3 Flink vs Spark</h2><h2 id="1-4-spark-accumulate"><a href="#1-4-spark-accumulate" class="headerlink" title="1.4 spark accumulate"></a>1.4 spark accumulate</h2><p>用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1：创建累加器</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">IntCounter</span> <span class="variable">numLines</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IntCounter</span>();</span><br><span class="line"><span class="comment">// 2：注册累加器</span></span><br><span class="line">getRuntimeContext().addAccumulator(<span class="string">&quot;num-lines&quot;</span>, <span class="built_in">this</span>.numLines);</span><br><span class="line"><span class="comment">// 3：使用累加器</span></span><br><span class="line"><span class="built_in">this</span>.numLines.add(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 4：获取累加器的结果</span></span><br><span class="line">myJobExecutionResult.getAccumulatorResult(<span class="string">&quot;num-lines&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-环境构建"><a href="#2-环境构建" class="headerlink" title="2 环境构建"></a>2 环境构建</h1><p><a href="Flink-local-build">TDFlink 本地调试</a></p>
+<h1 id="3-Runtime"><a href="#3-Runtime" class="headerlink" title="3 Runtime"></a>3 Runtime</h1><h2 id="3-1-push-pull-模型"><a href="#3-1-push-pull-模型" class="headerlink" title="3.1 push pull 模型?"></a>3.1 push pull 模型?</h2><p>barrier 对齐</p>
+<h2 id="3-2-watermark"><a href="#3-2-watermark" class="headerlink" title="3.2 watermark"></a>3.2 watermark</h2><p><a href="Flink-watermark">watermark</a></p>
+<p>kafka 的每个分区 event-time 到来的时间不一致</p>
+<p>using Flink’s Kafka-partition-aware watermark generation. watermarks are generated inside the Kafka consumer, per Kafka partition, and the per-partition watermarks are merged in the same way as watermarks are merged on stream shuffles.</p>
+<p>watermark 在每个 kafka 分区的 kafka 消费者中产生，每个分区的 watermark 合并起来，如在 stream shuffle 中合并 watermark 一样</p>
+<h2 id="3-3-时间语义-EventTime-ProcessTime-IngestionTime"><a href="#3-3-时间语义-EventTime-ProcessTime-IngestionTime" class="headerlink" title="3.3 时间语义:EventTime &amp; ProcessTime &amp; IngestionTime"></a>3.3 时间语义:EventTime &amp; ProcessTime &amp; IngestionTime</h2><p>Event time programs must specify how to generate <em>Event Time Watermarks</em>, which is the mechanism that signals progress in event time</p>
+<p>Internally, <em>ingestion time</em> is treated much like <em>event time</em>, but with automatic timestamp assignment and automatic watermark generation.</p>
+<h2 id="3-4-算子之间数据传递，是如何序列化的"><a href="#3-4-算子之间数据传递，是如何序列化的" class="headerlink" title="3.4 算子之间数据传递，是如何序列化的"></a>3.4 算子之间数据传递，是如何序列化的</h2><p>avro 与 kryo 序列化的区别, 及使用场景</p>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-checkpoint-savepoint-2pc">2PC</a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-distributed-snapshot">分布式快照</a></p>
+</li>
+</ul>
+<h2 id="3-5-对象重用Object-Reuse"><a href="#3-5-对象重用Object-Reuse" class="headerlink" title="3.5 对象重用Object-Reuse"></a>3.5 对象重用Object-Reuse</h2><p>#Flink优化 #对象重用 :  <a href="https://www.jianshu.com/p/f0eaaf2eaacc">https://www.jianshu.com/p/f0eaaf2eaacc</a></p>
+<blockquote>
+<p>对象重用： chain起来的算子，无需进行对象的序列化和反序列化，节省计算资源。<br>然而，存在对象可变的问题，需要避免。</p>
+<p>Flink SQL是较适合的场景，对象不可变，SQL的类型都是复杂类型，重用会节省更多。</p>
+</blockquote>
+<h2 id="3-6-类型系统"><a href="#3-6-类型系统" class="headerlink" title="3.6 类型系统"></a>3.6 类型系统</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+<a href="DataTypesAndSerialization">类型系统</a></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="Flink-runtime">runtime</a></p>
+<ul>
+<li><p>task chain</p>
+</li>
+<li><p>sharing slot group</p>
+</li>
+<li><p>task slot</p>
+<ul>
+<li><p>CoLocationGroup</p>
+</li>
+<li><p>SlotSharingGroup</p>
+</li>
+<li><p><a href="Flink-job-submit">Flink job submit</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-7-部署模式"><a href="#3-7-部署模式" class="headerlink" title="3.7 部署模式"></a>3.7 部署模式</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-runtime-deployment-mode">Deployment mode</a></p>
+<ul>
+<li><a href="Flink-on-yarn">Flink on yarn</a></li>
+<li>Flink on K8s</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-8-Submit"><a href="#3-8-Submit" class="headerlink" title="3.8 Submit"></a>3.8 Submit</h2><ul>
+<li><input disabled="" type="checkbox"> <a href="Flink-Clients">clients</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-job-submit">job submit</a></li>
+</ul>
+<h2 id="3-9-一致性语义-at-least-once-exactly-once"><a href="#3-9-一致性语义-at-least-once-exactly-once" class="headerlink" title="3.9 一致性语义: at least once &amp; exactly once"></a>3.9 一致性语义: at least once &amp; exactly once</h2><p>从容错和消息处理的语义上(at least once, exactly once)，Flink 引入了 state 和 checkpoint。</p>
+<h2 id="3-10-Failover"><a href="#3-10-Failover" class="headerlink" title="3.10 Failover"></a>3.10 Failover</h2><h3 id="3-10-1-Restart-Strategies-重启策略"><a href="#3-10-1-Restart-Strategies-重启策略" class="headerlink" title="3.10.1 Restart Strategies(重启策略)"></a>3.10.1 Restart Strategies(重启策略)</h3><p>默认重启策略通过 Flink-conf.yaml 指定</p>
+<p>常用的重启策略<br>固定间隔 (Fixed delay)<br>失败率 (Failure rate)<br>无重启 (No restart)<br>如果没有启用 checkpointing，则使用无重启 (no restart) 策略。<br>如果启用了 checkpointing，但没有配置重启策略，则使用固定间隔 (fixed-delay) 策略，其中 Integer.MAX_VALUE 参数是尝试重启次数<br>重启策略可以在 Flink-conf.yaml 中配置，表示全局的配置。也可以在应用代码中动态指定，会覆盖全局配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第一种：全局配置 Flink-conf.yaml</span><br><span class="line">restart-strategy: fixed-delay</span><br><span class="line">restart-strategy.fixed-delay.attempts: <span class="number">3</span></span><br><span class="line">restart-strategy.fixed-delay.delay: <span class="number">10</span> s</span><br><span class="line">第二种：应用代码设置</span><br><span class="line">env.setRestartStrategy(RestartStrategies.fixedDelayRestart(</span><br><span class="line">  <span class="number">3</span>, <span class="comment">// 尝试重启的次数</span></span><br><span class="line">  Time.of(<span class="number">10</span>, TimeUnit.SECONDS) <span class="comment">// 间隔</span></span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-11-Accumulators-Counters"><a href="#3-11-Accumulators-Counters" class="headerlink" title="3.11 Accumulators &amp; Counters"></a>3.11 Accumulators &amp; Counters</h2><p>累加器与计数器</p>
+<h1 id="4-状态-Checkpoint-Savepoint"><a href="#4-状态-Checkpoint-Savepoint" class="headerlink" title="4 状态&#x2F;Checkpoint&#x2F;Savepoint"></a>4 状态&#x2F;Checkpoint&#x2F;Savepoint</h1><p>状态托管<br>operator state 算子状态<br>keyed state</p>
+<p>barrier</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-StateManagement">状态管理</a></li>
+<li><input checked="" disabled="" type="checkbox"> checkpoint api</li>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-State-TTL">TTL 实现原理</a></li>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-on-yarn">Flink-on-yarn</a> ✅ 2026-01-16</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-checkpoint-savepoint-2pc">checkpoint 与 savepoint</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-checkpoint%E8%AF%8A%E6%96%AD">checkpoint 诊断</a></li>
+<li><input disabled="" type="checkbox"> RocksDB 调优  <a href="https://cloud.tencent.com/developer/article/1592441">https://cloud.tencent.com/developer/article/1592441</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-stateManager-failover">状态与恢复</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-backpress">backpress 反压</a>、<a href="Flink-backpress-oppo">oppo 分享</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-time">time</a></li>
+<li><input disabled="" type="checkbox"> Flink 内存管理</li>
+<li><input disabled="" type="checkbox"> 分布式缓存</li>
+<li><input disabled="" type="checkbox"> Flink HA</li>
+</ul>
+<h2 id="4-1-状态"><a href="#4-1-状态" class="headerlink" title="4.1 状态"></a>4.1 状态</h2><p>默认保存在 java 堆中<br>checkpoint: 把 state 持久化存储，全局快照<br>blink 做的优化</p>
+<p>失败恢复机制</p>
+<p>状态分为原始状态和托管状态</p>
+<p>托管状态是由 Flink 框架管理的状态<br>而原始状态，由用户自行管理状态具体的数据结构，框架在做 checkpoint 的时候，使用 byte[]来读写状态内容，对其内部数据结构一无所知。<br>通常在 DataStream 上的状态推荐使用托管的状态，当实现一个用户自定义的 operator 时，会使用到原始状态。</p>
+<blockquote>
+<p>ReducingState 如何使用</p>
+</blockquote>
+<h2 id="4-2-Checkpoint"><a href="#4-2-Checkpoint" class="headerlink" title="4.2 Checkpoint"></a>4.2 Checkpoint</h2><p>Flink 的 checkpoint 机制可以与(stream 和 state)的持久化存储交互的前提：<br>持久化的 source，它需要支持在一定时间内重放事件。这种 sources 的典型例子是持久化的消息队列（比如 Apache Kafka，RabbitMQ 等）或文件系统（比如 HDFS，S3，GFS 等）<br>用于 state 的持久化存储，例如分布式文件系统（比如 HDFS，S3，GFS 等）</p>
+<p>Checkpoint 是 Flink 实现容错机制最核心的功能，它能够根据配置周期性地基于 Stream 中各个 Operator&#x2F;task 的状态来生成快照，从而将这些状态数据定期持久化存储下来，当 Flink 程序一旦意外崩溃时，重新运行程序时可以有选择地从这些快照进行恢复，从而修正因为故障带来的程序数据异常</p>
+<p>checkpoint 开启之后，默认的 checkPointMode 是 Exactly-once<br>checkpoint 的 checkPointMode 有两种，Exactly-once 和 At-least-once<br>Exactly-once 对于大多数应用来说是最合适的。At-least-once 可能用在某些延迟超低的应用程序（始终延迟为几毫秒）</p>
+<p>ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION:表示一旦 Flink 处理程序被 cancel 后，会保留 Checkpoint 数据，以便根据实际需要恢复到指定的 Checkpoint<br>ExternalizedCheckpointCleanup.DELETE_ON_CANCELLATION: 表示一旦 Flink 处理程序被 cancel 后，会删除 Checkpoint 数据，只有 job 执行失败的时候才会保存 checkpoint</p>
+<h2 id="4-3-State-backend"><a href="#4-3-State-backend" class="headerlink" title="4.3 State backend"></a>4.3 State backend</h2><p>默认情况下，state 会保存在 taskmanager 的内存中，checkpoint 会存储在 JobManager 的内存中。<br>state 的 store 和 checkpoint 的位置取决于 State Backend 的配置<br>env.setStateBackend(…)<br>一共有三种 State Backend<br>MemoryStateBackend<br>FsStateBackend<br>RocksDBStateBackend</p>
+<p>MemoryStateBackend<br>state 数据保存在 java 堆内存中，执行 checkpoint 的时候，会把 state 的快照数据保存到 jobmanager 的内存中<br>基于内存的 state backend 在生产环境下不建议使用<br>FsStateBackend<br>state 数据保存在 taskmanager 的内存中，执行 checkpoint 的时候，会把 state 的快照数据保存到配置的文件系统中<br>可以使用 hdfs 等分布式文件系统<br>RocksDBStateBackend<br>RocksDB 跟上面的都略有不同，它会在本地文件系统中维护状态，state 会直接写入本地 rocksdb 中。同时它需要配置一个远端的 filesystem uri（一般是 HDFS），在做 checkpoint 的时候，会把本地的数据直接复制到 filesystem 中。fail over 的时候从 filesystem 中恢复到本地<br>RocksDB 克服了 state 受内存限制的缺点，同时又能够持久化到远端文件系统中，比较适合在生产中使用</p>
+<p>修改 State Backend 的两种方式<br>第一种：单任务调整<br>修改当前任务代码<br>env.setStateBackend(new FsStateBackend(“hdfs:&#x2F;&#x2F;namenode:9000&#x2F;Flink&#x2F;checkpoints”));<br>或者 new MemoryStateBackend()<br>或者 new RocksDBStateBackend(filebackend, true);【需要添加第三方依赖】<br>第二种：全局调整<br>修改 Flink-conf.yaml<br>state.backend: filesystem<br>state.checkpoints.dir: hdfs:&#x2F;&#x2F;namenode:9000&#x2F;Flink&#x2F;checkpoints<br>注意：state.backend 的值可以是下面几种：jobmanager(MemoryStateBackend), filesystem(FsStateBackend), rocksdb(RocksDBStateBackend)</p>
+<h1 id="5-Stream-API"><a href="#5-Stream-API" class="headerlink" title="5 Stream API"></a>5 Stream API</h1><p><a href="Flink-timer">timer</a> 使用与原理</p>
+<h2 id="5-1-stateful-stream-processing"><a href="#5-1-stateful-stream-processing" class="headerlink" title="5.1 stateful stream processing"></a>5.1 stateful stream processing</h2><p>processFunction</p>
+<p>低阶 API<br>构建一些新的组件<br>比如 利用定时做一定情况下的匹配和缓存<br>灵活，开发比较复杂</p>
+<p>如: 凌晨更新 注册定时器</p>
+<h2 id="5-2-allGrouping-元素广播"><a href="#5-2-allGrouping-元素广播" class="headerlink" title="5.2 allGrouping 元素广播"></a>5.2 allGrouping 元素广播</h2><p>Flink broadcast how to use</p>
+<p>broadcast vaiable value can not be modified</p>
+<p>用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1：初始化数据</span><br><span class="line">DataSet&lt;Integer&gt; toBroadcast = env.fromElements(1, 2, 3)</span><br><span class="line">2：广播数据</span><br><span class="line">.withBroadcastSet(toBroadcast, &quot;broadcastSetName&quot;);</span><br><span class="line">3：获取数据</span><br><span class="line">Collection&lt;Integer&gt; broadcastSet = getRuntimeContext().getBroadcastVariable(&quot;broadcastSetName&quot;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>广播变量不能太大</li>
+<li>不能修改，保证数据一致性</li>
+</ul>
+<h2 id="5-3-Distributed-Cache"><a href="#5-3-Distributed-Cache" class="headerlink" title="5.3 Distributed Cache"></a>5.3 Distributed Cache</h2><blockquote>
+<p>Spark 分布式缓存如何使用</p>
+</blockquote>
+<p>Flink 提供了一个分布式缓存，类似于 hadoop，可以使用户在并行函数中很方便的读取本地文件<br>此缓存的工作机制如下：程序注册一个文件或者目录(本地或者远程文件系统，例如 hdfs 或者 s3)，通过 ExecutionEnvironment 注册缓存文件并为它起一个名称。当程序执行，Flink 自动将文件或者目录复制到所有 taskmanager 节点的本地文件系统，用户可以通过这个指定的名称查找文件或者目录，然后从 taskmanager 节点的本地文件系统访问它<br>用法<br>1：注册一个文件<br>env.registerCachedFile(“hdfs:&#x2F;&#x2F;&#x2F;path&#x2F;to&#x2F;your&#x2F;file”, “hdfsFile”)<br>2：访问数据<br>File myFile &#x3D; getRuntimeContext().getDistributedCache().getFile(“hdfsFile”);</p>
+<h2 id="5-4-Reduce-在流计算的应用"><a href="#5-4-Reduce-在流计算的应用" class="headerlink" title="5.4 Reduce 在流计算的应用"></a>5.4 Reduce 在流计算的应用</h2><p>org.apache.Flink.streaming.api.functions.timestamps.AscendingTimestampExtractor$LoggingHandler:140 -<br>Timestamp monotony violated: 1568772496000 &lt; 1568772500000</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-sink-mode">Flink 三种 Sink 模式: Append、Upsert 和 Retract</a></li>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-AsyncIO">Flink AsyncIO</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-obtain-plan">Flink plan本地编译获取plan</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-StreamAPI">Stream API</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-StreamingAPI">Flink Stream API</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-DataStream-join">Flink join: broadcast join、interval join、window join、cogroup</a></li>
+</ul>
+<h2 id="5-5-window"><a href="#5-5-window" class="headerlink" title="5.5 window"></a>5.5 window</h2><ul>
+<li><input disabled="" type="checkbox"> <a href="Flink-window">window api</a></li>
+<li><input disabled="" type="checkbox"> 自定义 trigger、evictor</li>
+<li><input disabled="" type="checkbox"> session-window</li>
+</ul>
+<h3 id="5-5-1-自定义-Window"><a href="#5-5-1-自定义-Window" class="headerlink" title="5.5.1 自定义 Window"></a>5.5.1 自定义 Window</h3><p>1、Window Assigner</p>
+<p>负责将元素分配到不同的 window。</p>
+<p>Window API 提供了自定义的 WindowAssigner 接口，我们可以实现 WindowAssigner 的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">Collection</span>&lt;W&gt; <span class="title function_">assignWindows</span><span class="params">(T element, <span class="type">long</span> timestamp)</span></span><br></pre></td></tr></table></figure>
+
+<p>方法。同时，对于基于 Count 的 window 而言，默认采用了 GlobalWindow 的 window assigner，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keyBy.window(GlobalWindows.create())</span><br></pre></td></tr></table></figure>
+
+<p>2、Trigger</p>
+<p>Trigger 即触发器，定义何时或什么情况下移除 window</p>
+<p>我们可以指定触发器来覆盖 WindowAssigner 提供的默认触发器。 请注意，指定的触发器不会添加其他触发条件，但会替换当前触发器。</p>
+<p>3、Evictor（可选）</p>
+<p>驱逐者，即保留上一 window 留下的某些元素</p>
+<p>4、通过 apply WindowFunction 来返回 DataStream 类型数据。</p>
+<p>利用 Flink 的内部窗口机制和 DataStream API 可以实现自定义的窗口逻辑，例如 session window。</p>
+<h1 id="6-Table-API"><a href="#6-Table-API" class="headerlink" title="6 Table API"></a>6 Table API</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-join">Flink join</a></li>
+</ul>
+<h2 id="6-1-over-window"><a href="#6-1-over-window" class="headerlink" title="6.1 over window"></a>6.1 over window</h2><ul>
+<li><input disabled="" type="checkbox"> Flink Table API office</li>
+<li><input disabled="" type="checkbox"> 自定义窗口</li>
+<li><input disabled="" type="checkbox"> cogroup、connect 与 join</li>
+<li><input disabled="" type="checkbox"> CDC</li>
+<li><input disabled="" type="checkbox"> Flink 流测试工具</li>
+<li><input disabled="" type="checkbox"> 今日活动总申购次数：并发度为 1，是否 windowAll 都会是并发度为 1，是否可以先 keyBy 再合并？</li>
+</ul>
+<h1 id="7-Flink-SQL"><a href="#7-Flink-SQL" class="headerlink" title="7 Flink SQL"></a>7 Flink SQL</h1><ul>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-syntactic-sugar">语法糖</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-active">实践</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-submit">submit</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-Catalog">Catalog</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-Join">Flink SQL join</a></li>
+<li><input disabled="" type="checkbox"> Flink interval join</li>
+<li><input disabled="" type="checkbox"> Flink temporal join</li>
+<li><input disabled="" type="checkbox"> Flink broadcast join</li>
+<li><input disabled="" type="checkbox"> Flink SQL join 的状态管理</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-Window">Flink window &amp; demo</a></li>
+<li><input disabled="" type="checkbox"> Flink SQL-window aggregate 与 group aggregate</li>
+<li><input disabled="" type="checkbox"> Flink over window 与 TopN</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-TableFactory">Flink SQL TableFactory</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-process">Flink SQL 原理之 SQL 执行流程</a></li>
+<li><input disabled="" type="checkbox"> <a href="bigdata/Flink/Flink-SQL-Function.md">UDF</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-Table-BuildInFunctions">build in function</a></li>
+</ul>
+<p>Flink SQL 原理:</p>
+<ul>
+<li><p>Flink SQL 执行原理系列</p>
+<ul>
+<li><input disabled="" type="checkbox"> <a href="01.current/knowledge/flink/Flink-SQL-Inside-sql-parser.md">Flink-SQL-解析执行主流程</a></li>
+</ul>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="Flink-SQL-Calcite">Calcite 原理</a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Flink SQL 原理与 blink 优化</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-SQL-codeGen">Flink SQL 代码生成</a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-SQL-inside">Flink SQL 执行原理</a></p>
+</li>
+</ul>
+<p>Blink:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Blink SQL</li>
+</ul>
+<h2 id="7-1-SQL运行"><a href="#7-1-SQL运行" class="headerlink" title="7.1 SQL运行"></a>7.1 SQL运行</h2><h3 id="7-1-1-SqlNode"><a href="#7-1-1-SqlNode" class="headerlink" title="7.1.1 SqlNode"></a>7.1.1 SqlNode</h3><h3 id="7-1-2-validate"><a href="#7-1-2-validate" class="headerlink" title="7.1.2 validate"></a>7.1.2 validate</h3><p>&#96;SqlNode validated &#x3D; flinkPlanner.validate(sqlNode);&#96;&#96;</p>
+<p>sqlNode.accept 访问者模式</p>
+<h3 id="7-1-3-Operation"><a href="#7-1-3-Operation" class="headerlink" title="7.1.3 Operation"></a>7.1.3 Operation</h3><p><code>org.apache.flink.table.operations.Operation</code></p>
+<p><code>org.apache.flink.table.planner.calcite.FlinkPlannerImpl#rel</code></p>
+<p><code>org.apache.calcite.sql2rel.SqlToRelConverter</code></p>
+<h3 id="7-1-4-Rel"><a href="#7-1-4-Rel" class="headerlink" title="7.1.4 Rel"></a>7.1.4 Rel</h3><p><code>org.apache.flink.table.planner.delegation.PlannerBase#translateToRel</code></p>
+<h3 id="7-1-5-optimize"><a href="#7-1-5-optimize" class="headerlink" title="7.1.5 optimize"></a>7.1.5 optimize</h3><h3 id="7-1-6-ExecNodeGraph"><a href="#7-1-6-ExecNodeGraph" class="headerlink" title="7.1.6 ExecNodeGraph"></a>7.1.6 ExecNodeGraph</h3><h3 id="7-1-7-Plan-Transformation"><a href="#7-1-7-Plan-Transformation" class="headerlink" title="7.1.7 Plan&#x2F;Transformation"></a>7.1.7 Plan&#x2F;Transformation</h3><p><code>org.apache.flink.table.delegation.Planner#translate</code></p>
+<h3 id="7-1-8-execute"><a href="#7-1-8-execute" class="headerlink" title="7.1.8 execute"></a>7.1.8 execute</h3><p><code>org.apache.flink.table.api.internal.TableEnvironmentImpl#executeInternal(org.apache.flink.table.operations.Operation)</code></p>
+<h1 id="8-Flink-metric-Reporter"><a href="#8-Flink-metric-Reporter" class="headerlink" title="8 Flink metric&#x2F;Reporter"></a>8 Flink metric&#x2F;Reporter</h1><ul>
+<li><input disabled="" type="checkbox"> (Flink 累加器和计数器:Accumulators &amp; Counters)(Flink-metrics)</li>
+</ul>
+<h1 id="9-Flink-CEP"><a href="#9-Flink-CEP" class="headerlink" title="9 Flink CEP"></a>9 Flink CEP</h1><ul>
+<li><input disabled="" type="checkbox"> <a href="Flink-cep-office">CEP</a></li>
+</ul>
+<h1 id="10-Flink-调度"><a href="#10-Flink-调度" class="headerlink" title="10 Flink 调度"></a>10 Flink 调度</h1><h2 id="10-1-Flink-on-Yarn"><a href="#10-1-Flink-on-Yarn" class="headerlink" title="10.1 Flink on Yarn"></a>10.1 Flink on Yarn</h2><p><img src="/bigdata/Flink/attachments/19ed4f5514a6170a4aab9ea38adfa673_MD5.jpg"></p>
+<p><a href="bigdata/Flink/Flink-on-k8s.md">Flink on K8s</a></p>
+<h1 id="11-Flink常见优化与优化参数"><a href="#11-Flink常见优化与优化参数" class="headerlink" title="11 Flink常见优化与优化参数"></a>11 Flink常见优化与优化参数</h1><h2 id="11-1-SQL-mini-batch"><a href="#11-1-SQL-mini-batch" class="headerlink" title="11.1 SQL mini-batch"></a>11.1 SQL mini-batch</h2><h2 id="11-2-object-reuse"><a href="#11-2-object-reuse" class="headerlink" title="11.2 object-reuse"></a>11.2 object-reuse</h2><h1 id="12-Flink-Connectors"><a href="#12-Flink-Connectors" class="headerlink" title="12 Flink Connectors"></a>12 Flink Connectors</h1><ul>
+<li><input disabled="" type="checkbox"> kudu connector</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-connectors">Connectors</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-connector-hippo">Hippo Connector</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-connector-KuduSink">Kudu Connector</a></li>
+<li><input disabled="" type="checkbox"> [Kafka Connector][Flink-connector-kafka]</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-Connector-HBase">HBase</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-datasourceReplay">数据源重放</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-sink-mode.md">Flink-sink-mode</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-AsyncApiScalaSink">async api scala sink</a></li>
+</ul>
+<h2 id="12-1-HadoopOutputFormat"><a href="#12-1-HadoopOutputFormat" class="headerlink" title="12.1 HadoopOutputFormat"></a>12.1 HadoopOutputFormat</h2><p>Flink hbase connector</p>
+<h1 id="13-Flink-运维"><a href="#13-Flink-运维" class="headerlink" title="13 Flink 运维"></a>13 Flink 运维</h1><ul>
+<li><input disabled="" type="checkbox"> [Flink UI][flink-ui]</li>
+<li><input disabled="" type="checkbox"> Yarn、JM、TM 配置与参数</li>
+<li><input disabled="" type="checkbox"> 常见异常与解决方案</li>
+</ul>
+<p>LatencyMarker</p>
+<p><a href="https://mp.weixin.qq.com/s/A6CIPsGf-aCWXkB7O-toVw">Flink全链路延迟的测量方式</a></p>
+<h1 id="14-Flink-最佳实践"><a href="#14-Flink-最佳实践" class="headerlink" title="14 Flink 最佳实践"></a>14 Flink 最佳实践</h1><ul>
+<li><input disabled="" type="checkbox"> interval join 实现 outjoin</li>
+<li><input disabled="" type="checkbox"> 双流 join，一条流延迟</li>
+<li><input disabled="" type="checkbox"> keyedState 扩容</li>
+<li><input disabled="" type="checkbox"> Flink-bloomfilter 近似去重</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-config-dynamic">Flink 状态动态更新</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-data-skew">Flink 数据倾斜</a></li>
+<li><input disabled="" type="checkbox"> 实时数据同步</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-config-dynamic">动态配置</a></li>
+<li><input disabled="" type="checkbox"> <a href="FrundDetectedSystem">欺诈检测</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-OutputTimely">定时输出</a></li>
+<li><input disabled="" type="checkbox"> <a href="./Flink-Practice-LatencyStatistics">延迟触发&#x2F;超时统计</a></li>
+</ul>
+<h2 id="14-1-亿级流量-秒级统计"><a href="#14-1-亿级流量-秒级统计" class="headerlink" title="14.1 亿级流量 秒级统计"></a>14.1 亿级流量 秒级统计</h2><p>AI、ML、DL、ANN、CNN 蛰伏数十年，就为这个大数据时代。</p>
+<p>AI 正以前所未有的速度改变世界，影响着我们生活的方方面面，AI 走进人们的生活将成为未来的新常态。 而大数据和计算能力像水和氧气一样支撑着 AI，我们的数据从手机端、服务器日志</p>
+<h2 id="14-2-实时维表"><a href="#14-2-实时维表" class="headerlink" title="14.2 实时维表"></a>14.2 实时维表</h2><h1 id="15-开源项目"><a href="#15-开源项目" class="headerlink" title="15 开源项目"></a>15 开源项目</h1><ul>
+<li><input disabled="" type="checkbox"> <a href="bigdata/Flink/dev_platform/Oceanus-API%E5%8F%8A%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96.md">Oceanus</a></li>
+</ul>
+<h1 id="16-源码解读"><a href="#16-源码解读" class="headerlink" title="16 源码解读"></a>16 源码解读</h1><p><img src="/images/bigdata/Flink/202204302245852.png"></p>
+<p>根据上面我们选择的核心模块，我们大概可以得知，整个Flink的核心实现包含了：</p>
+<ul>
+<li>Flink 基本组件和逻辑计划：介绍了 Flink 的基本组件、集群构建的过程、以及客户端逻辑计划的生成过程</li>
+<li>Flink 物理计划生成：介绍了 Flink JobManager 对逻辑计划的运行时抽象，运行时物理计划的生成和管理等</li>
+<li>Jobmanager 基本组件和TaskManager的基本组件</li>
+<li>Flink 算子的生命周期：介绍了 Flink 的算子从构建、生成、运行、及销毁的过程</li>
+<li>Flink 网络栈：介绍了 Flink 网络层的抽象，包括中间结果抽象、输入输出管理、BackPressure 技术、Netty 连接等</li>
+<li>Flink的水印和Checkpoint</li>
+<li>Flink-scheduler：介绍 Flink 的任务调度算法及负载均衡</li>
+<li>Flink对用户代码异常处理：介绍作业的代码异常后 Flink 的处理逻辑，从而更好的理解 Flink 是如何保证了 exactly-once 的计算语义</li>
+<li>Flink Table&#x2F;SQL 执行流程、Flink和Hive的集成等</li>
+</ul>
+<h1 id="17-参考文献"><a href="#17-参考文献" class="headerlink" title="17 参考文献"></a>17 参考文献</h1><ol>
+<li><a href="https://github.com/crestofwave1/oneFlink">Flink 官方文档翻译</a></li>
+<li><a href="https://www.jianshu.com/u/49e6a4e2bf69">LittleMagic - 简书</a></li>
+</ol>
+<p><img src="/images/bigdata/Flink/wecom-temp-78dc7df03a5a086c378c88b03a772656.png" alt="wecom-temp-78dc7df03a5a086c378c88b03a772656"></p>
+<p><img src="/images/bigdata/Flink/flink-dynamic-table.webp"></p>
+<p><img src="/images/bigdata/Flink/20220517134802.png"></p>
+<h1 id="18-社区"><a href="#18-社区" class="headerlink" title="18 社区"></a>18 社区</h1><h2 id="18-1-FLIP"><a href="#18-1-FLIP" class="headerlink" title="18.1 FLIP"></a>18.1 FLIP</h2><p><a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-280%3A+Introduce+EXPLAIN+PLAN_ADVICE+to+provide+SQL+advice">https://cwiki.apache.org/confluence/display/FLINK/FLIP-280%3A+Introduce+EXPLAIN+PLAN_ADVICE+to+provide+SQL+advice</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+              <a href="/tags/Spark/" rel="tag"># Spark</a>
+              <a href="/tags/SQL/" rel="tag"># SQL</a>
+              <a href="/tags/FlinkSQL/" rel="tag"># FlinkSQL</a>
+              <a href="/tags/FlinkStreaming/" rel="tag"># FlinkStreaming</a>
+              <a href="/tags/Outline/" rel="tag"># Outline</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Google-dataflow-model/" rel="prev" title="The dataflow model论文">
+      <i class="fa fa-chevron-left"></i> The dataflow model论文
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-runtime-deployment-mode/" rel="next" title="Flink deployment mode">
+      Flink deployment mode <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">1 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Flink%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Flink的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Flink-OLAP%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Flink OLAP的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Flink-vs-Spark"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Flink vs Spark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-spark-accumulate"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 spark accumulate</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%8E%AF%E5%A2%83%E6%9E%84%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">2 环境构建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Runtime"><span class="nav-number">3.</span> <span class="nav-text">3 Runtime</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-push-pull-%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 push pull 模型?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-watermark"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 watermark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%97%B6%E9%97%B4%E8%AF%AD%E4%B9%89-EventTime-ProcessTime-IngestionTime"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 时间语义:EventTime &amp; ProcessTime &amp; IngestionTime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E7%AE%97%E5%AD%90%E4%B9%8B%E9%97%B4%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92%EF%BC%8C%E6%98%AF%E5%A6%82%E4%BD%95%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 算子之间数据传递，是如何序列化的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%94%A8Object-Reuse"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 对象重用Object-Reuse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 类型系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 部署模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-Submit"><span class="nav-number">3.8.</span> <span class="nav-text">3.8 Submit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-9-%E4%B8%80%E8%87%B4%E6%80%A7%E8%AF%AD%E4%B9%89-at-least-once-exactly-once"><span class="nav-number">3.9.</span> <span class="nav-text">3.9 一致性语义: at least once &amp; exactly once</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-10-Failover"><span class="nav-number">3.10.</span> <span class="nav-text">3.10 Failover</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-10-1-Restart-Strategies-%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5"><span class="nav-number">3.10.1.</span> <span class="nav-text">3.10.1 Restart Strategies(重启策略)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-11-Accumulators-Counters"><span class="nav-number">3.11.</span> <span class="nav-text">3.11 Accumulators &amp; Counters</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E7%8A%B6%E6%80%81-Checkpoint-Savepoint"><span class="nav-number">4.</span> <span class="nav-text">4 状态&#x2F;Checkpoint&#x2F;Savepoint</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E7%8A%B6%E6%80%81"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Checkpoint"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Checkpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-State-backend"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 State backend</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Stream-API"><span class="nav-number">5.</span> <span class="nav-text">5 Stream API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-stateful-stream-processing"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 stateful stream processing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-allGrouping-%E5%85%83%E7%B4%A0%E5%B9%BF%E6%92%AD"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 allGrouping 元素广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-Distributed-Cache"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Distributed Cache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-Reduce-%E5%9C%A8%E6%B5%81%E8%AE%A1%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 Reduce 在流计算的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-window"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 window</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-1-%E8%87%AA%E5%AE%9A%E4%B9%89-Window"><span class="nav-number">5.5.1.</span> <span class="nav-text">5.5.1 自定义 Window</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Table-API"><span class="nav-number">6.</span> <span class="nav-text">6 Table API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-over-window"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 over window</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Flink-SQL"><span class="nav-number">7.</span> <span class="nav-text">7 Flink SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-SQL%E8%BF%90%E8%A1%8C"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 SQL运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-1-SqlNode"><span class="nav-number">7.1.1.</span> <span class="nav-text">7.1.1 SqlNode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-2-validate"><span class="nav-number">7.1.2.</span> <span class="nav-text">7.1.2 validate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-3-Operation"><span class="nav-number">7.1.3.</span> <span class="nav-text">7.1.3 Operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-4-Rel"><span class="nav-number">7.1.4.</span> <span class="nav-text">7.1.4 Rel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-5-optimize"><span class="nav-number">7.1.5.</span> <span class="nav-text">7.1.5 optimize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-6-ExecNodeGraph"><span class="nav-number">7.1.6.</span> <span class="nav-text">7.1.6 ExecNodeGraph</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-7-Plan-Transformation"><span class="nav-number">7.1.7.</span> <span class="nav-text">7.1.7 Plan&#x2F;Transformation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-8-execute"><span class="nav-number">7.1.8.</span> <span class="nav-text">7.1.8 execute</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-Flink-metric-Reporter"><span class="nav-number">8.</span> <span class="nav-text">8 Flink metric&#x2F;Reporter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Flink-CEP"><span class="nav-number">9.</span> <span class="nav-text">9 Flink CEP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-Flink-%E8%B0%83%E5%BA%A6"><span class="nav-number">10.</span> <span class="nav-text">10 Flink 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-Flink-on-Yarn"><span class="nav-number">10.1.</span> <span class="nav-text">10.1 Flink on Yarn</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-Flink%E5%B8%B8%E8%A7%81%E4%BC%98%E5%8C%96%E4%B8%8E%E4%BC%98%E5%8C%96%E5%8F%82%E6%95%B0"><span class="nav-number">11.</span> <span class="nav-text">11 Flink常见优化与优化参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-SQL-mini-batch"><span class="nav-number">11.1.</span> <span class="nav-text">11.1 SQL mini-batch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-object-reuse"><span class="nav-number">11.2.</span> <span class="nav-text">11.2 object-reuse</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-Flink-Connectors"><span class="nav-number">12.</span> <span class="nav-text">12 Flink Connectors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-HadoopOutputFormat"><span class="nav-number">12.1.</span> <span class="nav-text">12.1 HadoopOutputFormat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Flink-%E8%BF%90%E7%BB%B4"><span class="nav-number">13.</span> <span class="nav-text">13 Flink 运维</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-Flink-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">14.</span> <span class="nav-text">14 Flink 最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#14-1-%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F-%E7%A7%92%E7%BA%A7%E7%BB%9F%E8%AE%A1"><span class="nav-number">14.1.</span> <span class="nav-text">14.1 亿级流量 秒级统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-2-%E5%AE%9E%E6%97%B6%E7%BB%B4%E8%A1%A8"><span class="nav-number">14.2.</span> <span class="nav-text">14.2 实时维表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE"><span class="nav-number">15.</span> <span class="nav-text">15 开源项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="nav-number">16.</span> <span class="nav-text">16 源码解读</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">17.</span> <span class="nav-text">17 参考文献</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-%E7%A4%BE%E5%8C%BA"><span class="nav-number">18.</span> <span class="nav-text">18 社区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#18-1-FLIP"><span class="nav-number">18.1.</span> <span class="nav-text">18.1 FLIP</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

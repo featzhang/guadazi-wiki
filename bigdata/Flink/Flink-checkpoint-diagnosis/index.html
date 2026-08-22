@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="转载自https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;87131964 作者：邱从贤（山智） 在 Flink 中，状态可靠性保证由 Checkpoint 支持，当作业出现 failover 的情况下，Flink 会从最近成功的 Checkpoint 恢复。在实际情况中，我们可能会遇到 Checkpoint 失败，或者 Checkpoint 慢的情况，本文会统一聊一聊 Flink 中 Ch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转载] Flink Checkpoint 问题排查实用指南">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-checkpoint-diagnosis/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="转载自https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;87131964 作者：邱从贤（山智） 在 Flink 中，状态可靠性保证由 Checkpoint 支持，当作业出现 failover 的情况下，Flink 会从最近成功的 Checkpoint 恢复。在实际情况中，我们可能会遇到 Checkpoint 失败，或者 Checkpoint 慢的情况，本文会统一聊一聊 Flink 中 Ch">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-111736d95825c2bb448c6c2f4b41d0f2_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-3a83af11e602a6c8ed64e76585506be8_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-8e31e05120eadf56e2b75694737074ab_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-fb55f5a09afdc7f24d6be187c11a1580_720w.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/v2-678093f8bdb9d54b31d9a85ef9e3479a_720w.jpg">
+<meta property="article:published_time" content="2019-06-06T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.899Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Distributed">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="mapReducer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/Flink/v2-111736d95825c2bb448c6c2f4b41d0f2_720w.jpg">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-checkpoint-diagnosis/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>[转载] Flink Checkpoint 问题排查实用指南 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-checkpoint-diagnosis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [转载] Flink Checkpoint 问题排查实用指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>转载自<a href="https://zhuanlan.zhihu.com/p/87131964">https://zhuanlan.zhihu.com/p/87131964</a></p>
+<p>作者：邱从贤（山智）</p>
+<p>在 Flink 中，状态可靠性保证由 Checkpoint 支持，当作业出现 failover 的情况下，Flink 会从最近成功的 Checkpoint 恢复。在实际情况中，我们可能会遇到 Checkpoint 失败，或者 Checkpoint 慢的情况，本文会统一聊一聊 Flink 中 Checkpoint 异常的情况（包括失败和慢），以及可能的原因和排查思路。</p>
+<h2 id="1-Checkpoint-流程简介"><a href="#1-Checkpoint-流程简介" class="headerlink" title="1. Checkpoint 流程简介"></a>1. Checkpoint 流程简介</h2><p>首先我们需要了解 Flink 中 Checkpoint 的整个流程是怎样的，在了解整个流程之后，我们才能在出问题的时候，更好的进行定位分析。</p>
+<p><img src="/images/bigdata/Flink/v2-111736d95825c2bb448c6c2f4b41d0f2_720w.jpg" alt="img"></p>
+<p>从上图我们可以知道，Flink 的 Checkpoint 包括如下几个部分：</p>
+<ul>
+<li>JM trigger checkpoint</li>
+<li>Source 收到 trigger checkpoint 的 PRC，自己开始做 snapshot，并往下游发送 barrier</li>
+<li>下游接收 barrier（需要 barrier 都到齐才会开始做 checkpoint）</li>
+<li>Task 开始同步阶段 snapshot</li>
+<li>Task 开始异步阶段 snapshot</li>
+<li>Task snapshot 完成，汇报给 JM</li>
+</ul>
+<p>上面的任何一个步骤不成功，整个 checkpoint 都会失败。</p>
+<h2 id="2-Checkpoint-异常情况排查"><a href="#2-Checkpoint-异常情况排查" class="headerlink" title="2 Checkpoint 异常情况排查"></a>2 Checkpoint 异常情况排查</h2><h3 id="2-1-Checkpoint-失败"><a href="#2-1-Checkpoint-失败" class="headerlink" title="2.1 Checkpoint 失败"></a>2.1 Checkpoint 失败</h3><p>可以在 Checkpoint 界面看到如下图所示，下图中 Checkpoint 10423 失败了。</p>
+<p><img src="/images/bigdata/Flink/v2-3a83af11e602a6c8ed64e76585506be8_720w.jpg" alt="img"></p>
+<p>点击 Checkpoint 10423 的详情，我们可以看到类系下图所示的表格（下图中将 operator 名字截取掉了）。</p>
+<p><img src="/images/bigdata/Flink/v2-8e31e05120eadf56e2b75694737074ab_720w.jpg" alt="img"></p>
+<p>上图中我们看到三行，表示三个 operator，其中每一列的含义分别如下：</p>
+<ul>
+<li>其中 <code>Acknowledged</code> 一列表示有多少个 subtask 对这个 Checkpoint 进行了 ack，从图中我们可以知道第三个 operator 总共有 5 个 subtask，但是只有 4 个进行了 ack；</li>
+<li>第二列 <code>Latest Acknowledgement</code> 表示该 operator 的所有 subtask 最后 ack 的时间；</li>
+<li><code>End to End Duration</code> 表示整个 operator 的所有 subtask 中完成 snapshot 的最长时间；</li>
+<li><code>State Size</code> 表示当前 Checkpoint 的 state 大小 – 主要这里如果是增量 checkpoint 的话，则表示增量大小；</li>
+<li><code>Buffered During Alignment</code> 表示在 barrier 对齐阶段积攒了多少数据，如果这个数据过大也间接表示对齐比较慢）；</li>
+</ul>
+<p>Checkpoint 失败大致分为两种情况：Checkpoint Decline 和 Checkpoint Expire。</p>
+<h3 id="2-1-1-Checkpoint-Decline"><a href="#2-1-1-Checkpoint-Decline" class="headerlink" title="2.1.1 Checkpoint Decline"></a>2.1.1 Checkpoint Decline</h3><p>我们能从 <code>jobmanager.log</code> 中看到类似下面的日志<br><code>Decline checkpoint 10423 by task 0b60f08bf8984085b59f8d9bc74ce2e1 of job 85d268e6fbc19411185f7e4868a44178.</code> 其中<br>10423 是 checkpointID，<code>0b60f08bf8984085b59f8d9bc74ce2e1</code> 是 execution id，<code>85d268e6fbc19411185f7e4868a44178</code> 是 job id，我们可以在 <code>jobmanager.log</code> 中查找 execution id，找到被调度到哪个 taskmanager 上，类似如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2019-09-02 16:26:20,972 INFO  [jobmanager-future-thread-61] org.apache.flink.runtime.executiongraph.ExecutionGraph        - XXXXXXXXXXX (100/289) (87b751b1fd90e32af55f02bb2f9a9892) switched from SCHEDULED to DEPLOYING.</span><br><span class="line">2019-09-02 16:26:20,972 INFO  [jobmanager-future-thread-61] org.apache.flink.runtime.executiongraph.ExecutionGraph        - Deploying XXXXXXXXXXX (100/289) (attempt #0) to slot container_e24_1566836790522_8088_04_013155_1 on hostnameABCDE</span><br></pre></td></tr></table></figure>
+
+<p>从上面的日志我们知道该 execution 被调度到 <code>hostnameABCDE</code> 的 <code>container_e24_1566836790522_8088_04_013155_1</code> slot 上，接下来我们就可以到 container <code>container_e24_1566836790522_8088_04_013155</code> 的 taskmanager.log 中查找 Checkpoint 失败的具体原因了。</p>
+<p>另外对于 Checkpoint Decline 的情况，有一种情况我们在这里单独抽取出来进行介绍：Checkpoint Cancel。</p>
+<p>当前 Flink 中如果较小的 Checkpoint 还没有对齐的情况下，收到了更大的 Checkpoint，则会把较小的 Checkpoint 给取消掉。我们可以看到类似下面的日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$taskNameWithSubTaskAndID: Received checkpoint barrier for checkpoint 20 before completing current checkpoint 19. Skipping current checkpoint.</span><br></pre></td></tr></table></figure>
+
+<p>这个日志表示，当前 Checkpoint 19 还在对齐阶段，我们收到了 Checkpoint 20 的 barrier。然后会逐级通知到下游的 task checkpoint 19 被取消了，同时也会通知 JM 当前 Checkpoint 被 decline 掉了。</p>
+<p>在下游 task 收到被 cancelBarrier 的时候，会打印类似如下的日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">DEBUG</span><br><span class="line">$taskNameWithSubTaskAndID: Checkpoint 19 canceled, aborting alignment.</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">DEBUG</span><br><span class="line">$taskNameWithSubTaskAndID: Checkpoint 19 canceled, skipping alignment.</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">WARN</span><br><span class="line">$taskNameWithSubTaskAndID: Received cancellation barrier for checkpoint 20 before completing current checkpoint 19. Skipping current checkpoint.</span><br></pre></td></tr></table></figure>
+
+<p>上面三种日志都表示当前 task 接收到上游发送过来的 barrierCancel 消息，从而取消了对应的 Checkpoint。</p>
+<h3 id="2-1-2-Checkpoint-Expire"><a href="#2-1-2-Checkpoint-Expire" class="headerlink" title="2.1.2 Checkpoint Expire"></a>2.1.2 Checkpoint Expire</h3><p>如果 Checkpoint 做的非常慢，超过了 timeout 还没有完成，则整个 Checkpoint 也会失败。当一个 Checkpoint 由于超时而失败是，会在 <code>jobmanager.log</code> 中看到如下的日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Checkpoint 1 of job 85d268e6fbc19411185f7e4868a44178  expired before completing.</span><br></pre></td></tr></table></figure>
+
+<p>表示 Chekpoint 1 由于超时而失败，这个时候可以可以看这个日志后面是否有类似下面的日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Received late message for now expired checkpoint attempt 1 from 0b60f08bf8984085b59f8d9bc74ce2e1 of job 85d268e6fbc19411185f7e4868a44178.</span><br></pre></td></tr></table></figure>
+
+<p>可以按照 2.1.1 中的方法找到对应的 taskmanager.log 查看具体信息。</p>
+<blockquote>
+<p>下面的日志如果是 DEBUG 的话，我们会在开始处标记 <code>DEBUG</code></p>
+</blockquote>
+<p>我们按照下面的日志把 TM 端的 snapshot 分为三个阶段，开始做 snapshot 前，同步阶段，异步阶段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEBUG</span><br><span class="line">Starting checkpoint (6751) CHECKPOINT on task taskNameWithSubtasks (4/4)</span><br></pre></td></tr></table></figure>
+
+<p>这个日志表示 TM 端 barrier 对齐后，准备开始做 Checkpoint。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DEBUG</span><br><span class="line">2019-08-06 13:43:02,613 DEBUG org.apache.flink.runtime.state.AbstractSnapshotStrategy       - DefaultOperatorStateBackend snapshot (FsCheckpointStorageLocation &#123;fileSystem=org.apache.flink.core.fs.SafetyNetWrapperFileSystem@70442baf, checkpointDirectory=xxxxxxxx, sharedStateDirectory=xxxxxxxx, taskOwnedStateDirectory=xxxxxx, metadataFilePath=xxxxxx, reference=(default), fileStateSizeThreshold=1024&#125;, synchronous part) in thread Thread[Async calls on Source: xxxxxx</span><br><span class="line">_source -&gt; Filter (27/70),5,Flink Task Threads] took 0 ms.</span><br></pre></td></tr></table></figure>
+
+<p>上面的日志表示当前这个 backend 的同步阶段完成，共使用了 0 ms。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEBUG</span><br><span class="line">DefaultOperatorStateBackend snapshot (FsCheckpointStorageLocation &#123;fileSystem=org.apache.flink.core.fs.SafetyNetWrapperFileSystem@7908affe, checkpointDirectory=xxxxxx, sharedStateDirectory=xxxxx, taskOwnedStateDirectory=xxxxx,  metadataFilePath=xxxxxx, reference=(default), fileStateSizeThreshold=1024&#125;, asynchronous part) in thread Thread[pool-48-thread-14,5,Flink Task Threads] took 369 ms</span><br></pre></td></tr></table></figure>
+
+<p>上面的日志表示异步阶段完成，异步阶段使用了 369 ms</p>
+<p>在现有的日志情况下，我们通过上面三个日志，定位 snapshot 是开始晚，同步阶段做的慢，还是异步阶段做的慢。然后再按照情况继续进一步排查问题。</p>
+<h3 id="2-2-Checkpoint-慢"><a href="#2-2-Checkpoint-慢" class="headerlink" title="2.2 Checkpoint 慢"></a>2.2 Checkpoint 慢</h3><p>在 2.1 节中，我们介绍了 Checkpoint 失败的排查思路，本节会分情况介绍 Checkpoint 慢的情况。</p>
+<p>Checkpoint 慢的情况如下：比如 Checkpoint interval 1 分钟，超时 10 分钟，Checkpoint 经常需要做 9 分钟（我们希望 1 分钟左右就能够做完），而且我们预期 state size 不是非常大。</p>
+<p>对于 Checkpoint 慢的情况，我们可以按照下面的顺序逐一检查。</p>
+<h3 id="2-2-0-Source-Trigger-Checkpoint-慢"><a href="#2-2-0-Source-Trigger-Checkpoint-慢" class="headerlink" title="2.2.0 Source Trigger Checkpoint 慢"></a>2.2.0 Source Trigger Checkpoint 慢</h3><p>这个一般发生较少，但是也有可能，因为 source 做 snapshot 并往下游发送 barrier 的时候，需要抢锁（这个现在社区正在进行用 mailBox 的方式替代当前抢锁的方式，详情参考[1])。如果一直抢不到锁的话，则可能导致 Checkpoint 一直得不到机会进行。如果在 Source 所在的 <code>taskmanager.log</code> 中找不到开始做 Checkpoint 的 log，则可以考虑是否属于这种情况，可以通过 <code>jstack</code> 进行进一步确认锁的持有情况。</p>
+<h3 id="2-2-1-使用增量-Checkpoint"><a href="#2-2-1-使用增量-Checkpoint" class="headerlink" title="2.2.1 使用增量 Checkpoint"></a>2.2.1 使用增量 Checkpoint</h3><p>现在 Flink 中 Checkpoint 有两种模式，全量 Checkpoint 和 增量 Checkpoint，其中全量 Checkpoint 会把当前的 state 全部备份一次到持久化存储，而增量 Checkpoint，则只备份上一次 Checkpoint 中不存在的 state，因此增量 Checkpoint 每次上传的内容会相对更好，在速度上会有更大的优势。</p>
+<p>现在 Flink 中仅在 RocksDBStateBackend 中支持增量 Checkpoint，如果你已经使用 RocksDBStateBackend，可以通过开启增量 Checkpoint 来加速，具体的可以参考 [2]。</p>
+<h3 id="2-2-2-作业存在反压或者数据倾斜"><a href="#2-2-2-作业存在反压或者数据倾斜" class="headerlink" title="2.2.2 作业存在反压或者数据倾斜"></a>2.2.2 作业存在反压或者数据倾斜</h3><p>我们知道 task 仅在接受到所有的 barrier 之后才会进行 snapshot，如果作业存在反压，或者有数据倾斜，则会导致全部的 channel 或者某些 channel 的 barrier 发送慢，从而整体影响 Checkpoint 的时间，这两个可以通过如下的页面进行检查：</p>
+<p><img src="/images/bigdata/Flink/v2-fb55f5a09afdc7f24d6be187c11a1580_720w.jpg" alt="img"></p>
+<p>上图中我们选择了一个 task，查看所有 subtask 的反压情况，发现都是 high，表示反压情况严重，这种情况下会导致下游接收 barrier 比较晚。</p>
+<p><img src="/images/bigdata/Flink/v2-678093f8bdb9d54b31d9a85ef9e3479a_720w.jpg" alt="img"></p>
+<p>上图中我们选择其中一个 operator，点击所有的 subtask，然后按照 Records Received&#x2F;Bytes Received&#x2F;TPS 从大到小进行排序，能看到前面几个 subtask 会比其他的 subtask 要处理的数据多。</p>
+<p>如果存在反压或者数据倾斜的情况，我们需要首先解决反压或者数据倾斜问题之后，再查看 Checkpoint 的时间是否符合预期。</p>
+<h3 id="2-2-2-Barrier-对齐慢"><a href="#2-2-2-Barrier-对齐慢" class="headerlink" title="2.2.2 Barrier 对齐慢"></a>2.2.2 Barrier 对齐慢</h3><p>从前面我们知道 Checkpoint 在 task 端分为 barrier 对齐（收齐所有上游发送过来的 barrier），然后开始同步阶段，再做异步阶段。如果 barrier 一直对不齐的话，就不会开始做 snapshot。</p>
+<p>barrier 对齐之后会有如下日志打印：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEBUG</span><br><span class="line">Starting checkpoint (6751) CHECKPOINT on task taskNameWithSubtasks (4/4)</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>taskmanager.log</code> 中没有这个日志，则表示 barrier 一直没有对齐，接下来我们需要了解哪些上游的 barrier 没有发送下来，如果你使用 At Least Once 的话，可以观察下面的日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DEBUG</span><br><span class="line">Received barrier for checkpoint 96508 from channel 5</span><br></pre></td></tr></table></figure>
+
+<p>表示该 task 收到了 channel 5 来的 barrier，然后看对应 Checkpoint，再查看还剩哪些上游的 barrier 没有接受到，对于 ExactlyOnce 暂时没有类似的日志，可以考虑自己添加，或者 jmap 查看。</p>
+<h3 id="2-2-3-主线程太忙，导致没机会做-snapshot"><a href="#2-2-3-主线程太忙，导致没机会做-snapshot" class="headerlink" title="2.2.3 主线程太忙，导致没机会做 snapshot"></a>2.2.3 主线程太忙，导致没机会做 snapshot</h3><p>在 task 端，所有的处理都是单线程的，数据处理和 barrier 处理都由主线程处理，如果主线程在处理太慢（比如使用 RocksDBBackend，state 操作慢导致整体处理慢），导致 barrier 处理的慢，也会影响整体 Checkpoint 的进度，在这一步我们需要能够查看某个 PID 对应 hotmethod，这里推荐两个方法：</p>
+<ol>
+<li>多次连续 jstack，查看一直处于 <code>RUNNABLE</code> 状态的线程有哪些；</li>
+<li>使用工具 <a href="https://link.zhihu.com/?target=https://github.com/jvm-profiling-tools/async-profiler">AsyncProfile</a> dump 一份火焰图，查看占用 CPU 最多的栈；</li>
+</ol>
+<p>如果有其他更方便的方法当然更好，也欢迎推荐。</p>
+<h3 id="2-2-4-同步阶段做的慢"><a href="#2-2-4-同步阶段做的慢" class="headerlink" title="2.2.4 同步阶段做的慢"></a>2.2.4 同步阶段做的慢</h3><p>同步阶段一般不会太慢，但是如果我们通过日志发现同步阶段比较慢的话，对于非 RocksDBBackend 我们可以考虑查看是否开启了异步 snapshot，如果开启了异步 snapshot 还是慢，需要看整个 JVM 在干嘛，也可以使用前一节中的工具。对于 RocksDBBackend 来说，我们可以用 <code>iostate</code> 查看磁盘的压力如何，另外可以查看 tm 端 RocksDB 的 log 的日志如何，查看其中 SNAPSHOT 的时间总共开销多少。</p>
+<p>RocksDB 开始 snapshot 的日志如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2019/09/10-14:22:55.734684 7fef66ffd700 [utilities/checkpoint/checkpoint_impl.cc:83] Started the snapshot process -- creating snapshot in directory /tmp/flink-io-87c360ce-0b98-48f4-9629-2cf0528d5d53/XXXXXXXXXXX/chk-92729</span><br></pre></td></tr></table></figure>
+
+<p>snapshot 结束的日志如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2019/09/10-14:22:56.001275 7fef66ffd700 [utilities/checkpoint/checkpoint_impl.cc:145] Snapshot DONE. All is good</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-6-异步阶段做的慢"><a href="#2-2-6-异步阶段做的慢" class="headerlink" title="2.2.6 异步阶段做的慢"></a>2.2.6 异步阶段做的慢</h3><p>对于异步阶段来说，tm 端主要将 state 备份到持久化存储上，对于非 RocksDBBackend 来说，主要瓶颈来自于网络，这个阶段可以考虑观察网络的 metric，或者对应机器上能够观察到网络流量的情况（比如 <code>iftop</code>)。</p>
+<p>对于 RocksDB 来说，则需要从本地读取文件，写入到远程的持久化存储上，所以不仅需要考虑网络的瓶颈，还需要考虑本地磁盘的性能。另外对于 RocksDBBackend 来说，如果觉得网络流量不是瓶颈，但是上传比较慢的话，还可以尝试考虑开启多线程上传功能[3]。</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h2><p>在第二部分内容中，我们介绍了官方编译的包的情况下排查一些 Checkpoint 异常情况的主要场景，以及相应的排查方法，如果排查了上面所有的情况，还是没有发现瓶颈所在，则可以考虑添加更详细的日志，逐步将范围缩小，然后最终定位原因。</p>
+<p>上文提到的一些 DEBUG 日志，如果 flink dist 包是自己编译的话，则建议将 Checkpoint 整个步骤内的一些 DEBUG 改为 INFO，能够通过日志了解整个 Checkpoint 的整体阶段，什么时候完成了什么阶段，也在 Checkpoint 异常的时候，快速知道每个阶段都消耗了多少时间。</p>
+<h2 id="参考内容"><a href="#参考内容" class="headerlink" title="参考内容"></a>参考内容</h2><p>[1] <a href="https://link.zhihu.com/?target=https://issues.apache.org/jira/browse/FLINK-12477">Change threading-model in StreamTask to a mailbox-based approach</a><br>[2] <a href="https://link.zhihu.com/?target=https://mp.weixin.qq.com/s/rIgrAscMIJLPpfKytmp4Mw">增量 checkpoint 原理介绍</a><br>[3] <a href="https://link.zhihu.com/?target=https://issues.apache.org/jira/browse/FLINK-11008">RocksDBStateBackend 多线程上传 State</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+              <a href="/tags/Distributed/" rel="tag"># Distributed</a>
+              <a href="/tags/mapReducer/" rel="tag"># mapReducer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-cep/" rel="prev" title="flink cep">
+      <i class="fa fa-chevron-left"></i> flink cep
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-backpress/" rel="next" title="[转发]实时流处理系统反压机制（BackPressure）综述">
+      [转发]实时流处理系统反压机制（BackPressure）综述 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Checkpoint-%E6%B5%81%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">1. Checkpoint 流程简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Checkpoint-%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E6%8E%92%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">2 Checkpoint 异常情况排查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Checkpoint-%E5%A4%B1%E8%B4%A5"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Checkpoint 失败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-Checkpoint-Decline"><span class="nav-number">2.2.</span> <span class="nav-text">2.1.1 Checkpoint Decline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-Checkpoint-Expire"><span class="nav-number">2.3.</span> <span class="nav-text">2.1.2 Checkpoint Expire</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Checkpoint-%E6%85%A2"><span class="nav-number">2.4.</span> <span class="nav-text">2.2 Checkpoint 慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-0-Source-Trigger-Checkpoint-%E6%85%A2"><span class="nav-number">2.5.</span> <span class="nav-text">2.2.0 Source Trigger Checkpoint 慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-%E4%BD%BF%E7%94%A8%E5%A2%9E%E9%87%8F-Checkpoint"><span class="nav-number">2.6.</span> <span class="nav-text">2.2.1 使用增量 Checkpoint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-%E4%BD%9C%E4%B8%9A%E5%AD%98%E5%9C%A8%E5%8F%8D%E5%8E%8B%E6%88%96%E8%80%85%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C"><span class="nav-number">2.7.</span> <span class="nav-text">2.2.2 作业存在反压或者数据倾斜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-Barrier-%E5%AF%B9%E9%BD%90%E6%85%A2"><span class="nav-number">2.8.</span> <span class="nav-text">2.2.2 Barrier 对齐慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-%E4%B8%BB%E7%BA%BF%E7%A8%8B%E5%A4%AA%E5%BF%99%EF%BC%8C%E5%AF%BC%E8%87%B4%E6%B2%A1%E6%9C%BA%E4%BC%9A%E5%81%9A-snapshot"><span class="nav-number">2.9.</span> <span class="nav-text">2.2.3 主线程太忙，导致没机会做 snapshot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-%E5%90%8C%E6%AD%A5%E9%98%B6%E6%AE%B5%E5%81%9A%E7%9A%84%E6%85%A2"><span class="nav-number">2.10.</span> <span class="nav-text">2.2.4 同步阶段做的慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-%E5%BC%82%E6%AD%A5%E9%98%B6%E6%AE%B5%E5%81%9A%E7%9A%84%E6%85%A2"><span class="nav-number">2.11.</span> <span class="nav-text">2.2.6 异步阶段做的慢</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">3 总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%86%85%E5%AE%B9"><span class="nav-number">4.</span> <span class="nav-text">参考内容</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 Flink SQL1.1 Fink SQL核心功能一览 SELECT FROM WHERE  GROUP BY &#x2F;HAVING  Regular AGG  Time-windowed AGG(TUMBLE,HOP,SESSION)  Regular JOIN(INNER,LEFT&#x2F;RIGHT&#x2F;FULL)  Time-windowed JOIN(INNER,LEFT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FlinkSQL与动态表">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-SQL/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="1 Flink SQL1.1 Fink SQL核心功能一览 SELECT FROM WHERE  GROUP BY &#x2F;HAVING  Regular AGG  Time-windowed AGG(TUMBLE,HOP,SESSION)  Regular JOIN(INNER,LEFT&#x2F;RIGHT&#x2F;FULL)  Time-windowed JOIN(INNER,LEFT">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/20210427094359.png">
+<meta property="article:published_time" content="2019-08-10T14:58:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.515Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/Flink/20210427094359.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-SQL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>FlinkSQL与动态表 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FlinkSQL与动态表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-10 14:58:00" itemprop="dateCreated datePublished" datetime="2019-08-10T14:58:00+00:00">2019-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-Flink-SQL"><a href="#1-Flink-SQL" class="headerlink" title="1 Flink SQL"></a>1 Flink SQL</h1><h2 id="1-1-Fink-SQL核心功能一览"><a href="#1-1-Fink-SQL核心功能一览" class="headerlink" title="1.1 Fink SQL核心功能一览"></a>1.1 Fink SQL核心功能一览</h2><ul>
+<li><p>SELECT FROM WHERE</p>
+</li>
+<li><p>GROUP BY &#x2F;HAVING</p>
+</li>
+<li><p>Regular AGG</p>
+</li>
+<li><p>Time-windowed AGG(TUMBLE,HOP,SESSION)</p>
+</li>
+<li><p>Regular JOIN(INNER,LEFT&#x2F;RIGHT&#x2F;FULL)</p>
+</li>
+<li><p>Time-windowed JOIN(INNER,LEFT&#x2F;RIGHT&#x2F;FULL)</p>
+</li>
+<li><p>Temporal Table Join</p>
+</li>
+<li><p>大量内置函数（150+）</p>
+</li>
+<li><p>LIKE, EXTRACT, TIMESTAMPADD, MD5, AVG..</p>
+</li>
+<li><p>丰富的类型系统：POJO,Map,Array,Row,NestedType</p>
+</li>
+<li><p>自定义函数(scalar,table,aggregate)</p>
+</li>
+<li><p>CEP on SQL（复杂事件处理）</p>
+</li>
+</ul>
+<p><a href="https://flink.apache.org/2020/07/28/flink-sql-demo-building-e2e-streaming-application.html">https://flink.apache.org/2020/07/28/flink-sql-demo-building-e2e-streaming-application.html</a></p>
+<p><a href="http://wuchong.me/blog/2019/08/20/flink-sql-training/">http://wuchong.me/blog/2019/08/20/flink-sql-training/</a></p>
+<p><a href="https://github.com/ververica/flink-sql-cookbook">https://github.com/ververica/flink-sql-cookbook</a></p>
+<h2 id="1-2-Retract-mode-和-Append-mode"><a href="#1-2-Retract-mode-和-Append-mode" class="headerlink" title="1.2 Retract mode 和 Append mode"></a>1.2 Retract mode 和 Append mode</h2><p>toAppendStream  只支持insert<br>toRetractStream  其余模式都可以</p>
+<p>如果动态表仅只有Insert操作，即之前输出的结果不会被更新，则使用该模式。如果更新或删除操作使用追加模式会失败报错，始终可以使用此模式。返回值是boolean类型。它用true或false来标记数据的插入和撤回，返回true代表数据插入，false代表数据的撤回。</p>
+<p>使用flinkSQL处理实时数据当我们把表转化成流的时候，需要用toAppendStream与toRetractStream这两个方法。稍不注意可能直接选择了toAppendStream。</p>
+<p>始终可以使用此模式。返回值是boolean类型。它用true或false来标记数据的插入和撤回，返回true代表数据插入，false代表数据的撤回。</p>
+<p>当我们使用的sql语句包含：count() group by时，必须使用缩进模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取StreamTableEnvironment.</span></span><br><span class="line"><span class="type">StreamTableEnvironment</span> <span class="variable">tableEnv</span> <span class="operator">=</span> ...;</span><br><span class="line"><span class="comment">// 包含两个字段的表(String name, Integer age)</span></span><br><span class="line"><span class="type">Table</span> <span class="variable">table</span> <span class="operator">=</span> ...</span><br><span class="line"><span class="comment">// 将表转为DataStream，使用Append Mode追加模式，数据类型为Row</span></span><br><span class="line"><span class="type">DataStream</span>&lt;Row&gt; <span class="variable">dsRow</span> <span class="operator">=</span> tableEnv.toAppendStream(table, Row.class);</span><br><span class="line"><span class="comment">// 将表转为DataStream，使用Append Mode追加模式，数据类型为定义好的TypeInformation</span></span><br><span class="line"><span class="type">TupleTypeInfo</span>&lt;Tuple2&lt;String, Integer&gt;&gt; <span class="variable">tupleType</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TupleTypeInfo</span>&lt;&gt;(</span><br><span class="line">  Types.STRING(),</span><br><span class="line">  Types.INT());</span><br><span class="line">  <span class="type">DataStream</span>&lt;Tuple2&lt;String, Integer&gt;&gt; <span class="variable">dsTuple</span> <span class="operator">=</span></span><br><span class="line">  tableEnv.toAppendStream(table, tupleType);</span><br><span class="line"><span class="comment">// 将表转为DataStream，使用的模式为Retract Mode撤回模式，类型为Row</span></span><br><span class="line"><span class="comment">// 对于转换后的DataStream&lt;Tuple2&lt;Boolean, X&gt;&gt;，X表示流的数据类型，</span></span><br><span class="line"><span class="comment">// boolean值表示数据改变的类型，其中INSERT返回true，DELETE返回的是false</span></span><br><span class="line">DataStream&lt;Tuple2&lt;Boolean, Row&gt;&gt; retractStream</span><br><span class="line">  tableEnv.toRetractStream(table, Row.class);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-1-如何实现回退更新"><a href="#1-2-1-如何实现回退更新" class="headerlink" title="1.2.1 如何实现回退更新?"></a>1.2.1 如何实现回退更新?</h3><p>flink-connector-jdbc 最终使用的是SQL引擎的upsert语法:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert into</span> tbl() <span class="keyword">values</span> ( ),( ) <span class="keyword">on</span> duplicate key <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看下 MySQL&#x2F;upsert 一节</p>
+<p>对应flink 源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.apache.flink.connector.jdbc.dialect.MySQLDialect#getUpsertStatement</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-keyedBy与group-by区别"><a href="#1-3-keyedBy与group-by区别" class="headerlink" title="1.3 keyedBy与group by区别"></a>1.3 keyedBy与group by区别</h2><h2 id="1-4-SQL解析工具"><a href="#1-4-SQL解析工具" class="headerlink" title="1.4 SQL解析工具"></a>1.4 SQL解析工具</h2><p>hive使用了antlr3实现了自己的HQL,<br>Flink使用Apache Calcite,<br>而Calcite的解析器是使用JavaCC实现的,<br>Spark2.x以后采用了antlr4实现自己的解析器,<br>Presto也是使用antlr4。</p>
+<h2 id="1-5-通过Table-api创建表"><a href="#1-5-通过Table-api创建表" class="headerlink" title="1.5 通过Table api创建表"></a>1.5 通过Table api创建表</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># create a <span class="type">Table</span> from a <span class="type">Table</span> <span class="type">API</span> query</span><br><span class="line">tapi_result = table_env.from_path(<span class="string">&quot;table1&quot;</span>).select(...)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6-视图-view"><a href="#1-6-视图-view" class="headerlink" title="1.6 视图 view"></a>1.6 视图 view</h2><h2 id="1-7-window-aggregate与group-aggregate区别"><a href="#1-7-window-aggregate与group-aggregate区别" class="headerlink" title="1.7 window aggregate与group aggregate区别"></a>1.7 window aggregate与group aggregate区别</h2><p>参考自<a href="https://ververica.cn/developers/flink-sql-programming-practice/">Apache Flink 零基础入门（九）：Flink SQL 编程实践</a></p>
+<h3 id="1-7-1-Group-Aggregate的例子"><a href="#1-7-1-Group-Aggregate的例子" class="headerlink" title="1.7.1 Group Aggregate的例子"></a>1.7.1 Group Aggregate的例子</h3><p>这是一个group aggregate, 内存中累计每个分类的数据，有变化时，update sink</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> psgCnt, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> cnt </span><br><span class="line"><span class="keyword">FROM</span> Rides </span><br><span class="line"><span class="keyword">WHERE</span> isInNYC(lon, lat)</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> psgCnt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-7-2-Window-Aggregate"><a href="#1-7-2-Window-Aggregate" class="headerlink" title="1.7.2 Window Aggregate"></a>1.7.2 Window Aggregate</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  toAreaId(lon, lat) <span class="keyword">AS</span> area, <span class="comment">-- toAreaId为UDF</span></span><br><span class="line">  TUMBLE_END(rideTime, <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">MINUTE</span>) <span class="keyword">AS</span> window_end, </span><br><span class="line">  <span class="comment">--滚动窗口的结束时间: </span></span><br><span class="line">  <span class="comment">-- ① 可以时间不同吗?</span></span><br><span class="line">  <span class="comment">-- ② 窗口可以别名吗?</span></span><br><span class="line">  <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> cnt </span><br><span class="line"><span class="keyword">FROM</span> Rides </span><br><span class="line"><span class="keyword">WHERE</span> isInNYC(lon, lat) <span class="keyword">and</span> isStart</span><br><span class="line"><span class="comment">-- isStart 为boolean</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">  toAreaId(lon, lat), </span><br><span class="line">  TUMBLE(rideTime, <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">MINUTE</span>) </span><br><span class="line">  <span class="comment">-- 定义窗口</span></span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;=</span> <span class="number">5</span>;</span><br><span class="line"><span class="comment">-- 5分钟超过5次才输出</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-7-3-Window-Aggregate-与-Group-Aggregate-的区别"><a href="#1-7-3-Window-Aggregate-与-Group-Aggregate-的区别" class="headerlink" title="1.7.3 Window Aggregate 与 Group Aggregate 的区别"></a>1.7.3 Window Aggregate 与 Group Aggregate 的区别</h3><p>Window Aggregate 是当window结束时才输出，其输出的结果是最终值，不会再进行修改，其输出流是一个 Append 流。而 Group Aggregate 是每处理一条数据，就输出最新的结果，其结果是在不断更新的，就好像数据库中的数据一样，其输出流是一个 Update 流。</p>
+<p>window 由于有 watermark ，可以精确知道哪些窗口已经过期了，所以可以及时清理过期状态，保证状态维持在稳定的大小。而 Group Aggregate 因为不知道哪些数据是过期的，所以状态会无限增长，这对于生产作业来说不是很稳定，所以建议对 Group Aggregate 的作业配上 State TTL 的配置。</p>
+<p><img src="/images/bigdata/Flink/20210427094359.png"></p>
+<p>例如统计每个店铺每天的实时PV，那么就可以将 TTL 配置成 24+ 小时，因为一天前的状态一般来说就用不到了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  DATE_FORMAT(ts, <span class="string">&#x27;yyyy-MM-dd&#x27;</span>), shop_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> pv</span><br><span class="line"><span class="keyword">FROM</span> T</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> DATE_FORMAT(ts, <span class="string">&#x27;yyyy-MM-dd&#x27;</span>), shop_id</span><br></pre></td></tr></table></figure>
+
+<p>当然，如果 TTL 配置地太小，可能会清除掉一些有用的状态和数据，从而导致数据精确性地问题。这也是用户需要权衡地一个参数。</p>
+<p>[参考文献]</p>
+<hr>
+<ol>
+<li><p><a href="http://www.10tiao.com/html/157/201707/2653162664/1.html">在数据流中使用SQL查询：Apache Flink中的动态表的持续查询</a></p>
+</li>
+<li><p><a href="https://jiamaoxiang.top/2020/05/25/Flink-Table-API-SQL%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97/">Flink Table API &amp; SQL编程指南(1)</a></p>
+</li>
+<li><p><a href="https://github.com/sunjincheng121/flink-study/blob/test/docs/sql/SQL.md">Flink SQL金竹学习文档</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-StreamingAPI/" rel="prev" title="Flink-streaming API">
+      <i class="fa fa-chevron-left"></i> Flink-streaming API
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SQL-active/" rel="next" title="Flink-SQL实践">
+      Flink-SQL实践 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Flink-SQL"><span class="nav-number">1.</span> <span class="nav-text">1 Flink SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Fink-SQL%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E4%B8%80%E8%A7%88"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Fink SQL核心功能一览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Retract-mode-%E5%92%8C-Append-mode"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Retract mode 和 Append mode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%9B%9E%E9%80%80%E6%9B%B4%E6%96%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 如何实现回退更新?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-keyedBy%E4%B8%8Egroup-by%E5%8C%BA%E5%88%AB"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 keyedBy与group by区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-SQL%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 SQL解析工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E9%80%9A%E8%BF%87Table-api%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 通过Table api创建表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E8%A7%86%E5%9B%BE-view"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 视图 view</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-window-aggregate%E4%B8%8Egroup-aggregate%E5%8C%BA%E5%88%AB"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 window aggregate与group aggregate区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-1-Group-Aggregate%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.7.1.</span> <span class="nav-text">1.7.1 Group Aggregate的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-2-Window-Aggregate"><span class="nav-number">1.7.2.</span> <span class="nav-text">1.7.2 Window Aggregate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-3-Window-Aggregate-%E4%B8%8E-Group-Aggregate-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.7.3.</span> <span class="nav-text">1.7.3 Window Aggregate 与 Group Aggregate 的区别</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

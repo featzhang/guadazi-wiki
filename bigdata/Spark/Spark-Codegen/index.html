@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 Spark-Codegen1.1 背景介绍SparkSQL的优越性能背后有两大技术支柱：Optimizer和Runtime。前者致力于寻找最优的执行计划，后者则致力于把既定的执行计划尽可能快地执行出来。Runtime的多种优化可概括为两个层面： 1. 全局优化。 从提升全局资源利用率、消除数据倾斜、降低IO等角度做优化，包括自适应执行(Adaptive Execution), Shuffle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark-Codegen">
+<meta property="og:url" content="http://yoursite.com/bigdata/Spark/Spark-Codegen/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="1 Spark-Codegen1.1 背景介绍SparkSQL的优越性能背后有两大技术支柱：Optimizer和Runtime。前者致力于寻找最优的执行计划，后者则致力于把既定的执行计划尽可能快地执行出来。Runtime的多种优化可概括为两个层面： 1. 全局优化。 从提升全局资源利用率、消除数据倾斜、降低IO等角度做优化，包括自适应执行(Adaptive Execution), Shuffle">
+<meta property="og:locale">
+<meta property="og:image" content="file:///Users/zhangzuofeng1/.config/joplin-desktop/resources/69bcc1d0a7c546319f4fa7b06de03d77.jpg">
+<meta property="og:image" content="file:///Users/zhangzuofeng1/.config/joplin-desktop/resources/958d6d997ff742928ec9e4c0170031e5.jpg">
+<meta property="og:image" content="file:///Users/zhangzuofeng1/.config/joplin-desktop/resources/9bf3172708fe4ab0b6389a82aa04e0ed.jpg">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Spark/4560518199298.png">
+<meta property="article:published_time" content="2019-08-10T14:58:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.555Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Codegen">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="file:///Users/zhangzuofeng1/.config/joplin-desktop/resources/69bcc1d0a7c546319f4fa7b06de03d77.jpg">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Spark/Spark-Codegen/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Spark-Codegen | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Spark/Spark-Codegen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spark-Codegen
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-10 14:58:00" itemprop="dateCreated datePublished" datetime="2019-08-10T14:58:00+00:00">2019-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-Spark-Codegen"><a href="#1-Spark-Codegen" class="headerlink" title="1 Spark-Codegen"></a>1 Spark-Codegen</h1><h2 id="1-1-背景介绍"><a href="#1-1-背景介绍" class="headerlink" title="1.1 背景介绍"></a>1.1 背景介绍</h2><p>SparkSQL的优越性能背后有两大技术支柱：Optimizer和Runtime。前者致力于寻找最优的执行计划，后者则致力于把既定的执行计划尽可能快地执行出来。Runtime的多种优化可概括为两个层面：</p>
+<p><strong>1. 全局优化</strong>。</p>
+<p>从提升全局资源利用率、消除数据倾斜、降低IO等角度做优化，包括自适应执行(Adaptive Execution), Shuffle Removal等。</p>
+<p><strong>2. 局部优化</strong>。</p>
+<p>优化具体的Task的执行效率，主要依赖Codegen技术，具体包括Expression级别和WholeStage级别的Codegen。 本文介绍Spark Codegen的技术原理。</p>
+<h2 id="1-2-Case-Study"><a href="#1-2-Case-Study" class="headerlink" title="1.2 Case Study"></a>1.2 Case Study</h2><p>本节通过两个具体case介绍Codegen的做法。</p>
+<h3 id="1-2-1-Expression级别"><a href="#1-2-1-Expression级别" class="headerlink" title="1.2.1 Expression级别"></a>1.2.1 Expression级别</h3><p>考虑下面的表达式计算：<code>x + (1 + 2)</code>，用scala代码表达如下:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Add</span>(<span class="type">Attribute</span>(x), <span class="type">Add</span>(<span class="type">Literal</span>(<span class="number">1</span>), <span class="type">Literal</span>(<span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>语法树如下:</p>
+<p><img src="file:///Users/zhangzuofeng1/.config/joplin-desktop/resources/69bcc1d0a7c546319f4fa7b06de03d77.jpg"></p>
+<p>递归求值这棵语法树的常规代码如下:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tree.transformUp &#123;</span><br><span class="line"> <span class="keyword">case</span> <span class="type">Attribute</span>(idx) =&gt; <span class="type">Literal</span>(row.getValue(idx))</span><br><span class="line"> <span class="keyword">case</span> <span class="type">Add</span>(<span class="type">Literal</span>(c1),<span class="type">Literal</span>(c2)) =&gt; <span class="type">Literal</span>(c1+c2)</span><br><span class="line"> <span class="keyword">case</span> <span class="type">Literal</span>(c) =&gt; <span class="type">Literal</span>(c)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>太复杂了</p>
+</blockquote>
+<p>执行上述代码需要做很多类型匹配、虚函数调用、对象创建等额外逻辑，这些overhead远超对表达式求值本身。<br>为了消除这些overhead，Spark Codegen直接拼成求值表达式的java代码并进行即时编译。具体分为三个步骤:</p>
+<p><strong>1. 代码生成。</strong></p>
+<p>根据语法树生成java代码，封装在wrapper类中:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">... <span class="comment">// class wrapper</span></span><br><span class="line">row.getValue(idx) + (<span class="number">1</span> + <span class="number">2</span>)</span><br><span class="line">... <span class="comment">// class wrapper</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 即时编译。</strong></p>
+<p>使用Janino框架把生成代码编译成class文件。</p>
+<p><strong>3. 加载执行。</strong></p>
+<p>最后加载并执行。 优化前后性能有数量级的提升。</p>
+<p><img src="file:///Users/zhangzuofeng1/.config/joplin-desktop/resources/958d6d997ff742928ec9e4c0170031e5.jpg"></p>
+<h3 id="1-2-2-WholeStage级别"><a href="#1-2-2-WholeStage级别" class="headerlink" title="1.2.2 WholeStage级别"></a>1.2.2 WholeStage级别</h3><p>考虑如下的sql语句:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> store_sales</span><br><span class="line"><span class="keyword">where</span> ss_item_sk<span class="operator">=</span><span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+
+<p>生成的物理执行计划如下:</p>
+<p><img src="file:///Users/zhangzuofeng1/.config/joplin-desktop/resources/9bf3172708fe4ab0b6389a82aa04e0ed.jpg"></p>
+<p>执行该计划的常规做法是使用火山模型(<code>vocano model</code>)，每个<code>Operator</code>都继承了<code>Iterator</code>接口，其<code>next()</code>方法首先驱动上游执行拿到输入，然后执行自己的逻辑。</p>
+<p>代码示例如下:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Agg</span> <span class="keyword">extends</span> <span class="title">Iterator</span>[<span class="type">Row</span>] </span>&#123;</span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">doAgg</span></span>() &#123;</span><br><span class="line"> <span class="keyword">while</span> (child.hasNext()) &#123;</span><br><span class="line"> <span class="keyword">val</span> row = child.next();</span><br><span class="line"> <span class="comment">// do aggregation</span></span><br><span class="line"> ...</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">next</span></span>(): <span class="type">Row</span> &#123;</span><br><span class="line"> <span class="keyword">if</span> (!doneAgg) &#123;</span><br><span class="line"> doAgg();</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> aggIter.next();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Filter</span> <span class="keyword">extends</span> <span class="title">Iterator</span>[<span class="type">Row</span>] </span>&#123;</span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">next</span></span>(): <span class="type">Row</span> &#123;</span><br><span class="line"> <span class="keyword">var</span> current = child.next()</span><br><span class="line"> <span class="keyword">while</span> (current != <span class="literal">null</span> &amp;&amp; !predicate(current)) &#123;</span><br><span class="line"> current = child.next()</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> current;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上述代码可知，火山模型会有大量类型转换和虚函数调用。虚函数调用会导致CPU分支预测失败，从而导致严重的性能回退。<br>为了消除这些overhead，Spark WholestageCodegen会为该物理计划生成类型确定的java代码，然后类似Expression的做法即时编译和加载执行。<br>本例生成的java代码示例如下(非真实代码，真实代码片段见后文):</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (ss_item_sk in store_sales) &#123;</span><br><span class="line"> <span class="keyword">if</span> (ss_item_sk == <span class="number">1000</span>) &#123;</span><br><span class="line"> count += <span class="number">1</span></span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优化前后性能提升数据如下:</p>
+<p><img src="/images/bigdata/Spark/4560518199298.png"></p>
+<p>Spark Codegen框架有三个核心组成部分 </p>
+<p><strong>1. 核心接口&#x2F;类</strong><br><strong>2. CodegenContext</strong><br><strong>3. Produce-Consume Pattern</strong></p>
+<h4 id="1-2-2-1-四个核心接口"><a href="#1-2-2-1-四个核心接口" class="headerlink" title="1.2.2.1 四个核心接口"></a>1.2.2.1 四个核心接口</h4><p><strong>1. CodegenSupport(接口)</strong> </p>
+<p>实现该接口的Operator可以将自己的逻辑拼成java代码。重要方法：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">produce() <span class="comment">// 输出本节点产出Row的java代码</span></span><br><span class="line">consume() <span class="comment">// 输出本节点消费上游节点输入的Row的java代码</span></span><br></pre></td></tr></table></figure>
+
+<p>实现类包括但不限于: ProjectExec, FilterExec, HashAggregateExec, SortMergeJoinExec。</p>
+<p><strong>2. WholeStageCodegenExec(类)</strong><br>CodegenSupport的实现类之一，Stage内部所有相邻的实现CodegenSupport接口的Operator的融合，产出的代码把所有被融合的Operator的执行逻辑封装到一个Wrapper类中，该Wrapper类作为Janino即时compile的入参。</p>
+<p><strong>3. InputAdapter(类)</strong><br>CodegenSupport的实现类之一，胶水类，用来连接WholeStageCodegenExec节点和未实现CodegenSupport的上游节点。 </p>
+<p><strong>4. BufferedRowIterator(接口)</strong><br>WholeStageCodegenExec生成的java代码的父类，重要方法:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public <span class="type">InternalRow</span> next() <span class="comment">// 返回下一条Row</span></span><br><span class="line">public void append(<span class="type">InternalRow</span> row) <span class="comment">// append一条Row</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-2-2-CodegenContext"><a href="#1-2-2-2-CodegenContext" class="headerlink" title="1.2.2.2 CodegenContext"></a>1.2.2.2 CodegenContext</h4><p>管理生成代码的核心类。主要涵盖以下功能：</p>
+<p>**1.命名管理。**保证同一Scope内无变量名冲突。</p>
+<p>**2.变量管理。**维护类变量，判断变量类型(应该声明为独立变量还是压缩到类型数组中)，维护变量初始化逻辑等。</p>
+<p>**3.方法管理。**维护类方法。</p>
+<p>**4.内部类管理。**维护内部类。</p>
+<p>**5.相同表达式管理。**维护相同子表达式，避免重复计算。</p>
+<p>**6.size管理。**避免方法、类size过大，避免类变量数过多，进行比较拆分。如把表达式块拆分成多个函数；把函数、变量定义拆分到多个内部类。</p>
+<p>**7.依赖管理。**维护该类依赖的外部对象，如Broadcast对象、工具对象、度量对象等。</p>
+<p>**8.通用模板管理。**提供通用代码模板，如genComp, nullSafeExec等。</p>
+<h4 id="1-2-2-3-Produce-Consume-Pattern"><a href="#1-2-2-3-Produce-Consume-Pattern" class="headerlink" title="1.2.2.3 Produce-Consume Pattern"></a>1.2.2.3 Produce-Consume Pattern</h4><p>相邻Operator通过Produce-Consume模式生成代码。 Produce生成整体处理的框架代码，例如aggregation生成的代码框架如下:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!initialized) &#123;</span><br><span class="line"> # create a hash map, <span class="keyword">then</span> build the aggregation hash map</span><br><span class="line"> # call child.produce()</span><br><span class="line"> initialized = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span> (hashmap.hasNext()) &#123;</span><br><span class="line"> row = hashmap.next();</span><br><span class="line"> # build the aggregation results</span><br><span class="line"> # create variables <span class="keyword">for</span> results</span><br><span class="line"> # call consume(), which will call parent.doConsume()</span><br><span class="line"> <span class="keyword">if</span> (shouldStop()) <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Consume生成当前节点处理上游输入的Row的逻辑。如Filter生成代码如下:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># code to evaluate the predicate expression, result is isNull1 and value2</span><br><span class="line"><span class="keyword">if</span> (!isNull1 &amp;&amp; value2) &#123;</span><br><span class="line"> # call consume(), which will call parent.doConsume()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-3-WholeStageCodegen"><a href="#1-2-3-WholeStageCodegen" class="headerlink" title="1.2.3 WholeStageCodegen"></a>1.2.3 WholeStageCodegen</h3><p>下图比较清晰地展示了 WholestageCodegen 生成java代码的call graph:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * WholeStageCodegen compiles a subtree of plans that support codegen together into single Java</span></span><br><span class="line"><span class="comment"> * function.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Here is the call graph of to generate Java source (plan A supports codegen, but plan B does not):</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *   WholeStageCodegen       Plan A               FakeInput        Plan B</span></span><br><span class="line"><span class="comment"> * =========================================================================</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * -&gt; execute()</span></span><br><span class="line"><span class="comment"> *     |</span></span><br><span class="line"><span class="comment"> *  doExecute() ---------&gt;   inputRDDs() -------&gt; inputRDDs() ------&gt; execute()</span></span><br><span class="line"><span class="comment"> *     |</span></span><br><span class="line"><span class="comment"> *     +-----------------&gt;   produce()</span></span><br><span class="line"><span class="comment"> *                             |</span></span><br><span class="line"><span class="comment"> *                          doProduce()  -------&gt; produce()</span></span><br><span class="line"><span class="comment"> *                                                   |</span></span><br><span class="line"><span class="comment"> *                                                doProduce()</span></span><br><span class="line"><span class="comment"> *                                                   |</span></span><br><span class="line"><span class="comment"> *                         doConsume() &lt;--------- consume()</span></span><br><span class="line"><span class="comment"> *                             |</span></span><br><span class="line"><span class="comment"> *  doConsume()  &lt;--------  consume()</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * SparkPlan A should override `doProduce()` and `doConsume()`.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * `doCodeGen()` will create a `CodeGenContext`, which will hold a list of variables for input,</span></span><br><span class="line"><span class="comment"> * used to generated code for [[BoundReference]].</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p>Case Study的示例，生成的真实代码如下:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br></pre></td><td class="code"><pre><span class="line">== <span class="type">Subtree</span> <span class="number">1</span> / <span class="number">2</span> ==</span><br><span class="line">*(<span class="number">2</span>) <span class="type">HashAggregate</span>(keys=[], functions=[count(<span class="number">1</span>)], output=[count(<span class="number">1</span>)#<span class="number">326</span>L])</span><br><span class="line">+- <span class="type">Exchange</span> <span class="type">SinglePartition</span></span><br><span class="line"> +- *(<span class="number">1</span>) <span class="type">HashAggregate</span>(keys=[], functions=[partial_count(<span class="number">1</span>)], output=[count#<span class="number">329</span>L])</span><br><span class="line"> +- *(<span class="number">1</span>) <span class="type">Project</span></span><br><span class="line"> +- *(<span class="number">1</span>) <span class="type">Filter</span> (isnotnull(ss_item_sk#<span class="number">13</span>L) &amp;&amp; (ss_item_sk#<span class="number">13</span>L = <span class="number">1000</span>))</span><br><span class="line"> +- *(<span class="number">1</span>) <span class="type">FileScan</span> parquet [ss_item_sk#<span class="number">13</span>L] <span class="type">Batched</span>: <span class="literal">true</span>, <span class="type">Format</span>: <span class="type">Parquet</span>, <span class="type">Location</span>: <span class="type">InMemoryFileIndex</span>[file:/home/admin/zhoukeyong/workspace/tpc/tpcds/data/parquet/<span class="number">10</span>/store_sales/par..., <span class="type">PartitionFilters</span>: [], <span class="type">PushedFilters</span>: [<span class="type">IsNotNull</span>(ss_item_sk), <span class="type">EqualTo</span>(ss_item_sk,<span class="number">1000</span>)], <span class="type">ReadSchema</span>: struct&lt;ss_item_sk:bigint&gt;</span><br><span class="line"></span><br><span class="line"><span class="type">Generated</span> code:</span><br><span class="line"><span class="comment">/* 001 */</span> public <span class="type">Object</span> generate(<span class="type">Object</span>[] references) &#123;</span><br><span class="line"><span class="comment">/* 002 */</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">GeneratedIteratorForCodegenStage2</span>(references);</span><br><span class="line"><span class="comment">/* 003 */</span> &#125;</span><br><span class="line"><span class="comment">/* 004 */</span></span><br><span class="line"><span class="comment">/* 005 */</span> <span class="comment">// codegenStageId=2</span></span><br><span class="line"><span class="comment">/* 006 */</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">GeneratedIteratorForCodegenStage2</span> <span class="keyword">extends</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">spark</span>.<span class="title">sql</span>.<span class="title">execution</span>.<span class="title">BufferedRowIterator</span> </span>&#123;</span><br><span class="line"><span class="comment">/* 007 */</span> <span class="keyword">private</span> <span class="type">Object</span>[] references;</span><br><span class="line"><span class="comment">/* 008 */</span> <span class="keyword">private</span> scala.collection.<span class="type">Iterator</span>[] inputs;</span><br><span class="line"><span class="comment">/* 009 */</span> <span class="keyword">private</span> boolean agg_initAgg_0;</span><br><span class="line"><span class="comment">/* 010 */</span> <span class="keyword">private</span> boolean agg_bufIsNull_0;</span><br><span class="line"><span class="comment">/* 011 */</span> <span class="keyword">private</span> long agg_bufValue_0;</span><br><span class="line"><span class="comment">/* 012 */</span> <span class="keyword">private</span> scala.collection.<span class="type">Iterator</span> inputadapter_input_0;</span><br><span class="line"><span class="comment">/* 013 */</span> <span class="keyword">private</span> org.apache.spark.sql.catalyst.expressions.codegen.<span class="type">UnsafeRowWriter</span>[] agg_mutableStateArray_0 = <span class="keyword">new</span> org.apache.spark.sql.catalyst.expressions.codegen.<span class="type">UnsafeRowWriter</span>[<span class="number">1</span>];</span><br><span class="line"><span class="comment">/* 014 */</span></span><br><span class="line"><span class="comment">/* 015 */</span> public <span class="type">GeneratedIteratorForCodegenStage2</span>(<span class="type">Object</span>[] references) &#123;</span><br><span class="line"><span class="comment">/* 016 */</span> <span class="keyword">this</span>.references = references;</span><br><span class="line"><span class="comment">/* 017 */</span> &#125;</span><br><span class="line"><span class="comment">/* 018 */</span></span><br><span class="line"><span class="comment">/* 019 */</span> public void init(int index, scala.collection.<span class="type">Iterator</span>[] inputs) &#123;</span><br><span class="line"><span class="comment">/* 020 */</span> partitionIndex = index;</span><br><span class="line"><span class="comment">/* 021 */</span> <span class="keyword">this</span>.inputs = inputs;</span><br><span class="line"><span class="comment">/* 022 */</span></span><br><span class="line"><span class="comment">/* 023 */</span> inputadapter_input_0 = inputs[<span class="number">0</span>];</span><br><span class="line"><span class="comment">/* 024 */</span> agg_mutableStateArray_0[<span class="number">0</span>] = <span class="keyword">new</span> org.apache.spark.sql.catalyst.expressions.codegen.<span class="type">UnsafeRowWriter</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="comment">/* 025 */</span></span><br><span class="line"><span class="comment">/* 026 */</span> &#125;</span><br><span class="line"><span class="comment">/* 027 */</span></span><br><span class="line"><span class="comment">/* 028 */</span> <span class="keyword">private</span> void agg_doAggregateWithoutKey_0() <span class="keyword">throws</span> java.io.<span class="type">IOException</span> &#123;</span><br><span class="line"><span class="comment">/* 029 */</span> <span class="comment">// initialize aggregation buffer</span></span><br><span class="line"><span class="comment">/* 030 */</span> agg_bufIsNull_0 = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">/* 031 */</span> agg_bufValue_0 = <span class="number">0</span>L;</span><br><span class="line"><span class="comment">/* 032 */</span></span><br><span class="line"><span class="comment">/* 033 */</span> <span class="keyword">while</span> (inputadapter_input_0.hasNext() &amp;&amp; !stopEarly()) &#123;</span><br><span class="line"><span class="comment">/* 034 */</span> <span class="type">InternalRow</span> inputadapter_row_0 = (<span class="type">InternalRow</span>) inputadapter_input_0.next();</span><br><span class="line"><span class="comment">/* 035 */</span> long inputadapter_value_0 = inputadapter_row_0.getLong(<span class="number">0</span>);</span><br><span class="line"><span class="comment">/* 036 */</span></span><br><span class="line"><span class="comment">/* 037 */</span> agg_doConsume_0(inputadapter_row_0, inputadapter_value_0);</span><br><span class="line"><span class="comment">/* 038 */</span> <span class="keyword">if</span> (shouldStop()) <span class="keyword">return</span>;</span><br><span class="line"><span class="comment">/* 039 */</span> &#125;</span><br><span class="line"><span class="comment">/* 040 */</span></span><br><span class="line"><span class="comment">/* 041 */</span> &#125;</span><br><span class="line"><span class="comment">/* 042 */</span></span><br><span class="line"><span class="comment">/* 043 */</span> <span class="keyword">private</span> void agg_doConsume_0(<span class="type">InternalRow</span> inputadapter_row_0, long agg_expr_0_0) <span class="keyword">throws</span> java.io.<span class="type">IOException</span> &#123;</span><br><span class="line"><span class="comment">/* 044 */</span> <span class="comment">// do aggregate</span></span><br><span class="line"><span class="comment">/* 045 */</span> <span class="comment">// common sub-expressions</span></span><br><span class="line"><span class="comment">/* 046 */</span></span><br><span class="line"><span class="comment">/* 047 */</span> <span class="comment">// evaluate aggregate function</span></span><br><span class="line"><span class="comment">/* 048 */</span> long agg_value_3 = <span class="number">-1</span>L;</span><br><span class="line"><span class="comment">/* 049 */</span> agg_value_3 = agg_bufValue_0 + agg_expr_0_0;</span><br><span class="line"><span class="comment">/* 050 */</span> <span class="comment">// update aggregation buffer</span></span><br><span class="line"><span class="comment">/* 051 */</span> agg_bufIsNull_0 = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">/* 052 */</span> agg_bufValue_0 = agg_value_3;</span><br><span class="line"><span class="comment">/* 053 */</span></span><br><span class="line"><span class="comment">/* 054 */</span> &#125;</span><br><span class="line"><span class="comment">/* 055 */</span></span><br><span class="line"><span class="comment">/* 056 */</span> <span class="keyword">protected</span> void processNext() <span class="keyword">throws</span> java.io.<span class="type">IOException</span> &#123;</span><br><span class="line"><span class="comment">/* 057 */</span> <span class="keyword">while</span> (!agg_initAgg_0) &#123;</span><br><span class="line"><span class="comment">/* 058 */</span> agg_initAgg_0 = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">/* 059 */</span> long agg_beforeAgg_0 = <span class="type">System</span>.nanoTime();</span><br><span class="line"><span class="comment">/* 060 */</span> agg_doAggregateWithoutKey_0();</span><br><span class="line"><span class="comment">/* 061 */</span> ((org.apache.spark.sql.execution.metric.<span class="type">SQLMetric</span>) references[<span class="number">1</span>] <span class="comment">/* aggTime */</span>).add((<span class="type">System</span>.nanoTime() - agg_beforeAgg_0) / <span class="number">1000000</span>);</span><br><span class="line"><span class="comment">/* 062 */</span></span><br><span class="line"><span class="comment">/* 063 */</span> <span class="comment">// output the result</span></span><br><span class="line"><span class="comment">/* 064 */</span></span><br><span class="line"><span class="comment">/* 065 */</span> ((org.apache.spark.sql.execution.metric.<span class="type">SQLMetric</span>) references[<span class="number">0</span>] <span class="comment">/* numOutputRows */</span>).add(<span class="number">1</span>);</span><br><span class="line"><span class="comment">/* 066 */</span> agg_mutableStateArray_0[<span class="number">0</span>].reset();</span><br><span class="line"><span class="comment">/* 067 */</span></span><br><span class="line"><span class="comment">/* 068 */</span> agg_mutableStateArray_0[<span class="number">0</span>].zeroOutNullBytes();</span><br><span class="line"><span class="comment">/* 069 */</span></span><br><span class="line"><span class="comment">/* 070 */</span> agg_mutableStateArray_0[<span class="number">0</span>].write(<span class="number">0</span>, agg_bufValue_0);</span><br><span class="line"><span class="comment">/* 071 */</span> append((agg_mutableStateArray_0[<span class="number">0</span>].getRow()));</span><br><span class="line"><span class="comment">/* 072 */</span> &#125;</span><br><span class="line"><span class="comment">/* 073 */</span> &#125;</span><br><span class="line"><span class="comment">/* 074 */</span></span><br><span class="line"><span class="comment">/* 075 */</span> &#125;</span><br><span class="line"></span><br><span class="line">== <span class="type">Subtree</span> <span class="number">2</span> / <span class="number">2</span> ==</span><br><span class="line">*(<span class="number">1</span>) <span class="type">HashAggregate</span>(keys=[], functions=[partial_count(<span class="number">1</span>)], output=[count#<span class="number">329</span>L])</span><br><span class="line">+- *(<span class="number">1</span>) <span class="type">Project</span></span><br><span class="line"> +- *(<span class="number">1</span>) <span class="type">Filter</span> (isnotnull(ss_item_sk#<span class="number">13</span>L) &amp;&amp; (ss_item_sk#<span class="number">13</span>L = <span class="number">1000</span>))</span><br><span class="line"> +- *(<span class="number">1</span>) <span class="type">FileScan</span> parquet [ss_item_sk#<span class="number">13</span>L] <span class="type">Batched</span>: <span class="literal">true</span>, <span class="type">Format</span>: <span class="type">Parquet</span>, <span class="type">Location</span>: <span class="type">InMemoryFileIndex</span>[file:/home/admin/zhoukeyong/workspace/tpc/tpcds/data/parquet/<span class="number">10</span>/store_sales/par..., <span class="type">PartitionFilters</span>: [], <span class="type">PushedFilters</span>: [<span class="type">IsNotNull</span>(ss_item_sk), <span class="type">EqualTo</span>(ss_item_sk,<span class="number">1000</span>)], <span class="type">ReadSchema</span>: struct&lt;ss_item_sk:bigint&gt;</span><br><span class="line"></span><br><span class="line"><span class="type">Generated</span> code:</span><br><span class="line"><span class="comment">/* 001 */</span> public <span class="type">Object</span> generate(<span class="type">Object</span>[] references) &#123;</span><br><span class="line"><span class="comment">/* 002 */</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">GeneratedIteratorForCodegenStage1</span>(references);</span><br><span class="line"><span class="comment">/* 003 */</span> &#125;</span><br><span class="line"><span class="comment">/* 004 */</span></span><br><span class="line"><span class="comment">/* 005 */</span> <span class="comment">// codegenStageId=1</span></span><br><span class="line"><span class="comment">/* 006 */</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">GeneratedIteratorForCodegenStage1</span> <span class="keyword">extends</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">spark</span>.<span class="title">sql</span>.<span class="title">execution</span>.<span class="title">BufferedRowIterator</span> </span>&#123;</span><br><span class="line"><span class="comment">/* 007 */</span> <span class="keyword">private</span> <span class="type">Object</span>[] references;</span><br><span class="line"><span class="comment">/* 008 */</span> <span class="keyword">private</span> scala.collection.<span class="type">Iterator</span>[] inputs;</span><br><span class="line"><span class="comment">/* 009 */</span> <span class="keyword">private</span> boolean agg_initAgg_0;</span><br><span class="line"><span class="comment">/* 010 */</span> <span class="keyword">private</span> boolean agg_bufIsNull_0;</span><br><span class="line"><span class="comment">/* 011 */</span> <span class="keyword">private</span> long agg_bufValue_0;</span><br><span class="line"><span class="comment">/* 012 */</span> <span class="keyword">private</span> long scan_scanTime_0;</span><br><span class="line"><span class="comment">/* 013 */</span> <span class="keyword">private</span> boolean outputMetaColumns;</span><br><span class="line"><span class="comment">/* 014 */</span> <span class="keyword">private</span> int scan_batchIdx_0;</span><br><span class="line"><span class="comment">/* 015 */</span> <span class="keyword">private</span> org.apache.spark.sql.catalyst.expressions.codegen.<span class="type">UnsafeRowWriter</span>[] scan_mutableStateArray_3 = <span class="keyword">new</span> org.apache.spark.sql.catalyst.expressions.codegen.<span class="type">UnsafeRowWriter</span>[<span class="number">3</span>];</span><br><span class="line"><span class="comment">/* 016 */</span> <span class="keyword">private</span> org.apache.spark.sql.vectorized.<span class="type">ColumnarBatch</span>[] scan_mutableStateArray_1 = <span class="keyword">new</span> org.apache.spark.sql.vectorized.<span class="type">ColumnarBatch</span>[<span class="number">1</span>];</span><br><span class="line"><span class="comment">/* 017 */</span> <span class="keyword">private</span> scala.collection.<span class="type">Iterator</span>[] scan_mutableStateArray_0 = <span class="keyword">new</span> scala.collection.<span class="type">Iterator</span>[<span class="number">1</span>];</span><br><span class="line"><span class="comment">/* 018 */</span> <span class="keyword">private</span> org.apache.spark.sql.execution.vectorized.<span class="type">OffHeapColumnVector</span>[] scan_mutableStateArray_2 = <span class="keyword">new</span> org.apache.spark.sql.execution.vectorized.<span class="type">OffHeapColumnVector</span>[<span class="number">1</span>];</span><br><span class="line"><span class="comment">/* 019 */</span></span><br><span class="line"><span class="comment">/* 020 */</span> public <span class="type">GeneratedIteratorForCodegenStage1</span>(<span class="type">Object</span>[] references) &#123;</span><br><span class="line"><span class="comment">/* 021 */</span> <span class="keyword">this</span>.references = references;</span><br><span class="line"><span class="comment">/* 022 */</span> &#125;</span><br><span class="line"><span class="comment">/* 023 */</span></span><br><span class="line"><span class="comment">/* 024 */</span> public void init(int index, scala.collection.<span class="type">Iterator</span>[] inputs) &#123;</span><br><span class="line"><span class="comment">/* 025 */</span> partitionIndex = index;</span><br><span class="line"><span class="comment">/* 026 */</span> <span class="keyword">this</span>.inputs = inputs;</span><br><span class="line"><span class="comment">/* 027 */</span></span><br><span class="line"><span class="comment">/* 028 */</span> scan_mutableStateArray_0[<span class="number">0</span>] = inputs[<span class="number">0</span>];</span><br><span class="line"><span class="comment">/* 029 */</span> outputMetaColumns = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">/* 030 */</span> scan_mutableStateArray_3[<span class="number">0</span>] = <span class="keyword">new</span> org.apache.spark.sql.catalyst.expressions.codegen.<span class="type">UnsafeRowWriter</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="comment">/* 031 */</span> scan_mutableStateArray_3[<span class="number">1</span>] = <span class="keyword">new</span> org.apache.spark.sql.catalyst.expressions.codegen.<span class="type">UnsafeRowWriter</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="comment">/* 032 */</span> scan_mutableStateArray_3[<span class="number">2</span>] = <span class="keyword">new</span> org.apache.spark.sql.catalyst.expressions.codegen.<span class="type">UnsafeRowWriter</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line"><span class="comment">/* 033 */</span></span><br><span class="line"><span class="comment">/* 034 */</span> &#125;</span><br><span class="line"><span class="comment">/* 035 */</span></span><br><span class="line"><span class="comment">/* 036 */</span> <span class="keyword">private</span> void agg_doAggregateWithoutKey_0() <span class="keyword">throws</span> java.io.<span class="type">IOException</span> &#123;</span><br><span class="line"><span class="comment">/* 037 */</span> <span class="comment">// initialize aggregation buffer</span></span><br><span class="line"><span class="comment">/* 038 */</span> agg_bufIsNull_0 = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">/* 039 */</span> agg_bufValue_0 = <span class="number">0</span>L;</span><br><span class="line"><span class="comment">/* 040 */</span></span><br><span class="line"><span class="comment">/* 041 */</span> <span class="keyword">if</span> (scan_mutableStateArray_1[<span class="number">0</span>] == <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="comment">/* 042 */</span> scan_nextBatch_0();</span><br><span class="line"><span class="comment">/* 043 */</span> &#125;</span><br><span class="line"><span class="comment">/* 044 */</span> <span class="keyword">while</span> (scan_mutableStateArray_1[<span class="number">0</span>] != <span class="literal">null</span>) &#123;</span><br><span class="line"><span class="comment">/* 045 */</span> int scan_numRows_0 = scan_mutableStateArray_1[<span class="number">0</span>].numRows();</span><br><span class="line"><span class="comment">/* 046 */</span> int scan_localEnd_0 = scan_numRows_0 - scan_batchIdx_0;</span><br><span class="line"><span class="comment">/* 047 */</span> <span class="keyword">for</span> (int scan_localIdx_0 = <span class="number">0</span>; scan_localIdx_0 &lt; scan_localEnd_0; scan_localIdx_0++) &#123;</span><br><span class="line"><span class="comment">/* 048 */</span> int scan_rowIdx_0 = scan_batchIdx_0 + scan_localIdx_0;</span><br><span class="line"><span class="comment">/* 049 */</span> <span class="keyword">if</span> (!scan_mutableStateArray_1[<span class="number">0</span>].validAt(scan_rowIdx_0)) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line"><span class="comment">/* 050 */</span> <span class="keyword">do</span> &#123;</span><br><span class="line"><span class="comment">/* 051 */</span> boolean scan_isNull_0 = scan_mutableStateArray_2[<span class="number">0</span>].isNullAt(scan_rowIdx_0);</span><br><span class="line"><span class="comment">/* 052 */</span> long scan_value_0 = scan_isNull_0 ? <span class="number">-1</span>L : (scan_mutableStateArray_2[<span class="number">0</span>].getLong(scan_rowIdx_0));</span><br><span class="line"><span class="comment">/* 053 */</span></span><br><span class="line"><span class="comment">/* 054 */</span> <span class="keyword">if</span> (!(!scan_isNull_0)) <span class="keyword">continue</span>;</span><br><span class="line"><span class="comment">/* 055 */</span></span><br><span class="line"><span class="comment">/* 056 */</span> boolean filter_value_2 = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">/* 057 */</span> filter_value_2 = scan_value_0 == <span class="number">1000</span>L;</span><br><span class="line"><span class="comment">/* 058 */</span> <span class="keyword">if</span> (!filter_value_2) <span class="keyword">continue</span>;</span><br><span class="line"><span class="comment">/* 059 */</span></span><br><span class="line"><span class="comment">/* 060 */</span> ((org.apache.spark.sql.execution.metric.<span class="type">SQLMetric</span>) references[<span class="number">2</span>] <span class="comment">/* numOutputRows */</span>).add(<span class="number">1</span>);</span><br><span class="line"><span class="comment">/* 061 */</span></span><br><span class="line"><span class="comment">/* 062 */</span> agg_doConsume_0();</span><br><span class="line"><span class="comment">/* 063 */</span></span><br><span class="line"><span class="comment">/* 064 */</span> &#125; <span class="keyword">while</span>(<span class="literal">false</span>);</span><br><span class="line"><span class="comment">/* 065 */</span> <span class="comment">// shouldStop check is eliminated</span></span><br><span class="line"><span class="comment">/* 066 */</span> &#125;</span><br><span class="line"><span class="comment">/* 067 */</span> scan_batchIdx_0 = scan_numRows_0;</span><br><span class="line"><span class="comment">/* 068 */</span> scan_mutableStateArray_1[<span class="number">0</span>] = <span class="literal">null</span>;</span><br><span class="line"><span class="comment">/* 069 */</span> scan_nextBatch_0();</span><br><span class="line"><span class="comment">/* 070 */</span> &#125;</span><br><span class="line"><span class="comment">/* 071 */</span> ((org.apache.spark.sql.execution.metric.<span class="type">SQLMetric</span>) references[<span class="number">1</span>] <span class="comment">/* scanTime */</span>).add(scan_scanTime_0 / (<span class="number">1000</span> * <span class="number">1000</span>));</span><br><span class="line"><span class="comment">/* 072 */</span> scan_scanTime_0 = <span class="number">0</span>;</span><br><span class="line"><span class="comment">/* 073 */</span></span><br><span class="line"><span class="comment">/* 074 */</span> &#125;</span><br><span class="line"><span class="comment">/* 075 */</span></span><br><span class="line"><span class="comment">/* 076 */</span> <span class="keyword">private</span> void scan_nextBatch_0() <span class="keyword">throws</span> java.io.<span class="type">IOException</span> &#123;</span><br><span class="line"><span class="comment">/* 077 */</span> long getBatchStart = <span class="type">System</span>.nanoTime();</span><br><span class="line"><span class="comment">/* 078 */</span> <span class="keyword">if</span> (scan_mutableStateArray_0[<span class="number">0</span>].hasNext()) &#123;</span><br><span class="line"><span class="comment">/* 079 */</span> scan_mutableStateArray_1[<span class="number">0</span>] = (org.apache.spark.sql.vectorized.<span class="type">ColumnarBatch</span>)scan_mutableStateArray_0[<span class="number">0</span>].next();</span><br><span class="line"><span class="comment">/* 080 */</span> ((org.apache.spark.sql.execution.metric.<span class="type">SQLMetric</span>) references[<span class="number">0</span>] <span class="comment">/* numOutputRows */</span>).add(scan_mutableStateArray_1[<span class="number">0</span>].numRows());</span><br><span class="line"><span class="comment">/* 081 */</span> scan_batchIdx_0 = <span class="number">0</span>;</span><br><span class="line"><span class="comment">/* 082 */</span> scan_mutableStateArray_2[<span class="number">0</span>] = (org.apache.spark.sql.execution.vectorized.<span class="type">OffHeapColumnVector</span>) (outputMetaColumns ?</span><br><span class="line"><span class="comment">/* 083 */</span> scan_mutableStateArray_1[<span class="number">0</span>].column(<span class="number">0</span>, <span class="literal">true</span>) : scan_mutableStateArray_1[<span class="number">0</span>].column(<span class="number">0</span>));</span><br><span class="line"><span class="comment">/* 084 */</span></span><br><span class="line"><span class="comment">/* 085 */</span> &#125;</span><br><span class="line"><span class="comment">/* 086 */</span> scan_scanTime_0 += <span class="type">System</span>.nanoTime() - getBatchStart;</span><br><span class="line"><span class="comment">/* 087 */</span> &#125;</span><br><span class="line"><span class="comment">/* 088 */</span></span><br><span class="line"><span class="comment">/* 089 */</span> <span class="keyword">private</span> void agg_doConsume_0() <span class="keyword">throws</span> java.io.<span class="type">IOException</span> &#123;</span><br><span class="line"><span class="comment">/* 090 */</span> <span class="comment">// do aggregate</span></span><br><span class="line"><span class="comment">/* 091 */</span> <span class="comment">// common sub-expressions</span></span><br><span class="line"><span class="comment">/* 092 */</span></span><br><span class="line"><span class="comment">/* 093 */</span> <span class="comment">// evaluate aggregate function</span></span><br><span class="line"><span class="comment">/* 094 */</span> long agg_value_1 = <span class="number">-1</span>L;</span><br><span class="line"><span class="comment">/* 095 */</span> agg_value_1 = agg_bufValue_0 + <span class="number">1</span>L;</span><br><span class="line"><span class="comment">/* 096 */</span> <span class="comment">// update aggregation buffer</span></span><br><span class="line"><span class="comment">/* 097 */</span> agg_bufIsNull_0 = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">/* 098 */</span> agg_bufValue_0 = agg_value_1;</span><br><span class="line"><span class="comment">/* 099 */</span></span><br><span class="line"><span class="comment">/* 100 */</span> &#125;</span><br><span class="line"><span class="comment">/* 101 */</span></span><br><span class="line"><span class="comment">/* 102 */</span> <span class="keyword">protected</span> void processNext() <span class="keyword">throws</span> java.io.<span class="type">IOException</span> &#123;</span><br><span class="line"><span class="comment">/* 103 */</span> <span class="keyword">while</span> (!agg_initAgg_0) &#123;</span><br><span class="line"><span class="comment">/* 104 */</span> agg_initAgg_0 = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">/* 105 */</span> long agg_beforeAgg_0 = <span class="type">System</span>.nanoTime();</span><br><span class="line"><span class="comment">/* 106 */</span> agg_doAggregateWithoutKey_0();</span><br><span class="line"><span class="comment">/* 107 */</span> ((org.apache.spark.sql.execution.metric.<span class="type">SQLMetric</span>) references[<span class="number">4</span>] <span class="comment">/* aggTime */</span>).add((<span class="type">System</span>.nanoTime() - agg_beforeAgg_0) / <span class="number">1000000</span>);</span><br><span class="line"><span class="comment">/* 108 */</span></span><br><span class="line"><span class="comment">/* 109 */</span> <span class="comment">// output the result</span></span><br><span class="line"><span class="comment">/* 110 */</span></span><br><span class="line"><span class="comment">/* 111 */</span> ((org.apache.spark.sql.execution.metric.<span class="type">SQLMetric</span>) references[<span class="number">3</span>] <span class="comment">/* numOutputRows */</span>).add(<span class="number">1</span>);</span><br><span class="line"><span class="comment">/* 112 */</span> scan_mutableStateArray_3[<span class="number">2</span>].reset();</span><br><span class="line"><span class="comment">/* 113 */</span></span><br><span class="line"><span class="comment">/* 114 */</span> scan_mutableStateArray_3[<span class="number">2</span>].zeroOutNullBytes();</span><br><span class="line"><span class="comment">/* 115 */</span></span><br><span class="line"><span class="comment">/* 116 */</span> scan_mutableStateArray_3[<span class="number">2</span>].write(<span class="number">0</span>, agg_bufValue_0);</span><br><span class="line"><span class="comment">/* 117 */</span> append((scan_mutableStateArray_3[<span class="number">2</span>].getRow()));</span><br><span class="line"><span class="comment">/* 118 */</span> &#125;</span><br><span class="line"><span class="comment">/* 119 */</span> &#125;</span><br><span class="line"><span class="comment">/* 120 */</span></span><br><span class="line"><span class="comment">/* 121 */</span> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Spark/" rel="tag"># Spark</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/SQL/" rel="tag"># SQL</a>
+              <a href="/tags/Codegen/" rel="tag"># Codegen</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Spark/Spark-concept/" rel="prev" title="Spark开发集锦">
+      <i class="fa fa-chevron-left"></i> Spark开发集锦
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Impala/01.Impala/" rel="next" title="Impala基础与痛点">
+      Impala基础与痛点 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Spark-Codegen"><span class="nav-number">1.</span> <span class="nav-text">1 Spark-Codegen</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 背景介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Case-Study"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Case Study</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-Expression%E7%BA%A7%E5%88%AB"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 Expression级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-WholeStage%E7%BA%A7%E5%88%AB"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 WholeStage级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-1-%E5%9B%9B%E4%B8%AA%E6%A0%B8%E5%BF%83%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1.2.2.1 四个核心接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-2-CodegenContext"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">1.2.2.2 CodegenContext</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-3-Produce-Consume-Pattern"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">1.2.2.3 Produce-Consume Pattern</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-WholeStageCodegen"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3 WholeStageCodegen</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

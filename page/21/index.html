@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/21/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/21/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-async-snapshot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-async-snapshot/" class="post-title-link" itemprop="url">Flink异步Barrier快照</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://matt33.com/2019/10/20/paper-flink-snapshot/">https://matt33.com/2019/10/20/paper-flink-snapshot/</a></p>
+<h2 id="Asynchronous-Barrier-Snapshot（ABS）"><a href="#Asynchronous-Barrier-Snapshot（ABS）" class="headerlink" title="Asynchronous Barrier Snapshot（ABS）"></a>Asynchronous Barrier Snapshot（ABS）</h2><p>默认情况下，Checkpoint机制是关闭的，需要调用env.enableCheckpointing(n)来开启，每隔n毫秒进行一次Checkpoint。Checkpoint是一种负载较重的任务，如果状态比较大，同时n值又比较小，那可能一次Checkpoint还没完成，下次Checkpoint已经被触发，占用太多本该用于正常数据处理的资源。增大n值意味着一个作业的Checkpoint次数更少，整个作业用于进行Checkpoint的资源更小，可以将更多的资源用于正常的流数据处理。同时，更大的n值意味着重启后，整个作业需要从更长的Offset开始重新处理数据。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-connectors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-connectors/" class="post-title-link" itemprop="url">Flink Connector之插件机制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Flink-Connector之插件机制"><a href="#Flink-Connector之插件机制" class="headerlink" title="Flink Connector之插件机制"></a>Flink Connector之插件机制</h1><blockquote>
+<p> Connector是Flink与外部存储连接的桥梁，Flink在对接外部存储和数据格式上</p>
+<p> 对于一个外部存储系统的库表来说，需要处理三方面的定义：</p>
+<ol>
+<li>connector: 定义了流、批、读、写的实现</li>
+<li>Format: 定义了数据的解析</li>
+<li>Schema: 定义了表的字段信息</li>
+</ol>
+<p> Flink使用Java SPI机制实现插件，方便扩展和管理。Flink更专注于计算，</p>
+<p> 而各种不同的Connector专注于实现批量读写、流式读写、数据一致性协议、分区、offset和时间戳生成等逻辑</p>
+<p> 本文主要介绍Flink Connector插件机制</p>
+</blockquote>
+<h2 id="Java-SPI"><a href="#Java-SPI" class="headerlink" title="Java SPI"></a>Java SPI</h2><p>(Service provider interface，服务提供者接口)，是Java提供的一套实现扩展的API。</p>
+<p>Java SPI是符合<a href="https://www.kancloud.cn/digest/java-designer-patten/163177">接口隔离原则</a>的设计，实现调用者和实现者的解耦，不同的实现方实现了可插拔：</p>
+<ol>
+<li>接口定义了交互的”协议”</li>
+<li>根据不同的实现方案，定义该接口的不同实现类</li>
+<li>调用者根据实际的使用需要，启用、扩展或者替换框架的实现策略</li>
+</ol>
+<p>常见的SPI的例子：</p>
+<ul>
+<li>数据库驱动加载: JDBC加载不同类型的数据库的驱动</li>
+<li>日志门面实现类的加载: Slf4J加载不同提供商的日志实现类</li>
+</ul>
+<p>使用介绍：</p>
+<ol>
+<li>服务提供者提供接口的实现类，实现类必须含义不带参数的改造方法</li>
+<li>在Jar包的<code>META-INF/services</code>目录下创建一个以“接口全限定名”为命名的文件，内容为实现类的全限定名；</li>
+<li>将接口的实现类所在的Jar包放在<code>classpath</code>中</li>
+<li><code>java.util.ServiceLoder</code>通过扫描<code>META-INF/services</code>目录下的配置文件找到实现类，加载类到JVM</li>
+</ol>
+<p><code>ServiceLoader</code></p>
+<ol>
+<li><code>ServiceLoader</code>可以跨越jar包获取META-INF下的配置文件</li>
+<li>通过反射方法Class.forName()加载类对象，并用instance()方法将类实例化</li>
+<li>把实例化后的类缓存到providers对象中，(<code>LinkedHashMap&lt;String,S&gt;</code>类型）<br> 然后返回实例对象</li>
+</ol>
+<p>性能损失</p>
+<ol>
+<li>延迟加载，需要遍历全部和加载全部实现类</li>
+<li>非线程安全</li>
+</ol>
+<h2 id="TableFactory的定义"><a href="#TableFactory的定义" class="headerlink" title="TableFactory的定义"></a>TableFactory的定义</h2><p>flink-table-common模块中定义了TableFactory的接口、调用者和工具类, </p>
+<h3 id="TableFactory"><a href="#TableFactory" class="headerlink" title="TableFactory"></a>TableFactory</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.flink.table.factories;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">用于从基于字符串的属性中创建与表相关的不同实例的一个工厂。 该工厂使用Java的服务提供商接口（SPI）做服务发现，使用一组描述所需配置的规范化属性来调用工厂。 工厂允许匹配给定的属性集。</span></span><br><span class="line"><span class="comment">将实现此接口的类添加到要找到的当前类路径中的JAR文件的&quot;META_INF/services/org.apache.flink.table.factories.TableFactory&quot;文件中</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TableFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	指定为此工厂实现的Context。 该框架保证仅在满足指定的属性和值集的情况下才与此工厂匹配。</span></span><br><span class="line"><span class="comment">典型的属性可能是：</span></span><br><span class="line"><span class="comment">-connector.type</span></span><br><span class="line"><span class="comment">-format.type</span></span><br><span class="line"><span class="comment">指定的属性版本允许框架在字符串格式更改的情况下提供向后兼容的属性：</span></span><br><span class="line"><span class="comment">-connector.property</span></span><br><span class="line"><span class="comment">-version-format.property-version</span></span><br><span class="line"><span class="comment">空上下文意味着工厂匹配所有请求。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="type">Map</span>&lt;String, String&gt; <span class="title function_">requiredContext</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	返回该工厂可以处理的属性键列表。 此方法将用于验证。 如果传递了该工厂无法处理的属性，则将引发异常。 该列表不得包含上下文指定的键。</span></span><br><span class="line"><span class="comment">示例属性可能是：</span></span><br><span class="line"><span class="comment">   - schema.#.type</span></span><br><span class="line"><span class="comment">	    - schema.#.name</span></span><br><span class="line"><span class="comment">	    - connector.topic</span></span><br><span class="line"><span class="comment">	    - format.line-delimiter</span></span><br><span class="line"><span class="comment">	    - format.ignore-parse-errors</span></span><br><span class="line"><span class="comment">	    - format.fields.#.type</span></span><br><span class="line"><span class="comment">	    - format.fields.#.name</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">注意：使用“＃”表示值的数组，其中“＃”表示一个或多个数字。 诸如“ format.property-version”之类的属性版本不得成为受支持属性的一部分。</span></span><br><span class="line"><span class="comment">在某些情况下，将通配符声明为“ *”可能会很有用。 通配符只能在属性键的末尾声明。</span></span><br><span class="line"><span class="comment">例如，如果应支持任意格式：</span></span><br><span class="line"><span class="comment">- format.*</span></span><br><span class="line"><span class="comment">注意：应谨慎使用通配符，因为它们会吞下不受支持的属性，从而可能导致不良行为</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="type">List</span>&lt;String&gt; <span class="title function_">supportedProperties</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以flink-hbase为例, 在<code>META-INF/services/</code>中定义了文件<code>org.apache.flink.table.factories.TableFactory</code></p>
+<p>文件的内容为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.apache.flink.addons.hbase.HBaseTableFactory</span><br></pre></td></tr></table></figure>
+
+<p>这个类就是TableFactory的实现</p>
+<h2 id="TableFactory查找"><a href="#TableFactory查找" class="headerlink" title="TableFactory查找"></a>TableFactory查找</h2><p>Flink 在 Connector的实现上，也是采用SPI机制</p>
+<p><img src="/images/bigdata/Flink/20210505014933.png"></p>
+<pre class="mermaid">graph LR
+A[SPI查找实现类]-->B[是否TableFactory的子类]
+B-->C[是否满足必要属性]
+C-->D[是否满足属性匹配]
+D-->E[创建TableFactory实现类]</pre>
+
+<p>入口方法: <code>org.apache.flink.table.factories.TableFactoryService#find(java.lang.Class&lt;T&gt;, java.util.Map&lt;java.lang.String,java.lang.String&gt;)</code></p>
+<p>调用样例: </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TableFactoryService</span>.find(classOf[<span class="type">TableFactory</span>[_]],sinkProperties)</span><br></pre></td></tr></table></figure>
+
+<p>最终调用查找方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> &lt;T <span class="keyword">extends</span> <span class="title class_">TableFactory</span>&gt; <span class="type">T</span> <span class="title function_">findSingleInternal</span><span class="params">(</span></span><br><span class="line"><span class="params">			Class&lt;T&gt; factoryClass,</span></span><br><span class="line"><span class="params">			Map&lt;String, String&gt; properties,</span></span><br><span class="line"><span class="params">			Optional&lt;ClassLoader&gt; classLoader)</span> &#123;</span><br><span class="line"><span class="comment">// 查找Factory</span></span><br><span class="line">		<span class="type">List</span>&lt;TableFactory&gt; <span class="variable">tableFactories</span> <span class="operator">=</span> discoverFactories(classLoader);</span><br><span class="line"><span class="comment">// 过滤Factory    </span></span><br><span class="line">		<span class="type">List</span>&lt;T&gt; <span class="variable">filtered</span> <span class="operator">=</span> filter(tableFactories, factoryClass, properties);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (filtered.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line"><span class="comment">// 查找到超过1个，抛出异常      </span></span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">AmbiguousTableFactoryException</span>(</span><br><span class="line">				filtered,</span><br><span class="line">				factoryClass,</span><br><span class="line">				tableFactories,</span><br><span class="line">				properties);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> filtered.get(<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查找实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">List</span>&lt;TableFactory&gt; <span class="title function_">discoverFactories</span><span class="params">(Optional&lt;ClassLoader&gt; classLoader)</span> &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="type">List</span>&lt;TableFactory&gt; <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">			<span class="type">ClassLoader</span> <span class="variable">cl</span> <span class="operator">=</span> classLoader.orElse(Thread.currentThread().getContextClassLoader());</span><br><span class="line">			ServiceLoader</span><br><span class="line">				.load(TableFactory.class, cl)</span><br><span class="line">				.iterator()</span><br><span class="line">				.forEachRemaining(result::add);</span><br><span class="line">			<span class="keyword">return</span> result;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ServiceConfigurationError e) &#123;</span><br><span class="line">			LOG.error(<span class="string">&quot;Could not load service provider for table factories.&quot;</span>, e);</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TableException</span>(<span class="string">&quot;Could not load service provider for table factories.&quot;</span>, e);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>过滤</p>
+<p>有三层过滤: </p>
+<ul>
+<li>filterByFactoryClass: 判断是否为TableFactory的实现类</li>
+<li>filterByContext: 判断必要属性是否匹配: 来源于TableFactory.requiredContext</li>
+<li>filterBySupportedProperties: 判断属性是否支持：来源于TableFactory.supportedProperties</li>
+</ul>
+<h2 id="TableFactory的分类"><a href="#TableFactory的分类" class="headerlink" title="TableFactory的分类"></a>TableFactory的分类</h2><p><img src="/images/bigdata/Flink/20210505012958.png" alt="OPPO&#39;s Real-time Data Warehouse and Development of Flink SQL | Medium"></p>
+<p>对于一个外部存储系统的库表来说，需要处理三方面的定义：</p>
+<ol>
+<li>connector: 定义了流、批、读、写的实现</li>
+<li>Format: 定义了数据的解析</li>
+<li>Schema: 定义了表的字段信息</li>
+</ol>
+<p>Schema信息可以在注册库表的时候直接增加，connector、format信息通过TableFactory实现可插拔</p>
+<p><img src="/images/bigdata/Flink/20210505014815.png"></p>
+<pre class="mermaid">classDiagram
+      TableFactory <|-- StreamTableSourceFactory~T~
+      TableFactory <|-- StreamTableSinkFactory~T~
+      TableFactory <|-- BatchTableSourceFactory~T~
+      TableFactory <|-- BatchTableSinkFactory~T~
+      TableFactory <|-- TableFormatFactory~T~
+	  StreamTableSourceFactory <|-- HBaseTableFactory
+	  StreamTableSinkFactory <|-- HBaseTableFactory
+      class TableFactory{
+         +requiredConext() Map~StringString~
+         +supportedProperties() List~String~
+      }
+      class StreamTableSourceFactory{
+      	 +createStreamTableSink(Map<String, String>) StreamTableSink~T~
+      	 +createTableSink(Map<String, String>) TableSink~T~
+      }
+	  class StreamTableSinkFactory{
+		  +createStreamTableSink(Map<String, String>) StreamTableSink~T~
+		  +createTableSink(Map<String, String>) TableSink~T~
+
+	  }
+      class BatchTableSourceFactory{
+      	+createBatchTableSource(Map<String, String>) BatchTableSource~T~
+      	+createTableSource(Map<String, String>) TableSource~T~
+      }
+      class BatchTableSinkFactory{
+      	+createBatchTableSink(Map<String, String>) BatchTableSink~T~
+      	+createTableSink(Map<String, String>) TableSink~T~
+      }
+	  class TableFormatFactory{
+		  +supportsSchemaDerivation()
+		  +supportedProperties() List~String~
+	  }
+	  class HBaseTableFactory{
+	  }</pre>
+
+<p>TableFactory可以分为:</p>
+<ul>
+<li>StreamTableSourceFactory</li>
+<li>StreamTableSinkFactory</li>
+<li>BatchTableSourceFactory</li>
+<li>BatchTableSinkFactory</li>
+<li>TableFormatFactory</li>
+</ul>
+<h2 id="常见的Connector样例"><a href="#常见的Connector样例" class="headerlink" title="常见的Connector样例"></a>常见的Connector样例</h2><p>援引一张1.10的优化设计图</p>
+<p><img src="/images/bigdata/Flink/20210429220246.png" alt="img"></p>
+<h3 id="kafka-DDL定义"><a href="#kafka-DDL定义" class="headerlink" title="kafka-DDL定义"></a>kafka-DDL定义</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> orders_kafka (</span><br><span class="line">  ...</span><br><span class="line">  etime <span class="type">timestamp</span>(<span class="number">3</span>),</span><br><span class="line">  watermark <span class="keyword">for</span> etime <span class="keyword">as</span> etime <span class="operator">-</span> <span class="type">interval</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">second</span> </span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line">  <span class="string">&#x27;connector.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;kafka&#x27;</span>, <span class="comment">-- connector信息</span></span><br><span class="line">  <span class="string">&#x27;connector.version&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;universal&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.topic&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;kafka-2-mysql-window&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.properties.zookeeper.connect&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;localhost:2181&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.properties.bootstrap.servers&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;localhost:9092&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.properties.group.id&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;order-streaming-test&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;connector.startup-mode&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;earliest-offset&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;update-mode&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;append&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;format.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;json&#x27;</span>, <span class="comment">-- format信息</span></span><br><span class="line">  <span class="string">&#x27;format.derive-schema&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;true&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="MySQL-DDL定义"><a href="#MySQL-DDL定义" class="headerlink" title="MySQL-DDL定义"></a>MySQL-DDL定义</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> agg_result (</span><br><span class="line">  ...</span><br><span class="line">  time_id STRING</span><br><span class="line">) <span class="keyword">WITH</span> (</span><br><span class="line">   <span class="string">&#x27;connector.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;jdbc&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;connector.driver&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;com.mysql.cj.jdbc.Driver&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;connector.url&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;jdbc:mysql://localhost:3306/fdata&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;connector.table&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;t_agg_result&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;connector.username&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;connector.password&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;---&#x27;</span></span><br><span class="line">)   </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Connector设计要点"><a href="#Connector设计要点" class="headerlink" title="Connector设计要点"></a>Connector设计要点</h2><ol>
+<li>自定义Factory，根据需要实现StreamTableSourceFactory和StreamTableSinkFactory</li>
+<li>根据需要继承ConnectorDescriptorValidator，定义自己的connector参数（with 后面跟的那些）</li>
+<li>Factory中的requiredContext、supportedProperties都比较重要，框架中对Factory的过滤和检查需要他们</li>
+<li>需要自定义个TableSink，根据你需要连接的中间件选择是AppendStreamTableSink、Upsert、Retract重写consumeDataStream方法</li>
+<li>自定义一个SinkFunction，在invoke方法中实现将数据写入到外部中间件。</li>
+</ol>
+<h3 id="SourceFunction"><a href="#SourceFunction" class="headerlink" title="SourceFunction"></a>SourceFunction</h3><p>SourceFunction是定义Flink Source的根接口，其源码如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Public</span>   </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SourceFunction</span>&lt;T&gt; <span class="keyword">extends</span> <span class="title class_">Function</span>, Serializable &#123;</span><br><span class="line">	<span class="type">void</span> <span class="title function_">run</span><span class="params">(SourceContext&lt;T&gt; ctx)</span> <span class="keyword">throws</span> Exception;</span><br><span class="line">	<span class="type">void</span> <span class="title function_">cancel</span><span class="params">()</span>;</span><br><span class="line">	<span class="keyword">interface</span> <span class="title class_">SourceContext</span>&lt;T&gt; &#123;</span><br><span class="line">	<span class="type">void</span> <span class="title function_">collect</span><span class="params">(T element)</span>;              </span><br><span class="line">		<span class="meta">@PublicEvolving</span>           </span><br><span class="line">		<span class="type">void</span> <span class="title function_">collectWithTimestamp</span><span class="params">(T element, <span class="type">long</span> timestamp)</span>;              </span><br><span class="line">		<span class="type">void</span> <span class="title function_">emitWatermark</span><span class="params">(Watermark mark)</span>;              </span><br><span class="line">		<span class="meta">@PublicEvolving</span>           </span><br><span class="line">		<span class="type">void</span> <span class="title function_">markAsTemporarilyIdle</span><span class="params">()</span>;              </span><br><span class="line">		<span class="type">Object</span> <span class="title function_">getCheckpointLock</span><span class="params">()</span>;              </span><br><span class="line">		<span class="type">void</span> <span class="title function_">close</span><span class="params">()</span>;       </span><br><span class="line">	&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>SourceFunction接口定义了run()方法，该方法用于源源不断地产生源数据，因此重写的时候一般都写成循环，用标志位控制是否结束。cancel()方法则用来打断run()方法中的循环，终止产生数据的过程。</p>
+<p>SourceFunction中还嵌套定义了SourceContext接口，它表示这个Source对应的上下文，用来发射数据。其中起主要作用的是前三个方法：</p>
+<ul>
+<li><p>collect()：发射一个不带自定义时间戳的元素。如果流程序的时间特征（TimeCharacteristic）是处理时间（ProcessingTime），元素没有时间戳；如果是摄入时间（IngestionTime），元素会附带系统时间；如果是事件时间（EventTime），那么初始没有时间戳，但一旦要做与时间戳相关的操作（如窗口）时，就必须用TimestampAssigner设定一个。</p>
+</li>
+<li><p>collectWithTimestamp()：发射一个带有自定义时间戳的元素。该方法对于时间特征为事件时间的程序是绝对必须的，如果为处理时间就会被直接忽略，如果为摄入时间就会被系统时间覆盖。</p>
+</li>
+<li><p>emitWatermark()：发射一个水印，仅对于事件时间有效。一个带有时间戳t的水印表示不会有任何t’ &lt;&#x3D; t的事件再发生，如果发生，会被当做迟到事件忽略掉。</p>
+</li>
+</ul>
+<p>SourceFunction还有一些其他实现，如：</p>
+<ul>
+<li><p>ParallelSourceFunction，表示该Source可以按照设置的并行度并发执行。</p>
+</li>
+<li><p>RichSourceFunction，继承自富函数RichFunction，表示该Source可以感知到运行时上下文（RuntimeContext，如Task、State、并行度的信息），以及可以自定义初始化和销毁逻辑（通过open()&#x2F;close()方法）。</p>
+</li>
+<li><p>RichParallelSourceFunction，以上两者的综合。</p>
+</li>
+</ul>
+<h3 id="SinkFunction"><a href="#SinkFunction" class="headerlink" title="SinkFunction"></a>SinkFunction</h3><p>SinkFunction是自定义Sink的根接口，其源码如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SinkFunction</span>&lt;IN&gt; <span class="keyword">extends</span> <span class="title class_">Function</span>, Serializable &#123;       </span><br><span class="line">	<span class="meta">@Deprecated</span>       </span><br><span class="line">	<span class="keyword">default</span> <span class="type">void</span> <span class="title function_">invoke</span><span class="params">(IN value)</span> <span class="keyword">throws</span> Exception &#123;&#125;          </span><br><span class="line">	<span class="keyword">default</span> <span class="type">void</span> <span class="title function_">invoke</span><span class="params">(IN value, Context context)</span> <span class="keyword">throws</span> Exception &#123;           </span><br><span class="line">		invoke(value);       </span><br><span class="line">	&#125;          </span><br><span class="line">	<span class="meta">@Public</span>        </span><br><span class="line">	<span class="keyword">interface</span> <span class="title class_">Context</span>&lt;T&gt; &#123;           </span><br><span class="line">		<span class="type">long</span> <span class="title function_">currentProcessingTime</span><span class="params">()</span>;              </span><br><span class="line">		<span class="type">long</span> <span class="title function_">currentWatermark</span><span class="params">()</span>;              </span><br><span class="line">		<span class="type">Long</span> <span class="title function_">timestamp</span><span class="params">()</span>;       </span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>它的定义比SourceFunction要简单，只有一个invoke()方法，对收集来的每条数据都会调用它来处理。SinkFunction也有对应的上下文对象Context，可以从中获得当前处理时间、当前水印和时间戳。它也有衍生出来的富函数版本RichSinkFunction。</p>
+<p>Flink内部提供了一个最简单的实现DiscardingSink。顾名思义，就是将所有汇集的数据全部丢弃。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Public</span>   </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DiscardingSink</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">SinkFunction</span>&lt;T&gt; &#123;       </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;          </span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span>       </span><br><span class="line">	<span class="keyword">public</span> <span class="type">void</span> <span class="title function_">invoke</span><span class="params">(T value)</span> &#123;</span><br><span class="line">	</span><br><span class="line">	&#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>参考文献</p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/117654469">Flink深入浅出：JDBC Connector源码分析</a></li>
+<li><a href="https://mp.weixin.qq.com/s/kZQRQBVjYiXKfMhKM7SSqQ">Flink Source&#x2F;Sink探究与实践：RocketMQ数据写入HBase</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-join/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-join/" class="post-title-link" itemprop="url">Flink stream API中Join实现方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Flink-join"><a href="#Flink-join" class="headerlink" title="Flink join"></a>Flink join</h1><p>Flink DataStream API为用户提供了3个算子来实现双流join，分别是：</p>
+<ul>
+<li>join():   inner join，on window</li>
+<li>coGroup():   custom join, on window</li>
+<li>intervalJoin():   inner join, on time range, keyed stream</li>
+</ul>
+<p>另外，还提供了broadcast join来关联较小的</p>
+<h2 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h2><p>从Kafka分别接入点击流和订单流，并转化为POJO。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DataStream</span>&lt;String&gt; <span class="variable">clickSourceStream</span> <span class="operator">=</span> env</span><br><span class="line">  .addSource(<span class="keyword">new</span> <span class="title class_">FlinkKafkaConsumer011</span>&lt;&gt;(</span><br><span class="line">    <span class="string">&quot;ods_analytics_access_log&quot;</span>,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">SimpleStringSchema</span>(),</span><br><span class="line">    kafkaProps</span><br><span class="line">  ).setStartFromLatest());</span><br><span class="line"><span class="type">DataStream</span>&lt;String&gt; <span class="variable">orderSourceStream</span> <span class="operator">=</span> env</span><br><span class="line">  .addSource(<span class="keyword">new</span> <span class="title class_">FlinkKafkaConsumer011</span>&lt;&gt;(</span><br><span class="line">    <span class="string">&quot;ods_ms_order_done&quot;</span>,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">SimpleStringSchema</span>(),</span><br><span class="line">    kafkaProps</span><br><span class="line">  ).setStartFromLatest());</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;AnalyticsAccessLogRecord&gt; <span class="variable">clickRecordStream</span> <span class="operator">=</span> clickSourceStream</span><br><span class="line">  .map(message -&gt; JSON.parseObject(message, AnalyticsAccessLogRecord.class));</span><br><span class="line"><span class="type">DataStream</span>&lt;OrderDoneLogRecord&gt; <span class="variable">orderRecordStream</span> <span class="operator">=</span> orderSourceStream</span><br><span class="line">  .map(message -&gt; JSON.parseObject(message, OrderDoneLogRecord.class));</span><br></pre></td></tr></table></figure>
+
+<h2 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h2><p>join()算子提供的语义为”<strong>Window join</strong>“，即按照指定字段和（滚动&#x2F;滑动&#x2F;会话）窗口进行<strong>inner join</strong>，支持处理时间和事件时间两种时间特征。</p>
+<p>以下示例以10秒滚动窗口，将两个流通过商品ID关联，取得订单流中的售价相关字段。</p>
+<p><img src="/images/bigdata/Flink/webp.webp"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">clickRecordStream</span><br><span class="line">  .join(orderRecordStream)</span><br><span class="line">  .where(record -&gt; record.getMerchandiseId())</span><br><span class="line">  .equalTo(record -&gt; record.getMerchandiseId())</span><br><span class="line">  .window(TumblingProcessingTimeWindows.of(Time.seconds(<span class="number">10</span>)))</span><br><span class="line">  .apply(<span class="keyword">new</span> <span class="title class_">JoinFunction</span>&lt;AnalyticsAccessLogRecord, OrderDoneLogRecord, String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">String</span> <span class="title function_">join</span><span class="params">(AnalyticsAccessLogRecord accessRecord, OrderDoneLogRecord orderRecord)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">      <span class="keyword">return</span> StringUtils.join(Arrays.asList(</span><br><span class="line">        accessRecord.getMerchandiseId(),</span><br><span class="line">        orderRecord.getPrice(),</span><br><span class="line">        orderRecord.getCouponMoney(),</span><br><span class="line">        orderRecord.getRebateAmount()</span><br><span class="line">      ), <span class="string">&#x27;\t&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .print().setParallelism(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>简单易用。</p>
+<h2 id="coGroup"><a href="#coGroup" class="headerlink" title="coGroup()"></a>coGroup()</h2><p>只有inner join肯定还不够，如何实现left&#x2F;right outer join呢？答案就是利用coGroup()算子。它的调用方式类似于join()算子，也需要开窗，但是CoGroupFunction比JoinFunction更加灵活，可以按照用户指定的逻辑匹配左流和&#x2F;或右流的数据并输出。</p>
+<p>以下的例子就实现了点击流left join订单流的功能，是很朴素的nested loop join思想（二重循环）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">clickRecordStream</span><br><span class="line">  .coGroup(orderRecordStream)</span><br><span class="line">  .where(record -&gt; record.getMerchandiseId())</span><br><span class="line">  .equalTo(record -&gt; record.getMerchandiseId())</span><br><span class="line">  .window(TumblingProcessingTimeWindows.of(Time.seconds(<span class="number">10</span>)))</span><br><span class="line">  .apply(<span class="keyword">new</span> <span class="title class_">CoGroupFunction</span>&lt;AnalyticsAccessLogRecord, OrderDoneLogRecord, Tuple2&lt;String, Long&gt;&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">coGroup</span><span class="params">(Iterable&lt;AnalyticsAccessLogRecord&gt; accessRecords, Iterable&lt;OrderDoneLogRecord&gt; orderRecords, Collector&lt;Tuple2&lt;String, Long&gt;&gt; collector)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">      <span class="keyword">for</span> (AnalyticsAccessLogRecord accessRecord : accessRecords) &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isMatched</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (OrderDoneLogRecord orderRecord : orderRecords) &#123;</span><br><span class="line">          <span class="comment">// 右流中有对应的记录</span></span><br><span class="line">          collector.collect(<span class="keyword">new</span> <span class="title class_">Tuple2</span>&lt;&gt;(accessRecord.getMerchandiseName(), orderRecord.getPrice()));</span><br><span class="line">          isMatched = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!isMatched) &#123;</span><br><span class="line">          <span class="comment">// 右流中没有对应的记录</span></span><br><span class="line">          collector.collect(<span class="keyword">new</span> <span class="title class_">Tuple2</span>&lt;&gt;(accessRecord.getMerchandiseName(), <span class="literal">null</span>));</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .print().setParallelism(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>CoGroupFunction中会返回所有数据，不管有没有匹配上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DataStream</span>&lt;Tuple3&lt;Long, String, String&gt;&gt; <span class="variable">input1</span> <span class="operator">=</span> ...;</span><br><span class="line">input1 = input1.assignTimestampsAndWatermarks(<span class="keyword">new</span> <span class="title class_">AscendingTimestampExtractor</span>&lt;Tuple3&lt;Long, String, String&gt;&gt;() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">long</span> <span class="title function_">extractAscendingTimestamp</span><span class="params">(Tuple3&lt;Long, String, String&gt; arg0)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> arg0.f0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;Tuple2&lt;Long, String&gt;&gt; <span class="variable">input2</span> <span class="operator">=</span> ...;</span><br><span class="line">input2 = input2.assignTimestampsAndWatermarks(<span class="keyword">new</span> <span class="title class_">AscendingTimestampExtractor</span>&lt;Tuple2&lt;Long, String&gt;&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">long</span> <span class="title function_">extractAscendingTimestamp</span><span class="params">(Tuple2&lt;Long, String&gt; stringStringTuple2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> stringStringTuple2.f0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">input1.coGroup(input2).where(<span class="keyword">new</span> <span class="title class_">KeySelector</span>&lt;Tuple3&lt;Long, String, String&gt;, String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">String</span> <span class="title function_">getKey</span><span class="params">(Tuple3&lt;Long, String, String&gt; itemEntity)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> itemEntity.f1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.equalTo(<span class="keyword">new</span> <span class="title class_">KeySelector</span>&lt;Tuple2&lt;Long, String&gt;, String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">String</span> <span class="title function_">getKey</span><span class="params">(Tuple2&lt;Long, String&gt; value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> value.f1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.window(TumblingEventTimeWindows.of(Time.minutes(<span class="number">1</span>)))</span><br><span class="line">.apply(<span class="keyword">new</span> <span class="title class_">CoGroupFunction</span>&lt;Tuple3&lt;Long, String, String&gt;, Tuple2&lt;Long, String&gt;, String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">coGroup</span><span class="params">(Iterable&lt;Tuple3&lt;Long, String, String&gt;&gt; first,</span></span><br><span class="line"><span class="params">            Iterable&lt;Tuple2&lt;Long, String&gt;&gt; second, Collector&lt;String&gt; collector)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">buffer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        buffer.append(<span class="string">&quot;DataStream first:\n&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Tuple3&lt;Long, String, String&gt; value : first) &#123;</span><br><span class="line">            buffer.append(value).append(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        buffer.append(<span class="string">&quot;DataStream second:\n&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Tuple2&lt;Long, String&gt; value : second) &#123;</span><br><span class="line">            buffer.append(value.f0).append(<span class="string">&quot;=&gt;&quot;</span>).append(value.f1).append(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        collector.collect(buffer.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.print();</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子，左流有三个元素 <code>Tuple3&lt;String,String,String&gt;</code>，右流有两个元素<code>Tuple2&lt;String,String&gt;</code><br>两个流第一个元素相互关联。分别指定两个流的事件时间字段。<br>两个流关联后，按照EventTime划分窗口。与单流类似。<br>不管元素是否可以关联上，都会输出</p>
+<p>用户可以定义CoGroupFunction函数, 可以实现在窗口内，任意组合，如笛卡尔积</p>
+<h2 id="intervalJoin"><a href="#intervalJoin" class="headerlink" title="intervalJoin()"></a>intervalJoin()</h2><p>join()和coGroup()都是基于窗口做关联的。但是在某些情况下，两条流的数据步调未必一致。例如，订单流的数据有可能在点击流的购买动作发生之后很久才被写入，如果用窗口来圈定，很容易join不上。所以Flink又提供了”<strong>Interval join</strong>“的语义，按照指定字段以及<strong>右流相对左流偏移的时间区间</strong>进行关联，即：</p>
+<blockquote>
+<p>$right.timestamp ∈ [left.timestamp + lowerBound; left.timestamp + upperBound]$</p>
+</blockquote>
+<p><img src="/images/bigdata/Flink/4903841188593.png"></p>
+<p>interval join也是inner join，虽然不需要开窗，但是需要用户指定偏移区间的上下界，并且<strong>只支持事件时间</strong>。</p>
+<p>示例代码如下。注意在运行之前，需要分别在两个流上应用assignTimestampsAndWatermarks()方法获取事件时间戳和水印。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">clickRecordStream</span><br><span class="line">  .keyBy(record -&gt; record.getMerchandiseId())</span><br><span class="line">  .intervalJoin(orderRecordStream.keyBy(record -&gt; record.getMerchandiseId()))</span><br><span class="line">  .between(Time.seconds(-<span class="number">30</span>), Time.seconds(<span class="number">30</span>))</span><br><span class="line">  .process(<span class="keyword">new</span> <span class="title class_">ProcessJoinFunction</span>&lt;AnalyticsAccessLogRecord, OrderDoneLogRecord, String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">processElement</span><span class="params">(AnalyticsAccessLogRecord accessRecord, OrderDoneLogRecord orderRecord, Context context, Collector&lt;String&gt; collector)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">      collector.collect(StringUtils.join(Arrays.asList(</span><br><span class="line">        accessRecord.getMerchandiseId(),</span><br><span class="line">        orderRecord.getPrice(),</span><br><span class="line">        orderRecord.getCouponMoney(),</span><br><span class="line">        orderRecord.getRebateAmount()</span><br><span class="line">      ), <span class="string">&#x27;\t&#x27;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  .print().setParallelism(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由上可见，interval join与window join不同，是两个KeyedStream之上的操作，并且需要调用between()方法指定偏移区间的上下界。如果想令上下界是开区间，可以调用upperBoundExclusive()&#x2F;lowerBoundExclusive()方法。</p>
+<h3 id="interval-join的实现原理"><a href="#interval-join的实现原理" class="headerlink" title="interval join的实现原理"></a>interval join的实现原理</h3><p>以下是KeyedStream.process(ProcessJoinFunction)方法调用的重载方法的逻辑。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;OUT&gt; <span class="type">SingleOutputStreamOperator</span>&lt;OUT&gt; <span class="title function_">process</span><span class="params">(</span></span><br><span class="line"><span class="params">        ProcessJoinFunction&lt;IN1, IN2, OUT&gt; processJoinFunction,</span></span><br><span class="line"><span class="params">        TypeInformation&lt;OUT&gt; outputType)</span> &#123;</span><br><span class="line">    Preconditions.checkNotNull(processJoinFunction);</span><br><span class="line">    Preconditions.checkNotNull(outputType);</span><br><span class="line">    <span class="keyword">final</span> <span class="type">ProcessJoinFunction</span>&lt;IN1, IN2, OUT&gt; <span class="variable">cleanedUdf</span> <span class="operator">=</span> left.getExecutionEnvironment().clean(processJoinFunction);</span><br><span class="line">    <span class="keyword">final</span> <span class="type">IntervalJoinOperator</span>&lt;KEY, IN1, IN2, OUT&gt; <span class="variable">operator</span> <span class="operator">=</span></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">IntervalJoinOperator</span>&lt;&gt;(</span><br><span class="line">            lowerBound,</span><br><span class="line">            upperBound,</span><br><span class="line">            lowerBoundInclusive,</span><br><span class="line">            upperBoundInclusive,</span><br><span class="line">            left.getType().createSerializer(left.getExecutionConfig()),</span><br><span class="line">            right.getType().createSerializer(right.getExecutionConfig()),</span><br><span class="line">            cleanedUdf</span><br><span class="line">        );</span><br><span class="line">    <span class="keyword">return</span> left</span><br><span class="line">        .connect(right)</span><br><span class="line">        .keyBy(keySelector1, keySelector2)</span><br><span class="line">        .transform(<span class="string">&quot;Interval Join&quot;</span>, outputType, operator);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可见是先对两条流执行connect()和keyBy()操作，然后利用IntervalJoinOperator算子进行转换。在IntervalJoinOperator中，会利用两个MapState分别缓存左流和右流的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> MapState&lt;Long, List&lt;BufferEntry&lt;T1&gt;&gt;&gt; leftBuffer;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> MapState&lt;Long, List&lt;BufferEntry&lt;T2&gt;&gt;&gt; rightBuffer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">initializeState</span><span class="params">(StateInitializationContext context)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="built_in">super</span>.initializeState(context);</span><br><span class="line">    <span class="built_in">this</span>.leftBuffer = context.getKeyedStateStore().getMapState(<span class="keyword">new</span> <span class="title class_">MapStateDescriptor</span>&lt;&gt;(</span><br><span class="line">        LEFT_BUFFER,</span><br><span class="line">        LongSerializer.INSTANCE,</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">ListSerializer</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">BufferEntrySerializer</span>&lt;&gt;(leftTypeSerializer))</span><br><span class="line">    ));</span><br><span class="line">    <span class="built_in">this</span>.rightBuffer = context.getKeyedStateStore().getMapState(<span class="keyword">new</span> <span class="title class_">MapStateDescriptor</span>&lt;&gt;(</span><br><span class="line">        RIGHT_BUFFER,</span><br><span class="line">        LongSerializer.INSTANCE,</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">ListSerializer</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">BufferEntrySerializer</span>&lt;&gt;(rightTypeSerializer))</span><br><span class="line">    ));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>Long</code>表示事件时间戳，<code>List&lt;BufferEntry&lt;T&gt;&gt;</code>表示该时刻到来的数据记录。</p>
+<p>当左流和右流有数据到达时，会分别调用<code>processElement1()</code>和<code>processElement2()</code>方法，它们都调用了<code>processElement()</code>方法，代码如下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">processElement1</span><span class="params">(StreamRecord&lt;T1&gt; record)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    processElement(record, leftBuffer, rightBuffer, lowerBound, upperBound, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">processElement2</span><span class="params">(StreamRecord&lt;T2&gt; record)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    processElement(record, rightBuffer, leftBuffer, -upperBound, -lowerBound, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line"><span class="keyword">private</span> &lt;THIS, OTHER&gt; <span class="type">void</span> <span class="title function_">processElement</span><span class="params">(</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> StreamRecord&lt;THIS&gt; record,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> MapState&lt;Long, List&lt;IntervalJoinOperator.BufferEntry&lt;THIS&gt;&gt;&gt; ourBuffer,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> MapState&lt;Long, List&lt;IntervalJoinOperator.BufferEntry&lt;OTHER&gt;&gt;&gt; otherBuffer,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> <span class="type">long</span> relativeLowerBound,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> <span class="type">long</span> relativeUpperBound,</span></span><br><span class="line"><span class="params">        <span class="keyword">final</span> <span class="type">boolean</span> isLeft)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">THIS</span> <span class="variable">ourValue</span> <span class="operator">=</span> record.getValue();</span><br><span class="line">    <span class="keyword">final</span> <span class="type">long</span> <span class="variable">ourTimestamp</span> <span class="operator">=</span> record.getTimestamp();</span><br><span class="line">    <span class="keyword">if</span> (ourTimestamp == Long.MIN_VALUE) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">FlinkException</span>(<span class="string">&quot;Long.MIN_VALUE timestamp: Elements used in &quot;</span> +</span><br><span class="line">                <span class="string">&quot;interval stream joins need to have timestamps meaningful timestamps.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (isLate(ourTimestamp)) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    addToBuffer(ourBuffer, ourValue, ourTimestamp);</span><br><span class="line">    <span class="keyword">for</span> (Map.Entry&lt;Long, List&lt;BufferEntry&lt;OTHER&gt;&gt;&gt; bucket: otherBuffer.entries()) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">long</span> <span class="variable">timestamp</span>  <span class="operator">=</span> bucket.getKey();</span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; ourTimestamp + relativeLowerBound ||</span><br><span class="line">                timestamp &gt; ourTimestamp + relativeUpperBound) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (BufferEntry&lt;OTHER&gt; entry: bucket.getValue()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (isLeft) &#123;</span><br><span class="line">                collect((T1) ourValue, (T2) entry.element, ourTimestamp, timestamp);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                collect((T1) entry.element, (T2) ourValue, timestamp, ourTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">long</span> <span class="variable">cleanupTime</span> <span class="operator">=</span> (relativeUpperBound &gt; <span class="number">0L</span>) ? ourTimestamp + relativeUpperBound : ourTimestamp;</span><br><span class="line">    <span class="keyword">if</span> (isLeft) &#123;</span><br><span class="line">        internalTimerService.registerEventTimeTimer(CLEANUP_NAMESPACE_LEFT, cleanupTime);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        internalTimerService.registerEventTimeTimer(CLEANUP_NAMESPACE_RIGHT, cleanupTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码的思路是：</p>
+<ol>
+<li>取得当前流<code>StreamRecord</code>的时间戳，调用<code>isLate()</code>方法判断它是否是迟到数据（即时间戳小于当前水印值），如是则丢弃。</li>
+<li>调用<code>addToBuffer()</code>方法，将时间戳和数据一起插入当前流对应的<code>MapState</code>。</li>
+<li>遍历另外一个流的<code>MapState</code>，如果数据满足前述的时间区间条件，则调用<code>collect()</code>方法将该条数据投递给用户定义的<code>ProcessJoinFunction</code>进行处理。<br><code>collect()</code>方法的代码如下，注意结果对应的时间戳是左右流时间戳里较大的那个。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">void</span> <span class="title function_">collect</span><span class="params">(T1 left, T2 right, <span class="type">long</span> leftTimestamp, <span class="type">long</span> rightTimestamp)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">long</span> <span class="variable">resultTimestamp</span> <span class="operator">=</span> Math.max(leftTimestamp, rightTimestamp);</span><br><span class="line">    collector.setAbsoluteTimestamp(resultTimestamp);</span><br><span class="line">    context.updateTimestamps(leftTimestamp, rightTimestamp, resultTimestamp);</span><br><span class="line">    userFunction.processElement(left, right, context, collector);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>调用<code>TimerService.registerEventTimeTimer()</code>注册时间戳为<code>timestamp + relativeUpperBound</code>的定时器，该定时器负责在水印超过区间的上界时执行状态的清理逻辑，防止数据堆积。注意左右流的定时器所属的<code>namespace</code>是不同的，具体逻辑则位于<code>onEventTime()</code>方法中。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">onEventTime</span><span class="params">(InternalTimer&lt;K, String&gt; timer)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">long</span> <span class="variable">timerTimestamp</span> <span class="operator">=</span> timer.getTimestamp();</span><br><span class="line">    <span class="type">String</span> <span class="variable">namespace</span> <span class="operator">=</span> timer.getNamespace();</span><br><span class="line">    logger.trace(<span class="string">&quot;onEventTime @ &#123;&#125;&quot;</span>, timerTimestamp);</span><br><span class="line">    <span class="keyword">switch</span> (namespace) &#123;</span><br><span class="line">        <span class="keyword">case</span> CLEANUP_NAMESPACE_LEFT: &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">timestamp</span> <span class="operator">=</span> (upperBound &lt;= <span class="number">0L</span>) ? timerTimestamp : timerTimestamp - upperBound;</span><br><span class="line">            logger.trace(<span class="string">&quot;Removing from left buffer @ &#123;&#125;&quot;</span>, timestamp);</span><br><span class="line">            leftBuffer.remove(timestamp);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">case</span> CLEANUP_NAMESPACE_RIGHT: &#123;</span><br><span class="line">            <span class="type">long</span> <span class="variable">timestamp</span> <span class="operator">=</span> (lowerBound &lt;= <span class="number">0L</span>) ? timerTimestamp + lowerBound : timerTimestamp;</span><br><span class="line">            logger.trace(<span class="string">&quot;Removing from right buffer @ &#123;&#125;&quot;</span>, timestamp);</span><br><span class="line">            rightBuffer.remove(timestamp);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Invalid namespace &quot;</span> + namespace);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="broadcast-join"><a href="#broadcast-join" class="headerlink" title="broadcast join"></a>broadcast join</h2><h2 id="interval-join"><a href="#interval-join" class="headerlink" title="interval join"></a>interval join</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-savepoint-recovery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-savepoint-recovery/" class="post-title-link" itemprop="url">Flink savepoint恢复过程解析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Flink-savepoint恢复"><a href="#Flink-savepoint恢复" class="headerlink" title="Flink savepoint恢复"></a>Flink savepoint恢复</h1><h2 id="运行日志分析"><a href="#运行日志分析" class="headerlink" title="运行日志分析"></a>运行日志分析</h2><h3 id="正常的恢复"><a href="#正常的恢复" class="headerlink" title="正常的恢复"></a>正常的恢复</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">236</span> - Initializing <span class="type">job</span> <span class="title function_">t_org_trade_day_dal_statistics_job</span> <span class="params">(000000000000eace000000000000001c)</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">164</span> - Using restart <span class="type">strategy</span> <span class="title function_">FixedDelayRestartStrategy</span><span class="params">(maxNumberRestartAttempts=<span class="number">10000</span>, delayBetweenRestartAttempts=<span class="number">20000</span>)</span> <span class="type">for</span> <span class="title function_">t_org_trade_day_dal_statistics_job</span> <span class="params">(000000000000eace000000000000001c)</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.yarn.YarnResourceManager                    :<span class="number">238</span> - Recovered <span class="number">0</span> containers from <span class="type">previous</span> <span class="title function_">attempts</span> <span class="params">([])</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy :<span class="number">81</span> - yarn.client.max-cached-nodemanagers-proxies : <span class="number">0</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.executiongraph.ExecutionGraph       :<span class="number">528</span> - Job recovers via failover strategy: full graph restart</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">203</span> - Running initialization on master <span class="keyword">for</span> <span class="type">job</span> <span class="title function_">t_org_trade_day_dal_statistics_job</span> <span class="params">(000000000000eace000000000000001c)</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">221</span> - Successfully ran initialization on master in <span class="number">0</span> ms.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.yarn.YarnResourceManager                    :<span class="number">1029</span> - ResourceManager akka.tcp:<span class="comment">//flink@9.44.10.157:35473/user/resourcemanager was granted leadership with fencing token 92d59c139e046177dbed78af07b744e8</span></span><br><span class="line">[main-EventThread] org.apache.flink.runtime.leaderservice.zookeeper.ZooKeeperLeaderElectionService :<span class="number">262</span> - org.apache.flink.yarn.YarnResourceManager@83ab9bf has been granted leadership.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.runtime.resourcemanager.slotmanager.SlotManagerImpl :<span class="number">215</span> - Starting the SlotManager.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.util.ZooKeeperUtils                 :<span class="number">301</span> - Initialized ZooKeeperCompletedCheckpointStore in <span class="string">&#x27;/checkpoints/000000000000eace000000000000001c&#x27;</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">200</span> - Using application-defined state backend: RocksDBStateBackend&#123;checkpointStreamBackend=File <span class="type">State</span> <span class="title function_">Backend</span> <span class="params">(checkpoints: <span class="string">&#x27;hdfs://qy-flink-1-v3/user/u_teg_tdbank/oceanus2/lj_cft_flink/fit-oceanus-prod/project-10001/job-60110/snapshots&#x27;</span>, savepoints: <span class="string">&#x27;null&#x27;</span>, asynchronous: UNDEFINED, fileStateThreshold: -<span class="number">1</span>)</span>, localRocksDbDirectories=<span class="literal">null</span>, enableIncrementalCheckpointing=UNDEFINED, numberOfTransferingThreads=-<span class="number">1</span>&#125;</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">207</span> - Configuring application-defined state backend with job/cluster config</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.contrib.streaming.state.RocksDBStateBackend :<span class="number">348</span> - Using predefined options: DEFAULT.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.contrib.streaming.state.RocksDBStateBackend :<span class="number">563</span> - Using <span class="keyword">default</span> options factory: DefaultConfigurableOptionsFactory&#123;configuredOptions=&#123;&#125;&#125;.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">128</span> - Recovering checkpoints from ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">146</span> - Found <span class="number">0</span> checkpoints in ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">163</span> - Trying to fetch <span class="number">0</span> checkpoints from storage.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1124</span> - Starting job 000000000000eace000000000000001c from savepoint hdfs:<span class="comment">//qy-flink-1-v3/user/u_teg_tdbank/oceanus2/lj_cft_flink/fit-oceanus-prod/project-10001/job-60110/snapshots/savepoint-000000-a5c820c4c53a (allowing non restored state)</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1139</span> - Reset the checkpoint ID of job 000000000000eace000000000000001c to <span class="number">370.</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">128</span> - Recovering checkpoints from ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">146</span> - Found <span class="number">1</span> checkpoints in ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">163</span> - Trying to fetch <span class="number">1</span> checkpoints from storage.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">336</span> - Trying to retrieve checkpoint <span class="number">369.</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1079</span> - Restoring job 000000000000eace000000000000001c from latest valid checkpoint: Checkpoint <span class="number">369</span> @ <span class="number">0</span> <span class="keyword">for</span> 000000000000eace000000000000001c.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">234</span> - No master state to restore</span><br><span class="line">[main-EventThread] org.apache.flink.runtime.jobmaster.JobManagerRunner          :<span class="number">298</span> - JobManager runner <span class="keyword">for</span> <span class="type">job</span> <span class="title function_">t_org_trade_day_dal_statistics_job</span> <span class="params">(000000000000eace000000000000001c)</span> was granted leadership with session id 3beb8d55-f7c2-<span class="number">4175</span>-9c7e-ac256f03e8bb at akka.tcp:<span class="comment">//flink@9.44.10.157:35473/user/jobmanager_0.</span></span><br><span class="line">[main-EventThread] org.apache.flink.runtime.leaderservice.zookeeper.ZooKeeperLeaderElectionService :<span class="number">262</span> - org.apache.flink.runtime.jobmaster.JobManagerRunner@548d10c7 has been granted leadership.</span><br></pre></td></tr></table></figure>
+
+<h3 id="JobGraph修改后恢复失败"><a href="#JobGraph修改后恢复失败" class="headerlink" title="JobGraph修改后恢复失败"></a>JobGraph修改后恢复失败</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">236</span> - Initializing job flake-sql-job-runner (000000000000eafb0000000000000011).</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">164</span> - Using restart <span class="type">strategy</span> <span class="title function_">FixedDelayRestartStrategy</span><span class="params">(maxNumberRestartAttempts=<span class="number">10000</span>, delayBetweenRestartAttempts=<span class="number">20000</span>)</span> <span class="keyword">for</span> flake-sql-job-runner (000000000000eafb0000000000000011).</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.executiongraph.ExecutionGraph       :<span class="number">528</span> - Job recovers via failover strategy: full graph restart</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">203</span> - Running initialization on master <span class="keyword">for</span> job flake-sql-job-runner (000000000000eafb0000000000000011).</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">221</span> - Successfully ran initialization on master in <span class="number">0</span> ms.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.yarn.YarnResourceManager                    :<span class="number">238</span> - Recovered <span class="number">0</span> containers from <span class="type">previous</span> <span class="title function_">attempts</span> <span class="params">([])</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy :<span class="number">81</span> - yarn.client.max-cached-nodemanagers-proxies : <span class="number">0</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.util.ZooKeeperUtils                 :<span class="number">301</span> - Initialized ZooKeeperCompletedCheckpointStore in <span class="string">&#x27;/checkpoints/000000000000eafb0000000000000011&#x27;</span>.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">200</span> - Using application-defined state backend: </span><br><span class="line">RocksDBStateBackend&#123;</span><br><span class="line">checkpointStreamBackend=</span><br><span class="line">   File <span class="type">State</span> <span class="title function_">Backend</span> <span class="params">(</span></span><br><span class="line"><span class="params">      checkpoints: <span class="string">&#x27;hdfs://qy-flink-1-v3/user/u_teg_tdbank/oceanus2/lj_cft_flink/fit-oceanus-prod/project-10001/job-60155/snapshots&#x27;</span>, </span></span><br><span class="line"><span class="params">      savepoints: <span class="string">&#x27;null&#x27;</span>, </span></span><br><span class="line"><span class="params">      asynchronous: UNDEFINED, </span></span><br><span class="line"><span class="params">      fileStateThreshold: -<span class="number">1</span></span></span><br><span class="line"><span class="params">     )</span>, </span><br><span class="line">localRocksDbDirectories=<span class="literal">null</span>, </span><br><span class="line">enableIncrementalCheckpointing=UNDEFINED, </span><br><span class="line">numberOfTransferingThreads=-<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">207</span> - Configuring application-defined state backend with job/cluster config</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.contrib.streaming.state.RocksDBStateBackend :<span class="number">348</span> - Using predefined options: DEFAULT.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.contrib.streaming.state.RocksDBStateBackend :<span class="number">563</span> - Using <span class="keyword">default</span> options factory: DefaultConfigurableOptionsFactory&#123;configuredOptions=&#123;&#125;&#125;.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.yarn.YarnResourceManager                    :<span class="number">1029</span> - ResourceManager akka.tcp:<span class="comment">//flink@9.44.34.108:40622/user/resourcemanager was granted leadership with fencing token 9e26d17ff1120b75114052d13be242e0</span></span><br><span class="line">[main-EventThread] org.apache.flink.runtime.leaderservice.zookeeper.ZooKeeperLeaderElectionService :<span class="number">262</span> - org.apache.flink.yarn.YarnResourceManager@1a74bd90 has been granted leadership.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">4</span>] org.apache.flink.runtime.resourcemanager.slotmanager.SlotManagerImpl :<span class="number">215</span> - Starting the SlotManager.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">128</span> - Recovering checkpoints from ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">146</span> - Found <span class="number">0</span> checkpoints in ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">163</span> - Trying to fetch <span class="number">0</span> checkpoints from storage.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1124</span> - Starting job 000000000000eafb0000000000000011 from savepoint hdfs:<span class="comment">//qy-flink-1-v3/user/u_teg_tdbank/oceanus2/lj_cft_flink/fit-oceanus-prod/project-10001/job-60155/snapshots/savepoint-000000-630ca6fb8b9c (allowing non restored state)</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">172</span> - Could not find ExecutionJobVertex. Including user-defined OperatorIDs in search.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator 749b2cad71aaee5be25025871420d4b2.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator f7ad6dac6ff3d8ada68fde148d943256.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator 5c72ff74f7b814cc2b15db0311cc0aaf.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator d6883e647f8d8dd07dbe048d4037223c.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.Checkpoints              :<span class="number">194</span> - Skipping savepoint state <span class="keyword">for</span> operator bb6ff7b6d8a06dd49e1764b59667cf62.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1139</span> - Reset the checkpoint ID of job 000000000000eafb0000000000000011 to <span class="number">5.</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">128</span> - Recovering checkpoints from ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">146</span> - Found <span class="number">1</span> checkpoints in ZooKeeper.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">163</span> - Trying to fetch <span class="number">1</span> checkpoints from storage.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.ZooKeeperCompletedCheckpointStore :<span class="number">336</span> - Trying to retrieve checkpoint <span class="number">4.</span></span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">1079</span> - Restoring job 000000000000eafb0000000000000011 from latest valid checkpoint: Checkpoint <span class="number">4</span> @ <span class="number">0</span> <span class="keyword">for</span> 000000000000eafb0000000000000011.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">3</span>] org.apache.flink.runtime.checkpoint.CheckpointCoordinator    :<span class="number">234</span> - No master state to restore</span><br><span class="line">[main-EventThread] org.apache.flink.runtime.jobmaster.JobManagerRunner          :<span class="number">298</span> - JobManager runner <span class="keyword">for</span> job flake-sql-job-runner (000000000000eafb0000000000000011) was granted leadership with session id 9ecd11e9-590a-<span class="number">4186</span>-<span class="number">8270</span>-edff06b7a810 at akka.tcp:<span class="comment">//flink@9.44.34.108:40622/user/jobmanager_0.</span></span><br><span class="line">[main-EventThread] org.apache.flink.runtime.leaderservice.zookeeper.ZooKeeperLeaderElectionService :<span class="number">262</span> - org.apache.flink.runtime.jobmaster.JobManagerRunner@3da1e67a has been granted leadership.</span><br><span class="line">[flink-akka.actor.<span class="keyword">default</span>-dispatcher-<span class="number">2</span>] org.apache.flink.runtime.jobmaster.JobMaster                 :<span class="number">691</span> - Starting execution of job flake-sql-job-runner (000000000000eafb0000000000000011) under job master id 8270edff06b7a8109ecd11e9590a4186.</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-watermark/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-watermark/" class="post-title-link" itemprop="url">Flink watermark</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-watermark"><a href="#1-watermark" class="headerlink" title="1 watermark"></a>1 watermark</h1><p>a window operator registers a timer for every active window, which cleans up the window’s state when the event time passes the window’s ending time.</p>
+<h2 id="1-1-处理空闲数据源"><a href="#1-1-处理空闲数据源" class="headerlink" title="1.1 处理空闲数据源"></a>1.1 处理空闲数据源</h2><p>在某些情况下，由于数据产生的比较少，导致一段时间内没有数据产生，进而就没有水印的生成，导致下游依赖水印的一些操作就会出现问题，<br>比如某一个算子的上游有多个算子，这种情况下，水印是取其上游两个算子的较小值，如果上游某一个算子因为缺少数据迟迟没有生成水印，就会出现eventtime倾斜问题，导致下游没法触发计算。</p>
+<p>所以filnk通过<code>WatermarkStrategy.withIdleness()</code>方法允许用户在配置的时间内（即超时时间内）没有记录到达时将一个流标记为空闲。这样就意味着下游的数据不需要等待水印的到来。</p>
+<p>当下次有水印生成并发射到下游的时候，这个数据流重新变成活跃状态。</p>
+<p>通过下面的代码来实现对于空闲数据流的处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WatermarkStrategy</span><br><span class="line">        .&lt;Tuple2&lt;Long, String&gt;&gt;forBoundedOutOfOrderness(Duration.ofSeconds(<span class="number">20</span>))</span><br><span class="line">        .withIdleness(Duration.ofMinutes(<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在 Flink SQL 使用 Kafka 作为 Source 的场景中，即使已配置 <strong>40 秒乱序 Watermark</strong>，仍可能出现 <strong>Watermark 滞后数分钟甚至 10 分钟以上</strong> 的现象；这在 <strong>多并行度</strong> 和 <strong>单并行度</strong> 情况下本质原因一致，均不属于乱序参数失效。Watermark 的推进规则是：<strong>算子 Watermark 由其输入 Channel 的最小值决定，且只能在消费到新数据时基于最新事件时间推进</strong>，不会随系统时间自动前进。多并行度时，低频或空闲的 Kafka partition 会拖慢整体 Watermark（需通过 <code>scan.idle-timeout</code> 处理 idle 分区）；单并行度时，则更应重点关注 <strong>Kafka 是否存在历史或批量数据、当前是否持续有新数据到达、event_time 字段本身是否整体晚于当前时间</strong>。此外，任务在 <strong>failover &#x2F; savepoint 恢复</strong> 后会继承历史 Watermark 状态，短时间内表现为明显滞后；下游算子或 Sink 出现 <strong>反压、阻塞、慢 IO 或重 UDF 计算</strong>，也可能导致 Source 无法持续 poll 数据，从而间接延缓 Watermark 发送。需要明确的是，<strong>乱序时间只用于容忍事件顺序的乱序，并不等价于限制 Watermark 最大延迟</strong>；当 Watermark 长时间落后时，应系统性地从 Kafka 分区与入流模式、事件时间字段的真实性与时效性、任务恢复历史以及上下游执行链路是否阻塞等方面进行排查并沉淀为工程经验。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/HBase/HBase-DDL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/HBase/HBase-DDL/" class="post-title-link" itemprop="url">[实践] HBase shell</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="查看组"><a href="#查看组" class="headerlink" title="查看组"></a>查看组</h2><p>list_rsgroups</p>
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><p>create ‘rtc_activity_dispatch_act_test’,{NAME &#x3D;&gt; ‘i’, VERSIONS &#x3D;&gt; 1 , TTL &#x3D;&gt; 2592000 , BLOCKCACHE &#x3D;&gt; true}</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/HBase/HBase-HFile-make/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/HBase/HBase-HFile-make/" class="post-title-link" itemprop="url">HFile创建:Spark、MapReduce、Flink</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="HFile创建-Spark、MapReduce、Flink"><a href="#HFile创建-Spark、MapReduce、Flink" class="headerlink" title="HFile创建:Spark、MapReduce、Flink"></a>HFile创建:Spark、MapReduce、Flink</h1><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">CreateHfile</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setAppName(<span class="string">&quot;CreateHfile&quot;</span>).setMaster(args(<span class="number">0</span>))</span><br><span class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</span><br><span class="line"><span class="keyword">val</span> hbaseConf = <span class="type">HBaseConfiguration</span>.create()</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">val</span> rdd = sc.textFile(args(<span class="number">1</span>))</span><br><span class="line">.flatMap(v =&gt;&#123;</span><br><span class="line">	<span class="keyword">val</span> x = <span class="keyword">new</span> javaList[<span class="type">String</span>]()</span><br><span class="line">	<span class="keyword">for</span>( a &lt;- <span class="number">1</span> to <span class="number">9999</span>)&#123;</span><br><span class="line">		x.add(v + <span class="string">&quot;%04d&quot;</span>.format(a))</span><br><span class="line">    &#125;</span><br><span class="line">     x.toArray</span><br><span class="line">    &#125;</span><br><span class="line"> )</span><br><span class="line">.sortBy(v=&gt;v.toString)</span><br><span class="line">.map(r =&gt;(</span><br><span class="line">    <span class="keyword">new</span> <span class="type">ImmutableBytesWritable</span>(<span class="type">Bytes</span>.toBytes(r.toString)),</span><br><span class="line">	<span class="keyword">new</span> <span class="type">KeyValue</span>(</span><br><span class="line">    	<span class="type">Bytes</span>.toBytes(r.toString), <span class="type">Bytes</span>.toBytes(<span class="string">&quot;phoneFamliy&quot;</span>), <span class="type">Bytes</span>.toBytes(<span class="string">&quot;phoneCol&quot;</span>),</span><br><span class="line">    	<span class="type">System</span>.currentTimeMillis(),</span><br><span class="line">    	<span class="type">KeyValue</span>.<span class="type">Type</span>.<span class="type">DeleteColumn</span>)</span><br><span class="line">         ))</span><br><span class="line">rdd.saveAsNewAPIHadoopFile(args(<span class="number">2</span>), classOf[<span class="type">ImmutableBytesWritable</span>],classOf[<span class="type">KeyValue</span>],classOf[<span class="type">HFileOutputFormat2</span>], hbaseConf)</span><br><span class="line">sc.stop()</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Kafka/Kafka-offset-delivery-guarantee/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Kafka/Kafka-offset-delivery-guarantee/" class="post-title-link" itemprop="url">Kafka offset与一致性语义</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Kafka-offset-delivery-guarantee"><a href="#Kafka-offset-delivery-guarantee" class="headerlink" title="Kafka-offset-delivery-guarantee"></a>Kafka-offset-delivery-guarantee</h1><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>什么是 offset？</p>
+<p>offset 是 consumer position，Topic 的每个 Partition 都有各自的 offset</p>
+<p>消费者需要自己保留一个 offset，从 kafka 获取消息时，只拉去当前 offset 以后的消息</p>
+<p>Kafka 的 scala&#x2F;java 版的 client 已经实现了这部分的逻辑</p>
+<p>之前 offset 保存到 zookeeper 上，broker 存放 offset 是 kafka 从 0.9 版本开始，提供的新的消费方式原因是zookeeper来存放，还是有许多弊端，不方便灵活控制，效率不高</p>
+<h4 id="offset-记录位置"><a href="#offset-记录位置" class="headerlink" title="offset 记录位置"></a>offset 记录位置</h4><p>kafka 消费者在会保存其消费的进度，也就是offset，存储的位置根据选用的 kafka api 不同而不同。具体可以参看<a href="https://blog.csdn.net/u013063153/article/details/78122088">kafka 消费者offset记录位置和方式</a></p>
+<h4 id="Kafka-支持三种消息投递语义"><a href="#Kafka-支持三种消息投递语义" class="headerlink" title="Kafka 支持三种消息投递语义"></a>Kafka 支持三种消息投递语义</h4><ul>
+<li>At most once 消息可能会丢，但绝不会重复传递</li>
+<li>At least one 消息绝不会丢，但可能会重复传递</li>
+<li>Exactly once 每条消息肯定会被传输一次且仅传输一次</li>
+</ul>
+<p>consumer在从broker读取消息后，可以选择commit，该操作会在Zookeeper中存下该consumer在该partition下读取的消息的offset，该consumer下一次再读该partition时会从下一条开始读取。如未commit，下一次读取的开始位置会跟上一次commit之后的开始位置相同。</p>
+<p>可以将consumer设置为autocommit，即consumer一旦读到数据立即自动commit。如果只讨论这一读取消息的过程，那Kafka是确保了Exactly once。但实际上实际使用中consumer并非读取完数据就结束了，而是要进行进一步处理，而数据处理与commit的顺序在很大程度上决定了消息从broker和consumer的delivery guarantee semantic。</p>
+<ul>
+<li>读完消息先commit再处理消息。这种模式下，如果consumer在commit后还没来得及处理消息就crash了，下次重新开始工作后就无法读到刚刚已提交而未处理的消息，这就对应于At most once。</li>
+<li>读完消息先处理再commit消费状态(保存offset)。这种模式下，如果在处理完消息之后commit之前Consumer crash了，下次重新开始工作时还会处理刚刚未commit的消息，实际上该消息已经被处理过了，这就对应于At least once。</li>
+<li>如果一定要做到Exactly once，就需要协调offset和实际操作的输出。经典的做法是引入两阶段提交，但由于许多输出系统不支持两阶段提交，更为通用的方式是将offset和操作输入存在同一个地方。比如，consumer拿到数据后可能把数据放到HDFS，如果把最新的offset和数据本身一起写到HDFS，那就可以保证数据的输出和offset的更新要么都完成，要么都不完成，间接实现Exactly once。（目前就high level API而言，offset是存于Zookeeper中的，无法存于HDFS，而low level API的offset是由自己去维护的，可以将之存于HDFS中）。</li>
+</ul>
+<p>总之，Kafka默认保证At least once，并且允许通过设置producer异步提交来实现At most once，而Exactly once要求与目标存储系统协作，Kafka提供的offset可以较为容易地实现这种方式。</p>
+<hr>
+<p>参考链接</p>
+<ul>
+<li><a href="https://blog.csdn.net/u012129558/article/details/80075270">Kafka的offset管理</a></li>
+<li><a href="https://blog.csdn.net/u013063153/article/details/78122088">kafka 消费者offset记录位置和方式</a></li>
+<li><a href="https://blog.csdn.net/camel84/article/details/82433075">kafka系列-进阶篇之消息和offset存储</a></li>
+<li><a href="https://www.cnblogs.com/FG123/p/10091599.html">Kafka提交offset机制</a></li>
+<li><a href="https://mp.weixin.qq.com/s/tHEd8eOCQ3sXwcmP9F1H9Q">大数据kafka理论实操面试题</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Kafka/kafka-schema-registry/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Kafka/kafka-schema-registry/" class="post-title-link" itemprop="url">Kafka Schema Registy</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Kafka-Schema-Registy"><a href="#Kafka-Schema-Registy" class="headerlink" title="Kafka Schema Registy"></a>Kafka Schema Registy</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>读写Kafka的数据时，需要维护数据的序列化方式和Schema，每个topic有独立的schema，如何管理schema信息呢？</p>
+<p>Confluent创建了Kafka Schema Registy项目</p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><img src="https://wbatisstoragebucket-1252887353.cos.ap-guangzhou.myqcloud.com/img/20210527124021.svg" alt="img"></p>
+<p>向 kafka 发送数据时，需要先向 Schema Registry 注册 schema，然后序列化发送到 kafka 里。当我们需要从 kafka 消费数据时，也需要先从 Schema Registry 获取 schema，然后才能解析数据。</p>
+<h3 id="Schema的保存"><a href="#Schema的保存" class="headerlink" title="Schema的保存"></a>Schema的保存</h3><p>Registry 服务端将数据格式存储到 Kafka 中，对应的 topic 名称为 _schemas。存储消息的格式如下：</p>
+<ul>
+<li>Key 部分，包含数据格式名称，版本号，由 SchemaRegistryKey 类表示。</li>
+<li>Value部分，包含数据格式名称，版本号， 数据格式 id 号，数据格式的内容，是否被删除， 由 SchemaRegistryValue 类表示。</li>
+</ul>
+<p>Registry 服务端在存储Kafka之前，还会将上述的 Key 和 Value 序列化，目前序列化由两种方式：</p>
+<ul>
+<li>json 序列化，由 ZkStringSerializer 类负责</li>
+<li>将 SchemaRegistryKey 或 SchemaRegistryValue 强制转换为 String 类型保存起来</li>
+</ul>
+<h3 id="处理请求"><a href="#处理请求" class="headerlink" title="处理请求"></a>处理请求</h3><p>Registry 服务端主要负责两种请求，注册数据格式 schema 请求和 获取数据格式 schema 请求。</p>
+<p>如果 Registry 服务端启动了高可用，说明有多个服务端在运行。如果注册 schema 请求发送给了 follower，那么 follower 会将请求转发给 leader。</p>
+<p><strong>读写分离</strong></p>
+<p>至于获取 schema 请求，follower 和 leader 都能处理，因为 schema 最后都存在了 kafka 中，它们直接从 kafka 里读取。</p>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p>如果要实现高可用，需要运行多个 Registry 服务，这些服务中必须选择出一个 leader，所有的请求都是最终 由 leader 来负责。当 leader 挂掉之后，就会触发选举操作，来选举出新的 leader。选举的实现有两种方式: 基于kafka 和 基于 zookeeper。</p>
+<h4 id="基于-kafka"><a href="#基于-kafka" class="headerlink" title="基于 kafka"></a>基于 kafka</h4><p>原理是利用消费组，因为消费组的每个成员都需要和 kafka coordinator 服务端保持心跳，如果有成员挂了，那么就会触发组的重分配操作。重分配操作会从存活的成员中，选出 leader 角色。</p>
+<p>KafkaGroupMasterElector 启动了一个心跳线程，定期发送心跳请求。它 实现了监听器的接口，当出发开始选举时会调用onRevoked方法，当选举完之后会调用onAssigned方法。</p>
+<h4 id="基于-zookeeper"><a href="#基于-zookeeper" class="headerlink" title="基于 zookeeper"></a>基于 zookeeper</h4><p>更加简单，效率也更高。因为只有 leader 挂掉，zookeeper 才会触发重新选举。而基于 kafka 的方式，只要是有一个成员挂掉，不管它是不是 leader，都会触发重新选举。如果这个成员不是 leader，则会造成不必要的选举。</p>
+<p>使用zookeeper方式的原理是，所有 Registry 服务都会监听一个临时节点，而只有 leader 才会占有这个节点。当 leader 挂掉之后，临时节点会消失。其余的服务发现临时节点不存在，就会立即尝试重新创建，而只有一个服务能够创建成功，成为 leader。</p>
+<p>[参考文献]</p>
+<ol>
+<li><a href="https://zhmin.github.io/2019/04/23/kafka-schema-registry/">https://zhmin.github.io/2019/04/23/kafka-schema-registry/</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Kafka/kafka-producer-ack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Kafka/kafka-producer-ack/" class="post-title-link" itemprop="url">Kafka producer与ack机制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="kafka-producer-ack"><a href="#kafka-producer-ack" class="headerlink" title="kafka-producer-ack"></a>kafka-producer-ack</h1><p>Kafka有两个很重要的配置参数，<code>acks</code>与<code>min.insync.replicas</code> .其中<code>acks</code>是producer的配置参数，<code>min.insync.replicas</code>是Broker端的配置参数，这两个参数对于生产者不丢失数据起到了很大的作用.接下来，本文会以图示的方式讲解这两个参数的含义和使用方式。通过本文，你可以了解到：</p>
+<ul>
+<li>Kafka的分区副本</li>
+<li>什么是同步副本(In-sync replicas)</li>
+<li>什么是acks确认机制</li>
+<li>什么是最小同步副本</li>
+<li>ack&#x3D;all与最小同步副本是如何发挥作用的</li>
+</ul>
+<h2 id="分区副本"><a href="#分区副本" class="headerlink" title="分区副本"></a>分区副本</h2><p>Kafka的topic是可以分区的，并且可以为分区配置多个副本，改配置可以通过<code>replication.factor</code>参数实现. Kafka中的分区副本包括两种类型：领导者副本（Leader Replica）和追随者副本（Follower Replica)，每个分区在创建时都要选举一个副本作为领导者副本，其余的副本自动变为追随者副本. 在 Kafka 中，追随者副本是不对外提供服务的，也就是说，任何一个追随者副本都不能响应消费者和生产者的读写请求. 所有的请求都必须由领导者副本来处理. 换句话说，所有的读写请求都必须发往领导者副本所在的 Broker，由该 Broker 负责处理. 追随者副本不处理客户端请求，它唯一的任务就是从领导者副本<strong>异步拉取</strong>消息，并写入到自己的提交日志中，从而实现与领导者副本的同步.</p>
+<p>Kafka默认的副本因子是3，即每个分区只有1个leader副本和2个follower副本.具体如下图所示：</p>
+<p><img src="/images/bigdata/Kafka/573204286797805.png"></p>
+<p>上面提到生产者客户端仅写入Leader broker，跟随者异步复制数据。由于Kafka是一个分布式系统，必然会存在与 Leader 不能实时同步的风险，所以需要一种方法来判断这些追随者是否跟上了领导者的步伐, 即追随者是否同步了最新的数据.换句话说，Kafka 要明确地告诉我们，追随者副本到底在什么条件下才算与 Leader 同步？这就是下面所要说的ISR同步副本机制.</p>
+<h2 id="同步副本-In-sync-replicas"><a href="#同步副本-In-sync-replicas" class="headerlink" title="同步副本(In-sync replicas)"></a>同步副本(In-sync replicas)</h2><p>In-sync replica(ISR)称之为同步副本，ISR中的副本都是与Leader进行同步的副本，所以不在该列表的follower会被认为与Leader是不同步的. 那么，ISR中存在是什么副本呢？首先可以明确的是：Leader副本总是存在于ISR中. 而follower副本是否在ISR中，取决于该follower副本是否与Leader副本保持了“同步”.</p>
+<blockquote>
+<p>尖叫提示：对于”follower副本是否与Leader副本保持了同步”的理解如下：</p>
+<p>(1)上面所说的同步不是指完全的同步，即并不是说一旦follower副本同步滞后与Leader副本，就会被踢出ISR列表.</p>
+<p>(2)Kafka的broker端有一个参数<code>replica.lag.time.max.ms</code>, 该参数表示follower副本滞后与Leader副本的最长时间间隔，默认是10秒. 这就意味着，只要follower副本落后于leader副本的时间间隔不超过10秒，就可以认为该follower副本与leader副本是同步的，所以哪怕当前follower副本落后于Leader副本几条消息，只要在10秒之内赶上Leader副本，就不会被踢出出局.</p>
+<p>（3）如果follower副本被踢出ISR列表，等到该副本追上了Leader副本的进度，该副本会被再次加入到ISR列表中，所以ISR是一个动态列表，并不是静态不变的。</p>
+</blockquote>
+<p><img src="/images/bigdata/Kafka/565174576927619.png"></p>
+<p>如上图所示：Broker3上的partition1副本超过了规定时间，未与Leader副本同步，所以被踢出ISR列表，此时的ISR为[1,3].</p>
+<h2 id="acks确认机制"><a href="#acks确认机制" class="headerlink" title="acks确认机制"></a>acks确认机制</h2><p>acks参数指定了必须要有多少个分区副本收到消息，生产者才认为该消息是写入成功的，这个参数对于消息是否丢失起着重要作用，该参数的配置具体如下：</p>
+<ul>
+<li>acks&#x3D;0，表示生产者在成功写入消息之前不会等待任何来自服务器的响应. 换句话说，一旦出现了问题导致服务器没有收到消息，那么生产者就无从得知，消息也就丢失了. 改配置由于不需要等到服务器的响应，所以可以以网络支持的最大速度发送消息，从而达到很高的吞吐量。</li>
+</ul>
+<p><img src="/images/bigdata/Kafka/555144828113275.png"></p>
+<ul>
+<li><p>acks&#x3D;1，表示只要集群的leader分区副本接收到了消息，就会向生产者发送一个成功响应的ack，此时生产者接收到ack之后就可以认为该消息是写入成功的. 一旦消息无法写入leader分区副本(比如网络原因、leader节点崩溃),生产者会收到一个错误响应，当生产者接收到该错误响应之后，为了避免数据丢失，会重新发送数据.这种方式的吞吐量取决于使用的是异步发送还是同步发送.</p>
+<blockquote>
+<p>尖叫提示：如果生产者收到了错误响应，即便是重新发消息，还是会有可能出现丢数据的现象. 比如，如果一个没有收到消息的节点成为了新的Leader，消息就会丢失.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/images/bigdata/Kafka/549044129566797.png"></p>
+<ul>
+<li>acks &#x3D;all,表示只有所有参与复制的节点(ISR列表的副本)全部收到消息时，生产者才会接收到来自服务器的响应. 这种模式是最高级别的，也是最安全的，可以确保不止一个Broker接收到了消息. 该模式的延迟会很高.</li>
+</ul>
+<p><img src="/images/bigdata/Kafka/543005800880155.png"></p>
+<h2 id="最小同步副本"><a href="#最小同步副本" class="headerlink" title="最小同步副本"></a>最小同步副本</h2><p>上面提到，当acks&#x3D;all时，需要所有的副本都同步了才会发送成功响应到生产者. 其实这里面存在一个问题：如果Leader副本是唯一的同步副本时会发生什么呢？此时相当于acks&#x3D;1.所以是不安全的.</p>
+<p>Kafka的Broker端提供了一个参数**<code>min.insync.replicas</code>**,该参数控制的是消息至少被写入到多少个副本才算是”真正写入”,该值默认值为1，生产环境设定为一个大于1的值可以提升消息的持久性. 因为如果同步副本的数量低于该配置值，则生产者会收到错误响应，从而确保消息不丢失.</p>
+<h3 id="Case-1"><a href="#Case-1" class="headerlink" title="Case 1"></a>Case 1</h3><p>如下图，当min.insync.replicas&#x3D;2且acks&#x3D;all时，如果此时ISR列表只有[1,2],3被踢出ISR列表，只需要保证两个副本同步了，生产者就会收到成功响应.</p>
+<p><img src="/images/bigdata/Kafka/536985636931751.png"></p>
+<h3 id="Case-2"><a href="#Case-2" class="headerlink" title="Case 2"></a>Case 2</h3><p>如下图，当min.insync.replicas&#x3D;2，如果此时ISR列表只有[1],2和3被踢出ISR列表，那么当acks&#x3D;all时，则不能成功写入数；当acks&#x3D;0或者acks&#x3D;1可以成功写入数据.</p>
+<p><img src="/images/bigdata/Kafka/529955013606000.png"></p>
+<h3 id="Case-3"><a href="#Case-3" class="headerlink" title="Case 3"></a>Case 3</h3><p>这种情况是很容易引起误解的，如果acks&#x3D;all且min.insync.replicas&#x3D;2，此时ISR列表为[1,2,3],那么还是会等到所有的同步副本都同步了消息，才会向生产者发送成功响应的ack.因为min.insync.replicas&#x3D;2只是一个最低限制，即同步副本少于该配置值，则会抛异常，而acks&#x3D;all，是需要保证所有的ISR列表的副本都同步了才可以发送成功响应. 如下图所示：</p>
+<p><img src="/images/bigdata/Kafka/517113904816908.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>acks&#x3D;0，生产者在成功写入消息之前不会等待任何来自服务器的响应.</p>
+<p>acks&#x3D;1,只要集群的leader分区副本接收到了消息，就会向生产者发送一个成功响应的ack.</p>
+<p>acks&#x3D;all,表示只有所有参与复制的节点(ISR列表的副本)全部收到消息时，生产者才会接收到来自服务器的响应，此时如果ISR同步副本的个数小于<code>min.insync.replicas</code>的值，消息不会被写入.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="MySQL JDBC Driver源码解读You can get the source code from Github: https:&#x2F;&#x2F;github.com&#x2F;mysql&#x2F;mysql-connector-j 当调用com.mysql.cj.jdbc.Driver类时, 静态代码块会默认加载驱动. DriverDriverManager.getConnection时，会通过SPI获取  无需手动注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL JDBC Driver源码解读">
+<meta property="og:url" content="http://yoursite.com/Java/MySQL-Driver/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="MySQL JDBC Driver源码解读You can get the source code from Github: https:&#x2F;&#x2F;github.com&#x2F;mysql&#x2F;mysql-connector-j 当调用com.mysql.cj.jdbc.Driver类时, 静态代码块会默认加载驱动. DriverDriverManager.getConnection时，会通过SPI获取  无需手动注">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T17:34:27.864Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:27.865Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Driver">
+<meta property="article:tag" content="JDBC">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/Java/MySQL-Driver/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>MySQL JDBC Driver源码解读 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/MySQL-Driver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL JDBC Driver源码解读
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:27" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:27+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="MySQL-JDBC-Driver源码解读"><a href="#MySQL-JDBC-Driver源码解读" class="headerlink" title="MySQL JDBC Driver源码解读"></a>MySQL JDBC Driver源码解读</h1><p>You can get the source code from Github: <a href="https://github.com/mysql/mysql-connector-j">https://github.com/mysql/mysql-connector-j</a></p>
+<p>当调用<code>com.mysql.cj.jdbc.Driver</code>类时, 静态代码块会默认加载驱动.</p>
+<h2 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h2><p><code>DriverManager.getConnection</code>时，会通过SPI获取</p>
+<blockquote>
+<p>无需手动注册</p>
+</blockquote>
+<p><code>ClassLoader</code>加载<code>com.mysql.cj.jdbc.Driver</code>时，会通过静态内部类注册。<br>也就是说，SPI扫到这个类，就会注册.</p>
+<blockquote>
+<p>设计比较巧妙的一点:</p>
+</blockquote>
+<pre class="mermaid">classDiagram
+
+NonRegisteringDriver <|-- Driver
+
+NonRegisteringDriver: Connection connect(String url, Properties info)</pre>
+
+<h2 id="创建Connection"><a href="#创建Connection" class="headerlink" title="创建Connection"></a>创建Connection</h2><pre class="mermaid">sequenceDiagram
+  participant ClientImpl
+  participant DriverManager
+  participant Driver
+  participant Connection
+  participant NativeSession
+  participant NativeProtocol
+  participant StatementImpl
+
+alt 创建连接
+ClientImpl ->> DriverManager:  getConnection()
+DriverManager ->> DriverManager: 加载MySQL的Driver
+DriverManager ->> Driver: connect()
+Driver ->> Connection: <init>()
+Connection ->> NativeSession: connect()
+NativeSession ->> NativeProtocol: connect()
+end
+
+alt 执行查询
+ClientImpl ->> Connection:  createStatement()
+Connection ->> StatementImpl: <init>()
+Connection -->> ClientImpl:  Statement
+
+ClientImpl ->> StatementImpl:  execute()
+StatementImpl ->> NativeSession: execSQL()获取结果
+end
+
+alt 查询结果
+ClientImpl ->> StatementImpl: getResultSet()
+StatementImpl -->> ClientImpl: ResultSet
+end</pre>
+
+<h3 id="构建ConnectionUrl"><a href="#构建ConnectionUrl" class="headerlink" title="构建ConnectionUrl"></a>构建ConnectionUrl</h3><p>数据库Url和连接参数 的容器<br>根据schema来区分ConnectionUrl的类型<code>ConnectionUrl.Type</code>, Type中定义了创建不同ConnectionUrl的类名和参数。</p>
+<h3 id="构建Connection"><a href="#构建Connection" class="headerlink" title="构建Connection"></a>构建Connection</h3><p>Connection代表与特定数据库的会话。在 Connection 的上下文中，执行 SQL 语句并返回结果。</p>
+<p>没有Connection持有一个NativeSession</p>
+<p>创建新的socket链接 -&gt; 与服务端握手 -&gt; 构建与服务端的通信协议 -&gt; 通过MySQL协议与服务端连接</p>
+<h3 id="NativeSession"><a href="#NativeSession" class="headerlink" title="NativeSession"></a>NativeSession</h3><p>与SocketServer的会话</p>
+<h3 id="NativeSocketConnection"><a href="#NativeSocketConnection" class="headerlink" title="NativeSocketConnection"></a>NativeSocketConnection</h3><p>持有与服务端链接的InputStream和OutputStream</p>
+<h3 id="SocketFactory"><a href="#SocketFactory" class="headerlink" title="SocketFactory"></a>SocketFactory</h3><p>允许在驱动程序中创建可插入套接字的接口</p>
+<p>创建Socket链接</p>
+<h3 id="com-mysql-cj-protocol-Protocol"><a href="#com-mysql-cj-protocol-Protocol" class="headerlink" title="com.mysql.cj.protocol.Protocol"></a>com.mysql.cj.protocol.Protocol</h3><p>协议提供与 MySQL 服务器通信的设施</p>
+<p>充斥着好多pocket相关的类</p>
+<h2 id="DNS更新后新ip未生效问题"><a href="#DNS更新后新ip未生效问题" class="headerlink" title="DNS更新后新ip未生效问题"></a>DNS更新后新ip未生效问题</h2><p>在<code>StandardSocketFactory.connect</code>方法中通过域名获取ip地址。</p>
+<p><code>https://github.com/mysql/mysql-connector-j/blob/805f872a57875f311cb82487efcfb070411a3fa0/src/main/core-impl/java/com/mysql/cj/protocol/StandardSocketFactory.java#L130</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">InetAddress</span>[] <span class="variable">possibleAddresses</span> <span class="operator">=</span> InetAddress.getAllByName(<span class="built_in">this</span>.host);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// look-up or remove from cache  </span></span><br><span class="line">Addresses addrs;  </span><br><span class="line"><span class="keyword">if</span> (useCache) &#123;  </span><br><span class="line">    addrs = cache.get(host);  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">    addrs = cache.remove(host);  </span><br><span class="line">    <span class="keyword">if</span> (addrs != <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="keyword">if</span> (addrs <span class="keyword">instanceof</span> CachedAddresses) &#123;  </span><br><span class="line">            <span class="comment">// try removing from expirySet too if CachedAddresses  </span></span><br><span class="line">            expirySet.remove(addrs);  </span><br><span class="line">        &#125;  </span><br><span class="line">        addrs = <span class="literal">null</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> (addrs == <span class="literal">null</span>) &#123;  </span><br><span class="line">    <span class="comment">// create a NameServiceAddresses instance which will look up  </span></span><br><span class="line">    <span class="comment">// the name service and install it within cache...    Addresses oldAddrs = cache.putIfAbsent(  </span></span><br><span class="line">        host,  </span><br><span class="line">        addrs = <span class="keyword">new</span> <span class="title class_">NameServiceAddresses</span>(host, reqAddr)  </span><br><span class="line">    );  </span><br><span class="line">    <span class="keyword">if</span> (oldAddrs != <span class="literal">null</span>) &#123; <span class="comment">// lost putIfAbsent race  </span></span><br><span class="line">        addrs = oldAddrs;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// ask Addresses to get an array of InetAddress(es) and clone it  </span></span><br><span class="line"><span class="keyword">return</span> addrs.get().clone();</span><br></pre></td></tr></table></figure>
+
+<p>#InetAddress 带了缓存</p>
+<blockquote>
+<p>在Java中，<code>InetAddress</code> 类用于处理IP地址，其内部实现了DNS缓存机制以提高域名解析的效率。通过设置JVM参数或者系统属性，可以调整<code>InetAddress</code>的DNS缓存行为。</p>
+</blockquote>
+<h3 id="1-JVM参数设置"><a href="#1-JVM参数设置" class="headerlink" title="1. JVM参数设置"></a>1. JVM参数设置</h3><p>可以通过在启动Java应用程序时传递JVM参数来设置DNS缓存的行为。以下是常用的JVM参数：</p>
+<ul>
+<li><code>java -Dnetworkaddress.cache.ttl=10 -jar test.jar</code>：这个参数设置了DNS缓存的时间为10秒。默认情况下，如果不解设，缓存时间为30秒。</li>
+<li><code>java -Dnetworkaddress.cache.ttl=0 -jar test.jar</code>：设置为0意味着不缓存解析成功的结果，每次解析都会访问DNS服务器。</li>
+<li><code>java -Dnetworkaddress.cache.ttl=-1 -jar test.jar</code>：设置为-1表示永久缓存解析成功的结果，直到应用程序重启。</li>
+</ul>
+<h3 id="2-系统属性设置"><a href="#2-系统属性设置" class="headerlink" title="2. 系统属性设置"></a>2. 系统属性设置</h3><p>除了JVM参数，还可以通过设置系统属性来调整DNS缓存策略：</p>
+<ul>
+<li><code>Security.setProperty(&quot;networkaddress.cache.ttl&quot;, &quot;-1&quot;)</code>：通过编程方式设置DNS缓存时间为永久。</li>
+</ul>
+<h3 id="3-源码级别的设置"><a href="#3-源码级别的设置" class="headerlink" title="3. 源码级别的设置"></a>3. 源码级别的设置</h3><p>在Java代码中，可以通过修改<code>InetAddressCachePolicy</code>类的行为来控制DNS缓存策略。例如，可以通过修改<code>cachePolicy</code>静态变量的值来控制缓存时间。</p>
+<h3 id="4-安全管理器（SecurityManager）的影响"><a href="#4-安全管理器（SecurityManager）的影响" class="headerlink" title="4. 安全管理器（SecurityManager）的影响"></a>4. 安全管理器（SecurityManager）的影响</h3><p>当设置了安全管理器（<code>SecurityManager</code>）时，对于DNS缓存时间的默认行为会有所改变：</p>
+<ul>
+<li>如果设置了<code>SecurityManager</code>，默认的<code>CachePolicy</code>为<code>FOREVER</code>，即永久缓存DNS的结果，直到进程终止。</li>
+<li>如果没有设置<code>SecurityManager</code>，可以通过修改<code>java.security</code>文件中的相关属性来控制DNS缓存行为。</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>永久缓存DNS结果（<code>FOREVER</code>）可能会导致应用程序无法响应DNS变化，因此在生产环境中应谨慎使用。</li>
+<li>缓存策略的设置应该根据应用程序的实际需求和网络环境来决定，以确保既高效又安全。</li>
+<li>在设置DNS缓存策略时，还应考虑无效DNS缓存时间的设置，即当DNS解析失败时的缓存时间，默认情况下这个时间为10秒。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>创建对象，大量使用反射的原因?<br>灵活</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/JDBC/" rel="tag"># JDBC</a>
+              <a href="/tags/Driver/" rel="tag"># Driver</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/AI/platform/data-asset-standardization/" rel="prev" title="数据资产化与标准化方法论">
+      <i class="fa fa-chevron-left"></i> 数据资产化与标准化方法论
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/%E5%88%97%E5%AD%98/" rel="next" title="列存储">
+      列存储 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-JDBC-Driver%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.</span> <span class="nav-text">MySQL JDBC Driver源码解读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Driver"><span class="nav-number">1.1.</span> <span class="nav-text">Driver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAConnection"><span class="nav-number">1.2.</span> <span class="nav-text">创建Connection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BAConnectionUrl"><span class="nav-number">1.2.1.</span> <span class="nav-text">构建ConnectionUrl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BAConnection"><span class="nav-number">1.2.2.</span> <span class="nav-text">构建Connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NativeSession"><span class="nav-number">1.2.3.</span> <span class="nav-text">NativeSession</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NativeSocketConnection"><span class="nav-number">1.2.4.</span> <span class="nav-text">NativeSocketConnection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SocketFactory"><span class="nav-number">1.2.5.</span> <span class="nav-text">SocketFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#com-mysql-cj-protocol-Protocol"><span class="nav-number">1.2.6.</span> <span class="nav-text">com.mysql.cj.protocol.Protocol</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS%E6%9B%B4%E6%96%B0%E5%90%8E%E6%96%B0ip%E6%9C%AA%E7%94%9F%E6%95%88%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">DNS更新后新ip未生效问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-JVM%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. JVM参数设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%B3%BB%E7%BB%9F%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 系统属性设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%BA%90%E7%A0%81%E7%BA%A7%E5%88%AB%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 源码级别的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%99%A8%EF%BC%88SecurityManager%EF%BC%89%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 安全管理器（SecurityManager）的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.3.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

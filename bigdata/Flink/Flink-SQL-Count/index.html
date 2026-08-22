@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 Flink SQL 查询iceberg count语义1.1 结论：   查询 方式 是否读取数据 能否识别数据列    count(字段) metadata Y Y   count(distinct 字段) datafile Y Y   count(*)&#x2F;count(1) metadata Y N   Iceberg通过元数据优化:  如果表启用了 count-based meta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FlinkSQL-Count">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-SQL-Count/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="1 Flink SQL 查询iceberg count语义1.1 结论：   查询 方式 是否读取数据 能否识别数据列    count(字段) metadata Y Y   count(distinct 字段) datafile Y Y   count(*)&#x2F;count(1) metadata Y N   Iceberg通过元数据优化:  如果表启用了 count-based meta">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/bigdata/Flink/attachments/6ff1d909ac58eb4274815fe73e123eaf_MD5.jpg">
+<meta property="article:published_time" content="2026-08-22T17:34:28.653Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.655Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Count">
+<meta property="article:tag" content="FlinkSQL">
+<meta property="article:tag" content="Iceberg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/bigdata/Flink/attachments/6ff1d909ac58eb4274815fe73e123eaf_MD5.jpg">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Count/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>FlinkSQL-Count | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Count/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FlinkSQL-Count
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-Flink-SQL-查询iceberg-count语义"><a href="#1-Flink-SQL-查询iceberg-count语义" class="headerlink" title="1 Flink SQL 查询iceberg count语义"></a>1 Flink SQL 查询iceberg count语义</h1><h2 id="1-1-结论："><a href="#1-1-结论：" class="headerlink" title="1.1 结论："></a>1.1 结论：</h2><table>
+<thead>
+<tr>
+<th>查询</th>
+<th>方式</th>
+<th>是否读取数据</th>
+<th>能否识别数据列</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>count(字段)</td>
+<td>metadata</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>count(distinct 字段)</td>
+<td>datafile</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>count(*)&#x2F;count(1)</td>
+<td>metadata</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+</tbody></table>
+<p>Iceberg通过元数据优化:</p>
+<ul>
+<li>如果表启用了 <strong>count-based metadata optimization</strong>（例如通过 <code>TableScan</code> + <code>useSnapshotId</code> + manifest-level row count），Flink 可能直接从 manifest 获取总行数。</li>
+<li>但 Flink 当前（截至 Flink 1.18 &#x2F; Iceberg 1.4）对这类优化支持有限，<strong>多数情况下仍会触发 data file 扫描</strong>，除非手动启用特定优化或使用 Iceberg 的 <code>metadata table</code> 查询。</li>
+</ul>
+<p>执行计划:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line">count field 执行计划详情:</span><br><span class="line">EXPLAIN PLAN <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(name) <span class="keyword">FROM</span> iceberg_local_table</span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Abstract Syntax Tree <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">LogicalAggregate(<span class="keyword">group</span><span class="operator">=</span>[&#123;&#125;], EXPR$<span class="number">0</span><span class="operator">=</span>[<span class="built_in">COUNT</span>($<span class="number">0</span>)])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> LogicalProject(name<span class="operator">=</span>[$<span class="number">1</span>])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> LogicalTableScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table]])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Physical Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(name) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[name]]], fields<span class="operator">=</span>[name])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Execution Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(name) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[name]]], fields<span class="operator">=</span>[name])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line">count <span class="number">1</span> 执行计划详情:</span><br><span class="line">EXPLAIN PLAN <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="number">1</span>) <span class="keyword">FROM</span> iceberg_local_table</span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Abstract Syntax Tree <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">LogicalAggregate(<span class="keyword">group</span><span class="operator">=</span>[&#123;&#125;], EXPR$<span class="number">0</span><span class="operator">=</span>[<span class="built_in">COUNT</span>()])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> LogicalProject($f0<span class="operator">=</span>[<span class="number">0</span>])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> LogicalTableScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table]])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Physical Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[]]], fields<span class="operator">=</span>[])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Execution Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[]]], fields<span class="operator">=</span>[])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line">count star 执行计划详情:</span><br><span class="line">EXPLAIN PLAN <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> iceberg_local_table</span><br><span class="line"><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Abstract Syntax Tree <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">LogicalAggregate(<span class="keyword">group</span><span class="operator">=</span>[&#123;&#125;], EXPR$<span class="number">0</span><span class="operator">=</span>[<span class="built_in">COUNT</span>()])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> LogicalProject($f0<span class="operator">=</span>[<span class="number">0</span>])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> LogicalTableScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table]])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Physical Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[]]], fields<span class="operator">=</span>[])</span><br><span class="line"></span><br><span class="line"><span class="operator">=</span><span class="operator">=</span> Optimized Execution Plan <span class="operator">=</span><span class="operator">=</span></span><br><span class="line">GroupAggregate(<span class="keyword">select</span><span class="operator">=</span>[<span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> EXPR$<span class="number">0</span>])</span><br><span class="line"><span class="operator">+</span><span class="operator">-</span> Exchange(distribution<span class="operator">=</span>[single])</span><br><span class="line">   <span class="operator">+</span><span class="operator">-</span> TableSourceScan(<span class="keyword">table</span><span class="operator">=</span>[[default_catalog, default_database, iceberg_local_table, project<span class="operator">=</span>[]]], fields<span class="operator">=</span>[])</span><br></pre></td></tr></table></figure>
+
+<p><code>select count(field)</code>的projection,可以拿到对应的字段<br><img src="/bigdata/Flink/attachments/6ff1d909ac58eb4274815fe73e123eaf_MD5.jpg"><br>● Flink与Iceberg的聚合下推问题</p>
+<p>୦ 目前Flink与Iceberg在聚合下推方面配合不佳，Flink的Source Function仅支持filter和project下推，不支持聚合下推。</p>
+<p>୦ Spark支持聚合下推优化，但Flink在1.15版本中仅支持project和filter下推，高版本（1.18+）实现了manifest和snapshot级别的count优化。</p>
+<p>୦ 当前Flink在project为空时会扫描全表数据，但未实际读取数据，导致性能问题。</p>
+<h2 id="1-2-AggFunction"><a href="#1-2-AggFunction" class="headerlink" title="1.2 AggFunction"></a>1.2 AggFunction</h2><h3 id="1-2-1-count-字段"><a href="#1-2-1-count-字段" class="headerlink" title="1.2.1 count(字段)"></a>1.2.1 <code>count(字段)</code></h3><ul>
+<li><strong>实现类</strong>：<code>CountAggFunction</code></li>
+<li><strong>行为</strong>：只统计<strong>非null值</strong></li>
+<li><strong>代码位置</strong>：</li>
+</ul>
+<p><code>/Users/averyzhang/workspace/flink/flink-1.15/flink-table/flink-table-planner/src/main/java/org/apache/flink/table/planner/functions/aggfunctions/CountAggFunction.java</code></p>
+<ul>
+<li><strong>关键逻辑</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">Expression</span>[] <span class="title function_">accumulateExpressions</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Expression</span>[] &#123;</span><br><span class="line">        <span class="comment">/* count = */</span> ifThenElse(isNull(operand(<span class="number">0</span>)), count, plus(count, literal(<span class="number">1L</span>)))</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-2-count-1-和count"><a href="#1-2-2-count-1-和count" class="headerlink" title="1.2.2 count(1)和count(*)"></a>1.2.2 <code>count(1)</code>和<code>count(*)</code></h3><ul>
+<li><strong>实现类</strong>：<code>Count1AggFunction</code></li>
+<li><strong>行为</strong>：统计<strong>所有记录</strong>，包括null值</li>
+<li><strong>代码位置</strong>：<code>/Users/averyzhang/workspace/flink/flink-1.15/flink-table/flink-table-planner/src/main/java/org/apache/flink/table/planner/functions/aggfunctions/Count1AggFunction.java</code></li>
+<li><strong>关键逻辑</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">Expression</span>[] <span class="title function_">accumulateExpressions</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Expression</span>[] &#123;<span class="comment">/* count1 = */</span> plus(count1, literal(<span class="number">1L</span>))&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-算子转换"><a href="#1-3-算子转换" class="headerlink" title="1.3 算子转换"></a>1.3 算子转换</h2><h3 id="1-3-1-count-字段"><a href="#1-3-1-count-字段" class="headerlink" title="1.3.1 count(字段)"></a>1.3.1 <code>count(字段)</code></h3><ul>
+<li><strong>算子</strong>：<code>CountAggFunction</code></li>
+<li><strong>优化规则</strong>：在<code>SplitAggregateRule</code>中，partial阶段使用COUNT，final阶段使用SUM0</li>
+</ul>
+<h3 id="1-3-2-count-1-和count"><a href="#1-3-2-count-1-和count" class="headerlink" title="1.3.2 count(1)和count(*)"></a>1.3.2 <code>count(1)</code>和count<code>(*)</code></h3><ul>
+<li><strong>算子</strong>：<code>Count1AggFunction</code></li>
+<li><strong>判断逻辑</strong>：在<code>FlinkRelBuilder.isCountStarAgg()</code>方法中判断是否为<code>count(*)</code></li>
+</ul>
+<h2 id="1-4-iceberg表的具体行为"><a href="#1-4-iceberg表的具体行为" class="headerlink" title="1.4 iceberg表的具体行为"></a>1.4 iceberg表的具体行为</h2><p>对于iceberg表，如果实现了<code>SupportsAggregatePushDown</code>接口<br>（代码位置：<code>/Users/averyzhang/workspace/flink/flink-1.15/flink-table/flink-table-common/src/main/java/org/apache/flink/table/connector/source/abilities/SupportsAggregatePushDown.java</code>）：</p>
+<h3 id="1-4-1-count-字段"><a href="#1-4-1-count-字段" class="headerlink" title="1.4.1 count(字段)"></a>1.4.1 <code>count(字段)</code></h3><ul>
+<li>如果字段有null值，需要扫描数据来判断</li>
+<li>如果字段没有null值约束，可能可以利用iceberg的列统计信息进行优化</li>
+</ul>
+<h3 id="1-4-2-count-1-和count"><a href="#1-4-2-count-1-和count" class="headerlink" title="1.4.2 count(1)和count(*)"></a>1.4.2 <code>count(1)</code>和count<code>(*)</code></h3><ul>
+<li><strong>最佳优化场景</strong>：可以直接利用iceberg表的文件级别统计信息（如row_count）</li>
+<li><strong>性能优势</strong>：可能不需要扫描实际数据，直接从元数据获取计数</li>
+</ul>
+<h2 id="1-5-关键代码位置总结"><a href="#1-5-关键代码位置总结" class="headerlink" title="1.5 关键代码位置总结"></a>1.5 关键代码位置总结</h2><ol>
+<li><p><strong>聚合函数实现</strong>：</p>
+<ul>
+<li>CountAggFunction: <code>flink-table-planner/src/main/java/org/apache/flink/table/planner/functions/aggfunctions/CountAggFunction.java</code></li>
+<li>Count1AggFunction: <code>flink-table-planner/src/main/java/org/apache/flink/table/planner/functions/aggfunctions/Count1AggFunction.java</code></li>
+</ul>
+</li>
+<li><p><strong><code>count(*)</code>判断逻辑</strong>：</p>
+<ul>
+<li><code>FlinkRelBuilder.isCountStarAgg()</code>: <code>flink-table-planner/src/main/java/org/apache/flink/table/planner/calcite/FlinkRelBuilder.java</code></li>
+</ul>
+</li>
+<li><p><strong>聚合下推接口</strong>：</p>
+<ul>
+<li><code>SupportsAggregatePushDown</code>: <code>flink-table-common/src/main/java/org/apache/flink/table/connector/source/abilities/SupportsAggregatePushDown.java</code></li>
+</ul>
+</li>
+<li><p><strong>聚合分割规则</strong>：</p>
+<ul>
+<li><code>SplitAggregateRule</code>: <code>flink-table-planner/src/main/scala/org/apache/flink/table/planner/plan/rules/logical/SplitAggregateRule.scala</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="1-6-元数据信息"><a href="#1-6-元数据信息" class="headerlink" title="1.6 元数据信息"></a>1.6 元数据信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ll  metadata</span><br><span class="line">total 60K</span><br><span class="line">-rw-r--r-- 1 root root  11K Dec 22 21:42 3031cf5a-37b0-4f97-8568-5af892f48244-m0.avro</span><br><span class="line">-rw-r--r-- 1 root root  11K Dec 22 21:40 56d0c3ef-8f73-44c8-8d20-553bbdbbd200-m0.avro</span><br><span class="line">-rw-r--r-- 1 root root 4.5K Dec 22 21:42 snap-7569084149956477108-1-3031cf5a-37b0-4f97-8568-5af892f48244.avro</span><br><span class="line">-rw-r--r-- 1 root root 4.4K Dec 22 21:40 snap-7985011370354105799-1-56d0c3ef-8f73-44c8-8d20-553bbdbbd200.avro</span><br><span class="line">-rw-r--r-- 1 root root 1.8K Dec 22 21:27 v1.metadata.json</span><br><span class="line">-rw-r--r-- 1 root root 2.7K Dec 22 21:40 v2.metadata.json</span><br><span class="line">-rw-r--r-- 1 root root 4.1K Dec 22 21:42 v3.metadata.json</span><br><span class="line">-rw-r--r-- 1 root root    1 Dec 22 21:42 version-hint.text</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="built_in">cat</span> v3.metadata.json </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// metadata.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;format-version&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;table-uuid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2bf9cc09-1099-454a-aae7-c13fe14f7f20&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;location&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:///tmp/iceberg_local_warehouse/default_database/iceberg_local_table&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;last-sequence-number&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;last-updated-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410956369</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;last-column-id&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;current-schema-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;schemas&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;struct&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;schema-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;id&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;long&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;name&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">3</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;category&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">4</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;create_time&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;timestamp&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;creator&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;required&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;default-spec-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;partition-specs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;spec-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;last-partition-id&quot;</span><span class="punctuation">:</span> <span class="number">999</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;default-sort-order-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;sort-orders&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;order-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;current-index-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;indexes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;index-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;index-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;empty&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;index-type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;index-properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;fields&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;connector&quot;</span><span class="punctuation">:</span> <span class="string">&quot;iceberg&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;write.parquet.compression-codec&quot;</span><span class="punctuation">:</span> <span class="string">&quot;zstd&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;catalog-type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hadoop&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;keep-modified-paths&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:///tmp/iceberg_local_warehouse/default_database/iceberg_local_table&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;catalog-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;demo_catalog&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;warehouse&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:///tmp/iceberg_local_warehouse&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;current-snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7569084149956477108</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;refs&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7569084149956477108</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;branch&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;snapshots&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;sequence-number&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7985011370354105799</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410855548</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;summary&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;operation&quot;</span><span class="punctuation">:</span> <span class="string">&quot;append&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.checkpoint-timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1766410855378&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.operator-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a0e952a7da09b602686e75133408a70e&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flink-1.15&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;oceanus.job-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;8da0afd77543eb566e79c5dc0656bf1c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.job-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;8da0afd77543eb566e79c5dc0656bf1c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;streaming&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.max-committed-checkpoint-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9223372036854775807&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-small-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-records&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-files-size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;82584&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;changed-partition-count&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;root&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;8da0afd77543eb566e79c5dc0656bf1c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;insert-into_default_catalog.default_database.iceberg_local_table&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-records&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-files-size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;82584&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-delete-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-position-deletes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-equality-deletes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine-version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.15-tq-0.1.42&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flink&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;iceberg-version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Apache Iceberg 1.8.2-6-tq (commit 1f7547520767fe0d4537361e6c812962fa750d83)&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;manifest-list&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/metadata/snap-7985011370354105799-1-56d0c3ef-8f73-44c8-8d20-553bbdbbd200.avro&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;schema-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;sequence-number&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7569084149956477108</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;parent-snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7985011370354105799</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410956369</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;summary&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;operation&quot;</span><span class="punctuation">:</span> <span class="string">&quot;append&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.checkpoint-timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1766410956164&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.operator-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;a0e952a7da09b602686e75133408a70e&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flink-1.15&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;oceanus.job-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;b95b354367e1fde2dcc30438f62e8e75&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.job-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;b95b354367e1fde2dcc30438f62e8e75&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;streaming&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;flink.max-committed-checkpoint-id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9223372036854775807&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-small-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;48&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-records&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;added-files-size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;82585&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;changed-partition-count&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;user&quot;</span><span class="punctuation">:</span> <span class="string">&quot;root&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;b95b354367e1fde2dcc30438f62e8e75&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;jobName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;insert-into_default_catalog.default_database.iceberg_local_table&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-records&quot;</span><span class="punctuation">:</span> <span class="string">&quot;200&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-files-size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;165169&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-data-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;96&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-delete-files&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-position-deletes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;total-equality-deletes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine-version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.15-tq-0.1.42&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;engine-name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;flink&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;iceberg-version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Apache Iceberg 1.8.2-6-tq (commit 1f7547520767fe0d4537361e6c812962fa750d83)&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;manifest-list&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/metadata/snap-7569084149956477108-1-3031cf5a-37b0-4f97-8568-5af892f48244.avro&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;schema-id&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;statistics&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;partition-statistics&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;snapshot-log&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410855548</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7985011370354105799</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410956369</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;snapshot-id&quot;</span><span class="punctuation">:</span> <span class="number">7569084149956477108</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;metadata-log&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410022055</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;metadata-file&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/metadata/v1.metadata.json&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;timestamp-ms&quot;</span><span class="punctuation">:</span> <span class="number">1766410855548</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;metadata-file&quot;</span><span class="punctuation">:</span> <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/metadata/v2.metadata.json&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">java -jar avro-tools.java tojson snap-7569084149956477108-1-3031cf5a-37b0-4f97-8568-5af892f48244.avro &gt; local_iceberg_schema.avro.json</span><br></pre></td></tr></table></figure>
+
+<p>每个数据文件，都会对应一行 avro 记录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line">// avro record of data file</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;status&quot;</span>: 1,</span><br><span class="line">    <span class="string">&quot;snapshot_id&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;long&quot;</span>: 7569084149956477108</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;sequence_number&quot;</span>: null,</span><br><span class="line">    <span class="string">&quot;file_sequence_number&quot;</span>: null,</span><br><span class="line">    <span class="string">&quot;min_sequence_number&quot;</span>: null,</span><br><span class="line">    <span class="string">&quot;data_file&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: 0,</span><br><span class="line">        <span class="string">&quot;file_path&quot;</span>: <span class="string">&quot;file:/tmp/iceberg_local_warehouse/default_database/iceberg_local_table/data/00010-0-30b0e113-e15a-484a-a4db-9107ecbc3034-00001.parquet&quot;</span>,</span><br><span class="line">        <span class="string">&quot;file_format&quot;</span>: <span class="string">&quot;PARQUET&quot;</span>,</span><br><span class="line">        <span class="string">&quot;partition&quot;</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">&quot;record_count&quot;</span>: 2,</span><br><span class="line">        <span class="string">&quot;file_size_in_bytes&quot;</span>: 1705,</span><br><span class="line">        <span class="string">&quot;column_sizes&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 57</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 62</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 83</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 57</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 84</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;value_counts&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 2</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;null_value_counts&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: 0</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;nan_value_counts&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;lower_bounds&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;\u000B\u0000\u0000\u0000\u0000\u0000\u0000\u0000&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;äº§å_11&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;å¾ä¹¦&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;èþMF\u0006\u0000&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;èµµå­&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;upper_bounds&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 1,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;;\u0000\u0000\u0000\u0000\u0000\u0000\u0000&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 2,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;äº§å_59&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 3,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;å¾ä¹¦&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 4,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;Ð¯\rNF\u0006\u0000&quot;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;key&quot;</span>: 5,</span><br><span class="line">                    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;èµµå­&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;key_metadata&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;split_offsets&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;array&quot;</span>: [</span><br><span class="line">                4</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;equality_ids&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;sort_order_id&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;int&quot;</span>: 0</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;referenced_data_file&quot;</span>: null,</span><br><span class="line">        <span class="string">&quot;schema_id&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;int&quot;</span>: 0</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;index_metadata&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;map&quot;</span>: &#123;&#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;extra_metadata&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;map&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;write.parquet.compression-codec&quot;</span>: <span class="string">&quot;ZSTD&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Iceberg文件级别元数据</p>
+<p>୦ Iceberg的datafile元数据中包含record count、字段大小等信息，Flink写入时已记录这些信息。</p>
+<p>୦ 未来可探讨利用manifest和文件级别元数据优化聚合下推功能。</p>
+<h1 id="2-Flink-SQL执行与iceberg关系"><a href="#2-Flink-SQL执行与iceberg关系" class="headerlink" title="2 Flink SQL执行与iceberg关系"></a>2 Flink SQL执行与iceberg关系</h1><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>动作</th>
+<th>输入</th>
+<th>输出</th>
+<th>关键类</th>
+<th>Iceberg调用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Parsing</strong></td>
+<td>词法解析与语法解析，构建SqlNode树</td>
+<td>SQL 字符串</td>
+<td><code>SqlNode</code> 树</td>
+<td><code>SqlParser</code><br><code>org.apache.flink.table.planner.parse.CalciteParser#parseSqlList</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Validation</strong></td>
+<td>语义验证<br>结合Catalog元数据(表、列、函数定义)</td>
+<td><code>SqlNode</code> + Catalog</td>
+<td>验证后的 <code>SqlNode</code><br>内部绑定:<br>1. 表的标识<br>2. 列的类型信息<br>3. 函数调用合法性确认</td>
+<td><strong><code>FlinkSqlValidator</code></strong><br><code>org.apache.flink.table.planner.calcite.FlinkPlannerImpl#validate</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Conversion</strong></td>
+<td>逻辑计划生成: 关系代数转换<br>1. 支持时间属性字段<br>2. 处理Watermark<br>3. 区分Append&#x2F;Update&#x2F;Retract流模式</td>
+<td><code>SqlNode</code></td>
+<td>逻辑 <code>RelNode</code> 树</td>
+<td><strong><code>FlinkSqlToRelConverter</code></strong><br><code>sqlToOperationConverter#convertValidatedSqlNode</code><br><code>FlinkPlannerImpl#rel</code></td>
+<td>创建<code>org.apache.iceberg.flink.source.IcebergTableSource</code></td>
+</tr>
+<tr>
+<td><strong>Optimization</strong></td>
+<td>HepPlanner基于规则做逻辑优化<br><strong>VolcanoPlanner</strong>代价模型做物理优化</td>
+<td>逻辑 <code>RelNode</code></td>
+<td>优化后 <code>RelNode</code>(<strong>Physical RelNode</strong>)</td>
+<td><code>org.apache.flink.table.planner.delegation.PlannerBase#optimize</code><br><code>org.apache.flink.table.planner.plan.optimize.program.FlinkChainedProgram</code><br><code>RelOptPlanner</code>, <br><code>RelOptRule</code>,<br><code>FlinkLogicalOptRuleSet</code><br><code>Convention</code>，<code>Trait</code></td>
+<td><code>IcebergTableSource#applyProjection</code><br><code>PushProjectIntoTableSourceScanRule</code></td>
+</tr>
+<tr>
+<td>CodeGen</td>
+<td>转换为DataStream API</td>
+<td><code>RelNode</code></td>
+<td><strong><code>JobGraph</code></strong></td>
+<td><strong><code>RelNode#translateToPlan</code></strong><br><code>ExecNode.translateToPlan()</code><br><code>translateToExecNodeGraph</code></td>
+<td>创建<code>InputFormatSourceFunction</code><br><code>IcebergTableSource#createDataStream</code></td>
+</tr>
+</tbody></table>
+<h2 id="2-1-优化"><a href="#2-1-优化" class="headerlink" title="2.1 优化"></a>2.1 优化</h2><p>优化的入口: <code>org.apache.flink.table.planner.plan.optimize.StreamCommonSubGraphBasedOptimizer#doOptimize</code></p>
+<h2 id="2-2-FlinkOptimizeProgram"><a href="#2-2-FlinkOptimizeProgram" class="headerlink" title="2.2 FlinkOptimizeProgram"></a>2.2 FlinkOptimizeProgram</h2><p>用于优化Stream Table Plan的Programs序列: <code>org.apache.flink.table.planner.plan.optimize.program.FlinkStreamProgram</code></p>
+<table>
+<thead>
+<tr>
+<th>FlinkChainedProgram</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>subquery_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>temporal_join_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>decorrelate</td>
+<td></td>
+</tr>
+<tr>
+<td>default_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>predicate_pushdown</td>
+<td></td>
+</tr>
+<tr>
+<td>join_reorder</td>
+<td></td>
+</tr>
+<tr>
+<td>project_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>logical</td>
+<td></td>
+</tr>
+<tr>
+<td>logical_rewrite</td>
+<td></td>
+</tr>
+<tr>
+<td>time_indicator</td>
+<td></td>
+</tr>
+<tr>
+<td>physical</td>
+<td></td>
+</tr>
+<tr>
+<td>physical_rewrite</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="2-3-优化规则"><a href="#2-3-优化规则" class="headerlink" title="2.3 优化规则"></a>2.3 优化规则</h2><p><code>org.apache.flink.table.planner.plan.rules.FlinkStreamRuleSets</code></p>
+<p><code>org/apache/flink/table/planner/plan/rules/logic</code><br><code>org/apache/flink/table/planner/plan/rules/physical</code></p>
+<p>优化规则：本质是关系表达式的等价变换</p>
+<p>Rules 的本质是<strong>一种模式匹配与替换机制</strong>。</p>
+<ul>
+<li><strong>输入：</strong> 一棵逻辑算子树（由 <code>RelNode</code> 组成，如 <code>LogicalProject</code>, <code>LogicalFilter</code>）。</li>
+<li><strong>匹配（Matching）：</strong> 规则定义了一个 <code>RelOptRuleOperand</code>（操作数），用来描述它感兴趣的算子结构。例如，“一个 Filter 紧跟在另一个 Filter 之后”。</li>
+<li><strong>变换（Transformation）：</strong> 当匹配成功时，调用 <code>onMatch</code> 方法，将旧的算子树替换为等价但更优的新算子树。</li>
+</ul>
+<p>IcebergTableSource 支持了 SupportsProjectionPushDown, SupportsFilterPushDown, SupportsLimitPushDown 三种下推</p>
+<ol>
+<li>投影下推 (Projection PushDown)</li>
+</ol>
+<p>方法: <code>applyProjection(int[][] projectFields)</code><br>功能: 只读取需要的列，减少数据传输<br>实现: 通过projectedFields数组记录需要投影的列索引<br>2. 过滤条件下推 (Filter PushDown)<br>方法: <code>applyFilters(List&lt;ResolvedExpression&gt; flinkFilters)</code><br>功能: 将过滤条件推送到数据源层执行<br>实现: 将Flink表达式转换为Iceberg表达式，返回接受的过滤器列表<br>3. 限制下推 (Limit PushDown)<br>方法: <code>applyLimit(long newLimit)</code><br>功能: 限制返回的数据条数<br>实现: 设置limit字段值，在数据源层进行限制</p>
+<p>这三种pushdown功能最终在getScanRuntimeProvider方法中整合，通过FlinkSource.forRowData()构建数据流时应用相应的投影、过滤和限制条件，从而在数据源层面实现优化，减少网络传输和计算开销。</p>
+<h3 id="2-3-1-投影下推-Projection-PushDown-规则"><a href="#2-3-1-投影下推-Projection-PushDown-规则" class="headerlink" title="2.3.1 投影下推(Projection-PushDown)规则"></a>2.3.1 投影下推(Projection-PushDown)规则</h3><p><code>org.apache.flink.table.planner.plan.rules.logical.PushProjectIntoTableSourceScanRule</code></p>
+<ul>
+<li>减少I&#x2F;O开销: 只读取查询需要的列数据</li>
+<li>降低网络传输: 减少不必要的数据传输</li>
+<li>提高处理效率: 在数据源层面进行过滤</li>
+<li>支持复杂类型: 处理嵌套和变体数据结构的投影</li>
+</ul>
+<pre class="mermaid">graph LR
+    A[获取Project和Scan] --> B[检查嵌套投影支持]
+    B --> C[提取引用字段]
+    C --> D[处理变体字段]
+    D --> E[构建投影模式]
+    E --> F[执行投影下推]
+    F --> G[创建新的表源和扫描]
+    G --> H[重写投影表达式]
+    H --> I[返回优化结果]</pre>
+
+<pre class="mermaid">flowchart TB
+	subgraph ProjectionPushDown
+		direction LR
+		subgraph matches
+			direction LR
+			a1 --> a2
+		end
+		
+		subgraph onMatch
+			direction LR
+			a4 --> b3
+		end
+	end</pre>
+
+<h3 id="2-3-2-过滤下推"><a href="#2-3-2-过滤下推" class="headerlink" title="2.3.2 过滤下推"></a>2.3.2 过滤下推</h3><h3 id="2-3-3-Limit下推"><a href="#2-3-3-Limit下推" class="headerlink" title="2.3.3 Limit下推"></a>2.3.3 Limit下推</h3><h2 id="2-4-Iceberg读取数据"><a href="#2-4-Iceberg读取数据" class="headerlink" title="2.4 Iceberg读取数据"></a>2.4 Iceberg读取数据</h2><p>核心类： <code>org.apache.iceberg.flink.source.RowDataFileScanTaskReader</code></p>
+<ol>
+<li>初始化阶段<br>创建分区常量映射：从FileScanTask中提取分区信息，创建常量映射<br>创建删除过滤器：初始化FlinkDeleteFilter处理数据删除逻辑</li>
+<li>数据读取阶段<br>根据文件格式选择对应的Reader：<br>Parquet Reader：使用FlinkParquetReaders.buildReader<br>Avro Reader：使用FlinkAvroReader<br>ORC Reader：使用FlinkOrcReader</li>
+<li>过滤处理阶段<br>基础数据过滤：应用task.residual()表达式过滤或rowFilter过滤<br>删除过滤：处理行删除和位置删除逻辑</li>
+<li>投影转换阶段<br>投影转换：当requiredSchema与projectedSchema不一致时，应用RowDataProjection进行字段投影</li>
+</ol>
+<h2 id="2-5-代办"><a href="#2-5-代办" class="headerlink" title="2.5 代办"></a>2.5 代办</h2><ul>
+<li><input disabled="" type="checkbox"> org.apache.iceberg.flink.source.RowDataFileScanTaskReader#newParquetIterable 中Parquet读取数据的split操作?</li>
+<li><input disabled="" type="checkbox"> FunctionGen‎erator.scala 用于Function的CodeGen</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FlinkSQL/" rel="tag"># FlinkSQL</a>
+              <a href="/tags/Count/" rel="tag"># Count</a>
+              <a href="/tags/Iceberg/" rel="tag"># Iceberg</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SQL-Timestmap/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-Hive/" rel="next" title="Flink hive connector">
+      Flink hive connector <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Flink-SQL-%E6%9F%A5%E8%AF%A2iceberg-count%E8%AF%AD%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">1 Flink SQL 查询iceberg count语义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%BB%93%E8%AE%BA%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 结论：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-AggFunction"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 AggFunction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-count-%E5%AD%97%E6%AE%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 count(字段)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-count-1-%E5%92%8Ccount"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 count(1)和count(*)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E7%AE%97%E5%AD%90%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 算子转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-count-%E5%AD%97%E6%AE%B5"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 count(字段)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-count-1-%E5%92%8Ccount"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 count(1)和count(*)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-iceberg%E8%A1%A8%E7%9A%84%E5%85%B7%E4%BD%93%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 iceberg表的具体行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-count-%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1 count(字段)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-count-1-%E5%92%8Ccount"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.4.2 count(1)和count(*)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81%E4%BD%8D%E7%BD%AE%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 关键代码位置总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E5%85%83%E6%95%B0%E6%8D%AE%E4%BF%A1%E6%81%AF"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 元数据信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Flink-SQL%E6%89%A7%E8%A1%8C%E4%B8%8Eiceberg%E5%85%B3%E7%B3%BB"><span class="nav-number">2.</span> <span class="nav-text">2 Flink SQL执行与iceberg关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E4%BC%98%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-FlinkOptimizeProgram"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 FlinkOptimizeProgram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%99"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 优化规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-%E6%8A%95%E5%BD%B1%E4%B8%8B%E6%8E%A8-Projection-PushDown-%E8%A7%84%E5%88%99"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 投影下推(Projection-PushDown)规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-%E8%BF%87%E6%BB%A4%E4%B8%8B%E6%8E%A8"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 过滤下推</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-Limit%E4%B8%8B%E6%8E%A8"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 Limit下推</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Iceberg%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Iceberg读取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E4%BB%A3%E5%8A%9E"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 代办</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

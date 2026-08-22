@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="预训练数据采集与来源一句话定位：预训练数据链路的第一环，决定了语料的规模上限与”脏度”下限——采什么源、怎么从原始网页里把正文捞干净，直接决定后续所有清洗环节的工作量。 1. 多源异构预训练语料通常由多类来源混合而成：  网页：以 Common Crawl 为主，规模最大（PB 级）、覆盖最广，但噪声最重（模板、广告、导航、低质内容）。 文档：书籍、论文（arXiv）、百科等，质量高、长文本连贯性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="预训练数据采集与来源">
+<meta property="og:url" content="http://yoursite.com/AI/data-engineering/pretrain-data-collection/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="预训练数据采集与来源一句话定位：预训练数据链路的第一环，决定了语料的规模上限与”脏度”下限——采什么源、怎么从原始网页里把正文捞干净，直接决定后续所有清洗环节的工作量。 1. 多源异构预训练语料通常由多类来源混合而成：  网页：以 Common Crawl 为主，规模最大（PB 级）、覆盖最广，但噪声最重（模板、广告、导航、低质内容）。 文档：书籍、论文（arXiv）、百科等，质量高、长文本连贯性">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T11:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.834Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="大模型">
+<meta property="article:tag" content="数据工程">
+<meta property="article:tag" content="预训练">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/AI/data-engineering/pretrain-data-collection/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>预训练数据采集与来源 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/data-engineering/pretrain-data-collection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          预训练数据采集与来源
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 11:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T11:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="预训练数据采集与来源"><a href="#预训练数据采集与来源" class="headerlink" title="预训练数据采集与来源"></a>预训练数据采集与来源</h1><p>一句话定位：预训练数据链路的第一环，决定了语料的规模上限与”脏度”下限——采什么源、怎么从原始网页里把正文捞干净，直接决定后续所有清洗环节的工作量。</p>
+<h2 id="1-多源异构"><a href="#1-多源异构" class="headerlink" title="1. 多源异构"></a>1. 多源异构</h2><p>预训练语料通常由多类来源混合而成：</p>
+<ul>
+<li><strong>网页</strong>：以 <strong>Common Crawl</strong> 为主，规模最大（PB 级）、覆盖最广，但噪声最重（模板、广告、导航、低质内容）。</li>
+<li><strong>文档</strong>：书籍、论文（arXiv）、百科等，质量高、长文本连贯性好，是提升知识密度的关键。</li>
+<li><strong>代码</strong>：GitHub 等代码语料，对提升模型推理与结构化能力有显著作用。</li>
+<li>其余：问答社区、多语言语料等。</li>
+</ul>
+<p>异构性体现在<strong>格式、编码、质量、语言分布</strong>都不一致，因此采集之后必须统一到标准化的中间表示，才能进入后续流水线。</p>
+<h2 id="2-WARC-格式与正文提取的难点"><a href="#2-WARC-格式与正文提取的难点" class="headerlink" title="2. WARC 格式与正文提取的难点"></a>2. WARC 格式与正文提取的难点</h2><p>Common Crawl 以 <strong>WARC</strong>（Web ARChive）格式分发，一条记录包含 HTTP 请求&#x2F;响应头与原始 HTML 负载（另有 WAT 元数据、WET 纯文本衍生格式）。</p>
+<p>从 WARC 中提取正文的核心难点：</p>
+<ul>
+<li><strong>去模板（Boilerplate Removal）</strong>：页面里导航栏、页脚、侧边栏、广告、版权声明等<strong>跨页面重复</strong>的模板内容，占比常常超过正文；若不去除，会在语料中形成海量近重复片段，既浪费算力也损害模型质量。</li>
+<li><strong>去导航</strong>：菜单、面包屑、”相关阅读”链接列表等短文本块，语义价值低但数量极大。</li>
+<li>附带难点：HTML 结构不规范、字符编码混乱、正文与评论区难以区分。</li>
+</ul>
+<p>工程上常用基于 DOM 结构与文本密度的启发式抽取（如 trafilatura、jusText 类思路），并与后续的规则过滤（2.2）配合，形成”抽取 + 过滤”两道防线。</p>
+<h2 id="3-工程视角"><a href="#3-工程视角" class="headerlink" title="3. 工程视角"></a>3. 工程视角</h2><p>该环节是<strong>解析型 CPU 密集</strong>任务：单条记录处理不重，但记录数极大（十亿量级），瓶颈在解析吞吐与 I&#x2F;O，靠高并行度 + 大批量顺序读取 + 列式&#x2F;压缩中间格式（对应 1.6、1.7）来提速。</p>
+<blockquote>
+<p>参考：Common Crawl 官方文档；论文《The Pile: An 800GB Dataset of Diverse Text for Language Modeling》</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" rel="tag"># 大模型</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/" rel="tag"># 数据工程</a>
+              <a href="/tags/%E9%A2%84%E8%AE%AD%E7%BB%83/" rel="tag"># 预训练</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/AI/data-engineering/dataloader-tuning/" rel="prev" title="DataLoader 参数调优">
+      <i class="fa fa-chevron-left"></i> DataLoader 参数调优
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/AI/data-engineering/data-quality-filter/" rel="next" title="数据质量过滤">
+      数据质量过滤 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E4%B8%8E%E6%9D%A5%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">预训练数据采集与来源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%A4%9A%E6%BA%90%E5%BC%82%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">1. 多源异构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-WARC-%E6%A0%BC%E5%BC%8F%E4%B8%8E%E6%AD%A3%E6%96%87%E6%8F%90%E5%8F%96%E7%9A%84%E9%9A%BE%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">2. WARC 格式与正文提取的难点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B7%A5%E7%A8%8B%E8%A7%86%E8%A7%92"><span class="nav-number">1.3.</span> <span class="nav-text">3. 工程视角</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

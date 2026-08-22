@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Spark 数据倾斜的成因与治理一句话定位：数据倾斜是分布式计算里最典型、最高频的性能杀手——少量 key 承载了不成比例的数据量，拖出长尾 Task，让整个 Stage 的吞吐受限于最慢的那一个。面试里它既是”会不会调优”的试金石，也是把大数据经验迁移到 GPU 推理调优的最佳桥梁（长尾 Task ≈ 静态 Batching 木桶效应）。 1. 成因：为什么会发生倾斜分布式计算按 key 分区（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark data skew">
+<meta property="og:url" content="http://yoursite.com/bigdata/Spark/Spark-data-skew/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="Spark 数据倾斜的成因与治理一句话定位：数据倾斜是分布式计算里最典型、最高频的性能杀手——少量 key 承载了不成比例的数据量，拖出长尾 Task，让整个 Stage 的吞吐受限于最慢的那一个。面试里它既是”会不会调优”的试金石，也是把大数据经验迁移到 GPU 推理调优的最佳桥梁（长尾 Task ≈ 静态 Batching 木桶效应）。 1. 成因：为什么会发生倾斜分布式计算按 key 分区（">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-01-15T19:47:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.642Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Spark/Spark-data-skew/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Spark data skew | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Spark/Spark-data-skew/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spark data skew
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-01-15T19:47:00+00:00">2021-01-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Spark-数据倾斜的成因与治理"><a href="#Spark-数据倾斜的成因与治理" class="headerlink" title="Spark 数据倾斜的成因与治理"></a>Spark 数据倾斜的成因与治理</h1><p>一句话定位：数据倾斜是分布式计算里最典型、最高频的性能杀手——少量 key 承载了不成比例的数据量，拖出长尾 Task，让整个 Stage 的吞吐受限于最慢的那一个。面试里它既是”会不会调优”的试金石，也是把大数据经验迁移到 GPU 推理调优的最佳桥梁（长尾 Task ≈ 静态 Batching 木桶效应）。</p>
+<h2 id="1-成因：为什么会发生倾斜"><a href="#1-成因：为什么会发生倾斜" class="headerlink" title="1. 成因：为什么会发生倾斜"></a>1. 成因：为什么会发生倾斜</h2><p>分布式计算按 key 分区（默认 <code>HashPartitioner</code>：同一 key 必落同一 Task）。当<strong>数据本身的 key 分布不均</strong>（存在热点 key &#x2F; 大 key），或<strong>分区键 &#x2F; 哈希函数选得不合适</strong>时，少数 Task 会分到远超均值的数据量，成为长尾（straggler），拖慢整个 Stage——因为 Stage 的完成取决于最慢的 Task。</p>
+<p>关键结论：<strong>倾斜只发生在 Shuffle 过程中</strong>。窄依赖（map &#x2F; filter &#x2F; mapPartitions）不跨节点重分布、不按 key 汇聚，因此不存在按 key 汇聚的倾斜；只有 Shuffle（按 key 重分区）才会把热点 key 集中到一个 reduce Task 上。</p>
+<h2 id="2-触发-Shuffle-的算子（何时会踩坑）"><a href="#2-触发-Shuffle-的算子（何时会踩坑）" class="headerlink" title="2. 触发 Shuffle 的算子（何时会踩坑）"></a>2. 触发 Shuffle 的算子（何时会踩坑）</h2><p>以下算子会产生 Shuffle，是倾斜的高发区：distinct、groupByKey、reduceByKey、aggregateByKey、join、cogroup、repartition 等。</p>
+<blockquote>
+<p>参考：<a href="https://tech.meituan.com/2016/05/12/spark-tuning-pro.html">Spark性能优化指南——高级篇</a></p>
+</blockquote>
+<h2 id="3-治理手段（四类）"><a href="#3-治理手段（四类）" class="headerlink" title="3. 治理手段（四类）"></a>3. 治理手段（四类）</h2><h3 id="3-1-加盐打散（Salting）"><a href="#3-1-加盐打散（Salting）" class="headerlink" title="3.1 加盐打散（Salting）"></a>3.1 加盐打散（Salting）</h3><p>给热点 key 拼接随机前缀&#x2F;后缀（如 <code>key + &quot;_&quot; + random(N)</code>），把一个热点打散成 N 份落到不同 Task 并行处理。</p>
+<ul>
+<li>适用：可拆分的聚合（计数、求和）。</li>
+<li>Tradeoff：多一次 Shuffle 阶段、逻辑更复杂；<strong>不适用于需要精确去重（distinct count）的场景</strong>——加盐后同一原始 key 被拆散，distinct 会算错。</li>
+</ul>
+<h3 id="3-2-两阶段聚合（局部聚合-全局聚合）"><a href="#3-2-两阶段聚合（局部聚合-全局聚合）" class="headerlink" title="3.2 两阶段聚合（局部聚合 + 全局聚合）"></a>3.2 两阶段聚合（局部聚合 + 全局聚合）</h3><p>也称 Map 端预聚合 &#x2F; 两遍聚合，专治 groupBy 类倾斜：</p>
+<ol>
+<li>第一阶段（局部）：给 key 加随机前缀，按 <code>前缀+key</code> 做局部聚合（<code>reduceByKey</code> &#x2F; <code>aggregateByKey</code>），先把热点大幅缩小。</li>
+<li>第二阶段（全局）：去掉前缀，按原始 key 做全局聚合。</li>
+</ol>
+<ul>
+<li>适用：<strong>可累加</strong>的聚合（sum &#x2F; count &#x2F; 可两阶段 avg）。</li>
+<li>不适用：不可累加（distinct、median、全局 topN）。</li>
+<li>关键配合：优先用 <code>reduceByKey</code> &#x2F; <code>aggregateByKey</code>（自带 map 端 combine，shuffle 数据量小），<strong>避免 <code>groupByKey</code></strong>（无 map 端聚合，shuffle 量最大，最易倾斜）。</li>
+</ul>
+<h3 id="3-3-Broadcast-Join-消除-Shuffle"><a href="#3-3-Broadcast-Join-消除-Shuffle" class="headerlink" title="3.3 Broadcast Join 消除 Shuffle"></a>3.3 Broadcast Join 消除 Shuffle</h3><p>小表 join 大表时，把小表广播到所有 Executor，在 map 端完成 join，<strong>完全避免大表的 Shuffle</strong>——倾斜自然消失。</p>
+<ul>
+<li>适用条件：小表能放进 Executor 内存（默认阈值 <code>spark.sql.autoBroadcastJoinThreshold = 10MB</code>，可上调）。</li>
+<li>Tradeoff：小表过大广播会撑爆内存&#x2F;网络；大表 join 大表不适用（考虑 Bucket Join &#x2F; Sort Merge Join）。</li>
+<li>若倾斜源于 join 的倾斜 key，且维表（小表）不大，Broadcast Join 是直接”绕开”倾斜的利器。</li>
+</ul>
+<h3 id="3-4-倾斜-key-单独处理（隔离热键）"><a href="#3-4-倾斜-key-单独处理（隔离热键）" class="headerlink" title="3.4 倾斜 key 单独处理（隔离热键）"></a>3.4 倾斜 key 单独处理（隔离热键）</h3><p>工程上最常用、最可控：先识别热点 key，再把它与非倾斜 key <strong>分开处理</strong>。</p>
+<ul>
+<li>非倾斜 key 走正常 join &#x2F; 聚合；</li>
+<li>倾斜 key 单独用 Broadcast Join，或拆成多个子 key 分别 join 后再 <code>union</code>。</li>
+<li>例：大表 join 维表但该大表某 key 极热 → 把热 key 从大表过滤出来单独和维表广播 join，其余走正常路径。</li>
+</ul>
+<h3 id="3-5-兜底：AQE-自动倾斜处理"><a href="#3-5-兜底：AQE-自动倾斜处理" class="headerlink" title="3.5 兜底：AQE 自动倾斜处理"></a>3.5 兜底：AQE 自动倾斜处理</h3><p>Spark 3.0+ 的 AQE（<code>spark.sql.adaptive.enabled=true</code>）默认开启 <code>spark.sql.adaptive.skewJoin.enabled</code>：运行时统计各分区大小，若某分区 &gt; 中位数 N 倍且超过阈值，自动拆分为多个 Task 并行。</p>
+<ul>
+<li>主要解决 <strong>join</strong> 倾斜；对非 join 的 groupBy 倾斜帮助有限（AQE 的 coalesce partitions 仅缓解小分区过多）。</li>
+<li>面试要点：AQE 是”白嫖”的兜底，但要知道原理、知道它的边界，不能只依赖它。</li>
+</ul>
+<h2 id="4-面试落点：提前抽样发现，而非事后救火"><a href="#4-面试落点：提前抽样发现，而非事后救火" class="headerlink" title="4. 面试落点：提前抽样发现，而非事后救火"></a>4. 面试落点：提前抽样发现，而非事后救火</h2><p><strong>事后救火</strong>（作业跑慢&#x2F;失败、OOM、长尾 Task 几小时跑不完才去猜）是被动且昂贵的。要做到<strong>提前发现</strong>：</p>
+<ul>
+<li><strong>抽样定位</strong>：全量跑之前，对 join key &#x2F; group key 做 <code>sample()</code> + <code>countByValue()</code>（或 <code>groupBy(key).count()</code>），看 key 分布——若某 key 的 count 远高于均值即为倾斜 key。</li>
+<li><strong>Spark UI 看板</strong>：Stage 的 Task 耗时分布、Shuffle Read 大小分布；单个 Task 的 Shuffle Read 特别大、duration 特别长 → 倾斜。</li>
+<li><strong>建基线</strong>：对作业建立 key 分布基线，新数据接入时校验是否出现新热点。</li>
+</ul>
+<p>数字直觉：若某 key 占全量 30%、并行度 100，则该 key 对应的单个 reduce 独吞约 30% 数据，其余 99 个 Task 分摊 70%——这就是典型长尾。</p>
+<p>可迁移话术（回指 1.1.1）：<strong>Spark 长尾 Task ≈ 静态 Batching 木桶效应</strong>；<strong>提前抽样发现倾斜 ≈ 推理前先做输入分布 Profiling &#x2F; 建立基线</strong>，而非 GPU 利用率已呈锯齿才救火。把这套”提前量化基线 → 定位 → 验证”的方法论直接迁移到 GPU 推理调优，是面试里最强的差异化叙事。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Spark/" rel="tag"># Spark</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Spark/Spark-resource/" rel="prev" title="Spark资源评估">
+      <i class="fa fa-chevron-left"></i> Spark资源评估
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Spark/Spark-streaming-runtime/" rel="next" title="Spark streaming runtime">
+      Spark streaming runtime <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spark-%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E7%9A%84%E6%88%90%E5%9B%A0%E4%B8%8E%E6%B2%BB%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">Spark 数据倾斜的成因与治理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%88%90%E5%9B%A0%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%8F%91%E7%94%9F%E5%80%BE%E6%96%9C"><span class="nav-number">1.1.</span> <span class="nav-text">1. 成因：为什么会发生倾斜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A6%E5%8F%91-Shuffle-%E7%9A%84%E7%AE%97%E5%AD%90%EF%BC%88%E4%BD%95%E6%97%B6%E4%BC%9A%E8%B8%A9%E5%9D%91%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. 触发 Shuffle 的算子（何时会踩坑）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B2%BB%E7%90%86%E6%89%8B%E6%AE%B5%EF%BC%88%E5%9B%9B%E7%B1%BB%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. 治理手段（四类）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%8A%A0%E7%9B%90%E6%89%93%E6%95%A3%EF%BC%88Salting%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 加盐打散（Salting）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E4%B8%A4%E9%98%B6%E6%AE%B5%E8%81%9A%E5%90%88%EF%BC%88%E5%B1%80%E9%83%A8%E8%81%9A%E5%90%88-%E5%85%A8%E5%B1%80%E8%81%9A%E5%90%88%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 两阶段聚合（局部聚合 + 全局聚合）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Broadcast-Join-%E6%B6%88%E9%99%A4-Shuffle"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 Broadcast Join 消除 Shuffle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%80%BE%E6%96%9C-key-%E5%8D%95%E7%8B%AC%E5%A4%84%E7%90%86%EF%BC%88%E9%9A%94%E7%A6%BB%E7%83%AD%E9%94%AE%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 倾斜 key 单独处理（隔离热键）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E5%85%9C%E5%BA%95%EF%BC%9AAQE-%E8%87%AA%E5%8A%A8%E5%80%BE%E6%96%9C%E5%A4%84%E7%90%86"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.5 兜底：AQE 自动倾斜处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%9D%A2%E8%AF%95%E8%90%BD%E7%82%B9%EF%BC%9A%E6%8F%90%E5%89%8D%E6%8A%BD%E6%A0%B7%E5%8F%91%E7%8E%B0%EF%BC%8C%E8%80%8C%E9%9D%9E%E4%BA%8B%E5%90%8E%E6%95%91%E7%81%AB"><span class="nav-number">1.4.</span> <span class="nav-text">4. 面试落点：提前抽样发现，而非事后救火</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

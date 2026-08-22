@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/7/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/quantization/ptq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/quantization/ptq/" class="post-title-link" itemprop="url">PTQ（训练后量化）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 13:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T13:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="PTQ（训练后量化）"><a href="#PTQ（训练后量化）" class="headerlink" title="PTQ（训练后量化）"></a>PTQ（训练后量化）</h1><p>一句话定位：拿已训练好的模型，用少量数据”标定”一下就完成量化——成本极低、不碰训练流程，是生产上<strong>快速上线的首选路径</strong>。</p>
+<h2 id="1-机制：校准集统计激活分布"><a href="#1-机制：校准集统计激活分布" class="headerlink" title="1. 机制：校准集统计激活分布"></a>1. 机制：校准集统计激活分布</h2><ul>
+<li>权重是静态的，直接统计其分布即可确定 scale；</li>
+<li><strong>激活是动态的</strong>，取决于输入。PTQ 的做法是拿<strong>少量校准集</strong>（通常几百到上千条代表性样本）跑前向推理，统计各层激活的数值分布（min&#x2F;max、直方图），据此确定每层的 scale 与 zero_point。</li>
+<li>校准方法常见有 max、百分位（如 99.99%，主动截断 outlier）、KL 散度最小化（TensorRT 的经典做法）等。</li>
+<li>校准集必须<strong>与真实业务分布一致</strong>，否则 scale 选错，线上精度显著劣化。</li>
+</ul>
+<h2 id="2-优势"><a href="#2-优势" class="headerlink" title="2. 优势"></a>2. 优势</h2><ul>
+<li><strong>成本极低</strong>：只需推理不需反向传播，几分钟到几十分钟即可完成；</li>
+<li><strong>不改训练流程</strong>：无需原始训练数据与训练代码，拿到权重就能做——对使用第三方开源模型的场景尤其关键；</li>
+<li><strong>工程链路短</strong>：TensorRT &#x2F; TensorRT-LLM、PyTorch 均有成熟工具链支持，可直接接入部署流程（3.8）。</li>
+</ul>
+<h2 id="3-精度表现与边界"><a href="#3-精度表现与边界" class="headerlink" title="3. 精度表现与边界"></a>3. 精度表现与边界</h2><ul>
+<li><strong>INT8 通常损失可控</strong>：多数 LLM&#x2F;CNN 在 INT8 PTQ 下精度损失很小（常在 1% 以内），是性价比最高的档位；</li>
+<li><strong>INT4 需更精细的算法</strong>：位宽降到 4 位后，仅靠简单校准的 PTQ 精度会明显下降，需要引入误差补偿类方法（如 GPTQ，见 4.4）或 outlier 处理（SmoothQuant&#x2F;AWQ），并配合逐组量化（见 4.1）；</li>
+<li>若 PTQ 精度仍不达标且精度要求苛刻 → 升级到 QAT（见 4.3）。</li>
+</ul>
+<p>选型直觉：<strong>先 PTQ INT8 验证收益，不够再上 GPTQ&#x2F;INT4，精度硬要求才动 QAT</strong>——按成本从低到高逐级尝试。</p>
+<blockquote>
+<p>参考：NVIDIA TensorRT 量化文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/cuda-programming-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/cuda-programming-model/" class="post-title-link" itemprop="url">CUDA 编程模型基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CUDA-编程模型基础"><a href="#CUDA-编程模型基础" class="headerlink" title="CUDA 编程模型基础"></a>CUDA 编程模型基础</h1><p>一句话定位：理解 GPU 的两件事——<strong>线程怎么被组织和调度</strong>、<strong>数据放在哪一层存储</strong>。用大数据的调度与分层存储直觉去套，学习成本最低。</p>
+<h2 id="1-线程层次：Grid-→-Block-→-Thread"><a href="#1-线程层次：Grid-→-Block-→-Thread" class="headerlink" title="1. 线程层次：Grid → Block → Thread"></a>1. 线程层次：Grid → Block → Thread</h2><ul>
+<li><strong>Grid</strong>：一次 Kernel 启动的全部线程，由多个 Block 组成。</li>
+<li><strong>Block</strong>：线程块，块内线程可通过<strong>共享内存</strong>通信与 <code>__syncthreads()</code> 同步；一个 Block 必须整体调度到<strong>同一个 SM</strong> 上。</li>
+<li><strong>Thread</strong>：最小编程单位，通过 <code>blockIdx * blockDim + threadIdx</code> 计算全局索引。</li>
+</ul>
+<p>关键区分（面试易错点）：</p>
+<ul>
+<li><strong>Warp（32 线程）是真实的调度单位</strong>。硬件以 warp 为粒度取指与执行（SIMT），warp 内 32 线程执行同一条指令。因此若 warp 内线程走了不同分支，会产生<strong>warp divergence</strong>（分支被串行执行），性能下降。Block 大小通常取 32 的倍数就是这个原因。</li>
+<li><strong>SM（Streaming Multiprocessor）是执行硬件</strong>：包含 CUDA Core、寄存器文件、共享内存、warp 调度器。多个 Block 可并发驻留同一 SM（占用率 occupancy 由寄存器&#x2F;共享内存用量决定）。</li>
+</ul>
+<h2 id="2-显存层次（速度差数量级）"><a href="#2-显存层次（速度差数量级）" class="headerlink" title="2. 显存层次（速度差数量级）"></a>2. 显存层次（速度差数量级）</h2><p>从快到慢：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>作用域</th>
+<th>相对速度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>寄存器 (Register)</td>
+<td>单线程私有</td>
+<td>最快（~1 周期）</td>
+</tr>
+<tr>
+<td>共享内存 (Shared Memory)</td>
+<td>Block 内共享，片上 SRAM</td>
+<td>很快（~几十周期）</td>
+</tr>
+<tr>
+<td>L2 Cache</td>
+<td>全 GPU 共享</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>全局内存 (Global &#x2F; HBM)</td>
+<td>全 GPU + Host 可见</td>
+<td>最慢（数百周期）</td>
+</tr>
+</tbody></table>
+<p>核心结论：<strong>优化 GPU 程序的主线是”把数据尽量留在高层级”</strong>——用共享内存复用数据、保证全局内存<strong>合并访问（coalesced）</strong>，减少对 HBM 的读写次数。这正是 FlashAttention（3.7）的核心思想。</p>
+<h2 id="3-可迁移类比（我的表达桥梁）"><a href="#3-可迁移类比（我的表达桥梁）" class="headerlink" title="3. 可迁移类比（我的表达桥梁）"></a>3. 可迁移类比（我的表达桥梁）</h2><ul>
+<li><strong>Warp 调度 ≈ Spark Task 调度</strong>：都是把大任务切成固定粒度的执行单元批量调度；warp divergence ≈ Task 内分支导致的负载不均。</li>
+<li><strong>显存层次 ≈ 内存&#x2F;磁盘分层存储</strong>：寄存器&#x2F;共享内存 ≈ 内存缓存，全局内存(HBM) ≈ 磁盘&#x2F;远端存储；”减少 HBM 读写” ≈ “减少 Shuffle 落盘与网络传输”，都是把 IO 成本而非算力当作首要瓶颈。</li>
+</ul>
+<blockquote>
+<p>参考：《CUDA C++ Programming Guide》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/kv-cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/kv-cache/" class="post-title-link" itemprop="url">KV Cache 机制与优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="KV-Cache-机制与优化"><a href="#KV-Cache-机制与优化" class="headerlink" title="KV Cache 机制与优化"></a>KV Cache 机制与优化</h1><p>一句话定位：KV Cache 用显存换算力——它让自回归生成从 O(n²) 重复计算变成增量计算，但自身的显存开销随 batch × 序列长度线性增长，成为<strong>LLM 推理吞吐的头号上限</strong>。</p>
+<h2 id="1-机制：为什么需要缓存-K-V"><a href="#1-机制：为什么需要缓存-K-V" class="headerlink" title="1. 机制：为什么需要缓存 K&#x2F;V"></a>1. 机制：为什么需要缓存 K&#x2F;V</h2><p>自回归生成逐个 token 产出。生成第 t 个 token 时，注意力需要用到前面所有 token 的 Key 和 Value。</p>
+<ul>
+<li>若不缓存：每步都要对全部历史 token 重算 K&#x2F;V，总计算量随序列长度平方增长，且大量重复。</li>
+<li><strong>KV Cache</strong>：把历史 token 的 K&#x2F;V 张量缓存下来，每步只计算<strong>新 token</strong> 的 Q&#x2F;K&#x2F;V，并把新 K&#x2F;V 追加进缓存。于是每步计算量与序列长度成线性关系而非重算全部。</li>
+</ul>
+<p>由此推理天然分两阶段：</p>
+<ul>
+<li><strong>Prefill</strong>（处理 prompt）：一次性并行计算全部输入 token 的 K&#x2F;V，<strong>计算密集</strong>；</li>
+<li><strong>Decode</strong>（逐 token 生成）：每步只算一个 token，读取整个 KV Cache，<strong>访存&#x2F;带宽密集</strong>、算力利用率低。</li>
+</ul>
+<h2 id="2-代价：显存随-batch-×-序列长度线性增长"><a href="#2-代价：显存随-batch-×-序列长度线性增长" class="headerlink" title="2. 代价：显存随 batch × 序列长度线性增长"></a>2. 代价：显存随 batch × 序列长度线性增长</h2><p>KV Cache 大小 ≈ <code>2（K和V）× batch × 序列长度 × 层数 × KV头数 × head_dim × 精度字节数</code>。</p>
+<ul>
+<li>关键点：它<strong>随 batch 与序列长度线性膨胀</strong>，很快就超过模型权重本身的显存占用；</li>
+<li>于是<strong>能同时容纳多少并发请求</strong>由剩余显存决定 → KV Cache 直接决定了<strong>最大并发数与吞吐上限</strong>，这是”吞吐上不去”最常见的根因。</li>
+</ul>
+<h2 id="3-优化方向"><a href="#3-优化方向" class="headerlink" title="3. 优化方向"></a>3. 优化方向</h2><ul>
+<li><strong>分页管理（Paged）</strong>：不连续分配、按固定 block 管理，消除碎片与预留浪费 → 见 3.5 PagedAttention&#x2F;vLLM。</li>
+<li><strong>量化 KV</strong>：把 KV Cache 存为 INT8&#x2F;FP8，显存直接减半以上，代价是可能引入精度损失（长上下文更敏感）。</li>
+<li><strong>共享前缀复用</strong>：多个请求共享相同 system prompt &#x2F; few-shot 前缀时，前缀的 KV 只存一份并被多请求引用（配合 Copy-on-Write），在 Agent、批量结构化抽取等场景收益极大 → 对应 3.9 SGLang 的 RadixAttention。</li>
+<li>附：GQA&#x2F;MQA 通过减少 KV 头数从模型结构层面缩小 KV Cache。</li>
+</ul>
+<blockquote>
+<p>参考：论文《Efficient Memory Management for Large Language Model Serving with PagedAttention》；Hugging Face 博客《LLM 推理中的 KV Cache 详解》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/flashattention/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/flashattention/" class="post-title-link" itemprop="url">FlashAttention 原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="FlashAttention-原理"><a href="#FlashAttention-原理" class="headerlink" title="FlashAttention 原理"></a>FlashAttention 原理</h1><p>一句话定位：Attention 慢的真正原因不是算力不够，而是<strong>HBM 读写太多（IO-bound）</strong>。FlashAttention 通过分块 + 片上融合计算，避免把 N×N 的注意力矩阵写进显存，从而同时省下时间和显存——而且是<strong>精确计算，不是近似</strong>。</p>
+<h2 id="1-关键洞察：瓶颈是-HBM-读写而非算力"><a href="#1-关键洞察：瓶颈是-HBM-读写而非算力" class="headerlink" title="1. 关键洞察：瓶颈是 HBM 读写而非算力"></a>1. 关键洞察：瓶颈是 HBM 读写而非算力</h2><p>标准 Attention 的执行过程会**物化（materialize）**中间矩阵：</p>
+<ol>
+<li>算 <code>S = QKᵀ</code>（N×N）→ 写入 HBM；</li>
+<li>读回 S，算 <code>P = softmax(S)</code>（N×N）→ 再写入 HBM；</li>
+<li>读回 P，算 <code>O = PV</code> → 写出。</li>
+</ol>
+<p>问题：N×N 矩阵随序列长度<strong>平方级</strong>增长，反复在 HBM 与计算单元之间搬运。由于 HBM 带宽远低于 GPU 算力，实际耗时<strong>由访存量决定</strong>——即 Attention 是 memory-bound &#x2F; IO-bound，GPU 算力大量空等。</p>
+<h2 id="2-做法：Tiling-分块-片上融合-softmax"><a href="#2-做法：Tiling-分块-片上融合-softmax" class="headerlink" title="2. 做法：Tiling 分块 + 片上融合 softmax"></a>2. 做法：Tiling 分块 + 片上融合 softmax</h2><ul>
+<li><strong>Tiling（分块）</strong>：把 Q、K、V 切成能放进**片上 SRAM（共享内存）**的小块，按块循环计算。</li>
+<li><strong>算子融合</strong>：在 SRAM 内对一个块连续完成 <code>QKᵀ → softmax → 乘 V</code> 的全部步骤，<strong>中间结果不落 HBM</strong>。</li>
+<li><strong>Online Softmax</strong>：softmax 需要整行的最大值与求和做归一化，分块后无法一次看全行。解决办法是采用增量式（online）softmax——边遍历块边维护running max 与 running sum，并对已累积的输出做相应的重新缩放（rescale），最终得到与全局 softmax <strong>完全一致</strong>的结果。</li>
+</ul>
+<p>于是 <strong>N×N 的注意力矩阵从未被完整写入显存</strong>。</p>
+<h2 id="3-收益"><a href="#3-收益" class="headerlink" title="3. 收益"></a>3. 收益</h2><ul>
+<li><strong>减少 HBM 读写量</strong> → 墙钟时间显著下降（访存是瓶颈，所以省访存就是省时间）；</li>
+<li><strong>显存占用从 O(N²) 降到 O(N)</strong> → 可支持更长上下文；</li>
+<li><strong>精确而非近似</strong>：区别于稀疏注意力、低秩近似等方法，FlashAttention 的输出与标准 Attention <strong>数学上等价</strong>，这是它能被广泛默认启用的根本原因。</li>
+<li>FlashAttention-2 进一步优化并行划分与工作分配（减少非矩阵乘操作、改进 warp 间划分），提升 GPU 占用率。</li>
+</ul>
+<p>面试要求：<strong>不需要推公式</strong>，但必须能说清优化动机——“Attention 是 IO-bound，所以要减少 HBM 往返，用分块把计算搬到片上并融合，且靠 online softmax 保证结果精确”。</p>
+<h2 id="4-可迁移话术"><a href="#4-可迁移话术" class="headerlink" title="4. 可迁移话术"></a>4. 可迁移话术</h2><p>这与大数据里”减少 Shuffle 落盘与网络往返”是同一套思维：<strong>瓶颈在数据搬运而非计算，就把计算推到数据所在的高速层级并做算子融合</strong>（对应 1.1 中 Shuffle 磁盘&#x2F;网络开销 ≈ HBM 读写瓶颈）。</p>
+<blockquote>
+<p>参考：论文《FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness》(Dao et al., 2022) 及《FlashAttention-2》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/continuous-dynamic-batching/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/continuous-dynamic-batching/" class="post-title-link" itemprop="url">Continuous / Dynamic Batching</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Continuous-Dynamic-Batching"><a href="#Continuous-Dynamic-Batching" class="headerlink" title="Continuous &#x2F; Dynamic Batching"></a>Continuous &#x2F; Dynamic Batching</h1><p>一句话定位：批处理决定 GPU 能否被”喂满”。静态 Batching 因木桶效应大量空转，Continuous Batching 把调度粒度从”整个请求”细化到”每次迭代”，是 LLM 服务吞吐提升的关键一招。</p>
+<h2 id="1-静态-Batching-的木桶效应"><a href="#1-静态-Batching-的木桶效应" class="headerlink" title="1. 静态 Batching 的木桶效应"></a>1. 静态 Batching 的木桶效应</h2><ul>
+<li>做法：攒够 N 个请求组成一个 batch，一起跑到<strong>全部完成</strong>才返回、才开始下一批。</li>
+<li>问题：同批请求的输出长度差异极大（有的生成 10 token，有的 1000 token）。batch 必须<strong>等最长的那个跑完</strong>，先完成的请求所占的计算槽位一直空转 → <strong>GPU 大量空闲</strong>。</li>
+<li>这就是典型木桶效应，与 Spark Stage 必须等最慢 Task（长尾）完成、拖慢整个 Stage 完全同构（见 1.1 &#x2F; 1.2）。</li>
+</ul>
+<h2 id="2-Continuous-Batching（迭代级调度）"><a href="#2-Continuous-Batching（迭代级调度）" class="headerlink" title="2. Continuous Batching（迭代级调度）"></a>2. Continuous Batching（迭代级调度）</h2><p>核心变化：调度粒度从”请求级”变为**”迭代级”（iteration-level）**。</p>
+<ul>
+<li>每生成一个 token（一次 decode 迭代）后重新审视 batch：<ul>
+<li><strong>完成即出队</strong>：已生成结束的请求立即返回并释放其槽位与 KV Cache block；</li>
+<li><strong>新请求即插入</strong>：等待队列中的新请求立刻填补空出的槽位，无需等整批结束。</li>
+</ul>
+</li>
+<li>效果：GPU 始终保持接近满载的有效 batch，<strong>吞吐显著提升</strong>，同时排队延迟下降。</li>
+<li>依赖：需要能灵活分配&#x2F;释放 KV Cache 的显存管理，因此与 PagedAttention（3.5）天生互补；也常被称为 In-flight Batching（TensorRT-LLM 的叫法，见 3.8）。</li>
+</ul>
+<h2 id="3-Dynamic-Batching（服务层聚合）"><a href="#3-Dynamic-Batching（服务层聚合）" class="headerlink" title="3. Dynamic Batching（服务层聚合）"></a>3. Dynamic Batching（服务层聚合）</h2><p>注意与 Continuous Batching 区分——<strong>层次不同</strong>：</p>
+<ul>
+<li><strong>Dynamic Batching 在服务层</strong>：把短时间内到达的多个独立请求，按<strong>时间窗口</strong>（如最多等 5ms）或<strong>队列深度</strong>聚合成一个 batch 再送进模型。</li>
+<li>目的是提高 GPU 批量效率，代价是引入<strong>排队等待延迟</strong>（窗口越大吞吐越好、延迟越高，是典型的吞吐&#x2F;延迟权衡）。</li>
+<li>Triton Inference Server 的 Dynamic Batching 即为此类，适用于所有模型；而 Continuous Batching 针对自回归生成的迭代特性，两者可叠加使用。</li>
+</ul>
+<h2 id="4-可迁移类比"><a href="#4-可迁移类比" class="headerlink" title="4. 可迁移类比"></a>4. 可迁移类比</h2><blockquote>
+<p><strong>Continuous Batching ≈ 流式微批处理</strong>（来一条处理一条、持续吞吐）；<strong>Dynamic Batching ≈ 攒批处理</strong>（按窗口攒够再算）。这正是流计算里”逐条 vs 微批”的经典取舍。</p>
+</blockquote>
+<blockquote>
+<p>参考：NVIDIA Triton Inference Server 文档 Dynamic Batching 章节</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/gpu-memory-oom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/gpu-memory-oom/" class="post-title-link" itemprop="url">显存管理与 OOM 排查</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="显存管理与-OOM-排查"><a href="#显存管理与-OOM-排查" class="headerlink" title="显存管理与 OOM 排查"></a>显存管理与 OOM 排查</h1><p>一句话定位：显存 OOM 是 GPU 上最高频的故障，排查的关键是分清**”真的用满了”<strong>还是</strong>“分配器占着没还”**——这与 Spark Executor OOM 的排查思路完全同构。</p>
+<h2 id="1-常见成因"><a href="#1-常见成因" class="headerlink" title="1. 常见成因"></a>1. 常见成因</h2><ul>
+<li><strong>batch &#x2F; 序列过长</strong>：显存占用随 batch × 序列长度增长；注意力与 KV Cache（3.4）尤其敏感，是最常见的直接原因。</li>
+<li><strong>显存碎片化</strong>：反复分配释放不同大小的张量后，空闲显存总量够但<strong>没有足够大的连续块</strong>，于是分配失败。表现为”明明还剩几个 G 却 OOM”。</li>
+<li><strong>中间张量未释放</strong>：Python 变量仍持有引用（如把 loss&#x2F;激活存进 list 做日志、未 <code>detach()</code> 导致计算图与激活被一直保留）。</li>
+<li><strong>缓存分配器未归还</strong>：PyTorch 使用<strong>缓存分配器（caching allocator）</strong>，释放的张量显存进入其内部缓存池而<strong>不立即归还驱动</strong>，以加速后续分配。这会让 <code>nvidia-smi</code> 看到的占用远高于实际张量用量，也可能挤压其他进程。</li>
+</ul>
+<h2 id="2-排查手段"><a href="#2-排查手段" class="headerlink" title="2. 排查手段"></a>2. 排查手段</h2><ul>
+<li><strong><code>nvidia-smi</code></strong>：看进程级总占用与显存上限，判断是否被其他进程&#x2F;多卡分配占用。注意它反映的是<strong>分配器保留的显存</strong>，不等于张量实际使用量。</li>
+<li><strong>PyTorch 显存 API</strong>：<ul>
+<li><code>torch.cuda.memory_allocated()</code>：<strong>实际张量占用</strong>；</li>
+<li><code>torch.cuda.memory_reserved()</code>：<strong>分配器保留总量</strong>；</li>
+<li><code>torch.cuda.memory_summary()</code>：分类汇总，快速看出碎片与峰值；</li>
+<li><strong>显存快照</strong>（<code>torch.cuda.memory._record_memory_history()</code> + snapshot 可视化）：定位是哪段代码分配了未释放的张量。</li>
+</ul>
+</li>
+<li><strong>核心诊断动作：分析 <code>reserved</code> 与 <code>allocated</code> 的差值</strong><ul>
+<li>差值大 → 说明分配器缓存了大量碎片显存，属<strong>碎片化问题</strong>：可尝试 <code>torch.cuda.empty_cache()</code>（归还空闲缓存）、调整 <code>PYTORCH_CUDA_ALLOC_CONF</code>（如 <code>expandable_segments</code>）、统一 batch&#x2F;序列长度以减少大小多样性。</li>
+<li>差值小但 allocated 已接近上限 → 是<strong>真实容量不足</strong>：只能降 batch、缩序列、梯度累积&#x2F;checkpointing、量化（4）或换更大显存的卡。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>参考：PyTorch 官方文档 CUDA semantics</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/multi-gpu-communication/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/multi-gpu-communication/" class="post-title-link" itemprop="url">多卡/多机的通信与调度瓶颈</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="多卡-多机的通信与调度瓶颈"><a href="#多卡-多机的通信与调度瓶颈" class="headerlink" title="多卡&#x2F;多机的通信与调度瓶颈"></a>多卡&#x2F;多机的通信与调度瓶颈</h1><p>一句话定位：单卡装不下就要并行，而并行的代价是<strong>通信</strong>。选错并行策略或忽视拓扑，加卡不加速——判断标准只有一个：<strong>扩展效率是否线性</strong>。</p>
+<h2 id="1-张量并行（TP）vs-流水并行（PP）"><a href="#1-张量并行（TP）vs-流水并行（PP）" class="headerlink" title="1. 张量并行（TP）vs 流水并行（PP）"></a>1. 张量并行（TP）vs 流水并行（PP）</h2><h3 id="1-张量并行（Tensor-Parallelism）"><a href="#1-张量并行（Tensor-Parallelism）" class="headerlink" title="1 张量并行（Tensor Parallelism）"></a>1 张量并行（Tensor Parallelism）</h3><ul>
+<li>做法：把<strong>同一层内</strong>的权重矩阵按行&#x2F;列切分到多卡，各卡算一部分再合并。</li>
+<li>特点：<strong>通信密集</strong>——每层前向都需要 AllReduce&#x2F;AllGather 同步激活，通信发生在<strong>每一层</strong>、且在关键路径上。</li>
+<li>结论：<strong>宜放同机内、走 NVLink</strong>（高带宽低延迟）。跨机做 TP 会被网络带宽拖死。</li>
+</ul>
+<h3 id="2-流水并行（Pipeline-Parallelism）"><a href="#2-流水并行（Pipeline-Parallelism）" class="headerlink" title="2 流水并行（Pipeline Parallelism）"></a>2 流水并行（Pipeline Parallelism）</h3><ul>
+<li>做法：把模型<strong>按层切段</strong>，不同卡持有不同层，数据像流水线一样逐段流过。</li>
+<li>特点：通信量小（只在段边界传激活），适合跨机；但存在<strong>气泡（bubble）问题</strong>——流水线填充与排空阶段部分卡空闲，micro-batch 数越少气泡占比越高。</li>
+<li>缓解：增加 micro-batch 数量、使用 1F1B &#x2F; 交错式调度减少气泡。</li>
+</ul>
+<p>对比记忆：<strong>TP 换通信量、PP 换空闲气泡</strong>；实践中常混合使用（机内 TP + 跨机 PP，再叠加数据并行）。</p>
+<h2 id="2-NCCL-通信原语与拓扑感知"><a href="#2-NCCL-通信原语与拓扑感知" class="headerlink" title="2. NCCL 通信原语与拓扑感知"></a>2. NCCL 通信原语与拓扑感知</h2><ul>
+<li><strong>AllReduce</strong>：所有卡的数据求和（或其他归约）后，结果分发给所有卡——TP 与数据并行的梯度&#x2F;激活同步主力。</li>
+<li><strong>AllGather</strong>：把各卡各自持有的分片汇集成完整数据，每卡都得到全量（常用于收集切分的激活或权重）。</li>
+<li>其余：ReduceScatter、Broadcast、AllToAll（MoE 场景关键）。</li>
+<li><strong>拓扑感知</strong>：NCCL 会探测硬件拓扑（NVLink &#x2F; NVSwitch &#x2F; PCIe &#x2F; 网卡），自动选择 Ring、Tree 等算法与最优路径。因此<strong>物理拓扑决定上限</strong>：NVLink 全连接 &gt; PCIe &gt; 跨机 RDMA&#x2F;以太网，差距可达数量级。部署时要确认卡间实际连接方式（<code>nvidia-smi topo -m</code>）。</li>
+</ul>
+<h2 id="3-如何判断通信瓶颈：看扩展效率是否线性"><a href="#3-如何判断通信瓶颈：看扩展效率是否线性" class="headerlink" title="3. 如何判断通信瓶颈：看扩展效率是否线性"></a>3. 如何判断通信瓶颈：看扩展效率是否线性</h2><p>标准方法：</p>
+<ol>
+<li>测单卡吞吐 <code>T1</code>，测 N 卡吞吐 <code>TN</code>；</li>
+<li>计算<strong>扩展效率</strong> <code>= TN / (N × T1)</code>；</li>
+<li>效率接近 1 → 通信不是瓶颈；效率显著衰减（如 8 卡只有 4~5 倍）→ <strong>通信瓶颈</strong>。</li>
+<li>进一步用 Nsight Systems 看时间线上通信 Kernel（NCCL kernel）占比与是否与计算重叠；用 NCCL 的带宽基准测试对比理论带宽。</li>
+</ol>
+<p>对应动作：调整并行策略（把 TP 收进单机）、增大 micro-batch 减少气泡、开启通信与计算重叠、检查拓扑与网卡配置。</p>
+<blockquote>
+<p>参考：NCCL 官方文档；论文《DeepSpeed-Inference: Enabling Efficient Inference of Transformer Models at Unprecedented Scale》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/tensorrt-llm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/tensorrt-llm/" class="post-title-link" itemprop="url">TensorRT-LLM 架构与部署流程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="TensorRT-LLM-架构与部署流程"><a href="#TensorRT-LLM-架构与部署流程" class="headerlink" title="TensorRT-LLM 架构与部署流程"></a>TensorRT-LLM 架构与部署流程</h1><p>一句话定位：走<strong>编译式优化</strong>路线的推理加速方案——把模型提前编译成针对特定 GPU 与配置高度特化的 Engine，换取极致性能，代价是编译耗时与灵活性下降。</p>
+<h2 id="1-核心优化手段"><a href="#1-核心优化手段" class="headerlink" title="1. 核心优化手段"></a>1. 核心优化手段</h2><ul>
+<li><strong>图优化与算子融合</strong>：把多个小算子（如 LayerNorm + 残差、GEMM + 激活、Attention 相关算子）融合成单个 Kernel，减少 Kernel 启动开销与中间结果的 HBM 往返（同 3.7 的思路）。</li>
+<li><strong>Kernel 自动选优（auto-tuning）</strong>：针对目标 GPU 架构与具体张量形状，在候选 Kernel 实现中实测挑选最快的一个，并固化进 Engine。</li>
+<li><strong>量化集成</strong>：内置 INT8 &#x2F; FP8 &#x2F; INT4（含 SmoothQuant、AWQ 等）支持，与图优化协同（见 4）。</li>
+<li><strong>In-flight Batching</strong>：即 Continuous Batching 的实现（3.6），迭代级调度、完成即出队。</li>
+<li><strong>多 GPU 并行策略封装</strong>：内建张量并行（TP）与流水并行（PP）的切分与通信逻辑，用户无需手写 NCCL 通信（见 3.10）。</li>
+</ul>
+<h2 id="2-部署流程"><a href="#2-部署流程" class="headerlink" title="2. 部署流程"></a>2. 部署流程</h2><ol>
+<li><strong>模型转换</strong>：把 HuggingFace 等格式的权重转换为 TensorRT-LLM 的模型定义&#x2F;检查点格式；</li>
+<li><strong>构建 Engine</strong>：指定精度、最大 batch、最大输入&#x2F;输出长度、并行策略等，编译生成 <code>.engine</code> 文件。此步会做图优化与 Kernel 选优，<strong>耗时较长</strong>（数分钟到数十分钟）；</li>
+<li><strong>部署运行</strong>：加载 Engine 提供服务，生产上<strong>常配合 Triton Inference Server</strong>（用 Triton 做请求管理、动态批处理、多模型编排与监控）。</li>
+</ol>
+<h2 id="3-代价与取舍"><a href="#3-代价与取舍" class="headerlink" title="3. 代价与取舍"></a>3. 代价与取舍</h2><ul>
+<li><strong>编译耗时</strong>：每次改模型、改精度、改最大长度或换 GPU 型号，通常都要<strong>重新编译</strong>；</li>
+<li><strong>灵活性下降</strong>：Engine 与”特定 GPU 架构 + 特定形状约束”绑定，不能像 PyTorch 那样随意改结构、动态调参；超出构建时设定的 max_batch&#x2F;max_len 需重建。</li>
+<li>因此选型逻辑很清晰：<strong>追求极致吞吐&#x2F;延迟且模型与配置稳定的生产场景</strong> → TensorRT-LLM；<strong>需要快速迭代、频繁换模型</strong> → vLLM 等运行时方案更合适。</li>
+</ul>
+<blockquote>
+<p>参考：NVIDIA TensorRT-LLM 官方文档与 GitHub</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/vllm-pagedattention/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/vllm-pagedattention/" class="post-title-link" itemprop="url">vLLM 与 PagedAttention</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="vLLM-与-PagedAttention"><a href="#vLLM-与-PagedAttention" class="headerlink" title="vLLM 与 PagedAttention"></a>vLLM 与 PagedAttention</h1><p>一句话定位：把操作系统的<strong>虚拟内存分页</strong>思想搬到 KV Cache 上——用非连续的固定大小 block 管理显存，把因碎片与预留造成的浪费降到极低，从而大幅提升并发与吞吐。</p>
+<h2 id="1-问题：连续分配造成的双重浪费"><a href="#1-问题：连续分配造成的双重浪费" class="headerlink" title="1. 问题：连续分配造成的双重浪费"></a>1. 问题：连续分配造成的双重浪费</h2><p>传统实现给每个请求预留一段<strong>连续显存</strong>来放 KV Cache，且必须按<strong>可能的最大序列长度</strong>预留：</p>
+<ul>
+<li><strong>内部浪费（预留过度）</strong>：请求实际只生成 100 token，却按 2048 预留，剩余全部闲置；</li>
+<li><strong>外部浪费（碎片化）</strong>：请求长短不一、频繁进出，空闲显存被切碎，总量够却放不进新请求。</li>
+</ul>
+<p>结果是有效显存利用率很低，能并发的请求数远低于理论值。</p>
+<h2 id="2-机制：借鉴虚拟内存分页"><a href="#2-机制：借鉴虚拟内存分页" class="headerlink" title="2. 机制：借鉴虚拟内存分页"></a>2. 机制：借鉴虚拟内存分页</h2><ul>
+<li>把 KV Cache 切成<strong>固定大小的 block</strong>（如每 block 存 16 个 token 的 K&#x2F;V）；</li>
+<li>一个请求的 KV 序列由若干 block 组成，这些 block <strong>在物理显存上无需连续</strong>；</li>
+<li>用**block table（页表）**维护”逻辑 token 位置 → 物理 block”的映射，注意力 kernel 按页表间接寻址（这就是 PagedAttention）。</li>
+</ul>
+<p>直接收益：</p>
+<ul>
+<li><strong>消除外部碎片</strong>：任何空闲 block 都能被复用；</li>
+<li><strong>消除预留浪费</strong>：按需增长，用多少分多少（仅最后一个 block 有不足一页的内零头）；</li>
+<li>显存利用率大幅提升 → 同样显存可容纳更多并发请求 → 吞吐显著提高（论文报告相较此前系统有数倍吞吐提升）。</li>
+</ul>
+<h2 id="3-前缀共享与-Copy-on-Write"><a href="#3-前缀共享与-Copy-on-Write" class="headerlink" title="3. 前缀共享与 Copy-on-Write"></a>3. 前缀共享与 Copy-on-Write</h2><p>多个请求共享同一前缀（同一 system prompt、同一 few-shot 示例、并行采样同一 prompt 的多个输出）时：</p>
+<ul>
+<li>前缀对应的 block <strong>只存一份</strong>，被多个请求的页表同时引用（引用计数）；</li>
+<li>当某个请求需要在共享 block 上写入分歧内容时，触发 <strong>Copy-on-Write</strong>：复制该 block 后再写，其他请求不受影响。</li>
+</ul>
+<p>这与操作系统 fork 的 COW 完全同源，能进一步省下大量重复显存。</p>
+<h2 id="4-工程视角"><a href="#4-工程视角" class="headerlink" title="4. 工程视角"></a>4. 工程视角</h2><p>vLLM 是围绕 PagedAttention 构建的推理引擎，同时实现了 Continuous Batching（3.6）——两者配合才是吞吐提升的完整来源：<strong>分页解决”装得下多少”，连续批处理解决”跑得满不满”</strong>。</p>
+<blockquote>
+<p>参考：论文《Efficient Memory Management for Large Language Model Serving with PagedAttention》(Kwon et al., 2023)；vLLM 官方文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/gpu-inference/perf-bottleneck-diagnosis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/gpu-inference/perf-bottleneck-diagnosis/" class="post-title-link" itemprop="url">GPU 性能瓶颈定位方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 12:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T12:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="GPU-性能瓶颈定位方法"><a href="#GPU-性能瓶颈定位方法" class="headerlink" title="GPU 性能瓶颈定位方法"></a>GPU 性能瓶颈定位方法</h1><p>一句话定位：优化的第一步不是改代码，而是<strong>判定瓶颈属于哪一类</strong>。判错类别，所有后续努力都白费——这也是面试最爱追问的地方。</p>
+<h2 id="1-瓶颈分类与判定信号"><a href="#1-瓶颈分类与判定信号" class="headerlink" title="1. 瓶颈分类与判定信号"></a>1. 瓶颈分类与判定信号</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>瓶颈类别</th>
+<th>首要动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GPU 利用率低但 CPU 跑满</td>
+<td><strong>数据供给 &#x2F; 前处理瓶颈</strong></td>
+<td>调 DataLoader（2.9）、优化解析与数据格式（1.7）</td>
+</tr>
+<tr>
+<td>Kernel 之间有明显空隙</td>
+<td><strong>调度 &#x2F; 同步问题</strong></td>
+<td>减少同步点与 H2D 拷贝、算子融合、CUDA Graph、增大 batch</td>
+</tr>
+<tr>
+<td>多卡吞吐不随卡数线性增长</td>
+<td><strong>通信瓶颈</strong></td>
+<td>看 NCCL 拓扑与并行策略（3.10）</td>
+</tr>
+<tr>
+<td>GPU 利用率高但吞吐不达标</td>
+<td>计算 &#x2F; 访存瓶颈</td>
+<td>看是否 IO-bound（3.7）、换更优 kernel、量化（4）</td>
+</tr>
+</tbody></table>
+<h2 id="2-必答题：「你怎么知道是-GPU-而不是-CPU-瓶颈？」"><a href="#2-必答题：「你怎么知道是-GPU-而不是-CPU-瓶颈？」" class="headerlink" title="2. 必答题：「你怎么知道是 GPU 而不是 CPU 瓶颈？」"></a>2. 必答题：「你怎么知道是 GPU 而不是 CPU 瓶颈？」</h2><p>标准答法是给出<strong>可观测证据链</strong>，而不是凭感觉：</p>
+<ol>
+<li><strong>看 GPU 利用率曲线形态</strong>：<code>nvidia-smi dmon</code> 或 Nsight 采样。<ul>
+<li>利用率<strong>持续高位</strong> → GPU 是瓶颈；</li>
+<li>利用率<strong>呈锯齿&#x2F;周期性掉底</strong> → GPU 在等数据 → CPU 侧（加载、前处理）是瓶颈。</li>
+</ul>
+</li>
+<li><strong>对照 CPU 侧负载</strong>：若 CPU 各核接近满载而 GPU 空闲，结论明确。</li>
+<li><strong>做单变量实验</strong>：用<strong>合成数据</strong>（预先常驻显存的假 batch）替换真实 DataLoader 再跑——<ul>
+<li>吞吐显著提升 → 瓶颈确实在数据管线；</li>
+<li>吞吐几乎不变 → 瓶颈在 GPU 计算本身。</li>
+</ul>
+</li>
+<li><strong>看时间线归因</strong>：Nsight Systems 上统计 GPU Kernel 累计时间占墙钟时间的比例（GPU Kernel 占比）。占比低说明大量时间耗在非 Kernel（等待、拷贝、Python 开销）。</li>
+</ol>
+<p>这套”先量化观测 → 提出假设 → 单变量验证”的动作，与 Spark 里通过 UI 判断是 Shuffle、倾斜还是资源不足完全同构（见 5.5）。</p>
+<blockquote>
+<p>参考：Nsight Systems 用户指南；nvidia-smi 手册</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="阿土登录流计算平台后，看到平台上面可以编写 Sql 语法，于是就写了一个简单的 sql。  他发现旁边有个校验功能这时平台弹出 SQL 语法效验正确。 SQL 语法效验完成后，阿土点击提交按钮，流计算平台提示，SQl 语法效验正确，已成功提交集群。 Flink sql 代码居然提交到yarn集群上了？？？   Flink Sql解析器  Flink Planner 和 Blink Planner">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink SQL之任务提交">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-SQL-submit/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="阿土登录流计算平台后，看到平台上面可以编写 Sql 语法，于是就写了一个简单的 sql。  他发现旁边有个校验功能这时平台弹出 SQL 语法效验正确。 SQL 语法效验完成后，阿土点击提交按钮，流计算平台提示，SQl 语法效验正确，已成功提交集群。 Flink sql 代码居然提交到yarn集群上了？？？   Flink Sql解析器  Flink Planner 和 Blink Planner">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/156_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/627_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/23_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/452_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/395_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/729_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/897_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/139_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/530_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/38_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/640.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/277_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/521_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/989_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/339_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/630_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/822_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/669_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/401_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/848_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/496_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/723_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/192_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/304_640.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/575_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/776_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/942_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/503_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/837_640.webp">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/Flink/32_640.webp">
+<meta property="article:published_time" content="2026-08-22T17:34:28.626Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.627Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Distributed">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="mapReducer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/Flink/156_640.webp">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-SQL-submit/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Flink SQL之任务提交 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-submit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flink SQL之任务提交
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>阿土登录流计算平台后，看到平台上面可以编写 <code>Sql</code> 语法，于是就写了一个简单的 <code>sql。</code></p>
+<p><img src="/images/bigdata/Flink/156_640.webp" alt="图片"></p>
+<p>他发现旁边有个<strong>校验功能</strong>这时平台弹出 <code>SQL</code> 语法效验正确。</p>
+<p><code>SQL</code> 语法效验完成后，阿土点击提交按钮，流计算平台提示，<code>SQl</code> 语法效验正确，已成功提交集群。</p>
+<p><strong>Flink sql 代码居然提交到yarn集群上了？？？</strong></p>
+<p><img src="/images/bigdata/Flink/627_640.webp" alt="图片"></p>
+<ol>
+<li><p>Flink Sql解析器</p>
+</li>
+<li><p>Flink Planner 和 Blink Planner</p>
+</li>
+<li><p>Blink Sql提交流程</p>
+</li>
+</ol>
+<h2 id="1-Flink-Sql解析器"><a href="#1-Flink-Sql解析器" class="headerlink" title="1. Flink Sql解析器"></a>1. Flink Sql解析器</h2><p><strong>1.1、了解Calcite</strong></p>
+<p>为方便用户使用 <code>Flink</code> 流计算组件，<code>Flink</code> 社区设计了四种抽象，在这些抽象中，<code>Sql API</code> 属于<code>Flink</code>的最上层抽象，是 <code>Flink</code> 的一等公民，这就方便用户或者开发者直接通过 <code>Sql</code> 编写来提交任务。</p>
+<p><img src="/images/bigdata/Flink/23_640.webp" alt="图片"></p>
+<p>但经过阿土的调查后 发现，<code>Flink sql</code> 在提交任务时，并不是向 <code>DataStream API</code> 那样，直接被转为 <code>StreamGraph</code>，经过优化生成 <code>JobGraph</code> 提交到集群的,而是需要对编写的 <code>Sql</code> 进行解析、验证、优化等操作，在这中间，社区引入了一个强大的解析器，那就是<code>Calcite</code>。</p>
+<p><strong>1.2、Calcite执行步骤</strong></p>
+<p><code>Calcite</code>的执行流程，主要涉及5个部分 <strong>SQL解析、SQL校验、SQL查询优化、SQL生成、执行</strong>等。</p>
+<p><img src="/images/bigdata/Flink/452_640.webp" alt="图片"></p>
+<p><strong>在这个流程中，Calcite各阶段扮演的角色如下：</strong></p>
+<ol>
+<li><p>SQL解析。通过 <code>JavaCC</code> 实现，使用 JavaCC 编写 SQL 语法描述文件，将 SQL 解析成未经校验的 <code>AST 语法树</code>。</p>
+</li>
+<li><p>SQL校验。通过与元数据结合<code>验证</code> SQL 中的 Schema、Field、 Function 是否存在，输入输出类型是否匹配等。</p>
+</li>
+<li><p>SQL优化。<code>对上个步骤的输出( RelNode ，逻辑计划树)进行优化</code>，使用两种规则：基于规则优化 和 基于代价优化，得到优化后的物理执行计划。</p>
+</li>
+<li><p>SQL生成。<code>将物理执行计划生成为在特定平台/引擎的可执行程序</code>，如生成符合 MySQL 或 Oracle 等不同平台规则的 SQL 查询语句等。</p>
+</li>
+<li><p>执行。执行是通过各个执行平台执行查询，得到输出结果。</p>
+</li>
+</ol>
+<p>其中，Calcite再与其他处理引擎结合时，到<strong>SQL优化</strong>阶段就已经结束。所以流程图简化为：</p>
+<p><img src="/images/bigdata/Flink/395_640.webp" alt="图片"></p>
+<h2 id="2-Flink-Planner-和-Blink-Planner"><a href="#2-Flink-Planner-和-Blink-Planner" class="headerlink" title="2. Flink Planner 和 Blink Planner"></a>2. Flink Planner 和 Blink Planner</h2><p>Calcite是怎么在Flink中扮演的角色呢？Flink1.13.2<code>的</code>Flink Sql&#96;源码</p>
+<p><strong>2.1 Flink Planner和Blink Planner</strong></p>
+<p>在1.9.0版本以前，社区使用<code>Flink Planner</code>作为查询处理器，通过与<code>Calcite</code>进行连接，为<code>Table/SQL API</code>提供完整的解析、优化和执行环境，使其SQL被转为<code>DataStream API</code>的 <code>Transformation</code>，然后再经过<code>StreamJraph -&gt; JobGraph -&gt; ExecutionGraph</code>等一系列流程，最终被提交到集群。</p>
+<p>在1.9.0版本，社区引入阿里巴巴的<code>Blink</code>，对<code>FIink TabIe &amp; SQL</code>模块做了重大的重构，保留了 <code>Flink Planner</code> 的同时，引入了 <code>Blink Planner</code>，没引入以前，<code>Flink</code> 没考虑流批作业统一，针对流批作业，底层实现两套代码，引入后，基于流批一体理念，重新设计算子，以流为核心，流作业和批作业最终都会被转为<code>transformation</code>。</p>
+<p><strong>2.2 Blink Planner与Calcite关系</strong></p>
+<p>在之后的版本，为了实现Flink流批一体的愿景，通过Blink Planner与Calcite进行对接,对接流程如下：</p>
+<ol>
+<li><p>在Table&#x2F;SQL 编写完成后，<strong>通过Calcite 中的parse、validate、rel阶段，以及Blink额外添加的convert阶段,将其先转为Operation</strong>；</p>
+</li>
+<li><p>通过Blink Planner 的<code>translateToRel</code>、<code>optimize</code>、<code>translateToExecNodeGraph</code>和<code>translateToPlan</code>四个阶段，<strong>将Operation转换成DataStream API的 Transformation</strong>；</p>
+</li>
+<li><p>再经过StreamGraph -&gt; JobGraph -&gt; ExecutionGraph等一系列流程，SQL最终被提交到集群。</p>
+</li>
+</ol>
+<p>SQL执行流程图</p>
+<p><img src="/images/bigdata/Flink/729_640.webp" alt="图片"></p>
+<h2 id="3-Blink-Sql提交流程（源码分析）"><a href="#3-Blink-Sql提交流程（源码分析）" class="headerlink" title="3. Blink Sql提交流程（源码分析）"></a>3. Blink Sql提交流程（源码分析）</h2><p>根据对源码的分析后，发现无论是Flink SQL执行DDL操作、还是DQL操作或者DML操作、最终都可以将其总结为两个阶段：</p>
+<ol>
+<li><p>SQL 语句到 Operation 过程，即Parse阶段；</p>
+</li>
+<li><p>Operation 到 Transformations 过程，即Translate阶段。</p>
+</li>
+</ol>
+<h3 id="3-1、Parse阶段"><a href="#3-1、Parse阶段" class="headerlink" title="3.1、Parse阶段"></a>3.1、Parse阶段</h3><p>在Parse阶段一共包含parse、validate、rel、convert部分</p>
+<p><img src="/images/bigdata/Flink/897_640.webp" alt="图片"></p>
+<p><code>Calcite的 parse 解析模块是基于javacc实现的</code>。javacc是一个<strong>词法分析生成器</strong>和<strong>语法分析生成器</strong>。词法分析器于将输入字符流解析成一个一个的token，以下面这段SQL语句为例:</p>
+<p><strong>示例1 ：</strong></p>
+<p><img src="/images/bigdata/Flink/139_640.webp" alt="图片"></p>
+<p>在 parse 部分，上面的SQL语句最后会被解析为如下一组token：</p>
+<p><img src="/images/bigdata/Flink/530_640.webp" alt="图片"></p>
+<p>接下来<strong>语法分析器</strong>会以<strong>词法分析器</strong>解析出来的token序列作为输入来进行语法分析。分析过程使用<strong>递归下降语法</strong>解析，LL(k)。</p>
+<p>其中，第一个<code>L</code>表示从左到右扫描输入；第二个<code>L</code>表示每次都进行最左推导(在推导语法树的过程中每次都替换句型中最左的非终结符为终结符。类似还有最右推导)；</p>
+<p><code>k</code>表示的是每次向前探索(lookahead)<code>k</code> 个终结符。</p>
+<p>分析所依赖的的词法法则定义在一个parser.jj文件中。</p>
+<p><img src="/images/bigdata/Flink/38_640.webp" alt="图片"></p>
+<p>在经过词法分析和语法分析后，一段 SQL 语句会被解析成一颗<code>抽象语法树</code>（Abstract Syntax Tree，AST），树的节点类型在 Calcite 中以 SqlNode 来表示，不同节点以不同子类型的SqlNode来表示。</p>
+<p>同样以上面的SQL为例，在这段SQL中:</p>
+<ol>
+<li><p>id, score, T 等为 SqlIdentifier，表示一个字段名或表名的标识符;</p>
+</li>
+<li><p>select和cast()为<code>SqlCall</code>，表示一个行为或动作，其中cast()为一个<code>SqlBasicCall</code>，表示一个函数调用，具体调用的是什么函数，由其内部的SqlOperator决定，比如这里是一个二元操作符“&lt;”，对应SqlBinaryOperator，operator的名字是“&lt;”，类别是SqlKind.LESS_THAN;</p>
+</li>
+<li><p>int 为 <code>SqlDataTypeSpec</code>，表示一个类型定义;</p>
+</li>
+<li><p>‘hello’和 10 为<code>SqlLiteral</code>，表示一个常量;</p>
+</li>
+</ol>
+<p>在Calcite中，所有的操作都是一个<code>SqlCall</code>, 如查询是一个 <code>SqlSelect</code>, 删除是一个 <code>SqlDelete</code> 等，它们都是 <code>SqlCall</code> 的子类型。select的查询条件等为 <code>SqlCall</code> 中的参数。示例1 的 SQL 语句最终生成的语法树形式如下：</p>
+<p><img src="/images/bigdata/Flink/640.png" alt="图片"></p>
+<p>如果把示例1中的直接从一个表查询数据，改为从两张表的关联结果中查询数据，例如：</p>
+<p><strong>示例2：</strong></p>
+<p><img src="/images/bigdata/Flink/277_640.webp" alt="图片"></p>
+<p>则相应的AST形式如下：</p>
+<p><img src="/images/bigdata/Flink/521_640.webp" alt="图片"></p>
+<p>其中只有FROM子树部分由原来的<code>SqlIdentifier</code>节点变成了一棵<code>SqlJoin</code>子树，其他部分与示例1相同所以在图中省略了。</p>
+<p><strong>校验（validate）阶段</strong></p>
+<p><img src="/images/bigdata/Flink/989_640.webp" alt="图片"></p>
+<p>对经过parser解析出的AST进行有效性验证，验证的方面主要包括以下两方面：</p>
+<ol>
+<li><p>表名、字段名、函数名是否正确，<strong>如在某个查询的字段在当前<code>SQL</code>位置上是否存在或有歧义</strong>（当前可见的多个数据源中同时存在该名称的字段）</p>
+</li>
+<li><p>特定类型操作自身的合法性，如<code>group by</code>聚合中的聚合函数是否存在嵌套调用，使用<code>AS</code>重命名时，<strong>新名字是否是x.y的形式等</strong></p>
+</li>
+</ol>
+<p>针对上面的第一种情况，在校验过程中首先需要明确两个最重要的概念：<strong>NameSpace</strong>和<strong>Scope</strong>。</p>
+<p><code>NameSpace</code>代表一个逻辑上的数据源，可以是一张表，也可以是一个子查询，而<code>Scope</code>则代表了在 <code>SQL</code> 的某个位置，表和字段的可见范围。</p>
+<p>从概念中可以看出，在某个 <code>SQL</code>位置上，某个字段所对应的 <code>scope</code> 可能包含多个 <code>namespace</code>。在 <code>validate</code> 阶段解析出来的 <code>scope</code> 和 <code>namespace</code> 信息会被保存下来，在后面转换成逻辑执行计划的时候还会用到。</p>
+<p>通过一个示例来看什么是 <code>NameSpace</code> 和 <code>scope</code></p>
+<p><strong>示例3</strong></p>
+<p><img src="/images/bigdata/Flink/339_640.webp" alt="图片"></p>
+<p>在上面这样一段SQL语句中包含四个namespace：</p>
+<p><img src="/images/bigdata/Flink/630_640.webp" alt="图片"></p>
+<p>对于SQL中的不同表达式，根据它们所在的位置，它们所对应的scope如下：</p>
+<p><img src="/images/bigdata/Flink/822_640.webp" alt="图片"></p>
+<p>那么在校验第一种情况的时候，整个校验过程的核心就在于<strong>为不同的SqlNode节点生成其对应的namespace和scope</strong>，然后对该<code>SqlNode</code>涉及的字段和<code>namespace</code>与<code>scope</code>的对应关系进行校验。</p>
+<p>对于第二种情况的校验，则需要根据具体的节点类型分别实现了。</p>
+<p>在Calcite中，validator的具体实现类是<code>SqlValidatorImpl</code>，namespace和scope分别由接口<code>SqlValidatorNamespace</code>和<code>SqlValidatorScope</code>表示，图中涉及到的xxxNamespace和xxxScope分别是这两个类的子类。</p>
+<p>下图是从调用validator.validate(sqlNode)开始，对一段查询语句的表名和字段名进行校验的时序图。</p>
+<p><img src="/images/bigdata/Flink/640.webp" alt="图片"></p>
+<p>大体过程都已经在图中的注解里进行了说明，需要补充的一点是，在通过 emptyScope.resolve解析表名时，表信息是通过具体的catalogReader从catalog的schema中查找出来的。</p>
+<p><strong>具体使用什么catalog和catalogReader，是在validator创建之初决定的</strong>。</p>
+<p>在flink中，根据用户的配置，catalog可能是 <code>GenericInMemoryCatalog</code>（基于内存的catalog）或<code>HiveCatalog</code>（基于hive metastore的catalog）。</p>
+<p>如下图所示：</p>
+<p><img src="/images/bigdata/Flink/669_640.webp" alt="图片"></p>
+<p><code>rel</code>阶段是将<code>SqlNode</code>组成的一棵<code>抽象语法树</code>转化为一棵<code>由RelNode和RexNode</code>组成的<code>关系代数树</code>，或者称为执行计划。RelNode表示关系表达式，如投影（Project），即SELECT，和连接（JOIN）等；</p>
+<p>RexNode表示行表达式，如示例中的 <strong>CAST(score AS INT)、T1.id &lt; 10</strong>。</p>
+<p>以示例2的语法树为例，在经过rel阶段转换后会生成下图所示的执行计划：</p>
+<p><img src="/images/bigdata/Flink/401_640.webp" alt="图片"></p>
+<p><strong>rel阶段只处理DML和DQL</strong></p>
+<p>因为<code>DDL</code>实际上可以认为是对元数据的修改，不涉及复杂关系查询，也就不用进行关系代数转换来优化执行，所以也无需转换为表示，根据对应的SqlNode中保存的信息已经可以直接执行了。</p>
+<p>在calcite中，SqlToRelConverter用于对关系表达式进行转换。Flink中通过如下方式使用calcite将AST转换成逻辑执行计划，如下图源码所示。</p>
+<p><img src="/images/bigdata/Flink/848_640.webp" alt="图片"></p>
+<p><strong>从Flink1.13.2源码</strong>中可以看到转换的入口是<code>convertQuery</code>方法。</p>
+<p><code>SqlToRelConverter</code>中的简单的转换流程如下图所示:</p>
+<p><img src="/images/bigdata/Flink/496_640.webp" alt="图片"></p>
+<p>针对每种可能的根节点类型都有对应的转换方法。其中<code>DELETE</code>、<code>UPDATE</code>、<code>MERGE</code>、<code>WITH</code>和<code>VALUES</code>这几种语法在flink流式SQL中还不支持，并且其转换过程也比较简单，后文不再详细分析。</p>
+<p>对于一棵转换后得到的逻辑执行计划树中的节点，其实在<code>AST</code>中都是可以一一对应的找到对应的节点的，所以转换过程本身并不涉及很复杂的算法，大部分过程是提取已有<code>SqlNode</code>节点中记录的信息，然后生成对应的<code>RelNode</code>和<code>RexNode</code>，并设置<code>RelNode</code>间的父子关系。</p>
+<p>从图中也可以看出在<code>calcite</code>里最终都会生成一个<code>LogicalModify</code>节点，通过节点内的<code>operation</code>属性来标识不同的含义。但是目前<code>flink</code>支持的<code>DML</code>只有insert语句，而且并不会生成<code>LogicalModify</code>节点，而是直接转换成了<code>ModifyOperation</code>，并在需要的时候转换成<code>flink</code>内部自己定义的节点类型<code>LogicalSink</code>。也因为这个原因，对于<code>DML</code>的转换流程图中是略有简化的，<code>insert</code>、<code>delete</code>、<code>update</code>和<code>merge</code>本身都可以带查询语句，因此实际转换的时候都会递归地先对查询部分进行转换。</p>
+<p>上图所示流程中只展示了对关系表达式的转换，但是每个关系节点（RelNode）中的行表达式同样需要经过转换得来。</p>
+<p><strong>Calcite中行表达式的转换依赖于两个对象：<code>BlackBoard</code>和<code>SqlNodeToRexConverter</code></strong>。</p>
+<p><code>BlackBoard</code>是对<code>select</code>进行转换时的一个临时工作空间，它就像一块“黑板”一样，可以临时记录下转换过程中需要的信息，比如<code>select</code>依赖的<code>scope</code>、当前的<code>root</code>节点、当前节点是否是<code>top</code>节点等。</p>
+<p><code>BlackBoard</code>本身还是一个<code>shuttle</code>，针对不同类型的<code>SqlNode</code>，其内部都有对应的<code>visit</code>方法。其中除<code>SqlCall</code>、<code>SqlLiteral</code>、<code>SqlIntervalQualifier</code>外，都可由<code>BlackBoard</code>和<code>SqlToRelConverter</code>中定义的各种<code>convertXXX</code>方法进行转换，这三种类型的<code>SqlNode</code>则需要借助<code>SqlNodeToRexConverter</code>来进行转换。</p>
+<p><code>SqlLiteral</code>、<code>SqlIntervalQualifier</code>的转换比较简单，就是从原来的<code>SqlNode</code>中提取信息进行简单的处理和转换，然后生成对应的<code>RexNode</code>。</p>
+<p><strong>重点：这一步负责将RelNode tree转换成operation</strong></p>
+<p><img src="/images/bigdata/Flink/723_640.webp" alt="图片"></p>
+<p>RelNode转换成Operation的过程很简单，针对四种类型的操作，其各自的转换过程如下：·</p>
+<ol>
+<li><p>CreateTable @convertCreateTable</p>
+<p><strong>如果AST的根节点是SqlCreateTable</strong>，提取节点中记录的<code>schema</code>、<code>properties</code>、<code>comment</code>、<code>primary</code> <code>keys</code>、<code>if not exists</code>信息，创建CatalogTable对象，然后<code>创建CreateTableOperation</code></p>
+</li>
+<li><p>DropTable @convertDropTable</p>
+<p><strong>如果AST的根节点是SqlDropTable</strong>，提取节点中记录的<code>full table name</code>、<code>if exists</code>信息，<code>创建DropTableOperation对象</code></p>
+</li>
+<li><p>Insert @convertInsert</p>
+<p><strong>如果AST的根节点是RichSqlInsert</strong>，提取节点中记录的目标表的完整路径和查询表达式，先将查询表达式通过<code>convertSqlQuery</code>转换成<code>QueryOperation</code>，然后以转换后的<code>QueryOperation</code>为子节点创建<code>ModifyOperation</code>对象。</p>
+</li>
+</ol>
+<p>这里分两种情况:</p>
+<blockquote>
+<p>(1)使用SQL API执行了 insert into 语句，将数据写入已经通过 TableEnvironment注册过的表中，此时创建的是CatalogSinkModifyOperation</p>
+</blockquote>
+<blockquote>
+<p>(2)使用Table API的toXXXStream将table对象转换成了DataStream，创建的是OutputConversionModifyOperation</p>
+</blockquote>
+<ol start="4">
+<li><p>Query @convertSqlQuery</p>
+<p><strong>如果根节点的SqlKind是SqlKind.Query</strong>，先通过FlinkPlannerImpl.rel将SqlNode转换成RelNode，然后创建PlannerQueryOperation对象</p>
+</li>
+</ol>
+<h3 id="3-2、Translate阶段"><a href="#3-2、Translate阶段" class="headerlink" title="3.2、Translate阶段"></a>3.2、Translate阶段</h3><p>在Translate阶段，通过Blink Planner 的<code>translateToRel</code>、<code>optimize</code>、<code>translateToExecNodeGraph</code>和<code>translateToPlan</code>四个阶段:<strong>将Operation转换成 Transformations。</strong></p>
+<p><strong>重点</strong>：</p>
+<ol>
+<li><p>从operation开始，先将ModifyOperation通过translateToRel方法转换成Calcite RelNode逻辑计划树，在对应转换成FlinkLogicalRel（RelNode逻辑计划树）；</p>
+</li>
+<li><p>然后经过 调用optimize方法将FlinkLogicalRel 优化成FlinkPhysicalRel。</p>
+</li>
+<li><p>再调用translateToExecNodeGraph方法将FlinkPhysicalRel转为execGraph</p>
+</li>
+<li><p>最后调用translateToPlan方法将execGraph转为transformations</p>
+</li>
+</ol>
+<p><img src="/images/bigdata/Flink/192_640.webp" alt="图片"></p>
+<p><img src="/images/bigdata/Flink/304_640.png" alt="图片"></p>
+<p>从逻辑计划变成物理计划（RelNode），</p>
+<p><img src="/images/bigdata/Flink/575_640.webp" alt="图片"></p>
+<p>Flink1.13.2源码如下：</p>
+<p><img src="/images/bigdata/Flink/776_640.webp" alt="图片"></p>
+<p><strong>、</strong></p>
+<p>这个过程可以看成是<code>convert: RelNode =&gt; Operation</code>的逆过程。</p>
+<p>逻辑也很简单，<strong>无论是使用SQL API还是Table API，最终生成的operation的根节点一定是ModifyOperation</strong>，因为只有insert语句或者将Table转换成DataStream后，在DataStream结果上面写入sink才能触发执行。</p>
+<p>前文提到过<strong>ModifyOperation</strong>最终都会被转换成<code>flink</code>内自定义的<code>LogicalSink</code>节点，该节点主要记录数据输出信息，核心在于需要创建出表示数据输出的<code>sink</code>。所以针对三种<code>ModifyOperation</code>类型分别创建sink的过程如下：</p>
+<ol>
+<li><p><code>UnregisteredSinkModifyOperation</code>：</p>
+<p>这个operation中直接记录了sink信息，因此直接提取出来创建LogicalSink即可。</p>
+</li>
+<li><p><code>CatalogSinkModifyOperation</code>：</p>
+<p>根据operation中记录的table path找到对应的<code>table</code>，然后根据table创建出<code>table sink</code>，最后使用table sink创建出<code>LogicalSink</code>节点。</p>
+<p>这个过程中涉及到了在catalog中解析table和使用ServiceLoader根据table信息在classpath中查找并用于创建table sink的TableSinkFactory的过程，具体如下图所示。</p>
+</li>
+</ol>
+<p><img src="/images/bigdata/Flink/942_640.webp" alt="图片"></p>
+<p><strong>、</strong></p>
+<p>会使用两个优化器:<strong>RBO(基于规则的优化器) 和 CBO(基于代价的优化器)</strong></p>
+<ol>
+<li><code>RBO</code>(基于规则的优化器)会将原有表达式裁剪掉，遍历一系列规则<code>（Rule）</code>，只要满足条件就转换，生成最终的执行计划。一些常见的规则包括分区裁剪<code>（Partition Prune）</code>、列裁剪、谓词下推<code>（Predicate Pushdown）</code>、投影下推<code>（Projection Pushdown）</code>、聚合下推、limit下推、sort下推、常量折叠（Constant Folding）、子查询内联转join等。</li>
+</ol>
+<p>2.<code>CBO</code>(基于代价的优化器)会将原有表达式保留，基于统计信息和代价模型，尝试探索生成等价关系表达式，最终取代价最小的执行计划。<strong>CBO的实现有两种模型，Volcano模型，Cascades模型</strong>。这两种模型思想很是相似，不同点在于Cascades模型一边遍历SQL逻辑树，一边优化，从而进一步裁剪掉一些执行计划。</p>
+<p>源码如下：</p>
+<p><img src="/images/bigdata/Flink/503_640.webp" alt="图片"></p>
+<p>调用translateToExecNodeGraph方法将FlinkPhysicalRel转为execGraph</p>
+<p><img src="/images/bigdata/Flink/837_640.webp" alt="图片"></p>
+<p>调用translateToPlan方法将execGraph转为transformations</p>
+<p><img src="/images/bigdata/Flink/32_640.webp" alt="图片"></p>
+<p>通过上述四个步骤，实现<strong>将Operation转换成 Transformations。</strong></p>
+<p>小笨猪通过完整的流程分析后，终于搞懂了Flink sql的解析和转换过程，最终SQL被转为Transformations,后面的步骤就变成了Flink DataStream的提交流程，小笨猪还是比较了解的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+              <a href="/tags/Distributed/" rel="tag"># Distributed</a>
+              <a href="/tags/mapReducer/" rel="tag"># mapReducer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-obtain-plan/" rel="prev" title="Flink本地编译获取plan">
+      <i class="fa fa-chevron-left"></i> Flink本地编译获取plan
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SQL-Timestmap/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Flink-Sql%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">1. Flink Sql解析器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Flink-Planner-%E5%92%8C-Blink-Planner"><span class="nav-number">2.</span> <span class="nav-text">2. Flink Planner 和 Blink Planner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Blink-Sql%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B%EF%BC%88%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3. Blink Sql提交流程（源码分析）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E3%80%81Parse%E9%98%B6%E6%AE%B5"><span class="nav-number">3.1.</span> <span class="nav-text">3.1、Parse阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2%E3%80%81Translate%E9%98%B6%E6%AE%B5"><span class="nav-number">3.2.</span> <span class="nav-text">3.2、Translate阶段</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

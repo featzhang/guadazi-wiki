@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Kappa架构，是Jay Kreps在2014年提出的，其原文：《质疑Lambda架构》如下: Nathan Marz写了一篇受欢迎的博客文章，描述了他称之为Lambda架构（如何击败CAP定理）的想法。Lambda架构是一种在MapReduce和Storm或类似系统上构建流处理应用程序的方法。事实证明，这是一个出人意料的流行想法，有一个专门的网站和即将初版的书。由于我一直在使用Kafka和Sam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kappa架构原文《质疑Lambda架构》解读">
+<meta property="og:url" content="http://yoursite.com/bigdata/lambda_VS_kappa/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="Kappa架构，是Jay Kreps在2014年提出的，其原文：《质疑Lambda架构》如下: Nathan Marz写了一篇受欢迎的博客文章，描述了他称之为Lambda架构（如何击败CAP定理）的想法。Lambda架构是一种在MapReduce和Storm或类似系统上构建流处理应用程序的方法。事实证明，这是一个出人意料的流行想法，有一个专门的网站和即将初版的书。由于我一直在使用Kafka和Sam">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/lambda-16338c9225c8e6b0c33a3f953133a4cb.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/kappa-61d0afc292912b61ce62517fa2bd4309.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/log-fa00884b8ef635ea9f32dc12180edd56.png">
+<meta property="og:image" content="http://yoursite.com/images/bigdata/partitioned_log-c74280b2059abf3b78d9bbddd657e0d7.png">
+<meta property="article:published_time" content="2019-05-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.443Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Distributed">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="Kafka">
+<meta property="article:tag" content="Spark">
+<meta property="article:tag" content="kappa">
+<meta property="article:tag" content="lambda">
+<meta property="article:tag" content="mapReducer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/bigdata/lambda-16338c9225c8e6b0c33a3f953133a4cb.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/lambda_VS_kappa/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Kappa架构原文《质疑Lambda架构》解读 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/lambda_VS_kappa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kappa架构原文《质疑Lambda架构》解读
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-26T00:00:00+00:00">2019-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Kappa架构，是Jay Kreps在2014年提出的，其<a href="https://www.oreilly.com/radar/questioning-the-lambda-architecture/">原文：《质疑Lambda架构》</a>如下:</p>
+<p>Nathan Marz写了一篇受欢迎的博客文章，描述了他称之为<code>Lambda架构</code>（<a href="http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html">如何击败CAP定理）</a>的想法。Lambda架构是一种在MapReduce和<a href="http://storm.incubator.apache.org/">Storm</a>或类似系统上构建流处理应用程序的方法。事实证明，这是一个出人意料的流行想法，有一个专门<a href="http://lambda-architecture.net/">的网站</a>和<a href="http://www.manning.com/marz/">即将初版的书</a>。由于我一直在使用<a href="http://kafka.apache.org/">Kafka</a>和<a href="http://samza.incubator.apache.org/">Samza</a>在LinkedIn参与构建实时数据处理基础设施，经常被问及Lambda架构。我想描述我的想法和经历。</p>
+<h2 id="0-1-什么是Lambda架构，如何成为Lambda架构？"><a href="#0-1-什么是Lambda架构，如何成为Lambda架构？" class="headerlink" title="0.1 什么是Lambda架构，如何成为Lambda架构？"></a>0.1 什么是Lambda架构，如何成为Lambda架构？</h2><p>Lambda架构看起来像这样：</p>
+<p><img src="/images/bigdata/lambda-16338c9225c8e6b0c33a3f953133a4cb.png" alt="Lambda架构"></p>
+<p>Lambda架构的工作方法是捕获不可变的记录序列，同时输入批处理系统和流处理系统。需要分别实现批系统和流系统的计算逻辑，在查询时将批和流的计算结果组合成完整的结果。</p>
+<p>Lambda架构有很多变体，我有意的简化一下。例如，你可以在Kafka、Storm和Hadoop的各种类似系统中交换数据，人们经常使用两个不同的数据库来存储输出表，一个优化为实时，另一个优化为批量更新。</p>
+<p>Lambda架构的目标是围绕复杂的异步转换构建的应用程序，这些转换需要低延迟(比如，几秒到几小时)运行。一个很好的例子是新闻推荐系统，它需要抓取各种新闻源，处理并规范化所有输入，然后对其进行索引、排序和存储以供服务。</p>
+<p>Lambda架构针对围绕复杂的异步转换构建的应用程序，这些转换需要以低延迟运行（例如，几秒钟到几个小时）。一个很好的例子是新闻推荐系统，该系统需要抓取各种新闻来源，处理和格式化所有输入，然后对其进行索引、排名和存储以供服务。</p>
+<p>我在LinkedIn参与建立了许多实时数据系统和管道。其中有些就是这种风格，但经过深思熟虑，这并不是我最喜欢的方法。我认为有必要描述一下这个架构的优点和缺点，并给出一个我更喜欢的选择。</p>
+<h2 id="0-2-Lambda架构的优点"><a href="#0-2-Lambda架构的优点" class="headerlink" title="0.2 Lambda架构的优点"></a>0.2 Lambda架构的优点</h2><p><strong>数据不可变</strong></p>
+<p>Lambda架构强调保持输入数据不变。将数据转换建模为从原始输入开始的一系列物化步骤是有很多优点的。这也是大型MapReduce工作流易于处理的原因之一，因为它使您能够独立调试每个阶段。我认为这一思想可以很好地应用到流处理领域。我<a href="http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying">在这里</a>写过一些关于捕获和转换不可变数据流的想法。</p>
+<p><strong>支持重新计算</strong></p>
+<p>这个体系结构突出了<strong>重新计算</strong>的问题。重新计算是流处理的关键挑战之一，但经常被忽略。通过“<strong>重新计算</strong>”，再次处理输入数据以修正结果。这是一个完全明显但经常被忽视的要求。代码逻辑不可避免的修改。所以，如果您有从输入流中派生输出数据的代码，则每当代码更改时，都需要重新计算输出以查看更改的效果。</p>
+<p><strong>代码逻辑修改</strong></p>
+<p>随着业务的发展，需要增加新的字段或删掉不需要的字段，或者修复发现的bug。代码逻辑不可避免的修改。构建实时系统的人往往不考虑这一点，所以根本无法快速发展。因为Lambda架构方便的解决了重新计算的问题，是比较大的有点。</p>
+<p><strong>流处理也可以精确并强壮</strong></p>
+<p>Lambda架构的设计，认为流式计算本质上是近似处理且不强壮，比批处理更容易丢失数据。事实并非如此，虽然现在的流处理框架不如MapReduce成熟，但没有理由不能像批处理系统那样提供如此强大的语义保证。</p>
+<p><strong>击败CAP定理</strong></p>
+<p>Lambda架构可以权衡不同的数据系统的混合起来以某种方式“击败了CAP定理”。长话短说，虽然流处理中肯定有延迟&#x2F;可用性权衡，但Lambda架构是一个异步处理的架构，因此正在计算中的结果并不能马上与输入的数据保持一致，这并不能满足<a href="http://ferd.ca/beating-the-cap-theorem-checklist.html">CAP定理</a>。</p>
+<h2 id="0-3-Lambda架构的缺点"><a href="#0-3-Lambda架构的缺点" class="headerlink" title="0.3 Lambda架构的缺点"></a>0.3 Lambda架构的缺点</h2><p>Lambda架构的问题在于，维护两套在复杂的分布式系统的代码逻辑，并且无法解决。</p>
+<p>编写Storm和Hadoop等分布式框架的程序是很复杂的，并且代码嵌入到运行框架，导致实现Lamdba架构具有极高的复杂性。</p>
+<p>为什么不能改进流处理系统以处理在其目标域中设置的完整问题？一个提出的修复方法是具有抽象实时和批处理框架的语言或框架。您使用此更高级别的框架编写代码，然后将其“按住”到封面下的流处理或MapReduce。summingbird是一个这样做的框架。这绝对会使事情变得更好，但我认为它不解决问题。</p>
+<p>为什么不能改进流处理系统来处理其目标域中的完整问题集？解决这个问题的一个方法是在实时和批框架的基础上抽象出语言或框架。使用高级框架编写代码，然后它“向下编译”到的流处理或MapReduce。<a href="http://github.com/twitter/summingbird">Summingbird</a>是一个执行此操作的框架。这肯定会让事情变得更好一点，但它并不能解决问题。</p>
+<p>即使避免了两次编码，运行和调试两个系统的操作成本也很高。任何新的抽象层只适配了两个系统支持的功能。更糟糕的是，对于这个新框架，将会无法兼容Hadoop如此强大的丰富的工具和语言生态系统（Hive、Pig、Crunch、Cascading、Oozie等）。</p>
+<p>打个比方，跨数据库的ORM实现真正透明是臭名昭著的困难。而这还只是在类似的系统上和相近的标准接口语言上进行抽象。如果要在几乎不稳定的分布式系统之上抽象化完全不同的编程范式的问题要困难得多。</p>
+<h2 id="0-4-我们的尝试"><a href="#0-4-我们的尝试" class="headerlink" title="0.4 我们的尝试"></a>0.4 我们的尝试</h2><p>在LinkedIn上进行了几轮这样的尝试。构建了各种混合Hadoop架构，甚至是一个特定于域的API，允许代码在实时或Hadoop上“透明”的运行。这些方法奏效了，但没有一种方法非常愉快或富有成效。让代码在两个不同的系统中完美同步是非常非常困难的。旨在隐藏底层框架的API被证明是最泄露的抽象，最终还是需要深入的了解实时层和Hadoop。并且还附加了新的要求，当您调试问题或试图解释性能时，需要了解API将如何转换为这些底层系统</p>
+<p>我的建议是：如果对延迟不敏感，请使用MapReduce等批处理框架；如果对延迟敏感，请使用流处理框架；但除非您绝对必须，否则不要同时尝试同时进行这两种处理。</p>
+<p>那么，为什么Lambda架构令人兴奋呢？我认为原因是人们越来越需要构建复杂、低延迟的处理系统。他们拥有的两个不能完全解决他们的问题：可扩展高延迟的批处理系统可以处理历史数据和低延迟流处理系统无法重新计算。通过将这两样东西粘在一起，它们实际上可以构建一个工作解决方案。</p>
+<p>从这个意义上说，尽管Lambda架构可能会很痛苦，但解决了一个被普遍忽视的重要问题。但我不认为这是大数据的新范式或未来。它只是受限于现成工具的临时状态。我也认为有更好的选择。</p>
+<h2 id="0-5-Kappa架构"><a href="#0-5-Kappa架构" class="headerlink" title="0.5 Kappa架构"></a>0.5 Kappa架构</h2><p>作为设计基础架构的人，我认为最明显的问题是：为什么不能改进流处理系统以处理其目标域中设置的完整问题？你为什么需要粘在另一个系统上？为什么不能进行实时处理并在代码更改时支持重新计算？流处理系统已经存在并行性的概念; 为什么不仅仅通过增加并行性和重放历史数据来处理重新计算，非常快，非常快？答案是您可以执行此操作，如果您今天正在建立这种类型的系统，我认为这实际上是一个合理的替代架构。</p>
+<p>当我与人们讨论这个问题时，他们有时会告诉我，流处理不适合历史数据的高吞吐量处理。但我认为这是一种直觉，主要基于他们使用的系统的局限性，这些系统要么规模差，要么无法保存历史数据。这让他们感到，流处理系统本质上是计算一些短暂流的结果，然后扔掉所有底层数据的东西。但这是没有理由应该如此。流处理的基本抽象是数据流DAG，它们与传统数据仓库（<a href="http://paperhub.s3.amazonaws.com/dace52a42c07f7f8348b08dc2b186061.pdf">火山</a>）中的基本抽象完全相同，也是MapReduce继任<a href="http://hortonworks.com/hadoop/tez/">Tez</a>的基本抽象。流处理只是该数据流模型的推广，它向最终用户公开中间结果和持续输出的Checkpoint。</p>
+<p>那么，我们如何直接从我们的流处理工作中进行后处理呢？我更喜欢的方法实际上是愚蠢的简单：</p>
+<ol>
+<li>使用Kafka或其他系统，允许您保留您想要重新处理的数据的完整日志，并允许多个订阅者。例如，如果您想重新处理长达30天的数据，请将您在Kafka中的保留时间设置为30天。</li>
+<li>当您想进行后处理时，请启动流处理作业的第二个实例，该实例从保留数据的开头开始处理，但将此输出数据定向到新的输出表。</li>
+<li>当第二个作业赶上时，切换应用程序以从新表读取。</li>
+<li>停止旧版本的作业，并删除旧的输出表。</li>
+</ol>
+<p>这个架构看起来像这样：</p>
+<p><img src="/images/bigdata/kappa-61d0afc292912b61ce62517fa2bd4309.png" alt="卡帕"></p>
+<p>与Lambda架构不同，在这种方法中，您只在代码更改时进行重新计算，并且实际上也需要重新计算结果。当然，重新计算的工作只是同一代码的改进版本，在同一框架上运行，使用相同的输入数据。当然，您会想在重新处理任务中增加并行性，以便它很快就能完成。</p>
+<p>也许我们可以称之为Kappa架构，尽管这个想法可能太简单了，不值得使用希腊字母。</p>
+<p>当然，可以进一步优化这一点。在许多情况下，您可以将两个输出表合并。然而，我认为两者在短期内都有一些好处。这允许您只需有一个按钮将应用程序重定向到旧表，即可立即恢复到旧逻辑。在特别重要的情况下（例如，您的广告定位标准），您可以使用自动A&#x2F;B测试或<a href="http://shop.oreilly.com/product/0636920027393.do">回溯算法</a>进行切换，以确保新代码的任何错误修复或代码改进都不会意外地与之前的版本相比降级。</p>
+<p>请注意，这并不意味着您的数据无法转到HDFS；它只是意味着您不会在那里运行后处理。Kafka与Hadoop集成良好，因此将任何Kafka Topic落库到HDFS中都很容易。Hadoop中中保存流处理作业的输出和中间流是非常有用的，可以用于Hive等工具中的分析或其他离线数据处理流的输入。</p>
+<p>我们<a href="http://samza.incubator.apache.org/learn/documentation/0.7.0/jobs/reprocessing.html">记录了</a>这种方法的实施，以及使用Samza的后处理架构的其他变体。</p>
+<h2 id="0-6-一些背景"><a href="#0-6-一些背景" class="headerlink" title="0.6 一些背景"></a>0.6 一些背景</h2><p>Kafka维护如下有序日志：</p>
+<p><img src="/images/bigdata/log-fa00884b8ef635ea9f32dc12180edd56.png" alt="Kafka_log"></p>
+<p>Kafka的Topic是这些日志的集合：</p>
+<p><img src="/images/bigdata/partitioned_log-c74280b2059abf3b78d9bbddd657e0d7.png" alt="partitioned_log"></p>
+<p>消费这些数据的流处理消费者只会维护一个“offset”，这是它在每个分区上处理的上一次记录的日志条目号。因此，更改消费者返回和重新处理数据的位置就像用不同的偏移量重新启动作业一样简单。为同一数据添加第二个消费者只是另一个指向日志中不同位置的读者。</p>
+<p>Kafka支持复制和容错，在廉价的硬件上运行，并每台机器存储许多TB的数据是很轻松的。因此，保留大量数据是一件非常自然和经济的事情，不会损害性能。LinkedIn在线存储了超过兆字节的Kafka存储空间，许多应用程序正好为此目的很好地利用了这种长期保留模式。</p>
+<p>廉价的消费者和保留大量数据的能力使添加第二个“重新计算”的作业只是启动代码的第二个实例，但从日志中的不同位置开始。</p>
+<p>这个设计不是偶然的。我们构建Kafka的目的是将其用作流处理的基础，我们完全想到了这种重新计算的模型。感兴趣的话，可以<a href="https://kafka.apache.org/documentation.html#introduction">在这里</a>找到更多关于Kafka的信息。</p>
+<p>然而，从根本上说，没有什么能将这个想法与Kafka联系起来。您可以替换任何支持长期保留有序数据的系统（例如HDFS或某种数据库）。事实上，许多人熟悉名为<a href="http://martinfowler.com/eaaDev/EventSourcing.html">事件采购</a>或<a href="http://martinfowler.com/bliki/CQRS.html">CQRS</a>的类似模式。当然，分布式数据库人员会告诉你，这只是对实例化视图维护的轻微重塑，正如他们很乐意提醒你的那样，他们<em>很久以前就</em>知道了*，索尼*。</p>
+<h2 id="0-7-Lambda架构与Kappa架构对比"><a href="#0-7-Lambda架构与Kappa架构对比" class="headerlink" title="0.7 Lambda架构与Kappa架构对比"></a>0.7 Lambda架构与Kappa架构对比</h2><p>我知道使用Samza作为流处理系统这种方法效果很好，因为LinkedIn是这样做的。但我不知道为什么它不应该在Storm或其他流处理系统中同样有效。我对Storm不够熟悉，无法了解实用性，所以如果其他人已经在这样做，我很乐意听到。无论如何，我认为一般想法是相当独立的。</p>
+<p>这两种方法之间的效率和资源权衡有点令人扫地。Lambda架构需要一直运行后处理和实时处理，而我提议的只是需要在您需要重新处理时运行作业的第二份副本。然而，我的提案要求在输出数据库中暂时拥有2倍的存储空间，并要求一个支持重装大批量写入的数据库。在这两种情况下，重新处理的额外负载可能会平均。如果您有很多这样的工作，它们不会同时进行重新处理，因此在包含数十个此类工作的共享集群上，您可能会为在任何给定时间积极重新处理的少数工作额外预算容量的一小部分。</p>
+<p>真正的优势根本不在于效率，而在于允许人们在单个处理框架上开发、测试、调试和操作他们的系统。因此，在简单性很重要的情况下，请将这种方法视为Lambda架构的替代方案。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+              <a href="/tags/Spark/" rel="tag"># Spark</a>
+              <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+              <a href="/tags/Distributed/" rel="tag"># Distributed</a>
+              <a href="/tags/mapReducer/" rel="tag"># mapReducer</a>
+              <a href="/tags/lambda/" rel="tag"># lambda</a>
+              <a href="/tags/kappa/" rel="tag"># kappa</a>
+              <a href="/tags/Kafka/" rel="tag"># Kafka</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/failover-recovery/" rel="prev" title="大规模分布式系统故障恢复和容错架构探究">
+      <i class="fa fa-chevron-left"></i> 大规模分布式系统故障恢复和容错架构探究
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/ETL/Kettle/Kettle-JavaNode/" rel="next" title="Kettle中的Java节点与代码生成">
+      Kettle中的Java节点与代码生成 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-%E4%BB%80%E4%B9%88%E6%98%AFLambda%E6%9E%B6%E6%9E%84%EF%BC%8C%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BALambda%E6%9E%B6%E6%9E%84%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">0.1 什么是Lambda架构，如何成为Lambda架构？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-2-Lambda%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">0.2 Lambda架构的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-3-Lambda%E6%9E%B6%E6%9E%84%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">0.3 Lambda架构的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-4-%E6%88%91%E4%BB%AC%E7%9A%84%E5%B0%9D%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">0.4 我们的尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-5-Kappa%E6%9E%B6%E6%9E%84"><span class="nav-number">5.</span> <span class="nav-text">0.5 Kappa架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-6-%E4%B8%80%E4%BA%9B%E8%83%8C%E6%99%AF"><span class="nav-number">6.</span> <span class="nav-text">0.6 一些背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-7-Lambda%E6%9E%B6%E6%9E%84%E4%B8%8EKappa%E6%9E%B6%E6%9E%84%E5%AF%B9%E6%AF%94"><span class="nav-number">7.</span> <span class="nav-text">0.7 Lambda架构与Kappa架构对比</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

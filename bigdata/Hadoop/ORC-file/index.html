@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="https:&#x2F;&#x2F;cwiki.apache.org&#x2F;confluence&#x2F;display&#x2F;Hive&#x2F;LanguageManual+ORC 1 文件格式ORC的全称是(Optimized Row Columnar)，它并不是一个单纯的列式存储格式，仍然是首先根据行组分割整个表，在每一个行组内进行按列存储。ORC文件是自描述的，它的元数据使用Protocol Buffers序列化，并且文件中的数据尽可能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="orcfile">
+<meta property="og:url" content="http://yoursite.com/bigdata/Hadoop/ORC-file/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="https:&#x2F;&#x2F;cwiki.apache.org&#x2F;confluence&#x2F;display&#x2F;Hive&#x2F;LanguageManual+ORC 1 文件格式ORC的全称是(Optimized Row Columnar)，它并不是一个单纯的列式存储格式，仍然是首先根据行组分割整个表，在每一个行组内进行按列存储。ORC文件是自描述的，它的元数据使用Protocol Buffers序列化，并且文件中的数据尽可能">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/bigdata/Hadoop/attachments/59f740203a1cf92ec081ea26221106d1_MD5.jpg">
+<meta property="article:published_time" content="2017-02-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.285Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Distributed">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="hive">
+<meta property="article:tag" content="mapReducer">
+<meta property="article:tag" content="orc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/bigdata/Hadoop/attachments/59f740203a1cf92ec081ea26221106d1_MD5.jpg">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Hadoop/ORC-file/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>orcfile | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Hadoop/ORC-file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          orcfile
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-02-26 00:00:00" itemprop="dateCreated datePublished" datetime="2017-02-26T00:00:00+00:00">2017-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC">https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC</a></p>
+<h1 id="1-文件格式"><a href="#1-文件格式" class="headerlink" title="1 文件格式"></a>1 文件格式</h1><p>ORC的全称是(Optimized Row Columnar)，它并不是一个单纯的列式存储格式，仍然是首先根据行组分割整个表，在每一个行组内进行按列存储。ORC文件是自描述的，它的元数据使用Protocol Buffers序列化，并且文件中的数据尽可能的压缩以降低存储空间的消耗。</p>
+<h2 id="1-1-列存储的优势"><a href="#1-1-列存储的优势" class="headerlink" title="1.1 列存储的优势"></a>1.1 列存储的优势</h2><ul>
+<li>查询的时候不需要扫描全部的数据，而只需要读取每次查询涉及的列，这样可以将I&#x2F;O消耗降低N倍，另外可以保存每一列的统计信息(min、max、sum等)，实现部分的谓词下推。</li>
+<li>由于每一列的成员都是同构的，可以针对不同的数据类型使用更高效的数据压缩算法，进一步减小I&#x2F;O。</li>
+<li>由于每一列的成员的同构性，可以使用更加适合CPU pipeline的编码方式，减小CPU的缓存失效。</li>
+</ul>
+<h2 id="1-2-文件结构"><a href="#1-2-文件结构" class="headerlink" title="1.2 文件结构"></a>1.2 文件结构</h2><p>ORC文件也是以二进制方式存储的，ORC文件也是自解析的，它包含许多的元数据，这些元数据都是同构ProtoBuffer进行序列化的。</p>
+<p><img src="/bigdata/Hadoop/attachments/59f740203a1cf92ec081ea26221106d1_MD5.jpg"></p>
+<ul>
+<li>ORC文件：保存在文件系统上的普通二进制文件，一个ORC文件中可以包含多个stripe，每一个stripe包含多条记录，这些记录按照列进行独立存储，对应到Parquet中的row group的概念。</li>
+<li>文件级元数据：包括文件的描述信息PostScript、文件meta信息（包括整个文件的统计信息）、所有stripe的信息和文件schema信息。</li>
+<li>stripe：一组行形成一个stripe，每次读取文件是以行组为单位的，一般为HDFS的块大小，保存了每一列的索引和数据。</li>
+<li>stripe元数据：保存stripe的位置、每一个列的在该stripe的统计信息以及所有的stream类型和位置。</li>
+<li>row group：索引的最小单位，一个stripe中包含多个row group，默认为10000个值组成。</li>
+<li>stream：一个stream表示文件中一段有效的数据，包括索引和数据两类。索引stream保存每一个row group的位置和统计信息，数据stream包括多种类型的数据，具体需要哪几种是由该列类型和编码方式决定。</li>
+</ul>
+<h2 id="1-3-基于统计信息的过滤"><a href="#1-3-基于统计信息的过滤" class="headerlink" title="1.3 基于统计信息的过滤"></a>1.3 基于统计信息的过滤</h2><p>三个层级的统计信息，分别为文件级别、stripe级别和row group级别的，都可以用来根据Search ARGuments（谓词下推条件）判断是否可以跳过某些数据，在统计信息中都包含成员数和是否有null值，并且对于不同类型的数据设置一些特定的统计信息。</p>
+<p><strong>（1）file level</strong> 在ORC文件的末尾会记录文件级别的统计信息，会记录整个文件中columns的统计信息。这些信息主要用于查询的优化，也可以为一些简单的聚合查询比如max, min, sum输出结果。 <br><strong>（2）stripe level</strong> ORC文件会保存每个字段stripe级别的统计信息，ORC reader使用这些统计信息来确定对于一个查询语句来说，需要读入哪些stripe中的记录。比如说某个stripe的字段max(a)&#x3D;10，min(a)&#x3D;3，那么当where条件为a &gt;10或者a &lt;3时，那么这个stripe中的所有记录在查询语句执行时不会被读入。 <br><strong>（3）row level</strong> 为了进一步的避免读入不必要的数据，在逻辑上将一个column的index以一个给定的值(默认为10000，可由参数配置)分割为多个index组。以10000条记录为一个组，对数据进行统计。Hive查询引擎会将where条件中的约束传递给ORC reader，这些reader根据组级别的统计信息，过滤掉不必要的数据。如果该值设置的太小，就会保存更多的统计信息，用户需要根据自己数据的特点权衡一个合理的值。</p>
+<h2 id="1-4-Stripe-→-Row-Group-→-Column-→-Stream-的关系"><a href="#1-4-Stripe-→-Row-Group-→-Column-→-Stream-的关系" class="headerlink" title="1.4 Stripe → Row Group → Column → Stream 的关系"></a>1.4 Stripe → Row Group → Column → Stream 的关系</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Stripe</span><br><span class="line"> ├── Row Group 0</span><br><span class="line"> │    ├── Column A</span><br><span class="line"> │    │    ├── Stream PRESENT</span><br><span class="line"> │    │    ├── Stream DATA</span><br><span class="line"> │    │    └── Stream LENGTH / DICTIONARY / ...</span><br><span class="line"> │    ├── Column B</span><br><span class="line"> │    │    ├── Stream PRESENT</span><br><span class="line"> │    │    └── Stream DATA</span><br><span class="line"> │    └── ...</span><br><span class="line"> ├── Row Group 1</span><br><span class="line"> └── ...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Row Group 是索引与统计的最小过滤单位</strong></li>
+<li><strong>真正的数据存储是按 column + stream 来的</strong></li>
+<li>Row Group <strong>并不单独存数据块</strong>，而是通过 <code>ROW_INDEX</code> 指向各个 stream 在文件中的偏移位置</li>
+<li>每个Stream只属于一个字段，但一个字段可以包含多个Stream</li>
+</ul>
+<h1 id="2-ORC-file-API"><a href="#2-ORC-file-API" class="headerlink" title="2 ORC file API"></a>2 ORC file API</h1><p>源码主要有core和mapreduce两个模块，其中MapReduce 模块就是Hadoop的InputFormat和OutFormat，这个模块下有两个包，mapred和MapReduce分别符合MapReduce的V1和V2的Input&#x2F;Output Format.</p>
+<p>四个类：OrcInputFormat、OrcOutputFormat、OrcMapreduceRecordReader和OrcMapreduceRecordWriter</p>
+<h2 id="2-1-OrcInputFormat与OrcOutputFormat"><a href="#2-1-OrcInputFormat与OrcOutputFormat" class="headerlink" title="2.1 OrcInputFormat与OrcOutputFormat"></a>2.1 OrcInputFormat与OrcOutputFormat</h2><p>OrcInputFormat继承了FileInputFormat，getSplits用的就是FileInputFormat的实现，只是重写了createRecordReader方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">RecordReader</span>&lt;NullWritable, V&gt;</span><br><span class="line">    <span class="title function_">createRecordReader</span><span class="params">(InputSplit inputSplit,</span></span><br><span class="line"><span class="params">                       TaskAttemptContext taskAttemptContext</span></span><br><span class="line"><span class="params">                       )</span> <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line">  <span class="type">FileSplit</span> <span class="variable">split</span> <span class="operator">=</span> (FileSplit) inputSplit;</span><br><span class="line">  <span class="type">Configuration</span> <span class="variable">conf</span> <span class="operator">=</span> taskAttemptContext.getConfiguration();</span><br><span class="line">  <span class="type">Reader</span> <span class="variable">file</span> <span class="operator">=</span> OrcFile.createReader(split.getPath(),</span><br><span class="line">      OrcFile.readerOptions(conf)</span><br><span class="line">          .maxLength(OrcConf.MAX_FILE_LENGTH.getLong(conf)));</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OrcMapreduceRecordReader</span>&lt;&gt;(file,</span><br><span class="line">      org.apache.orc.mapred.OrcInputFormat.buildOptions(conf,</span><br><span class="line">          file, split.getStart(), split.getLength()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里面用到了org.apache.orc.Reader和org.apache.orc.OrcFile. 模板里面的V通常会是OrcStruct，Orc中一个表的schema可以表示为一个OrcStruct。<br>同样滴，OrcOutputFormat当中也是重写了craeteRecordWriter方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">RecordWriter</span>&lt;NullWritable, V&gt;</span><br><span class="line">     <span class="title function_">getRecordWriter</span><span class="params">(TaskAttemptContext taskAttemptContext</span></span><br><span class="line"><span class="params">                     )</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">  <span class="type">Configuration</span> <span class="variable">conf</span> <span class="operator">=</span> taskAttemptContext.getConfiguration();</span><br><span class="line">  <span class="type">Path</span> <span class="variable">filename</span> <span class="operator">=</span> getDefaultWorkFile(taskAttemptContext, EXTENSION);</span><br><span class="line">  <span class="type">Writer</span> <span class="variable">writer</span> <span class="operator">=</span> OrcFile.createWriter(filename,</span><br><span class="line">      org.apache.orc.mapred.OrcOutputFormat.buildOptions(conf));</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OrcMapreduceRecordWriter</span>&lt;V&gt;(writer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里面用到了org.apache.orc.Writer和org.apache.orc.OrcFile.<br>以上用到的这三个类都是core 模块里的，之后再去读。</p>
+<h2 id="2-2-OrcMapreduceRecordReader"><a href="#2-2-OrcMapreduceRecordReader" class="headerlink" title="2.2 OrcMapreduceRecordReader"></a>2.2 OrcMapreduceRecordReader</h2><p>这个类里面其实复用了org.apache.orc.mapred包下面的一些Writable类，这些Writable类用来在MapReduce中支持Orc中的一些特殊数据类型，比如Map、List、Struct等等，可以将这些数据类型从DataInput中反序列化出来，也可以将数据序列化到DataOutput中去。</p>
+<p>从构造方法可以看到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">public</span> <span class="title function_">OrcMapreduceRecordReader</span><span class="params">(Reader fileReader,</span></span><br><span class="line"><span class="params">                                Reader.Options options)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">  <span class="built_in">this</span>.batchReader = fileReader.rows(options);</span><br><span class="line">  <span class="keyword">if</span> (options.getSchema() == <span class="literal">null</span>) &#123;</span><br><span class="line">    schema = fileReader.getSchema();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    schema = options.getSchema();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.batch = schema.createRowBatch();</span><br><span class="line">  rowInBatch = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">this</span>.row = (V) OrcStruct.createValue(schema);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中batchReader是org.apache.orc.RecordReader类型的，这个RecordReader在core中。batch是真正有数据的地方。batch的类型是org.apache.hadoop.hive.ql.exec.vector.VectorizedRowBatch，从java doc可以看出来它是干嘛用的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A VectorizedRowBatch is a set of rows, organized with each column</span></span><br><span class="line"><span class="comment"> * as a vector. It is the unit of query execution, organized to minimize</span></span><br><span class="line"><span class="comment"> * the cost per row and achieve high cycles-per-instruction.</span></span><br><span class="line"><span class="comment"> * The major fields are public by design to allow fast and convenient</span></span><br><span class="line"><span class="comment"> * access by the vectorized query execution code.</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p>而schema是org.apache.orc.TypeDescription类型的，而TypeDescription其实是一个数据类型的描述，它有一个category，可以是INT、FLOAT等等，也可以是STRUCT。这里schema的category通常会是STRUCT。STRUCT和OrcStruct是对应的，是一个复合类型，其中可以包含其他类型的属性，用来表示一个表的schema。</p>
+<p>row就是batchReader从batch中读出来的一行记录。</p>
+<p>OrcMapreduceRecordReader中另外一个重要的方法是nextKeyValue：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">nextKeyValue</span><span class="params">()</span> <span class="keyword">throws</span> IOException, InterruptedException &#123;</span><br><span class="line">  <span class="keyword">if</span> (!ensureBatch()) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (schema.getCategory() == TypeDescription.Category.STRUCT) &#123;</span><br><span class="line">    <span class="type">OrcStruct</span> <span class="variable">result</span> <span class="operator">=</span> (OrcStruct) row;</span><br><span class="line">    <span class="type">List</span>&lt;TypeDescription&gt; <span class="variable">children</span> <span class="operator">=</span> schema.getChildren();</span><br><span class="line">    <span class="type">int</span> <span class="variable">numberOfChildren</span> <span class="operator">=</span> children.size();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span><span class="operator">=</span><span class="number">0</span>; i &lt; numberOfChildren; ++i) &#123;</span><br><span class="line">      result.setFieldValue(i, OrcMapredRecordReader.nextValue(batch.cols[i], rowInBatch,</span><br><span class="line">          children.get(i), result.getFieldValue(i)));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    OrcMapredRecordReader.nextValue(batch.cols[<span class="number">0</span>], rowInBatch, schema, row);</span><br><span class="line">  &#125;</span><br><span class="line">  rowInBatch += <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出来，这个方法中，判断当schema是STRUCT的category时，将它看做一个表的schema，取出里面包含的children，即各个字段的TypeDescription，然后读取各个字段的值，存入row中。这其中复用了OrcMapredRecordReader.nextValue()方法.</p>
+<h2 id="2-3-OrcMapreduceRecordWriter"><a href="#2-3-OrcMapreduceRecordWriter" class="headerlink" title="2.3 OrcMapreduceRecordWriter"></a>2.3 OrcMapreduceRecordWriter</h2><p>OrcMapreduceRecordWriter和OrcMapreduceRecordReader类似，只不过其中的batchReader换成了org.apache.orc<br>.Writer类型的writer。构造方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">public</span> <span class="title function_">OrcMapreduceRecordWriter</span><span class="params">(Writer writer)</span> &#123;</span><br><span class="line">  <span class="built_in">this</span>.writer = writer;</span><br><span class="line">  schema = writer.getSchema();</span><br><span class="line">  <span class="built_in">this</span>.batch = schema.createRowBatch();</span><br><span class="line">  isTopStruct = schema.getCategory() == TypeDescription.Category.STRUCT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个类的主要方法就是write方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">void</span> <span class="title function_">write</span><span class="params">(NullWritable nullWritable, V v)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">  <span class="comment">// if the batch is full, write it out.</span></span><br><span class="line">  <span class="keyword">if</span> (batch.size == batch.getMaxSize()) &#123;</span><br><span class="line">    writer.addRowBatch(batch);</span><br><span class="line">    batch.reset();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// add the new row</span></span><br><span class="line">  <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> batch.size++;</span><br><span class="line">  <span class="comment">// skip over the OrcKey or OrcValue</span></span><br><span class="line">  <span class="keyword">if</span> (v <span class="keyword">instanceof</span> OrcKey) &#123;</span><br><span class="line">    v = (V)((OrcKey) v).key;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (v <span class="keyword">instanceof</span> OrcValue) &#123;</span><br><span class="line">    v = (V)((OrcValue) v).value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (isTopStruct) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">f</span><span class="operator">=</span><span class="number">0</span>; f &lt; schema.getChildren().size(); ++f) &#123;</span><br><span class="line">      OrcMapredRecordWriter.setColumn(schema.getChildren().get(f),</span><br><span class="line">          batch.cols[f], row, ((OrcStruct) v).getFieldValue(f));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    OrcMapredRecordWriter.setColumn(schema, batch.cols[<span class="number">0</span>], row, v);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出来，write先把V类型（通常是OrcStruct）的记录写入batch，如果batch写满了，就批量写入writer。</p>
+<h2 id="2-4-代办"><a href="#2-4-代办" class="headerlink" title="2.4 代办"></a>2.4 代办</h2><ul>
+<li><input disabled="" type="checkbox"> Flink消费orc文件，能否按照file+strip作为offset?</li>
+</ul>
+<h2 id="2-5-【参考文献】"><a href="#2-5-【参考文献】" class="headerlink" title="2.5 【参考文献】"></a>2.5 【参考文献】</h2><ol>
+<li><a href="https://blog.csdn.net/bhq2010/article/details/76213895">ORC源码阅读(1) - mapreduce 模块</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+              <a href="/tags/Distributed/" rel="tag"># Distributed</a>
+              <a href="/tags/mapReducer/" rel="tag"># mapReducer</a>
+              <a href="/tags/hive/" rel="tag"># hive</a>
+              <a href="/tags/orc/" rel="tag"># orc</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Hadoop/HDFS-Java-API/" rel="prev" title="HDFS Java API">
+      <i class="fa fa-chevron-left"></i> HDFS Java API
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Hadoop/MapReducer/" rel="next" title="mapReducer">
+      mapReducer <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">1 文件格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%88%97%E5%AD%98%E5%82%A8%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 列存储的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%9F%BA%E4%BA%8E%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF%E7%9A%84%E8%BF%87%E6%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 基于统计信息的过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Stripe-%E2%86%92-Row-Group-%E2%86%92-Column-%E2%86%92-Stream-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 Stripe → Row Group → Column → Stream 的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-ORC-file-API"><span class="nav-number">2.</span> <span class="nav-text">2 ORC file API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-OrcInputFormat%E4%B8%8EOrcOutputFormat"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 OrcInputFormat与OrcOutputFormat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-OrcMapreduceRecordReader"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 OrcMapreduceRecordReader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-OrcMapreduceRecordWriter"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 OrcMapreduceRecordWriter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E4%BB%A3%E5%8A%9E"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 代办</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E3%80%90%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E3%80%91"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 【参考文献】</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

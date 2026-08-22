@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 Flink实践之延迟统计流计算是基于消息触发计算的，若没有消息到达到则无法计算，这类指标恰好是要求在指定的超时时间计算出有多少未达到的消息。 1.1 常见场景1.1.1 菜鸟-物流单配送超时统计 实时数仓的建设难度: 链路复杂、实操节点多、汇总维度多、考核逻辑复杂的特点  仓配实时数据已覆盖了绝大多数场景，但是有这样一类特殊指标：“晚点超时指标”（例如：出库超 6 小时未揽收的订单量），仍存在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink实践之延迟统计">
+<meta property="og:url" content="http://yoursite.com/bigdata/Flink/Flink-Practice-LatencyStatistics/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="1 Flink实践之延迟统计流计算是基于消息触发计算的，若没有消息到达到则无法计算，这类指标恰好是要求在指定的超时时间计算出有多少未达到的消息。 1.1 常见场景1.1.1 菜鸟-物流单配送超时统计 实时数仓的建设难度: 链路复杂、实操节点多、汇总维度多、考核逻辑复杂的特点  仓配实时数据已覆盖了绝大多数场景，但是有这样一类特殊指标：“晚点超时指标”（例如：出库超 6 小时未揽收的订单量），仍存在">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/vx_images/394953508278701.png">
+<meta property="article:published_time" content="2026-08-22T17:34:28.521Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.521Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="延迟Join">
+<meta property="article:tag" content="延迟统计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/vx_images/394953508278701.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/Flink/Flink-Practice-LatencyStatistics/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Flink实践之延迟统计 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-Practice-LatencyStatistics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flink实践之延迟统计
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-Flink实践之延迟统计"><a href="#1-Flink实践之延迟统计" class="headerlink" title="1 Flink实践之延迟统计"></a>1 Flink实践之延迟统计</h1><p>流计算是基于消息触发计算的，若没有消息到达到则无法计算，这类指标恰好是要求在指定的超时时间计算出有多少未达到的消息。</p>
+<h2 id="1-1-常见场景"><a href="#1-1-常见场景" class="headerlink" title="1.1 常见场景"></a>1.1 常见场景</h2><h3 id="1-1-1-菜鸟-物流单配送超时统计"><a href="#1-1-1-菜鸟-物流单配送超时统计" class="headerlink" title="1.1.1 菜鸟-物流单配送超时统计"></a>1.1.1 菜鸟-物流单配送超时统计</h3><blockquote>
+<p>实时数仓的建设难度: 链路复杂、实操节点多、汇总维度多、考核逻辑复杂的特点</p>
+</blockquote>
+<p>仓配实时数据已覆盖了绝大多数场景，但是有这样一类特殊指标：“晚点超时指标”（例如：出库超 6 小时未揽收的订单量），仍存在实时汇总计算困难。<br>这类指标对于指导实操有着重要意义，可以告知运营小二当前多少订单积压在哪些作业节点，应该督促哪些实操人员加快作业，这对于物流的时效 KPI 达成至关重要。</p>
+<h3 id="1-1-2-财付通-资金流账龄超时监控"><a href="#1-1-2-财付通-资金流账龄超时监控" class="headerlink" title="1.1.2 财付通-资金流账龄超时监控"></a>1.1.2 财付通-资金流账龄超时监控</h3><h2 id="1-2-解决方案"><a href="#1-2-解决方案" class="headerlink" title="1.2 解决方案"></a>1.2 解决方案</h2><h2 id="1-3-方案一-MQ延迟发送"><a href="#1-3-方案一-MQ延迟发送" class="headerlink" title="1.3 方案一: MQ延迟发送"></a>1.3 方案一: MQ延迟发送</h2><blockquote>
+<p>菜鸟的解决方案图<br><img src="/vx_images/394953508278701.png"></p>
+</blockquote>
+<pre class="mermaid">graph LR
+
+T1[订单表]
+T2[清洗表]
+T3[订单延迟表]
+T4[结果表]
+
+J1(任务一: 数据清洗)
+J2(任务二: 延迟6小时)
+J3(任务三: 汇总计算)
+
+T1 --> J1
+J1 --> T2
+T2 --> J2
+J2 --> T3
+T3 --> J3
+T2 --> J3
+J3 --> T4</pre>
+
+
+
+<p>简化版:</p>
+<pre class="mermaid">graph LR
+
+T1[订单表]
+T3[Datagen 定时数据表<br/>每秒生成一条数据:<br/>以当前时间作为事件时间]
+T4[结果表<br/>需支持数据回撤]
+
+J1(清洗/过滤)
+T1 --> J1
+
+subgraph 计算任务
+J2(指定事件时间)
+J3(T1 left join T3<br/>)
+
+J1 --> J2
+T3 --> J3
+J2 --> J3
+
+
+end
+J3 --> T4</pre>
+
+
+
+
+<h2 id="1-4-方案二-FlinkState-TimeService"><a href="#1-4-方案二-FlinkState-TimeService" class="headerlink" title="1.4 方案二: FlinkState+TimeService"></a>1.4 方案二: FlinkState+TimeService</h2><h2 id="1-5-方案三-Flink-CEP"><a href="#1-5-方案三-Flink-CEP" class="headerlink" title="1.5 方案三:Flink CEP"></a>1.5 方案三:Flink CEP</h2><h2 id="1-6-方案四-OLAP"><a href="#1-6-方案四-OLAP" class="headerlink" title="1.6 方案四: OLAP"></a>1.6 方案四: OLAP</h2><hr>
+<h2 id="1-7-参考文献"><a href="#1-7-参考文献" class="headerlink" title="1.7 [参考文献]:"></a>1.7 [参考文献]:</h2><p><a href="https://flink-learning.org.cn/activity/detail/0ab621d17a16e502dcc6e5e2980e643c?tab=ce84125f7d83480f7ccf34685cce43f6&city=&page=xiangguanhuodong">https://flink-learning.org.cn/activity/detail/0ab621d17a16e502dcc6e5e2980e643c?tab=ce84125f7d83480f7ccf34685cce43f6&amp;city=&amp;page=xiangguanhuodong</a></p>
+<p><a href="https://files.alicdn.com/tpsservice/0f9d6f504576175dbf6d084c3e2a43fa.pdf?spm=a2csy.flink.0.0.7f395badaF3TXC&file=0f9d6f504576175dbf6d084c3e2a43fa.pdf">https://files.alicdn.com/tpsservice/0f9d6f504576175dbf6d084c3e2a43fa.pdf?spm=a2csy.flink.0.0.7f395badaF3TXC&amp;file=0f9d6f504576175dbf6d084c3e2a43fa.pdf</a></p>
+<p>利用Flink实现实时超时统计场景</p>
+<ol>
+<li><a href="https://developer.aliyun.com/article/692413">利用 blink+MQ 实现流计算中的超时统计问题</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BB%B6%E8%BF%9F%E7%BB%9F%E8%AE%A1/" rel="tag"># 延迟统计</a>
+              <a href="/tags/%E5%BB%B6%E8%BF%9FJoin/" rel="tag"># 延迟Join</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-SourceSinkAPI/" rel="prev" title="Flink Source Sink API">
+      <i class="fa fa-chevron-left"></i> Flink Source Sink API
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Flink/Flink-on-k8s/" rel="next" title="Flink on kubernetes">
+      Flink on kubernetes <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Flink%E5%AE%9E%E8%B7%B5%E4%B9%8B%E5%BB%B6%E8%BF%9F%E7%BB%9F%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">1 Flink实践之延迟统计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 常见场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E8%8F%9C%E9%B8%9F-%E7%89%A9%E6%B5%81%E5%8D%95%E9%85%8D%E9%80%81%E8%B6%85%E6%97%B6%E7%BB%9F%E8%AE%A1"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 菜鸟-物流单配送超时统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-%E8%B4%A2%E4%BB%98%E9%80%9A-%E8%B5%84%E9%87%91%E6%B5%81%E8%B4%A6%E9%BE%84%E8%B6%85%E6%97%B6%E7%9B%91%E6%8E%A7"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 财付通-资金流账龄超时监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E6%96%B9%E6%A1%88%E4%B8%80-MQ%E5%BB%B6%E8%BF%9F%E5%8F%91%E9%80%81"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 方案一: MQ延迟发送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E6%96%B9%E6%A1%88%E4%BA%8C-FlinkState-TimeService"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 方案二: FlinkState+TimeService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E6%96%B9%E6%A1%88%E4%B8%89-Flink-CEP"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 方案三:Flink CEP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E6%96%B9%E6%A1%88%E5%9B%9B-OLAP"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 方案四: OLAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 [参考文献]:</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

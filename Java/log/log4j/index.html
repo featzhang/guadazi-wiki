@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="log4j是一个jar包，接口和实现都是在一起的，log4j2的接口和实现是分开的，这是log4j2的运行时依赖的地址，和slf4j的使用形式差不多    日志api&#x2F;框架 桥接jar包（也可以称为适配器） 被桥接对象 描述    log4j-api  log4j-core 直接实现，不用桥接   log4j-1.2-api  log4j-api&#x2F;log4j-core log">
+<meta property="og:type" content="article">
+<meta property="og:title" content="log4j">
+<meta property="og:url" content="http://yoursite.com/Java/log/log4j/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="log4j是一个jar包，接口和实现都是在一起的，log4j2的接口和实现是分开的，这是log4j2的运行时依赖的地址，和slf4j的使用形式差不多    日志api&#x2F;框架 桥接jar包（也可以称为适配器） 被桥接对象 描述    log4j-api  log4j-core 直接实现，不用桥接   log4j-1.2-api  log4j-api&#x2F;log4j-core log">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/Java/log/e4fad93252d2acd3ac.png">
+<meta property="article:published_time" content="2017-06-29T12:26:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:27.996Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="log4j">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/Java/log/e4fad93252d2acd3ac.png">
+
+<link rel="canonical" href="http://yoursite.com/Java/log/log4j/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>log4j | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/log/log4j/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          log4j
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-06-29 12:26:00" itemprop="dateCreated datePublished" datetime="2017-06-29T12:26:00+00:00">2017-06-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:27" itemprop="dateModified" datetime="2026-08-22T17:34:27+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="/images/Java/log/e4fad93252d2acd3ac.png"></p>
+<p>log4j是一个jar包，接口和实现都是在一起的，log4j2的接口和实现是分开的，这是<a href="http://logging.apache.org/log4j/2.x/runtime-dependencies.html">log4j2的运行时依赖的地址</a>，和slf4j的使用形式差不多</p>
+<table>
+<thead>
+<tr>
+<th>日志api&#x2F;框架</th>
+<th>桥接jar包（也可以称为<code>适配器</code>）</th>
+<th>被桥接对象</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>log4j-api</td>
+<td></td>
+<td>log4j-core</td>
+<td>直接实现，不用桥接</td>
+</tr>
+<tr>
+<td>log4j-1.2-api</td>
+<td></td>
+<td>log4j-api&#x2F;log4j-core</td>
+<td>log4j的jar中api的覆写，将项目中对log4j的调用转移到log4j2，（需要删除原有log4j的jar包）</td>
+</tr>
+<tr>
+<td>commons-logging</td>
+<td>log4j-jcl</td>
+<td>log4j-api&#x2F;log4j-core</td>
+<td>commons-logging 使用log4j2作为实现</td>
+</tr>
+<tr>
+<td>slf4j-api</td>
+<td>log4j-slf4j-impl</td>
+<td>log4j-api&#x2F;log4j-core</td>
+<td>桥接包可以理解为log4j2作为slf4j的实现</td>
+</tr>
+<tr>
+<td>Java Util Logging</td>
+<td>log4j-jul</td>
+<td>log4j-api&#x2F;log4j-core</td>
+<td></td>
+</tr>
+<tr>
+<td>log4j-api</td>
+<td>log4j-to-slf4j</td>
+<td>slf4j-api及其实现</td>
+<td>可以通过此链接到logback(logback-classic&#x2F;logback-core)</td>
+</tr>
+</tbody></table>
+<h2 id="log4j2"><a href="#log4j2" class="headerlink" title="log4j2"></a>log4j2</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">log4j.version</span>&gt;</span>2.17.2<span class="tag">&lt;/<span class="name">log4j.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;log4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean dependency:tree </span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.2:compile</span><br><span class="line">[INFO] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile</span><br><span class="line">[INFO] |  +- org.apache.logging.log4j:log4j-api:jar:2.17.2:compile</span><br><span class="line">[INFO] |  \- org.apache.logging.log4j:log4j-core:jar:2.17.2:runtime</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Log4j-patternLayout"><a href="#Log4j-patternLayout" class="headerlink" title="Log4j patternLayout"></a>Log4j patternLayout</h2><p>如果您希望基于某种模式生成特定格式的日志信息，可使用 <code>org.apache.Log4j.PatternLayout</code> 格式化您的日志信息。</p>
+<p><code>PatternLayout</code> 继承自抽象类 <code>org.apache.Log4j.Layout</code>，覆盖了其 <code>format()</code> 方法，通过提供的模式，来格式化日志信息。</p>
+<p><code>PatternLayout</code> 是一个简单的 <code>Layout</code> 对象，提供了如下属性，该属性可通过配置文件</p>
+<p><strong>conversionPattern</strong><br>设置转换模式，默认为 <code>%r [%t] %p %c %x - %m%n</code>。</p>
+<h3 id="模式转换字符"><a href="#模式转换字符" class="headerlink" title="模式转换字符"></a>模式转换字符</h3><p>下面的表格解释了上面模式中用到的字符，以及所有定制模式时能用到的字符：</p>
+<table>
+<thead>
+<tr>
+<th>转换字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>c</td>
+<td>category的名称，可使用｛n}限制输出的精度。例如：logger名为”a.b.c”，%c{2}将输出”b.c”。</td>
+</tr>
+<tr>
+<td>C</td>
+<td>产生log事件的java完全限定类名。可使用｛n}限制输出的精度。例如：“org.apache.xyz.SomeClass”,%C{2}将输出“SomeClass”。</td>
+</tr>
+<tr>
+<td>d</td>
+<td>时间和日期的输出格式，例如：%d{yyyy MM dd HH:mm:ss,SS}，可不带后面的日期格式字符。</td>
+</tr>
+<tr>
+<td>F</td>
+<td>产生log事件的java源文件名，带“.java”后缀及包名称。</td>
+</tr>
+<tr>
+<td>l</td>
+<td>log发生位置的详细描述，包括方法名、文件名及行号。</td>
+</tr>
+<tr>
+<td>L</td>
+<td>log发生在源文件中的位置。</td>
+</tr>
+<tr>
+<td>m</td>
+<td>log事件的消息内容。</td>
+</tr>
+<tr>
+<td>M</td>
+<td>log发生时所在的方法名称。</td>
+</tr>
+<tr>
+<td>n</td>
+<td>根据所运行的平台输出相应的行分隔字符。</td>
+</tr>
+<tr>
+<td>p</td>
+<td>log事件的级别。</td>
+</tr>
+<tr>
+<td>r</td>
+<td>自程序运行至log事件产生所经过的时间。</td>
+</tr>
+<tr>
+<td>t</td>
+<td>产生log的线程名称。</td>
+</tr>
+<tr>
+<td>x</td>
+<td>用于与产生该日志事件的线程相关联输出的NDC（嵌套诊断上下文）</td>
+</tr>
+<tr>
+<td>X</td>
+<td>在X转换字符后面是键为的MDC。例如  X{clientIP} 将打印存储在MDC对键clientIP的信息</td>
+</tr>
+<tr>
+<td>%</td>
+<td>文字百分号 <code>%%</code>将打印％标志</td>
+</tr>
+</tbody></table>
+<h3 id="格式修饰符"><a href="#格式修饰符" class="headerlink" title="格式修饰符"></a>格式修饰符</h3><p>缺省情况下，信息保持原样输出。但是借助格式修饰符的帮助，就可调整最小列宽、最大列宽以及对齐。</p>
+<h3 id="PatternLayout-示例"><a href="#PatternLayout-示例" class="headerlink" title="PatternLayout 示例"></a>PatternLayout 示例</h3><p>下面是为 <code>PatternLayout</code> 编写的一个简单配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Define the root logger with appender file</span><br><span class="line">log=log</span><br><span class="line">log4j.rootLogger=DEBUG, FILE, stdout</span><br><span class="line"># Define the file appender</span><br><span class="line">log4j.appender.FILE=org.apache.log4j.FileAppender</span><br><span class="line">log4j.appender.FILE.File=$&#123;log&#125;/log.out</span><br><span class="line"># Define the layout for file appender</span><br><span class="line">log4j.appender.FILE.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.FILE.layout.ConversionPattern=%d&#123;yyyy-MM-dd&#125;-%t-%x-%-5p-%-10c:%m%n</span><br><span class="line"># Define the file appender</span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.stdout.Target=System.out</span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; %l %m%n</span><br></pre></td></tr></table></figure>
+
+<p>下面是生成日志信息的 Java 程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LOG.info(<span class="string">&quot;checkpointId: &#123;&#125;&quot;</span>, savepoint.getCheckpointId());</span><br><span class="line">LOG.info(<span class="string">&quot;version: &#123;&#125;&quot;</span>, savepoint.getVersion());</span><br><span class="line">LOG.info(<span class="string">&quot;version: &#123;&#125;&quot;</span>, savepoint.getMasterStates());</span><br></pre></td></tr></table></figure>
+
+<p>编译并运行上述程序，会在目录 log 下生成一个名为 <code>log.out</code> 的文件，该文件包含如下日志信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[INFO ] <span class="number">2021</span>-<span class="number">10</span>-<span class="number">12</span> <span class="number">14</span>:<span class="number">12</span>:<span class="number">48</span>,<span class="number">232</span> com.tencent.flake.training.savepoint.Main.main(Main.java:<span class="number">23</span>) checkpointId: <span class="number">398</span></span><br><span class="line">[INFO ] <span class="number">2021</span>-<span class="number">10</span>-<span class="number">12</span> <span class="number">14</span>:<span class="number">12</span>:<span class="number">48</span>,<span class="number">237</span> com.tencent.flake.training.savepoint.Main.main(Main.java:<span class="number">24</span>) version: <span class="number">2</span></span><br><span class="line">[INFO ] <span class="number">2021</span>-<span class="number">10</span>-<span class="number">12</span> <span class="number">14</span>:<span class="number">12</span>:<span class="number">48</span>,<span class="number">237</span> com.tencent.flake.training.savepoint.Main.main(Main.java:<span class="number">25</span>) version: []</span><br></pre></td></tr></table></figure>
+
+<p>更多格式样例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%d&#123;yyyy-MM-dd HH\:mm\:ss,SSS&#125; %-5p [%t] %-60c %x\:%L - %m%n</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2021-10-12 14:19:35,851 INFO  [main] com.tencent.flake.training.savepoint.Main                    :23 - checkpointId: 398</span><br><span class="line">2021-10-12 14:19:35,855 INFO  [main] com.tencent.flake.training.savepoint.Main                    :24 - version: 2</span><br><span class="line">2021-10-12 14:19:35,855 INFO  [main] com.tencent.flake.training.savepoint.Main                    :25 - version: []</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="StaticLoggerBinder"><a href="#StaticLoggerBinder" class="headerlink" title="StaticLoggerBinder"></a><code>StaticLoggerBinder</code></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SLF4J: Failed to load class <span class="string">&quot;org.slf4j.impl.StaticLoggerBinder&quot;</span>.</span><br><span class="line">SLF4J: Defaulting to no-operation (NOP) logger implementation</span><br><span class="line">SLF4J: See http:<span class="comment">//www.slf4j.org/codes.html#StaticLoggerBinder for further details.</span></span><br></pre></td></tr></table></figure>
+
+<p><code>org.slf4j.impl.StaticLoggerBinder</code> 是在适配器里面实现的，需要增加slf4j-log4j12、log4j-slf4j-impl、slf4j-jdk4</p>
+<h4 id="No-appenders"><a href="#No-appenders" class="headerlink" title="No appenders"></a><code>No appenders</code></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log4j:WARN No appenders could be found <span class="type">for</span> <span class="title function_">logger</span> <span class="params">(com.tencent.flake.training.savepoint.Main)</span>.</span><br><span class="line">log4j:WARN Please initialize the log4j system properly.</span><br><span class="line">log4j:WARN See http:<span class="comment">//logging.apache.org/log4j/1.2/faq.html#noconfig for more info.</span></span><br></pre></td></tr></table></figure>
+
+<p>没有找到appender，需要配置properties或指定使用默认configurator.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BasicConfigurator.configure();</span><br></pre></td></tr></table></figure>
+
+<p>log4j 是目前最常见的日志系统之一，本文主要总结log4j的使用和配置.</p>
+<h1 id="log4j的组件"><a href="#log4j的组件" class="headerlink" title="log4j的组件"></a>log4j的组件</h1><ul>
+<li>logger</li>
+<li>appender</li>
+<li>level</li>
+<li>layout</li>
+</ul>
+<h2 id="logger-记录器-打印事件"><a href="#logger-记录器-打印事件" class="headerlink" title="logger-记录器 打印事件"></a>logger-记录器 打印事件</h2><p>logger 可以理解为日志记录器，它有name、appender和level等属性.<br>当调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(AClass.class);</span><br></pre></td></tr></table></figure>
+
+<p>时，<code>logger</code>变量即为名称为<code>AClass</code>类的全名的logger.</p>
+<p>如果使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(<span class="string">&quot;myRedo&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>logger变量即为名称为myRedo的logger</p>
+<ol>
+<li><p>所有的logger的根都是rootLogger</p>
+</li>
+<li><p>一般情况下，取类名作为logger的名称. 父子关系遵从Java package的方法</p>
+</li>
+<li><p>子logger默认继承父logger的所有的配置. 子logger的配置会覆盖父logger的配置</p>
+</li>
+<li><p>logger的名称可以为任意字符串</p>
+</li>
+<li><p>log4j可以使用多种配置方式: properties文件、xml文件和Java代码</p>
+</li>
+<li><p>使用Java代码配置时，可以指定为基本配置: <code>BasicConfigurator.configure();</code></p>
+</li>
+<li><p>可以指定特定包的log<br> 样例: 使用代码的方式配置特定包的logger</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> Logger.getRootLogger().setLevel(Level.WARN);</span><br><span class="line">Logger.getLogger(<span class="string">&quot;cd.itcast.core&quot;</span>).setLevel(Level.DEBUG);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="appender-打印目的地"><a href="#appender-打印目的地" class="headerlink" title="appender 打印目的地"></a>appender 打印目的地</h2><p>log4j定义了多种appender:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- org.apache.log4j.ConsoleAppender(控制台)</span><br><span class="line">- org.apache.log4j.FileAppender(文件)</span><br><span class="line">- org.apache.log4j.DailyRollingFileAppender(每天产生一个日志文件)</span><br><span class="line">- org.apache.log4j.RollingFileAppender(文件大小到达指定尺寸的时候产生一个新的文件)</span><br><span class="line">- org.apache.log4j.WriterAppender(将日志信息以流格式发送到任意指定的地方)</span><br><span class="line">- org.apache.log4j.jdbc.JDBCAppender(将日志信息写入数据库)</span><br></pre></td></tr></table></figure>
+
+<p>在properties文件中配置</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">log4j.appender.&lt;appenderName&gt;</span> = <span class="string">fully.qualified.name.of.appender.class</span></span><br></pre></td></tr></table></figure>
+
+<p>Appender类的属性</p>
+<h3 id="ConsoleAppender"><a href="#ConsoleAppender" class="headerlink" title="ConsoleAppender"></a>ConsoleAppender</h3><p>   Threshold&#x3D;DEBUG :指定日志消息的输出最低层次.<br>   ImmediateFlush&#x3D;true :默认值是true,意谓着所有的消息都会被立即输出.<br>   Target&#x3D;System.err :默认情况下是:System.out,指定输出控制台</p>
+<h3 id="FileAppender"><a href="#FileAppender" class="headerlink" title="FileAppender"></a>FileAppender</h3><p>   Threshold&#x3D;DEBUF    :指定日志消息的输出最低层次.<br>   ImmediateFlush&#x3D;true   :默认值是true,意谓着所有的消息都会被立即输出.<br>   File&#x3D;mylog.txt   :指定消息输出到mylog.txt文件.<br>   Append&#x3D;false   :默认值是true,即将消息增加到指定文件中，false指将消息覆盖指定的文件内容.</p>
+<h3 id="RollingFileAppender"><a href="#RollingFileAppender" class="headerlink" title="RollingFileAppender"></a>RollingFileAppender</h3><p>   Threshold&#x3D;DEBUG    :指定日志消息的输出最低层次.<br>   ImmediateFlush&#x3D;true    :默认值是true,意谓着所有的消息都会被立即输出.<br>   File&#x3D;mylog.txt    :指定消息输出到mylog.txt文件.<br>   Append&#x3D;false    :默认值是true,即将消息增加到指定文件中，false指将消息覆盖指定的文件内容.<br>   MaxFileSize&#x3D;100KB    : 后缀可以是KB, MB 或者是 GB. 在日志文件到达该大小时，将会自动滚动，即将原来的内容移到mylog.log.1文件.<br>   MaxBackupIndex&#x3D;2   :指定可以产生的滚动文件的最大数.<br>   log4j.appender.A1.layout.ConversionPattern&#x3D;%-4r %-5p %d{yyyy-MM-dd HH:mm:ssS} %c %m%n</p>
+<h3 id="DailyRollingFileAppender"><a href="#DailyRollingFileAppender" class="headerlink" title="DailyRollingFileAppender"></a>DailyRollingFileAppender</h3><p>  DatePattern<br>  layout<br>  Encoding<br>  MaxBackupIndex</p>
+<h2 id="level-输出级别"><a href="#level-输出级别" class="headerlink" title="level 输出级别"></a>level 输出级别</h2><p>ERROR、WARN、INFO、DEBUG</p>
+<ul>
+<li>ERROR 为严重错误 主要是程序的错误</li>
+<li>WARN 为一般警告，比如session丢失</li>
+<li>INFO 为一般要显示的信息，比如登录登出</li>
+<li>DEBUG 为程序的调试信息</li>
+</ul>
+<h2 id="layout"><a href="#layout" class="headerlink" title="layout"></a>layout</h2><p>-X号: X信息输出时左对齐；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">%p: 输出日志信息优先级，即DEBUG，INFO，WARN，ERROR，FATAL,</span><br><span class="line">%d: 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如:%d&#123;yyy MMM dd HH:mm:ss,SSS&#125;，输出类似:2002年10月18日 22:10:28，921</span><br><span class="line">%r: 输出自应用启动到输出该log信息耗费的毫秒数</span><br><span class="line">%c: 输出日志信息所属的类目，通常就是所在类的全名</span><br><span class="line">%t: 输出产生该日志事件的线程名</span><br><span class="line">%l: 输出日志事件的发生位置，相当于%C.%M(%F:%L)的组合,包括类目名、发生的线程，以及在代码中的行数. 举例:Testlog4.main (TestLog4.java:10)</span><br><span class="line">%x: 输出和当前线程相关联的NDC(嵌套诊断环境),尤其用到像java servlets这样的多客户多线程的应用中.</span><br><span class="line">%%: 输出一个&quot;%&quot;字符</span><br><span class="line">%F: 输出日志消息产生时所在的文件名称</span><br><span class="line">%L: 输出代码中的行号</span><br><span class="line">%m: 输出代码中指定的消息,产生的日志具体信息</span><br><span class="line">%n: 输出一个回车换行符，Windows平台为&quot;/r/n&quot;，Unix平台为&quot;/n&quot;输出日志信息换行</span><br></pre></td></tr></table></figure>
+
+<p>日志信息格式中几个符号所代表的含义:<br>可以在%与模式字符之间加上修饰符来控制其最小宽度、最大宽度、和文本的对齐方式. 如:</p>
+<ol>
+<li>%20c:指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，默认的情况下右对齐.</li>
+<li>%-20c:指定输出category的名称，最小的宽度是20，如果category的名称小于20的话，”-“号指定左对齐.</li>
+<li>%.30c:指定输出category的名称，最大的宽度是30，如果category的名称大于30的话，就会将左边多出的字符截掉，但小于30的话也不会有空格.</li>
+<li>%20.30c:如果category的名称小于20就补空格，并且右对齐，如果其名称长于30字符，就从左边较远输出的字符截掉.</li>
+</ol>
+<h2 id="log4j性能优化"><a href="#log4j性能优化" class="headerlink" title="log4j性能优化"></a>log4j性能优化</h2><ol>
+<li>为了避免多次打开文件引起资源的浪费，log4j当打开文件或连接数据库后，会始终保持着连接，直到引用关闭.<br>因此， 当引用运行过程中，删除文件. log4j不会再次创建该文件.</li>
+<li>logger文件是懒生成模式:当打印时，判断是否需要创建新文件</li>
+</ol>
+<h2 id="通过命令行执行log4j配置文件"><a href="#通过命令行执行log4j配置文件" class="headerlink" title="通过命令行执行log4j配置文件"></a>通过命令行执行log4j配置文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java -jar -Dlog4j.configurationFile=file:/data/work/oceanus2/conf/log4j2-spring.properties \</span><br><span class="line">	-Dlogging.config=/data/work/oceanus2/conf/log4j2-spring.properties \</span><br><span class="line">	my_application.jar</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="典型应用"><a href="#典型应用" class="headerlink" title="典型应用"></a>典型应用</h1><h2 id="配置非类名logger及代码获取logger的信息"><a href="#配置非类名logger及代码获取logger的信息" class="headerlink" title="配置非类名logger及代码获取logger的信息"></a>配置非类名logger及代码获取logger的信息</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###################</span></span><br><span class="line"><span class="comment"># rootLogger的级别为INFO，appender为terminal01和allToFile</span></span><br><span class="line"><span class="comment">###################</span></span><br><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">INFO,terminal01,allToFile</span></span><br><span class="line"><span class="comment">###################</span></span><br><span class="line"><span class="comment"># Console Appender</span></span><br><span class="line"><span class="comment">###################</span></span><br><span class="line"><span class="attr">log4j.appender.terminal01</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.terminal01.Target</span>=<span class="string">System.out</span></span><br><span class="line"><span class="attr">log4j.appender.terminal01.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.terminal01.layout.ConversionPattern</span>=<span class="string">%d&#123;yyyy-MM-dd HH:mm:ss.sss&#125;,%c,%-p,%m %n</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># Rolling File</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="attr">log4j.appender.allToFile</span>=<span class="string">org.apache.log4j.DailyRollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.allToFile.File</span>=<span class="string">/data/logs/blog-all.log</span></span><br><span class="line"><span class="attr">log4j.appender.allToFile.Append</span>=<span class="string">true</span></span><br><span class="line"><span class="attr">log4j.appender.allToFile.MaxFileSize</span>=<span class="string">100MB</span></span><br><span class="line"><span class="attr">log4j.appender.allToFile.MaxBackupIndex</span>=<span class="string">7</span></span><br><span class="line"><span class="attr">log4j.appender.allToFile.Encoding</span>=<span class="string">UTF-8  </span></span><br><span class="line"><span class="attr">log4j.appender.allToFile.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.allToFile.layout.ConversionPattern</span>=<span class="string">%d&#123;yyyy-MM-dd HH:mm:ss.sss&#125;,%c,%-p,%m %n</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># 指定某个包的logger</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="attr">log4j.logger.com.abc.engin</span>=<span class="string">INFO,engin</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># appender engin</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="attr">log4j.additivity.engin</span>=<span class="string">false</span></span><br><span class="line"><span class="comment">## 是否追加到root appender中</span></span><br><span class="line"><span class="attr">log4j.appender.engin</span>=<span class="string">org.apache.log4j.DailyRollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.engin.File</span>=<span class="string">/data/logs/engin.log</span></span><br><span class="line"><span class="attr">log4j.appender.engin.Append</span>=<span class="string">true</span></span><br><span class="line"><span class="attr">log4j.appender.engin.MaxFileSize</span>=<span class="string">500MB</span></span><br><span class="line"><span class="attr">log4j.appender.engin.MaxBackupIndex</span>=<span class="string">7</span></span><br><span class="line"><span class="attr">log4j.appender.engin.Encoding</span>=<span class="string">UTF-8</span></span><br><span class="line"><span class="attr">log4j.appender.engin.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.engin.layout.ConversionPattern</span>=<span class="string">%d&#123;yyyy-MM-dd HH:mm:ss.sss&#125;,%c,%-p,%m %n</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># 非类名logger</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="attr">log4j.logger.error</span>=<span class="string">ERROR,errorAppender</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># appender errorAppender</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="attr">log4j.appender.errorAppender</span>=<span class="string">org.apache.log4j.DailyRollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.errorAppender.File</span>=<span class="string">/data/logs/blog-error.log</span></span><br><span class="line"><span class="attr">log4j.appender.errorAppender.Append</span>=<span class="string">true</span></span><br><span class="line"><span class="attr">log4j.appender.errorAppender.MaxFileSize</span>=<span class="string">500MB</span></span><br><span class="line"><span class="attr">log4j.appender.errorAppender.MaxBackupIndex</span>=<span class="string">7</span></span><br><span class="line"><span class="attr">log4j.appender.errorAppender.Encoding</span>=<span class="string">UTF-8</span></span><br><span class="line"><span class="attr">log4j.appender.errorAppender.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.errorAppender.layout.ConversionPattern</span>=<span class="string">%d&#123;yyyy-MM-dd HH:mm:ss.sss&#125;,%c,%-p,%m %n</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(AClass.class);</span><br><span class="line">logger.error(<span class="string">&quot;this is an error log&quot;</span>);</span><br><span class="line"><span class="comment">// 获取名称为error的logger</span></span><br><span class="line"><span class="type">Logger</span> <span class="variable">loggerError</span> <span class="operator">=</span> LoggerFactory.getLogger(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">loggerError.error(<span class="string">&quot;this is an error log&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="从Java代码获取logger的配置信息"><a href="#从Java代码获取logger的配置信息" class="headerlink" title="从Java代码获取logger的配置信息"></a>从Java代码获取logger的配置信息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">org.apache.log4j.<span class="type">Logger</span> <span class="variable">loggerError</span> <span class="operator">=</span> org.apache.log4j.Logger.getLogger(<span class="string">&quot;error&quot;</span>);</span><br><span class="line"><span class="type">Appender</span> <span class="variable">appender</span> <span class="operator">=</span> loggerError.getAppender(<span class="string">&quot;errorAppender&quot;</span>);</span><br><span class="line"><span class="type">DailyRollingFileAppender</span> <span class="variable">errorAppender</span> <span class="operator">=</span> (DailyRollingFileAppender) appender;</span><br><span class="line"><span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> errorAppender.getFile();</span><br><span class="line"><span class="type">String</span> <span class="variable">datePattern</span> <span class="operator">=</span> errorAppender.getDatePattern();</span><br></pre></td></tr></table></figure>
+
+<h2 id="每个小时打印一个文件"><a href="#每个小时打印一个文件" class="headerlink" title="每个小时打印一个文件"></a>每个小时打印一个文件</h2><h3 id="配置文件的方式"><a href="#配置文件的方式" class="headerlink" title="配置文件的方式"></a>配置文件的方式</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">log4j.logger.redo</span>=<span class="string">ERROR,redoLogger</span></span><br><span class="line"><span class="comment"># appender for redo logger</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger</span>=<span class="string">org.apache.log4j.DailyRollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger.File</span>=<span class="string">/data/logs/my-redo.log</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger.Append</span>=<span class="string">true</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger.MaxFileSize</span>=<span class="string">500MB</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger.MaxBackupIndex</span>=<span class="string">7</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger.Encoding</span>=<span class="string">UTF-8</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger.layout.ConversionPattern</span>=<span class="string">%d&#123;yyyy-MM-dd HH:mm:ss.sss&#125;,%c,%-p,%m \n</span></span><br><span class="line"><span class="attr">log4j.appender.redoLogger.DatePattern</span>=<span class="string">&#x27;.&#x27;yyyy-MM-dd-HH</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Java代码的方式"><a href="#Java代码的方式" class="headerlink" title="Java代码的方式"></a>Java代码的方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DailyRollingFileAppender</span> <span class="variable">redoAppender</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DailyRollingFileAppender</span>();</span><br><span class="line">redoAppender.setDatePattern(<span class="string">&quot;&#x27;.&#x27;yyyy-MM-dd-HH&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">Logger</span> <span class="variable">loggerRedo</span> <span class="operator">=</span> Logger.getLogger(<span class="string">&quot;redo&quot;</span>);</span><br><span class="line">loggerRedo.addAppender(appender);</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">redoLogger</span> <span class="operator">=</span> LoggerFactory.getLogger(<span class="string">&quot;redo&quot;</span>);</span><br><span class="line">...</span><br><span class="line">redoLogger.error(<span class="string">&quot;something is wrong&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>下面的列表<br>The following list shows all the date patterns which have defined by log4j,</p>
+<table>
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">DatePattern</th>
+<th align="left">sample</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Minutely</td>
+<td align="left"><code>&#39;.&#39;yyyy-MM-dd-HH-mm</code></td>
+<td align="left">application.log.2013-02-28-13-54</td>
+</tr>
+<tr>
+<td align="left">Hourly</td>
+<td align="left"><code>&#39;.&#39;yyyy-MM-dd-HH</code></td>
+<td align="left">application.log.2013-02-28-13</td>
+</tr>
+<tr>
+<td align="left">Half-daily</td>
+<td align="left"><code>&#39;.&#39;yyyy-MM-dd-a</code></td>
+<td align="left">application.log.2013-02-28-AM    app.log.2013-02-28-PM</td>
+</tr>
+<tr>
+<td align="left">Daily</td>
+<td align="left"><code>&#39;.&#39;yyyy-MM-dd</code></td>
+<td align="left">application.log.2013-02-28</td>
+</tr>
+<tr>
+<td align="left">Weekly</td>
+<td align="left"><code>&#39;.&#39;yyyy-ww</code></td>
+<td align="left">application.log.2013-07 app.log.2013-08</td>
+</tr>
+<tr>
+<td align="left">Monthly</td>
+<td align="left"><code>&#39;.&#39;yyyy-MM</code></td>
+<td align="left">application.log.2013-01 app.log.2013-02</td>
+</tr>
+</tbody></table>
+<h2 id="自定义-writerAppender"><a href="#自定义-writerAppender" class="headerlink" title="自定义 writerAppender"></a>自定义 writerAppender</h2><p>log4j将日志输出到swing控件</p>
+<h3 id="自定义-writer"><a href="#自定义-writer" class="headerlink" title="自定义 writer"></a>自定义 writer</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LogWriter</span> <span class="keyword">extends</span> <span class="title class_">Writer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> LogListModel model;</span><br><span class="line"></span><br><span class="line">    <span class="type">public</span> <span class="title function_">LogWriter</span><span class="params">(LogListModel model)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.model = model;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">write</span><span class="params">(<span class="type">int</span> c)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        model.addElement(<span class="string">&quot;&quot;</span> + c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">write</span><span class="params">(<span class="type">char</span>[] cbuf)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        model.addElement(<span class="keyword">new</span> <span class="title class_">String</span>(cbuf));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">write</span><span class="params">(String str)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        model.addElement(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">write</span><span class="params">(String str, <span class="type">int</span> off, <span class="type">int</span> len)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        model.addElement(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">write</span><span class="params">(<span class="type">char</span>[] cbuf, <span class="type">int</span> off, <span class="type">int</span> len)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        model.addElement(<span class="keyword">new</span> <span class="title class_">String</span>(cbuf));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">flush</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建logger与Swing组件"><a href="#创建logger与Swing组件" class="headerlink" title="创建logger与Swing组件"></a>创建logger与Swing组件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">Logger</span> <span class="variable">loggerA</span> <span class="operator">=</span> LoggerFactory.getLogger(<span class="string">&quot;A1&quot;</span>);</span><br><span class="line"><span class="keyword">private</span> LogListModel logListModel;</span><br><span class="line"></span><br><span class="line">logListModel = <span class="keyword">new</span> <span class="title class_">LogListModel</span>();</span><br><span class="line"><span class="type">JList</span> <span class="variable">ml</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JList</span>(logListModel);</span><br><span class="line"></span><br><span class="line"><span class="type">WriterAppender</span> <span class="variable">writeappender</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WriterAppender</span>(<span class="keyword">new</span> <span class="title class_">SimpleLayout</span>(), <span class="keyword">new</span> <span class="title class_">LogWriter</span>(logListModel));</span><br><span class="line">writeappender.setName(<span class="string">&quot;A1&quot;</span>);</span><br><span class="line">writeappender.setImmediateFlush(<span class="literal">true</span>);</span><br><span class="line">Logger.getRootLogger().addAppender(writeappender);</span><br><span class="line">Logger.getRootLogger().setLevel(Level.INFO);</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,STDOUT</span></span><br><span class="line"></span><br><span class="line"><span class="attr">log4j.appender.STDOUT</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.STDOUT.Target</span>=<span class="string">System.out</span></span><br><span class="line"><span class="attr">log4j.appender.STDOUT.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.STDOUT.layout.ConversionPattern</span>=<span class="string">%d&#123;yyyy-MM-dd HH:mm:ss.sss&#125;,%c,%-p,%m %n</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="log4j-1升级到log4j-2"><a href="#log4j-1升级到log4j-2" class="headerlink" title="log4j 1升级到log4j 2"></a>log4j 1升级到log4j 2</h2><h3 id="删除项目中引用的-log4j-jar-包"><a href="#删除项目中引用的-log4j-jar-包" class="headerlink" title="删除项目中引用的 log4j jar 包"></a>删除项目中引用的 log4j jar 包</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;slf4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;slf4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="引入-log4j2-jar-包"><a href="#引入-log4j2-jar-包" class="headerlink" title="引入 log4j2  jar 包"></a>引入 log4j2  jar 包</h3><hr>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.13.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-1.2-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.13.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.13.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>若使用了 slf4j 需要引入 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.13.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除-log4j-properties-新建-log4j2-xml"><a href="#删除-log4j-properties-新建-log4j2-xml" class="headerlink" title="删除 log4j.properties  新建 log4j2.xml"></a>删除 log4j.properties  新建 log4j2.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">monitorInterval</span>=<span class="string">&quot;5&quot;</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">appenders</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        将日志输出到控制台--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">console</span> &gt;</span></span><br><span class="line"><span class="comment">&lt;!--            日志输出格式--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">&quot;%d&#123;yyyy-MM-dd hh:mm:ss&#125;:%p %t %c %l- %mn&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            控制台只输出level及其以上的信息(onMatch)，其他的直接拒绝(onMismatch)--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;INFO&quot;</span> <span class="attr">onMatch</span>=<span class="string">&quot;ACCEPT&quot;</span> <span class="attr">onMismatch</span>=<span class="string">&quot;DENY&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">console</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">        <span class="comment">&lt;!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，适合临时测试用--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">File</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">&quot;../logs/mapi/test/test.log.%d&#123;yyyyMMdd&#125;.log&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">File</span>&gt;</span></span><br><span class="line">        示例1：</span><br><span class="line">        <span class="tag">&lt;<span class="name">RollingFile</span> </span></span><br><span class="line"><span class="tag">                     <span class="attr">filePattern</span>=<span class="string">&quot;../logs/mapi/consumer/consumer.log.%d&#123;yyyyMMdd&#125;.log&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>%d&#123;yyyy-MM-dd HH:mm:ss:SSS&#125; %p %t %c&#123;1&#125; - %mn<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span> <span class="attr">onMatch</span>=<span class="string">&quot;ACCEPT&quot;</span> <span class="attr">onMismatch</span>=<span class="string">&quot;DENY&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--interval属性用来指定多久滚动一次，默认是1 hour   filePattern最后时间单位为天则为一天--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> <span class="attr">modulate</span>=<span class="string">&quot;true&quot;</span> <span class="attr">inyrtval</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">       示例2：</span><br><span class="line">        <span class="comment">&lt;!-- 这个会打印出所有的info及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RollingFile</span> </span></span><br><span class="line"><span class="tag">                     <span class="attr">filePattern</span>=<span class="string">&quot;../logs/mapi/consumer/consumer.log.%d&#123;yyyyMMdd&#125;_%i.log.gz&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span> <span class="attr">onMatch</span>=<span class="string">&quot;ACCEPT&quot;</span> <span class="attr">onMismatch</span>=<span class="string">&quot;DENY&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">PatternLayout</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">Pattern</span>&gt;</span>%d&#123;yyyy-MM-dd HH:mm:ss:SSS&#125; %p %t %c&#123;1&#125; - %mn<span class="tag">&lt;/<span class="name">Pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">PatternLayout</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--interval属性用来指定多久滚动一次，默认是1 hour--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> <span class="attr">interval</span>=<span class="string">&quot;1&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">&quot;10MB&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            1.max参数是与filePattern中的计数器%i配合起作用的，若filePattern为filePattern=&quot;../logs/mapi/consumer/consumer.log.%d&#123;yyyyMMdd&#125;.log&quot;&gt;，由于没有设置%i计数器，max参数将不起作用。--&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&lt;!--            2.max参数不是需要保留的文件的最大个数，日志文件date/time pattern不再符合filePattern时，计算器将被重置为1，日志总个数超过了max的指定值。--&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&lt;!--            可认为max参数规定了一定时间范围内归档文件的最大个数，默认为7--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">DefaultRolloverStrategy</span> <span class="attr">max</span>=<span class="string">&quot;15&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="log4j2-配置参数详解"><a href="#log4j2-配置参数详解" class="headerlink" title="log4j2 配置参数详解"></a>log4j2 配置参数详解</h3><h4 id="日志级别：如果一条日志信息的级别大于等于配置文件的级别，就记录。"><a href="#日志级别：如果一条日志信息的级别大于等于配置文件的级别，就记录。" class="headerlink" title="日志级别：如果一条日志信息的级别大于等于配置文件的级别，就记录。"></a>日志级别：如果一条日志信息的级别大于等于配置文件的级别，就记录。</h4><ul>
+<li>trace：追踪，就是程序推进一下，可以写个 trace 输出</li>
+<li>debug：调试，一般作为最低级别，trace 基本不用。</li>
+<li>info：输出重要的信息，使用较多</li>
+<li>warn：警告，有些信息不是错误信息，但也要给程序员一些提示。</li>
+<li>error：错误信息。用的也很多。</li>
+<li>fatal：致命错误。</li>
+</ul>
+<h4 id="PatternLayout-自定义日志布局："><a href="#PatternLayout-自定义日志布局：" class="headerlink" title="PatternLayout 自定义日志布局："></a>PatternLayout 自定义日志布局：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">%d&#123;yyyy-MM-dd HH:mm:ss, SSS&#125; : 日志生产时间,输出到毫秒的时间</span><br><span class="line">%-5level : 输出日志级别，-5表示左对齐并且固定输出5个字符，如果不足在右边补0</span><br><span class="line">%c : logger的名称(%logger)</span><br><span class="line">%t : 输出当前线程名称</span><br><span class="line">%p : 日志输出格式</span><br><span class="line">%m : 日志内容，即 logger.info(&quot;message&quot;)</span><br><span class="line">%n : 换行符</span><br><span class="line">%C : Java类名(%F)</span><br><span class="line">%L : 行号</span><br><span class="line">%M : 方法名</span><br><span class="line">%l : 输出语句所在的行数, 包括类名、方法名、文件名、行数</span><br><span class="line">hostName : 本地机器名</span><br><span class="line">hostAddress : 本地ip地址</span><br></pre></td></tr></table></figure>
+
+<h4 id="log4j2-配置详解"><a href="#log4j2-配置详解" class="headerlink" title="log4j2 配置详解"></a>log4j2 配置详解</h4><p>根节点 Configuration<br>有两个属性:</p>
+<ul>
+<li>status</li>
+<li>monitorinterval</li>
+</ul>
+<p>有两个子节点:</p>
+<ul>
+<li>Appenders</li>
+<li>Loggers(表明可以定义多个 Appender 和 Logger).</li>
+</ul>
+<p>status 用来指定 log4j 本身的打印日志的级别.<br>monitorinterval 用于指定 log4j 自动重新配置的监测间隔时间，单位是 s, 最小是 5s.</p>
+<p>Appenders 节点<br>常见的有三种子节点: Console、RollingFile、File</p>
+<p><strong>Console 节点用来定义输出到控制台的 Appender</strong>.</p>
+<ul>
+<li>name: 指定 Appender 的名字.</li>
+<li>target:SYSTEM_OUT 或 SYSTEM_ERR, 一般只设置默认: SYSTEM_OUT.</li>
+<li>PatternLayout: 输出格式，不设置默认为:%m%n.</li>
+</ul>
+<p><strong>File 节点用来定义输出到指定位置的文件的 Appender</strong>.</p>
+<ul>
+<li>name: 指定 Appender 的名字.</li>
+<li>fileName: 指定输出日志的目的文件带全路径的文件名.</li>
+<li>PatternLayout: 输出格式，不设置默认为:%m%n.</li>
+</ul>
+<p><strong>RollingFile 节点用来定义超过指定条件自动删除旧的创建新的 Appender</strong>.</p>
+<ul>
+<li>name: 指定 Appender 的名字.</li>
+<li>fileName: 指定输出日志的目的文件带全路径的文件名.</li>
+<li>PatternLayout: 输出格式，不设置默认为:%m%n.</li>
+<li>filePattern : 指定当发生 Rolling 时，文件的转移和重命名规则.</li>
+<li>Policies: 指定滚动日志的策略，就是什么时候进行新建日志文件输出日志.</li>
+<li>TimeBasedTriggeringPolicy:Policies 子节点，基于时间的滚动策略，interval 属性用来指定多久滚动一次，默认是 1 hour。modulate&#x3D;true 用来调整时间：比如现在是早上 3am，interval 是 4，那么第一次滚动是在 4am，接着是 8am，12am… 而不是 7am.</li>
+<li>SizeBasedTriggeringPolicy:Policies 子节点，基于指定文件大小的滚动策略，size 属性用来定义每个日志文件的大小.</li>
+<li>DefaultRolloverStrategy: 用来指定同一个文件夹下最多有几个日志文件时开始删除最旧的，创建新的 (通过 max 属性)。</li>
+</ul>
+<p><strong>Loggers 节点，常见的有两种: Root 和 Logger</strong>.<br>Root 节点用来指定项目的根日志，如果没有单独指定 Logger，那么就会默认使用该 Root 日志输出</p>
+<ul>
+<li>level: 日志输出级别，共有 8 个级别，按照从低到高为：All &lt; Trace &lt; Debug &lt; Info &lt; Warn &lt; Error &lt; AppenderRef：Root 的子节点，用来指定该日志输出到哪个 Appender.</li>
+<li>Logger 节点用来单独指定日志的形式，比如要为指定包下的 class 指定不同的日志级别等。</li>
+<li>level: 日志输出级别，共有 8 个级别，按照从低到高为：All &lt; Trace &lt; Debug &lt; Info &lt; Warn &lt; Error &lt; Fatal &lt; OFF.</li>
+<li>name: 用来指定该 Logger 所适用的类或者类所在的包全路径, 继承自 Root 节点.</li>
+<li>AppenderRef：Logger 的子节点，用来指定该日志输出到哪个 Appender, 如果没有指定，就会默认继承自 Root. 如果指定了，那么会在指定的这个 Appender 和 Root 的 Appender 中都会输出，此时我们可以设置 Logger 的 additivity&#x3D;”false” 只在自定义的 Appender 中进行输出。</li>
+</ul>
+<ul>
+<li></li>
+</ul>
+<ol>
+<li><p><a href="https://stackoverflow.com/questions/1711423/how-to-rotate-log-files-based-on-time-rather-than-size-in-log4j">How to rotate log files based on time rather than size in Log4j?
+ </a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/ArtsCrafts/archive/2013/06/07/log4j5.html">Log4j详细介绍(五)—-输出地Appender</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/qq_40182873/article/details/87777709"> log4j2的入门到了解</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/log4j/" rel="tag"># log4j</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Java/metric/jdk-inner-tools/" rel="prev" title="JDK内置工具的使用">
+      <i class="fa fa-chevron-left"></i> JDK内置工具的使用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/Kylin/01.kylin/" rel="next" title="Kylin权威指南">
+      Kylin权威指南 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#log4j2"><span class="nav-number">1.</span> <span class="nav-text">log4j2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log4j-patternLayout"><span class="nav-number">2.</span> <span class="nav-text">Log4j patternLayout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%AD%97%E7%AC%A6"><span class="nav-number">2.1.</span> <span class="nav-text">模式转换字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">2.2.</span> <span class="nav-text">格式修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PatternLayout-%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.3.</span> <span class="nav-text">PatternLayout 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">2.4.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#StaticLoggerBinder"><span class="nav-number">2.4.1.</span> <span class="nav-text">StaticLoggerBinder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#No-appenders"><span class="nav-number">2.4.2.</span> <span class="nav-text">No appenders</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#log4j%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">log4j的组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#logger-%E8%AE%B0%E5%BD%95%E5%99%A8-%E6%89%93%E5%8D%B0%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">logger-记录器 打印事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appender-%E6%89%93%E5%8D%B0%E7%9B%AE%E7%9A%84%E5%9C%B0"><span class="nav-number">3.2.</span> <span class="nav-text">appender 打印目的地</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConsoleAppender"><span class="nav-number">3.2.1.</span> <span class="nav-text">ConsoleAppender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FileAppender"><span class="nav-number">3.2.2.</span> <span class="nav-text">FileAppender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RollingFileAppender"><span class="nav-number">3.2.3.</span> <span class="nav-text">RollingFileAppender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DailyRollingFileAppender"><span class="nav-number">3.2.4.</span> <span class="nav-text">DailyRollingFileAppender</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#level-%E8%BE%93%E5%87%BA%E7%BA%A7%E5%88%AB"><span class="nav-number">3.3.</span> <span class="nav-text">level 输出级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layout"><span class="nav-number">3.4.</span> <span class="nav-text">layout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log4j%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">3.5.</span> <span class="nav-text">log4j性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%A7%E8%A1%8Clog4j%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.6.</span> <span class="nav-text">通过命令行执行log4j配置文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">典型应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%9D%9E%E7%B1%BB%E5%90%8Dlogger%E5%8F%8A%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96logger%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">4.1.</span> <span class="nav-text">配置非类名logger及代码获取logger的信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0"><span class="nav-number">4.1.1.</span> <span class="nav-text">打印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8EJava%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96logger%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="nav-number">4.1.2.</span> <span class="nav-text">从Java代码获取logger的配置信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%8F%E4%B8%AA%E5%B0%8F%E6%97%B6%E6%89%93%E5%8D%B0%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">每个小时打印一个文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.1.</span> <span class="nav-text">配置文件的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E4%BB%A3%E7%A0%81%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.2.</span> <span class="nav-text">Java代码的方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-writerAppender"><span class="nav-number">4.3.</span> <span class="nav-text">自定义 writerAppender</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-writer"><span class="nav-number">4.3.1.</span> <span class="nav-text">自定义 writer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAlogger%E4%B8%8ESwing%E7%BB%84%E4%BB%B6"><span class="nav-number">4.3.2.</span> <span class="nav-text">创建logger与Swing组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">4.3.3.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log4j-1%E5%8D%87%E7%BA%A7%E5%88%B0log4j-2"><span class="nav-number">4.4.</span> <span class="nav-text">log4j 1升级到log4j 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%BC%95%E7%94%A8%E7%9A%84-log4j-jar-%E5%8C%85"><span class="nav-number">4.4.1.</span> <span class="nav-text">删除项目中引用的 log4j jar 包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5-log4j2-jar-%E5%8C%85"><span class="nav-number">4.4.2.</span> <span class="nav-text">引入 log4j2  jar 包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-log4j-properties-%E6%96%B0%E5%BB%BA-log4j2-xml"><span class="nav-number">4.4.3.</span> <span class="nav-text">删除 log4j.properties  新建 log4j2.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log4j2-%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="nav-number">4.4.4.</span> <span class="nav-text">log4j2 配置参数详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%EF%BC%9A%E5%A6%82%E6%9E%9C%E4%B8%80%E6%9D%A1%E6%97%A5%E5%BF%97%E4%BF%A1%E6%81%AF%E7%9A%84%E7%BA%A7%E5%88%AB%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E7%BA%A7%E5%88%AB%EF%BC%8C%E5%B0%B1%E8%AE%B0%E5%BD%95%E3%80%82"><span class="nav-number">4.4.4.1.</span> <span class="nav-text">日志级别：如果一条日志信息的级别大于等于配置文件的级别，就记录。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PatternLayout-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E5%BF%97%E5%B8%83%E5%B1%80%EF%BC%9A"><span class="nav-number">4.4.4.2.</span> <span class="nav-text">PatternLayout 自定义日志布局：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#log4j2-%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="nav-number">4.4.4.3.</span> <span class="nav-text">log4j2 配置详解</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Java CPU上下文切换、用户态和内核态1、概述JDK源码中很多Native方法，特别是多线程、NIO部分，很多功能需要操作系统功能支持，作为Java程序员，如果要理解和掌握多线程和NIO等原理，就需要对操作系统的原理有所了解。 2、CPU 上下文切换多任务操作系统中，多于CPU个数的任务同时运行就需要进行任务调度，从而多个任务轮流使用CPU。 从用户角度看好像所有的任务同时在运行，实际上是多个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转载】Java CPU上下文切换、用户态和内核态">
+<meta property="og:url" content="http://yoursite.com/Java/multithread/cpu_context_switch_user_mode_and_kernel_mode/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="Java CPU上下文切换、用户态和内核态1、概述JDK源码中很多Native方法，特别是多线程、NIO部分，很多功能需要操作系统功能支持，作为Java程序员，如果要理解和掌握多线程和NIO等原理，就需要对操作系统的原理有所了解。 2、CPU 上下文切换多任务操作系统中，多于CPU个数的任务同时运行就需要进行任务调度，从而多个任务轮流使用CPU。 从用户角度看好像所有的任务同时在运行，实际上是多个">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/Java/multithread/528364646791041.png">
+<meta property="article:published_time" content="2019-09-11T14:58:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.147Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/Java/multithread/528364646791041.png">
+
+<link rel="canonical" href="http://yoursite.com/Java/multithread/cpu_context_switch_user_mode_and_kernel_mode/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>【转载】Java CPU上下文切换、用户态和内核态 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/multithread/cpu_context_switch_user_mode_and_kernel_mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【转载】Java CPU上下文切换、用户态和内核态
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-11 14:58:00" itemprop="dateCreated datePublished" datetime="2019-09-11T14:58:00+00:00">2019-09-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Java-CPU上下文切换、用户态和内核态"><a href="#Java-CPU上下文切换、用户态和内核态" class="headerlink" title="Java CPU上下文切换、用户态和内核态"></a>Java CPU上下文切换、用户态和内核态</h1><h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><p>JDK源码中很多Native方法，特别是多线程、NIO部分，很多功能需要操作系统功能支持，作为Java程序员，如果要理解和掌握多线程和NIO等原理，就需要对操作系统的原理有所了解。</p>
+<h2 id="2、CPU-上下文切换"><a href="#2、CPU-上下文切换" class="headerlink" title="2、CPU 上下文切换"></a>2、CPU 上下文切换</h2><p>多任务操作系统中，多于CPU个数的任务同时运行就需要进行任务调度，从而多个任务轮流使用CPU。</p>
+<p>从用户角度看好像所有的任务同时在运行，实际上是多个任务你运行一会，我运行一会，任务切换的速度很快，我们感觉不到而已。</p>
+<p>而每个任务运行前，CPU需要知道从哪里加载这个任务的程序，还需要知道从程序哪行开始执行，这就要求OS事先帮任务设置好CPU的 <code>寄存器</code> 和<code>程序计数器</code> 。</p>
+<p>CPU执行任务必须依赖的环境称为 <strong><code>CPU上下文</code></strong></p>
+<p><strong><code>CPU 上下文切换</code></strong>，就是先把前一个任务的 CPU 上下文（也就是 CPU 寄存器和程序计数器）保存起来，然后加载新任务的上下文到这些寄存器和程序计数器，最后再跳转到程序计数器所指的新位置，运行新任务。</p>
+<p>CPU的上下文切换分为几种场景：进程上下文切换、线程上下文切换、中断上下文切换</p>
+<h3 id="2-1、用户态、内核态"><a href="#2-1、用户态、内核态" class="headerlink" title="2.1、用户态、内核态"></a>2.1、用户态、内核态</h3><p>Linux按特权等级，将进程的运行空间分为 <code>内核空间</code> 和 <code>用户空间</code> 。</p>
+<p><img src="/images/Java/multithread/528364646791041.png" alt="在这里插入图片描述"></p>
+<p>Intel x86架构使用了4个级别来标明不同的特权级权限。</p>
+<p>R0实际就是<code>内核态</code>，拥有最高权限，可以直接访问所有资源（包括外围设备，例如硬盘，网卡等）。而一般应用程序处于R3状态–<code>用户态</code>。</p>
+<p>进程在用户空间运行时，被称为进程的 <code>用户态</code>，而陷入内核空间的时候，被称为进程的 <code>内核态</code>。</p>
+<p><strong>R0最高可以读取R0-3所有的内容，R1可以读R1-3的，R2以此类推，R3只能读自己的数据。</strong></p>
+<h3 id="2-2、为什么分内核态和用户态"><a href="#2-2、为什么分内核态和用户态" class="headerlink" title="2.2、为什么分内核态和用户态"></a>2.2、为什么分内核态和用户态</h3><p>假设没有这种内核态和用户态之分，程序随随便便就能访问硬件资源，比如说分配内存，程序能随意的读写所有的内存空间，如果程序员一不小心将不适当的内容写到了不该写的地方，就很可能导致系统崩溃。</p>
+<p>用户程序进行系统调用后，操作系统执行一系列的检查验证，确保这次调用是安全的，再进行相应的资源访问操作。内核态能有效保护硬件资源的安全。</p>
+<h3 id="2-3、系统调用"><a href="#2-3、系统调用" class="headerlink" title="2.3、系统调用"></a>2.3、系统调用</h3><p>从用户态到内核态的转变，需要通过系统调用来完成。比如，当我们查看文件内容时，就需要多次系统调用来完成：首先调用 open() 打开文件，然后调用 read() 读取文件内容，并调用 write() 将内容写到标准输出，最后再调用 close() 关闭文件。</p>
+<p>系统调用会将CPU从用户态切换到核心态，以便 CPU 访问受到保护的内核内存。</p>
+<p>系统调用的过程会发生 CPU 上下文的切换，CPU 寄存器里原来用户态的指令位置，需要先保存起来。接着，为了执行内核态代码，CPU 寄存器需要更新为内核态指令的新位置。最后才是跳转到内核态运行内核任务。</p>
+<p>而系统调用结束后，CPU 寄存器需要恢复原来保存的用户态，然后再切换到用户空间，继续运行进程。所以，一次系统调用的过程，其实是发生了两次 CPU 上下文切换。</p>
+<p><strong>注意：系统调用过程中，并不会涉及到虚拟内存等进程用户态的资源，也不会切换进程。</strong></p>
+<p>系统调用过程通常称为<strong>特权模式切换</strong>，而不是进程上下文切换。</p>
+<h2 id="3、进程上下文切换"><a href="#3、进程上下文切换" class="headerlink" title="3、进程上下文切换"></a>3、进程上下文切换</h2><p>进程上下文切换跟系统调用又有什么区别呢？</p>
+<p>首先，进程是由内核来管理和调度的，进程的切换只能发生在内核态。所以，进程的上下文不仅包括了虚拟内存、栈、全局变量等用户空间的资源，还包括了内核堆栈、寄存器等内核空间的状态。</p>
+<p>因此，进程的上下文切换就比系统调用时多了一步：在保存当前进程的内核状态和 CPU 寄存器之前，需要先把该进程的<strong>虚拟内存、用户栈</strong>等保存下来；而加载下一个进程的内核态后，还需要加载这个进程的虚拟内存和用户栈。</p>
+<p>根据 <a href="https://blog.tsunanet.net/2010/11/how-long-does-it-take-to-make-context.html">Tsuna</a> 的测试报告，每次上下文切换都需要几十纳秒到数微秒的 CPU 时间，在进程上下文切换次数较多的情况下，这个时间对于CPU来说是相当可观的，会大大缩短CPU真正用于运行进程的时间。</p>
+<h3 id="3-1、什么时候会切换进程上下文？"><a href="#3-1、什么时候会切换进程上下文？" class="headerlink" title="3.1、什么时候会切换进程上下文？"></a>3.1、什么时候会切换进程上下文？</h3><p>只有在进程调度的时候，才需要切换上下文。Linux 为每个 CPU 都维护了一个就绪队列，将活跃进程（即正在运行和正在等待 CPU 的进程）按照优先级和等待 CPU 的时间排序，然后选择最需要 CPU 的进程，也就是优先级最高和等待 CPU 时间最长的进程来运行。</p>
+<blockquote>
+<p>新进程在什么时候才会被调度到 CPU 上运行呢？<br>1.运行中的进程执行完终止了，CPU 会释放出来，新的基础进程就可以被调度到CPU上运行了。<br>2. 运行中的进程时间片用完，进程被挂起<br>3. 运行中的进程资源不足，进程被挂起<br>4. 运行中的进程执行Sleep方法主动挂起<br>5. 新进程优先级更高，运行中的进程被挂起<br>6. 发生硬件中断，运行中的进程会被中断挂起，转而执行内核中的中断服务程序。</p>
+</blockquote>
+<h2 id="4、线程上下文切换"><a href="#4、线程上下文切换" class="headerlink" title="4、线程上下文切换"></a>4、线程上下文切换</h2><p>线程是调度的基本单位，而进程则是资源拥有的基本单位。</p>
+<p>所谓内核中的任务调度，实际上的调度对象是线程；而进程只是给线程提供了虚拟内存、全局变量等资源。</p>
+<p>当进程只有一个线程时，可以认为进程就等于线程，当进程拥有多个线程时，这些线程会共享进程的虚拟内存和全局变量等资源。这些资源在上下文切换时是不需要修改的。</p>
+<p>线程也有自己的私有数据，比如栈和寄存器等，这些在上下文切换时也是需要保存的。</p>
+<p>线程的上下文切换其实就可以分为两种情况：</p>
+<ol>
+<li>两个线程属于不同进程，因为资源不共享，切换过程和进程上线文切换一样</li>
+<li>两个线程属于同一个进程，只需要切换线程的私有数据、寄存器等不共享的数据</li>
+</ol>
+<h2 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h2><p>CPU上线文切换，切换寄存器、程序计数器</p>
+<p>进程上线文切换，切换虚拟内存、用户栈</p>
+<p>线程上下文切换，2种情况：（1）线程私有数据（比如线程栈、程序计数器等）；（2）、（1）+ 线程资源 ；</p>
+<p>系统调用：需要进行线程上下文切换，但不是进程上下文切换</p>
+<p>R0实际就是<code>内核态</code>，拥有最高权限，可以直接访问所有资源（包括外围设备，例如硬盘，网卡等）。</p>
+<p>应用程序处于R3状态–<code>用户态</code>。</p>
+<p>系统调用会进行 <code>内核态</code>、<code>用户态</code> 转换</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://time.geekbang.org/column/article/69859">Linux性能优化实战-03讲 CPU 上下文切换</a><br><a href="https://time.geekbang.org/column/article/94486">许式伟的架构课-08讲 操作系统内核与编程接口</a><br><a href="https://blog.csdn.net/chen134225/article/details/81783980">操作系统为什么要分用户态和内核态</a><br><a href="https://blog.csdn.net/youngyoungla/article/details/53106671">用户态和内核态的区别</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/distributed/03.%E7%86%94%E6%96%AD%E9%99%90%E6%B5%81%E6%9C%BA%E5%88%B6/" rel="prev" title="分布式理论：隔离机制【转载】">
+      <i class="fa fa-chevron-left"></i> 分布式理论：隔离机制【转载】
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Java/multithread/Atomic/" rel="next" title="Atomic原子变量">
+      Atomic原子变量 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-CPU%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E3%80%81%E7%94%A8%E6%88%B7%E6%80%81%E5%92%8C%E5%86%85%E6%A0%B8%E6%80%81"><span class="nav-number">1.</span> <span class="nav-text">Java CPU上下文切换、用户态和内核态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1、概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81CPU-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">2、CPU 上下文切换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E3%80%81%E7%94%A8%E6%88%B7%E6%80%81%E3%80%81%E5%86%85%E6%A0%B8%E6%80%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1、用户态、内核态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%86%E5%86%85%E6%A0%B8%E6%80%81%E5%92%8C%E7%94%A8%E6%88%B7%E6%80%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2、为什么分内核态和用户态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%E3%80%81%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3、系统调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">3、进程上下文切换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E3%80%81%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%88%87%E6%8D%A2%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1、什么时候会切换进程上下文？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">4、线程上下文切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">5、总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/23/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/23/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/tool/Maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/tool/Maven/" class="post-title-link" itemprop="url">Maven</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-07-14 13:03:41" itemprop="dateModified" datetime="2022-07-14T13:03:41+00:00">2022-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><ul>
+<li><p><input disabled="" type="checkbox"> 
+插件编写</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+构建模板</p>
+</li>
+</ul>
+<h2 id="phase-and-goal"><a href="#phase-and-goal" class="headerlink" title="phase and goal"></a>phase and goal</h2><p><a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">Introduction to the Build Lifecycle</a></p>
+<p>一个lifecycle有多个phase，一个phase可以有多个goal</p>
+<p>Mojo</p>
+<p>三种内置的lifecycle：default、clean和site</p>
+<p>列出所有的plugin、phase、id、goal</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印插件的所有命令详情</span></span><br><span class="line">mvn <span class="built_in">help</span>:describe -Dplugin=javafx -Ddetail</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install -DskipTests -Dfast -Drat.skip=<span class="literal">true</span> -Dhaoop.version=2.6.0-cdh5.15.1 -Pvendor-repos -Dinclude-hadoop -Dscala-2.11 -T2C</span><br><span class="line"></span><br><span class="line"><span class="comment"># -Dfast  #在flink根目录下pom.xml文件中fast配置项目中含快速设置,其中包含了多项构建时的跳过参数. #例如apache的文件头(rat)合法校验，代码风格检查，javadoc生成的跳过等，详细可阅读pom.xml</span></span><br><span class="line"><span class="comment"># install maven的安装命令</span></span><br><span class="line"><span class="comment"># -T2C #支持多处理器或者处理器核数参数,加快构建速度,推荐Maven3.3及以上</span></span><br><span class="line"><span class="comment"># -Pinclude-hadoop  将hadoop的 jar包，打入到lib/中</span></span><br><span class="line"><span class="comment"># -Pvendor-repos   # 如果需要指定hadoop的发行商，如CDH，需要使用-Pvendor-repos</span></span><br><span class="line"><span class="comment"># -Dscala-2.11     # 指定scala的版本为2.11</span></span><br><span class="line"><span class="comment"># -Dhadoop.version=2.6.0-cdh5.15.1  指定 hadoop 的版本</span></span><br><span class="line"></span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「实力不允许偷懒」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https://blog.csdn.net/qq_17310871/article/details/106677165</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>pl.project13.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>git-commit-id-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>get-the-git-infos<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 默认绑定阶段initialize --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>initialize<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 目标：revision --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>revision<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 检查的仓库根目录，$&#123;project.basedir&#125;：项目根目录，即包含pom.xml文件的目录 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dotGitDirectory</span>&gt;</span>$&#123;project.basedir&#125;/.git<span class="tag">&lt;/<span class="name">dotGitDirectory</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- false：扫描路径时不打印更多信息，默认值false，可以不配置 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>false<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 定义插件中所有时间格式，默认值：yyyy-MM-dd’T’HH:mm:ssZ --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dateFormat</span>&gt;</span>yyyy-MM-dd HH:mm:ss<span class="tag">&lt;/<span class="name">dateFormat</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- git属性文件中各属性前缀，默认值git，可以不配置 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prefix</span>&gt;</span>git<span class="tag">&lt;/<span class="name">prefix</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 生成git属性文件，默认false：不生成 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">generateGitPropertiesFile</span>&gt;</span>true<span class="tag">&lt;/<span class="name">generateGitPropertiesFile</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 生成git属性文件路径及文件名，默认$&#123;project.build.outputDirectory&#125;/git.properties --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">generateGitPropertiesFilename</span>&gt;</span>$&#123;project.build.outputDirectory&#125;/conf/git.properties</span><br><span class="line">        <span class="tag">&lt;/<span class="name">generateGitPropertiesFilename</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 生成git属性文件格式，默认值properties --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">format</span>&gt;</span>json<span class="tag">&lt;/<span class="name">format</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 配置git-describe命令 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">gitDescribe</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">skip</span>&gt;</span>false<span class="tag">&lt;/<span class="name">skip</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">always</span>&gt;</span>false<span class="tag">&lt;/<span class="name">always</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dirty</span>&gt;</span>-dirty<span class="tag">&lt;/<span class="name">dirty</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">gitDescribe</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="shade"><a href="#shade" class="headerlink" title="shade"></a>shade</h2><ol>
+<li>打包文件增加时间戳，并指定时间戳格式</li>
+<li>排除代码路径与排除文件路径, 排除整个目录需要增加<code>**</code></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">maven.build.timestamp.format</span>&gt;</span>yyyyMMdd-HHmmss<span class="tag">&lt;/<span class="name">maven.build.timestamp.format</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">finalName</span>&gt;</span></span><br><span class="line">$&#123;project.artifactId&#125;-$&#123;project.version&#125;-$&#123;maven.build.timestamp&#125;-shaded</span><br><span class="line"><span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--                            &lt;shadeTestJar&gt;true&lt;/shadeTestJar&gt;--&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--                            &lt;shadedArtifactAttached&gt;false&lt;/shadedArtifactAttached&gt;--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">createDependencyReducedPom</span>&gt;</span>true<span class="tag">&lt;/<span class="name">createDependencyReducedPom</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">transformers</span> <span class="attr">combine.children</span>=<span class="string">&quot;append&quot;</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- The service transformer is needed to merge META-INF/services files --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">transformer</span> <span class="attr">implementation</span>=<span class="string">&quot;org.apache.maven.plugins.shade.resource.ServicesResourceTransformer&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">transformer</span> <span class="attr">implementation</span>=<span class="string">&quot;org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;/<span class="name">transformers</span>&gt;</span></span><br><span class="line">														<span class="tag">&lt;<span class="name">minimizeJar</span>&gt;</span>true<span class="tag">&lt;/<span class="name">minimizeJar</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">shadeTestJar</span>&gt;</span>false<span class="tag">&lt;/<span class="name">shadeTestJar</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">shadedArtifactAttached</span>&gt;</span>false<span class="tag">&lt;/<span class="name">shadedArtifactAttached</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">createDependencyReducedPom</span>&gt;</span>false<span class="tag">&lt;/<span class="name">createDependencyReducedPom</span>&gt;</span></span><br><span class="line">                            <span class="comment">&lt;!--                            &lt;dependencyReducedPomLocation&gt;--&gt;</span></span><br><span class="line">                            <span class="comment">&lt;!--                                $&#123;project.basedir&#125;/target/dependency-reduced-pom.xml--&gt;</span></span><br><span class="line">                            <span class="comment">&lt;!--                            &lt;/dependencyReducedPomLocation&gt;--&gt;</span></span><br><span class="line">                            </span><br><span class="line">                            <span class="tag">&lt;<span class="name">filters</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">artifact</span>&gt;</span>*:*<span class="tag">&lt;/<span class="name">artifact</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>log4j.properties<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>version-info.properties<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>org/slf4j/**<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>flake/**<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.SF<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.DSA<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.RSA<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>org/apache/commons/**<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">filters</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">relocations</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>com.tencent.oceanus.common<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">shadedPattern</span>&gt;</span>shaded.flake.com.tencent.oceanus.common</span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">shadedPattern</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>com.tencent.oceanus.util<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">shadedPattern</span>&gt;</span>shaded.flake.com.tencent.oceanus.util</span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">shadedPattern</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>com.tencent.oceanus.exception<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">shadedPattern</span>&gt;</span>shaded.flake.com.tencent.oceanus.exception</span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">shadedPattern</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>com.tencent.oceanus.dto<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">shadedPattern</span>&gt;</span>shaded.flake.com.tencent.oceanus.dto</span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">shadedPattern</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">relocation</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">relocations</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--                    &lt;createSourcesJar&gt;true&lt;/createSourcesJar&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="发布test-jar"><a href="#发布test-jar" class="headerlink" title="发布test jar"></a>发布test jar</h3><p>对那些有着良好设计，能够重复使用在项目的不同模块中、甚至不同项目中的测试代码，也需要打包成构件重复使用，从而减少编写测试代码的工作量。而 mvn package 只会对主代码和资源文件进行打包安装与部署，对测试代码和资源文件是不会处理的</p>
+<p>发布</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-jar-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">goal</span>&gt;</span>test-jar<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<p>maven-jar-plugin 有两个目标：一个是 jar；另一个是 test-jar。<br>jar 目标有内置绑定到 Maven 的 default 生命周期的 package 阶段，会在 Maven 工程进行构建的时候自动执行，将项目的主代码和资源文件进行打包。</p>
+<p>test-jar 目标没有内置绑定，所以需要用户在插件配置中声明该目标，从而达到在 Maven 工程构建的时候将测试代码和资源文件打包。<br>test-jar 目标是默认绑定到 default 生命周期的 package 阶段，<br>所以当运行 mvn clean package 命令的时候，能同时将主代码和测试代码分别打包。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.dalong<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>testpacakge<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">classifier</span>&gt;</span>tests<span class="tag">&lt;/<span class="name">classifier</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>test-jar<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="module-dependency-tree"><a href="#module-dependency-tree" class="headerlink" title="module-dependency-tree"></a>module-dependency-tree</h2><p><a href="https://github.com/ferstl/depgraph-maven-plugin">https://github.com/ferstl/depgraph-maven-plugin</a><br><a href="https://ferstl.github.io/depgraph-maven-plugin/plugin-info.html">https://ferstl.github.io/depgraph-maven-plugin/plugin-info.html</a></p>
+<p><a href="https://ferstl.github.io/depgraph-maven-plugin/graph-mojo.html#graphFormat">https://ferstl.github.io/depgraph-maven-plugin/graph-mojo.html#graphFormat</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mvn com.github.ferstl:depgraph-maven-plugin:3.0.1:aggregate \</span><br><span class="line">		-DcreateImage=true \</span><br><span class="line">		-DreduceEdges=false \</span><br><span class="line">		-Dscope=compile \</span><br></pre></td></tr></table></figure>
+
+<h2 id="archetype"><a href="#archetype" class="headerlink" title="archetype"></a>archetype</h2><h2 id="resources-filtered"><a href="#resources-filtered" class="headerlink" title="resources-filtered"></a>resources-filtered</h2><p>在 Maven 项目中，<code>resources-filtered</code> 是一个配置选项，用于指示 Maven 是否应该对资源文件（如 <code>*.properties</code> 或 <code>*.xml</code> 文件）中的变量进行过滤和替换</p>
+<h3 id="资源过滤的作用"><a href="#资源过滤的作用" class="headerlink" title="资源过滤的作用"></a>资源过滤的作用</h3><p>资源过滤的主要目的是允许开发者在构建过程中动态地替换资源文件中的占位符（例如 <code>${project.version}</code>）为实际的值。这在以下场景中非常有用：</p>
+<ol>
+<li><strong>版本管理</strong>：可以在资源文件中使用 <code>${project.version}</code> 占位符，Maven 会在构建时自动将其替换为项目的实际版本号。</li>
+<li><strong>环境特定配置</strong>：可以为不同的部署环境（如开发、测试、生产）创建不同的配置文件，并在构建时选择合适的文件进行替换。</li>
+<li><strong>避免硬编码</strong>：通过使用占位符而不是硬编码的值，可以使项目更加灵活和可维护。</li>
+</ol>
+<h3 id="如何启用资源过滤"><a href="#如何启用资源过滤" class="headerlink" title="如何启用资源过滤"></a>如何启用资源过滤</h3><p>在 Maven 的 <code>pom.xml</code> 文件中，可以通过以下方式启用资源过滤：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>true<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>&lt;filtering&gt;</code> 元素被设置为 <code>true</code>，表示 Maven 应该对 <code>src/main/resources</code> 目录下的所有资源文件进行过滤。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>资源过滤可能会导致构建过程中的性能开销，特别是在处理大量资源文件时。</li>
+<li>如果资源文件中的某些内容不应该被过滤（例如，包含敏感信息的密码字段），可以使用 Maven 的 <code>delimiters</code> 配置来指定自定义的分隔符，以避免不必要的替换。</li>
+</ul>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>可以替换的属性，包含maven properties和git属性</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">project.version</span>=<span class="string">$&#123;project.version&#125;  </span></span><br><span class="line"><span class="attr">scala.binary.version</span>=<span class="string">$&#123;scala.binary.version&#125;  </span></span><br><span class="line">  </span><br><span class="line"><span class="attr">git.commit.id</span>=<span class="string">$&#123;git.commit.id&#125;  </span></span><br><span class="line"><span class="attr">git.commit.id.abbrev</span>=<span class="string">$&#123;git.commit.id.abbrev&#125;  </span></span><br><span class="line"><span class="attr">git.commit.time</span>=<span class="string">$&#123;git.commit.time&#125;  </span></span><br><span class="line"><span class="attr">git.build.time</span>=<span class="string">$&#123;git.build.time&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/multithread/monitor-synchronized-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/multithread/monitor-synchronized-2/" class="post-title-link" itemprop="url">深度分析：锁升级过程和锁状态，看完这篇你就懂了！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="深度分析：锁升级过程和锁状态，看完这篇你就懂了！"><a href="#深度分析：锁升级过程和锁状态，看完这篇你就懂了！" class="headerlink" title="深度分析：锁升级过程和锁状态，看完这篇你就懂了！"></a>深度分析：锁升级过程和锁状态，看完这篇你就懂了！</h1><blockquote>
+<p>转载自 <a href="https://segmentfault.com/a/1190000022904663">https://segmentfault.com/a/1190000022904663</a></p>
+</blockquote>
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>锁的状态总共有四种，级别由低到高依次为：<code>无锁</code>、<code>偏向锁</code>、<code>轻量级锁</code>、<code>重量级锁</code><br>其实在 JDK 1.6之前，synchronized 还是一个<code>重量级锁</code>，是一个效率比较低下的锁，<br>但是在JDK 1.6后，JVM为了提高锁的获取与释放效率对（synchronized ）进行了优化，引入了 <code>偏向锁</code> 和 <code>轻量级锁</code> ，<br>从此以后锁的状态就有了四种（<code>无锁</code>、<code>偏向锁</code>、<code>轻量级锁</code>、<code>重量级锁</code>），并且四种状态会随着竞争的情况逐渐升级，而且是不可逆的过程，即不可降级，<br>也就是说只能进行锁升级（从低级别到高级别），不能锁降级（高级别到低级别），意味着<code>偏向锁</code>升级成<code>轻量级锁</code>后不能降级成<code>偏向锁</code>。<br>这种锁升级却不能降级的策略，目的是为了提高获得锁和释放锁的效率。</p>
+<h2 id="二、锁的四种状态"><a href="#二、锁的四种状态" class="headerlink" title="二、锁的四种状态"></a>二、锁的四种状态</h2><p>在 synchronized 最初的实现方式是 “阻塞或唤醒一个Java线程需要操作系统切换CPU状态来完成，这种状态切换需要耗费处理器时间，如果同步代码块中内容过于简单，这种切换的时间可能比用户代码执行的时间还长”，这种方式就是 synchronized实现同步最初的方式，这也是当初开发者诟病的地方，这也是在JDK6以前 synchronized效率低下的原因，JDK6中为了减少获得锁和释放锁带来的性能消耗，引入了“<code>偏向锁</code>”和“<code>轻量级锁</code>”。</p>
+<p>所以目前锁状态一种有四种，从级别由低到高依次是：<code>无锁</code>、<code>偏向锁</code>，<code>轻量级锁</code>，<code>重量级锁</code>，锁状态只能升级，不能降级</p>
+<p>如图所示：<br><img src="/images/Java/multithread/324636426357655.png"></p>
+<h2 id="三、锁状态的思路以及特点"><a href="#三、锁状态的思路以及特点" class="headerlink" title="三、锁状态的思路以及特点"></a>三、锁状态的思路以及特点</h2><p><img src="/images/Java/multithread/316596829933991.png"></p>
+<h2 id="四、锁对比"><a href="#四、锁对比" class="headerlink" title="四、锁对比"></a>四、锁对比</h2><p><img src="/images/Java/multithread/310576108657266.png"></p>
+<h2 id="五、Synchronized锁"><a href="#五、Synchronized锁" class="headerlink" title="五、Synchronized锁"></a>五、Synchronized锁</h2><p>synchronized 用的锁是存在Java对象头里的，那么什么是对象头呢？</p>
+<h3 id="5-1-Java-对象头"><a href="#5-1-Java-对象头" class="headerlink" title="5.1 Java 对象头"></a>5.1 Java 对象头</h3><p>我们以 Hotspot 虚拟机为例，Hopspot 对象头主要包括两部分数据：Mark Word（标记字段） 和 Klass Pointer（类型指针）</p>
+<p>Mark Word：默认存储对象的HashCode，分代年龄和锁标志位信息。这些信息都是与对象自身定义无关的数据，所以Mark Word被设计成一个非固定的数据结构以便在极小的空间内存存储尽量多的数据。它会根据对象的状态复用自己的存储空间，也就是说在运行期间Mark Word里存储的数据会随着锁标志位的变化而变化。</p>
+<p>Klass Point：对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。</p>
+<p>在上面中我们知道了，synchronized 用的锁是存在Java对象头里的，那么具体是存在对象头哪里呢？答案是：存在锁对象的对象头的Mark Word中，那么MarkWord在对象头中到底长什么样，它到底存储了什么呢？</p>
+<p>在64位的虚拟机中：<br><img src="/images/Java/multithread/304535461830268.png"></p>
+<p>在32位的虚拟机中：<br><img src="/images/Java/multithread/298506161792168.png"></p>
+<p>下面我们以 32位虚拟机为例，来看一下其 Mark Word 的字节具体是如何分配的</p>
+<p><code>无锁</code> ：对象头开辟 25bit 的空间用来存储对象的 hashcode ，4bit 用于存放对象分代年龄，1bit 用来存放是否<code>偏向锁</code>的标识位，2bit 用来存放锁标识位为01</p>
+<p><code>偏向锁</code>： 在<code>偏向锁</code>中划分更细，还是开辟 25bit 的空间，其中23bit 用来存放线程ID，2bit 用来存放 Epoch，4bit 存放对象分代年龄，1bit 存放是否<code>偏向锁</code>标识， 0表示<code>无锁</code>，1表示<code>偏向锁</code>，锁的标识位还是01</p>
+<p><code>轻量级锁</code>：在<code>轻量级锁</code>中直接开辟 30bit 的空间存放指向栈中锁记录的指针，2bit 存放锁的标志位，其标志位为00</p>
+<p><code>重量级锁</code>： 在<code>重量级锁</code>中和<code>轻量级锁</code>一样，30bit 的空间用来存放指向<code>重量级锁</code>的指针，2bit 存放锁的标识位，为11</p>
+<p>GC标记： 开辟30bit 的内存空间却没有占用，2bit 空间存放锁标志位为11。</p>
+<p>其中<code>无锁</code>和<code>偏向锁</code>的锁标志位都是01，只是在前面的1bit区分了这是<code>无锁</code>状态还是<code>偏向锁</code>状态</p>
+<p>关于内存的分配，我们可以在git中openJDK中 markOop.hpp 可以看出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">// Constants</span></span><br><span class="line">  <span class="keyword">enum</span> &#123; age\_bits                 = <span class="number">4</span>,</span><br><span class="line">         lock\_bits                = <span class="number">2</span>,</span><br><span class="line">         biased\_lock\_bits         = <span class="number">1</span>,</span><br><span class="line">         max\_hash\_bits            = BitsPerWord - age\_bits - lock\_bits - biased\_lock\_bits,</span><br><span class="line">         hash\_bits                = max\_hash\_bits &gt; <span class="number">31</span> ? <span class="number">31</span> : max\_hash\_bits,</span><br><span class="line">         cms\_bits                 = LP64\_ONLY(<span class="number">1</span>) NOT\_LP64(<span class="number">0</span>),</span><br><span class="line">         epoch\_bits               = <span class="number">2</span></span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>age_bits： 就是我们说的分代回收的标识，占用4字节<br>lock_bits： 是锁的标志位，占用2个字节<br>biased_lock_bits： 是是否<code>偏向锁</code>的标识，占用1个字节<br>max_hash_bits： 是针对<code>无锁</code>计算的hashcode 占用字节数量，如果是32位虚拟机，就是 32 - 4 - 2 -1 &#x3D; 25 byte，如果是64 位虚拟机，64 - 4 - 2 - 1 &#x3D; 57 byte，但是会有 25 字节未使用，所以64位的 hashcode 占用 31 byte<br>hash_bits： 是针对 64 位虚拟机来说，如果最大字节数大于 31，则取31，否则取真实的字节数<br>cms_bits： 不是64位虚拟机就占用 0 byte，是64位就占用 1byte<br>epoch_bits： 就是 epoch 所占用的字节大小，2字节。</p>
+<h3 id="5-2-Monitor"><a href="#5-2-Monitor" class="headerlink" title="5.2 Monitor"></a>5.2 Monitor</h3><p>Monitor 可以理解为一个同步工具或一种同步机制，通常被描述为一个对象。每一个 Java 对象就有一把看不见的锁，称为内部锁或者 Monitor 锁。</p>
+<p>Monitor 是线程私有的数据结构，每一个线程都有一个可用 monitor record 列表，同时还有一个全局的可用列表。每一个被锁住的对象都会和一个 monitor 关联，同时 monitor 中有一个 Owner 字段存放拥有该锁的线程的唯一标识，表示该锁被这个线程占用。</p>
+<p>Synchronized是通过对象内部的一个叫做监视器锁（monitor）来实现的，监视器锁本质又是依赖于底层的操作系统的 Mutex Lock（互斥锁）来实现的。而操作系统实现线程之间的切换需要从用户态转换到核心态，这个成本非常高，状态之间的转换需要相对比较长的时间，这就是为什么 Synchronized 效率低的原因。因此，这种依赖于操作系统 Mutex Lock 所实现的锁我们称之为<code>重量级锁</code>。</p>
+<p>随着锁的竞争，锁可以从<code>偏向锁</code>升级到<code>轻量级锁</code>，再升级的<code>重量级锁</code>（但是锁的升级是单向的，也就是说只能从低到高升级，不会出现锁的降级）。JDK 1.6中默认是开启<code>偏向锁</code>和<code>轻量级锁</code>的，我们也可以通过-XX:-UseBiasedLocking&#x3D;false来禁用<code>偏向锁</code>。</p>
+<h2 id="六、锁的分类"><a href="#六、锁的分类" class="headerlink" title="六、锁的分类"></a>六、锁的分类</h2><h3 id="6-2-无锁"><a href="#6-2-无锁" class="headerlink" title="6.2 无锁"></a>6.2 无锁</h3><p><code>无锁</code>是指没有对资源进行锁定，所有的线程都能访问并修改同一个资源，但同时只有一个线程能修改成功。</p>
+<p><code>无锁</code>的特点是修改操作会在循环内进行，线程会不断的尝试修改共享资源。如果没有冲突就修改成功并退出，否则就会继续循环尝试。如果有多个线程修改同一个值，必定会有一个线程能修改成功，而其他修改失败的线程会不断重试直到修改成功。</p>
+<h3 id="6-3-偏向锁"><a href="#6-3-偏向锁" class="headerlink" title="6.3 偏向锁"></a>6.3 偏向锁</h3><p>初次执行到synchronized代码块的时候，锁对象变成<code>偏向锁</code>（通过CAS修改对象头里的锁标志位），字面意思是“偏向于第一个获得它的线程”的锁。执行完同步代码块后，线程并不会主动释放<code>偏向锁</code>。当第二次到达同步代码块时，线程会判断此时持有锁的线程是否就是自己（持有锁的线程ID也在对象头里），如果是则正常往下执行。由于之前没有释放锁，这里也就不需要重新加锁。如果自始至终使用锁的线程只有一个，很明显<code>偏向锁</code>几乎没有额外开销，性能极高。</p>
+<p><code>偏向锁</code>是指当一段同步代码一直被同一个线程所访问时，即不存在多个线程的竞争时，那么该线程在后续访问时便会自动获得锁，从而降低获取锁带来的消耗，即提高性能。</p>
+<p>当一个线程访问同步代码块并获取锁时，会在 Mark Word 里存储锁偏向的线程 ID。在线程进入和退出同步块时不再通过 CAS 操作来加锁和解锁，而是检测 Mark Word 里是否存储着指向当前线程的<code>偏向锁</code>。<code>轻量级锁</code>的获取及释放依赖多次 CAS 原子指令，而<code>偏向锁</code>只需要在置换 ThreadID 的时候依赖一次 CAS 原子指令即可。</p>
+<p><code>偏向锁</code>只有遇到其他线程尝试竞争<code>偏向锁</code>时，持有<code>偏向锁</code>的线程才会释放锁，线程是不会主动释放<code>偏向锁</code>的。</p>
+<p>关于<code>偏向锁</code>的撤销，需要等待全局安全点，即在某个时间点上没有字节码正在执行时，它会先暂停拥有<code>偏向锁</code>的线程，然后判断锁对象是否处于被锁定状态。如果线程不处于活动状态，则将对象头设置成<code>无锁</code>状态，并撤销<code>偏向锁</code>，恢复到<code>无锁</code>（标志位为01）或<code>轻量级锁</code>（标志位为00）的状态。</p>
+<h3 id="6-4-轻量级锁（自旋锁）"><a href="#6-4-轻量级锁（自旋锁）" class="headerlink" title="6.4 轻量级锁（自旋锁）"></a>6.4 轻量级锁（自旋锁）</h3><p><img src="/images/Java/multithread/287756959344307.png"></p>
+<p><code>轻量级锁</code>是指当锁是<code>偏向锁</code>的时候，却被另外的线程所访问，此时<code>偏向锁</code>就会升级为<code>轻量级锁</code>，<br>其他线程会通过自旋（关于自旋的介绍见文末）的形式尝试获取锁，<br>线程不会阻塞，从而提高性能。</p>
+<p><code>轻量级锁</code>的获取主要由两种情况：</p>
+<ul>
+<li>① 当关闭<code>偏向锁</code>功能时；</li>
+<li>② 由于多个线程竞争<code>偏向锁</code>导致<code>偏向锁</code>升级为<code>轻量级锁</code>。</li>
+</ul>
+<p>一旦有第二个线程加入锁竞争，<code>偏向锁</code>就升级为<code>轻量级锁</code>（自旋锁）。</p>
+<p>这里要明确一下什么是锁竞争：<br>如果多个线程轮流获取一个锁，但是每次获取锁的时候都很顺利，没有发生阻塞，那么就不存在锁竞争。<br>只有当某线程尝试获取锁的时候，发现该锁已经被占用，只能等待其释放，这才发生了锁竞争。</p>
+<p>在<code>轻量级锁</code>状态下继续锁竞争，没有抢到锁的线程将自旋，即不停地循环判断锁是否能够被成功获取。<br>获取锁的操作，其实就是通过CAS修改对象头里的锁标志位。先比较当前锁标志位是否为“释放”，<br>如果是则将其设置为“锁定”，比较并设置是原子性发生的。这就算抢到锁了，然后线程将当前锁的持有者信息修改为自己。</p>
+<p>长时间的自旋操作是非常消耗资源的，一个线程持有锁，其他线程就只能在原地空耗CPU，执行不了任何有效的任务，这种现象叫做忙等（busy-waiting）。<br>如果多个线程用一个锁，但是没有发生锁竞争，或者发生了很轻微的锁竞争，那么synchronized就用<code>轻量级锁</code>，允许短时间的忙等现象。<br>这是一种折衷的想法，短时间的忙等，换取线程在用户态和内核态之间切换的开销。</p>
+<h3 id="6-4-重量级锁"><a href="#6-4-重量级锁" class="headerlink" title="6.4 重量级锁"></a>6.4 重量级锁</h3><p><code>重量级锁</code>显然，此忙等是有限度的（有个计数器记录自旋次数，默认允许循环10次，可以通过虚拟机参数更改）。<br>如果锁竞争情况严重，某个达到最大自旋次数的线程，会将<code>轻量级锁</code>升级为<code>重量级锁</code>（依然是CAS修改锁标志位，但不修改持有锁的线程ID）。<br>当后续线程尝试获取锁时，发现被占用的锁是<code>重量级锁</code>，则直接将自己挂起（而不是忙等），等待将来被唤醒。</p>
+<p><code>重量级锁</code>是指当有一个线程获取锁之后，其余所有等待获取该锁的线程都会处于阻塞状态。</p>
+<p>简言之，就是所有的控制权都交给了操作系统，由操作系统来负责线程间的调度和线程的状态变更。而这样会出现频繁地对线程运行状态的切换，<br>线程的挂起和唤醒，从而消耗大量的系统资</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/database/MySQL/%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/database/MySQL/%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">MySQL慢查询优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="慢查询优化"><a href="#慢查询优化" class="headerlink" title="慢查询优化"></a>慢查询优化</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow -s t -t 10  ~/Downloads/慢日志/mysql-slow.log</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Count: <span class="number">2</span>  <span class="type">Time</span><span class="operator">=</span><span class="number">1238.48</span>s (<span class="number">2476</span>s)  Lock<span class="operator">=</span><span class="number">0.00</span>s (<span class="number">0</span>s)  <span class="keyword">Rows</span><span class="operator">=</span><span class="number">90750.0</span> (<span class="number">181500</span>), cdw[cdw]<span class="variable">@2hosts</span></span><br><span class="line">  <span class="keyword">select</span> t3.PRODUCT_CHANNEL_CODE,t3.MAIN_PROJECT_NAME ,</span><br><span class="line">  t3.MAIN_PROJECT_CODE ,t3.SUB_PROJECT_NAME,t3.SUB_PROJECT_CODE,</span><br><span class="line">  t3.CHANNEL_TYPE,t3.CHANNEL_NAME,t3.CHANNEL_ID,t3.CHANNEL_SUB_CODE,</span><br><span class="line">  t3.CHANNEL_SUB_TYPE,</span><br><span class="line">  t4.FRIST_CHANNEL,</span><br><span class="line">  t4.SECOND_CHANNEL,</span><br><span class="line">  t4.thrid_channel</span><br><span class="line">  <span class="keyword">from</span> (<span class="keyword">SELECT</span> t1.PRODUCT_CHANNEL_CODE,t1.MAIN_PROJECT_NAME ,</span><br><span class="line">  t1.MAIN_PROJECT_CODE ,t1.SUB_PROJECT_NAME,t1.SUB_PROJECT_CODE,</span><br><span class="line">  t1.CHANNEL_TYPE,t1.CHANNEL_NAME,t1.CHANNEL_ID,t2.CHANNEL_SUB_CODE,</span><br><span class="line">  t2.CHANNEL_SUB_TYPE <span class="keyword">FROM</span> qd_dz_db.qd_prochannel t1 <span class="keyword">left</span> <span class="keyword">join</span> qd_channel t2</span><br><span class="line">  <span class="keyword">on</span> t1.CHANNEL_ID<span class="operator">=</span>t2.CHANNEL_ID ) t3 <span class="keyword">join</span></span><br><span class="line">  (</span><br><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">  a.PRODUCT_CHANNEL_CODE,</span><br><span class="line">  b.FRIST_CHANNEL,</span><br><span class="line">  b.SECOND_CHANNEL,</span><br><span class="line">  b.THIRD_CHANNEL <span class="keyword">AS</span> thrid_channel</span><br><span class="line">  <span class="keyword">FROM</span></span><br><span class="line">  qd_dz_db.qd_prochannel a</span><br><span class="line">  <span class="keyword">JOIN</span></span><br><span class="line">  qd_dz_db.qd_channel b <span class="keyword">ON</span> a.CHANNEL_ID <span class="operator">=</span> b.CHANNEL_ID</span><br><span class="line">  )t4 <span class="keyword">on</span> t3.PRODUCT_CHANNEL_CODE<span class="operator">=</span>t4.PRODUCT_CHANNEL_CODE</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">explain</span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    t3.PRODUCT_CHANNEL_CODE,</span><br><span class="line">    t3.MAIN_PROJECT_NAME ,</span><br><span class="line">    t3.MAIN_PROJECT_CODE ,</span><br><span class="line">    t3.SUB_PROJECT_NAME,</span><br><span class="line">    t3.SUB_PROJECT_CODE,</span><br><span class="line">    t3.CHANNEL_TYPE,</span><br><span class="line">    t3.CHANNEL_NAME,</span><br><span class="line">    t3.CHANNEL_ID,</span><br><span class="line">    t3.CHANNEL_SUB_CODE,</span><br><span class="line">    t3.CHANNEL_SUB_TYPE,</span><br><span class="line">    t4.FRIST_CHANNEL,</span><br><span class="line">    t4.SECOND_CHANNEL,</span><br><span class="line">    t4.thrid_channel</span><br><span class="line">  <span class="keyword">from</span> (</span><br><span class="line">      <span class="keyword">SELECT</span></span><br><span class="line">          t1.PRODUCT_CHANNEL_CODE,</span><br><span class="line">          t1.MAIN_PROJECT_NAME ,</span><br><span class="line">          t1.MAIN_PROJECT_CODE ,</span><br><span class="line">          t1.SUB_PROJECT_NAME,</span><br><span class="line">          t1.SUB_PROJECT_CODE,</span><br><span class="line">          t1.CHANNEL_TYPE,</span><br><span class="line">          t1.CHANNEL_NAME,</span><br><span class="line">          t1.CHANNEL_ID,</span><br><span class="line">          t2.CHANNEL_SUB_CODE,</span><br><span class="line">          t2.CHANNEL_SUB_TYPE</span><br><span class="line">      <span class="keyword">FROM</span></span><br><span class="line">          qd_dz_db.qd_prochannel t1</span><br><span class="line">      <span class="keyword">left</span> <span class="keyword">join</span></span><br><span class="line">          qd_channel t2</span><br><span class="line">      <span class="keyword">on</span> t1.CHANNEL_ID<span class="operator">=</span>t2.CHANNEL_ID</span><br><span class="line">  ) t3</span><br><span class="line">  <span class="keyword">join</span></span><br><span class="line">  (</span><br><span class="line">      <span class="keyword">SELECT</span></span><br><span class="line">          a.PRODUCT_CHANNEL_CODE,</span><br><span class="line">          b.FRIST_CHANNEL,</span><br><span class="line">          b.SECOND_CHANNEL,</span><br><span class="line">          b.THIRD_CHANNEL <span class="keyword">AS</span> thrid_channel</span><br><span class="line">      <span class="keyword">FROM</span></span><br><span class="line">          qd_dz_db.qd_prochannel a</span><br><span class="line">      <span class="keyword">JOIN</span></span><br><span class="line">          qd_dz_db.qd_channel b</span><br><span class="line">      <span class="keyword">ON</span> a.CHANNEL_ID <span class="operator">=</span> b.CHANNEL_ID</span><br><span class="line">  )t4</span><br><span class="line">  <span class="keyword">on</span> t3.PRODUCT_CHANNEL_CODE<span class="operator">=</span>t4.PRODUCT_CHANNEL_CODE</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>select_type</th>
+<th>table</th>
+<th>partitions</th>
+<th>type</th>
+<th>possible_keys</th>
+<th>key</th>
+<th>key_len</th>
+<th>ref</th>
+<th>rows</th>
+<th>filtered</th>
+<th>Extra</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>SIMPLE</td>
+<td>b</td>
+<td>null</td>
+<td>ALL</td>
+<td>PRIMARY,index_qd_channel</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>212</td>
+<td>100.0</td>
+<td>null</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SIMPLE</td>
+<td>a</td>
+<td>null</td>
+<td>ref</td>
+<td>index_qd_prochannel</td>
+<td>index_qd_prochannel</td>
+<td>4</td>
+<td>qd_dz_db.b.CHANNEL_ID</td>
+<td>43</td>
+<td>100.0</td>
+<td>null</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SIMPLE</td>
+<td>t1</td>
+<td>null</td>
+<td>ALL</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>56367</td>
+<td>10.0</td>
+<td>Using where; Using join buffer (Block Nested Loop)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SIMPLE</td>
+<td>t2</td>
+<td>null</td>
+<td>eq_ref</td>
+<td>PRIMARY,index_qd_channel</td>
+<td>PRIMARY</td>
+<td>4</td>
+<td>qd_dz_db.t1.CHANNEL_ID</td>
+<td>1</td>
+<td>100.0</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> index <span class="keyword">from</span> qd_prochannel</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Non_unique</th>
+<th>Key_name</th>
+<th>Seq_in_index</th>
+<th>Column_name</th>
+<th>Collation</th>
+<th>Cardinality</th>
+<th>Sub_part</th>
+<th>Packed</th>
+<th>Null</th>
+<th>Index_type</th>
+<th>CommentIndex_comment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>qd_prochannel</td>
+<td>0</td>
+<td>PRIMARY</td>
+<td>1</td>
+<td>PR_CHANNEL_ID</td>
+<td>A</td>
+<td>56367</td>
+<td>null</td>
+<td>null</td>
+<td></td>
+<td>BTREE</td>
+<td></td>
+</tr>
+<tr>
+<td>qd_prochannel</td>
+<td>1</td>
+<td>index_qd_prochannel</td>
+<td>1</td>
+<td>CHANNEL_ID</td>
+<td>A</td>
+<td>1311</td>
+<td>null</td>
+<td>null</td>
+<td></td>
+<td>BTREE</td>
+<td></td>
+</tr>
+<tr>
+<td>qd_prochannel</td>
+<td>1</td>
+<td>index_qd_prochannel</td>
+<td>2</td>
+<td>MAIN_PROJECT_CODE</td>
+<td>A</td>
+<td>3316</td>
+<td>null</td>
+<td>null</td>
+<td>YES</td>
+<td>BTREE</td>
+<td></td>
+</tr>
+<tr>
+<td>qd_prochannel</td>
+<td>1</td>
+<td>index_qd_prochannel</td>
+<td>3</td>
+<td>CREATE_TIME</td>
+<td>A</td>
+<td>14092</td>
+<td>null</td>
+<td>null</td>
+<td>YES</td>
+<td>BTREE</td>
+<td></td>
+</tr>
+<tr>
+<td>qd_prochannel</td>
+<td>1</td>
+<td>index_qd_prochannel_MAIN_PROJECT_CODE</td>
+<td>1</td>
+<td>MAIN_PROJECT_CODE</td>
+<td>A</td>
+<td>613</td>
+<td>null</td>
+<td>null</td>
+<td>YES</td>
+<td>BTREE</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> index <span class="keyword">from</span> qd_channel</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Non_unique</th>
+<th>Key_name</th>
+<th>Seq_in_index</th>
+<th>Column_name</th>
+<th>Collation</th>
+<th>Cardinality</th>
+<th>Sub_part</th>
+<th>Packed</th>
+<th>Null</th>
+<th>Index_type</th>
+<th>Comment Index_comment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>qd_channel</td>
+<td>0</td>
+<td>PRIMARY</td>
+<td>1</td>
+<td>CHANNEL_ID</td>
+<td>A</td>
+<td>212</td>
+<td>null</td>
+<td>null</td>
+<td></td>
+<td>BTREE</td>
+<td></td>
+</tr>
+<tr>
+<td>qd_channel</td>
+<td>1</td>
+<td>index_qd_channel</td>
+<td>1</td>
+<td>CHANNEL_ID</td>
+<td>A</td>
+<td>212</td>
+<td>null</td>
+<td>null</td>
+<td></td>
+<td>BTREE</td>
+<td></td>
+</tr>
+<tr>
+<td>qd_channel</td>
+<td>1</td>
+<td>index_qd_channel</td>
+<td>2</td>
+<td>CHANNEL_CODE</td>
+<td>A</td>
+<td>212</td>
+<td>null</td>
+<td>null</td>
+<td>YES</td>
+<td>BTREE</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/database/MySQL/upsert/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/database/MySQL/upsert/" class="post-title-link" itemprop="url">MySQL upsert语法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="upsert-on-duplicate-key-update"><a href="#upsert-on-duplicate-key-update" class="headerlink" title="upsert: on duplicate key update"></a>upsert: on duplicate key update</h1><p><a href="https://www.cnblogs.com/better-farther-world2099/articles/11737376.html">MySQL upsert 语法</a></p>
+<h2 id="不能加-where-条件"><a href="#不能加-where-条件" class="headerlink" title="不能加 where 条件"></a>不能加 where 条件</h2><p>因为这是个插入语句，所以不能加 where 条件。</p>
+<h2 id="影响的行数"><a href="#影响的行数" class="headerlink" title="影响的行数"></a>影响的行数</h2><ul>
+<li>如果是插入操作，受到影响行的值为 1；</li>
+<li>如果更新操作，受到影响行的值为 2；</li>
+<li>如果更新的数据和已有的数据一样（就相当于没变，所有值保持不变），受到影响的行的值为 0。</li>
+</ul>
+<h2 id="样例一"><a href="#样例一" class="headerlink" title="样例一"></a>样例一</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&gt;</span> <span class="keyword">desc</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">-------|------|------|-----|---------|----------------|</span></span><br><span class="line"><span class="operator">|</span> Field <span class="operator">|</span> Type <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra          <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">-------|------|------|-----|---------|----------------|</span></span><br><span class="line"><span class="operator">|</span> f1    <span class="operator">|</span> <span class="type">int</span>  <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span>  <span class="operator">|</span> auto_increment <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> f2    <span class="operator">|</span> <span class="type">int</span>  <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span>  <span class="operator">|</span>                <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> f3    <span class="operator">|</span> <span class="type">int</span>  <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span>  <span class="operator">|</span>                <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">-------|------|------|-----|---------|----------------|</span></span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2     <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">insert into</span> t1(f1,f3) <span class="keyword">values</span> (<span class="number">1</span>,<span class="number">3</span>),(<span class="number">2</span>,<span class="number">7</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span> f3<span class="operator">=</span>f3<span class="operator">|</span><span class="number">1</span>;</span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected</span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2     <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span> <span class="operator">|</span> <span class="number">3</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span> <span class="operator">|</span> <span class="number">7</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">insert into</span> t1(f1,f3) <span class="keyword">values</span> (<span class="number">1</span>,<span class="number">3</span>),(<span class="number">2</span>,<span class="number">7</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span> f3<span class="operator">=</span>f3<span class="operator">|</span><span class="number">1</span>;</span><br><span class="line">Query OK, <span class="number">4</span> <span class="keyword">rows</span> affected</span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2     <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span> <span class="operator">|</span> <span class="number">4</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span> <span class="operator">|</span> <span class="number">8</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">insert into</span> t1(f1,f3) <span class="keyword">values</span> (<span class="number">1</span>,<span class="number">3</span>),(<span class="number">1</span>,<span class="number">7</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span> f3<span class="operator">=</span>f3<span class="operator">|</span><span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 同一行冲突两次，会执行两次更新语句</span></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2     <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span> <span class="operator">|</span> <span class="number">6</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span> <span class="operator">|</span> <span class="number">8</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2     <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span> <span class="operator">|</span> <span class="number">6</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="operator">&lt;</span><span class="keyword">null</span><span class="operator">&gt;</span> <span class="operator">|</span> <span class="number">8</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|--------|----|</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="VALUES-引用"><a href="#VALUES-引用" class="headerlink" title="VALUES 引用"></a>VALUES 引用</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&gt;</span> <span class="keyword">truncate</span> t1;</span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">INSERT INTO</span> t1 (f1,f2,f3) <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)  <span class="keyword">ON</span> DUPLICATE KEY <span class="keyword">UPDATE</span> f3<span class="operator">=</span><span class="keyword">VALUES</span>(f1)<span class="operator">|</span><span class="keyword">VALUES</span>(f2);</span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected</span><br><span class="line"><span class="type">Time</span>: <span class="number">0.003</span>s</span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="comment">-- 没有出现冲突，直接赋值</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2 <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="number">3</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">4</span>  <span class="operator">|</span> <span class="number">5</span>  <span class="operator">|</span> <span class="number">6</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br><span class="line"><span class="type">Time</span>: <span class="number">0.008</span>s</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 再执行一次，冲突了.执行冲突后的处理语句</span></span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">INSERT INTO</span> t1 (f1,f2,f3) <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)  <span class="keyword">ON</span> DUPLICATE KEY <span class="keyword">UPDATE</span> f3<span class="operator">=</span><span class="keyword">VALUES</span>(f1)<span class="operator">|</span><span class="keyword">VALUES</span>(f2);</span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected</span><br><span class="line"><span class="type">Time</span>: <span class="number">0.002</span>s</span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2 <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="number">3</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">4</span>  <span class="operator">|</span> <span class="number">5</span>  <span class="operator">|</span> <span class="number">9</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br><span class="line"><span class="type">Time</span>: <span class="number">0.008</span>s</span><br></pre></td></tr></table></figure>
+
+<h2 id="ALAIS-引用"><a href="#ALAIS-引用" class="headerlink" title="ALAIS 引用"></a>ALAIS 引用</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&gt;</span> <span class="keyword">truncate</span> <span class="keyword">table</span> t1;</span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">INSERT INTO</span> t1 (f1,f2,f3) <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>) <span class="keyword">AS</span> <span class="keyword">new</span>  <span class="keyword">ON</span> DUPLICATE KEY <span class="keyword">UPDATE</span> f3 <span class="operator">=</span> new.f1<span class="operator">|</span>new.f2;</span><br><span class="line"><span class="comment">-- 空表没有冲突，直接添加了</span></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2 <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="number">3</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">4</span>  <span class="operator">|</span> <span class="number">5</span>  <span class="operator">|</span> <span class="number">6</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br><span class="line"><span class="type">Time</span>: <span class="number">0.008</span>s</span><br><span class="line"><span class="comment">-- 再来</span></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">INSERT INTO</span> t1 (f1,f2,f3) <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>) <span class="keyword">AS</span> <span class="keyword">new</span>  <span class="keyword">ON</span> DUPLICATE KEY <span class="keyword">UPDATE</span> f3 <span class="operator">=</span> new.f1<span class="operator">|</span>new.f2;</span><br><span class="line"><span class="comment">-- 出现冲突了, 两行更新</span></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2 <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="number">3</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">4</span>  <span class="operator">|</span> <span class="number">5</span>  <span class="operator">|</span> <span class="number">9</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br></pre></td></tr></table></figure>
+
+<p>等价写法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT INTO</span> t1 (f1,f2,f3) <span class="keyword">VALUES</span> (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>) <span class="keyword">AS</span> <span class="keyword">new</span>(m,n,p)</span><br><span class="line">  <span class="keyword">ON</span> DUPLICATE KEY <span class="keyword">UPDATE</span> c <span class="operator">=</span> m<span class="operator">|</span>n;</span><br><span class="line"><span class="keyword">INSERT INTO</span> t1 <span class="keyword">SET</span> f1<span class="operator">=</span><span class="number">1</span>,f2<span class="operator">=</span><span class="number">2</span>,f3<span class="operator">=</span><span class="number">3</span> <span class="keyword">AS</span> <span class="keyword">new</span></span><br><span class="line">  <span class="keyword">ON</span> DUPLICATE KEY <span class="keyword">UPDATE</span> c <span class="operator">=</span> new.a<span class="operator">|</span>new.b;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT INTO</span> t1 <span class="keyword">SET</span> f1<span class="operator">=</span><span class="number">1</span>,f2<span class="operator">=</span><span class="number">2</span>,f3<span class="operator">=</span><span class="number">3</span> <span class="keyword">AS</span> <span class="keyword">new</span>(m,n,p)</span><br><span class="line">  <span class="keyword">ON</span> DUPLICATE KEY <span class="keyword">UPDATE</span> c <span class="operator">=</span> m<span class="operator">|</span>n;</span><br></pre></td></tr></table></figure>
+
+<h2 id="UNION-引用"><a href="#UNION-引用" class="headerlink" title="UNION 引用"></a>UNION 引用</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT INTO</span> t1 (f1, f2)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span></span><br><span class="line">  (<span class="keyword">SELECT</span> c, d <span class="keyword">FROM</span> t2</span><br><span class="line">   <span class="keyword">UNION</span></span><br><span class="line">   <span class="keyword">SELECT</span> e, f <span class="keyword">FROM</span> t3) <span class="keyword">AS</span> dt</span><br><span class="line"><span class="keyword">ON</span> DUPLICATE KEY <span class="keyword">UPDATE</span> f2 <span class="operator">=</span> f2 <span class="operator">|</span> f3;</span><br></pre></td></tr></table></figure>
+
+<h2 id="key-自增情况"><a href="#key-自增情况" class="headerlink" title="key 自增情况"></a>key 自增情况</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">&gt;</span> <span class="keyword">truncate</span> <span class="keyword">table</span> t1;</span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2 <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">insert into</span> t1(f2,f3) <span class="keyword">values</span> (<span class="number">1</span>,<span class="number">3</span>),(<span class="number">1</span>,<span class="number">7</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span> f3<span class="operator">=</span>f2<span class="operator">|</span>f3;</span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected</span><br><span class="line"><span class="type">Time</span>: <span class="number">0.002</span>s</span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">insert into</span> t1(f2,f3) <span class="keyword">values</span> (<span class="number">1</span>,<span class="number">3</span>),(<span class="number">1</span>,<span class="number">7</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span> f3<span class="operator">=</span>f2<span class="operator">|</span>f3;</span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected</span><br><span class="line"><span class="type">Time</span>: <span class="number">0.002</span>s</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 不存在主键冲突，连续可以插入两次</span></span><br><span class="line"></span><br><span class="line"><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1;</span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> f1 <span class="operator">|</span> f2 <span class="operator">|</span> f3 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">3</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">2</span>  <span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">7</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">3</span>  <span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">3</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">4</span>  <span class="operator">|</span> <span class="number">1</span>  <span class="operator">|</span> <span class="number">7</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span><span class="comment">----|----|----|</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="同一个表有多个unique-index会出现冲突"><a href="#同一个表有多个unique-index会出现冲突" class="headerlink" title="同一个表有多个unique index会出现冲突"></a>同一个表有多个unique index会出现冲突</h3><p>on duplicate key 可以设置多余字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> `duplication_key` (</span><br><span class="line">`f1` <span class="type">int</span> <span class="keyword">NOT NULL</span>,</span><br><span class="line">`f2` <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`f3` <span class="type">bigint</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">`f4` <span class="type">decimal</span>(<span class="number">10</span>, <span class="number">0</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY KEY</span> (`f1`),</span><br><span class="line"><span class="keyword">UNIQUE</span> KEY `f2_f3` (`f2`, `f3`)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>f1</th>
+<th>f2</th>
+<th>f3</th>
+<th>f4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<h4 id="验证primary-key冲突情况"><a href="#验证primary-key冲突情况" class="headerlink" title="验证primary key冲突情况"></a>验证primary key冲突情况</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert into</span> duplication_key</span><br><span class="line"><span class="keyword">values</span>(<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;20&#x27;</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span></span><br><span class="line">`f1`<span class="operator">=</span><span class="keyword">VALUES</span>(`f1`),</span><br><span class="line">`f2`<span class="operator">=</span><span class="keyword">VALUES</span>(`f2`),</span><br><span class="line">`f3`<span class="operator">=</span><span class="keyword">VALUES</span>(`f3`),</span><br><span class="line">`f4`<span class="operator">=</span><span class="keyword">VALUES</span>(`f4`);</span><br></pre></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>f1</th>
+<th>f2</th>
+<th>f3</th>
+<th>f4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>20</td>
+</tr>
+</tbody></table>
+<p>f1是主键，出现冲突，更新数据</p>
+<h4 id="验证唯一index冲突情况"><a href="#验证唯一index冲突情况" class="headerlink" title="验证唯一index冲突情况"></a>验证唯一index冲突情况</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert into</span> duplication_key</span><br><span class="line"><span class="keyword">values</span>(<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;30&#x27;</span>) <span class="keyword">on</span> duplicate key <span class="keyword">update</span></span><br><span class="line">`f1`<span class="operator">=</span><span class="keyword">VALUES</span>(`f1`),</span><br><span class="line">`f2`<span class="operator">=</span><span class="keyword">VALUES</span>(`f2`),</span><br><span class="line">`f3`<span class="operator">=</span><span class="keyword">VALUES</span>(`f3`),</span><br><span class="line">`f4`<span class="operator">=</span><span class="keyword">VALUES</span>(`f4`);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>f1</th>
+<th>f2</th>
+<th>f3</th>
+<th>f4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>30</td>
+</tr>
+</tbody></table>
+<p>只要有一个冲突就会出现更新</p>
+<p>如果同一张表使用不同的unique key来更新数据，那么会出现错误更新问题</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/actions/%E5%AE%9E%E6%97%B6%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/actions/%E5%AE%9E%E6%97%B6%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F/" class="post-title-link" itemprop="url">实时用户画像</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="实时用户画像"><a href="#实时用户画像" class="headerlink" title="实时用户画像"></a>实时用户画像</h1><h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>企业面对不断增加的海量信息，其信息筛选和处理效率低下的困扰与日俱增。由于用户营销不够细化，企业App 中许多不合时宜或不合偏好的消息推送很大程度上影响了用户体验，甚至引发了用户流失</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/actions/FrundDetectedSystem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/actions/FrundDetectedSystem/" class="post-title-link" itemprop="url">Flink 实时规则引擎实现与应用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Flink-实时规则引擎实现与应用"><a href="#Flink-实时规则引擎实现与应用" class="headerlink" title="Flink 实时规则引擎实现与应用"></a>Flink 实时规则引擎实现与应用</h1><p>Rule engine</p>
+<p>欺诈检测<br>实时标签工厂<br>ABT<br>CEP有什么问题？</p>
+<p>Frund detected system</p>
+<p>秒级规则生效<br>自定义分发，运行时动态切换<br>自定义窗口<br>实时多维聚合</p>
+<p>样例:</p>
+<ol>
+<li>欺诈检测: 同一个用户连续往两一个账户三天内连续支付超过</li>
+<li>实时标签工厂: 标签-用户近三十天访问次数、近三十天访问某个页面的次数</li>
+<li>ABT</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/actions/%E6%AC%BA%E8%AF%88%E6%A3%80%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/actions/%E6%AC%BA%E8%AF%88%E6%A3%80%E6%B5%8B/" class="post-title-link" itemprop="url">Flink欺诈检测</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Flink-fraud-detect"><a href="#Flink-fraud-detect" class="headerlink" title="Flink fraud detect"></a>Flink fraud detect</h1><p><a href="https://github.com/afedulov/fraud-detection-demo">https://github.com/afedulov/fraud-detection-demo</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DataStream</span>&lt;Transaction&gt; <span class="variable">transactions</span> <span class="operator">=</span> getTransactionsStream(env);</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;Rule&gt; <span class="variable">rulesUpdateStream</span> <span class="operator">=</span>;</span><br><span class="line"><span class="type">BroadcastStream</span>&lt;Rule&gt; <span class="variable">rulesStream</span> <span class="operator">=</span> rulesUpdateStream.broadcast(Descriptors.rulesDescriptor);</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;Alert&gt; <span class="variable">alerts</span> <span class="operator">=</span></span><br><span class="line">        transactions</span><br><span class="line">            .connect(rulesStream)</span><br><span class="line">            .process(<span class="keyword">new</span> <span class="title class_">DynamicKeyFunction</span>())</span><br><span class="line">            .uid(<span class="string">&quot;DynamicKeyFunction&quot;</span>)</span><br><span class="line">            .name(<span class="string">&quot;Dynamic Partitioning Function&quot;</span>)</span><br><span class="line">            .keyBy((keyed) -&gt; keyed.getKey())</span><br><span class="line">            .connect(rulesStream)</span><br><span class="line">            .process(<span class="keyword">new</span> <span class="title class_">DynamicAlertFunction</span>())</span><br><span class="line">            .uid(<span class="string">&quot;DynamicAlertFunction&quot;</span>)</span><br><span class="line">            .name(<span class="string">&quot;Dynamic Rule Evaluation Function&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>metric</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ruleCounterGauge = <span class="keyword">new</span> <span class="title class_">RuleCounterGauge</span>();</span><br><span class="line">getRuntimeContext().getMetricGroup().gauge(<span class="string">&quot;numberOfActiveRules&quot;</span>, ruleCounterGauge);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/actions/%E5%AE%9E%E6%97%B6%E5%8F%8D%E6%AC%BA%E8%AF%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/actions/%E5%AE%9E%E6%97%B6%E5%8F%8D%E6%AC%BA%E8%AF%88/" class="post-title-link" itemprop="url">玖富实时反欺诈</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="玖富实时反欺诈"><a href="#玖富实时反欺诈" class="headerlink" title="玖富实时反欺诈"></a>玖富实时反欺诈</h1><h2 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h2><ul>
+<li>低延迟</li>
+<li>大数据</li>
+<li>多维度</li>
+</ul>
+<p>系统获取用户产生数据最简单有效的方法就是流水式数据，单个数据包里包含了发生时间点的各个维度的所有信息量，这种场景的特性之一就是数据高并发，因此对时效要求比较高的数据分析来说是一个非常巨大的挑战</p>
+<blockquote>
+<p>在哪个场景下，实时宽表都是一个门槛</p>
+</blockquote>
+<ul>
+<li><p>高并发</p>
+</li>
+<li><p>规则实时下发</p>
+</li>
+</ul>
+<p>数据加工提速</p>
+<p>在大量数据中做快速预查，利用Flink并发能力进行数据覆盖，最后在缓存里命中结果，从而不必重新进行网络I&#x2F;O 查询、等待返回的过程。经过部分计算框架升级，最终系统实现了p99 延迟由1s 降为100ms 的优化</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/ETL/Kettle/Kettle-JavaNode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/ETL/Kettle/Kettle-JavaNode/" class="post-title-link" itemprop="url">Kettle中的Java节点与代码生成</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Kettle中Java节点生成"><a href="#Kettle中Java节点生成" class="headerlink" title="Kettle中Java节点生成"></a>Kettle中Java节点生成</h1><p><img src="/images/bigdata/ETL/Kettle/kettle_demo.jpg" alt="Pentaho – Kettle | TechBI - Business Intelligence"></p>
+<p>一、问题背景</p>
+<p>现有的Transformer无法满足需求，需要购买第三方插件、开发插件、自定义Java类等办法，自定义Java类，因其代价小且门槛较低而成为最为常用的定制方法。</p>
+<p>二、原理剖析</p>
+<p>Kettle转换的核心对象&#x2F;脚本类别，属于典型的需要编程基础才能掌控的Transformer类型。而Java代码Transformer，适用于熟悉Java语言的开发人员，用好这个Transformer，需要对类、接口、多线程等语言相关知识有所掌握，并且需要对Kettle的基础框架有所理解。</p>
+<p>Kettle转换的执行，有以下三个核心的生命周期节点：</p>
+<p>1、初始化</p>
+<p>Kettle转换在执行前，会有一个各Transformer的初始化动作，为Transformer执行前的准备工作创造机会。为提高初始化的性能，Kettle为每个Transformer启用一个初始化线程，从而并行完成所有Transformer的初始化。初始化的主要内容就是调用一次Transformer的以下方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">init</span><span class="params">( StepMetaInterface meta, StepDataInterfacedata)</span></span><br></pre></td></tr></table></figure>
+
+<p>此方法包含两个参数。其中，meta为元数据，data为数据。如果返回true，那么代表初始化成功，否则代表初始化失败。任何一个Transformer初始化失败，都会导致整个转换停止执行（在停止前，会调用每一个转换的资源释放方法dispose）。</p>
+<p>2、执行</p>
+<p>执行阶段是每一个Transformer实现特定价值的时候。为提高效率，Kettle为每一个Transformer单独启动一个工作线程来执行任务。Java程序员都了解，线程的核心代码是覆盖run方法。为简化起见，我将不重要的代码删除，得到工作线程run方法核心代码：</p>
+<p><img src="/images/bigdata/ETL/Kettle/bf545e9e617f44cfb6076be97db14c33.png" alt="img"></p>
+<p>可以看出，线程一直在执行Transformer的processRow方法，直到出现以下情况之一：</p>
+<p>· processRow方法返回false</p>
+<p>· isStopped方法返回true</p>
+<p>· processRow方法执行过程中出现异常，</p>
+<p>其中，第一种情况代表工作已经正常完成；第二种情况，代表Transformer被强制停止；第三种情况，代表执行过程中出现错误，Kettle将调用stopAll方法，从而导致整个转换的所有工作线程停止执行。</p>
+<p>执行方法的声明如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">processRow</span><span class="params">( StepMetaInterface meta,StepDataInterfacedata )</span> <span class="keyword">throws</span> KettleException;</span><br></pre></td></tr></table></figure>
+
+<p>每一个Transformer，都会在processRow方法中各显神通。一般的过程是，从输入行集中拿出一行，进行特定处理，然后将新的行放入输出行集中。从输入行集中取数据可以调用getRow方法。如果getRow方法返回值不为null，则Transformer应将该行数据进行处理，并调用putRow方法将处理结果存入输出行集，然后返回true，以继续为下一行输入数据处理提供机会。如果getRow方法返回null，代表输入行集已经处理完毕，这时可以调用setOutputDone，标识本Transformer执行完毕，并返回false，以结束本工作线程的执行。</p>
+<p>3、资源释放</p>
+<p>从上述工作线程的核心代码可以看出，不管工作线程是正常执行完毕还是异常执行完毕，最终会调用dispose方法。该方法声明如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void dispose( StepMetaInterface meta, StepDataInterfacedata);</span><br></pre></td></tr></table></figure>
+
+<p>Transformer应该在需要时覆盖此方法，并释放相关资源。</p>
+<p>了解上述原理后，撰写Java类Transformer中的代码时将胸有成竹。综上所述，一般情况下重写processRow方法即可满足需求，如果用到了一些重量级的资源，最好在init方法中初始化，并在dispose方法中释放。</p>
+<p>由于Kettle使用Janino框架为自定义Java转换Transformer类动态定义了类名，并指定父类为TransformClassBase，所以在撰写代码时，只需要提供类的内容即可，无需class声明。</p>
+<p>既然自动建立了父类，那么父类的成员、方法都可以在代码中重用。父类常用的成员包括以下三个实例：</p>
+<p>parent：代表容器对象</p>
+<p>meta：代表容器元数据对象</p>
+<p>data：代表容器数据对象</p>
+<p>常用的方法包括：</p>
+<p>getRow：从输入行集中取一行数据</p>
+<p>putRow：存银行数据到输出行集</p>
+<p>stopAll：停止所有工作线程</p>
+<p>setOutputDone：标记本Transformer工作完成</p>
+<p>logBasic：输出基本日志</p>
+<p>logError：输出错误日志</p>
+<p>getInputRowMeta：得到输入行的元数据</p>
+<p>createOutputRow：创建一个输出行数据</p>
+<p>其实，常用的方法（如下图1所示），基本上都在Transformer属性对话框左侧Code Snippits中。一般情况下，可以双击其中的Main节点，从processRow方法的重写开始，需要其他代码时，在左侧找到对应代码块，双击即可加入。</p>
+<p><img src="/images/bigdata/ETL/Kettle/0c02af73c63443a5bb3b644be86f16bc.png" alt="img"></p>
+<p>三、案例分享</p>
+<p>本文使用一个Kettle集成JMS的案例来进行实战演练。假设需要两个转换：一个转换名为Send，实现从文本文件输入流读取数据，并发送到ActiveMQ的队列；另外一个转换名为Receive，实现从队列读取数据，并发送到文本文件输出流。两个转换截图如下：</p>
+<p><img src="/images/bigdata/ETL/Kettle/e127ebb6b4f543ba9bb7e41323752827.png" alt="img"></p>
+<p>由于两个转换中用到的文本文件输入、输出都非常简单，这里只做简单描述。Send转换中，S01读取本地文本文件，包含两个String类型的字段ID、MENU_NAME。Receive转换中，S02输出文件到转换所在目录，仅包含一个名为MENU_NAME的String类型字段。</p>
+<p>下文着重描述两个Java代码Transformer。第一个Transformer是Send转换中的S02，其主要代码注释如下：</p>
+<p><img src="/images/bigdata/ETL/Kettle/00f6d1eeaf2e4143b460b9213bde16b7.png" alt="img"></p>
+<p>第二个Transformer是Receive转换中的S01Transformer。主要代码注释如下：</p>
+<p><img src="/images/bigdata/ETL/Kettle/66f7355876924583aaf097725a4d7b97.png" alt="img"></p>
+<p>注意，由于本文使用了ActiveMQ作为JMS服务器，所以为保证实例能够正常运行，需要自行下载服务器安装程序，并将对应jar文件拷贝到Kettle的lib目录下（本例使用activemq-all-5.8.0.jar）。代码中，需要的import指令如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util. * ;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Connection;</span><br><span class="line"><span class="keyword">import</span> javax.jms.ConnectionFactory;</span><br><span class="line"><span class="keyword">import</span> javax.jms.DeliveryMode;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Destination;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MapMessage;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MessageProducer;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Session;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnection;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>四、总结</p>
+<p>本文在具备程序员背景知识的数据工程师在运用Kettle进行定制开发时，可以参考。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/lambda_VS_kappa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/lambda_VS_kappa/" class="post-title-link" itemprop="url">Kappa架构原文《质疑Lambda架构》解读</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-26T00:00:00+00:00">2019-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Kappa架构，是Jay Kreps在2014年提出的，其<a href="https://www.oreilly.com/radar/questioning-the-lambda-architecture/">原文：《质疑Lambda架构》</a>如下:</p>
+<p>Nathan Marz写了一篇受欢迎的博客文章，描述了他称之为<code>Lambda架构</code>（<a href="http://nathanmarz.com/blog/how-to-beat-the-cap-theorem.html">如何击败CAP定理）</a>的想法。Lambda架构是一种在MapReduce和<a href="http://storm.incubator.apache.org/">Storm</a>或类似系统上构建流处理应用程序的方法。事实证明，这是一个出人意料的流行想法，有一个专门<a href="http://lambda-architecture.net/">的网站</a>和<a href="http://www.manning.com/marz/">即将初版的书</a>。由于我一直在使用<a href="http://kafka.apache.org/">Kafka</a>和<a href="http://samza.incubator.apache.org/">Samza</a>在LinkedIn参与构建实时数据处理基础设施，经常被问及Lambda架构。我想描述我的想法和经历。</p>
+<h2 id="0-1-什么是Lambda架构，如何成为Lambda架构？"><a href="#0-1-什么是Lambda架构，如何成为Lambda架构？" class="headerlink" title="0.1 什么是Lambda架构，如何成为Lambda架构？"></a>0.1 什么是Lambda架构，如何成为Lambda架构？</h2><p>Lambda架构看起来像这样：</p>
+<p><img src="/images/bigdata/lambda-16338c9225c8e6b0c33a3f953133a4cb.png" alt="Lambda架构"></p>
+<p>Lambda架构的工作方法是捕获不可变的记录序列，同时输入批处理系统和流处理系统。需要分别实现批系统和流系统的计算逻辑，在查询时将批和流的计算结果组合成完整的结果。</p>
+<p>Lambda架构有很多变体，我有意的简化一下。例如，你可以在Kafka、Storm和Hadoop的各种类似系统中交换数据，人们经常使用两个不同的数据库来存储输出表，一个优化为实时，另一个优化为批量更新。</p>
+<p>Lambda架构的目标是围绕复杂的异步转换构建的应用程序，这些转换需要低延迟(比如，几秒到几小时)运行。一个很好的例子是新闻推荐系统，它需要抓取各种新闻源，处理并规范化所有输入，然后对其进行索引、排序和存储以供服务。</p>
+<p>Lambda架构针对围绕复杂的异步转换构建的应用程序，这些转换需要以低延迟运行（例如，几秒钟到几个小时）。一个很好的例子是新闻推荐系统，该系统需要抓取各种新闻来源，处理和格式化所有输入，然后对其进行索引、排名和存储以供服务。</p>
+<p>我在LinkedIn参与建立了许多实时数据系统和管道。其中有些就是这种风格，但经过深思熟虑，这并不是我最喜欢的方法。我认为有必要描述一下这个架构的优点和缺点，并给出一个我更喜欢的选择。</p>
+<h2 id="0-2-Lambda架构的优点"><a href="#0-2-Lambda架构的优点" class="headerlink" title="0.2 Lambda架构的优点"></a>0.2 Lambda架构的优点</h2><p><strong>数据不可变</strong></p>
+<p>Lambda架构强调保持输入数据不变。将数据转换建模为从原始输入开始的一系列物化步骤是有很多优点的。这也是大型MapReduce工作流易于处理的原因之一，因为它使您能够独立调试每个阶段。我认为这一思想可以很好地应用到流处理领域。我<a href="http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying">在这里</a>写过一些关于捕获和转换不可变数据流的想法。</p>
+<p><strong>支持重新计算</strong></p>
+<p>这个体系结构突出了<strong>重新计算</strong>的问题。重新计算是流处理的关键挑战之一，但经常被忽略。通过“<strong>重新计算</strong>”，再次处理输入数据以修正结果。这是一个完全明显但经常被忽视的要求。代码逻辑不可避免的修改。所以，如果您有从输入流中派生输出数据的代码，则每当代码更改时，都需要重新计算输出以查看更改的效果。</p>
+<p><strong>代码逻辑修改</strong></p>
+<p>随着业务的发展，需要增加新的字段或删掉不需要的字段，或者修复发现的bug。代码逻辑不可避免的修改。构建实时系统的人往往不考虑这一点，所以根本无法快速发展。因为Lambda架构方便的解决了重新计算的问题，是比较大的有点。</p>
+<p><strong>流处理也可以精确并强壮</strong></p>
+<p>Lambda架构的设计，认为流式计算本质上是近似处理且不强壮，比批处理更容易丢失数据。事实并非如此，虽然现在的流处理框架不如MapReduce成熟，但没有理由不能像批处理系统那样提供如此强大的语义保证。</p>
+<p><strong>击败CAP定理</strong></p>
+<p>Lambda架构可以权衡不同的数据系统的混合起来以某种方式“击败了CAP定理”。长话短说，虽然流处理中肯定有延迟&#x2F;可用性权衡，但Lambda架构是一个异步处理的架构，因此正在计算中的结果并不能马上与输入的数据保持一致，这并不能满足<a href="http://ferd.ca/beating-the-cap-theorem-checklist.html">CAP定理</a>。</p>
+<h2 id="0-3-Lambda架构的缺点"><a href="#0-3-Lambda架构的缺点" class="headerlink" title="0.3 Lambda架构的缺点"></a>0.3 Lambda架构的缺点</h2><p>Lambda架构的问题在于，维护两套在复杂的分布式系统的代码逻辑，并且无法解决。</p>
+<p>编写Storm和Hadoop等分布式框架的程序是很复杂的，并且代码嵌入到运行框架，导致实现Lamdba架构具有极高的复杂性。</p>
+<p>为什么不能改进流处理系统以处理在其目标域中设置的完整问题？一个提出的修复方法是具有抽象实时和批处理框架的语言或框架。您使用此更高级别的框架编写代码，然后将其“按住”到封面下的流处理或MapReduce。summingbird是一个这样做的框架。这绝对会使事情变得更好，但我认为它不解决问题。</p>
+<p>为什么不能改进流处理系统来处理其目标域中的完整问题集？解决这个问题的一个方法是在实时和批框架的基础上抽象出语言或框架。使用高级框架编写代码，然后它“向下编译”到的流处理或MapReduce。<a href="http://github.com/twitter/summingbird">Summingbird</a>是一个执行此操作的框架。这肯定会让事情变得更好一点，但它并不能解决问题。</p>
+<p>即使避免了两次编码，运行和调试两个系统的操作成本也很高。任何新的抽象层只适配了两个系统支持的功能。更糟糕的是，对于这个新框架，将会无法兼容Hadoop如此强大的丰富的工具和语言生态系统（Hive、Pig、Crunch、Cascading、Oozie等）。</p>
+<p>打个比方，跨数据库的ORM实现真正透明是臭名昭著的困难。而这还只是在类似的系统上和相近的标准接口语言上进行抽象。如果要在几乎不稳定的分布式系统之上抽象化完全不同的编程范式的问题要困难得多。</p>
+<h2 id="0-4-我们的尝试"><a href="#0-4-我们的尝试" class="headerlink" title="0.4 我们的尝试"></a>0.4 我们的尝试</h2><p>在LinkedIn上进行了几轮这样的尝试。构建了各种混合Hadoop架构，甚至是一个特定于域的API，允许代码在实时或Hadoop上“透明”的运行。这些方法奏效了，但没有一种方法非常愉快或富有成效。让代码在两个不同的系统中完美同步是非常非常困难的。旨在隐藏底层框架的API被证明是最泄露的抽象，最终还是需要深入的了解实时层和Hadoop。并且还附加了新的要求，当您调试问题或试图解释性能时，需要了解API将如何转换为这些底层系统</p>
+<p>我的建议是：如果对延迟不敏感，请使用MapReduce等批处理框架；如果对延迟敏感，请使用流处理框架；但除非您绝对必须，否则不要同时尝试同时进行这两种处理。</p>
+<p>那么，为什么Lambda架构令人兴奋呢？我认为原因是人们越来越需要构建复杂、低延迟的处理系统。他们拥有的两个不能完全解决他们的问题：可扩展高延迟的批处理系统可以处理历史数据和低延迟流处理系统无法重新计算。通过将这两样东西粘在一起，它们实际上可以构建一个工作解决方案。</p>
+<p>从这个意义上说，尽管Lambda架构可能会很痛苦，但解决了一个被普遍忽视的重要问题。但我不认为这是大数据的新范式或未来。它只是受限于现成工具的临时状态。我也认为有更好的选择。</p>
+<h2 id="0-5-Kappa架构"><a href="#0-5-Kappa架构" class="headerlink" title="0.5 Kappa架构"></a>0.5 Kappa架构</h2><p>作为设计基础架构的人，我认为最明显的问题是：为什么不能改进流处理系统以处理其目标域中设置的完整问题？你为什么需要粘在另一个系统上？为什么不能进行实时处理并在代码更改时支持重新计算？流处理系统已经存在并行性的概念; 为什么不仅仅通过增加并行性和重放历史数据来处理重新计算，非常快，非常快？答案是您可以执行此操作，如果您今天正在建立这种类型的系统，我认为这实际上是一个合理的替代架构。</p>
+<p>当我与人们讨论这个问题时，他们有时会告诉我，流处理不适合历史数据的高吞吐量处理。但我认为这是一种直觉，主要基于他们使用的系统的局限性，这些系统要么规模差，要么无法保存历史数据。这让他们感到，流处理系统本质上是计算一些短暂流的结果，然后扔掉所有底层数据的东西。但这是没有理由应该如此。流处理的基本抽象是数据流DAG，它们与传统数据仓库（<a href="http://paperhub.s3.amazonaws.com/dace52a42c07f7f8348b08dc2b186061.pdf">火山</a>）中的基本抽象完全相同，也是MapReduce继任<a href="http://hortonworks.com/hadoop/tez/">Tez</a>的基本抽象。流处理只是该数据流模型的推广，它向最终用户公开中间结果和持续输出的Checkpoint。</p>
+<p>那么，我们如何直接从我们的流处理工作中进行后处理呢？我更喜欢的方法实际上是愚蠢的简单：</p>
+<ol>
+<li>使用Kafka或其他系统，允许您保留您想要重新处理的数据的完整日志，并允许多个订阅者。例如，如果您想重新处理长达30天的数据，请将您在Kafka中的保留时间设置为30天。</li>
+<li>当您想进行后处理时，请启动流处理作业的第二个实例，该实例从保留数据的开头开始处理，但将此输出数据定向到新的输出表。</li>
+<li>当第二个作业赶上时，切换应用程序以从新表读取。</li>
+<li>停止旧版本的作业，并删除旧的输出表。</li>
+</ol>
+<p>这个架构看起来像这样：</p>
+<p><img src="/images/bigdata/kappa-61d0afc292912b61ce62517fa2bd4309.png" alt="卡帕"></p>
+<p>与Lambda架构不同，在这种方法中，您只在代码更改时进行重新计算，并且实际上也需要重新计算结果。当然，重新计算的工作只是同一代码的改进版本，在同一框架上运行，使用相同的输入数据。当然，您会想在重新处理任务中增加并行性，以便它很快就能完成。</p>
+<p>也许我们可以称之为Kappa架构，尽管这个想法可能太简单了，不值得使用希腊字母。</p>
+<p>当然，可以进一步优化这一点。在许多情况下，您可以将两个输出表合并。然而，我认为两者在短期内都有一些好处。这允许您只需有一个按钮将应用程序重定向到旧表，即可立即恢复到旧逻辑。在特别重要的情况下（例如，您的广告定位标准），您可以使用自动A&#x2F;B测试或<a href="http://shop.oreilly.com/product/0636920027393.do">回溯算法</a>进行切换，以确保新代码的任何错误修复或代码改进都不会意外地与之前的版本相比降级。</p>
+<p>请注意，这并不意味着您的数据无法转到HDFS；它只是意味着您不会在那里运行后处理。Kafka与Hadoop集成良好，因此将任何Kafka Topic落库到HDFS中都很容易。Hadoop中中保存流处理作业的输出和中间流是非常有用的，可以用于Hive等工具中的分析或其他离线数据处理流的输入。</p>
+<p>我们<a href="http://samza.incubator.apache.org/learn/documentation/0.7.0/jobs/reprocessing.html">记录了</a>这种方法的实施，以及使用Samza的后处理架构的其他变体。</p>
+<h2 id="0-6-一些背景"><a href="#0-6-一些背景" class="headerlink" title="0.6 一些背景"></a>0.6 一些背景</h2><p>Kafka维护如下有序日志：</p>
+<p><img src="/images/bigdata/log-fa00884b8ef635ea9f32dc12180edd56.png" alt="Kafka_log"></p>
+<p>Kafka的Topic是这些日志的集合：</p>
+<p><img src="/images/bigdata/partitioned_log-c74280b2059abf3b78d9bbddd657e0d7.png" alt="partitioned_log"></p>
+<p>消费这些数据的流处理消费者只会维护一个“offset”，这是它在每个分区上处理的上一次记录的日志条目号。因此，更改消费者返回和重新处理数据的位置就像用不同的偏移量重新启动作业一样简单。为同一数据添加第二个消费者只是另一个指向日志中不同位置的读者。</p>
+<p>Kafka支持复制和容错，在廉价的硬件上运行，并每台机器存储许多TB的数据是很轻松的。因此，保留大量数据是一件非常自然和经济的事情，不会损害性能。LinkedIn在线存储了超过兆字节的Kafka存储空间，许多应用程序正好为此目的很好地利用了这种长期保留模式。</p>
+<p>廉价的消费者和保留大量数据的能力使添加第二个“重新计算”的作业只是启动代码的第二个实例，但从日志中的不同位置开始。</p>
+<p>这个设计不是偶然的。我们构建Kafka的目的是将其用作流处理的基础，我们完全想到了这种重新计算的模型。感兴趣的话，可以<a href="https://kafka.apache.org/documentation.html#introduction">在这里</a>找到更多关于Kafka的信息。</p>
+<p>然而，从根本上说，没有什么能将这个想法与Kafka联系起来。您可以替换任何支持长期保留有序数据的系统（例如HDFS或某种数据库）。事实上，许多人熟悉名为<a href="http://martinfowler.com/eaaDev/EventSourcing.html">事件采购</a>或<a href="http://martinfowler.com/bliki/CQRS.html">CQRS</a>的类似模式。当然，分布式数据库人员会告诉你，这只是对实例化视图维护的轻微重塑，正如他们很乐意提醒你的那样，他们<em>很久以前就</em>知道了*，索尼*。</p>
+<h2 id="0-7-Lambda架构与Kappa架构对比"><a href="#0-7-Lambda架构与Kappa架构对比" class="headerlink" title="0.7 Lambda架构与Kappa架构对比"></a>0.7 Lambda架构与Kappa架构对比</h2><p>我知道使用Samza作为流处理系统这种方法效果很好，因为LinkedIn是这样做的。但我不知道为什么它不应该在Storm或其他流处理系统中同样有效。我对Storm不够熟悉，无法了解实用性，所以如果其他人已经在这样做，我很乐意听到。无论如何，我认为一般想法是相当独立的。</p>
+<p>这两种方法之间的效率和资源权衡有点令人扫地。Lambda架构需要一直运行后处理和实时处理，而我提议的只是需要在您需要重新处理时运行作业的第二份副本。然而，我的提案要求在输出数据库中暂时拥有2倍的存储空间，并要求一个支持重装大批量写入的数据库。在这两种情况下，重新处理的额外负载可能会平均。如果您有很多这样的工作，它们不会同时进行重新处理，因此在包含数十个此类工作的共享集群上，您可能会为在任何给定时间积极重新处理的少数工作额外预算容量的一小部分。</p>
+<p>真正的优势根本不在于效率，而在于允许人们在单个处理框架上开发、测试、调试和操作他们的系统。因此，在简单性很重要的情况下，请将这种方法视为Lambda架构的替代方案。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

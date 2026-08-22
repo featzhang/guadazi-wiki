@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="CUDA Kernel 代码阅读能力一句话定位：不要求会写复杂 Kernel，但要能读懂三类最基础的代码——索引计算、边界判断、访存模式，这三点决定了一段 Kernel 是否正确、是否高效。 1. 全局索引计算：定位”我是谁”每个线程要先知道自己该处理数据的哪一部分，标准写法： 1int idx &#x3D; blockIdx.x * blockDim.x + threadIdx.x;   blockIdx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA Kernel 代码阅读能力">
+<meta property="og:url" content="http://yoursite.com/AI/systems/cuda-kernel-reading/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="CUDA Kernel 代码阅读能力一句话定位：不要求会写复杂 Kernel，但要能读懂三类最基础的代码——索引计算、边界判断、访存模式，这三点决定了一段 Kernel 是否正确、是否高效。 1. 全局索引计算：定位”我是谁”每个线程要先知道自己该处理数据的哪一部分，标准写法： 1int idx &#x3D; blockIdx.x * blockDim.x + threadIdx.x;   blockIdx">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T14:30:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.879Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="CUDA">
+<meta property="article:tag" content="GPU">
+<meta property="article:tag" content="Kernel">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/AI/systems/cuda-kernel-reading/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>CUDA Kernel 代码阅读能力 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/systems/cuda-kernel-reading/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CUDA Kernel 代码阅读能力
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 14:30:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T14:30:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="CUDA-Kernel-代码阅读能力"><a href="#CUDA-Kernel-代码阅读能力" class="headerlink" title="CUDA Kernel 代码阅读能力"></a>CUDA Kernel 代码阅读能力</h1><p>一句话定位：不要求会写复杂 Kernel，但要能读懂三类最基础的代码——<strong>索引计算、边界判断、访存模式</strong>，这三点决定了一段 Kernel 是否正确、是否高效。</p>
+<h2 id="1-全局索引计算：定位”我是谁”"><a href="#1-全局索引计算：定位”我是谁”" class="headerlink" title="1. 全局索引计算：定位”我是谁”"></a>1. 全局索引计算：定位”我是谁”</h2><p>每个线程要先知道自己该处理数据的哪一部分，标准写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int idx = blockIdx.x * blockDim.x + threadIdx.x;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>blockIdx.x</code>：当前线程所在的 Block 编号；<code>blockDim.x</code>：每个 Block 里的线程数；<code>threadIdx.x</code>：线程在 Block 内的局部编号。</li>
+<li>这行代码把”块内局部编号”转换成”全局唯一编号”，与大数据里”分区编号 × 分区大小 + 分区内偏移量 &#x3D; 全局偏移”的思路完全一致。</li>
+</ul>
+<h2 id="2-边界判断：防止越界访问"><a href="#2-边界判断：防止越界访问" class="headerlink" title="2. 边界判断：防止越界访问"></a>2. 边界判断：防止越界访问</h2><p>线程总数通常是 Block&#x2F;Thread 配置向上取整的结果，会超过实际数据长度，因此几乎每个 Kernel 都要有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (idx &lt; n) &#123;</span><br><span class="line">    // 实际计算逻辑</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>漏掉这行是最常见的越界访问 Bug 来源（读到脏数据或直接 crash）。</p>
+<h2 id="3-三段典型代码要读懂"><a href="#3-三段典型代码要读懂" class="headerlink" title="3. 三段典型代码要读懂"></a>3. 三段典型代码要读懂</h2><ul>
+<li><strong>向量加法</strong>（最简单）：每个线程处理一个元素，<code>c[idx] = a[idx] + b[idx]</code>，重点看索引计算与边界判断。</li>
+<li><strong>朴素矩阵乘</strong>：每个线程计算结果矩阵的一个元素，需要一个内层循环遍历公共维度；重点看二维索引 <code>row = blockIdx.y*blockDim.y+threadIdx.y</code>、<code>col = blockIdx.x*blockDim.x+threadIdx.x</code> 的推导，以及这种朴素写法的访存是否高效。</li>
+<li><strong>Reduction（归约，如求和）</strong>：多个线程协作把一组数据归约成一个值，典型做法是先在<strong>共享内存</strong>里做树形归约（每轮线程数减半），再跨 Block 归约；重点看共享内存的读写同步（<code>__syncthreads()</code>）与树形归约的下标规律。</li>
+</ul>
+<h2 id="4-访存是否合并（Coalesced-Access）"><a href="#4-访存是否合并（Coalesced-Access）" class="headerlink" title="4. 访存是否合并（Coalesced Access）"></a>4. 访存是否合并（Coalesced Access）</h2><ul>
+<li><strong>合并访问</strong>：同一个 Warp（32 个线程）里的线程访问<strong>连续</strong>的显存地址，硬件可以合并成一次内存事务，效率最高。</li>
+<li><strong>非合并访问</strong>：线程访问地址跳跃或不连续（如按列访问按行存储的矩阵），会拆成多次内存事务，显存带宽利用率骤降。</li>
+<li>判断方法：看索引表达式里线程编号（<code>threadIdx.x</code>）是否直接映射到内存地址的<strong>最低维</strong>、连续位置。</li>
+</ul>
+<h2 id="5-面试落点"><a href="#5-面试落点" class="headerlink" title="5. 面试落点"></a>5. 面试落点</h2><ul>
+<li>产出物：能口头讲清一段给定 CUDA Kernel 的执行逻辑（每个线程做什么）与访存模式（是否合并访问）。</li>
+<li>可迁移话术：矩阵乘的朴素实现（未做 Tiling&#x2F;共享内存复用）对应大数据里”没有做本地聚合就直接 Shuffle”的低效模式；Reduction 的树形归约思路与 Spark 的 <code>treeReduce</code>（相对于普通 <code>reduce</code> 减少 Driver 端压力）是同一个思想的不同实现层。</li>
+</ul>
+<blockquote>
+<p>参考：《CUDA C++ Programming Guide》；NVIDIA CUDA Samples 官方仓库</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GPU/" rel="tag"># GPU</a>
+              <a href="/tags/CUDA/" rel="tag"># CUDA</a>
+              <a href="/tags/Kernel/" rel="tag"># Kernel</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/AI/systems/rust-ownership/" rel="prev" title="Rust 所有权机制">
+      <i class="fa fa-chevron-left"></i> Rust 所有权机制
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/AI/agent/agent-basic-paradigm/" rel="next" title="Agent 基本范式">
+      Agent 基本范式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CUDA-Kernel-%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E8%83%BD%E5%8A%9B"><span class="nav-number">1.</span> <span class="nav-text">CUDA Kernel 代码阅读能力</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%85%A8%E5%B1%80%E7%B4%A2%E5%BC%95%E8%AE%A1%E7%AE%97%EF%BC%9A%E5%AE%9A%E4%BD%8D%E2%80%9D%E6%88%91%E6%98%AF%E8%B0%81%E2%80%9D"><span class="nav-number">1.1.</span> <span class="nav-text">1. 全局索引计算：定位”我是谁”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BE%B9%E7%95%8C%E5%88%A4%E6%96%AD%EF%BC%9A%E9%98%B2%E6%AD%A2%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AE"><span class="nav-number">1.2.</span> <span class="nav-text">2. 边界判断：防止越界访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%B8%89%E6%AE%B5%E5%85%B8%E5%9E%8B%E4%BB%A3%E7%A0%81%E8%A6%81%E8%AF%BB%E6%87%82"><span class="nav-number">1.3.</span> <span class="nav-text">3. 三段典型代码要读懂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%AE%BF%E5%AD%98%E6%98%AF%E5%90%A6%E5%90%88%E5%B9%B6%EF%BC%88Coalesced-Access%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4. 访存是否合并（Coalesced Access）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%9D%A2%E8%AF%95%E8%90%BD%E7%82%B9"><span class="nav-number">1.5.</span> <span class="nav-text">5. 面试落点</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

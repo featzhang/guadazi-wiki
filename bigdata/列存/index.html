@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 列存列存具有「读友好，写不友好」的特点。这个特点使列存和 AP 数据库仿佛王八看绿豆一样——对上眼了。因为 AP 数据库正好重视读性能（大查询吞吐量），不重视写性能（能容忍 T+1h&#x2F;1d 更新）。于是，列存顺理成章地霸占了 AP 数据库的存储底座。 近年来，随着业务的发展，越来越多的业务场景霸道地要求 AP 数据库必须具备实时分析能力。为此，AP 数据库必须把上游 TP 数据库产生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="列存储">
+<meta property="og:url" content="http://yoursite.com/bigdata/%E5%88%97%E5%AD%98/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="1 列存列存具有「读友好，写不友好」的特点。这个特点使列存和 AP 数据库仿佛王八看绿豆一样——对上眼了。因为 AP 数据库正好重视读性能（大查询吞吐量），不重视写性能（能容忍 T+1h&#x2F;1d 更新）。于是，列存顺理成章地霸占了 AP 数据库的存储底座。 近年来，随着业务的发展，越来越多的业务场景霸道地要求 AP 数据库必须具备实时分析能力。为此，AP 数据库必须把上游 TP 数据库产生">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/vx_images/339414025546078.png">
+<meta property="og:image" content="http://yoursite.com/vx_images/337394480712595.png">
+<meta property="og:image" content="http://yoursite.com/vx_images/334364507637307.png">
+<meta property="og:image" content="http://yoursite.com/vx_images/331333726872229.png">
+<meta property="og:image" content="http://yoursite.com/vx_images/327303890883570.png">
+<meta property="og:image" content="http://yoursite.com/vx_images/323263652875791.png">
+<meta property="og:image" content="http://yoursite.com/vx_images/320244834118106.png">
+<meta property="article:published_time" content="2026-08-22T17:34:28.473Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:28.474Z">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/vx_images/339414025546078.png">
+
+<link rel="canonical" href="http://yoursite.com/bigdata/%E5%88%97%E5%AD%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>列存储 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/%E5%88%97%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          列存储
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-列存"><a href="#1-列存" class="headerlink" title="1 列存"></a>1 列存</h1><p>列存具有「读友好，写不友好」的特点。这个特点使列存和 AP 数据库仿佛王八看绿豆一样——对上眼了。因为 AP 数据库正好重视读性能（大查询吞吐量），不重视写性能（能容忍 T+1h&#x2F;1d 更新）。于是，列存顺理成章地霸占了 AP 数据库的存储底座。</p>
+<p>近年来，随着业务的发展，越来越多的业务场景霸道地要求 AP 数据库必须具备实时分析能力。为此，AP 数据库必须把上游 TP 数据库产生的写入和更新实时地导入进来。这对 AP 数据库的列存更新效率制造了新的挑战。</p>
+<p>本文将介绍迎接这个挑战诞生的列存高效更新技术。探讨内容包括：</p>
+<ol>
+<li><p>列存更新的难点。</p>
+</li>
+<li><p>一种低效更新方案。</p>
+</li>
+<li><p>四类高效更新方案，并介绍这些方案在业界数据库中的实现。涉及数据库包括 Iceberg，Hudi，Kudu，Doris，ADB，Hologres 等。</p>
+</li>
+<li><p>比较总结所有方案。</p>
+</li>
+</ol>
+<p>希望本文能对读者了解列存更新技术有所帮助。</p>
+<h1 id="2-列存更新的难点"><a href="#2-列存更新的难点" class="headerlink" title="2 列存更新的难点"></a>2 列存更新的难点</h1><p>我认为主要面临两个难点：一个是写放大，另一个是无法简单地做 in-place update。<br><img src="/vx_images/339414025546078.png" alt="Image"></p>
+<p>首先这里的写放大特指 IO 次数的放大，具体来说：</p>
+<ul>
+<li><p>传统列存（每列一个文件）：写入需要每列一次磁盘 IO。尽管可以通过攒批来均摊开销，但大宽表（成百上千列）场景仍然力不从心。</p>
+</li>
+<li><p>行列混存（PAX 格式）：文件被切分成很多 block，一行的所有列数据按列存格式塞到同一个 block 里面。写入需要在内存中攒满一个列存 block，然后以 block 为单位压缩并刷盘。所有列一次 IO 搞定。尽管这种做法优化了磁盘 IO 次数，但在内存 IO 次数方面还是有放大，因为内存 block 不是行存。</p>
+</li>
+</ul>
+<blockquote>
+<p>下文所有数据库的列存格式均属于行列混存。</p>
+</blockquote>
+<p>其次是无法简单地做 in-place update。原因有二：</p>
+<ol>
+<li><p>容易造成比较大的写放大。列存的 block 非常大，因为面向读场景优化，追求高压缩率。哪怕是 in-place update 一个 field，也有可能导致大 block 内数据的 reorganize。重写大 block 会带来比较大的写放大。</p>
+</li>
+<li><p>最致命的，AP 数据库的趋势都是 share-storage 架构，基于 HDFS&#x2F;S3。这类分布式存储本身就不支持 in-place update。所以没得选了，只能做 out-of-place update。</p>
+</li>
+</ol>
+<blockquote>
+<p>下文所有列存更新技术均属于 out-of-place update。</p>
+</blockquote>
+<h1 id="3-低效更新技术"><a href="#3-低效更新技术" class="headerlink" title="3 低效更新技术"></a>3 低效更新技术</h1><blockquote>
+<p>想了解什么是高效更新技术，必须先了解什么是低效更新技术。—— 黄金架构师（知乎和公众号同名）</p>
+</blockquote>
+<p>最简单的 out-of-place update 方案是 file-level COW(copy-on-write) 。这种方案简单来说就是更新时无论更新一行还是一批，都直接把原文件拷贝出来更新，然后生成一个新文件。</p>
+<p>File-level COW 方案在业界的典型代表是 Hudi COW 表。<br><img src="/vx_images/337394480712595.png" alt="Image"></p>
+<p>Hudi COW 表的实现概述如下：</p>
+<ol>
+<li><p>宏观上看，一张表的数据存储在 HDFS&#x2F;S3 上的很多列存文件中。</p>
+</li>
+<li><p>更新时重写整个列存文件。因为要做写写冲突检测（ww-conflict check；为实现 snapshot isolation），更新需要保证可串行化。Hudi COW 通过 file-level 乐观锁来保证这一点。更新文件期间不加锁，commit 时检查有没有并发写事务抢先更新了相同的文件，如果有，那么自己就 abort。换句话说，不支持对同一文件的并发更新。</p>
+</li>
+<li><p>读取时，按快照选取适当版本的文件。</p>
+</li>
+</ol>
+<p>这个方案的优点是读性能非常棒，文件级别多版本使得读完全不受写的影响。缺点是写性能很差，因为写放大很大，并且写并发度低。</p>
+<p>显然，file-level COW 是一种低效更新方案。如果用这个方案来应对实时场景，那无异于以卵击石。</p>
+<p>到现在为止，我们已经具备了低效更新技术的认知。那么，接下来我们就可以往高效更新技术的殿堂进发了。</p>
+<h1 id="4-高效更新技术"><a href="#4-高效更新技术" class="headerlink" title="4 高效更新技术"></a>4 高效更新技术</h1><p>我们可以思考一下，要想高效，应该做好哪些事情？我认为，主要是两件事情：</p>
+<ol>
+<li><p>降低写放大，提升写并发。单线程性能靠降低写放大来优化，多线程性能靠提升写并发来优化。单线程和多线程都在手，性能我有。</p>
+</li>
+<li><p>尽量少损害读性能。毕竟咱是 AP 数据库，读性能至关重要，还要靠它来吃饭。</p>
+</li>
+</ol>
+<p>为了做好这两件事情，我们应该追求：</p>
+<ol>
+<li><p>更细粒度的更新。Hudi COW 拷贝更新整个文件算是 file-level update。如果我们能做到 block-level，tuple-level，甚至是 field-level，写放大会显著优化。</p>
+</li>
+<li><p>更细粒度的并发。Hudi COW 加 file-level 的锁，算是 file-level concurrency。如果我们能做到 block-level，tuple-level，写并发会显著提升。（没有 filed-level，复杂且开销不一定小）。当然我们也要清醒地认识到，细粒度的并发需要细粒度的锁，细粒度的锁对于批量更新没有那么友好（想象一下更新整张表的数据，为每一行加一个行锁）。因此这里存在一些取舍的空间。</p>
+</li>
+</ol>
+<p>上述思考很有意思。我运用这个思考框架，再结合业界数据库的实际情况，把业界数据库的高效更新方案按照写并发和更新粒度分成了四类，分别是：</p>
+<ol>
+<li><p>Table-level concurrency + tuple-level update.</p>
+</li>
+<li><p>File-level concurrency + tuple-level update.</p>
+</li>
+<li><p>Tuple-level concurrency + field-level update.</p>
+</li>
+<li><p>Unlimited concurrency + tuple-level update.  (Unlimited concurrency 看起来非常唬人，其含义我们下文再细说。)</p>
+</li>
+</ol>
+<p>这四类方案在各家数据库中都是怎么实现的呢？接下来我们挨个分析一下具体的案例。</p>
+<h2 id="4-1-Table-level-concurrency-tuple-level-update"><a href="#4-1-Table-level-concurrency-tuple-level-update" class="headerlink" title="4.1 Table-level concurrency + tuple-level update"></a>4.1 Table-level concurrency + tuple-level update</h2><p>这类方案的典型代表是 Iceberg MOR 表。</p>
+<p>使用这类方案的数据库绝对地重视批量更新，轻视并发更新和单行更新，因此更新通过表锁来实现，仅支持 table-level concurrency。<img src="/vx_images/334364507637307.png" alt="Image"><br>Iceberg MOR 表的实现概述如下：</p>
+<ol>
+<li><p>宏观看是两个存储结构：存储主要数据的列存文件（data file）和存储标记删除的文件（delete file）。data file 和它对应的 delete file 会定期合并成新的 data file。</p>
+</li>
+<li><p>更新流程：update 看做 delete + insert。先向 delete file 追加一条 delete mark 删除老版本，然后把新版本写入 data file。</p>
+</li>
+</ol>
+<ul>
+<li><p>Iceberg 的 delete mark 有两种：1. position delete：记录删除行在 data file 中的行号，行号需要在更新的时候从 data file 中查到。2. equation delete：记录删除的等值条件。equation delete 的写入更高效，尤其是在根据非主键（唯一键）的等值删除场景。这个场景下一个等值条件会匹配很多行。equation delete 只记录一个等值条件，而 position delete 需要为每行查行号并为每行记录 delete mark。</p>
+</li>
+<li><p>Iceberg 采用 table-level 乐观锁。更新操作完成后，需要把新增的 delete file 文件登记到表的元数据里面去。如果此时发现别的并发事务往这张表已经登记过元数据，那么自己就 abort（某些情况下会挣扎重试一下）。</p>
+</li>
+<li><p>delete mark  和新版本 tuple 加起来的数据量级约等于一个 tuple，所以是 tuple-level update，写放大很小。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取流程：需要 merge 一下 data file 和 delete file（这也是 MOR(merge on read) 名称的由来）。</li>
+</ol>
+<ul>
+<li><p>如果是 position delete，只需要按行号顺序地归并 一下（因为行号天然有序）。</p>
+</li>
+<li><p>如果是 equation delete，需要为每一行计算可能很多（每删除一次就多一个）的等值条件是否匹配。</p>
+</li>
+<li><p>二者对比，显然 position delete 的读取更高效。</p>
+</li>
+</ul>
+<p>相比 Hudi COW，Iceberg 的并发能力差了些。抛开并发不谈，Iceberg 算是牺牲了一些读取的性能（需要 merge on read），换取更新的性能。在这个基础上，Iceberg 还提供了 position delete 和 equation delete 两种方式，给用户提供了 MOR 模式下进一步在读友好和写友好之间权衡的空间，这个做法很「用户友好」。</p>
+<h2 id="4-2-File-level-concurrency-tuple-level-update"><a href="#4-2-File-level-concurrency-tuple-level-update" class="headerlink" title="4.2 File-level concurrency + tuple-level update"></a>4.2 File-level concurrency + tuple-level update</h2><p>这类方案的典型代表是 Hudi MOR 表。</p>
+<p>这类数据库的特点是重视批量更新，但没有 Iceberg 那么极端，所以并发度稍高一点，做到了 file-level。<img src="/vx_images/331333726872229.png" alt="Image"><br>Hudi MOR 表的实现概述如下：</p>
+<ol>
+<li><p>宏观看是两个存储结构：存储主要数据的列存文件（base file）和存储增量更新的行存文件（log file）。log file 采用行存对写比较友好。base file 和它对应的 log file 会定期合并成新的 base file。</p>
+</li>
+<li><p>更新流程：update 看做 delete + insert。先向 log file 插入一条 delete mark 来标记删除老版本，然后再向 log file 写入新版本。</p>
+</li>
+</ol>
+<ul>
+<li><p>delete mark 记的是主键。但 log file 中的数据是 append 的，并不按照主键排序。</p>
+</li>
+<li><p>更新和 Hudi COW 一样，是 file-level OCC，因此是 file-level concurrency。</p>
+</li>
+<li><p>写入数据量是 delete mark 加新版本的 tuple，因此是 tuple-level update。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取流程：需要 merge 一下 base file 和 log file，实现上是 base file 和 log file 按主键做 hash join。由于 log file 中的数据是无序的，即便通过 zone-map 过滤后只需要读一个 base file 的 block，也要 join 整个 log file。</li>
+</ol>
+<p>除了并发度比 Iceberg 高以外，Hudi MOR 和 Iceberg 主要有两个区别。</p>
+<p>第一个区别是 <strong>delete mark 的实现不同</strong>。</p>
+<p>写性能方面，Iceberg position delete &lt; Hudi 主键 delete &lt; Iceberg equation delete。</p>
+<p>position delete &lt; 主键 delete，是因为 AP 数据库的更新大多数情况下是提供了整行数据的 upsert，这种情况下，主键 delete 可以做到不需要去 base file 中读数据，直接写 log file 就搞定，而 position delete 还得去读行号。</p>
+<p>主键 delete &lt; equation delete，这个显而易见，equation delete 在根据非主键（唯一键）的等值删除场景具有绝对的优势。</p>
+<p>读性能方面，Iceberg position delete &gt; Hudi 主键 delete &gt; Iceberg equation delete。</p>
+<p>因为主键 delete 需要 base file 和 log file 做 hash join，得构建 hash table 和按行 probe。而 position delete 只需要按天然有序的行号归并，因此更快。equation delete 需要每一行计算很多的等值条件，因此更慢。</p>
+<p>第二个区别是<strong>同一主键的新老版本存储位置不同</strong>。Hudi 能保证新老版本逻辑上在同一个 base file 中（在 base file 或者它对应的 log file 中），而 Iceberg 新版本可能出现在不同的 data file 中。相比之下，Iceberg 在实现主键行级别的索引，主键 zone-map 过滤方面出于劣势。</p>
+<p>综合来看，没有明显的胜者，二者互有胜负。</p>
+<h2 id="4-3-Tuple-level-concurrency-Field-level-update"><a href="#4-3-Tuple-level-concurrency-Field-level-update" class="headerlink" title="4.3 Tuple-level concurrency + Field-level update"></a>4.3 Tuple-level concurrency + Field-level update</h2><p>这类方案的唯一代表是 Kudu。一个数据库自成一类。</p>
+<p>这类数据库非常重视单行更新，因此通过行锁来实现并发，实现了 tuple-level concurrency。（注意：我不确定 Kudu 是否还支持表锁，通过 cost 判断该加表锁还是行锁。感兴趣的读者可以自行研究一下。）</p>
+<p>这类数据库非常「吝惜」存储空间，因此更新时只记录被更新的 field。</p>
+<p><img src="/vx_images/327303890883570.png" alt="Image"><br>Kudu 的实现概述如下</p>
+<ol>
+<li><p>宏观看有点像一个只有 L0 层的 LSM-tree，但 Kudu 对于写入和更新分类处理。写入和更新分别使用自己的 memtable 和文件。写入写到行存 MemRowSet（Masstree 实现），定期刷盘成为 DiskRowSet 列存文件。更新写到行存 DeltaMemStore，定期刷盘成为 DiskRowSet 对应的 REDO records 文件。DiskRowSet 文件内嵌一个主键 B-tree 索引，用来加速主键点查。DiskRowSet 和 REDO records 文件会被周期性地合并。</p>
+</li>
+<li><p>更新流程：先根据主键查询在 DiskRowSet 中的行号，然后在 DeltaMemStore 中记录行号以及更新后的 field。因为只记了更新后的 field，有点像 redo log，所以文件名叫 REDO records。</p>
+</li>
+</ol>
+<ul>
+<li><p>通过行锁来保证并发更新的事务性，所以是 tuple-level concurrency。</p>
+</li>
+<li><p>写入的数据量只是更新后的 filed，所以是 field-level update。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取流程：需要按行号顺序地归并 DiskRowSet 和 REDO records。</li>
+</ol>
+<p>Kudu 的方案是我最喜欢的方案。这个方案写并发高，写放大最小。此外，field-level update 非常有利于大宽表的部分列更新场景，因为不需要花费大量的 IO（每列一次 IO）去补全其他列数据。如果非要找出一个缺点，那就是行锁对批量更新没那么友好。不过这也可以通过动态地选择表锁或者行锁来优化。</p>
+<h2 id="4-4-Unlimited-concurrency-tuple-level-update"><a href="#4-4-Unlimited-concurrency-tuple-level-update" class="headerlink" title="4.4 Unlimited concurrency + tuple-level update"></a>4.4 Unlimited concurrency + tuple-level update</h2><p>这类方案的典型代表是 Doris 和阿里云 ADB。</p>
+<p>我创造的 unlimited concurrency 这个术语有点唬人。其实这个术语翻译成人话就是不支持并发更新的事务性——不加任何锁，不检测写写冲突，允许丢失更新（lost-update）。</p>
+<p>比如 Doris，并发更新采用 last writer wins 策略，同一行的并发更新，后来的更新会覆盖前面的更新，造成前面的更新丢失。</p>
+<p>至于 ADB，我没有看到 ADB 论文中提到并发更新，找官方文档也没找到（也有点迷路了，ADB 有很多版本，MySQL，Postgres 等等，弄晕我了），所以我<strong>猜测</strong>它也不支持并发更新的事务性，不然没理由不高调宣传。因此，我将 ADB 也归类到了这里。尽管我不能 100% 确定它属于这个分类，但我认为分类错了也问题不大，它不影响本文的核心思想。</p>
+<p>由于不支持更新的事务性，这类数据库的单行更新和批量更新都比较快。</p>
+<blockquote>
+<p>提问：牺牲事务性，换取更新的性能，你认为值得吗？欢迎留言讨论。</p>
+</blockquote>
+<p><img src="/vx_images/323263652875791.png" alt="Image"><br>Doris MOR(unique-key 表) 的实现方式概述如下：</p>
+<ol>
+<li><p>宏观上看是一个 LSM-tree，只有 memtable 和 L0 层列存文件。</p>
+</li>
+<li><p>更新流程：采用 LSM-tree 的做法，直接写入新版本，覆盖旧版本。</p>
+</li>
+</ol>
+<ul>
+<li><p>每个版本上带着一个 sequence number，作为版本排序的依据。</p>
+</li>
+<li><p>Doris 默认<strong>不支持</strong>并发更新（官方文档）。如有需求，可以通过开关打开，但会有丢失更新的异象。因为不支持并发更新的事务性，所以我把 Doris 划分为 unlimited concurrency。</p>
+</li>
+<li><p>写入数据量只是一个 tuple，所以是 tuple-level update。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取流程：需要 merge 多个文件以及 memtable 来找到同一主键的最新版本。</li>
+</ol>
+<p>抛开对并发更新事务性的支持不谈，Doris MOR 方案的优点是更新非常快。甚至写入不需要关心是否违反主键唯一约束，因为同一主键的新版本总会覆盖旧版本，保证了绝对的唯一。此外，在提供整行数据的 upsert 场景，Doris 也不需要读老版本数据，直接写新版本就可以搞定。Doris MOR 的缺点是读取的并行度不高，无法做到 file-level 独立并行读。因为文件之间存在依赖，需要多个文件合并到一起，才能找到最新版本的数据。在这个限制下，聚合函数无法下推到文件层并行计算，读性能比较差。</p>
+<p><img src="/vx_images/320244834118106.png" alt="Image"><br>ADB 的实现概述如下：</p>
+<ol>
+<li><p>宏观看存储是两个结构：磁盘上的列存文件（detail file）和内存中的 delete bitmap。delete bitmap 被切分成很多 compressed segment。</p>
+</li>
+<li><p>更新流程：update 看做 delete + insert。先在 delete bitmap 标记删除老版本（把删除行的对应 bit 置 1 表示删除），然后写入新版本。</p>
+</li>
+</ol>
+<ul>
+<li><p>delete bitmap 自身的更新通过 segment-level COW 实现，有一定的内存空间开销。</p>
+</li>
+<li><p>疑似不支持并发更新的事务性，所以我把它划分到 unlimited concurrency。</p>
+</li>
+<li><p>写入的数据量是内存 bitmap 的一个 compressed segment，以及磁盘上的一个 tuple。因为我重点关注磁盘的写入量，所以这个方案被分类为 tuple-level update。</p>
+</li>
+</ul>
+<ol start="4">
+<li>读取需要 merge 列存文件和对应的 delete bitmap segments。</li>
+</ol>
+<p>ADB 方案最特别之处在于 in-memory delete bitmap，优点是标记删除的读写性能都很棒，毕竟内存数据结构的威力不可小觑。缺点是内存开销比较大。</p>
+<p>相比与 Doris，ADB 可以实现文件级别甚至更细粒度的并行读。虽然同一主键的新老版本也可能会出现在不同的文件中，但每个文件有自己的 delete bitmap，可用来过滤被删除的数据。每个文件都知道自己的数据要么是新版本的，要么是被删除的，不依赖别的文件来确定，所以可直接并行读。</p>
+<p>In-memory delete bitmap + segment-level COW 的内存开销很大。一种优化的思路是将其转化为 on-disk bitmap。Hologres 就采用了 on-disk bitmap 的方案，每个文件一个 delete bitmap（roaring bitmap 实现），存储在整张表一个的 LSM-tree 中。为了省空间，delete bitmap 的更新不是通过 COW 来实现，而是通过 MOR 来实现，即每个增量更新都会生成一个新版本的 bitmap，读的时候合并所有版本。感兴趣的可以阅读下 Hologres 的论文。更进一步地，Doris MOW(merge on write) 表在 Hologres 方案的基础上，为了减小合并多个 bitmap 的开销，还会把合并后的结果缓存起来，详情可以参考 Doris MOW 的设计文档。</p>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h1><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>file-level concurrency + file-level update</th>
+<th>table-level concurrency + tuple-level update</th>
+<th>file-level concurrency + tuple-level update</th>
+<th>tuple-level concurrency + field-level update</th>
+<th>unlimited concurrency + tuple-level update</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>典型代表</td>
+<td>Hudi COW</td>
+<td>Iceberg</td>
+<td>Hudi MOR</td>
+<td>Kudu</td>
+<td>Doris MOR, ADB</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>读友好</td>
+<td>批量更新友好，并发更新差</td>
+<td>批量更新友好，并发更新中</td>
+<td>单行更新友好，部分列更新友好，并发更新友好，批量更新一般</td>
+<td>单行批量更新都友好，事务支持差（不支持并发更新或并发更新异常）</td>
+</tr>
+</tbody></table>
+<h1 id="6-参考"><a href="#6-参考" class="headerlink" title="6 参考"></a>6 参考</h1><ol>
+<li><p><a href="https://www.dremio.com/blog/">https://www.dremio.com/blog/</a></p>
+</li>
+<li><p><a href="https://hudi.apache.org/docs/concepts/">https://hudi.apache.org/docs/concepts/</a></p>
+</li>
+<li><p><a href="https://kudu.apache.org/kudu.pdf">https://kudu.apache.org/kudu.pdf</a></p>
+</li>
+<li><p><a href="https://cwiki.apache.org/confluence/display/DORIS">https://cwiki.apache.org/confluence/display/DORIS</a></p>
+</li>
+<li><p><a href="https://www.vldb.org/pvldb/vol12/p2059-zhan.pdf">https://www.vldb.org/pvldb/vol12/p2059-zhan.pdf</a></p>
+</li>
+<li><p><a href="https://kai-zeng.github.io/papers/hologres.pdf">https://kai-zeng.github.io/papers/hologres.pdf</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Java/MySQL-Driver/" rel="prev" title="MySQL JDBC Driver源码解读">
+      <i class="fa fa-chevron-left"></i> MySQL JDBC Driver源码解读
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/bigdata/hudi/hudi-upsert/" rel="next" title="[转载]hudi upsert">
+      [转载]hudi upsert <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%88%97%E5%AD%98"><span class="nav-number">1.</span> <span class="nav-text">1 列存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%88%97%E5%AD%98%E6%9B%B4%E6%96%B0%E7%9A%84%E9%9A%BE%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">2 列存更新的难点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BD%8E%E6%95%88%E6%9B%B4%E6%96%B0%E6%8A%80%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text">3 低效更新技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%AB%98%E6%95%88%E6%9B%B4%E6%96%B0%E6%8A%80%E6%9C%AF"><span class="nav-number">4.</span> <span class="nav-text">4 高效更新技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Table-level-concurrency-tuple-level-update"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Table-level concurrency + tuple-level update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-File-level-concurrency-tuple-level-update"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 File-level concurrency + tuple-level update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Tuple-level-concurrency-Field-level-update"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Tuple-level concurrency + Field-level update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Unlimited-concurrency-tuple-level-update"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Unlimited concurrency + tuple-level update</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">5 总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">6 参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

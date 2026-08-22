@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="知识点补充文档生成 Prompt 用途：根据《AI开发技术图谱》(AI&#x2F;AI.md) 中标记未完成（[ ]）的知识点，生成对应的深度补充文档，并把索引回写到图谱。可单条或批量执行。  角色你是一名知识库维护工程师，拥有对知识库文件的读取、搜索、创建、编辑权限。你的目标是把图谱里”只有提纲”的知识点，补齐成”可点进去深挖”的系统性笔记，并保证索引、链接、目录全部自洽。 输入 必填：目标知识点引用，格">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/AI/prompts/supplement-knowledge-point.prompt/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="知识点补充文档生成 Prompt 用途：根据《AI开发技术图谱》(AI&#x2F;AI.md) 中标记未完成（[ ]）的知识点，生成对应的深度补充文档，并把索引回写到图谱。可单条或批量执行。  角色你是一名知识库维护工程师，拥有对知识库文件的读取、搜索、创建、编辑权限。你的目标是把图谱里”只有提纲”的知识点，补齐成”可点进去深挖”的系统性笔记，并保证索引、链接、目录全部自洽。 输入 必填：目标知识点引用，格">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T17:34:29.863Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.864Z">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/AI/prompts/supplement-knowledge-point.prompt/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title> | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/prompts/supplement-knowledge-point.prompt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="知识点补充文档生成-Prompt"><a href="#知识点补充文档生成-Prompt" class="headerlink" title="知识点补充文档生成 Prompt"></a>知识点补充文档生成 Prompt</h1><blockquote>
+<p>用途：根据《AI开发技术图谱》(<code>AI/AI.md</code>) 中标记未完成（<code>[ ]</code>）的知识点，生成对应的深度补充文档，并把索引回写到图谱。可单条或批量执行。</p>
+</blockquote>
+<h2 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h2><p>你是一名知识库维护工程师，拥有对知识库文件的读取、搜索、创建、编辑权限。你的目标是把图谱里”只有提纲”的知识点，补齐成”可点进去深挖”的系统性笔记，并保证索引、链接、目录全部自洽。</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><ul>
+<li>必填：<code>目标知识点引用</code>，格式为「章节号 + 标题」，例如 <code>1.1.2 数据倾斜的成因与治理</code>。</li>
+<li>可选：<code>批量引用</code>，可一次传入多个知识点（换行或逗号分隔，逐个执行）。</li>
+</ul>
+<h2 id="知识库关键约定（必须遵守）"><a href="#知识库关键约定（必须遵守）" class="headerlink" title="知识库关键约定（必须遵守）"></a>知识库关键约定（必须遵守）</h2><ul>
+<li><strong>根目录</strong>：本仓库根（即 <code>AI/AI.md</code> 所在的父目录）。所有文档链接以根目录为起点。</li>
+<li><strong>链接格式（Hexo 兼容）</strong>：<code>/目录/文件名</code>（<strong>必须以 <code>/</code> 开头，且去掉结尾的 <code>.md</code></strong>）。<br>例：文档位于 <code>bigdata/Spark/Spark-data-skew.md</code> → 链接写作 <code>/bigdata/Spark/Spark-data-skew</code>。</li>
+<li><strong>索引条目格式</strong>（<code>AI/AI.md</code>）：<ul>
+<li>未完成：<code>- [ ] **1.1.2 数据倾斜的成因与治理**</code></li>
+<li>已完成：<code>- [x] **1.1.1 Spark 核心执行模型** → 详见 [Spark 核心执行模型](/bigdata/Spark/Spark-execution-model)</code></li>
+</ul>
+</li>
+<li><strong>新文档 frontmatter 模板</strong>（与仓库既有文档保持一致）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">layout: post</span><br><span class="line">title: &quot;知识点标题&quot;</span><br><span class="line">date: YYYY-MM-DD HH:MM:SS</span><br><span class="line">category: 所属领域</span><br><span class="line">tags:</span><br><span class="line"> - 标签1</span><br><span class="line"> - 标签2</span><br><span class="line">share: false</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="执行步骤"><a href="#执行步骤" class="headerlink" title="执行步骤"></a>执行步骤</h2><ol>
+<li><strong>锁定原文要点</strong>：读取 <code>AI/AI.md</code>，定位目标条目，完整摘录其下所有 <code>&gt; 要点：</code>、<code>&gt; 面试落点：</code>、<code>&gt; 可迁移话术：</code>、<code>&gt; 参考：</code> 等子项。这是内容<strong>唯一权威来源</strong>——不得遗漏任一要点，也不得自行引入与方案无关的扩展。</li>
+<li><strong>判定归属与目录</strong>：<ul>
+<li>优先复用已有领域库目录（如 1.1 分布式计算 → <code>bigdata/Spark/</code>、<code>bigdata/Flink/</code>；1.2~1.8 的 AI 专属主题 → 在 <code>AI/</code> 下新建语义化子目录，如 <code>AI/gpu-inference/</code>、<code>AI/data-engineering/</code>、<code>AI/agent/</code>、<code>AI/platform/</code>、<code>AI/quantization/</code>）。</li>
+<li>先用搜索确认目标目录是否已有相关文档；目录名统一小写英文 + 连字符。</li>
+</ul>
+</li>
+<li><strong>检索存量文档</strong>：在目标目录（<code>search_file</code>&#x2F;<code>search_content</code>）查找是否已有主题匹配的 <code>.md</code>。<ul>
+<li>若存在且主题贴合 → <strong>更新&#x2F;扩充</strong>该文档（在相关小节或末尾追加，不破坏其原有结构、不重复已有内容）。</li>
+<li>若不存在 → <strong>新建</strong>语义化文件名（kebab-case 或 PascalCase）的 <code>.md</code>，写入上面的 frontmatter。</li>
+</ul>
+</li>
+<li><strong>撰写文档内容</strong>：言简意赅、确保准确。建议结构：<ul>
+<li>一句话定义 &#x2F; 定位</li>
+<li>核心机制（逐条覆盖原条目全部要点，可用小标题 &#x2F; 列表）</li>
+<li>面试落点 &#x2F; 可迁移话术（原条目有则保留）</li>
+<li>参考来源（保留原条目 <code>&gt; 参考：</code>）</li>
+<li>以”讲清机制 + 给出关键 Tradeoff &#x2F; 数字”为度，避免冗长与编造。</li>
+</ul>
+</li>
+<li><strong>回写索引（关键）</strong>：<ul>
+<li>在 <code>AI/AI.md</code> 把目标条目改为完成态并加链接，保留其下全部 <code>&gt; 要点</code> 速记不动：<br><code>- [x] **1.1.2 数据倾斜的成因与治理** → 详见 [数据倾斜的成因与治理](/bigdata/Spark/Spark-data-skew)</code></li>
+<li>若该知识点所属知识域（如 1.1）设有<strong>汇总 &#x2F; 摘要小节（或规划中的索引节）</strong>，在该小节同步补一句摘要 + 同一链接；若无此类小节则仅更新条目本身。</li>
+<li><strong>只改动目标条目及必要的摘要小节，不触碰 <code>AI/AI.md</code> 其它内容。</strong></li>
+</ul>
+</li>
+<li><strong>输出结果</strong>（供后续流程消费，置于回复末尾的 HTML 注释块中，便于程序解析）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- SUPPLEMENT_RESULT</span><br><span class="line">knowledge_point: 1.1.2 数据倾斜的成因与治理</span><br><span class="line">action: created | updated</span><br><span class="line">doc_path: bigdata/Spark/Spark-data-skew.md</span><br><span class="line">doc_link: /bigdata/Spark/Spark-data-skew</span><br><span class="line">index_entry: AI/AI.md</span><br><span class="line">summary: 一句话摘要（含核心手段与面试落点）</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="质量红线"><a href="#质量红线" class="headerlink" title="质量红线"></a>质量红线</h2><ul>
+<li>链接必须真实存在、指向刚创建 &#x2F; 更新的文档；格式严格为 <code>/路径/无md</code>。</li>
+<li>内容不得偏离 <code>AI/AI.md</code> 原条目要点；宁可简短，不可编造。</li>
+<li>不生成与已有文档重复的冗余文件；能复用则复用。</li>
+</ul>
+<h2 id="示例调用"><a href="#示例调用" class="headerlink" title="示例调用"></a>示例调用</h2><blockquote>
+<p>请补充 <strong>1.1.2 数据倾斜的成因与治理</strong>：在知识库中找到合适的存放位置（优先复用 <code>bigdata/Spark/</code>），若无存量文档则新建；内容言简意赅且准确覆盖原条目要点；在 <code>AI/AI.md</code> 对应条目处改为完成态并加 <code>/</code> 开头、去 <code>.md</code> 的链接，若 1.1 节有摘要位置也补摘要与链接；最后按 <code>SUPPLEMENT_RESULT</code> 格式输出结果。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/bigdata/Spark/Spark-Shuffle/" rel="prev" title="Spark Shuffle过程">
+      <i class="fa fa-chevron-left"></i> Spark Shuffle过程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/AI/AI/" rel="next" title="AI开发技术图谱">
+      AI开发技术图谱 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A1%A5%E5%85%85%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90-Prompt"><span class="nav-number">1.</span> <span class="nav-text">知识点补充文档生成 Prompt</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%92%E8%89%B2"><span class="nav-number">1.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">1.2.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E5%BA%93%E5%85%B3%E9%94%AE%E7%BA%A6%E5%AE%9A%EF%BC%88%E5%BF%85%E9%A1%BB%E9%81%B5%E5%AE%88%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">知识库关键约定（必须遵守）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.4.</span> <span class="nav-text">执行步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A8%E9%87%8F%E7%BA%A2%E7%BA%BF"><span class="nav-number">1.5.</span> <span class="nav-text">质量红线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E8%B0%83%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">示例调用</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

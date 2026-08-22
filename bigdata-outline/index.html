@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1 基础技术栈1.1 Java Java 全栈知识体系  1.2 数据结构1.2.1 LSM Tree1.2.2 B-Tree1.3 底层存储引擎1.3.1 LevelDB1.3.2 RocksDBhttps:&#x2F;&#x2F;github.com&#x2F;facebook&#x2F;rocksdb&#x2F;wiki&#x2F;https:&#x2F;&#x2F;alexstocks.github.io&#x2F;html&#x2F;rocksdb.html 1.4 硬件与存储1.4.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bigdata outline">
+<meta property="og:url" content="http://yoursite.com/bigdata-outline/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="1 基础技术栈1.1 Java Java 全栈知识体系  1.2 数据结构1.2.1 LSM Tree1.2.2 B-Tree1.3 底层存储引擎1.3.1 LevelDB1.3.2 RocksDBhttps:&#x2F;&#x2F;github.com&#x2F;facebook&#x2F;rocksdb&#x2F;wiki&#x2F;https:&#x2F;&#x2F;alexstocks.github.io&#x2F;html&#x2F;rocksdb.html 1.4 硬件与存储1.4.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-22T17:34:29.983Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:29.984Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/bigdata-outline/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Bigdata outline | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata-outline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Bigdata outline
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Outline/" itemprop="url" rel="index"><span itemprop="name">Outline</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-基础技术栈"><a href="#1-基础技术栈" class="headerlink" title="1 基础技术栈"></a>1 基础技术栈</h1><h2 id="1-1-Java"><a href="#1-1-Java" class="headerlink" title="1.1 Java"></a>1.1 Java</h2><blockquote>
+<p><a href="https://pdai.tech/">Java 全栈知识体系</a></p>
+</blockquote>
+<h2 id="1-2-数据结构"><a href="#1-2-数据结构" class="headerlink" title="1.2 数据结构"></a>1.2 数据结构</h2><h3 id="1-2-1-LSM-Tree"><a href="#1-2-1-LSM-Tree" class="headerlink" title="1.2.1 LSM Tree"></a>1.2.1 LSM Tree</h3><h3 id="1-2-2-B-Tree"><a href="#1-2-2-B-Tree" class="headerlink" title="1.2.2 B-Tree"></a>1.2.2 B-Tree</h3><h2 id="1-3-底层存储引擎"><a href="#1-3-底层存储引擎" class="headerlink" title="1.3 底层存储引擎"></a>1.3 底层存储引擎</h2><h3 id="1-3-1-LevelDB"><a href="#1-3-1-LevelDB" class="headerlink" title="1.3.1 LevelDB"></a>1.3.1 LevelDB</h3><h3 id="1-3-2-RocksDB"><a href="#1-3-2-RocksDB" class="headerlink" title="1.3.2 RocksDB"></a>1.3.2 RocksDB</h3><p><a href="https://github.com/facebook/rocksdb/wiki/">https://github.com/facebook/rocksdb/wiki/</a><br><a href="https://alexstocks.github.io/html/rocksdb.html">https://alexstocks.github.io/html/rocksdb.html</a></p>
+<h2 id="1-4-硬件与存储"><a href="#1-4-硬件与存储" class="headerlink" title="1.4 硬件与存储"></a>1.4 硬件与存储</h2><h3 id="1-4-1-OSS-对象存储"><a href="#1-4-1-OSS-对象存储" class="headerlink" title="1.4.1 OSS 对象存储"></a>1.4.1 OSS 对象存储</h3><h1 id="2-分布式协调"><a href="#2-分布式协调" class="headerlink" title="2 分布式协调"></a>2 分布式协调</h1><h2 id="2-1-Zookeeper"><a href="#2-1-Zookeeper" class="headerlink" title="2.1 Zookeeper"></a>2.1 Zookeeper</h2><h1 id="3-存储层"><a href="#3-存储层" class="headerlink" title="3 存储层"></a>3 存储层</h1><h2 id="3-1-HDFS"><a href="#3-1-HDFS" class="headerlink" title="3.1 HDFS"></a>3.1 HDFS</h2><p>分布式文件系统,大数据存储的基础设施</p>
+<h1 id="4-消息队列"><a href="#4-消息队列" class="headerlink" title="4 消息队列"></a>4 消息队列</h1><h2 id="4-1-Kafka"><a href="#4-1-Kafka" class="headerlink" title="4.1 Kafka"></a>4.1 Kafka</h2><h2 id="4-2-Pulsar"><a href="#4-2-Pulsar" class="headerlink" title="4.2 Pulsar"></a>4.2 Pulsar</h2><blockquote>
+<p><a href="bigdata/Pulsar/Pulsar">详情</a></p>
+</blockquote>
+<h1 id="5-批处理引擎"><a href="#5-批处理引擎" class="headerlink" title="5 批处理引擎"></a>5 批处理引擎</h1><h2 id="5-1-Spark"><a href="#5-1-Spark" class="headerlink" title="5.1 Spark"></a>5.1 Spark</h2><blockquote>
+<p>深入理解 <strong>Spark</strong>（Spark SQL 优化、数据倾斜处理）和 <strong>Hive</strong>（调优、存储格式如 Parquet&#x2F;ORC）。</p>
+</blockquote>
+<h3 id="5-1-1-Spark-Core"><a href="#5-1-1-Spark-Core" class="headerlink" title="5.1.1 Spark Core"></a>5.1.1 Spark Core</h3><ul>
+<li><a href="bigdata/Spark/Spark-execution-model.md">执行模型</a>：DAG 构建、Stage 划分、Shuffle 与 AQE</li>
+<li><a href="bigdata/Spark/Spark-task_split_block.md">并发度概念</a>：File&#x2F;Block&#x2F;Split&#x2F;Task&#x2F;Partition 的换算</li>
+</ul>
+<h3 id="5-1-2-Spark-SQL"><a href="#5-1-2-Spark-SQL" class="headerlink" title="5.1.2 Spark SQL"></a>5.1.2 Spark SQL</h3><h3 id="5-1-3-性能优化"><a href="#5-1-3-性能优化" class="headerlink" title="5.1.3 性能优化"></a>5.1.3 性能优化</h3><ul>
+<li>数据倾斜处理</li>
+<li>算子优化</li>
+<li>资源调优</li>
+</ul>
+<h1 id="6-流处理引擎"><a href="#6-流处理引擎" class="headerlink" title="6 流处理引擎"></a>6 流处理引擎</h1><h2 id="6-1-Flink"><a href="#6-1-Flink" class="headerlink" title="6.1 Flink"></a>6.1 Flink</h2><blockquote>
+<p>需要掌握其状态管理（State）、容错机制（Checkpoint）以及 Exactly-once 语义。</p>
+</blockquote>
+<blockquote>
+<p><a href="bigdata/Flink/Flink">详情</a></p>
+</blockquote>
+<h3 id="6-1-1-Runtime-架构"><a href="#6-1-1-Runtime-架构" class="headerlink" title="6.1.1 Runtime 架构"></a>6.1.1 Runtime 架构</h3><h4 id="6-1-1-1-Memory-Management"><a href="#6-1-1-1-Memory-Management" class="headerlink" title="6.1.1.1 Memory Management"></a>6.1.1.1 Memory Management</h4><h3 id="6-1-2-Flink-SQL"><a href="#6-1-2-Flink-SQL" class="headerlink" title="6.1.2 Flink SQL"></a>6.1.2 Flink SQL</h3><h3 id="6-1-3-State-Checkpoint"><a href="#6-1-3-State-Checkpoint" class="headerlink" title="6.1.3 State &amp; Checkpoint"></a>6.1.3 State &amp; Checkpoint</h3><h4 id="6-1-3-1-状态管理"><a href="#6-1-3-1-状态管理" class="headerlink" title="6.1.3.1 状态管理"></a>6.1.3.1 状态管理</h4><h4 id="6-1-3-2-容错机制"><a href="#6-1-3-2-容错机制" class="headerlink" title="6.1.3.2 容错机制"></a>6.1.3.2 容错机制</h4><h4 id="6-1-3-3-Exactly-once-语义"><a href="#6-1-3-3-Exactly-once-语义" class="headerlink" title="6.1.3.3 Exactly-once 语义"></a>6.1.3.3 Exactly-once 语义</h4><h3 id="6-1-4-RocksDB-State-Backend"><a href="#6-1-4-RocksDB-State-Backend" class="headerlink" title="6.1.4 RocksDB State Backend"></a>6.1.4 RocksDB State Backend</h3><h1 id="7-湖仓一体架构"><a href="#7-湖仓一体架构" class="headerlink" title="7 湖仓一体架构"></a>7 湖仓一体架构</h1><blockquote>
+<p><strong>存储与湖仓一体：</strong> 掌握 <strong>Data Lakehouse</strong> 架构（如 <strong>Iceberg、Hudi、Delta Lake</strong>），解决近实时更新和流批统一的问题。</p>
+</blockquote>
+<h2 id="7-1-Apache-Iceberg"><a href="#7-1-Apache-Iceberg" class="headerlink" title="7.1 Apache Iceberg"></a>7.1 Apache Iceberg</h2><h2 id="7-2-Apache-Hudi"><a href="#7-2-Apache-Hudi" class="headerlink" title="7.2 Apache Hudi"></a>7.2 Apache Hudi</h2><h2 id="7-3-Apache-Paimon"><a href="#7-3-Apache-Paimon" class="headerlink" title="7.3 Apache Paimon"></a>7.3 Apache Paimon</h2><h2 id="7-4-Delta-Lake"><a href="#7-4-Delta-Lake" class="headerlink" title="7.4 Delta Lake"></a>7.4 Delta Lake</h2><h1 id="8-OLAP-分析引擎"><a href="#8-OLAP-分析引擎" class="headerlink" title="8 OLAP 分析引擎"></a>8 OLAP 分析引擎</h1><p>为了满足秒级响应的分析需求，架构师需要根据场景（并发量、延迟、数据量）选择合适的引擎：</p>
+<h2 id="8-1-ClickHouse"><a href="#8-1-ClickHouse" class="headerlink" title="8.1 ClickHouse"></a>8.1 ClickHouse</h2><p>极致的单表查询性能</p>
+<h2 id="8-2-Apache-Doris"><a href="#8-2-Apache-Doris" class="headerlink" title="8.2 Apache Doris"></a>8.2 Apache Doris</h2><p>优秀的国产自研引擎，支持高并发、流批一体和极简运维</p>
+<p><a href="https://mp.weixin.qq.com/s/7h6cNnK4jiiQsrompo_r4A">Doris为什么那么快？</a></p>
+<h2 id="8-3-StarRocks"><a href="#8-3-StarRocks" class="headerlink" title="8.3 StarRocks"></a>8.3 StarRocks</h2><p>优秀的国产自研引擎，支持高并发、流批一体和极简运维</p>
+<p><a href="https://zhuanlan.zhihu.com/p/421469439">Apache Doris和Clickhouse的深度分析</a></p>
+<h2 id="8-4-Presto-Trino"><a href="#8-4-Presto-Trino" class="headerlink" title="8.4 Presto &#x2F; Trino"></a>8.4 Presto &#x2F; Trino</h2><p>适用于跨数据源的联邦查询</p>
+<h1 id="9-云原生大数据"><a href="#9-云原生大数据" class="headerlink" title="9 云原生大数据"></a>9 云原生大数据</h1><h2 id="9-1-容器化部署"><a href="#9-1-容器化部署" class="headerlink" title="9.1 容器化部署"></a>9.1 容器化部署</h2><h2 id="9-2-Kubernetes-调度"><a href="#9-2-Kubernetes-调度" class="headerlink" title="9.2 Kubernetes 调度"></a>9.2 Kubernetes 调度</h2><h2 id="9-3-资源弹性伸缩"><a href="#9-3-资源弹性伸缩" class="headerlink" title="9.3 资源弹性伸缩"></a>9.3 资源弹性伸缩</h2><h2 id="9-4-Ray"><a href="#9-4-Ray" class="headerlink" title="9.4 Ray"></a>9.4 Ray</h2><h1 id="10-数据治理与架构设计"><a href="#10-数据治理与架构设计" class="headerlink" title="10 数据治理与架构设计"></a>10 数据治理与架构设计</h1><h2 id="10-1-数据治理与全生命周期管理"><a href="#10-1-数据治理与全生命周期管理" class="headerlink" title="10.1 数据治理与全生命周期管理"></a>10.1 数据治理与全生命周期管理</h2><p>架构师的价值往往体现在”如何管好数据”而非仅仅”存下数据”。</p>
+<h3 id="10-1-1-元数据管理"><a href="#10-1-1-元数据管理" class="headerlink" title="10.1.1 元数据管理"></a>10.1.1 元数据管理</h3><p>构建数据字典，实现血缘追踪（Data Lineage）</p>
+<h3 id="10-1-2-数据质量"><a href="#10-1-2-数据质量" class="headerlink" title="10.1.2 数据质量"></a>10.1.2 数据质量</h3><p>建立监控体系，涵盖完整性、准确性和一致性</p>
+<h3 id="10-1-3-数据安全"><a href="#10-1-3-数据安全" class="headerlink" title="10.1.3 数据安全"></a>10.1.3 数据安全</h3><ul>
+<li>权限控制（Ranger）</li>
+<li>数据脱敏</li>
+<li>数据加密</li>
+<li>隐私计算</li>
+</ul>
+<h3 id="10-1-4-数仓建模"><a href="#10-1-4-数仓建模" class="headerlink" title="10.1.4 数仓建模"></a>10.1.4 数仓建模</h3><ul>
+<li>离线数仓建模</li>
+<li>实时数仓建模</li>
+<li>维度建模（Kimball）</li>
+<li>Data Vault</li>
+</ul>
+<h2 id="10-2-架构设计思维"><a href="#10-2-架构设计思维" class="headerlink" title="10.2 架构设计思维"></a>10.2 架构设计思维</h2><p>这是专家级与高级开发的本质区别：</p>
+<h3 id="10-2-1-选型能力"><a href="#10-2-1-选型能力" class="headerlink" title="10.2.1 选型能力"></a>10.2.1 选型能力</h3><p>能够在不同的业务场景（如电商大促、金融风控、物联网监控）下给出最合适的方案</p>
+<h3 id="10-2-2-高可用与灾备"><a href="#10-2-2-高可用与灾备" class="headerlink" title="10.2.2 高可用与灾备"></a>10.2.2 高可用与灾备</h3><p>设计具备容错能力的多活架构</p>
+<h3 id="10-2-3-成本优化"><a href="#10-2-3-成本优化" class="headerlink" title="10.2.3 成本优化"></a>10.2.3 成本优化</h3><p>通过冷热数据分级存储、资源弹性伸缩（FinOps）降低云账单成本</p>
+<h1 id="11-参考资料"><a href="#11-参考资料" class="headerlink" title="11 参考资料"></a>11 参考资料</h1><p><a href="00-GTD/C2-%E6%97%A5%E6%B8%85%E5%8D%95%E4%B8%8E%E5%A4%87%E5%BF%98%E5%BD%95/C2.1-daily/2025Q2-06.md">Daily-0609~0615</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+              <a href="/tags/Spark/" rel="tag"># Spark</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/AI/AI/" rel="prev" title="AI开发技术图谱">
+      <i class="fa fa-chevron-left"></i> AI开发技术图谱
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Home/" rel="next" title="Home">
+      Home <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">1.</span> <span class="nav-text">1 基础技术栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Java"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-LSM-Tree"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 LSM Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-B-Tree"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 B-Tree</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%BA%95%E5%B1%82%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 底层存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-LevelDB"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 LevelDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-RocksDB"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 RocksDB</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E7%A1%AC%E4%BB%B6%E4%B8%8E%E5%AD%98%E5%82%A8"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 硬件与存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-OSS-%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1 OSS 对象存储</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%B0%83"><span class="nav-number">2.</span> <span class="nav-text">2 分布式协调</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Zookeeper"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Zookeeper</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%AD%98%E5%82%A8%E5%B1%82"><span class="nav-number">3.</span> <span class="nav-text">3 存储层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-HDFS"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 HDFS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="nav-number">4.</span> <span class="nav-text">4 消息队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Kafka"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Kafka</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Pulsar"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Pulsar</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E6%89%B9%E5%A4%84%E7%90%86%E5%BC%95%E6%93%8E"><span class="nav-number">5.</span> <span class="nav-text">5 批处理引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Spark"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Spark</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-Spark-Core"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 Spark Core</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-Spark-SQL"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 Spark SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-3-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">5.1.3.</span> <span class="nav-text">5.1.3 性能优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E6%B5%81%E5%A4%84%E7%90%86%E5%BC%95%E6%93%8E"><span class="nav-number">6.</span> <span class="nav-text">6 流处理引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Flink"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 Flink</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-1-Runtime-%E6%9E%B6%E6%9E%84"><span class="nav-number">6.1.1.</span> <span class="nav-text">6.1.1 Runtime 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-1-1-Memory-Management"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">6.1.1.1 Memory Management</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-2-Flink-SQL"><span class="nav-number">6.1.2.</span> <span class="nav-text">6.1.2 Flink SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-3-State-Checkpoint"><span class="nav-number">6.1.3.</span> <span class="nav-text">6.1.3 State &amp; Checkpoint</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-3-1-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-number">6.1.3.1.</span> <span class="nav-text">6.1.3.1 状态管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-3-2-%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6"><span class="nav-number">6.1.3.2.</span> <span class="nav-text">6.1.3.2 容错机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-3-3-Exactly-once-%E8%AF%AD%E4%B9%89"><span class="nav-number">6.1.3.3.</span> <span class="nav-text">6.1.3.3 Exactly-once 语义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-4-RocksDB-State-Backend"><span class="nav-number">6.1.4.</span> <span class="nav-text">6.1.4 RocksDB State Backend</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E6%B9%96%E4%BB%93%E4%B8%80%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="nav-number">7.</span> <span class="nav-text">7 湖仓一体架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-Apache-Iceberg"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 Apache Iceberg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-Apache-Hudi"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 Apache Hudi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-Apache-Paimon"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 Apache Paimon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-Delta-Lake"><span class="nav-number">7.4.</span> <span class="nav-text">7.4 Delta Lake</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-OLAP-%E5%88%86%E6%9E%90%E5%BC%95%E6%93%8E"><span class="nav-number">8.</span> <span class="nav-text">8 OLAP 分析引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-ClickHouse"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 ClickHouse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-Apache-Doris"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 Apache Doris</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-StarRocks"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 StarRocks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-Presto-Trino"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 Presto &#x2F; Trino</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E4%BA%91%E5%8E%9F%E7%94%9F%E5%A4%A7%E6%95%B0%E6%8D%AE"><span class="nav-number">9.</span> <span class="nav-text">9 云原生大数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2"><span class="nav-number">9.1.</span> <span class="nav-text">9.1 容器化部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-Kubernetes-%E8%B0%83%E5%BA%A6"><span class="nav-number">9.2.</span> <span class="nav-text">9.2 Kubernetes 调度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-%E8%B5%84%E6%BA%90%E5%BC%B9%E6%80%A7%E4%BC%B8%E7%BC%A9"><span class="nav-number">9.3.</span> <span class="nav-text">9.3 资源弹性伸缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-Ray"><span class="nav-number">9.4.</span> <span class="nav-text">9.4 Ray</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86%E4%B8%8E%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">10.</span> <span class="nav-text">10 数据治理与架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86%E4%B8%8E%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86"><span class="nav-number">10.1.</span> <span class="nav-text">10.1 数据治理与全生命周期管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-1-%E5%85%83%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86"><span class="nav-number">10.1.1.</span> <span class="nav-text">10.1.1 元数据管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-2-%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F"><span class="nav-number">10.1.2.</span> <span class="nav-text">10.1.2 数据质量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-3-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8"><span class="nav-number">10.1.3.</span> <span class="nav-text">10.1.3 数据安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-4-%E6%95%B0%E4%BB%93%E5%BB%BA%E6%A8%A1"><span class="nav-number">10.1.4.</span> <span class="nav-text">10.1.4 数仓建模</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E7%BB%B4"><span class="nav-number">10.2.</span> <span class="nav-text">10.2 架构设计思维</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-1-%E9%80%89%E5%9E%8B%E8%83%BD%E5%8A%9B"><span class="nav-number">10.2.1.</span> <span class="nav-text">10.2.1 选型能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-2-%E9%AB%98%E5%8F%AF%E7%94%A8%E4%B8%8E%E7%81%BE%E5%A4%87"><span class="nav-number">10.2.2.</span> <span class="nav-text">10.2.2 高可用与灾备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-3-%E6%88%90%E6%9C%AC%E4%BC%98%E5%8C%96"><span class="nav-number">10.2.3.</span> <span class="nav-text">10.2.3 成本优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">11.</span> <span class="nav-text">11 参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

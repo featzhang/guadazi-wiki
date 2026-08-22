@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/9/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/IO-optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/IO-optimization/" class="post-title-link" itemprop="url">I/O 优化手段</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 10:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="I-O-优化手段"><a href="#I-O-优化手段" class="headerlink" title="I&#x2F;O 优化手段"></a>I&#x2F;O 优化手段</h1><p>一句话定位：数据处理链路的吞吐上限往往卡在 I&#x2F;O（磁盘&#x2F;网络&#x2F;解析），而非计算。优化的主线是”少读、少传、少解析、提前准备”。</p>
+<h2 id="1-投影下推-谓词下推（少读、少传）"><a href="#1-投影下推-谓词下推（少读、少传）" class="headerlink" title="1. 投影下推 &#x2F; 谓词下推（少读、少传）"></a>1. 投影下推 &#x2F; 谓词下推（少读、少传）</h2><ul>
+<li><strong>投影下推（Projection Pushdown）</strong>：只读取查询&#x2F;计算需要的列。列存下同一列连续存储，可直接跳过无关列块，IO 量随列数下降。</li>
+<li><strong>谓词下推（Predicate Pushdown）</strong>：把 <code>filter</code> 条件下推到扫描层，在读取时即过滤。如 Parquet 用 Row Group &#x2F; Page 的 min-max&#x2F;null 统计做<strong>谓词剪枝</strong>，跳过不满足条件的数据块。</li>
+<li>收益来源：减少从存储到计算引擎的<strong>数据量</strong>（IO + 网络 + 反序列化）。</li>
+</ul>
+<h2 id="2-压缩算法选型（带宽-vs-CPU）"><a href="#2-压缩算法选型（带宽-vs-CPU）" class="headerlink" title="2. 压缩算法选型（带宽 vs CPU）"></a>2. 压缩算法选型（带宽 vs CPU）</h2><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>速度</th>
+<th>压缩比</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Snappy</td>
+<td>快</td>
+<td>中（~2-3x）</td>
+<td>CPU 是瓶颈、热数据&#x2F;中间数据</td>
+</tr>
+<tr>
+<td>Zstd</td>
+<td>可调，较快</td>
+<td>高（~3-5x+）</td>
+<td>带宽&#x2F;存储是瓶颈、冷数据</td>
+</tr>
+</tbody></table>
+<ul>
+<li>权衡：压缩省带宽与存储，但解压耗 CPU。<strong>CPU 紧张选 Snappy，IO&#x2F;存储紧张选 Zstd</strong>。</li>
+</ul>
+<h2 id="3-小文件合并（降元数据与调度开销）"><a href="#3-小文件合并（降元数据与调度开销）" class="headerlink" title="3. 小文件合并（降元数据与调度开销）"></a>3. 小文件合并（降元数据与调度开销）</h2><ul>
+<li>大量小文件 → NameNode&#x2F;文件句柄元数据压力大、每文件一个 task 导致调度开销高、随机寻址成本高。</li>
+<li>手段：写入时合并大文件、定期 Compaction（HDFS 小文件合并、ORC&#x2F;Parquet 合并）、使用面向大文件的格式。合并后 task 数下降，吞吐提升明显。</li>
+</ul>
+<h2 id="4-异步预取与-MMap（掩盖延迟）"><a href="#4-异步预取与-MMap（掩盖延迟）" class="headerlink" title="4. 异步预取与 MMap（掩盖延迟）"></a>4. 异步预取与 MMap（掩盖延迟）</h2><ul>
+<li><strong>异步预取（Async Prefetch）</strong>：后台线程提前读取后续数据，与计算重叠，掩盖 IO 延迟（类比 CPU 硬件预取）。</li>
+<li><strong>内存映射（MMap）</strong>：文件映射到进程地址空间，由 OS 页缓存管理，免系统调用拷贝，适合大文件顺序&#x2F;随机读；但大文件 MMap 可能挤占页缓存，需权衡。</li>
+</ul>
+<blockquote>
+<p>参考：Apache Parquet &#x2F; ORC 官方文档（Pushdown、压缩）；Linux <code>mmap</code> 手册</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/data-pipeline-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/data-pipeline-design/" class="post-title-link" itemprop="url">数据管道全链路设计范式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 10:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据管道全链路设计范式"><a href="#数据管道全链路设计范式" class="headerlink" title="数据管道全链路设计范式"></a>数据管道全链路设计范式</h1><p>一句话定位：数据管道不是”一串脚本”，而是一套”分层解耦 + 算子可复用 + 可重跑 + 资源隔离”的工程系统。面试要把”接入→清洗→转换→输出”讲成可治理的范式。</p>
+<h2 id="1-分层解耦：接入-→-清洗-→-转换-→-输出"><a href="#1-分层解耦：接入-→-清洗-→-转换-→-输出" class="headerlink" title="1. 分层解耦：接入 → 清洗 → 转换 → 输出"></a>1. 分层解耦：接入 → 清洗 → 转换 → 输出</h2><ul>
+<li>每层职责单一，通过<strong>标准数据契约</strong>（schema &#x2F; 格式）衔接；</li>
+<li>单层可独立替换、独立扩缩（如换 source 不影响 transform）；</li>
+<li>故障定位时按层切分，避免”一处坏全线瘫”。</li>
+</ul>
+<h2 id="2-算子抽象与可复用性"><a href="#2-算子抽象与可复用性" class="headerlink" title="2. 算子抽象与可复用性"></a>2. 算子抽象与可复用性</h2><ul>
+<li>把处理单元抽象为统一接口的算子（map &#x2F; filter &#x2F; join &#x2F; aggregate；Flink 算子、Spark 算子、Ray Actor）；</li>
+<li>沉淀为<strong>可复用算子库 + 编排模板</strong>，业务逻辑靠组合而非重写；</li>
+<li>对应”平台化意识”：一次优化沉淀为通用能力。</li>
+</ul>
+<h2 id="3-幂等与重试设计"><a href="#3-幂等与重试设计" class="headerlink" title="3. 幂等与重试设计"></a>3. 幂等与重试设计</h2><ul>
+<li><strong>幂等</strong>：同一输入多次执行结果一致（唯一键 &#x2F; 去重表 &#x2F; upsert &#x2F; 幂等写入），使重试安全；</li>
+<li><strong>重试 + 断点续跑</strong>：失败任务可重跑（至少一次 → 配合幂等达成”有效一次”），靠位点&#x2F;offset&#x2F;checkpoint 续跑，避免全量重算；</li>
+<li>对应 1.1.4 Flink 的 Exactly-Once 思想。</li>
+</ul>
+<h2 id="4-CPU-密集与-GPU-密集的资源池分离"><a href="#4-CPU-密集与-GPU-密集的资源池分离" class="headerlink" title="4. CPU 密集与 GPU 密集的资源池分离"></a>4. CPU 密集与 GPU 密集的资源池分离</h2><ul>
+<li>解析&#x2F;清洗&#x2F;特征（CPU 密集）与推理&#x2F;打标（GPU 密集）<strong>分属不同资源池</strong>（如 CPU 集群 vs GPU 集群）；</li>
+<li>用 Ray &#x2F; 调度器做异构编排（如 head 在 CPU 集群、worker 在 GPU 集群），避免互相抢占；</li>
+<li>对应 1.1.5 Ray 的异构资源调度优势。</li>
+</ul>
+<h2 id="5-可观测与背压"><a href="#5-可观测与背压" class="headerlink" title="5. 可观测与背压"></a>5. 可观测与背压</h2><ul>
+<li>监控各环节吞吐&#x2F;延迟&#x2F;积压；</li>
+<li><strong>背压（Backpressure）</strong>：下游过载时反向限速，防止雪崩（Flink 原生背压机制）。</li>
+</ul>
+<blockquote>
+<p>参考：Google《Data Pipelines》相关实践；Flink &#x2F; Spark Structured Streaming 背压机制文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/data-format-comparison/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/data-format-comparison/" class="post-title-link" itemprop="url">数据格式对比：JSONL / Parquet / Arrow / ORC</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 10:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据格式对比：JSONL-Parquet-Arrow-ORC"><a href="#数据格式对比：JSONL-Parquet-Arrow-ORC" class="headerlink" title="数据格式对比：JSONL &#x2F; Parquet &#x2F; Arrow &#x2F; ORC"></a>数据格式对比：JSONL &#x2F; Parquet &#x2F; Arrow &#x2F; ORC</h1><p>一句话定位：选数据格式本质是在”解析成本 &#x2F; 存储扫描 &#x2F; 跨语言传输”之间取舍。面试常考”为什么把 JSONL 换成 Parquet&#x2F;Arrow 吞吐能翻倍”。</p>
+<h2 id="1-四种格式速览"><a href="#1-四种格式速览" class="headerlink" title="1. 四种格式速览"></a>1. 四种格式速览</h2><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>形态</th>
+<th>解析成本</th>
+<th>存储&#x2F;扫描</th>
+<th>跨语言</th>
+<th>生态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JSONL</td>
+<td>文本，每行一对象</td>
+<td>高（逐行 JSON decode，CPU 瓶颈）</td>
+<td>无压缩&#x2F;列裁剪</td>
+<td>通用</td>
+<td>日志、交换</td>
+</tr>
+<tr>
+<td>Parquet</td>
+<td>列式 + 压缩</td>
+<td>低（二进制列读）</td>
+<td>友好（列裁剪+谓词下推+高压缩）</td>
+<td>好</td>
+<td>Hadoop 事实标准</td>
+</tr>
+<tr>
+<td>Arrow</td>
+<td>内存列式</td>
+<td>极低（零拷贝）</td>
+<td>内存计算友好</td>
+<td>极佳（C++&#x2F;Python&#x2F;Java 共享）</td>
+<td>内存计算&#x2F;传输</td>
+</tr>
+<tr>
+<td>ORC</td>
+<td>列式 + 压缩</td>
+<td>低</td>
+<td>友好</td>
+<td>好</td>
+<td>Hive 生态强绑定</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>JSONL</strong>：可读但需逐行解析，无 schema&#x2F;压缩弱，适合采集交换，查询慢。</li>
+<li><strong>Parquet</strong>：列式 + 嵌套支持 + 高压缩，分析型存储首选。</li>
+<li><strong>Arrow</strong>：内存中的列式格式，跨语言零拷贝共享（Spark↔Pandas、Ray Plasma），避免序列化。</li>
+<li><strong>ORC</strong>：与 Parquet 类似，但和 Hive&#x2F;Impala 集成更深。</li>
+</ul>
+<h2 id="2-面试话术：JSONL-→-Parquet-Arrow-吞吐提升的三点"><a href="#2-面试话术：JSONL-→-Parquet-Arrow-吞吐提升的三点" class="headerlink" title="2. 面试话术：JSONL → Parquet&#x2F;Arrow 吞吐提升的三点"></a>2. 面试话术：JSONL → Parquet&#x2F;Arrow 吞吐提升的三点</h2><ol>
+<li><strong>消除文本解析</strong>：免去逐行 JSON <code>decode</code>（最贵的 CPU 环节）；</li>
+<li><strong>只读需要的列</strong>（列裁剪）：不必把整行反序列化；</li>
+<li><strong>零拷贝 &#x2F; 二进制列式</strong>：Arrow 在内存层免序列化，Parquet 在存储层免文本解析。</li>
+</ol>
+<blockquote>
+<p>参考：Apache Parquet &#x2F; Arrow &#x2F; ORC 官方文档；Google Dremel 论文（Parquet 思想来源）</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-stream-batch-state/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-stream-batch-state/" class="post-title-link" itemprop="url">Flink 流批一体与状态管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 10:00:00 / Modified: 17:34:28" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Flink-流批一体与状态管理"><a href="#Flink-流批一体与状态管理" class="headerlink" title="Flink 流批一体与状态管理"></a>Flink 流批一体与状态管理</h1><p>一句话定位：Flink 的杀手锏是”一套引擎跑流和批”（流批一体），以及可扩缩、可容错的状态管理（State + Checkpoint）；二者共同支撑 Exactly-Once。面试重点在 State Backend 选型、Barrier 对齐、以及 Exactly-Once 是怎么串起来的。</p>
+<h2 id="1-流批一体（Unified-Engine）"><a href="#1-流批一体（Unified-Engine）" class="headerlink" title="1. 流批一体（Unified Engine）"></a>1. 流批一体（Unified Engine）</h2><ul>
+<li>Flink 认为<strong>批是流的特例（有界流）</strong>：同一套 DataStream API &#x2F; Table-SQL API，通过 <code>ExecutionMode.BATCH</code> 即可跑有界数据，无需维护两套代码。</li>
+<li>统一 Runtime：调度、容错、shuffle、状态后端对批流一致；降低了”流一套、批一套”的维护成本，也保证了语义一致。</li>
+<li>面试话术：把”流批一体”讲成”统一 API + 统一 Runtime + 有界即无界特例”，比单纯说”支持批处理”更有深度。</li>
+</ul>
+<h2 id="2-状态管理：State-Backend-选型"><a href="#2-状态管理：State-Backend-选型" class="headerlink" title="2. 状态管理：State Backend 选型"></a>2. 状态管理：State Backend 选型</h2><table>
+<thead>
+<tr>
+<th>Backend</th>
+<th>存储位置</th>
+<th>优势</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HashMapStateBackend</td>
+<td>JVM 堆</td>
+<td>读写最快、无需序列化</td>
+<td>小状态、低延迟</td>
+</tr>
+<tr>
+<td>EmbeddedRocksDBStateBackend</td>
+<td>本地磁盘 + 堆外</td>
+<td>支持超大状态、增量 Checkpoint</td>
+<td>大状态、长窗口、高吞吐</td>
+</tr>
+</tbody></table>
+<ul>
+<li>选型看<strong>状态规模</strong>与<strong>延迟预算</strong>：状态放得下堆就用 HashMap（快），放不下或要做增量 checkpoint 就用 RocksDB（慢但可扩展）。</li>
+<li>状态类型：Keyed State（按 key 分区，随 key 路由）&#x2F; Operator State（算子级，如 source offset）。</li>
+</ul>
+<h2 id="3-Checkpoint-的-Barrier-对齐机制"><a href="#3-Checkpoint-的-Barrier-对齐机制" class="headerlink" title="3. Checkpoint 的 Barrier 对齐机制"></a>3. Checkpoint 的 Barrier 对齐机制</h2><ul>
+<li>Barrier 由 Source 按固定间隔注入数据流，随数据向下游流动，标记”属于第 n 个 checkpoint 的数据边界”。</li>
+<li><strong>对齐（Alignment）</strong>：算子收到某个输入通道的 barrier-n 后，<strong>该通道后续数据被缓存阻塞</strong>，直到所有输入通道都收到 barrier-n，才做状态快照（snapshot）并向下游广播 barrier-n。</li>
+<li>对齐的意义：<strong>保证 Exactly-Once</strong>——barrier 之后的数据绝不会混入本次 checkpoint 的状态。</li>
+<li><strong>非对齐 Checkpoint（Unaligned）</strong>：把正在传输中的缓冲也纳入快照，避免反压下 barrier 被”堵”在通道里导致 checkpoint 超时，降低尾延迟，但快照更大。</li>
+</ul>
+<h2 id="4-Exactly-Once-如何达成"><a href="#4-Exactly-Once-如何达成" class="headerlink" title="4. Exactly-Once 如何达成"></a>4. Exactly-Once 如何达成</h2><p>端到端 Exactly-Once &#x3D; <strong>可重放 Source + Checkpoint 状态持久化 + 事务&#x2F;幂等 Sink</strong>：</p>
+<ol>
+<li>Source 记录位点（Kafka offset &#x2F; 文件偏移），失败可从 checkpoint 重放；</li>
+<li>基于 <strong>Chandy-Lamport 分布式快照算法</strong>，barrier 对齐保证各算子状态对应同一逻辑时间点；</li>
+<li>Sink 用<strong>两阶段提交（2PC，如 Flink-Kafka 事务）<strong>或</strong>幂等写入</strong>，使”状态提交”与”外部输出”原子化。</li>
+</ol>
+<blockquote>
+<p>参考：Apache Flink 官方文档 State Backends &#x2F; Checkpointing；论文《Lightweight Asynchronous Snapshots for Distributed Dataflows》(Chandy-Lamport)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Ray/Ray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Ray/Ray/" class="post-title-link" itemprop="url">Ray 分布式计算核心概念</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 10:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Ray-分布式计算核心概念"><a href="#Ray-分布式计算核心概念" class="headerlink" title="Ray 分布式计算核心概念"></a>Ray 分布式计算核心概念</h1><p>一句话定位：Ray 是面向 AI&#x2F;ML 的分布式框架，用 Task&#x2F;Actor 统一抽象 + Plasma 共享内存 + 细粒度动态调度，在异构资源（CPU&#x2F;GPU）上跑 AI 数据处理与推理。面试核心是”为什么 AI 数据链路常比 Spark 更合适”。</p>
+<h2 id="1-Task（无状态）vs-Actor（有状态）"><a href="#1-Task（无状态）vs-Actor（有状态）" class="headerlink" title="1. Task（无状态）vs Actor（有状态）"></a>1. Task（无状态）vs Actor（有状态）</h2><ul>
+<li><strong>Task</strong>：<code>@ray.remote</code> 修饰的普通函数，无状态、输入→输出通过 ObjectRef 返回，调度器动态分配到空闲节点。适合无状态并行（map、批量推理）。</li>
+<li><strong>Actor</strong>：<code>@ray.remote</code> 修饰的类，在固定节点上常驻一个进程、持有状态；其方法调用串行执行。适合有状态服务——参数服务器、模型推理服务、累积计数&#x2F;状态机。</li>
+<li>关键区别：Task 调用间不共享内存、可任意调度；Actor 把状态”钉”在节点上，调用有顺序保证但需考虑状态热点。</li>
+</ul>
+<h2 id="2-分布式对象存储-Plasma"><a href="#2-分布式对象存储-Plasma" class="headerlink" title="2. 分布式对象存储 Plasma"></a>2. 分布式对象存储 Plasma</h2><ul>
+<li>Plasma 是基于<strong>共享内存</strong>的分布式对象存储：大对象（DataFrame、模型权重、中间 tensor）以零拷贝方式在节点内&#x2F;节点间传递，避免反复序列化拷贝。</li>
+<li>对象由 <strong>ObjectRef</strong> 引用，生命周期由引用计数管理；这是 Ray 能在 Python 生态里高效搬运数据的基础。</li>
+</ul>
+<h2 id="3-动态任务图调度"><a href="#3-动态任务图调度" class="headerlink" title="3. 动态任务图调度"></a>3. 动态任务图调度</h2><ul>
+<li>与 Spark 的”提交时静态 DAG”不同，Ray 的任务在<strong>运行时动态生成</strong>，调度器（全局 GCS + 局部）按资源可用性把细粒度 task 放到合适节点（可精确到 0.1 GPU）。</li>
+<li>细粒度 → 更好的负载均衡与资源利用率，也天然支持不规则、依赖运行时的计算图。</li>
+</ul>
+<h2 id="4-面试重点：为什么-AI-数据链路-Ray-常优于-Spark"><a href="#4-面试重点：为什么-AI-数据链路-Ray-常优于-Spark" class="headerlink" title="4. 面试重点：为什么 AI 数据链路 Ray 常优于 Spark"></a>4. 面试重点：为什么 AI 数据链路 Ray 常优于 Spark</h2><ol>
+<li><strong>异构资源</strong>：Ray 原生细粒度分配 GPU（如 0.3 GPU 给算子 A、0.7 给算子 B）；Spark 以 executor&#x2F;core 粗粒度调度，GPU 支持弱。</li>
+<li><strong>Python 原生</strong>：Ray 围绕 NumPy&#x2F;PyTorch 设计，借助 Plasma 零拷贝传 tensor；Spark 以 JVM 为主，PySpark UDF 经 py4j 序列化开销大。</li>
+<li><strong>动态&#x2F;细粒度调度</strong>：AI 管线常含 Actor 服务、动态 batch、运行期才确定的依赖，Spark 静态 DAG 不灵活。</li>
+<li>典型场景：离线批量推理、超参搜索、RL、预处理+训练一体。</li>
+</ol>
+<blockquote>
+<p>参考：论文《Ray: A Distributed Framework for Emerging AI Applications》(Moritz et al., 2018, arXiv:1712.05889)；Anyscale《Offline Batch Inference: Comparing Ray, Apache Spark, and SageMaker》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Spark/Spark-memory-gc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Spark/Spark-memory-gc/" class="post-title-link" itemprop="url">Spark 内存管理与 GC 调优</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 10:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Spark-内存管理与-GC-调优"><a href="#Spark-内存管理与-GC-调优" class="headerlink" title="Spark 内存管理与 GC 调优"></a>Spark 内存管理与 GC 调优</h1><p>一句话定位：Executor 内存怎么分、谁来借、GC 为什么抖，是 Spark 性能调优的地基；理解内存模型才能解释”为什么缓存一多就 Full GC””为什么分区太小反而更慢”。</p>
+<h2 id="1-Executor-内存模型"><a href="#1-Executor-内存模型" class="headerlink" title="1. Executor 内存模型"></a>1. Executor 内存模型</h2><p>Executor 的 JVM 堆被划分为（以 <code>spark.memory.fraction</code> 默认 0.6 为例，扣除 300MB Reserved 之后）：</p>
+<ul>
+<li><strong>统一内存（Unified Memory）</strong>：执行内存（Execution，排序&#x2F;聚合&#x2F;Join 的 shuffle 缓冲）与存储内存（Storage，缓存的 RDD&#x2F;广播变量）共享一个池，默认各占 50%（<code>spark.memory.storageFraction</code>）。<ul>
+<li><strong>动态借用</strong>：执行内存不足时可向存储内存借空间（逐出缓存的 block）；但存储内存不能强行逐出正在被使用的执行内存。即<strong>执行内存优先</strong>，这也是”缓存过多反而拖慢计算”的根因——存储占了统一池，执行只能被挤压或 spill 到磁盘。</li>
+</ul>
+</li>
+<li><strong>用户内存（User Memory）</strong>：算子&#x2F;UDF 自身对象、数据结构，不受 Spark 管理。</li>
+<li><strong>堆外内存（Off-Heap）</strong>：<code>spark.memory.offHeap.enabled=true</code> + <code>spark.memory.offHeap.size</code>；Tungsten 的二进制格式（排序&#x2F;聚合&#x2F;缓存）可直接写在堆外，由 OS 管理、<strong>不受 JVM GC 管辖</strong>，显著降低 GC 压力，但需手动设上限。</li>
+</ul>
+<h2 id="2-GC-频繁的典型成因"><a href="#2-GC-频繁的典型成因" class="headerlink" title="2. GC 频繁的典型成因"></a>2. GC 频繁的典型成因</h2><ul>
+<li>分区过小 → 单分区对象少但分区数爆炸 → Young GC 次数飙升；</li>
+<li>缓存过量（RDD&#x2F;广播变量&#x2F;大表缓存）→ Old Gen 持续高位 → Full GC；</li>
+<li>大批量&#x2F;大对象（如超大 <code>collect</code>、宽行）→ 大对象直入 Old Gen，触发提前 Full GC；</li>
+<li>堆外未开 + 统一内存被存储挤占 → 执行内存 spill 到磁盘，反而增加对象生命周期。</li>
+</ul>
+<h2 id="3-调优手段"><a href="#3-调优手段" class="headerlink" title="3. 调优手段"></a>3. 调优手段</h2><ul>
+<li><strong>调分区数</strong>：<code>spark.sql.shuffle.partitions</code> &#x2F; <code>repartition</code>，让单任务数据量适中，减少对象数与 GC 频率。</li>
+<li><strong>控制缓存</strong>：非必要不 <code>cache</code>；用 <code>MEMORY_AND_DISK</code> 而非纯内存；及时 <code>unpersist</code>。</li>
+<li><strong>开堆外</strong>：大数据量排序&#x2F;聚合场景开启 Off-Heap，把 GC 压力移出 JVM。</li>
+<li><strong>GC 器与参数</strong>：G1GC（<code>-XX:+UseG1GC</code>）配合合理 <code>-Xmn</code> &#x2F; <code>-XX:InitiatingHeapOccupancyPercent</code>；监控 GC 日志与 Spark UI Executors 页的 <code>GC Time</code>。</li>
+<li><strong>加资源</strong>：在单任务数据量确实大时，增大 <code>executor.memory</code> 或降 <code>executor.cores</code>（减少同进程并发对象）。</li>
+</ul>
+<blockquote>
+<p>参考：Apache Spark 官方文档 Memory Management Overview &#x2F; Tuning Guide</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Spark/Spark-scheduling-aqe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Spark/Spark-scheduling-aqe/" class="post-title-link" itemprop="url">资源调度与执行计划优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-22 10:00:00 / Modified: 17:34:29" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="资源调度与执行计划优化"><a href="#资源调度与执行计划优化" class="headerlink" title="资源调度与执行计划优化"></a>资源调度与执行计划优化</h1><p>一句话定位：作业跑得快不快，一半在资源撮合（能不能拿到合适的容器），一半在执行计划（会不会自适应地选对分区数和 Join 策略）。Spark 3 的 AQE 把后者从”人肉调参”变成了”运行时自适应”。</p>
+<h2 id="1-YARN-K8s-资源撮合"><a href="#1-YARN-K8s-资源撮合" class="headerlink" title="1. YARN &#x2F; K8s 资源撮合"></a>1. YARN &#x2F; K8s 资源撮合</h2><ul>
+<li><strong>YARN</strong>：ResourceManager 按 Container 申请（内存 + vcore）在 NodeManager 上分配；Capacity&#x2F;Fair 调度器决定队列配额与共享；受 <code>min-allocation</code> &#x2F; <code>increment</code> 规整化影响，实际占用常大于申请（见 Spark 资源评估）。</li>
+<li><strong>K8s</strong>：executor 以 Pod 申请，由 kube-scheduler 按节点资源&#x2F;亲和性调度；支持动态资源分配与 Spot&#x2F;抢占，弹性更好。</li>
+</ul>
+<h2 id="2-任务优先级与抢占"><a href="#2-任务优先级与抢占" class="headerlink" title="2. 任务优先级与抢占"></a>2. 任务优先级与抢占</h2><ul>
+<li>队列&#x2F;作业设优先级，高优先级优先获得资源。</li>
+<li><strong>抢占（Preemption）</strong>：Fair&#x2F;Capacity 模式下，在优雅终止期内回收低优先级容器的资源给高优先级，保障关键作业 SLA。</li>
+<li>代价：被抢占作业需重试&#x2F;重算对应 partition，设计上要容忍。</li>
+</ul>
+<h2 id="3-AQE（自适应查询执行，Spark-3-0-）"><a href="#3-AQE（自适应查询执行，Spark-3-0-）" class="headerlink" title="3. AQE（自适应查询执行，Spark 3.0+）"></a>3. AQE（自适应查询执行，Spark 3.0+）</h2><p>运行时基于 shuffle 统计<strong>动态调整</strong>执行计划，三项核心能力：</p>
+<ol>
+<li><strong>分区合并（Coalesce Partitions）</strong>：把多个小 post-shuffle 分区合并，避免小 task 过多、调度开销爆炸（无需手动设 <code>spark.sql.shuffle.partitions</code>）。</li>
+<li><strong>倾斜处理（Skew Join）</strong>：检测到倾斜分区（&gt; 中位数 N 倍且超阈值）自动拆分为多 task 并行（见 1.1.2 数据倾斜）。</li>
+<li><strong>Join 策略切换</strong>：运行时若某表小于 <code>spark.sql.autoBroadcastJoinThreshold</code>，把 SortMergeJoin 动态转 BroadcastHashJoin，免 Shuffle。</li>
+</ol>
+<ul>
+<li>收益：对数据量&#x2F;分布不确定的 ad-hoc 查询尤其明显；把”凭经验调参”变为”运行时自适应”。</li>
+</ul>
+<h2 id="4-执行计划优化"><a href="#4-执行计划优化" class="headerlink" title="4. 执行计划优化"></a>4. 执行计划优化</h2><ul>
+<li>看 <code>explain()</code> 读懂物理计划；开启 <strong>CBO</strong>（需列统计&#x2F;直方图）让优化器选更优 Join 顺序；</li>
+<li>配合广播阈值、谓词下推、列裁剪，减少 shuffle 与扫描量。</li>
+</ul>
+<blockquote>
+<p>参考：Apache Spark 官方文档 Adaptive Query Execution &#x2F; Running Spark on YARN &#x2F; Kubernetes</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/jvm/GC-anasyer-tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/jvm/GC-anasyer-tools/" class="post-title-link" itemprop="url">GC分析工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-11-03 11:12:00" itemprop="dateCreated datePublished" datetime="2023-11-03T11:12:00+00:00">2023-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:27" itemprop="dateModified" datetime="2026-08-22T17:34:27+00:00">2026-08-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="GC-plot"><a href="#GC-plot" class="headerlink" title="GC plot"></a>GC plot</h2><p><a href="https://github.com/GCPlot/gcplot">https://github.com/GCPlot/gcplot</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 --platform linux/amd64 gcplot/gcplot</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/hudi/Hudi%E6%BA%90%E7%A0%81%E8%B5%B0%E8%AF%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/hudi/Hudi%E6%BA%90%E7%A0%81%E8%B5%B0%E8%AF%BB/" class="post-title-link" itemprop="url">hudi源码走读-Flink数据写入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-23 20:40:00" itemprop="dateCreated datePublished" datetime="2022-09-23T20:40:00+00:00">2022-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="构建本地模拟环境"><a href="#构建本地模拟环境" class="headerlink" title="构建本地模拟环境"></a>构建本地模拟环境</h2><p>hudi代码走读</p>
+<h2 id="创建本地模拟环境，一步一步调试"><a href="#创建本地模拟环境，一步一步调试" class="headerlink" title="创建本地模拟环境，一步一步调试"></a>创建本地模拟环境，一步一步调试</h2><h3 id="主程序"><a href="#主程序" class="headerlink" title="主程序"></a>主程序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sourceTable</span> <span class="operator">=</span> <span class="string">&quot;source_01&quot;</span>;</span><br><span class="line"> <span class="type">ParameterTool</span> <span class="variable">pt</span> <span class="operator">=</span> ParameterTool.fromArgs(args);</span><br><span class="line"> <span class="type">String</span> <span class="variable">database</span> <span class="operator">=</span> pt.get(<span class="string">&quot;database&quot;</span>, <span class="string">&quot;ods_glory&quot;</span>);</span><br><span class="line"> <span class="type">String</span> <span class="variable">table</span> <span class="operator">=</span> pt.get(<span class="string">&quot;table&quot;</span>, <span class="string">&quot;ods_glory_t1&quot;</span>);</span><br><span class="line"> <span class="type">String</span> <span class="variable">hudiDemoHome</span> <span class="operator">=</span> <span class="string">&quot;apps/data/hudi&quot;</span>;</span><br><span class="line"> <span class="type">String</span> <span class="variable">tablePath</span> <span class="operator">=</span> String.format(<span class="string">&quot;%s/%s/%s.db/%s&quot;</span>, System.getProperty(<span class="string">&quot;user.home&quot;</span>), hudiDemoHome, database, table);</span><br><span class="line"> log.info(<span class="string">&quot;userParameter: &#123;&#125;&quot;</span>, pt.toMap());</span><br><span class="line"> <span class="comment">//</span></span><br><span class="line"> <span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span></span><br><span class="line">     StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line"> <span class="type">StreamTableEnvironment</span> <span class="variable">tableEnv</span> <span class="operator">=</span> StreamTableEnvironment.create(env);</span><br><span class="line"> env.setParallelism(<span class="number">1</span>);</span><br><span class="line"> env.enableCheckpointing(<span class="number">10000</span>, CheckpointingMode.EXACTLY_ONCE);</span><br><span class="line"> <span class="type">Configuration</span> <span class="variable">configuration</span> <span class="operator">=</span> tableEnv.getConfig().getConfiguration();</span><br><span class="line"> configuration.setString(<span class="string">&quot;table.dynamic-table-options.enabled&quot;</span>, <span class="string">&quot;true&quot;</span>);</span><br><span class="line"> configuration.setString(PipelineOptions.NAME.key(), <span class="string">&quot;flake-hudi-1.13&quot;</span>);</span><br><span class="line"> log.info(<span class="string">&quot;envConfig: &#123;&#125;.&quot;</span>, configuration.toMap());</span><br><span class="line"> <span class="comment">//</span></span><br><span class="line"> tableEnv.executeSql(sourceDdl());</span><br><span class="line"> <span class="type">String</span> <span class="variable">targetDal</span> <span class="operator">=</span> sinkTableDdl(table, tablePath, database);</span><br><span class="line"> log.info(<span class="string">&quot;targetDal:&#123;&#125;.&quot;</span>, targetDal);</span><br><span class="line"> tableEnv.executeSql(targetDal);</span><br><span class="line"> <span class="comment">// tableEnv.executeSql(String.format(&quot;select *,DATE_FORMAT(ts, &#x27;yyyyMMdd&#x27;) as dt from %s&quot;, table, sourceTable))</span></span><br><span class="line"> <span class="comment">// System.out.println(tableEnv.explain(tableEnv.from(table)));</span></span><br><span class="line"> <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> String.format(<span class="string">&quot;insert into %s select *,DATE_FORMAT(ts, &#x27;yyyyMMdd&#x27;) as dt from %s&quot;</span>, table,</span><br><span class="line">     sourceTable);</span><br><span class="line"> tableEnv.executeSql(sql);</span><br><span class="line"> System.out.println(env.getExecutionPlan());</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="创建数据源"><a href="#创建数据源" class="headerlink" title="创建数据源"></a>创建数据源</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="title function_">sourceDdl</span><span class="params">()</span> &#123;</span><br><span class="line">     <span class="type">String</span> <span class="variable">sourceTable</span> <span class="operator">=</span> <span class="string">&quot;source_01&quot;</span>;</span><br><span class="line">     <span class="keyword">return</span> String.format(<span class="string">&quot;CREATE TABLE %s (\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; uuid varchar(20),\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; facc_time STRING ,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; facc_time_rongduan STRING,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; facc_type BIGINT ,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; fact_info STRING ,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; ts timestamp(3)\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot;) WITH (\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; &#x27;connector&#x27; = &#x27;datagen&#x27;,\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot; &#x27;rows-per-second&#x27; = &#x27;100&#x27;\n&quot;</span> +</span><br><span class="line">         <span class="string">&quot;)&quot;</span>, sourceTable);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="创建hudi表"><a href="#创建hudi表" class="headerlink" title="创建hudi表"></a>创建hudi表</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">String</span> <span class="title function_">sinkTableDdl</span><span class="params">(String targetTable, String basePath, String dbName)</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> String.format(<span class="string">&quot;create table %s(\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; uuid STRING,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; facc_time STRING ,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; facc_time_rongduan STRING,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; facc_type BIGINT ,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; fact_info STRING ,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; ts timestamp(3),\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; dt string,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; PRIMARY KEY(uuid) NOT ENfORCED&quot;</span> +</span><br><span class="line">       <span class="string">&quot;)\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; PARTITIONED BY (`dt`)\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; with (\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;connector&#x27; = &#x27;hudi&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;path&#x27; = &#x27;%s&#x27;, -- 替换成的绝对路径\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;table.type&#x27; = &#x27;MERGE_ON_READ&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;write.bucket_assign.tasks&#x27; = &#x27;8&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;write.tasks&#x27; = &#x27;8&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;write.operation&#x27; = &#x27;upsert&#x27;, -- upsert/insert\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;changelog.enabled&#x27; = &#x27;true&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;read.streaming.enabled&#x27; = &#x27;true&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;read.streaming.check-interval&#x27; = &#x27;1&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;compaction.tasks&#x27; = &#x27;8&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;compaction.trigger.strategy&#x27;=&#x27;num_commits&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;compaction.delta_commits&#x27; =&#x27;5&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;compaction.max_memory&#x27; = &#x27;3096&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;clean.retain_commits&#x27; = &#x27;30&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.enable&#x27; = &#x27;false&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.mode&#x27; = &#x27;hms&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.db&#x27; = &#x27;%s&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.table&#x27; = &#x27;%s&#x27;,\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot; &#x27;hive_sync.metastore.uris&#x27; = &#x27;%s&#x27;\n&quot;</span> +</span><br><span class="line">       <span class="string">&quot;)&quot;</span>, targetTable, basePath, dbName, targetTable, <span class="string">&quot;metastoreUrl&quot;</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>go on，跟进调试</p>
+<p>&#x2F;&#x2F; TODO 整理到 flink demo</p>
+<h2 id="Flink-HoodieTableFactory"><a href="#Flink-HoodieTableFactory" class="headerlink" title="Flink-HoodieTableFactory"></a>Flink-HoodieTableFactory</h2><p><img src="/images/bigdata/hudi/clip_image002.jpg" alt="img"></p>
+<p><img src="/images/bigdata/hudi/clip_image004.jpg" alt="img"></p>
+<h3 id="org-apache-hudi-table-HoodieTableSink"><a href="#org-apache-hudi-table-HoodieTableSink" class="headerlink" title="org.apache.hudi.table.HoodieTableSink"></a>org.apache.hudi.table.HoodieTableSink</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bootstrap</span></span><br><span class="line"> <span class="keyword">final</span> <span class="type">DataStream</span>&lt;HoodieRecord&gt; <span class="variable">hoodieRecordDataStream</span> <span class="operator">=</span></span><br><span class="line">   Pipelines.bootstrap(conf, rowType, parallelism, dataStream, context.isBounded(), overwrite);</span><br><span class="line"> <span class="comment">// write pipeline</span></span><br><span class="line"> <span class="type">DataStream</span>&lt;Object&gt; <span class="variable">pipeline</span> <span class="operator">=</span> Pipelines.hoodieStreamWrite(conf, parallelism, hoodieRecordDataStream);</span><br><span class="line"> <span class="comment">// compaction</span></span><br><span class="line"> <span class="keyword">if</span> (StreamerUtil.needsAsyncCompaction(conf)) &#123;</span><br><span class="line">  <span class="keyword">return</span> Pipelines.compact(conf, pipeline);</span><br><span class="line"> &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> Pipelines.clean(conf, pipeline);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/bigdata/hudi/clip_image006.jpg" alt="img"></p>
+<p>org.apache.flink.table.planner.plan.nodes.exec.common.CommonExecSink#createSinkTransformation</p>
+<p><img src="/images/bigdata/hudi/clip_image008.jpg" alt="img"></p>
+<p>经历三步： bootstrap → hoodieStreamWrite → compact &#x2F; clean</p>
+<h4 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h4><ol>
+<li>row_data_to_hoodie_record过程如下:</li>
+</ol>
+<p>Flink rowData 转换为 HoodieRecord: org.apache.hudi.sink.transform.RowDataToHoodieFunction#toHoodieRecord</p>
+<p>数据最终类型为: HoodieAvroRecord</p>
+<ol start="2">
+<li>如果配置了 index.bootstrap.enabled，会增加一个 index_bootstrap 节点，用于在flink state中保存instant信息(lastInstantTime)</li>
+</ol>
+<h4 id="StreamWrite"><a href="#StreamWrite" class="headerlink" title="StreamWrite"></a>StreamWrite</h4><p>org.apache.hudi.sink.utils.Pipelines#hoodieStreamWrite</p>
+<h4 id="compact"><a href="#compact" class="headerlink" title="compact"></a>compact</h4><h4 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h4><p>org.apache.hudi.sink.utils.Pipelines#bootstrap(org.apache.flink.configuration.Configuration, org.apache.flink.table.types.logical.RowType, int, org.apache.flink.streaming.api.datastream.DataStream&lt;org.apache.flink.table.data.RowData&gt;, boolean, boolean)</p>
+<p><img src="/images/bigdata/hudi/clip_image010.jpg" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">org.apache.hudi.sink.transform.RowDataToHoodieFunction</span><br><span class="line"></span><br><span class="line">org.apache.hudi.sink.bootstrap.BootstrapOperator 这个需要继续分析</span><br><span class="line"></span><br><span class="line"><span class="comment">// org.apache.hudi.sink.utils.Pipelines#hoodieStreamWrite</span></span><br><span class="line"> dataStream</span><br><span class="line"> .keyBy(HoodieRecord::getRecordKey) <span class="comment">// hoodieKey 需要单独分析</span></span><br><span class="line"> .transform(<span class="string">&quot;bucket_assigner&quot;</span>, TypeInformation.of(HoodieRecord.class), <span class="keyword">new</span> <span class="title class_">KeyedProcessOperator</span>(<span class="keyword">new</span> <span class="title class_">BucketAssignFunction</span>(conf)))</span><br><span class="line"> <span class="comment">// org.apache.hudi.sink.partitioner.BucketAssignFunction#processRecord</span></span><br><span class="line"> <span class="comment">// hoodieKey 的 recordKey 和 partitionPath 代表是什么意思?</span></span><br><span class="line"> <span class="comment">// org.apache.hudi.common.model.HoodieRecordLocation 和 org.apache.hudi.common.model.HoodieRecordGlobalLocation</span></span><br><span class="line"> .uid(<span class="string">&quot;uid_bucket_assigner_&quot;</span> + conf.getString(FlinkOptions.TABLE_NAME))</span><br><span class="line"> .setParallelism((Integer)conf.getOptional(FlinkOptions.BUCKET_ASSIGN_TASKS).orElse(defaultParallelism))</span><br><span class="line"> .keyBy((record) -&gt; &#123; <span class="keyword">return</span> record.getCurrentLocation().getFileId(); &#125;)</span><br><span class="line"> .transform(<span class="string">&quot;stream_write&quot;</span>, TypeInformation.of(Object.class), operatorFactory)</span><br><span class="line"> <span class="comment">// org.apache.flink.streaming.api.operators.SimpleUdfStreamOperatorFactory</span></span><br><span class="line"> <span class="comment">// Flink的单UDF的StreamOperatorFactory</span></span><br><span class="line"> <span class="comment">// org.apache.hudi.sink.common.WriteOperatorFactory#createStreamOperator</span></span><br><span class="line"> .uid(<span class="string">&quot;uid_stream_write&quot;</span> + conf.getString(FlinkOptions.TABLE_NAME))</span><br><span class="line"> .setParallelism(conf.getInteger(FlinkOptions.WRITE_TASKS)); </span><br><span class="line"> </span><br><span class="line"> dataStream</span><br><span class="line"> .transform(<span class="string">&quot;compact_plan_generate&quot;</span>, TypeInformation.of(CompactionPlanEvent.class), <span class="keyword">new</span> <span class="title class_">CompactionPlanOperator</span>(conf))</span><br><span class="line"> .setParallelism(<span class="number">1</span>)</span><br><span class="line"> .rebalance()</span><br><span class="line"> .transform(<span class="string">&quot;compact_task&quot;</span>, TypeInformation.of(CompactionCommitEvent.class), <span class="keyword">new</span> <span class="title class_">ProcessOperator</span>(<span class="keyword">new</span> <span class="title class_">CompactFunction</span>(conf)))</span><br><span class="line"> .setParallelism(conf.getInteger(FlinkOptions.COMPACTION_TASKS))</span><br><span class="line"> .addSink(<span class="keyword">new</span> <span class="title class_">CompactionCommitSink</span>(conf))</span><br><span class="line"> .name(<span class="string">&quot;compact_commit&quot;</span>)</span><br><span class="line"> .setParallelism(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// org.apache.hudi.sink.partitioner.BucketAssignFunction#processRecord</span></span><br><span class="line"> <span class="type">HoodieRecord</span>&lt;?&gt; <span class="variable">deleteRecord</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HoodieAvroRecord</span>(<span class="keyword">new</span> <span class="title class_">HoodieKey</span>(recordKey, oldLoc.getPartitionPath()), <span class="built_in">this</span>.payloadCreation.createDeletePayload((BaseAvroPayload)record.getData()));</span><br><span class="line"> deleteRecord.setCurrentLocation(oldLoc.toLocal(<span class="string">&quot;U&quot;</span>));</span><br><span class="line"> deleteRecord.seal();</span><br><span class="line"> out.collect(deleteRecord);</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F; stream_write<br> &#x2F;&#x2F; org.apache.hudi.sink.StreamWriteFunction<br> org.apache.hudi.sink.StreamWriteFunction#bufferRecord</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/paimon/Flink-TableStore-V0.2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/paimon/Flink-TableStore-V0.2/" class="post-title-link" itemprop="url">Flink:TableStore V0.2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-12 14:58:00" itemprop="dateCreated datePublished" datetime="2022-09-12T14:58:00+00:00">2022-09-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-188:+Introduce+Built-in+Dynamic+Table+Storage">FLIP-188</a></p>
+<p><a href="https://miaowenting.site/2022/03/09/Flink-FLIP-188-Introduce-Built-in-Dynamic-Table-Storage/">FLIP-188翻译</a></p>
+<p><a href="https://www.infoq.cn/video/P1hjhu0IKuBwy9lbY442">聊聊 Flink Table Store：流批一体存储最新进展｜InfoQ大会早班车第16期</a></p>
+<p><a href="https://mp.weixin.qq.com/s/khi-cNReYXtTdDsxWOir0w">Flink Table Store v0.2 应用场景和核心功能</a></p>
+<p>Paimon 文件结构</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line">tree -h</span><br><span class="line">[ 192]  .</span><br><span class="line">├── [1.3K]  bucket-0</span><br><span class="line">│   ├── [6.6M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-0.orc</span><br><span class="line">│   ├── [8.8M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-1.orc</span><br><span class="line">│   ├── [8.9M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-10.orc</span><br><span class="line">│   ├── [8.8M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-11.orc</span><br><span class="line">│   ├── [8.9M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-12.orc</span><br><span class="line">│   ├── [8.8M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-2.orc</span><br><span class="line">│   ├── [8.8M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-3.orc</span><br><span class="line">│   ├── [8.8M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-4.orc</span><br><span class="line">│   ├── [8.8M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-5.orc</span><br><span class="line">│   ├── [8.9M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-6.orc</span><br><span class="line">│   ├── [8.8M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-7.orc</span><br><span class="line">│   ├── [8.9M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-8.orc</span><br><span class="line">│   ├── [8.8M]  data-271be4ad-8396-4aa5-9b1d-1de73a86c279-9.orc</span><br><span class="line">│   ├── [ 92M]  data-6608c270-fec6-4dcc-903d-f752501191af-0.orc</span><br><span class="line">│   ├── [ 84M]  data-6608c270-fec6-4dcc-903d-f752501191af-1.orc</span><br><span class="line">│   ├── [128M]  data-6608c270-fec6-4dcc-903d-f752501191af-2.orc</span><br><span class="line">│   ├── [115M]  data-6608c270-fec6-4dcc-903d-f752501191af-3.orc</span><br><span class="line">│   ├── [ 84M]  data-6608c270-fec6-4dcc-903d-f752501191af-4.orc</span><br><span class="line">│   ├── [ 19M]  data-6608c270-fec6-4dcc-903d-f752501191af-5.orc</span><br><span class="line">│   ├── [ 28M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-0.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-1.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-10.orc</span><br><span class="line">│   ├── [550K]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-11.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-12.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-13.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-14.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-15.orc</span><br><span class="line">│   ├── [666K]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-16.orc</span><br><span class="line">│   ├── [   3]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-17.orc</span><br><span class="line">│   ├── [614K]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-2.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-3.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-4.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-5.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-6.orc</span><br><span class="line">│   ├── [ 22M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-7.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-8.orc</span><br><span class="line">│   ├── [ 29M]  data-c991b192-ff5e-4654-a62f-18ad51821d0a-9.orc</span><br><span class="line">│   ├── [ 40M]  data-f9dea92c-9e26-4966-ab62-3ed42a5c41c2-0.orc</span><br><span class="line">│   ├── [ 34M]  data-f9dea92c-9e26-4966-ab62-3ed42a5c41c2-1.orc</span><br><span class="line">│   └── [100M]  data-f9dea92c-9e26-4966-ab62-3ed42a5c41c2-2.orc</span><br><span class="line">├── [2.2K]  manifest</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-0</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-1</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-10</span><br><span class="line">│   ├── [2.2K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-11</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-12</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-13</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-14</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-2</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-3</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-4</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-5</span><br><span class="line">│   ├── [2.2K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-6</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-7</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-8</span><br><span class="line">│   ├── [1.8K]  manifest-a5fcc42f-c458-4a3e-a0c3-ce8780289413-9</span><br><span class="line">│   ├── [2.0K]  manifest-fe1ff04c-e66a-4532-88c7-0f2c34d261d8-0</span><br><span class="line">│   ├── [2.5K]  manifest-fe1ff04c-e66a-4532-88c7-0f2c34d261d8-1</span><br><span class="line">│   ├── [2.2K]  manifest-fe1ff04c-e66a-4532-88c7-0f2c34d261d8-2</span><br><span class="line">│   ├── [2.2K]  manifest-fe1ff04c-e66a-4532-88c7-0f2c34d261d8-3</span><br><span class="line">│   ├── [2.1K]  manifest-fe1ff04c-e66a-4532-88c7-0f2c34d261d8-4</span><br><span class="line">│   ├── [2.5K]  manifest-fe1ff04c-e66a-4532-88c7-0f2c34d261d8-5</span><br><span class="line">│   ├── [2.2K]  manifest-fe1ff04c-e66a-4532-88c7-0f2c34d261d8-6</span><br><span class="line">│   ├── [2.2K]  manifest-fe1ff04c-e66a-4532-88c7-0f2c34d261d8-7</span><br><span class="line">│   ├── [ 910]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-0</span><br><span class="line">│   ├── [ 769]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-1</span><br><span class="line">│   ├── [1000]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-10</span><br><span class="line">│   ├── [ 769]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-11</span><br><span class="line">│   ├── [1012]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-12</span><br><span class="line">│   ├── [ 769]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-13</span><br><span class="line">│   ├── [1021]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-14</span><br><span class="line">│   ├── [ 769]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-15</span><br><span class="line">│   ├── [ 957]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-2</span><br><span class="line">│   ├── [ 769]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-3</span><br><span class="line">│   ├── [ 969]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-4</span><br><span class="line">│   ├── [ 769]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-5</span><br><span class="line">│   ├── [ 980]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-6</span><br><span class="line">│   ├── [ 769]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-7</span><br><span class="line">│   ├── [ 989]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-8</span><br><span class="line">│   ├── [ 769]  manifest-list-4ad2bd0d-79be-4012-b55f-bdc916deac2d-9</span><br><span class="line">│   ├── [ 676]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-0</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-1</span><br><span class="line">│   ├── [ 807]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-10</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-11</span><br><span class="line">│   ├── [ 815]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-12</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-13</span><br><span class="line">│   ├── [ 835]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-14</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-15</span><br><span class="line">│   ├── [ 840]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-16</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-17</span><br><span class="line">│   ├── [ 848]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-18</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-19</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-2</span><br><span class="line">│   ├── [ 857]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-20</span><br><span class="line">│   ├── [ 779]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-21</span><br><span class="line">│   ├── [ 869]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-22</span><br><span class="line">│   ├── [ 779]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-23</span><br><span class="line">│   ├── [ 881]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-24</span><br><span class="line">│   ├── [ 779]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-25</span><br><span class="line">│   ├── [ 892]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-26</span><br><span class="line">│   ├── [ 779]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-27</span><br><span class="line">│   ├── [ 901]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-28</span><br><span class="line">│   ├── [ 779]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-29</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-3</span><br><span class="line">│   ├── [ 781]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-4</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-5</span><br><span class="line">│   ├── [ 790]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-6</span><br><span class="line">│   ├── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-7</span><br><span class="line">│   ├── [ 798]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-8</span><br><span class="line">│   └── [ 769]  manifest-list-a7d7473b-5da2-492f-b686-ffb248643e96-9</span><br><span class="line">├── [  96]  schema</span><br><span class="line">│   └── [ 603]  schema-0</span><br><span class="line">└── [ 864]  snapshot</span><br><span class="line">    ├── [   2]  EARLIEST</span><br><span class="line">    ├── [   2]  LATEST</span><br><span class="line">    ├── [ 529]  snapshot-1</span><br><span class="line">    ├── [ 533]  snapshot-10</span><br><span class="line">    ├── [ 534]  snapshot-11</span><br><span class="line">    ├── [ 534]  snapshot-12</span><br><span class="line">    ├── [ 534]  snapshot-13</span><br><span class="line">    ├── [ 534]  snapshot-14</span><br><span class="line">    ├── [ 534]  snapshot-15</span><br><span class="line">    ├── [ 532]  snapshot-16</span><br><span class="line">    ├── [ 533]  snapshot-17</span><br><span class="line">    ├── [ 533]  snapshot-18</span><br><span class="line">    ├── [ 533]  snapshot-19</span><br><span class="line">    ├── [ 529]  snapshot-2</span><br><span class="line">    ├── [ 533]  snapshot-20</span><br><span class="line">    ├── [ 536]  snapshot-21</span><br><span class="line">    ├── [ 535]  snapshot-22</span><br><span class="line">    ├── [ 535]  snapshot-23</span><br><span class="line">    ├── [ 530]  snapshot-3</span><br><span class="line">    ├── [ 530]  snapshot-4</span><br><span class="line">    ├── [ 530]  snapshot-5</span><br><span class="line">    ├── [ 532]  snapshot-6</span><br><span class="line">    ├── [ 533]  snapshot-7</span><br><span class="line">    ├── [ 532]  snapshot-8</span><br><span class="line">    └── [ 532]  snapshot-9</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

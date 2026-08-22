@@ -1,0 +1,2794 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/10/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-StreamPartitioner/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-StreamPartitioner/" class="post-title-link" itemprop="url">Flink StreamPartitioner流分区器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-28T00:00:00+00:00">2022-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/bigdata/Flink/202205010016562.png"></p>
+<hr>
+<p>[参考文献]</p>
+<ol>
+<li><a href="https://mp.weixin.qq.com/s/d_jzHb-b7LEGNz1CN34zMg">说说Flink DataStream的八种物理分区逻辑</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-window-TopN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL-window-TopN/" class="post-title-link" itemprop="url">一个SQL了解Flink运行原理: Flink SQL window TopN</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-12 19:47:00" itemprop="dateCreated datePublished" datetime="2022-04-12T19:47:00+00:00">2022-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://km.woa.com/group/36209/articles/show/457588">Flink SQL支持增量窗口TopN</a></p>
+<p>假设定义数据源:</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>category</td>
+<td>String</td>
+<td>股票分类</td>
+</tr>
+<tr>
+<td>field</td>
+<td>String</td>
+<td>股票id</td>
+</tr>
+<tr>
+<td>ftime</td>
+<td>String</td>
+<td>字符串类型时间，格式为yyyyMMddHHmmss</td>
+</tr>
+</tbody></table>
+<p>样例数据:</p>
+<table>
+<thead>
+<tr>
+<th>category</th>
+<th>field</th>
+<th>ftime</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>k</td>
+<td>stock_id-1</td>
+<td>20220930164620</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-0</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-1</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-0</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-1</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-0</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-0</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-0</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-0</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-0</td>
+<td>20220930164625</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-1</td>
+<td>20220930164630</td>
+</tr>
+<tr>
+<td>k</td>
+<td>stock_id-1</td>
+<td>20220930164630</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">       fixedTime(stat_time, <span class="string">&#x27;HH:mm:ss&#x27;</span>) <span class="keyword">as</span> <span class="type">time</span>,</span><br><span class="line">       category,</span><br><span class="line">       field,</span><br><span class="line">       pv,</span><br><span class="line">       rk</span><br><span class="line"><span class="keyword">from</span> (</span><br><span class="line">      <span class="keyword">SELECT</span> category,</span><br><span class="line">             field,</span><br><span class="line">             stat_time,</span><br><span class="line">             pv,</span><br><span class="line">             <span class="built_in">row_number</span>() <span class="keyword">over</span> (<span class="keyword">partition</span> <span class="keyword">by</span> category,INCREMENT(stat_time, <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">SECOND</span>, <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">SECOND</span>, <span class="type">Time</span> <span class="string">&#x27;00:00:00&#x27;</span>, <span class="literal">true</span>) <span class="keyword">order</span> <span class="keyword">by</span> pv <span class="keyword">desc</span>) <span class="keyword">as</span> rk</span><br><span class="line">      <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> category,</span><br><span class="line">                   field,</span><br><span class="line">                   INCREMENT_SEGMENT_ROWTIME(rtime, <span class="type">INTERVAL</span> <span class="string">&#x27;1&#x27;</span> <span class="keyword">DAY</span>, <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">SECOND</span>, <span class="type">Time</span> <span class="string">&#x27;16:00:00&#x27;</span>, <span class="literal">true</span>) <span class="keyword">as</span> stat_time,</span><br><span class="line">                   <span class="built_in">count</span>(<span class="number">1</span>)                        <span class="keyword">as</span> pv</span><br><span class="line">            <span class="keyword">FROM</span> PageViews</span><br><span class="line">            <span class="keyword">GROUP</span> <span class="keyword">BY</span> category,</span><br><span class="line">                     field,</span><br><span class="line">                     INCREMENT(rtime, <span class="type">INTERVAL</span> <span class="string">&#x27;1&#x27;</span> <span class="keyword">DAY</span>, <span class="type">INTERVAL</span> <span class="string">&#x27;5&#x27;</span> <span class="keyword">SECOND</span>, <span class="type">Time</span> <span class="string">&#x27;16:00:00&#x27;</span>, <span class="literal">true</span>)</span><br><span class="line">            )</span><br><span class="line">      )</span><br><span class="line"><span class="keyword">where</span> rk <span class="operator">&lt;=</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>计算结果:</p>
+<table>
+<thead>
+<tr>
+<th>row_kind</th>
+<th>time</th>
+<th>category</th>
+<th>field</th>
+<th>pv</th>
+<th>rk</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>true</td>
+<td>16:49:54</td>
+<td>k</td>
+<td>stock_id-1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:49:54</td>
+<td>k</td>
+<td>stock_id-0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:49:59</td>
+<td>k</td>
+<td>stock_id-1</td>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:49:59</td>
+<td>k</td>
+<td>stock_id-0</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:50:04</td>
+<td>k</td>
+<td>stock_id-1</td>
+<td>12</td>
+<td>1</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:50:04</td>
+<td>k</td>
+<td>stock_id-0</td>
+<td>11</td>
+<td>2</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:50:09</td>
+<td>k</td>
+<td>stock_id-0</td>
+<td>19</td>
+<td>1</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:50:09</td>
+<td>k</td>
+<td>stock_id-1</td>
+<td>14</td>
+<td>2</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:50:14</td>
+<td>k</td>
+<td>stock_id-0</td>
+<td>23</td>
+<td>1</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:50:14</td>
+<td>k</td>
+<td>stock_id-1</td>
+<td>20</td>
+<td>2</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:50:19</td>
+<td>k</td>
+<td>stock_id-1</td>
+<td>27</td>
+<td>1</td>
+</tr>
+<tr>
+<td>true</td>
+<td>16:50:19</td>
+<td>k</td>
+<td>stock_id-0</td>
+<td>26</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Plan after converting SqlNode to RelNode:</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">LogicalProject(EXPR$</span><span class="language-bash">0=[FixedTime(<span class="variable">$2</span>, _UTF-16LE<span class="string">&#x27;HH:mm:ss&#x27;</span>)], category=[<span class="variable">$0</span>], field=[<span class="variable">$1</span>], pv=[<span class="variable">$3</span>], rk=[<span class="variable">$4</span>])</span></span><br><span class="line">  LogicalFilter(condition=[&lt;=($4, 10)])</span><br><span class="line">    LogicalProject(category=[$0], field=[$1], stat_time=[$2], pv=[$3], rk=[ROW_NUMBER() OVER (PARTITION BY $0, INCREMENT($2, 5000:INTERVAL SECOND, 5000:INTERVAL SECOND, 00:00:00, true) ORDER BY $3 DESC)])</span><br><span class="line">      LogicalProject(category=[$0], field=[$1], stat_time=[INCREMENT_SEGMENT_ROWTIME($2)], pv=[$3])</span><br><span class="line">        LogicalAggregate(group=[&#123;0, 1, 2&#125;], pv=[COUNT()])</span><br><span class="line">          LogicalProject(category=[$0], field=[$1], rtime=[INCREMENT($2, 86400000:INTERVAL DAY, 5000:INTERVAL SECOND, 16:00:00, true)], $f3=[1])</span><br><span class="line">            FlinkLogicalDataStreamScan(id=[2], fields=[category, field, rtime])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Source 里面有三个字段： <code>category</code>, <code>field</code>, <code>rtime</code>。<br>其中的<code>rtime</code>字段是内置字段<code>rtime</code>，来标示事件时间。通过<code>tableEnv.registerDataStream(&quot;PageViews&quot;, stockClickStream, &quot;category, field, rtime.rowtime&quot;);</code> 指定。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">org.apache.calcite.plan.RelOptPlanner org.apache.calcite.plan.hep.HepPlanner.dumpGraph(HepPlanner.java:<span class="number">1027</span>)- </span><br><span class="line">Breadth-first from root:  &#123;</span><br><span class="line">    rel#<span class="number">20</span>:HepRelVertex#<span class="number">20</span> = rel#<span class="number">19</span>:LogicalProject.NONE(input=HepRelVertex#<span class="number">18</span>,exprs=[_UTF-16LE<span class="string">&#x27;Top10&#x27;</span>, FixedTime($<span class="number">2</span>, _UTF-16LE<span class="string">&#x27;yyyyMMdd-HHmmss&#x27;</span>), $<span class="number">0</span>, $<span class="number">1</span>, $<span class="number">3</span>, $<span class="number">4</span>]), rowcount=<span class="number">5.0</span>, <span class="type">cumulative</span> <span class="variable">cost</span><span class="operator">=</span>&#123;<span class="number">241.25</span> rows, <span class="number">630.0</span> cpu, <span class="number">3600.0</span> io&#125;</span><br><span class="line">    rel#<span class="number">18</span>:HepRelVertex#<span class="number">18</span> = rel#<span class="number">17</span>:LogicalFilter.NONE(input=HepRelVertex#<span class="number">16</span>,condition=&lt;=($<span class="number">4</span>, <span class="number">10</span>)), rowcount=<span class="number">5.0</span>, <span class="type">cumulative</span> <span class="variable">cost</span><span class="operator">=</span>&#123;<span class="number">236.25</span> rows, <span class="number">600.0</span> cpu, <span class="number">3600.0</span> io&#125;</span><br><span class="line">    rel#<span class="number">16</span>:HepRelVertex#<span class="number">16</span> = rel#<span class="number">15</span>:LogicalProject.NONE(input=HepRelVertex#<span class="number">14</span>,inputs=<span class="number">0.</span><span class="number">.3</span>,exprs=[ROW_NUMBER() OVER (PARTITION BY $<span class="number">0</span>, INCREMENT($<span class="number">2</span>, <span class="number">5000</span>:INTERVAL SECOND, <span class="number">5000</span>:INTERVAL SECOND, <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>, <span class="literal">true</span>) ORDER BY $<span class="number">3</span> DESC)]), rowcount=<span class="number">10.0</span>, <span class="type">cumulative</span> <span class="variable">cost</span><span class="operator">=</span>&#123;<span class="number">231.25</span> rows, <span class="number">590.0</span> cpu, <span class="number">3600.0</span> io&#125;</span><br><span class="line">    rel#<span class="number">14</span>:HepRelVertex#<span class="number">14</span> = rel#<span class="number">13</span>:LogicalProject.NONE(input=HepRelVertex#<span class="number">12</span>,inputs=<span class="number">0.</span><span class="number">.1</span>,exprs=[INCREMENT_SEGMENT_ROWTIME($<span class="number">2</span>), $<span class="number">3</span>]), rowcount=<span class="number">10.0</span>, <span class="type">cumulative</span> <span class="variable">cost</span><span class="operator">=</span>&#123;<span class="number">221.25</span> rows, <span class="number">540.0</span> cpu, <span class="number">3600.0</span> io&#125;</span><br><span class="line">    rel#<span class="number">12</span>:HepRelVertex#<span class="number">12</span> = rel#<span class="number">11</span>:LogicalAggregate.NONE(input=HepRelVertex#<span class="number">10</span>,group=&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;,pv=COUNT()), rowcount=<span class="number">10.0</span>, <span class="type">cumulative</span> <span class="variable">cost</span><span class="operator">=</span>&#123;<span class="number">211.25</span> rows, <span class="number">500.0</span> cpu, <span class="number">3600.0</span> io&#125;</span><br><span class="line">    rel#<span class="number">10</span>:HepRelVertex#<span class="number">10</span> = rel#<span class="number">9</span>:LogicalProject.NONE(input=HepRelVertex#<span class="number">8</span>,inputs=<span class="number">0.</span><span class="number">.1</span>,exprs=[INCREMENT($<span class="number">2</span>, <span class="number">86400000</span>:INTERVAL DAY, <span class="number">5000</span>:INTERVAL SECOND, <span class="number">16</span>:<span class="number">00</span>:<span class="number">00</span>, <span class="literal">true</span>), <span class="number">1</span>]), rowcount=<span class="number">100.0</span>, <span class="type">cumulative</span> <span class="variable">cost</span><span class="operator">=</span>&#123;<span class="number">200.0</span> rows, <span class="number">500.0</span> cpu, <span class="number">3600.0</span> io&#125;</span><br><span class="line">    rel#<span class="number">8</span>:HepRelVertex#<span class="number">8</span> = rel#<span class="number">1</span>:FlinkLogicalDataStreamScan.LOGICAL(id=<span class="number">2</span>,fields=page, event, rtime), rowcount=<span class="number">100.0</span>, <span class="type">cumulative</span> <span class="variable">cost</span><span class="operator">=</span>&#123;<span class="number">100.0</span> rows, <span class="number">100.0</span> cpu, <span class="number">3600.0</span> io&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>cumulative cost: 累计代价</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/database/sql-case/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/database/sql-case/" class="post-title-link" itemprop="url">sql-case</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-02-07 00:26:00" itemprop="dateCreated datePublished" datetime="2022-02-07T00:26:00+00:00">2022-02-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/database/" itemprop="url" rel="index"><span itemprop="name">database</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>参考 <a href="https://mp.weixin.qq.com/s/9WdqQBfVmaXkHuZD3tLMWw">最强最全面的大数据 SQL 面试题和答案</a></p>
+</blockquote>
+<h2 id="每个学生最好成绩的科目"><a href="#每个学生最好成绩的科目" class="headerlink" title="每个学生最好成绩的科目"></a>每个学生最好成绩的科目</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> `course` (</span><br><span class="line"> `student` <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line"> `course` <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line"> `score` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span></span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB CHARSET <span class="operator">=</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_0900_ai_ci;</span><br><span class="line"><span class="keyword">insert into</span> `course` <span class="keyword">values</span></span><br><span class="line">(<span class="string">&#x27;王五&#x27;</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="string">&#x27;89&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;王五&#x27;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="string">&#x27;136&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;王五&#x27;</span>,<span class="string">&#x27;理综&#x27;</span>,<span class="string">&#x27;130&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;王五&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>,<span class="string">&#x27;92&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>,<span class="string">&#x27;110&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="string">&#x27;110&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="string">&#x27;110&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;理综&#x27;</span>,<span class="string">&#x27;110&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;理综&#x27;</span>,<span class="string">&#x27;109&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="string">&#x27;120&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="string">&#x27;100&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>,<span class="string">&#x27;120&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> course;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>student</th>
+<th>course</th>
+<th>score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>王五</td>
+<td>语文</td>
+<td>89</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>数学</td>
+<td>136</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>理综</td>
+<td>130</td>
+</tr>
+<tr>
+<td>王五</td>
+<td>英语</td>
+<td>92</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>英语</td>
+<td>110</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>数学</td>
+<td>110</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>语文</td>
+<td>110</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>理综</td>
+<td>110</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>理综</td>
+<td>109</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>语文</td>
+<td>120</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>数学</td>
+<td>100</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>英语</td>
+<td>120</td>
+</tr>
+</tbody></table>
+<p>求每个学生成绩最好的科目</p>
+<blockquote>
+<p>可能成绩最好的科目，分数一样</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> m.student, m.max_score, c.course</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line"> <span class="keyword">SELECT</span> student, <span class="built_in">MAX</span>(score) <span class="keyword">AS</span> max_score</span><br><span class="line"> <span class="keyword">FROM</span> course</span><br><span class="line"> <span class="keyword">GROUP</span> <span class="keyword">BY</span> student</span><br><span class="line">) m, course c</span><br><span class="line"><span class="keyword">WHERE</span> m.student <span class="operator">=</span> c.student</span><br><span class="line"> <span class="keyword">AND</span> m.max_score <span class="operator">=</span> c.score;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>student</th>
+<th>max_score</th>
+<th>course</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>王五</td>
+<td>136</td>
+<td>数学</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>110</td>
+<td>英语</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>110</td>
+<td>数学</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>110</td>
+<td>语文</td>
+</tr>
+<tr>
+<td>张三</td>
+<td>110</td>
+<td>理综</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>120</td>
+<td>语文</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>120</td>
+<td>英语</td>
+</tr>
+</tbody></table>
+<h2 id="行列转换"><a href="#行列转换" class="headerlink" title="行列转换"></a>行列转换</h2><h3 id="样例数据准备"><a href="#样例数据准备" class="headerlink" title="样例数据准备"></a>样例数据准备</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database sql_case;</span><br><span class="line"><span class="comment">-- 年份-部门-绩效表%%</span></span><br><span class="line"><span class="keyword">CREATE TABLE</span> `t1` (</span><br><span class="line"> `fyear` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;年份&#x27;</span>,</span><br><span class="line"> `fdept` <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;部门&#x27;</span>,</span><br><span class="line"> `fscore` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;绩效评分&#x27;</span></span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB CHARSET <span class="operator">=</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_0900_ai_ci</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert into</span> t1 <span class="keyword">values</span> (<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;B&#x27;</span>,  <span class="string">&#x27;9&#x27;</span>), (<span class="string">&#x27;2015&#x27;</span>,  <span class="string">&#x27;A&#x27;</span>,  <span class="string">&#x27;8&#x27;</span>), (<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;A&#x27;</span>,  <span class="string">&#x27;10&#x27;</span>), (<span class="string">&#x27;2015&#x27;</span>,  <span class="string">&#x27;B&#x27;</span>,  <span class="string">&#x27;7&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="多行转多列"><a href="#多行转多列" class="headerlink" title="多行转多列"></a>多行转多列</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>B</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>A</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>B</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<p>求每年各部门的分数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"> fyear, </span><br><span class="line"> <span class="built_in">MAX</span>(<span class="keyword">CASE</span> </span><br><span class="line">  <span class="keyword">WHEN</span> fdept <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span> <span class="keyword">THEN</span> fscore</span><br><span class="line"> <span class="keyword">END</span>) <span class="keyword">as</span> fdept_a, </span><br><span class="line"> <span class="built_in">MAX</span>(<span class="keyword">CASE</span> </span><br><span class="line">  <span class="keyword">WHEN</span> fdept <span class="operator">=</span> <span class="string">&#x27;b&#x27;</span> <span class="keyword">THEN</span> fscore</span><br><span class="line"> <span class="keyword">END</span>) <span class="keyword">as</span> fdept_b</span><br><span class="line"><span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> fyear;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept_a</th>
+<th>fdept_b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>10</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>8</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<h4 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h4><p><strong>错误写法</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"> fyear, </span><br><span class="line"> <span class="keyword">CASE</span> </span><br><span class="line">  <span class="keyword">WHEN</span> fdept <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span> <span class="keyword">THEN</span> fscore</span><br><span class="line"> <span class="keyword">END</span> <span class="keyword">as</span> fdept_a, </span><br><span class="line"> <span class="keyword">CASE</span> </span><br><span class="line">  <span class="keyword">WHEN</span> fdept <span class="operator">=</span> <span class="string">&#x27;b&#x27;</span> <span class="keyword">THEN</span> fscore</span><br><span class="line"> <span class="keyword">END</span> <span class="keyword">as</span> fdept_b</span><br><span class="line"><span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> fyear;</span><br></pre></td></tr></table></figure>
+
+<p>报错</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1055</span>, &quot;Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column &#x27;sql_case.t1.fdept&#x27; which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by&quot;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考 <a href="https://www.cnblogs.com/jim2016/p/6322703.html">https://www.cnblogs.com/jim2016/p/6322703.html</a></p>
+</blockquote>
+<p>对于GROUP BY聚合操作，如果在SELECT中的列，没有在GROUP BY中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中，也就是说查出来的列必须在group by后面出现否则就会报错，或者这个字段出现在聚合函数里面。</p>
+<p><em>只选择出现在group by后面的列，或者给列增加聚合函数</em></p>
+<p>如何关闭<code>ONLY_FULL_GROUP_BY</code>选项?</p>
+<p>服务级别(重启Mysql服务):</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> @<span class="variable">@GLOBAL</span>.sql_mode<span class="operator">=</span><span class="string">&#x27;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> sql_mode <span class="operator">=</span><span class="string">&#x27;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>全局配置:</p>
+<p>在 [mysqld]和[mysql]下添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql_mode =<span class="string">&#x27;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-多列转多行"><a href="#2-多列转多行" class="headerlink" title="2. 多列转多行"></a>2. 多列转多行</h3><p><strong>问题描述</strong>：将问题一的结果转成源表，问题一结果表名为<code>t1_2</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create table</span> t1_2</span><br><span class="line"> <span class="keyword">SELECT</span> </span><br><span class="line">  fyear, </span><br><span class="line">  <span class="built_in">MAX</span>(<span class="keyword">CASE</span> </span><br><span class="line">   <span class="keyword">WHEN</span> fdept <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span> <span class="keyword">THEN</span> fscore</span><br><span class="line">  <span class="keyword">END</span>) <span class="keyword">as</span> fdept_a, </span><br><span class="line">  <span class="built_in">MAX</span>(<span class="keyword">CASE</span> </span><br><span class="line">   <span class="keyword">WHEN</span> fdept <span class="operator">=</span> <span class="string">&#x27;b&#x27;</span> <span class="keyword">THEN</span> fscore</span><br><span class="line">  <span class="keyword">END</span>) <span class="keyword">as</span> fdept_b</span><br><span class="line"> <span class="keyword">FROM</span> t1</span><br><span class="line"> <span class="keyword">GROUP</span> <span class="keyword">BY</span> fyear;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t1_2;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept_a</th>
+<th>fdept_b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>10</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>8</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<p><strong>答案</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> fyear, fdept, fscore</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line"> <span class="keyword">SELECT</span> fyear, <span class="string">&#x27;A&#x27;</span> <span class="keyword">AS</span> fdept, fdept_a <span class="keyword">AS</span> fscore</span><br><span class="line"> <span class="keyword">FROM</span> t1_2</span><br><span class="line"> <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"> <span class="keyword">SELECT</span> fyear, <span class="string">&#x27;B&#x27;</span> <span class="keyword">AS</span> fdept, fdept_b <span class="keyword">AS</span> fscore</span><br><span class="line"> <span class="keyword">FROM</span> t1_2</span><br><span class="line">) t</span><br><span class="line"><span class="comment">-- 必须写别名，否则报错： (1248, &#x27;Every derived table must have its own alias&#x27;)</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>B</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<h3 id="3-同一部门有多个绩效情况下，多行转多列"><a href="#3-同一部门有多个绩效情况下，多行转多列" class="headerlink" title="3. 同一部门有多个绩效情况下，多行转多列"></a>3. 同一部门有多个绩效情况下，多行转多列</h3><blockquote>
+<p>2014年公司组织架构调整，导致部门出现多个绩效，业务及人员不同，无法合并算绩效</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> t1_3 <span class="keyword">LIKE</span> t1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT INTO</span> t1_3</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">&#x27;2014&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;9&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2015&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;8&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2014&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;10&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2015&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;7&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2014&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;6&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>B</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>A</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>B</td>
+<td>7</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>6</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">  fyear,</span><br><span class="line">  fdept,</span><br><span class="line">  group_concat(fscore <span class="keyword">order</span> <span class="keyword">by</span> fscore separator <span class="string">&#x27;,&#x27;</span>) <span class="keyword">as</span> fscore</span><br><span class="line"> <span class="keyword">FROM</span> t1_3</span><br><span class="line"> <span class="keyword">GROUP</span> <span class="keyword">BY</span> fyear,fdept;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>9,6</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>B</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"> fyear, </span><br><span class="line"> <span class="built_in">MAX</span>(<span class="keyword">CASE</span> </span><br><span class="line">  <span class="keyword">WHEN</span> fdept <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span> <span class="keyword">THEN</span> fscore</span><br><span class="line"> <span class="keyword">END</span>) <span class="keyword">as</span> fdept_a, </span><br><span class="line"> <span class="built_in">MAX</span>(<span class="keyword">CASE</span> </span><br><span class="line">  <span class="keyword">WHEN</span> fdept <span class="operator">=</span> <span class="string">&#x27;b&#x27;</span> <span class="keyword">THEN</span> fscore</span><br><span class="line"> <span class="keyword">END</span>) <span class="keyword">as</span> fdept_b</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"> fyear,</span><br><span class="line"> fdept,</span><br><span class="line"> group_concat(fscore <span class="keyword">order</span> <span class="keyword">by</span> fscore separator <span class="string">&#x27;,&#x27;</span>) <span class="keyword">as</span> fscore</span><br><span class="line"><span class="keyword">FROM</span> t1_3</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> fyear,fdept </span><br><span class="line">) t</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> fyear;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept_a</th>
+<th>fdept_b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>10</td>
+<td>6,9</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>8</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<h2 id="排名中取他值"><a href="#排名中取他值" class="headerlink" title="排名中取他值"></a>排名中取他值</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create table</span> t2 <span class="keyword">like</span> t1;</span><br><span class="line"><span class="comment">-- init values</span></span><br><span class="line"><span class="keyword">insert into</span> t2 <span class="keyword">values</span></span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;A&#x27;</span>,   <span class="string">&#x27;3&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;B&#x27;</span>,   <span class="string">&#x27;1&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;C&#x27;</span>,   <span class="string">&#x27;2&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2015&#x27;</span>,  <span class="string">&#x27;A&#x27;</span>,   <span class="string">&#x27;4&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2015&#x27;</span>,  <span class="string">&#x27;D&#x27;</span>,   <span class="string">&#x27;3&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> t2;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组取b字段最小时对应的c字段"><a href="#按a分组取b字段最小时对应的c字段" class="headerlink" title="按a分组取b字段最小时对应的c字段"></a>按a分组取b字段最小时对应的c字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">  fyear,</span><br><span class="line">  fdept,</span><br><span class="line">  fscore,</span><br><span class="line">  <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">  (</span><br><span class="line">    <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">    <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">  ) <span class="keyword">as</span> rn</span><br><span class="line"><span class="keyword">from</span> t2;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+<th>rn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">fyear,</span><br><span class="line">fscore <span class="keyword">as</span> fscore_of_min_fdept</span><br><span class="line"> <span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">select</span> </span><br><span class="line">    fyear,</span><br><span class="line">    fdept,</span><br><span class="line">    fscore,</span><br><span class="line">    <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">    (</span><br><span class="line">      <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">      <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">    ) <span class="keyword">as</span> rn</span><br><span class="line">  <span class="keyword">from</span> t2</span><br><span class="line">) tt <span class="keyword">where</span> tt.rn<span class="operator">=</span><span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fscore_of_min_fdept</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组取b字段排第二时对应的c字段"><a href="#按a分组取b字段排第二时对应的c字段" class="headerlink" title="按a分组取b字段排第二时对应的c字段"></a>按a分组取b字段排第二时对应的c字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">fyear,</span><br><span class="line">fscore <span class="keyword">as</span> fscore_of_sec_min_fdept</span><br><span class="line"> <span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">select</span> </span><br><span class="line">    fyear,</span><br><span class="line">    fdept,</span><br><span class="line">    fscore,</span><br><span class="line">    <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">    (</span><br><span class="line">      <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">      <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">    ) <span class="keyword">as</span> rn</span><br><span class="line">  <span class="keyword">from</span> t2</span><br><span class="line">) tt <span class="keyword">where</span> tt.rn<span class="operator">=</span><span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fscore_of_sec_min_fdept</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组取b字段最小和最大时对应的c字段"><a href="#按a分组取b字段最小和最大时对应的c字段" class="headerlink" title="按a分组取b字段最小和最大时对应的c字段"></a>按a分组取b字段最小和最大时对应的c字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">  fyear,</span><br><span class="line">  fdept,</span><br><span class="line">  fscore,</span><br><span class="line">  <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">  (</span><br><span class="line">    <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">    <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">  ) <span class="keyword">as</span> rn_asc,</span><br><span class="line">  <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">  (</span><br><span class="line">    <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">    <span class="keyword">order</span> <span class="keyword">by</span> fdept <span class="keyword">desc</span></span><br><span class="line">  ) <span class="keyword">as</span> rn_desc</span><br><span class="line"><span class="keyword">from</span> t2;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+<th>rn_asc</th>
+<th>rn_desc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  fyear,</span><br><span class="line">  <span class="built_in">min</span>(if(rn_asc <span class="operator">=</span> <span class="number">1</span>, fscore, <span class="keyword">null</span>)) <span class="keyword">as</span> fscore_of_min_dept,</span><br><span class="line">  <span class="built_in">max</span>(if(rn_desc <span class="operator">=</span> <span class="number">1</span>, fscore, <span class="keyword">null</span>)) <span class="keyword">as</span> fscore_of_max_dept</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">select</span> </span><br><span class="line">    fyear,</span><br><span class="line">    fdept,</span><br><span class="line">    fscore,</span><br><span class="line">    <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">    (</span><br><span class="line">      <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">      <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">    ) <span class="keyword">as</span> rn_asc,</span><br><span class="line">    <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">    (</span><br><span class="line">      <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">      <span class="keyword">order</span> <span class="keyword">by</span> fdept <span class="keyword">desc</span></span><br><span class="line">    ) <span class="keyword">as</span> rn_desc</span><br><span class="line">  <span class="keyword">from</span> t2</span><br><span class="line">) tt</span><br><span class="line"><span class="keyword">where</span> tt.rn_asc <span class="operator">=</span> <span class="number">1</span> <span class="keyword">or</span> tt.rn_desc <span class="operator">=</span><span class="number">1</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> fyear</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fscore_of_min_dept</th>
+<th>fscore_of_max_dept</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组取b字段第二小和第二大时对应的c字段"><a href="#按a分组取b字段第二小和第二大时对应的c字段" class="headerlink" title="按a分组取b字段第二小和第二大时对应的c字段"></a>按a分组取b字段第二小和第二大时对应的c字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  fyear,</span><br><span class="line">  <span class="built_in">min</span>(if(rn_asc <span class="operator">=</span> <span class="number">2</span>, fscore, <span class="keyword">null</span>)) <span class="keyword">as</span> score_of_second_min_dept,</span><br><span class="line">  <span class="built_in">max</span>(if(rn_desc <span class="operator">=</span> <span class="number">2</span>, fscore, <span class="keyword">null</span>)) <span class="keyword">as</span> score_of_second_max_dept</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">select</span> </span><br><span class="line">    fyear,</span><br><span class="line">    fdept,</span><br><span class="line">    fscore,</span><br><span class="line">    <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">    (</span><br><span class="line">      <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">      <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">    ) <span class="keyword">as</span> rn_asc,</span><br><span class="line">    <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">    (</span><br><span class="line">      <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">      <span class="keyword">order</span> <span class="keyword">by</span> fdept <span class="keyword">desc</span></span><br><span class="line">    ) <span class="keyword">as</span> rn_desc</span><br><span class="line">  <span class="keyword">from</span> t2</span><br><span class="line">) tt</span><br><span class="line"><span class="keyword">where</span> tt.rn_asc <span class="operator">=</span> <span class="number">2</span> <span class="keyword">or</span> tt.rn_desc <span class="operator">=</span><span class="number">2</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> fyear</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>score_of_second_min_dept</th>
+<th>score_of_second_max_dept</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组取b字段前两小和前两大时对应的c字段"><a href="#按a分组取b字段前两小和前两大时对应的c字段" class="headerlink" title="按a分组取b字段前两小和前两大时对应的c字段"></a>按a分组取b字段前两小和前两大时对应的c字段</h3><blockquote>
+<p>需保持fdept字段最小、最大排首位</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  fyear <span class="keyword">as</span> `<span class="keyword">year</span>`,</span><br><span class="line">  group_concat(if(rn_asc <span class="operator">&lt;=</span> <span class="number">2</span>, fscore, <span class="keyword">null</span>) <span class="keyword">order</span> <span class="keyword">by</span> rn_asc) <span class="keyword">as</span> score_of_less_2_min_dept,</span><br><span class="line">  group_concat(if(rn_desc <span class="operator">&lt;=</span> <span class="number">2</span>, fscore, <span class="keyword">null</span>) <span class="keyword">order</span> <span class="keyword">by</span> rn_desc) <span class="keyword">as</span> score_of_less_2_max_dept</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">select</span> </span><br><span class="line">    fyear,</span><br><span class="line">    fdept,</span><br><span class="line">    fscore,</span><br><span class="line">    <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">    (</span><br><span class="line">      <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">      <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">    ) <span class="keyword">as</span> rn_asc,</span><br><span class="line">    <span class="built_in">row_number</span>() <span class="keyword">over</span> </span><br><span class="line">    (</span><br><span class="line">      <span class="keyword">partition</span> <span class="keyword">by</span> fyear </span><br><span class="line">      <span class="keyword">order</span> <span class="keyword">by</span> fdept <span class="keyword">desc</span></span><br><span class="line">    ) <span class="keyword">as</span> rn_desc</span><br><span class="line">  <span class="keyword">from</span> t2</span><br><span class="line">) tt</span><br><span class="line"><span class="keyword">where</span> tt.rn_asc <span class="operator">&lt;=</span> <span class="number">2</span> <span class="keyword">or</span> tt.rn_desc <span class="operator">&lt;=</span><span class="number">2</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> fyear</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>score_of_less_2_min_dept</th>
+<th>score_of_less_2_max_dept</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>3,1</td>
+<td>2,1</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>4,3</td>
+<td>3,4</td>
+</tr>
+</tbody></table>
+<h2 id="累计求值"><a href="#累计求值" class="headerlink" title="累计求值"></a>累计求值</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create table</span> t3 <span class="keyword">like</span> t1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert into</span> t3 <span class="keyword">values</span></span><br><span class="line">(<span class="string">&#x27;2015&#x27;</span>,  <span class="string">&#x27;A&#x27;</span>,   <span class="string">&#x27;4&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;A&#x27;</span>,   <span class="string">&#x27;3&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;C&#x27;</span>,   <span class="string">&#x27;2&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;B&#x27;</span>,   <span class="string">&#x27;1&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2015&#x27;</span>,  <span class="string">&#x27;D&#x27;</span>,   <span class="string">&#x27;3&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组按b字段排序，对c累计求和"><a href="#按a分组按b字段排序，对c累计求和" class="headerlink" title="按a分组按b字段排序，对c累计求和"></a>按a分组按b字段排序，对c累计求和</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">  fyear,</span><br><span class="line">  fdept,</span><br><span class="line">  fscore,</span><br><span class="line">  <span class="built_in">sum</span>(fscore) <span class="keyword">over</span></span><br><span class="line">  (</span><br><span class="line">    <span class="keyword">partition</span> <span class="keyword">by</span> fyear <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">  ) <span class="keyword">as</span> accu_sum_score </span><br><span class="line"><span class="keyword">from</span> </span><br><span class="line">  t3;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+<th>accu_sum_score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组按b字段排序，对c取累计平均值"><a href="#按a分组按b字段排序，对c取累计平均值" class="headerlink" title="按a分组按b字段排序，对c取累计平均值"></a>按a分组按b字段排序，对c取累计平均值</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">  fyear,</span><br><span class="line">  fdept,</span><br><span class="line">  fscore,</span><br><span class="line">  <span class="built_in">avg</span>(fscore) <span class="keyword">over</span></span><br><span class="line">  (</span><br><span class="line">    <span class="keyword">partition</span> <span class="keyword">by</span> fyear <span class="keyword">order</span> <span class="keyword">by</span> fdept</span><br><span class="line">  ) <span class="keyword">as</span> accu_avg_score </span><br><span class="line"><span class="keyword">from</span> </span><br><span class="line">  t3;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+<th>accu_avg_score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+<td>3.0000</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+<td>2.0000</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+<td>2.0000</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+<td>4.0000</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+<td>3.5000</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组按b字段排序，对b取累计排名比例"><a href="#按a分组按b字段排序，对b取累计排名比例" class="headerlink" title="按a分组按b字段排序，对b取累计排名比例"></a>按a分组按b字段排序，对b取累计排名比例</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  fyear <span class="keyword">as</span> `<span class="keyword">year</span>`,</span><br><span class="line">  fdept <span class="keyword">as</span> `dept`,</span><br><span class="line">  fscore <span class="keyword">as</span> `score`,</span><br><span class="line">  round(<span class="built_in">row_number</span>() <span class="keyword">over</span> (<span class="keyword">partition</span> <span class="keyword">by</span> fyear <span class="keyword">order</span> <span class="keyword">by</span> fdept)<span class="operator">/</span>(<span class="built_in">count</span>(fscore) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> fyear)),<span class="number">2</span>) <span class="keyword">as</span> accu_avg_score</span><br><span class="line"><span class="keyword">from</span> t3</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> fyear,fdept</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>dept</th>
+<th>score</th>
+<th>accu_avg_score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+<td>0.33</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+<td>0.67</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+<td>0.50</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+<td>1.00</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组按b字段排序，对b取累计求和比例"><a href="#按a分组按b字段排序，对b取累计求和比例" class="headerlink" title="按a分组按b字段排序，对b取累计求和比例"></a>按a分组按b字段排序，对b取累计求和比例</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  fyear <span class="keyword">as</span> `<span class="keyword">year</span>`,</span><br><span class="line">  fdept <span class="keyword">as</span> `dept`,</span><br><span class="line">  fscore <span class="keyword">as</span> `score`,</span><br><span class="line">  round(<span class="built_in">row_number</span>() <span class="keyword">over</span> (<span class="keyword">partition</span> <span class="keyword">by</span> fyear <span class="keyword">order</span> <span class="keyword">by</span> fdept)<span class="operator">/</span>(<span class="built_in">sum</span>(fscore) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> fyear)),<span class="number">2</span>) <span class="keyword">as</span> accu_ratio_score</span><br><span class="line"><span class="keyword">from</span> t3</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> fyear,fdept</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>dept</th>
+<th>score</th>
+<th>accu_ratio_score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+<td>0.17</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+<td>0.33</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+<td>0.50</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+<td>0.14</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+<td>0.29</td>
+</tr>
+</tbody></table>
+<h2 id="窗口大小控制"><a href="#窗口大小控制" class="headerlink" title="窗口大小控制"></a>窗口大小控制</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create table</span> t4 <span class="keyword">like</span> t1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert into</span> t4 <span class="keyword">values</span></span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;A&#x27;</span>,   <span class="string">&#x27;3&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;B&#x27;</span>,   <span class="string">&#x27;1&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2014&#x27;</span>,  <span class="string">&#x27;C&#x27;</span>,   <span class="string">&#x27;2&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2015&#x27;</span>,  <span class="string">&#x27;A&#x27;</span>,   <span class="string">&#x27;4&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;2015&#x27;</span>,  <span class="string">&#x27;D&#x27;</span>,   <span class="string">&#x27;3&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>fyear</th>
+<th>fdept</th>
+<th>fscore</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组按b字段排序，对c取前后各一行的和"><a href="#按a分组按b字段排序，对c取前后各一行的和" class="headerlink" title="按a分组按b字段排序，对c取前后各一行的和"></a>按a分组按b字段排序，对c取前后各一行的和</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">  fyear <span class="keyword">as</span> `<span class="keyword">year</span>`,</span><br><span class="line">  fdept <span class="keyword">as</span> dept,</span><br><span class="line">  <span class="built_in">lag</span>(fscore,<span class="number">1</span>,<span class="number">0</span>) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> fyear <span class="keyword">order</span> <span class="keyword">by</span> fdept) <span class="operator">|</span> <span class="built_in">lead</span>(fscore,<span class="number">1</span>,<span class="number">0</span>) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> fyear <span class="keyword">order</span> <span class="keyword">by</span> fdept) <span class="keyword">as</span> sum_range_score</span><br><span class="line"><span class="keyword">from</span> t4;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>dept</th>
+<th>sum_range_score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<h3 id="按a分组按b字段排序，对c取平均值"><a href="#按a分组按b字段排序，对c取平均值" class="headerlink" title="按a分组按b字段排序，对c取平均值"></a>按a分组按b字段排序，对c取平均值</h3><blockquote>
+<p>前一行与当前行的均值</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  fyear <span class="keyword">as</span> `<span class="keyword">year</span>`,</span><br><span class="line">  fdept <span class="keyword">as</span> `dept`,</span><br><span class="line">  fscore <span class="keyword">as</span> `score`,</span><br><span class="line">  <span class="built_in">lag</span>(fscore,<span class="number">1</span>) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> fyear <span class="keyword">order</span> <span class="keyword">by</span> fdept) <span class="keyword">as</span> lag_score</span><br><span class="line"><span class="keyword">from</span> t4;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>dept</th>
+<th>score</th>
+<th>lag_score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+<td><null></td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+<td><null></td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  `<span class="keyword">year</span>`,</span><br><span class="line">  `dept`,</span><br><span class="line">  `score`,</span><br><span class="line">  <span class="keyword">case</span> <span class="keyword">when</span> lag_score <span class="keyword">is</span> <span class="keyword">null</span> <span class="keyword">then</span> score <span class="keyword">else</span> (score <span class="operator">|</span> lag_score)<span class="operator">/</span><span class="number">2</span> <span class="keyword">end</span> <span class="keyword">as</span> avg_lag2</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">(</span><br><span class="line">  <span class="keyword">select</span></span><br><span class="line">    fyear <span class="keyword">as</span> `<span class="keyword">year</span>`,</span><br><span class="line">    fdept <span class="keyword">as</span> `dept`,</span><br><span class="line">    fscore <span class="keyword">as</span> `score`,</span><br><span class="line">    <span class="built_in">lag</span>(fscore,<span class="number">1</span>) <span class="keyword">over</span>(<span class="keyword">partition</span> <span class="keyword">by</span> fyear <span class="keyword">order</span> <span class="keyword">by</span> fdept) <span class="keyword">as</span> lag_score</span><br><span class="line">  <span class="keyword">from</span> t4</span><br><span class="line">) tt</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>dept</th>
+<th>score</th>
+<th>avg_lag2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014</td>
+<td>A</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>B</td>
+<td>1</td>
+<td>2.0000</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>C</td>
+<td>2</td>
+<td>1.5000</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>A</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>D</td>
+<td>3</td>
+<td>3.5000</td>
+</tr>
+</tbody></table>
+<h2 id="产生连续数值"><a href="#产生连续数值" class="headerlink" title="产生连续数值"></a>产生连续数值</h2><h2 id="数据扩充与收缩"><a href="#数据扩充与收缩" class="headerlink" title="数据扩充与收缩"></a>数据扩充与收缩</h2><h2 id="合并与拆分"><a href="#合并与拆分" class="headerlink" title="合并与拆分"></a>合并与拆分</h2><h2 id="模拟循环操作"><a href="#模拟循环操作" class="headerlink" title="模拟循环操作"></a>模拟循环操作</h2><h2 id="不使用distinct或group-by去重"><a href="#不使用distinct或group-by去重" class="headerlink" title="不使用distinct或group by去重"></a>不使用distinct或group by去重</h2><h2 id="容器–反转内容"><a href="#容器–反转内容" class="headerlink" title="容器–反转内容"></a>容器–反转内容</h2><h2 id="多容器–成对提取数据"><a href="#多容器–成对提取数据" class="headerlink" title="多容器–成对提取数据"></a>多容器–成对提取数据</h2><h2 id="多容器–转多行"><a href="#多容器–转多行" class="headerlink" title="多容器–转多行"></a>多容器–转多行</h2><h2 id="抽象分组–断点排序"><a href="#抽象分组–断点排序" class="headerlink" title="抽象分组–断点排序"></a>抽象分组–断点排序</h2><h2 id="业务逻辑的分类与抽象–时效"><a href="#业务逻辑的分类与抽象–时效" class="headerlink" title="业务逻辑的分类与抽象–时效"></a>业务逻辑的分类与抽象–时效</h2><h2 id="时间序列–进度及剩余"><a href="#时间序列–进度及剩余" class="headerlink" title="时间序列–进度及剩余"></a>时间序列–进度及剩余</h2><h2 id="时间序列–构造日期"><a href="#时间序列–构造日期" class="headerlink" title="时间序列–构造日期"></a>时间序列–构造日期</h2><h2 id="时间序列–构造累计日期"><a href="#时间序列–构造累计日期" class="headerlink" title="时间序列–构造累计日期"></a>时间序列–构造累计日期</h2><h2 id="时间序列–构造连续日期"><a href="#时间序列–构造连续日期" class="headerlink" title="时间序列–构造连续日期"></a>时间序列–构造连续日期</h2><h2 id="时间序列–取多个字段最新的值"><a href="#时间序列–取多个字段最新的值" class="headerlink" title="时间序列–取多个字段最新的值"></a>时间序列–取多个字段最新的值</h2><h2 id="时间序列–补全数据"><a href="#时间序列–补全数据" class="headerlink" title="时间序列–补全数据"></a>时间序列–补全数据</h2><h2 id="时间序列–取最新完成状态的前一个状态"><a href="#时间序列–取最新完成状态的前一个状态" class="headerlink" title="时间序列–取最新完成状态的前一个状态"></a>时间序列–取最新完成状态的前一个状态</h2><h2 id="非等值连接–范围匹配"><a href="#非等值连接–范围匹配" class="headerlink" title="非等值连接–范围匹配"></a>非等值连接–范围匹配</h2><h2 id="非等值连接–最新匹配"><a href="#非等值连接–最新匹配" class="headerlink" title="非等值连接–最新匹配"></a>非等值连接–最新匹配</h2><h2 id="N指标–累计去重"><a href="#N指标–累计去重" class="headerlink" title="N指标–累计去重"></a>N指标–累计去重</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/calcite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/calcite/" class="post-title-link" itemprop="url">Apache Calcite</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-04T00:00:00+00:00">2022-01-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <table>
+<thead>
+<tr>
+<th>concept</th>
+<th>中文</th>
+<th>object</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Relational algebra</td>
+<td>关系代数</td>
+<td>RelNode</td>
+</tr>
+<tr>
+<td>Row expressions</td>
+<td>行表达式</td>
+<td>RexNode</td>
+</tr>
+<tr>
+<td>Traits</td>
+<td></td>
+<td>RelTrait</td>
+</tr>
+<tr>
+<td>Conventions</td>
+<td></td>
+<td>Convention</td>
+</tr>
+<tr>
+<td>Rules</td>
+<td></td>
+<td>RelOptRule</td>
+</tr>
+<tr>
+<td>Planners</td>
+<td></td>
+<td>RelOptPlanner</td>
+</tr>
+<tr>
+<td>Programs</td>
+<td></td>
+<td>Program</td>
+</tr>
+</tbody></table>
+<h2 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h2><table>
+<thead>
+<tr>
+<th>关系代数</th>
+<th>对应的Spark操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TableScan</td>
+<td>SparkTableScan</td>
+</tr>
+<tr>
+<td>Project</td>
+<td>SparkProject</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>SparkFilter</td>
+</tr>
+<tr>
+<td>Aggregate</td>
+<td>SparkAggregate</td>
+</tr>
+<tr>
+<td>Join</td>
+<td>SparkJoin</td>
+</tr>
+<tr>
+<td>Union</td>
+<td>SparkUnion</td>
+</tr>
+<tr>
+<td>Intersect</td>
+<td>SparkIntersect</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>SparkSort</td>
+</tr>
+</tbody></table>
+<p><img src="/images/bigdata/20220405111118.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Google-Napa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Google-Napa/" class="post-title-link" itemprop="url">Google-Napa</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-10-15T19:47:00+00:00">2021-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Queryable Timestamp</p>
+<p><img src="/images/bigdata/20220325104713.png"></p>
+<p>难以调和的三者：数据新鲜度、查询性能和资源消耗</p>
+<p><img src="/images/bigdata/20220325104250.png"><br>Napa主架构</p>
+<p>Data Availability</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/raise-of-bigdata/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/raise-of-bigdata/" class="post-title-link" itemprop="url">大数据的兴起</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-10-15T19:47:00+00:00">2021-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:29" itemprop="dateModified" datetime="2026-08-22T17:34:29+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>作者：肯尼思·内尔·丘基尔、维克托·梅耶—舍恩伯格</p>
+<p>2013-07-29 09:53:56</p>
+<p>每个人都知道互联网改变了企业经营、政府运作以及人们生活的方式。但是一种新的、不那么明显的技术趋势却有着同样巨大的变革能力，那就是“大数据”。大数据的趋势发端于下面这个事实：如今到处传播的信息比以往任何时候都多出了许多，而且这一趋势正在应用于非同寻常的新用途。大数据与互联网截然不同，虽然互联网使数据的收集和共享方便了很多。大数据的意义并不仅仅是通信：其本质是我们可以从大量的信息中学习到从较少量的信息中无法获取的东西。</p>
+<h2 id="0-1-将改变人类思考方式"><a href="#0-1-将改变人类思考方式" class="headerlink" title="0.1 将改变人类思考方式"></a>0.1 将改变人类思考方式</h2><p>早在公元前3世纪，亚历山大图书馆被认为收藏了全部的人类知识。而如果把当今全世界的信息平分给每一个活着的人，那么每个人拥有的信息量将足足超过当年亚历山大图书馆全部藏书的320倍。如果把所有这些信息刻到光盘上并且分五摞叠起来的话，那么这些光盘可以一直堆到月球。</p>
+<p>这种数据爆炸是相对新鲜的现象。仅仅在2000年的时候，全世界全部的存储信息中还只有四分之一是数字化的，其余的都保存在纸张、胶片和其他模拟介质上。但是由于数字数据数量的增长十分迅速——几乎每三年就翻一番，这种情形很快发生了逆转。如今，在所有存储信息中只有不到2%是非数字化的。</p>
+<p>鉴于如此悬殊的比例，人们免不了在理解大数据的时候仅仅从数量上进行考虑。然而这将会产生误导。大数据的另一个特征是它能够用数据来表现世界的众多层面，而这些层面以往从来都没有被量化过——这种特征可以被称为“数据化”。例如，位置信息的数据化最早是由于经纬度的发明，而最近又有了GPS。当计算机对几个世纪内的书籍进行取样时，文字便成了被处理的数据。甚至连友谊和爱好也被数据化了——例如通过Facebook。</p>
+<p>借助于廉价的电脑内存、高性能处理器、智能算法、聪明软件以及从基本统计学中借鉴来的数学知识，这样的一类数据正在被应用于难以置信的新用途中。这种新方法并不是试图“教会”计算机去从事驾驶或翻译这样的事情，而是要向计算机输入足够多的信息，从而使它们能够推断概率，例如交通指示绿灯亮、红灯不亮的概率，或者是在特定语境下“light”一词意为“光”而不是“轻”的概率。</p>
+<p>以这种方式对大量数据加以利用，要求人们在三个方面彻底改变对数据的态度。第一是收集和使用大量数据，而不是像统计学家们在过去100多年里所做的那样，只满足于少量的数据或样本。第二是抛弃人们对有条理和纯净的数据的偏爱，转而接受杂乱无章——在越来越多的情形下，少许的不精确是可以容忍的。第三，在许多场合，人们需要放弃对事情原委的追究，而代之以对相关性的接纳。利用大数据，而不是试图弄懂发动机抛锚或药物副作用消失的确切原因，研究人员可以收集和分析大量有关此类事件的信息及一切相关素材，找出可能有助于预测未来事件发生的规律。大数据有助于回答是什么、而不是为什么的问题——通常有这样的回答就足够了。</p>
+<p>互联网重塑了人类交流的方式。大数据则不同：它标志着社会处理信息方式的变化。随着时间的推移，大数据可能会改变人们思考世界的方式。随着人们利用越来越多的数据来理解事情和作出决定，人们很可能会发现生活的许多层面是随机的、而不是确定的。</p>
+<h2 id="0-2-从因果关系到相关性"><a href="#0-2-从因果关系到相关性" class="headerlink" title="0.2 从因果关系到相关性"></a>0.2 从因果关系到相关性</h2><p>人们看待数据的方式的两个变化——从局部变为全部以及从纯净变为凌乱——催生了第三个变化：从因果关系到相关性。这代表着告别总是试图了解世界运转方式背后深层原因的态度，而走向仅仅需要弄清现象之间的联系以及利用这些信息来解决问题。</p>
+<p>加拿大的研究人员正在开发一种大数据手段，以便能在明显症状出现之前发现早产婴儿体内的感染。通过把包括心率、血压、呼吸和血氧水平等16种生命体征转化成每秒1000多个数据点的信息流，他们已经能够找到极其轻微的变化与较为严重的问题之间的相关性。最终，这项技术将使医生能够提前采取行动，从而拯救生命。</p>
+<p>大数据所产生的影响将远远超出医学和消费品的范畴：它将深远地改变政府的运作方式和政治的性质。在推动经济增长、提供公共服务或进行战争等方面，那些能够有效利用大数据的人将拥有胜过别人的巨大优势。迄今为止，最令人兴奋的成果出现在市级，在这个级别上获取数据和利用这些信息进行实验要容易一些。纽约市长迈克尔·布隆伯格（他本人就是靠着数据行业发家的）率先进行了一项努力：该市正在利用大数据改善公共服务和降低成本。其中一个例子就是新的火灾预防策略。</p>
+<p>非法在屋内打隔断的建筑物着火的可能性比其他建筑物高很多。纽约市每年接到2.5万宗有关房屋住得过于拥挤的投诉，但市里只有200名处理投诉的巡视员。市长办公室一个分析专家小组觉得大数据可以帮助解决这一需求与资源的落差。该小组建立了一个市内全部90万座建筑物的数据库，并在其中加入市里19个部门所收集到的数据：欠税扣押记录、水电使用异常、缴费拖欠、服务切断、救护车使用、当地犯罪率、鼠患投诉，诸如此类。接下来，他们将这一数据库与过去5年中按严重程度排列的建筑物着火记录进行比较，希望找出相关性。果然，建筑物类型和建造年份是与火灾相关的因素。不过，一个没怎么预料到的结果是，获得外砖墙施工许可的建筑物与较低的严重火灾发生率之间存在相关性。</p>
+<p>利用所有这些数据，该小组建立了一个可以帮助他们确定哪些住房拥挤投诉需要紧急处理的系统。他们所记录的建筑物的各种特征数据都不是导致火灾的原因，但这些数据与火灾隐患的增加或降低存在相关性。这种知识被证明是极具价值的：过去房屋巡视员出现场时签发房屋腾空令的比例只有13%，在采用新办法之后，这个比例上升到了70%——效率大大提高了。</p>
+<h2 id="0-3-大数据的挑战和局限"><a href="#0-3-大数据的挑战和局限" class="headerlink" title="0.3 大数据的挑战和局限"></a>0.3 大数据的挑战和局限</h2><p>大数据也正在帮助提高民主政府的透明度。一个建立在“开放数据”概念上的运动已经形成，其诉求超出了目前在发达民主国家已经十分常见的信息自由法。这一运动的支持者呼吁政府把手上浩如烟海的普通数据向公众开放。</p>
+<p>与此同时，在政府推动使用大数据的同时，它们还需要保护公众免受不正当市场垄断的侵害。管理大数据的法规甚至可能成为国家间的角斗场。出于对反托拉斯和保护隐私的关切，欧洲各国政府已经在严查谷歌公司。脸谱网可能会成为世界各地类似行动的打击目标，因为它持有太多的个人数据。外交官们应该准备好围绕是否像对待自由贸易那样对待信息流动展开交锋。</p>
+<p>大数据势必将改变人们生活、工作和思考的方式。建立在强调因果关系基础上的世界观正在受到推崇相关性的挑战。知识的占有曾经意味着对历史的了解，而现在却意味着预言未来的能力。解决大数据所带来的挑战将不是易事。</p>
+<p>在决策越来越多地受到数据支配的世界里，人、直觉或是不顾事实的蛮干还有什么用武之地呢？如果每个人都求助于数据，都利用大数据工具的话，那么不可预测性——例如人类的本能、冒险、意外甚至失误——也许将会成为差异的关键。如果真是这样的话，那么需要专门为人为因素辟出一席之地——即为直觉、常识、运气留出空间，以确保它们不会被数据和机器生成的答案挤走。</p>
+<p>这将对社会进步的观念产生重要影响。大数据使我们可以更快地进行实验，对更多的线索展开探索。这些优势应该会导致更多创新的产生。但在有些时候，发明的火花迸发是数据所无法表现的。倘若亨利·福特当初求助于大数据算法系统来研究顾客希望得到的东西，算法系统得到的答案会是“更快的马匹”，也就不会有福特著名的汽车生产线了。在大数据的世界里，需要培养的恰恰是与人类关系最密切的特性——创造力、直觉和上进心，因为人的聪明才智才是进步的源泉。</p>
+<p>大数据是一种资源和一种工具。它的目的是告知，而不是解释；它意在促进理解，但仍然会导致误解——关键在于人们对它的掌握程度。人们必须以一种不仅欣赏其力量，而且承认其局限的态度来接纳这种技术。</p>
+<p><strong>肯尼思·内尔·丘基尔是《经济学人》杂志数据编辑，维克托·梅耶—舍恩伯格是牛津大学互联网研究院互联网管理与法规教授。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL-Function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL-Function/" class="post-title-link" itemprop="url">Flink SQL UDF</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-10-15T19:47:00+00:00">2021-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-函数"><a href="#1-函数" class="headerlink" title="1 函数"></a>1 函数</h1><h2 id="1-1-函数的定义"><a href="#1-1-函数的定义" class="headerlink" title="1.1 函数的定义"></a>1.1 函数的定义</h2><table>
+<thead>
+<tr>
+<th>特性​​</th>
+<th>​BuiltInFunctionDefinition​​</th>
+<th>​FlinkSqlOperatorTable​​</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>​<strong>​核心功能​</strong>​</td>
+<td>函数元数据管理、类型推导、执行逻辑封装</td>
+<td>SQL语法解析、函数符号表管理</td>
+</tr>
+<tr>
+<td>​<strong>​适用阶段​</strong>​</td>
+<td>执行阶段（运行时）</td>
+<td>解析阶段（编译时）</td>
+</tr>
+<tr>
+<td>​<strong>​与Calcite的关系​</strong>​</td>
+<td>无直接依赖</td>
+<td>继承自Calcite的<code>SqlOperatorTable</code></td>
+</tr>
+<tr>
+<td>​<strong>​扩展性​</strong>​</td>
+<td>支持用户自定义函数（UDF）</td>
+<td>主要管理内置运算符和标准SQL函数</td>
+</tr>
+</tbody></table>
+<h3 id="1-1-1-BuiltInFunctionDefinition​"><a href="#1-1-1-BuiltInFunctionDefinition​" class="headerlink" title="1.1.1 BuiltInFunctionDefinition​"></a>1.1.1 BuiltInFunctionDefinition​</h3><p>属于Table API&#x2F;SQL模块的​<strong>​函数定义层​</strong>​，是Flink对函数的统一抽象表示。<br>它定义了函数的基本属性（如名称、类型、参数策略等），与具体的执行引擎解耦，适用于所有API层（包括DataStream API和Table API）。</p>
+<p>​<strong>​作用​</strong>​：</p>
+<ul>
+<li>提供函数的元信息（如输入&#x2F;输出类型策略、确定性等）</li>
+<li>支持跨API的统一函数注册（如通过<code>TableEnvironment.registerFunction()</code>）</li>
+<li>作为SQL和Table API函数调用的中间表示</li>
+</ul>
+<h3 id="1-1-2-FlinkSqlOperatorTable​"><a href="#1-1-2-FlinkSqlOperatorTable​" class="headerlink" title="1.1.2 FlinkSqlOperatorTable​"></a>1.1.2 FlinkSqlOperatorTable​</h3><p><code> Operator table that contains only Flink-specific functions and operators.</code></p>
+<p>是​<strong>​SQL解析层​</strong>​的组件，继承自Apache Calcite的<code>SqlOperatorTable</code>，专门用于SQL语法解析和验证阶段。<br>它定义了SQL标准中的运算符和函数（如<code>+</code>, <code>SUM</code>, <code>OVER</code>等）如何映射到Flink的执行逻辑。</p>
+<p>​<strong>​作用​</strong>​：</p>
+<ul>
+<li>提供SQL语法树（AST）中运算符和函数的符号表</li>
+<li>在SQL解析阶段验证函数是否存在及参数合法性</li>
+<li>将SQL函数名映射到<code>BuiltInFunctionDefinition</code>或其他执行逻辑</li>
+</ul>
+<h3 id="1-1-3-协同工作流程​"><a href="#1-1-3-协同工作流程​" class="headerlink" title="1.1.3 协同工作流程​"></a>1.1.3 协同工作流程​</h3><ol>
+<li>​<strong>​SQL解析阶段​</strong>​：当用户提交SQL查询时，<code>FlinkSqlOperatorTable</code>负责识别函数名（如<code>COUNT</code>）并验证语法合法性</li>
+<li>​<strong>​逻辑计划生成​</strong>​：解析通过后，SQL函数会被转换为<code>BuiltInFunctionDefinition</code>实例，作为逻辑计划的一部分</li>
+<li>​<strong>​执行阶段​</strong>​：<code>BuiltInFunctionDefinition</code>提供具体的类型推导和执行逻辑，最终生成Flink作业图（JobGraph）</li>
+</ol>
+<h2 id="1-2-函数的校验"><a href="#1-2-函数的校验" class="headerlink" title="1.2 函数的校验"></a>1.2 函数的校验</h2><p>以<code>IP_TO_LONG</code>函数为例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">SqlFunction</span> <span class="variable">IP_TO_LONG</span> <span class="operator">=</span>  </span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">SqlFunction</span>(  </span><br><span class="line">                <span class="string">&quot;IpToLong&quot;</span>,  <span class="comment">// name</span></span><br><span class="line">                SqlKind.OTHER_FUNCTION,  <span class="comment">// SqlKind</span></span><br><span class="line">                ReturnTypes.BIGINT_NULLABLE,  <span class="comment">// SqlReturnTypeInference</span></span><br><span class="line">                <span class="literal">null</span>,  <span class="comment">// SqlOperandTypeInference</span></span><br><span class="line">                OperandTypes.STRING,  <span class="comment">// SqlOperandTypeChecker</span></span><br><span class="line">                SqlFunctionCategory.STRING <span class="comment">// SqlFunctionCategory</span></span><br><span class="line">                );</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// org.apache.calcite.sql.SqlOperator#checkOperandTypes</span></span><br><span class="line"><span class="comment">// org.apache.calcite.sql.type.FamilyOperandTypeChecker#checkOperandTypes</span></span><br><span class="line"><span class="comment">// org.apache.calcite.sql.type.FamilyOperandTypeChecker#checkSingleOperandType</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">family.getTypeNames().contains(typeName)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-查找所有的函数定义"><a href="#1-3-查找所有的函数定义" class="headerlink" title="1.3 查找所有的函数定义"></a>1.3 查找所有的函数定义</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>&lt;SqlOperator&gt; <span class="variable">operatorList</span> <span class="operator">=</span> FlinkSqlOperatorTable.instance().getOperatorList();  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; operatorList.size(); i++) &#123;  </span><br><span class="line">    <span class="type">SqlOperator</span> <span class="variable">sqlOperator</span> <span class="operator">=</span> operatorList.get(i);  </span><br><span class="line">    System.out.printf(<span class="string">&quot;FlinkSqlOperateTable: %03d,\t%-35s,%6s,\n&quot;</span>,  </span><br><span class="line">            i + <span class="number">1</span>,  </span><br><span class="line">            sqlOperator.getName(),  </span><br><span class="line">            sqlOperator.kind);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-SQL%E6%88%90%E7%A5%9E%E4%B9%8B%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-SQL%E6%88%90%E7%A5%9E%E4%B9%8B%E8%B7%AF/" class="post-title-link" itemprop="url">Flink-SQL成神之路</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-10-15T19:47:00+00:00">2021-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://yangyichao-mango.github.io/2021/11/15/wechat-blog/01_%E5%A4%A7%E6%95%B0%E6%8D%AE/01_%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/01_%E5%AE%9E%E6%97%B6%E6%95%B0%E4%BB%93/02_%E6%95%B0%E6%8D%AE%E5%86%85%E5%AE%B9%E5%BB%BA%E8%AE%BE/03_one-engine/01_%E8%AE%A1%E7%AE%97%E5%BC%95%E6%93%8E/01_flink/01_flink-sql/20_%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E5%B9%B2%E8%B4%A7%EF%BC%81FlinkSQL%E6%88%90%E7%A5%9E%E4%B9%8B%E8%B7%AF%EF%BC%88%E5%85%A8%E6%96%876%E4%B8%87%E5%AD%97%E3%80%81110%E4%B8%AA%E7%9F%A5%E8%AF%86%E7%82%B9%E3%80%81160%E5%BC%A0%E5%9B%BE%EF%BC%89/">转载原文</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-runtime-deployment-mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-runtime-deployment-mode/" class="post-title-link" itemprop="url">Flink deployment mode</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-10-15T19:47:00+00:00">2021-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>问题一： session模式，哪些组件是共用的？<br>问题二：每种模式的优缺点<br>问题三： runtime有哪些组件构成？<br>问题四:  JobManager有哪些组件？</p>
+</blockquote>
+<h2 id="runtime-summary"><a href="#runtime-summary" class="headerlink" title="runtime summary"></a>runtime summary</h2><p><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=65147077">https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=65147077</a></p>
+<h3 id="JobManager"><a href="#JobManager" class="headerlink" title="JobManager"></a>JobManager</h3><p><img src="/images/bigdata/Flink/46304650567847.png"></p>
+<h4 id="Dispatcher"><a href="#Dispatcher" class="headerlink" title="Dispatcher"></a>Dispatcher</h4><p>提供Client的RPC接口</p>
+<h4 id="ResourceManager"><a href="#ResourceManager" class="headerlink" title="ResourceManager"></a>ResourceManager</h4><p>与Yarn resource manager不同，用来管理Flink的TaskManager资源</p>
+<h4 id="JobMaster"><a href="#JobMaster" class="headerlink" title="JobMaster"></a>JobMaster</h4><p>一个任务的生命周期，每个Flink job各有一个JobMaster与之对应</p>
+<h4 id="Web-server"><a href="#Web-server" class="headerlink" title="Web server"></a>Web server</h4><h3 id="TaskManager"><a href="#TaskManager" class="headerlink" title="TaskManager"></a>TaskManager</h3><p>TaskManager 其实功能比较简单，提供一些基本的 RPC 服务，供 JobManager 进行调度</p>
+<h2 id="集群启动"><a href="#集群启动" class="headerlink" title="集群启动"></a>集群启动</h2><h2 id="per-job-mode"><a href="#per-job-mode" class="headerlink" title="per-job mode"></a>per-job mode</h2><h2 id="yarn-session-mode"><a href="#yarn-session-mode" class="headerlink" title="yarn session mode"></a>yarn session mode</h2><h2 id="application-mode"><a href="#application-mode" class="headerlink" title="application mode"></a>application mode</h2><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li><input disabled="" type="checkbox"> <a href="https://mp.weixin.qq.com/s/fsqFpQnKD5N6IqAiPKNQnQ">flink on yarn 远程 debug 提交流程源码分析看不懂？看完这53张图包你学会！</a> <ul>
+<li>Flink on yarn per-job的架构、提交流程和代码分析</li>
+<li>如何开启远程调试，本地调试</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a href="https://mp.weixin.qq.com/s/Ovx_oIMcMkqWNbB7i6Lt4A">Flink是如何工作的?</a><ul>
+<li>Flink启动顺序，各个组件启动流程</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a href="https://mp.weixin.qq.com/s/Ovx_oIMcMkqWNbB7i6Lt4A">详解Flink作业提交流程</a>    <ul>
+<li>Session模式、Per-job模式、K8s session模式提交流程</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a href="https://mp.weixin.qq.com/s/bvhnuOqKf5RyhwICtt4X2w">剖析Flink运行时的整体架构</a><ul>
+<li>各个组件的作用</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a href="https://mp.weixin.qq.com/s/E0TyBs0F_YagS3fX7PbRig">Apache Flink on Kubernetes: 四种模式，我该选择哪种？</a></li>
+<li><input disabled="" type="checkbox"> <a href="https://www.infoq.cn/article/RWTM9o0SHHV3Xr8o8giT">Apache Flink进阶（一）：Runtime核心机制</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink/" class="post-title-link" itemprop="url">Flink-outline</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-15 19:47:00" itemprop="dateCreated datePublished" datetime="2021-10-15T19:47:00+00:00">2021-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:28" itemprop="dateModified" datetime="2026-08-22T17:34:28+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><h2 id="1-1-Flink的优势"><a href="#1-1-Flink的优势" class="headerlink" title="1.1 Flink的优势"></a>1.1 Flink的优势</h2><p><strong>Apache Flink优势(Apache Flink Advantages)</strong></p>
+<table>
+<thead>
+<tr>
+<th>优势</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>统一框架(Unified framework)</td>
+<td>- 用户API统一(Unified User API)<br>- 执行引擎统一(Unified Runtime Engine)</td>
+</tr>
+<tr>
+<td>方便集成(Easy integration)</td>
+<td>- 丰富的Connectors（e.g. file, mq, db） （Various connectors）<br>- 方便对接现有 Catalog （Easy to use existing catalog）</td>
+</tr>
+<tr>
+<td>多层次API （Layered APIs）</td>
+<td>- SQL<br>- Java&#x2F;Python Table API<br>- DataStream API</td>
+</tr>
+<tr>
+<td>灵活的 Failover 策略 （Flexible failover strategy）</td>
+<td>- 支持快速 failover （Fast failover on Pipeline mode）<br>- 支持 Shuffle 数据落盘 （Spill to disk for shuffling data）</td>
+</tr>
+<tr>
+<td>高性能 （Excellent performance）</td>
+<td>- 内存计算 （In-Memory computing）<br>- 代价模型优化器（Cost-based Optimizer）<br>- 代码动态生成 （Code-gen）</td>
+</tr>
+<tr>
+<td>易部署维护 （Easy deployment &amp; maintenance）</td>
+<td>- 灵活的部署方案（Flexible deployment）<br>- 支持高可用（High-availability）</td>
+</tr>
+</tbody></table>
+<h2 id="1-2-Flink-OLAP的优势"><a href="#1-2-Flink-OLAP的优势" class="headerlink" title="1.2 Flink OLAP的优势"></a>1.2 Flink OLAP的优势</h2><p>Flink做OLAP的优势</p>
+<p><strong>Apache Flink做OLAP引擎优势(The advantages of Apache Flink as an OLAP engine)</strong></p>
+<p><strong>统一引擎(Unified Framework)</strong></p>
+<ul>
+<li>降低学习成本(Easy to learn)</li>
+<li>提高开发效率(Improve development efficiency)</li>
+<li>提高维护效率(Improve maintenance effciency)</li>
+</ul>
+<p><strong>既有优势(Existing strengths)</strong></p>
+<ul>
+<li>内存计算(In-Memory computing)</li>
+<li>Pipeline</li>
+<li>代码动态生产(Code-gen)</li>
+<li>…</li>
+</ul>
+<p><strong>相互增强(Mutual reinforcement)</strong></p>
+<ul>
+<li>无统计信息的优化(Optimization without statistic)</li>
+<li>更高效的算子(More efficient operators)</li>
+<li>更通用的框架(More general framework)</li>
+</ul>
+<h2 id="1-3-Flink-vs-Spark"><a href="#1-3-Flink-vs-Spark" class="headerlink" title="1.3 Flink vs Spark"></a>1.3 Flink vs Spark</h2><h2 id="1-4-spark-accumulate"><a href="#1-4-spark-accumulate" class="headerlink" title="1.4 spark accumulate"></a>1.4 spark accumulate</h2><p>用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1：创建累加器</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">IntCounter</span> <span class="variable">numLines</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IntCounter</span>();</span><br><span class="line"><span class="comment">// 2：注册累加器</span></span><br><span class="line">getRuntimeContext().addAccumulator(<span class="string">&quot;num-lines&quot;</span>, <span class="built_in">this</span>.numLines);</span><br><span class="line"><span class="comment">// 3：使用累加器</span></span><br><span class="line"><span class="built_in">this</span>.numLines.add(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 4：获取累加器的结果</span></span><br><span class="line">myJobExecutionResult.getAccumulatorResult(<span class="string">&quot;num-lines&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-环境构建"><a href="#2-环境构建" class="headerlink" title="2 环境构建"></a>2 环境构建</h1><p><a href="Flink-local-build">TDFlink 本地调试</a></p>
+<h1 id="3-Runtime"><a href="#3-Runtime" class="headerlink" title="3 Runtime"></a>3 Runtime</h1><h2 id="3-1-push-pull-模型"><a href="#3-1-push-pull-模型" class="headerlink" title="3.1 push pull 模型?"></a>3.1 push pull 模型?</h2><p>barrier 对齐</p>
+<h2 id="3-2-watermark"><a href="#3-2-watermark" class="headerlink" title="3.2 watermark"></a>3.2 watermark</h2><p><a href="Flink-watermark">watermark</a></p>
+<p>kafka 的每个分区 event-time 到来的时间不一致</p>
+<p>using Flink’s Kafka-partition-aware watermark generation. watermarks are generated inside the Kafka consumer, per Kafka partition, and the per-partition watermarks are merged in the same way as watermarks are merged on stream shuffles.</p>
+<p>watermark 在每个 kafka 分区的 kafka 消费者中产生，每个分区的 watermark 合并起来，如在 stream shuffle 中合并 watermark 一样</p>
+<h2 id="3-3-时间语义-EventTime-ProcessTime-IngestionTime"><a href="#3-3-时间语义-EventTime-ProcessTime-IngestionTime" class="headerlink" title="3.3 时间语义:EventTime &amp; ProcessTime &amp; IngestionTime"></a>3.3 时间语义:EventTime &amp; ProcessTime &amp; IngestionTime</h2><p>Event time programs must specify how to generate <em>Event Time Watermarks</em>, which is the mechanism that signals progress in event time</p>
+<p>Internally, <em>ingestion time</em> is treated much like <em>event time</em>, but with automatic timestamp assignment and automatic watermark generation.</p>
+<h2 id="3-4-算子之间数据传递，是如何序列化的"><a href="#3-4-算子之间数据传递，是如何序列化的" class="headerlink" title="3.4 算子之间数据传递，是如何序列化的"></a>3.4 算子之间数据传递，是如何序列化的</h2><p>avro 与 kryo 序列化的区别, 及使用场景</p>
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-checkpoint-savepoint-2pc">2PC</a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-distributed-snapshot">分布式快照</a></p>
+</li>
+</ul>
+<h2 id="3-5-对象重用Object-Reuse"><a href="#3-5-对象重用Object-Reuse" class="headerlink" title="3.5 对象重用Object-Reuse"></a>3.5 对象重用Object-Reuse</h2><p>#Flink优化 #对象重用 :  <a href="https://www.jianshu.com/p/f0eaaf2eaacc">https://www.jianshu.com/p/f0eaaf2eaacc</a></p>
+<blockquote>
+<p>对象重用： chain起来的算子，无需进行对象的序列化和反序列化，节省计算资源。<br>然而，存在对象可变的问题，需要避免。</p>
+<p>Flink SQL是较适合的场景，对象不可变，SQL的类型都是复杂类型，重用会节省更多。</p>
+</blockquote>
+<h2 id="3-6-类型系统"><a href="#3-6-类型系统" class="headerlink" title="3.6 类型系统"></a>3.6 类型系统</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+<a href="DataTypesAndSerialization">类型系统</a></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="Flink-runtime">runtime</a></p>
+<ul>
+<li><p>task chain</p>
+</li>
+<li><p>sharing slot group</p>
+</li>
+<li><p>task slot</p>
+<ul>
+<li><p>CoLocationGroup</p>
+</li>
+<li><p>SlotSharingGroup</p>
+</li>
+<li><p><a href="Flink-job-submit">Flink job submit</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-7-部署模式"><a href="#3-7-部署模式" class="headerlink" title="3.7 部署模式"></a>3.7 部署模式</h2><ul>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-runtime-deployment-mode">Deployment mode</a></p>
+<ul>
+<li><a href="Flink-on-yarn">Flink on yarn</a></li>
+<li>Flink on K8s</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-8-Submit"><a href="#3-8-Submit" class="headerlink" title="3.8 Submit"></a>3.8 Submit</h2><ul>
+<li><input disabled="" type="checkbox"> <a href="Flink-Clients">clients</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-job-submit">job submit</a></li>
+</ul>
+<h2 id="3-9-一致性语义-at-least-once-exactly-once"><a href="#3-9-一致性语义-at-least-once-exactly-once" class="headerlink" title="3.9 一致性语义: at least once &amp; exactly once"></a>3.9 一致性语义: at least once &amp; exactly once</h2><p>从容错和消息处理的语义上(at least once, exactly once)，Flink 引入了 state 和 checkpoint。</p>
+<h2 id="3-10-Failover"><a href="#3-10-Failover" class="headerlink" title="3.10 Failover"></a>3.10 Failover</h2><h3 id="3-10-1-Restart-Strategies-重启策略"><a href="#3-10-1-Restart-Strategies-重启策略" class="headerlink" title="3.10.1 Restart Strategies(重启策略)"></a>3.10.1 Restart Strategies(重启策略)</h3><p>默认重启策略通过 Flink-conf.yaml 指定</p>
+<p>常用的重启策略<br>固定间隔 (Fixed delay)<br>失败率 (Failure rate)<br>无重启 (No restart)<br>如果没有启用 checkpointing，则使用无重启 (no restart) 策略。<br>如果启用了 checkpointing，但没有配置重启策略，则使用固定间隔 (fixed-delay) 策略，其中 Integer.MAX_VALUE 参数是尝试重启次数<br>重启策略可以在 Flink-conf.yaml 中配置，表示全局的配置。也可以在应用代码中动态指定，会覆盖全局配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第一种：全局配置 Flink-conf.yaml</span><br><span class="line">restart-strategy: fixed-delay</span><br><span class="line">restart-strategy.fixed-delay.attempts: <span class="number">3</span></span><br><span class="line">restart-strategy.fixed-delay.delay: <span class="number">10</span> s</span><br><span class="line">第二种：应用代码设置</span><br><span class="line">env.setRestartStrategy(RestartStrategies.fixedDelayRestart(</span><br><span class="line">  <span class="number">3</span>, <span class="comment">// 尝试重启的次数</span></span><br><span class="line">  Time.of(<span class="number">10</span>, TimeUnit.SECONDS) <span class="comment">// 间隔</span></span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-11-Accumulators-Counters"><a href="#3-11-Accumulators-Counters" class="headerlink" title="3.11 Accumulators &amp; Counters"></a>3.11 Accumulators &amp; Counters</h2><p>累加器与计数器</p>
+<h1 id="4-状态-Checkpoint-Savepoint"><a href="#4-状态-Checkpoint-Savepoint" class="headerlink" title="4 状态&#x2F;Checkpoint&#x2F;Savepoint"></a>4 状态&#x2F;Checkpoint&#x2F;Savepoint</h1><p>状态托管<br>operator state 算子状态<br>keyed state</p>
+<p>barrier</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-StateManagement">状态管理</a></li>
+<li><input checked="" disabled="" type="checkbox"> checkpoint api</li>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-State-TTL">TTL 实现原理</a></li>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-on-yarn">Flink-on-yarn</a> ✅ 2026-01-16</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-checkpoint-savepoint-2pc">checkpoint 与 savepoint</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-checkpoint%E8%AF%8A%E6%96%AD">checkpoint 诊断</a></li>
+<li><input disabled="" type="checkbox"> RocksDB 调优  <a href="https://cloud.tencent.com/developer/article/1592441">https://cloud.tencent.com/developer/article/1592441</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-stateManager-failover">状态与恢复</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-backpress">backpress 反压</a>、<a href="Flink-backpress-oppo">oppo 分享</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-time">time</a></li>
+<li><input disabled="" type="checkbox"> Flink 内存管理</li>
+<li><input disabled="" type="checkbox"> 分布式缓存</li>
+<li><input disabled="" type="checkbox"> Flink HA</li>
+</ul>
+<h2 id="4-1-状态"><a href="#4-1-状态" class="headerlink" title="4.1 状态"></a>4.1 状态</h2><p>默认保存在 java 堆中<br>checkpoint: 把 state 持久化存储，全局快照<br>blink 做的优化</p>
+<p>失败恢复机制</p>
+<p>状态分为原始状态和托管状态</p>
+<p>托管状态是由 Flink 框架管理的状态<br>而原始状态，由用户自行管理状态具体的数据结构，框架在做 checkpoint 的时候，使用 byte[]来读写状态内容，对其内部数据结构一无所知。<br>通常在 DataStream 上的状态推荐使用托管的状态，当实现一个用户自定义的 operator 时，会使用到原始状态。</p>
+<blockquote>
+<p>ReducingState 如何使用</p>
+</blockquote>
+<h2 id="4-2-Checkpoint"><a href="#4-2-Checkpoint" class="headerlink" title="4.2 Checkpoint"></a>4.2 Checkpoint</h2><p>Flink 的 checkpoint 机制可以与(stream 和 state)的持久化存储交互的前提：<br>持久化的 source，它需要支持在一定时间内重放事件。这种 sources 的典型例子是持久化的消息队列（比如 Apache Kafka，RabbitMQ 等）或文件系统（比如 HDFS，S3，GFS 等）<br>用于 state 的持久化存储，例如分布式文件系统（比如 HDFS，S3，GFS 等）</p>
+<p>Checkpoint 是 Flink 实现容错机制最核心的功能，它能够根据配置周期性地基于 Stream 中各个 Operator&#x2F;task 的状态来生成快照，从而将这些状态数据定期持久化存储下来，当 Flink 程序一旦意外崩溃时，重新运行程序时可以有选择地从这些快照进行恢复，从而修正因为故障带来的程序数据异常</p>
+<p>checkpoint 开启之后，默认的 checkPointMode 是 Exactly-once<br>checkpoint 的 checkPointMode 有两种，Exactly-once 和 At-least-once<br>Exactly-once 对于大多数应用来说是最合适的。At-least-once 可能用在某些延迟超低的应用程序（始终延迟为几毫秒）</p>
+<p>ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION:表示一旦 Flink 处理程序被 cancel 后，会保留 Checkpoint 数据，以便根据实际需要恢复到指定的 Checkpoint<br>ExternalizedCheckpointCleanup.DELETE_ON_CANCELLATION: 表示一旦 Flink 处理程序被 cancel 后，会删除 Checkpoint 数据，只有 job 执行失败的时候才会保存 checkpoint</p>
+<h2 id="4-3-State-backend"><a href="#4-3-State-backend" class="headerlink" title="4.3 State backend"></a>4.3 State backend</h2><p>默认情况下，state 会保存在 taskmanager 的内存中，checkpoint 会存储在 JobManager 的内存中。<br>state 的 store 和 checkpoint 的位置取决于 State Backend 的配置<br>env.setStateBackend(…)<br>一共有三种 State Backend<br>MemoryStateBackend<br>FsStateBackend<br>RocksDBStateBackend</p>
+<p>MemoryStateBackend<br>state 数据保存在 java 堆内存中，执行 checkpoint 的时候，会把 state 的快照数据保存到 jobmanager 的内存中<br>基于内存的 state backend 在生产环境下不建议使用<br>FsStateBackend<br>state 数据保存在 taskmanager 的内存中，执行 checkpoint 的时候，会把 state 的快照数据保存到配置的文件系统中<br>可以使用 hdfs 等分布式文件系统<br>RocksDBStateBackend<br>RocksDB 跟上面的都略有不同，它会在本地文件系统中维护状态，state 会直接写入本地 rocksdb 中。同时它需要配置一个远端的 filesystem uri（一般是 HDFS），在做 checkpoint 的时候，会把本地的数据直接复制到 filesystem 中。fail over 的时候从 filesystem 中恢复到本地<br>RocksDB 克服了 state 受内存限制的缺点，同时又能够持久化到远端文件系统中，比较适合在生产中使用</p>
+<p>修改 State Backend 的两种方式<br>第一种：单任务调整<br>修改当前任务代码<br>env.setStateBackend(new FsStateBackend(“hdfs:&#x2F;&#x2F;namenode:9000&#x2F;Flink&#x2F;checkpoints”));<br>或者 new MemoryStateBackend()<br>或者 new RocksDBStateBackend(filebackend, true);【需要添加第三方依赖】<br>第二种：全局调整<br>修改 Flink-conf.yaml<br>state.backend: filesystem<br>state.checkpoints.dir: hdfs:&#x2F;&#x2F;namenode:9000&#x2F;Flink&#x2F;checkpoints<br>注意：state.backend 的值可以是下面几种：jobmanager(MemoryStateBackend), filesystem(FsStateBackend), rocksdb(RocksDBStateBackend)</p>
+<h1 id="5-Stream-API"><a href="#5-Stream-API" class="headerlink" title="5 Stream API"></a>5 Stream API</h1><p><a href="Flink-timer">timer</a> 使用与原理</p>
+<h2 id="5-1-stateful-stream-processing"><a href="#5-1-stateful-stream-processing" class="headerlink" title="5.1 stateful stream processing"></a>5.1 stateful stream processing</h2><p>processFunction</p>
+<p>低阶 API<br>构建一些新的组件<br>比如 利用定时做一定情况下的匹配和缓存<br>灵活，开发比较复杂</p>
+<p>如: 凌晨更新 注册定时器</p>
+<h2 id="5-2-allGrouping-元素广播"><a href="#5-2-allGrouping-元素广播" class="headerlink" title="5.2 allGrouping 元素广播"></a>5.2 allGrouping 元素广播</h2><p>Flink broadcast how to use</p>
+<p>broadcast vaiable value can not be modified</p>
+<p>用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1：初始化数据</span><br><span class="line">DataSet&lt;Integer&gt; toBroadcast = env.fromElements(1, 2, 3)</span><br><span class="line">2：广播数据</span><br><span class="line">.withBroadcastSet(toBroadcast, &quot;broadcastSetName&quot;);</span><br><span class="line">3：获取数据</span><br><span class="line">Collection&lt;Integer&gt; broadcastSet = getRuntimeContext().getBroadcastVariable(&quot;broadcastSetName&quot;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>广播变量不能太大</li>
+<li>不能修改，保证数据一致性</li>
+</ul>
+<h2 id="5-3-Distributed-Cache"><a href="#5-3-Distributed-Cache" class="headerlink" title="5.3 Distributed Cache"></a>5.3 Distributed Cache</h2><blockquote>
+<p>Spark 分布式缓存如何使用</p>
+</blockquote>
+<p>Flink 提供了一个分布式缓存，类似于 hadoop，可以使用户在并行函数中很方便的读取本地文件<br>此缓存的工作机制如下：程序注册一个文件或者目录(本地或者远程文件系统，例如 hdfs 或者 s3)，通过 ExecutionEnvironment 注册缓存文件并为它起一个名称。当程序执行，Flink 自动将文件或者目录复制到所有 taskmanager 节点的本地文件系统，用户可以通过这个指定的名称查找文件或者目录，然后从 taskmanager 节点的本地文件系统访问它<br>用法<br>1：注册一个文件<br>env.registerCachedFile(“hdfs:&#x2F;&#x2F;&#x2F;path&#x2F;to&#x2F;your&#x2F;file”, “hdfsFile”)<br>2：访问数据<br>File myFile &#x3D; getRuntimeContext().getDistributedCache().getFile(“hdfsFile”);</p>
+<h2 id="5-4-Reduce-在流计算的应用"><a href="#5-4-Reduce-在流计算的应用" class="headerlink" title="5.4 Reduce 在流计算的应用"></a>5.4 Reduce 在流计算的应用</h2><p>org.apache.Flink.streaming.api.functions.timestamps.AscendingTimestampExtractor$LoggingHandler:140 -<br>Timestamp monotony violated: 1568772496000 &lt; 1568772500000</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-sink-mode">Flink 三种 Sink 模式: Append、Upsert 和 Retract</a></li>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-AsyncIO">Flink AsyncIO</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-obtain-plan">Flink plan本地编译获取plan</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-StreamAPI">Stream API</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-StreamingAPI">Flink Stream API</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-DataStream-join">Flink join: broadcast join、interval join、window join、cogroup</a></li>
+</ul>
+<h2 id="5-5-window"><a href="#5-5-window" class="headerlink" title="5.5 window"></a>5.5 window</h2><ul>
+<li><input disabled="" type="checkbox"> <a href="Flink-window">window api</a></li>
+<li><input disabled="" type="checkbox"> 自定义 trigger、evictor</li>
+<li><input disabled="" type="checkbox"> session-window</li>
+</ul>
+<h3 id="5-5-1-自定义-Window"><a href="#5-5-1-自定义-Window" class="headerlink" title="5.5.1 自定义 Window"></a>5.5.1 自定义 Window</h3><p>1、Window Assigner</p>
+<p>负责将元素分配到不同的 window。</p>
+<p>Window API 提供了自定义的 WindowAssigner 接口，我们可以实现 WindowAssigner 的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">Collection</span>&lt;W&gt; <span class="title function_">assignWindows</span><span class="params">(T element, <span class="type">long</span> timestamp)</span></span><br></pre></td></tr></table></figure>
+
+<p>方法。同时，对于基于 Count 的 window 而言，默认采用了 GlobalWindow 的 window assigner，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keyBy.window(GlobalWindows.create())</span><br></pre></td></tr></table></figure>
+
+<p>2、Trigger</p>
+<p>Trigger 即触发器，定义何时或什么情况下移除 window</p>
+<p>我们可以指定触发器来覆盖 WindowAssigner 提供的默认触发器。 请注意，指定的触发器不会添加其他触发条件，但会替换当前触发器。</p>
+<p>3、Evictor（可选）</p>
+<p>驱逐者，即保留上一 window 留下的某些元素</p>
+<p>4、通过 apply WindowFunction 来返回 DataStream 类型数据。</p>
+<p>利用 Flink 的内部窗口机制和 DataStream API 可以实现自定义的窗口逻辑，例如 session window。</p>
+<h1 id="6-Table-API"><a href="#6-Table-API" class="headerlink" title="6 Table API"></a>6 Table API</h1><ul>
+<li><input checked="" disabled="" type="checkbox"> <a href="Flink-join">Flink join</a></li>
+</ul>
+<h2 id="6-1-over-window"><a href="#6-1-over-window" class="headerlink" title="6.1 over window"></a>6.1 over window</h2><ul>
+<li><input disabled="" type="checkbox"> Flink Table API office</li>
+<li><input disabled="" type="checkbox"> 自定义窗口</li>
+<li><input disabled="" type="checkbox"> cogroup、connect 与 join</li>
+<li><input disabled="" type="checkbox"> CDC</li>
+<li><input disabled="" type="checkbox"> Flink 流测试工具</li>
+<li><input disabled="" type="checkbox"> 今日活动总申购次数：并发度为 1，是否 windowAll 都会是并发度为 1，是否可以先 keyBy 再合并？</li>
+</ul>
+<h1 id="7-Flink-SQL"><a href="#7-Flink-SQL" class="headerlink" title="7 Flink SQL"></a>7 Flink SQL</h1><ul>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-syntactic-sugar">语法糖</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-active">实践</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-submit">submit</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-Catalog">Catalog</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-Join">Flink SQL join</a></li>
+<li><input disabled="" type="checkbox"> Flink interval join</li>
+<li><input disabled="" type="checkbox"> Flink temporal join</li>
+<li><input disabled="" type="checkbox"> Flink broadcast join</li>
+<li><input disabled="" type="checkbox"> Flink SQL join 的状态管理</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-Window">Flink window &amp; demo</a></li>
+<li><input disabled="" type="checkbox"> Flink SQL-window aggregate 与 group aggregate</li>
+<li><input disabled="" type="checkbox"> Flink over window 与 TopN</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-TableFactory">Flink SQL TableFactory</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-SQL-process">Flink SQL 原理之 SQL 执行流程</a></li>
+<li><input disabled="" type="checkbox"> <a href="bigdata/Flink/Flink-SQL-Function.md">UDF</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-Table-BuildInFunctions">build in function</a></li>
+</ul>
+<p>Flink SQL 原理:</p>
+<ul>
+<li><p>Flink SQL 执行原理系列</p>
+<ul>
+<li><input disabled="" type="checkbox"> <a href="01.current/knowledge/flink/Flink-SQL-Inside-sql-parser.md">Flink-SQL-解析执行主流程</a></li>
+</ul>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="Flink-SQL-Calcite">Calcite 原理</a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Flink SQL 原理与 blink 优化</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-SQL-codeGen">Flink SQL 代码生成</a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="Flink-SQL-inside">Flink SQL 执行原理</a></p>
+</li>
+</ul>
+<p>Blink:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Blink SQL</li>
+</ul>
+<h2 id="7-1-SQL运行"><a href="#7-1-SQL运行" class="headerlink" title="7.1 SQL运行"></a>7.1 SQL运行</h2><h3 id="7-1-1-SqlNode"><a href="#7-1-1-SqlNode" class="headerlink" title="7.1.1 SqlNode"></a>7.1.1 SqlNode</h3><h3 id="7-1-2-validate"><a href="#7-1-2-validate" class="headerlink" title="7.1.2 validate"></a>7.1.2 validate</h3><p>&#96;SqlNode validated &#x3D; flinkPlanner.validate(sqlNode);&#96;&#96;</p>
+<p>sqlNode.accept 访问者模式</p>
+<h3 id="7-1-3-Operation"><a href="#7-1-3-Operation" class="headerlink" title="7.1.3 Operation"></a>7.1.3 Operation</h3><p><code>org.apache.flink.table.operations.Operation</code></p>
+<p><code>org.apache.flink.table.planner.calcite.FlinkPlannerImpl#rel</code></p>
+<p><code>org.apache.calcite.sql2rel.SqlToRelConverter</code></p>
+<h3 id="7-1-4-Rel"><a href="#7-1-4-Rel" class="headerlink" title="7.1.4 Rel"></a>7.1.4 Rel</h3><p><code>org.apache.flink.table.planner.delegation.PlannerBase#translateToRel</code></p>
+<h3 id="7-1-5-optimize"><a href="#7-1-5-optimize" class="headerlink" title="7.1.5 optimize"></a>7.1.5 optimize</h3><h3 id="7-1-6-ExecNodeGraph"><a href="#7-1-6-ExecNodeGraph" class="headerlink" title="7.1.6 ExecNodeGraph"></a>7.1.6 ExecNodeGraph</h3><h3 id="7-1-7-Plan-Transformation"><a href="#7-1-7-Plan-Transformation" class="headerlink" title="7.1.7 Plan&#x2F;Transformation"></a>7.1.7 Plan&#x2F;Transformation</h3><p><code>org.apache.flink.table.delegation.Planner#translate</code></p>
+<h3 id="7-1-8-execute"><a href="#7-1-8-execute" class="headerlink" title="7.1.8 execute"></a>7.1.8 execute</h3><p><code>org.apache.flink.table.api.internal.TableEnvironmentImpl#executeInternal(org.apache.flink.table.operations.Operation)</code></p>
+<h1 id="8-Flink-metric-Reporter"><a href="#8-Flink-metric-Reporter" class="headerlink" title="8 Flink metric&#x2F;Reporter"></a>8 Flink metric&#x2F;Reporter</h1><ul>
+<li><input disabled="" type="checkbox"> (Flink 累加器和计数器:Accumulators &amp; Counters)(Flink-metrics)</li>
+</ul>
+<h1 id="9-Flink-CEP"><a href="#9-Flink-CEP" class="headerlink" title="9 Flink CEP"></a>9 Flink CEP</h1><ul>
+<li><input disabled="" type="checkbox"> <a href="Flink-cep-office">CEP</a></li>
+</ul>
+<h1 id="10-Flink-调度"><a href="#10-Flink-调度" class="headerlink" title="10 Flink 调度"></a>10 Flink 调度</h1><h2 id="10-1-Flink-on-Yarn"><a href="#10-1-Flink-on-Yarn" class="headerlink" title="10.1 Flink on Yarn"></a>10.1 Flink on Yarn</h2><p><img src="/bigdata/Flink/attachments/19ed4f5514a6170a4aab9ea38adfa673_MD5.jpg"></p>
+<p><a href="bigdata/Flink/Flink-on-k8s.md">Flink on K8s</a></p>
+<h1 id="11-Flink常见优化与优化参数"><a href="#11-Flink常见优化与优化参数" class="headerlink" title="11 Flink常见优化与优化参数"></a>11 Flink常见优化与优化参数</h1><h2 id="11-1-SQL-mini-batch"><a href="#11-1-SQL-mini-batch" class="headerlink" title="11.1 SQL mini-batch"></a>11.1 SQL mini-batch</h2><h2 id="11-2-object-reuse"><a href="#11-2-object-reuse" class="headerlink" title="11.2 object-reuse"></a>11.2 object-reuse</h2><h1 id="12-Flink-Connectors"><a href="#12-Flink-Connectors" class="headerlink" title="12 Flink Connectors"></a>12 Flink Connectors</h1><ul>
+<li><input disabled="" type="checkbox"> kudu connector</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-connectors">Connectors</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-connector-hippo">Hippo Connector</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-connector-KuduSink">Kudu Connector</a></li>
+<li><input disabled="" type="checkbox"> [Kafka Connector][Flink-connector-kafka]</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-Connector-HBase">HBase</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-datasourceReplay">数据源重放</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-sink-mode.md">Flink-sink-mode</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-AsyncApiScalaSink">async api scala sink</a></li>
+</ul>
+<h2 id="12-1-HadoopOutputFormat"><a href="#12-1-HadoopOutputFormat" class="headerlink" title="12.1 HadoopOutputFormat"></a>12.1 HadoopOutputFormat</h2><p>Flink hbase connector</p>
+<h1 id="13-Flink-运维"><a href="#13-Flink-运维" class="headerlink" title="13 Flink 运维"></a>13 Flink 运维</h1><ul>
+<li><input disabled="" type="checkbox"> [Flink UI][flink-ui]</li>
+<li><input disabled="" type="checkbox"> Yarn、JM、TM 配置与参数</li>
+<li><input disabled="" type="checkbox"> 常见异常与解决方案</li>
+</ul>
+<p>LatencyMarker</p>
+<p><a href="https://mp.weixin.qq.com/s/A6CIPsGf-aCWXkB7O-toVw">Flink全链路延迟的测量方式</a></p>
+<h1 id="14-Flink-最佳实践"><a href="#14-Flink-最佳实践" class="headerlink" title="14 Flink 最佳实践"></a>14 Flink 最佳实践</h1><ul>
+<li><input disabled="" type="checkbox"> interval join 实现 outjoin</li>
+<li><input disabled="" type="checkbox"> 双流 join，一条流延迟</li>
+<li><input disabled="" type="checkbox"> keyedState 扩容</li>
+<li><input disabled="" type="checkbox"> Flink-bloomfilter 近似去重</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-config-dynamic">Flink 状态动态更新</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-data-skew">Flink 数据倾斜</a></li>
+<li><input disabled="" type="checkbox"> 实时数据同步</li>
+<li><input disabled="" type="checkbox"> <a href="Flink-config-dynamic">动态配置</a></li>
+<li><input disabled="" type="checkbox"> <a href="FrundDetectedSystem">欺诈检测</a></li>
+<li><input disabled="" type="checkbox"> <a href="Flink-OutputTimely">定时输出</a></li>
+<li><input disabled="" type="checkbox"> <a href="./Flink-Practice-LatencyStatistics">延迟触发&#x2F;超时统计</a></li>
+</ul>
+<h2 id="14-1-亿级流量-秒级统计"><a href="#14-1-亿级流量-秒级统计" class="headerlink" title="14.1 亿级流量 秒级统计"></a>14.1 亿级流量 秒级统计</h2><p>AI、ML、DL、ANN、CNN 蛰伏数十年，就为这个大数据时代。</p>
+<p>AI 正以前所未有的速度改变世界，影响着我们生活的方方面面，AI 走进人们的生活将成为未来的新常态。 而大数据和计算能力像水和氧气一样支撑着 AI，我们的数据从手机端、服务器日志</p>
+<h2 id="14-2-实时维表"><a href="#14-2-实时维表" class="headerlink" title="14.2 实时维表"></a>14.2 实时维表</h2><h1 id="15-开源项目"><a href="#15-开源项目" class="headerlink" title="15 开源项目"></a>15 开源项目</h1><ul>
+<li><input disabled="" type="checkbox"> <a href="bigdata/Flink/dev_platform/Oceanus-API%E5%8F%8A%E7%9B%B8%E5%85%B3%E4%BC%98%E5%8C%96.md">Oceanus</a></li>
+</ul>
+<h1 id="16-源码解读"><a href="#16-源码解读" class="headerlink" title="16 源码解读"></a>16 源码解读</h1><p><img src="/images/bigdata/Flink/202204302245852.png"></p>
+<p>根据上面我们选择的核心模块，我们大概可以得知，整个Flink的核心实现包含了：</p>
+<ul>
+<li>Flink 基本组件和逻辑计划：介绍了 Flink 的基本组件、集群构建的过程、以及客户端逻辑计划的生成过程</li>
+<li>Flink 物理计划生成：介绍了 Flink JobManager 对逻辑计划的运行时抽象，运行时物理计划的生成和管理等</li>
+<li>Jobmanager 基本组件和TaskManager的基本组件</li>
+<li>Flink 算子的生命周期：介绍了 Flink 的算子从构建、生成、运行、及销毁的过程</li>
+<li>Flink 网络栈：介绍了 Flink 网络层的抽象，包括中间结果抽象、输入输出管理、BackPressure 技术、Netty 连接等</li>
+<li>Flink的水印和Checkpoint</li>
+<li>Flink-scheduler：介绍 Flink 的任务调度算法及负载均衡</li>
+<li>Flink对用户代码异常处理：介绍作业的代码异常后 Flink 的处理逻辑，从而更好的理解 Flink 是如何保证了 exactly-once 的计算语义</li>
+<li>Flink Table&#x2F;SQL 执行流程、Flink和Hive的集成等</li>
+</ul>
+<h1 id="17-参考文献"><a href="#17-参考文献" class="headerlink" title="17 参考文献"></a>17 参考文献</h1><ol>
+<li><a href="https://github.com/crestofwave1/oneFlink">Flink 官方文档翻译</a></li>
+<li><a href="https://www.jianshu.com/u/49e6a4e2bf69">LittleMagic - 简书</a></li>
+</ol>
+<p><img src="/images/bigdata/Flink/wecom-temp-78dc7df03a5a086c378c88b03a772656.png" alt="wecom-temp-78dc7df03a5a086c378c88b03a772656"></p>
+<p><img src="/images/bigdata/Flink/flink-dynamic-table.webp"></p>
+<p><img src="/images/bigdata/Flink/20220517134802.png"></p>
+<h1 id="18-社区"><a href="#18-社区" class="headerlink" title="18 社区"></a>18 社区</h1><h2 id="18-1-FLIP"><a href="#18-1-FLIP" class="headerlink" title="18.1 FLIP"></a>18.1 FLIP</h2><p><a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-280%3A+Introduce+EXPLAIN+PLAN_ADVICE+to+provide+SQL+advice">https://cwiki.apache.org/confluence/display/FLINK/FLIP-280%3A+Introduce+EXPLAIN+PLAN_ADVICE+to+provide+SQL+advice</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="logbackconfiguration appender   类名 描述    ConsoleAppender 将日志通过 System.out 或者 System.err 来进行输出，即输出到控制台。   FileAppender 将日志输出到文件中。   RollingFileAppender 继承自 FileAppender，也是将日志输出到文件，但文件具有轮转功能。   DBAppend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="logback">
+<meta property="og:url" content="http://yoursite.com/Java/log/logback/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="logbackconfiguration appender   类名 描述    ConsoleAppender 将日志通过 System.out 或者 System.err 来进行输出，即输出到控制台。   FileAppender 将日志输出到文件中。   RollingFileAppender 继承自 FileAppender，也是将日志输出到文件，但文件具有轮转功能。   DBAppend">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/Java/log/1731892-20200131175016637-426425946.png">
+<meta property="og:image" content="http://yoursite.com/images/Java/log/image-20211026212759209.png">
+<meta property="og:image" content="http://yoursite.com/images/Java/log/image-20211026205834511.png">
+<meta property="og:image" content="http://yoursite.com/images/Java/log/1731892-20200131175715266-1340465434.png">
+<meta property="article:published_time" content="2019-06-06T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-22T17:34:27.992Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="Flink">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/Java/log/1731892-20200131175016637-426425946.png">
+
+<link rel="canonical" href="http://yoursite.com/Java/log/logback/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>logback | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">348</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/log/logback/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          logback
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-22 17:34:27" itemprop="dateModified" datetime="2026-08-22T17:34:27+00:00">2026-08-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="logback"><a href="#logback" class="headerlink" title="logback"></a>logback</h1><h2 id="configuration"><a href="#configuration" class="headerlink" title="configuration"></a>configuration</h2><p><img src="/images/Java/log/1731892-20200131175016637-426425946.png" alt="logback_configuration_01"></p>
+<h3 id="appender"><a href="#appender" class="headerlink" title="appender"></a>appender</h3><table>
+<thead>
+<tr>
+<th>类名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ConsoleAppender</td>
+<td>将日志通过 <em>System.out</em> 或者 <em>System.err</em> 来进行输出，即输出到控制台。</td>
+</tr>
+<tr>
+<td>FileAppender</td>
+<td>将日志输出到文件中。</td>
+</tr>
+<tr>
+<td>RollingFileAppender</td>
+<td>继承自 FileAppender，也是将日志输出到文件，但文件具有轮转功能。</td>
+</tr>
+<tr>
+<td>DBAppender</td>
+<td>将日志输出到数据库</td>
+</tr>
+<tr>
+<td>SocketAppender</td>
+<td>将日志以明文方式输出到远程机器</td>
+</tr>
+<tr>
+<td>SSLSocketAppender</td>
+<td>将日志以加密方式输出到远程机器</td>
+</tr>
+<tr>
+<td>SMTPAppender</td>
+<td>将日志输出到邮件</td>
+</tr>
+</tbody></table>
+<h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><p><img src="/images/Java/log/image-20211026212759209.png" alt="image-20211026212759209"></p>
+<h4 id="EvaluatorFilter"><a href="#EvaluatorFilter" class="headerlink" title="EvaluatorFilter"></a>EvaluatorFilter</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- groovy --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.groovy<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>groovy<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0-rc-3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="GEventEvaluator"><a href="#GEventEvaluator" class="headerlink" title="GEventEvaluator"></a>GEventEvaluator</h4><p><code>ch.qos.logback.classic.boolex.GEventEvaluator</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">scan</span>=<span class="string">&quot;true&quot;</span> <span class="attr">scanPeriod</span>=<span class="string">&quot;10 seconds&quot;</span> <span class="attr">debug</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- 定义变量 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">scope</span>=<span class="string">&quot;system&quot;</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATTERN&quot;</span> <span class="attr">value</span>=<span class="string">&quot;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n&quot;</span>/&gt;</span>   </span><br><span class="line">   <span class="comment">&lt;!-- 控制台输出 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;STDOUT&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span>&gt;</span>   </span><br><span class="line">      <span class="tag">&lt;<span class="name">target</span>&gt;</span>system.err<span class="tag">&lt;/<span class="name">target</span>&gt;</span>      </span><br><span class="line">       <span class="tag">&lt;<span class="name">encoder</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span>       </span><br><span class="line">       <span class="comment">&lt;!-- 设置过滤器 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.filter.EvaluatorFilter&quot;</span>&gt;</span>      </span><br><span class="line">         <span class="tag">&lt;<span class="name">evaluator</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.classic.boolex.GEventEvaluator&quot;</span>&gt;</span> </span><br><span class="line">           <span class="tag">&lt;<span class="name">expression</span>&gt;</span></span><br><span class="line">              e.level.toInt() &gt;= ERROR.toInt() <span class="symbol">&amp;amp;</span><span class="symbol">&amp;amp;</span> </span><br><span class="line">              !(e.mdc?.get(&quot;req.userAgent&quot;) =~ /Googlebot|msnbot|Yahoo/ )</span><br><span class="line">           <span class="tag">&lt;/<span class="name">expression</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">evaluator</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">OnMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">OnMismatch</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">OnMatch</span>&gt;</span>NEUTRAL<span class="tag">&lt;/<span class="name">OnMatch</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">appender</span>&gt;</span>   </span><br><span class="line">   <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;STDOUT&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="JaninoEventEvalutor"><a href="#JaninoEventEvalutor" class="headerlink" title="JaninoEventEvalutor"></a>JaninoEventEvalutor</h4><h3 id="JaninoEventEvaluator"><a href="#JaninoEventEvaluator" class="headerlink" title="JaninoEventEvaluator"></a>JaninoEventEvaluator</h3><p>Logback-classic 附带了另一个名为<a href="http://logback.qos.ch/xref/ch/qos/logback/classic/boolex/JaninoEventEvaluator.html">JaninoEventEvaluator</a>的具体<code>EventEvaluator</code>实现，它采用任意 Java 语言块返回布尔值作为评估标准。我们将此类 Java 语言布尔表达式称为“ * evaluation expressions *”。评估表达式为事件过滤提供了极大的灵 Active。 <code>JaninoEventEvaluator</code>要求<a href="http://docs.codehaus.org/display/JANINO/Home">Janino library</a>。请参阅安装文档的<a href="http://logback.qos.ch/setup.html#janino">corresponding section</a>。与<code>JaninoEventEvaluator</code>相比，借助 Groovy 语言，<code>GEventEvaluator</code>更加方便使用，但是<code>JaninoEventEvaluator</code>通常对于等效表达式运行(快得多)。</p>
+<p>评估表达式是在配置文件的解释过程中即时编译的。作为用户，您不必担心实际的管道问题。但是，您有责任确保 Java 语言表达式返回一个布尔值，即它的计算结果为 true 或 false。</p>
+<p>评估表达式是在当前日志记录事件上评估的。 Logback-classic 自动将日志记录事件的各个字段导出为可从评估表达式访问的变量。下面列出了这些导出变量的区分大小写的名称。</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>event</td>
+<td><code>LoggingEvent</code></td>
+<td>与日志记录请求关联的原始日志记录事件。事件中还提供以下所有变量。例如，<code>event.getMessage()</code>返回与下面描述的* message *变量相同的 String 值。</td>
+</tr>
+<tr>
+<td>message</td>
+<td><code>String</code></td>
+<td>日志记录请求的原始消息。对于某些 Logger* l *，当您编写 l.info(“ Hello{}”，name);其中为名称分配了值“ Alice”，则消息为“ Hello{}”。</td>
+</tr>
+<tr>
+<td>formattedMessage</td>
+<td><code>String</code></td>
+<td>日志记录请求中的格式化消息。对于某些 Logger* l *，当您编写 l.info(“ Hello{}”，name);其中为名称分配了值“ Alice”，则“ Hello Alice”是格式化的消息。</td>
+</tr>
+<tr>
+<td>logger</td>
+<td><code>String</code></td>
+<td>Logger 的名称。</td>
+</tr>
+<tr>
+<td>loggerContext</td>
+<td><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/spi/LoggerContextVO.html">LoggerContextVO</a></td>
+<td>记录事件所属的 Logger 上下文的受限(值对象)视图。</td>
+</tr>
+<tr>
+<td>level</td>
+<td><code>int</code></td>
+<td>对应于级别的 int 值。为了帮助轻松创建涉及级别的表达式，还提供了默认值* DEBUG <em>，</em> INFO <em>，</em> WARN <em>和</em> ERROR <em>。因此，使用</em> level&gt; INFO *是正确的表达式。</td>
+</tr>
+<tr>
+<td>timeStamp</td>
+<td><code>long</code></td>
+<td>与记录事件的创建相对应的时间戳。</td>
+</tr>
+<tr>
+<td>marker</td>
+<td><code>Marker</code></td>
+<td>与日志记录请求关联的<code>Marker</code>对象。请注意，标记可以为 null，您有责任检查此条件以避免<code>NullPointerException</code>。</td>
+</tr>
+<tr>
+<td>mdc</td>
+<td><code>Map</code></td>
+<td>在创建日志记录事件时包含所有 MDC 值的 Map。可以使用以下表达式访问值：* mdc.get(“ myKey”)*。从经典 logback 版本 0.9.30 开始，“ mdc”变量将永远不会为 null。<code>java.util.Map</code>类型是非参数化的，因为 Janino 不支持泛型。因此，由<code>mdc.get()</code>返回的类型是<code>Object</code>而不是<code>String</code>。要对返回的值调用<code>String</code>方法，必须将其强制转换为<code>String</code>。例如<code>((String) mdc.get(&quot;k&quot;)).contains(&quot;val&quot;)</code>。</td>
+</tr>
+<tr>
+<td>throwable</td>
+<td>java.lang.Throwable</td>
+<td>如果没有异常与事件关联，则“ throwable”变量的值将为 null。不幸的是，“ throwable”无法在序列化中幸免。因此，在远程系统上，其值将始终为 null。对于位置无关的表达式，请使用下面描述的<code>throwableProxy</code>变量。</td>
+</tr>
+<tr>
+<td>throwableProxy</td>
+<td><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/spi/IThrowableProxy.html">IThrowableProxy</a></td>
+<td>与日志记录事件关联的异常的代理。如果没有异常与事件关联，则“ throwableProxy”变量的值将为 null。与“ throwable”相反，当异常与事件相关联时，即使在远程系统上(即在序列化之后)，“ throwableProxy”的值也不会为空。</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">scan</span>=<span class="string">&quot;true&quot;</span> <span class="attr">scanPeriod</span>=<span class="string">&quot;10 seconds&quot;</span> <span class="attr">debug</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 定义变量 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">scope</span>=<span class="string">&quot;system&quot;</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATTERN&quot;</span> <span class="attr">value</span>=<span class="string">&quot;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n&quot;</span>/&gt;</span>    </span><br><span class="line">    <span class="comment">&lt;!-- 控制台输出 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;STDOUT&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span>&gt;</span>    </span><br><span class="line">       <span class="tag">&lt;<span class="name">target</span>&gt;</span>system.err<span class="tag">&lt;/<span class="name">target</span>&gt;</span>       </span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span>        </span><br><span class="line">        <span class="comment">&lt;!-- 设置过滤器 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.filter.EvaluatorFilter&quot;</span>&gt;</span>      </span><br><span class="line">          <span class="tag">&lt;<span class="name">evaluator</span>&gt;</span> <span class="comment">&lt;!-- defaults to type ch.qos.logback.classic.boolex.JaninoEventEvaluator --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">expression</span>&gt;</span>return message.contains(&quot;ERROR&quot;);<span class="tag">&lt;/<span class="name">expression</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">evaluator</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">OnMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">OnMismatch</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">OnMatch</span>&gt;</span>NEUTRAL<span class="tag">&lt;/<span class="name">OnMatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;STDOUT&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><strong>slf4j 通过 StaticLoggerBinder 类与具体日志实现进行关联，从而实现门面模式</strong>。</p>
+<h4 id="加载StaticLoggerBinder"><a href="#加载StaticLoggerBinder" class="headerlink" title="加载StaticLoggerBinder"></a>加载StaticLoggerBinder</h4><p><img src="/images/Java/log/image-20211026205834511.png" alt="image-20211026205834511"></p>
+<p><code>LoggerFactory.performInitialization()</code>，会执行初始化，所谓的初始化就是查找 <code>StaticLoggerBinder</code> 这个类是不是存在，如果存在会将该类绑定到当前应用，同时，根据不同情况修改<code>INITIALIZATION_STATE</code>。代码比较多，我概括下执行的步骤：</p>
+<ol>
+<li>如果 StaticLoggerBinder <strong>存在且唯一</strong>，修改初始化状态为 SUCCESSFUL_INITIALIZATION；</li>
+<li>如果 StaticLoggerBinder <strong>存在但为多个</strong>，由 JVM 决定绑定哪个 StaticLoggerBinder，修改初始化状态为 SUCCESSFUL_INITIALIZATION，同时，会在控制台打印存在哪几个 StaticLoggerBinder，并提醒用户最终选择了哪一个 ；</li>
+<li>如果 StaticLoggerBinder <strong>不存在</strong>，打印提醒，并修改初始化状态为 NOP_FALLBACK_INITIALIZATION;</li>
+<li>如果 StaticLoggerBinder <strong>存在但 getSingleton() 方法不存在</strong>，打印提醒，并修改初始化状态为 FAILED_INITIALIZATION;</li>
+</ol>
+<h3 id="加载配置"><a href="#加载配置" class="headerlink" title="加载配置"></a>加载配置</h3><p>支持采用 xml、grovy 和 SPI 的方式配置文件</p>
+<p>Joran（一个成熟的，灵活的并且强大的配置框架 ）</p>
+<p><img src="/images/Java/log/1731892-20200131175715266-1340465434.png" alt="logback_joran"></p>
+<h3 id="获取logger"><a href="#获取logger" class="headerlink" title="获取logger"></a>获取logger</h3><p><code>LoggerContext.getLogger(String)</code></p>
+<h2 id="JaninoEventEvaluator-1"><a href="#JaninoEventEvaluator-1" class="headerlink" title="JaninoEventEvaluator"></a>JaninoEventEvaluator</h2><p><a href="https://github.com/qos-ch/logback/blob/master/logback-core/src/main/java/ch/qos/logback/core/boolex/JaninoEventEvaluatorBase.java">https://github.com/qos-ch/logback/blob/master/logback-core/src/main/java/ch/qos/logback/core/boolex/JaninoEventEvaluatorBase.java</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flink/" rel="tag"># Flink</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Java/jvm/JaninoCompiler/" rel="prev" title="JaninoCompiler">
+      <i class="fa fa-chevron-left"></i> JaninoCompiler
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Java/log/minlog/" rel="next" title="minlog">
+      minlog <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#logback"><span class="nav-number">1.</span> <span class="nav-text">logback</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#configuration"><span class="nav-number">1.1.</span> <span class="nav-text">configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appender"><span class="nav-number">1.1.1.</span> <span class="nav-text">appender</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter"><span class="nav-number">1.1.2.</span> <span class="nav-text">Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EvaluatorFilter"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">EvaluatorFilter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GEventEvaluator"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">GEventEvaluator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JaninoEventEvalutor"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">JaninoEventEvalutor</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JaninoEventEvaluator"><span class="nav-number">1.1.3.</span> <span class="nav-text">JaninoEventEvaluator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">源码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BDStaticLoggerBinder"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">加载StaticLoggerBinder</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">加载配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96logger"><span class="nav-number">1.2.3.</span> <span class="nav-text">获取logger</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JaninoEventEvaluator-1"><span class="nav-number">1.3.</span> <span class="nav-text">JaninoEventEvaluator</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">348</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">261</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
