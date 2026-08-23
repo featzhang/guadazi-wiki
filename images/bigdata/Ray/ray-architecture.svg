@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 660" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a5568"/>
+    </marker>
+    <marker id="arrPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#805ad5"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f855a"/>
+    </marker>
+  </defs>
+
+  <rect width="1160" height="660" fill="#ffffff"/>
+
+  <text x="580" y="42" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a202c">Ray 系统架构（节点级）</text>
+
+  <!-- ===================== Head Node ===================== -->
+  <rect x="40" y="80" width="300" height="540" rx="14" fill="#faf5ff" stroke="#805ad5" stroke-width="2"/>
+  <text x="190" y="112" text-anchor="middle" font-size="17" font-weight="bold" fill="#6b46c1">Head Node（主节点）</text>
+
+  <!-- GCS -->
+  <rect x="70" y="140" width="240" height="105" rx="10" fill="#ffffff" stroke="#805ad5" stroke-width="1.6"/>
+  <text x="190" y="176" text-anchor="middle" font-size="16" font-weight="bold" fill="#6b46c1">GCS</text>
+  <text x="190" y="198" text-anchor="middle" font-size="13" fill="#4a5568">全局控制存储</text>
+  <text x="190" y="218" text-anchor="middle" font-size="12" fill="#718096">节点/对象位置/函数定义</text>
+
+  <!-- Driver -->
+  <rect x="70" y="270" width="240" height="95" rx="10" fill="#fff7ed" stroke="#dd6b20" stroke-width="1.6"/>
+  <text x="190" y="306" text-anchor="middle" font-size="16" font-weight="bold" fill="#c05621">Driver</text>
+  <text x="190" y="328" text-anchor="middle" font-size="13" fill="#4a5568">用户主程序</text>
+  <text x="190" y="346" text-anchor="middle" font-size="12" fill="#718096">提交 Task / 创建 Actor</text>
+
+  <!-- Raylet -->
+  <rect x="70" y="390" width="240" height="95" rx="10" fill="#ffffff" stroke="#805ad5" stroke-width="1.6"/>
+  <text x="190" y="426" text-anchor="middle" font-size="16" font-weight="bold" fill="#6b46c1">Raylet</text>
+  <text x="190" y="448" text-anchor="middle" font-size="13" fill="#4a5568">本地调度器</text>
+  <text x="190" y="466" text-anchor="middle" font-size="12" fill="#718096">资源管理 / 对象管理</text>
+
+  <!-- Object Store -->
+  <rect x="70" y="510" width="240" height="90" rx="10" fill="#f0fff4" stroke="#2f855a" stroke-width="1.6"/>
+  <text x="190" y="546" text-anchor="middle" font-size="16" font-weight="bold" fill="#276749">Object Store</text>
+  <text x="190" y="568" text-anchor="middle" font-size="12" fill="#4a5568">Plasma 共享内存</text>
+
+  <!-- ===================== Worker Node 1 ===================== -->
+  <rect x="430" y="80" width="300" height="540" rx="14" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="580" y="112" text-anchor="middle" font-size="17" font-weight="bold" fill="#2b6cb0">Worker Node 1</text>
+
+  <rect x="460" y="140" width="240" height="95" rx="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.6"/>
+  <text x="580" y="176" text-anchor="middle" font-size="16" font-weight="bold" fill="#2b6cb0">Raylet</text>
+  <text x="580" y="198" text-anchor="middle" font-size="13" fill="#4a5568">本地调度器</text>
+  <text x="580" y="218" text-anchor="middle" font-size="12" fill="#718096">等待任务 / 拉取依赖对象</text>
+
+  <rect x="460" y="270" width="240" height="95" rx="10" fill="#f0fff4" stroke="#2f855a" stroke-width="1.6"/>
+  <text x="580" y="306" text-anchor="middle" font-size="16" font-weight="bold" fill="#276749">Object Store</text>
+  <text x="580" y="328" text-anchor="middle" font-size="13" fill="#4a5568">Plasma 共享内存</text>
+  <text x="580" y="346" text-anchor="middle" font-size="12" fill="#718096">零拷贝读写对象</text>
+
+  <rect x="460" y="400" width="240" height="190" rx="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.6"/>
+  <text x="580" y="430" text-anchor="middle" font-size="16" font-weight="bold" fill="#2b6cb0">Workers</text>
+  <rect x="478" y="450" width="92" height="54" rx="8" fill="#bee3f8"/>
+  <text x="524" y="473" text-anchor="middle" font-size="12" font-weight="bold" fill="#2b6cb0">CPU</text>
+  <text x="524" y="490" text-anchor="middle" font-size="11" fill="#4a5568">Worker</text>
+  <rect x="590" y="450" width="92" height="54" rx="8" fill="#bee3f8"/>
+  <text x="636" y="473" text-anchor="middle" font-size="12" font-weight="bold" fill="#2b6cb0">GPU</text>
+  <text x="636" y="490" text-anchor="middle" font-size="11" fill="#4a5568">Worker</text>
+  <text x="580" y="535" text-anchor="middle" font-size="12" fill="#718096">执行 Task / 运行 Actor</text>
+  <text x="580" y="555" text-anchor="middle" font-size="12" fill="#718096">细粒度分配（如 0.3 GPU）</text>
+
+  <!-- ===================== Worker Node 2 ===================== -->
+  <rect x="820" y="80" width="300" height="540" rx="14" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="970" y="112" text-anchor="middle" font-size="17" font-weight="bold" fill="#2b6cb0">Worker Node 2</text>
+
+  <rect x="850" y="140" width="240" height="95" rx="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.6"/>
+  <text x="970" y="176" text-anchor="middle" font-size="16" font-weight="bold" fill="#2b6cb0">Raylet</text>
+  <text x="970" y="198" text-anchor="middle" font-size="13" fill="#4a5568">本地调度器</text>
+
+  <rect x="850" y="270" width="240" height="95" rx="10" fill="#f0fff4" stroke="#2f855a" stroke-width="1.6"/>
+  <text x="970" y="306" text-anchor="middle" font-size="16" font-weight="bold" fill="#276749">Object Store</text>
+  <text x="970" y="328" text-anchor="middle" font-size="13" fill="#4a5568">Plasma 共享内存</text>
+
+  <rect x="850" y="400" width="240" height="190" rx="10" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.6"/>
+  <text x="970" y="430" text-anchor="middle" font-size="16" font-weight="bold" fill="#2b6cb0">Workers</text>
+  <rect x="868" y="450" width="92" height="54" rx="8" fill="#bee3f8"/>
+  <text x="914" y="473" text-anchor="middle" font-size="12" font-weight="bold" fill="#2b6cb0">CPU</text>
+  <text x="914" y="490" text-anchor="middle" font-size="11" fill="#4a5568">Worker</text>
+  <rect x="980" y="450" width="92" height="54" rx="8" fill="#bee3f8"/>
+  <text x="1026" y="473" text-anchor="middle" font-size="12" font-weight="bold" fill="#2b6cb0">GPU</text>
+  <text x="1026" y="490" text-anchor="middle" font-size="11" fill="#4a5568">Worker</text>
+
+  <!-- ===================== Arrows ===================== -->
+  <!-- Driver -> local Raylet -->
+  <line x1="190" y1="365" x2="190" y2="390" stroke="#dd6b20" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- GCS <-> Raylet (head) -->
+  <line x1="190" y1="245" x2="190" y2="390" stroke="#805ad5" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrPurple)"/>
+  <text x="206" y="330" font-size="12" fill="#805ad5">元数据</text>
+
+  <!-- GCS -> Worker Raylet (node1) -->
+  <path d="M310 190 C 380 190, 400 180, 460 180" fill="none" stroke="#805ad5" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrPurple)"/>
+  <!-- GCS -> Worker Raylet (node2) -->
+  <path d="M310 200 C 560 200, 560 160, 850 160" fill="none" stroke="#805ad5" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrPurple)"/>
+
+  <!-- Object Store inter-node transfer -->
+  <path d="M310 555 C 400 555, 400 555, 460 555" fill="none" stroke="#2f855a" stroke-width="2" marker-end="url(#arrGreen)"/>
+  <text x="385" y="540" text-anchor="middle" font-size="11" fill="#2f855a">对象传输</text>
+  <path d="M700 555 C 760 555, 760 555, 850 555" fill="none" stroke="#2f855a" stroke-width="2" marker-end="url(#arrGreen)"/>
+
+  <!-- Raylet -> Workers (node1) -->
+  <line x1="580" y1="235" x2="580" y2="400" stroke="#2b6cb0" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="596" y="320" font-size="11" fill="#2b6cb0">调度</text>
+
+  <!-- Object Store <-> Workers (node1) -->
+  <line x1="525" y1="365" x2="525" y2="450" stroke="#2f855a" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrGreen)"/>
+  <line x1="550" y1="450" x2="550" y2="365" stroke="#2f855a" stroke-width="1.6" stroke-dasharray="5,4" marker-end="url(#arrGreen)"/>
+  <text x="505" y="415" font-size="11" fill="#2f855a">读写</text>
+</svg>

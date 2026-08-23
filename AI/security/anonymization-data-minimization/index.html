@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="脱敏、假名化与数据最小化一句话定位：当数据必须出域时，让厂商拿到的内容无法还原为真实业务信息。核心手段是可逆假名化 + 只送必要片段，核心矛盾是脱敏强度与模型效果的权衡。 1. 假名化 + 本地回填（关键机制）流程（在 LLM Gateway 内完成，见 9.2）：  出站：识别敏感实体，替换为类型化占位符 —— 华夏银行 → &lt;CUSTOMER_1&gt;、1250 万元 → &lt;AM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="脱敏、假名化与数据最小化">
+<meta property="og:url" content="http://yoursite.com/AI/security/anonymization-data-minimization/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="脱敏、假名化与数据最小化一句话定位：当数据必须出域时，让厂商拿到的内容无法还原为真实业务信息。核心手段是可逆假名化 + 只送必要片段，核心矛盾是脱敏强度与模型效果的权衡。 1. 假名化 + 本地回填（关键机制）流程（在 LLM Gateway 内完成，见 9.2）：  出站：识别敏感实体，替换为类型化占位符 —— 华夏银行 → &lt;CUSTOMER_1&gt;、1250 万元 → &lt;AM">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-08-23T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-23T12:59:33.345Z">
+<meta property="article:author" content="averyzhang">
+<meta property="article:tag" content="AI安全">
+<meta property="article:tag" content="假名化">
+<meta property="article:tag" content="脱敏">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/AI/security/anonymization-data-minimization/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>脱敏、假名化与数据最小化 | Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">354</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/security/anonymization-data-minimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          脱敏、假名化与数据最小化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-08-23 10:00:00 / Modified: 12:59:33" itemprop="dateCreated datePublished" datetime="2026-08-23T10:00:00+00:00">2026-08-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="脱敏、假名化与数据最小化"><a href="#脱敏、假名化与数据最小化" class="headerlink" title="脱敏、假名化与数据最小化"></a>脱敏、假名化与数据最小化</h1><p>一句话定位：当数据必须出域时，让厂商拿到的内容<strong>无法还原为真实业务信息</strong>。核心手段是可逆假名化 + 只送必要片段，核心矛盾是<strong>脱敏强度与模型效果的权衡</strong>。</p>
+<h2 id="1-假名化-本地回填（关键机制）"><a href="#1-假名化-本地回填（关键机制）" class="headerlink" title="1. 假名化 + 本地回填（关键机制）"></a>1. 假名化 + 本地回填（关键机制）</h2><p>流程（在 LLM Gateway 内完成，见 9.2）：</p>
+<ol>
+<li><strong>出站</strong>：识别敏感实体，替换为类型化占位符 —— <code>华夏银行</code> → <code>&lt;CUSTOMER_1&gt;</code>、<code>1250 万元</code> → <code>&lt;AMOUNT_1&gt;</code>、<code>张伟</code> → <code>&lt;PERSON_1&gt;</code>；</li>
+<li><strong>映射表</strong>：<code>{&lt;CUSTOMER_1&gt;: 华夏银行, ...}</code> 保存在<strong>内网</strong>的会话级 vault，绝不出域；</li>
+<li><strong>入站</strong>：模型返回结果后，在网关按映射表<strong>本地回填</strong>真实值再交给业务。</li>
+</ol>
+<p>效果：模型只做语言与逻辑推理（它并不需要知道客户真名就能写出分析结论），厂商侧全程只见占位符。这是”既用上大模型能力、又不泄漏业务实体”的核心技术路径。</p>
+<p>技术复用：识别环节可直接复用 1.2.5 PII 脱敏的<strong>正则 + NER 双路识别</strong>能力——正则处理格式固定的（卡号、身份证、密钥），NER 处理无固定格式的（人名、机构名、地名）。</p>
+<h2 id="2-数据最小化"><a href="#2-数据最小化" class="headerlink" title="2. 数据最小化"></a>2. 数据最小化</h2><p>出域数据量越少，暴露面越小：</p>
+<ul>
+<li><strong>只送必要片段</strong>：RAG 场景只送检索出的 Top-K 切片，而非整篇文档或整库（见 8.4）；</li>
+<li><strong>能用摘要就不送原文</strong>：先用内网小模型做摘要&#x2F;抽取，再把摘要送给外部大模型；</li>
+<li><strong>结构化剥离</strong>：把业务标识符、金额、比例替换为符号变量，让外部模型只做语言组织，真实计算在内网完成；</li>
+<li><strong>裁剪上下文</strong>：不要习惯性把完整会话历史全量重发。</li>
+</ul>
+<h2 id="3-核心-Tradeoff：脱敏强度-vs-模型效果"><a href="#3-核心-Tradeoff：脱敏强度-vs-模型效果" class="headerlink" title="3. 核心 Tradeoff：脱敏强度 vs 模型效果"></a>3. 核心 Tradeoff：脱敏强度 vs 模型效果</h2><p>这是本环节唯一的真实决策点，也是面试落点：</p>
+<ul>
+<li><strong>脱敏过度</strong>会破坏语义连贯与领域信息 → 模型推理质量下降。例如把所有数字都符号化后，模型无法做数值比较；把行业术语一并替换，会丢失关键上下文；</li>
+<li><strong>脱敏不足</strong>则留有真实实体，等于没做。</li>
+</ul>
+<p>与 1.2.5 的”误杀率权衡”完全同源，处理方法也一致：</p>
+<ul>
+<li><strong>按风险分级</strong>：机密实体（客户名、金额、密钥）从严；低风险且影响语义的（通用地名、行业词）放宽；</li>
+<li><strong>必须做效果评估</strong>：抽样对比脱敏前后同一任务的输出质量，量化”安全提升”与”效果损失”，而不是只看替换了多少个实体。这与 1.4.7 的四维评估思路一致——安全方案也要量化代价。</li>
+</ul>
+<h2 id="4-不可逆场景"><a href="#4-不可逆场景" class="headerlink" title="4. 不可逆场景"></a>4. 不可逆场景</h2><p>若数据用于<strong>训练&#x2F;微调</strong>语料而非在线推理，应使用<strong>不可逆</strong>脱敏（伪造值替换、泛化到区间如”1000-2000 万”、k-匿名），避免映射表本身成为长期泄漏风险点。</p>
+<blockquote>
+<p>参考：Microsoft Presidio 官方文档；GDPR 第 4 条（pseudonymisation 定义）；《个人信息保护法》去标识化条款</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI%E5%AE%89%E5%85%A8/" rel="tag"># AI安全</a>
+              <a href="/tags/%E8%84%B1%E6%95%8F/" rel="tag"># 脱敏</a>
+              <a href="/tags/%E5%81%87%E5%90%8D%E5%8C%96/" rel="tag"># 假名化</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/AI/security/llm-gateway-dlp/" rel="prev" title="LLM Gateway 与 DLP 拦截">
+      <i class="fa fa-chevron-left"></i> LLM Gateway 与 DLP 拦截
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/AI/security/rag-access-control/" rel="next" title="RAG 权限隔离与越权防护">
+      RAG 权限隔离与越权防护 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%84%B1%E6%95%8F%E3%80%81%E5%81%87%E5%90%8D%E5%8C%96%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">脱敏、假名化与数据最小化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%81%87%E5%90%8D%E5%8C%96-%E6%9C%AC%E5%9C%B0%E5%9B%9E%E5%A1%AB%EF%BC%88%E5%85%B3%E9%94%AE%E6%9C%BA%E5%88%B6%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. 假名化 + 本地回填（关键机制）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数据最小化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A0%B8%E5%BF%83-Tradeoff%EF%BC%9A%E8%84%B1%E6%95%8F%E5%BC%BA%E5%BA%A6-vs-%E6%A8%A1%E5%9E%8B%E6%95%88%E6%9E%9C"><span class="nav-number">1.3.</span> <span class="nav-text">3. 核心 Tradeoff：脱敏强度 vs 模型效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%B8%8D%E5%8F%AF%E9%80%86%E5%9C%BA%E6%99%AF"><span class="nav-number">1.4.</span> <span class="nav-text">4. 不可逆场景</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">354</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

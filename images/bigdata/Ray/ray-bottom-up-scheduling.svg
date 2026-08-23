@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 720" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a5568"/>
+    </marker>
+    <marker id="arrPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#805ad5"/>
+    </marker>
+  </defs>
+
+  <rect width="1160" height="720" fill="#ffffff"/>
+
+  <text x="580" y="44" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a202c">Ray 自底向上（Bottom-up）调度流程</text>
+
+  <!-- 左侧参与者标签 -->
+  <text x="90" y="160" text-anchor="middle" font-size="15" font-weight="bold" fill="#c05621">Driver</text>
+  <text x="90" y="310" text-anchor="middle" font-size="15" font-weight="bold" fill="#6b46c1">本地 Raylet</text>
+  <text x="90" y="460" text-anchor="middle" font-size="15" font-weight="bold" fill="#2b6cb0">远端 Worker</text>
+  <text x="90" y="610" text-anchor="middle" font-size="15" font-weight="bold" fill="#276749">Object Store</text>
+
+  <!-- 泳道条带 -->
+  <rect x="180" y="115" width="700" height="90" rx="12" fill="#fff7ed" stroke="#dd6b20" stroke-width="2"/>
+  <text x="530" y="166" text-anchor="middle" font-size="16" font-weight="bold" fill="#c05621">Driver（用户主程序）</text>
+
+  <rect x="180" y="265" width="700" height="90" rx="12" fill="#faf5ff" stroke="#805ad5" stroke-width="2"/>
+  <text x="530" y="316" text-anchor="middle" font-size="16" font-weight="bold" fill="#6b46c1">本地 Raylet（提交节点）</text>
+
+  <rect x="180" y="415" width="700" height="90" rx="12" fill="#ebf8ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="530" y="466" text-anchor="middle" font-size="16" font-weight="bold" fill="#2b6cb0">远端 Worker（执行 Task）</text>
+
+  <rect x="180" y="565" width="700" height="90" rx="12" fill="#f0fff4" stroke="#2f855a" stroke-width="2"/>
+  <text x="530" y="616" text-anchor="middle" font-size="16" font-weight="bold" fill="#276749">Object Store（Plasma 共享内存）</text>
+
+  <!-- GCS 旁挂 -->
+  <rect x="920" y="235" width="210" height="120" rx="12" fill="#ffffff" stroke="#805ad5" stroke-width="2"/>
+  <text x="1025" y="282" text-anchor="middle" font-size="16" font-weight="bold" fill="#6b46c1">GCS</text>
+  <text x="1025" y="306" text-anchor="middle" font-size="13" fill="#4a5568">全局控制存储</text>
+  <text x="1025" y="328" text-anchor="middle" font-size="12" fill="#718096">记录对象所在节点</text>
+
+  <!-- 步骤箭头 -->
+  <!-- ① Driver -> Raylet -->
+  <line x1="400" y1="205" x2="400" y2="265" stroke="#4a5568" stroke-width="2" marker-end="url(#arr)"/>
+  <circle cx="400" cy="235" r="13" fill="#dd6b20"/>
+  <text x="400" y="240" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">1</text>
+  <text x="424" y="240" font-size="13" fill="#4a5568">提交 Task（含输入 ObjectRef）</text>
+
+  <!-- ② Raylet -> GCS 查询 -->
+  <line x1="880" y1="310" x2="920" y2="310" stroke="#805ad5" stroke-width="2" marker-end="url(#arrPurple)"/>
+  <circle cx="900" cy="296" r="13" fill="#805ad5"/>
+  <text x="900" y="301" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">2</text>
+  <text x="880" y="270" text-anchor="middle" font-size="13" fill="#805ad5">查询对象位置</text>
+
+  <!-- ③ GCS -> Raylet 返回 -->
+  <line x1="920" y1="325" x2="880" y2="325" stroke="#805ad5" stroke-width="2" marker-end="url(#arrPurple)"/>
+  <circle cx="900" cy="338" r="13" fill="#805ad5"/>
+  <text x="900" y="343" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">3</text>
+  <text x="880" y="362" text-anchor="middle" font-size="13" fill="#805ad5">返回对象所在节点</text>
+
+  <!-- ④ Raylet -> Worker 调度 -->
+  <line x1="400" y1="355" x2="400" y2="415" stroke="#4a5568" stroke-width="2" marker-end="url(#arr)"/>
+  <circle cx="400" cy="385" r="13" fill="#2b6cb0"/>
+  <text x="400" y="390" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">4</text>
+  <text x="424" y="390" font-size="13" fill="#4a5568">调度任务到空闲 Worker（优先对象本地）</text>
+
+  <!-- ⑤ Worker -> Object Store -->
+  <line x1="400" y1="505" x2="400" y2="565" stroke="#4a5568" stroke-width="2" marker-end="url(#arr)"/>
+  <circle cx="400" cy="535" r="13" fill="#2f855a"/>
+  <text x="400" y="540" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">5</text>
+  <text x="424" y="540" font-size="13" fill="#4a5568">零拷贝读输入 / 写回结果</text>
+
+  <!-- ⑥ 返回 ObjectRef -->
+  <path d="M300 565 L300 115" fill="none" stroke="#4a5568" stroke-width="2" marker-end="url(#arr)"/>
+  <circle cx="300" cy="340" r="13" fill="#718096"/>
+  <text x="300" y="345" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">6</text>
+  <text x="256" y="360" text-anchor="middle" font-size="13" fill="#4a5568">返回 ObjectRef</text>
+</svg>

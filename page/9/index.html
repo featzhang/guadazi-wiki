@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/9/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">354</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/data-engineering/pii-scrubbing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/data-engineering/pii-scrubbing/" class="post-title-link" itemprop="url">数据脱敏（PII）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 11:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T11:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据脱敏（PII）"><a href="#数据脱敏（PII）" class="headerlink" title="数据脱敏（PII）"></a>数据脱敏（PII）</h1><p>一句话定位：把语料里的个人身份信息（PII）识别并替换掉，避免模型记忆并泄露隐私。技术不难，难在<strong>识别覆盖率与误杀率的平衡</strong>。</p>
+<h2 id="1-正则-NER-双路识别"><a href="#1-正则-NER-双路识别" class="headerlink" title="1. 正则 + NER 双路识别"></a>1. 正则 + NER 双路识别</h2><p>两条路径互补，缺一不可：</p>
+<ul>
+<li><strong>正则（规则）路</strong>：针对<strong>格式固定</strong>的实体，准确率高、速度快：<ul>
+<li>邮箱、手机号、身份证号、银行卡号、IP 地址；</li>
+<li><strong>密钥&#x2F;凭证</strong>（API Key、AccessKey、私钥块）——这类泄露风险最高，且格式特征明显（前缀 + 定长随机串 + 熵值高）。</li>
+</ul>
+</li>
+<li><strong>NER（模型）路</strong>：针对<strong>无固定格式</strong>的实体，靠上下文判断：<ul>
+<li>人名、地名、机构名、住址。</li>
+<li>正则无能为力（人名没有模式），必须靠命名实体识别模型。</li>
+</ul>
+</li>
+</ul>
+<p>工程实现常用 <strong>Microsoft Presidio</strong> 这类框架：内置识别器（正则 + checksum 校验 + NER）+ 可插拔的匿名化策略。注意带校验位的实体（身份证、银行卡）应加<strong>校验位验证</strong>，可大幅降低正则误报。</p>
+<h2 id="2-替换而非删除（保持文本结构）"><a href="#2-替换而非删除（保持文本结构）" class="headerlink" title="2. 替换而非删除（保持文本结构）"></a>2. 替换而非删除（保持文本结构）</h2><p>关键原则：<strong>用占位符替换，不直接删除</strong>。</p>
+<ul>
+<li>删除会破坏句子结构与语法完整性，产生断裂的病句，反而污染训练语料；</li>
+<li>替换为类型化占位符（如 <code>&lt;EMAIL&gt;</code>、<code>&lt;PHONE&gt;</code>、<code>[PERSON]</code>）或<strong>同类型伪造值</strong>（Faker 生成的假邮箱&#x2F;假人名），能保持句法结构与 token 分布，让模型学到”这里是一个邮箱”的模式而非具体值。</li>
+<li>保持长度&#x2F;类型一致性也有利于下游 tokenization 的稳定性。</li>
+</ul>
+<h2 id="3-误杀率的权衡"><a href="#3-误杀率的权衡" class="headerlink" title="3. 误杀率的权衡"></a>3. 误杀率的权衡</h2><p>这是本环节的核心 Tradeoff：</p>
+<ul>
+<li><strong>过度脱敏（误杀高）</strong>：把正常词误判为人名&#x2F;地名（中文人名与普通词高度重叠，如”小明””建国”），或把代码里的变量名、文档里的示例邮箱一并替换 → 语料被大量占位符污染，语义受损、可读性下降；</li>
+<li><strong>脱敏不足（漏检）</strong>：真实 PII 残留 → 模型可能在生成时<strong>逐字复现</strong>训练数据中的隐私信息，构成合规风险（GDPR 等）。</li>
+</ul>
+<p>实践取向：</p>
+<ul>
+<li><strong>按风险分级</strong>：高危实体（密钥、身份证、银行卡）宁可误杀，从严；低危且易误判的（人名、地名）适度放宽或结合上下文置信度阈值；</li>
+<li><strong>抽样人工评估</strong>：对脱敏前后样本做双向抽查，同时量化漏检率与误杀率，而不是只看替换总量。</li>
+</ul>
+<blockquote>
+<p>参考：Microsoft Presidio 官方文档；论文《Scrubbing Sensitive PII from Large Datasets》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/data-engineering/data-mixing-strategy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/data-engineering/data-mixing-strategy/" class="post-title-link" itemprop="url">数据配比与混合策略</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 11:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T11:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据配比与混合策略"><a href="#数据配比与混合策略" class="headerlink" title="数据配比与混合策略"></a>数据配比与混合策略</h1><p>一句话定位：清洗完成后，各领域数据”按什么比例喂、喂几遍”直接决定模型的能力画像。这是从”数据工程”跨向”训练效果”的关键决策环节。</p>
+<h2 id="1-各域采样权重"><a href="#1-各域采样权重" class="headerlink" title="1. 各域采样权重"></a>1. 各域采样权重</h2><p>预训练语料由多个域构成（网页 &#x2F; 书籍 &#x2F; 代码 &#x2F; 多语言 &#x2F; 论文等），各域<strong>数据量差异极大</strong>（网页占绝对多数），若按自然比例采样，模型会被网页数据主导。</p>
+<p>因此需要<strong>人为设定采样权重</strong>（reweighting）：</p>
+<ul>
+<li><strong>上采样</strong>高质量但量小的域（书籍、百科、论文）——提高知识密度与长文本连贯性；</li>
+<li><strong>下采样</strong>量大但质量参差的域（网页）；</li>
+<li><strong>代码</strong>比例影响推理与结构化能力；<strong>多语言</strong>比例影响跨语言能力，且与目标语言的能力存在竞争（挤占效应）。</li>
+</ul>
+<p>The Pile 的做法即为典型：由 22 个子数据集构成，每个域显式指定采样权重，使最终 token 分布与自然分布显著不同。</p>
+<h2 id="2-重复轮次（Epoch）设计"><a href="#2-重复轮次（Epoch）设计" class="headerlink" title="2. 重复轮次（Epoch）设计"></a>2. 重复轮次（Epoch）设计</h2><p>同一域的数据可被重复训练多轮，但<strong>重复不是免费的</strong>：</p>
+<ul>
+<li>高质量小域适度重复（如 2~4 epoch）能提升收益；</li>
+<li>重复过多会导致<strong>记忆化（memorization）与过拟合</strong>，边际收益快速衰减，甚至损害泛化；</li>
+<li>因此”有效 token 数”应折算重复轮次来计算，而非简单相加。</li>
+</ul>
+<p>这与 2.4 去重是一体两面：去重是消除<strong>非预期</strong>的重复，epoch 设计是引入<strong>受控</strong>的重复。</p>
+<h2 id="3-Data-Mixing-Laws：用小规模实验预测配比"><a href="#3-Data-Mixing-Laws：用小规模实验预测配比" class="headerlink" title="3. Data Mixing Laws：用小规模实验预测配比"></a>3. Data Mixing Laws：用小规模实验预测配比</h2><p>核心思路：<strong>不必用全量算力试错配比</strong>——</p>
+<ol>
+<li>在<strong>小规模</strong>（小模型 &#x2F; 少量 token）上跑多组不同混合比例的实验；</li>
+<li>拟合出”混合比例 → 最终 validation loss”的函数关系（可解析的规律形式）；</li>
+<li>用该函数<strong>外推预测</strong>大规模训练下的最优混合比例，再投入真正的大规模训练。</li>
+</ol>
+<p>价值：把”配比”从依赖直觉的玄学，变成可<strong>低成本量化预测</strong>的工程问题。这与 1.2 中”提前抽样发现问题而非事后救火”的方法论完全同源——<strong>先用小成本实验建立可外推的基线，再投产</strong>。</p>
+<blockquote>
+<p>参考：论文《The Pile》配比章节；论文《Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/data-engineering/pretrain-data-collection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/data-engineering/pretrain-data-collection/" class="post-title-link" itemprop="url">预训练数据采集与来源</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 11:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T11:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="预训练数据采集与来源"><a href="#预训练数据采集与来源" class="headerlink" title="预训练数据采集与来源"></a>预训练数据采集与来源</h1><p>一句话定位：预训练数据链路的第一环，决定了语料的规模上限与”脏度”下限——采什么源、怎么从原始网页里把正文捞干净，直接决定后续所有清洗环节的工作量。</p>
+<h2 id="1-多源异构"><a href="#1-多源异构" class="headerlink" title="1. 多源异构"></a>1. 多源异构</h2><p>预训练语料通常由多类来源混合而成：</p>
+<ul>
+<li><strong>网页</strong>：以 <strong>Common Crawl</strong> 为主，规模最大（PB 级）、覆盖最广，但噪声最重（模板、广告、导航、低质内容）。</li>
+<li><strong>文档</strong>：书籍、论文（arXiv）、百科等，质量高、长文本连贯性好，是提升知识密度的关键。</li>
+<li><strong>代码</strong>：GitHub 等代码语料，对提升模型推理与结构化能力有显著作用。</li>
+<li>其余：问答社区、多语言语料等。</li>
+</ul>
+<p>异构性体现在<strong>格式、编码、质量、语言分布</strong>都不一致，因此采集之后必须统一到标准化的中间表示，才能进入后续流水线。</p>
+<h2 id="2-WARC-格式与正文提取的难点"><a href="#2-WARC-格式与正文提取的难点" class="headerlink" title="2. WARC 格式与正文提取的难点"></a>2. WARC 格式与正文提取的难点</h2><p>Common Crawl 以 <strong>WARC</strong>（Web ARChive）格式分发，一条记录包含 HTTP 请求&#x2F;响应头与原始 HTML 负载（另有 WAT 元数据、WET 纯文本衍生格式）。</p>
+<p>从 WARC 中提取正文的核心难点：</p>
+<ul>
+<li><strong>去模板（Boilerplate Removal）</strong>：页面里导航栏、页脚、侧边栏、广告、版权声明等<strong>跨页面重复</strong>的模板内容，占比常常超过正文；若不去除，会在语料中形成海量近重复片段，既浪费算力也损害模型质量。</li>
+<li><strong>去导航</strong>：菜单、面包屑、”相关阅读”链接列表等短文本块，语义价值低但数量极大。</li>
+<li>附带难点：HTML 结构不规范、字符编码混乱、正文与评论区难以区分。</li>
+</ul>
+<p>工程上常用基于 DOM 结构与文本密度的启发式抽取（如 trafilatura、jusText 类思路），并与后续的规则过滤（2.2）配合，形成”抽取 + 过滤”两道防线。</p>
+<h2 id="3-工程视角"><a href="#3-工程视角" class="headerlink" title="3. 工程视角"></a>3. 工程视角</h2><p>该环节是<strong>解析型 CPU 密集</strong>任务：单条记录处理不重，但记录数极大（十亿量级），瓶颈在解析吞吐与 I&#x2F;O，靠高并行度 + 大批量顺序读取 + 列式&#x2F;压缩中间格式（对应 1.6、1.7）来提速。</p>
+<blockquote>
+<p>参考：Common Crawl 官方文档；论文《The Pile: An 800GB Dataset of Diverse Text for Language Modeling》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/data-engineering/tokenization-sentencepiece/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/data-engineering/tokenization-sentencepiece/" class="post-title-link" itemprop="url">Tokenization：SentencePiece 原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 11:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T11:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Tokenization：SentencePiece-原理"><a href="#Tokenization：SentencePiece-原理" class="headerlink" title="Tokenization：SentencePiece 原理"></a>Tokenization：SentencePiece 原理</h1><p>一句话定位：SentencePiece 把 tokenization 做成”端到端、语言无关”的组件——不依赖预分词、直接吃原始文本，并提供 Unigram 语言模型式的概率化切分，是中日韩等无空格语言的标准选择。</p>
+<h2 id="1-无需预分词，直接在原始文本上训练"><a href="#1-无需预分词，直接在原始文本上训练" class="headerlink" title="1. 无需预分词，直接在原始文本上训练"></a>1. 无需预分词，直接在原始文本上训练</h2><ul>
+<li>传统 BPE 流程假设文本已按<strong>空格预分词</strong>，这带来两个问题：依赖语言特定的分词器；对无空格语言（中文、日文、韩文、泰文）根本不适用。</li>
+<li>SentencePiece 把<strong>空格本身编码为普通字符</strong>（用 <code>▁</code> 表示），于是整个句子就是一个字符流，切分完全由算法学习决定。</li>
+<li>直接收益：<ul>
+<li><strong>语言无关</strong>：同一套流程适配任意语言，天然适配中日韩；</li>
+<li><strong>完全可逆（lossless）</strong>：解码时把 <code>▁</code> 还原为空格即可精确还原原文，不丢失空白信息；</li>
+<li>训练与推理端一致，无需外挂分词器。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-Unigram-语言模型式的概率化切分"><a href="#2-Unigram-语言模型式的概率化切分" class="headerlink" title="2. Unigram 语言模型式的概率化切分"></a>2. Unigram 语言模型式的概率化切分</h2><p>除支持 BPE 外，SentencePiece 提供 <strong>Unigram LM</strong> 算法：</p>
+<ul>
+<li>假设每个子词独立出现，各有概率 <code>p(x)</code>；一个切分方案的概率为其所有子词概率之积；</li>
+<li>训练时从一个较大的候选子词集出发，用 <strong>EM 算法</strong>迭代估计各子词概率，并<strong>逐步剪枝</strong>掉对总体似然贡献最小的子词，直到词表达到目标大小（注意方向与 BPE 相反：BPE 自底向上合并，Unigram 自顶向下裁剪）；</li>
+<li>编码时用 <strong>Viterbi 算法</strong>求<strong>概率最大的切分路径</strong>，即全局最优切分；还支持按概率<strong>采样</strong>多种切分（subword regularization），可作为数据增强提升鲁棒性。</li>
+</ul>
+<h2 id="3-对比-BPE：概率最优-vs-频率贪心"><a href="#3-对比-BPE：概率最优-vs-频率贪心" class="headerlink" title="3. 对比 BPE：概率最优 vs 频率贪心"></a>3. 对比 BPE：概率最优 vs 频率贪心</h2><p>这是面试的关键落点，一句话概括：</p>
+<blockquote>
+<p><strong>Unigram 是概率最优切分，BPE 是频率贪心合并。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>BPE</th>
+<th>Unigram (SentencePiece)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>建词表方向</td>
+<td>自底向上，贪心合并高频对</td>
+<td>自顶向下，按似然剪枝</td>
+</tr>
+<tr>
+<td>切分依据</td>
+<td>固定的合并规则顺序（贪心、确定性）</td>
+<td>全局概率最大路径（Viterbi）</td>
+</tr>
+<tr>
+<td>多切分支持</td>
+<td>单一切分</td>
+<td>可按概率采样多切分（正则化）</td>
+</tr>
+<tr>
+<td>预分词</td>
+<td>通常需要</td>
+<td>不需要</td>
+</tr>
+</tbody></table>
+<p>BPE 的贪心可能得到局部最优切分；Unigram 在给定词表下求全局最优，理论上更合理，但训练成本更高。</p>
+<blockquote>
+<p>参考：论文《SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing》(Kudo &amp; Richardson, 2018)；SentencePiece 官方 GitHub 文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/data-engineering/tokenization-bpe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/data-engineering/tokenization-bpe/" class="post-title-link" itemprop="url">Tokenization：BPE 原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 11:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T11:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Tokenization：BPE-原理"><a href="#Tokenization：BPE-原理" class="headerlink" title="Tokenization：BPE 原理"></a>Tokenization：BPE 原理</h1><p>一句话定位：BPE（Byte Pair Encoding）是子词切分的奠基算法——用”频率贪心合并”在字符与词之间找折中，同时解决 OOV 与词表爆炸两个老问题。</p>
+<h2 id="1-算法原理：频率贪心合并"><a href="#1-算法原理：频率贪心合并" class="headerlink" title="1. 算法原理：频率贪心合并"></a>1. 算法原理：频率贪心合并</h2><p>训练过程：</p>
+<ol>
+<li><strong>从字符起始</strong>：初始词表就是语料中出现的全部基础字符（字节级 BPE 则以 256 个字节为基），每个词被拆成字符序列；</li>
+<li><strong>统计相邻符号对频率</strong>：扫描语料，统计所有相邻 symbol pair 的出现次数；</li>
+<li><strong>合并频率最高的一对</strong>：把出现频率最高的相邻对合并为一个新 symbol，加入词表，并记录该合并规则；</li>
+<li><strong>重复</strong> 2~3，直到<strong>词表大小达到预设目标</strong>（如 32k、50k）。</li>
+</ol>
+<p>推理（编码）时，按训练阶段记录的<strong>合并规则顺序</strong>对输入文本逐步合并，得到子词序列。</p>
+<p>本质：这是一个<strong>频率驱动的贪心过程</strong>——高频组合被合并成整体（常见词最终成为单个 token），低频组合保持为更小的片段。</p>
+<h2 id="2-解决的两个问题"><a href="#2-解决的两个问题" class="headerlink" title="2. 解决的两个问题"></a>2. 解决的两个问题</h2><ul>
+<li><strong>OOV（未登录词）</strong>：传统词级词表遇到没见过的词只能映射为 <code>&lt;UNK&gt;</code>，信息完全丢失。BPE 的词表包含字符&#x2F;字节级单元，<strong>任何词都能被拆成已知子词的组合</strong>，因此不存在真正的 OOV（字节级 BPE 可覆盖任意 Unicode 输入）。</li>
+<li><strong>词表爆炸</strong>：若用完整词表，自然语言的词形变化（时态、复数、派生、复合词）会让词表膨胀到百万级，嵌入矩阵与 softmax 层开销不可接受。BPE 用固定预算（几万）的子词表覆盖开放词汇，把词表大小控制住。</li>
+</ul>
+<p>核心权衡：<strong>词表越大 → 序列越短（推理更快）但嵌入层越大</strong>；词表越小 → 嵌入层小但同样文本被切成更多 token（序列变长、计算变多）。</p>
+<h2 id="3-与-SentencePiece-的关系"><a href="#3-与-SentencePiece-的关系" class="headerlink" title="3. 与 SentencePiece 的关系"></a>3. 与 SentencePiece 的关系</h2><p>BPE 通常需要<strong>预分词</strong>（先按空格切词再做子词合并），这对中日韩等无空格语言不友好；SentencePiece 直接在原始文本上训练并支持 Unigram 概率化切分，是对该局限的改进（见 2.8）。</p>
+<blockquote>
+<p>参考：论文《Neural Machine Translation of Rare Words with Subword Units》(Sennrich et al., 2016)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/data-engineering/minhash-lsh-dedup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/data-engineering/minhash-lsh-dedup/" class="post-title-link" itemprop="url">MinHash / LSH 模糊去重</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 11:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T11:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MinHash-LSH-模糊去重"><a href="#MinHash-LSH-模糊去重" class="headerlink" title="MinHash &#x2F; LSH 模糊去重"></a>MinHash &#x2F; LSH 模糊去重</h1><p>一句话定位：面试高频必问。在十亿级文档里找出”内容近似重复”的文档簇——两两比对是 O(N²) 不可行，MinHash 把相似度压成签名、LSH 把候选集缩小到桶内，使近似去重在大规模下可行。去重能显著提升语言模型效果（减少记忆化、提高有效 token 占比）。</p>
+<h2 id="1-完整流水线"><a href="#1-完整流水线" class="headerlink" title="1. 完整流水线"></a>1. 完整流水线</h2><h3 id="1-Shingling（分片）"><a href="#1-Shingling（分片）" class="headerlink" title="1 Shingling（分片）"></a>1 Shingling（分片）</h3><p>把文档切成长度为 k 的连续片段集合（k-shingle &#x2F; k-gram，可按词或字符）。文档由此变成一个<strong>集合</strong>，文档相似度 &#x3D; 两集合的 <strong>Jaccard 相似度</strong> <code>J(A,B) = |A∩B| / |A∪B|</code>。</p>
+<p>k 的选择：k 太小则不同文档偶然共享大量 shingle（假阳性高）；k 太大则对微小改写过于敏感（召回下降）。</p>
+<h3 id="2-MinHash-签名"><a href="#2-MinHash-签名" class="headerlink" title="2 MinHash 签名"></a>2 MinHash 签名</h3><ul>
+<li>对集合施加一个哈希置换 h，取集合中所有元素哈希值的<strong>最小值</strong>作为一个签名分量。</li>
+<li>关键性质：<strong><code>P(minhash(A) == minhash(B)) = J(A,B)</code></strong>——两个集合最小哈希相等的概率恰好等于 Jaccard 相似度。</li>
+<li>用 n 个独立哈希函数得到长度为 n 的签名向量，则”签名相同分量的比例”就是 Jaccard 的无偏估计。<strong>作用是把任意大的集合压成定长 n 的签名</strong>，把集合比较变成定长向量比较。</li>
+</ul>
+<h3 id="3-分带（Banding）分桶"><a href="#3-分带（Banding）分桶" class="headerlink" title="3 分带（Banding）分桶"></a>3 分带（Banding）分桶</h3><p>把长度 n 的签名切成 <strong>b 个 band</strong>，每个 band 含 r 行（n &#x3D; b × r）。对每个 band 做哈希分桶：<strong>只要有任一 band 完全相同，两文档即成为候选对</strong>。</p>
+<p>碰撞概率（相似度为 s 的两文档成为候选的概率）：</p>
+<p><code>P(候选) = 1 - (1 - s^r)^b</code></p>
+<p>这是一条 <strong>S 形曲线</strong>，其陡峭的转折点（近似阈值）约在 <code>s ≈ (1/b)^(1/r)</code>。</p>
+<h3 id="4-桶内两两比对"><a href="#4-桶内两两比对" class="headerlink" title="4 桶内两两比对"></a>4 桶内两两比对</h3><p>只对落入同桶的候选对计算真实（或签名估计的）相似度，超过阈值判为重复。候选集远小于全量对，这是复杂度从 O(N²) 降下来的根本原因。</p>
+<h3 id="5-连通图求重复簇"><a href="#5-连通图求重复簇" class="headerlink" title="5 连通图求重复簇"></a>5 连通图求重复簇</h3><p>把”判定为重复”的文档对看作图的边，用<strong>并查集 &#x2F; 连通分量</strong>求出重复簇，每簇保留一篇代表文档（或按质量分挑最优），其余丢弃。</p>
+<h2 id="2-工程要点"><a href="#2-工程要点" class="headerlink" title="2. 工程要点"></a>2. 工程要点</h2><h3 id="2-1-签名长度-n-与-band-数-b-决定精确率-召回率权衡"><a href="#2-1-签名长度-n-与-band-数-b-决定精确率-召回率权衡" class="headerlink" title="2.1 签名长度 n 与 band 数 b 决定精确率&#x2F;召回率权衡"></a>2.1 签名长度 n 与 band 数 b 决定精确率&#x2F;召回率权衡</h3><p>由 <code>P = 1 - (1 - s^r)^b</code> 可知：</p>
+<ul>
+<li><strong>b 增大（r 减小）</strong> → 曲线阈值左移，更”宽松”：召回高、假阳性多、候选对暴涨（后续比对更贵）；</li>
+<li><strong>r 增大（b 减小）</strong> → 阈值右移，更”严格”：精确率高、漏掉中等相似的重复；</li>
+<li><strong>n 增大</strong> → 相似度估计方差更小（更准），但哈希计算与存储成本线性上升。</li>
+</ul>
+<p>调参思路：先定业务上的相似度阈值 s₀（如 0.8），再选 b、r 使 S 曲线的陡升区间对齐 s₀。</p>
+<h3 id="2-2-Hash-计算是-CPU-热点"><a href="#2-2-Hash-计算是-CPU-热点" class="headerlink" title="2.2 Hash 计算是 CPU 热点"></a>2.2 Hash 计算是 CPU 热点</h3><p>每篇文档要算 n 个（常见 128~256）MinHash，是<strong>纯 CPU 密集</strong>的大头。优化：用快速哈希（MurmurHash&#x2F;xxHash）、一次哈希多次置换的技巧（如 <code>(a*h + b) mod p</code>）、向量化与批处理、提高并行度。</p>
+<h3 id="2-3-桶内比对易数据倾斜"><a href="#2-3-桶内比对易数据倾斜" class="headerlink" title="2.3 桶内比对易数据倾斜"></a>2.3 桶内比对易数据倾斜</h3><p>分桶后桶大小<strong>严重不均</strong>：模板化页面、超高频近重复内容会让某些桶极度膨胀，桶内两两比对是 O(m²)，单个大桶就能拖死整个作业——这正是 1.2 数据倾斜的典型现场。</p>
+<p>治理手段可直接复用 1.2：</p>
+<ul>
+<li>对超大桶<strong>加盐拆分</strong>或做二次分桶；</li>
+<li>设<strong>桶大小上限</strong>，超限的桶采样或单独处理（隔离热键）；</li>
+<li>提前对桶大小分布做<strong>抽样探测</strong>，而非等作业跑挂（对应”提前发现而非事后救火”）。</li>
+</ul>
+<blockquote>
+<p>参考：《Mining of Massive Datasets》第 3 章（Finding Similar Items）；论文《Deduplicating Training Data Makes Language Models Better》(Lee et al., 2022)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/IO-optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/IO-optimization/" class="post-title-link" itemprop="url">I/O 优化手段</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 10:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="I-O-优化手段"><a href="#I-O-优化手段" class="headerlink" title="I&#x2F;O 优化手段"></a>I&#x2F;O 优化手段</h1><p>一句话定位：数据处理链路的吞吐上限往往卡在 I&#x2F;O（磁盘&#x2F;网络&#x2F;解析），而非计算。优化的主线是”少读、少传、少解析、提前准备”。</p>
+<h2 id="1-投影下推-谓词下推（少读、少传）"><a href="#1-投影下推-谓词下推（少读、少传）" class="headerlink" title="1. 投影下推 &#x2F; 谓词下推（少读、少传）"></a>1. 投影下推 &#x2F; 谓词下推（少读、少传）</h2><ul>
+<li><strong>投影下推（Projection Pushdown）</strong>：只读取查询&#x2F;计算需要的列。列存下同一列连续存储，可直接跳过无关列块，IO 量随列数下降。</li>
+<li><strong>谓词下推（Predicate Pushdown）</strong>：把 <code>filter</code> 条件下推到扫描层，在读取时即过滤。如 Parquet 用 Row Group &#x2F; Page 的 min-max&#x2F;null 统计做<strong>谓词剪枝</strong>，跳过不满足条件的数据块。</li>
+<li>收益来源：减少从存储到计算引擎的<strong>数据量</strong>（IO + 网络 + 反序列化）。</li>
+</ul>
+<h2 id="2-压缩算法选型（带宽-vs-CPU）"><a href="#2-压缩算法选型（带宽-vs-CPU）" class="headerlink" title="2. 压缩算法选型（带宽 vs CPU）"></a>2. 压缩算法选型（带宽 vs CPU）</h2><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>速度</th>
+<th>压缩比</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Snappy</td>
+<td>快</td>
+<td>中（~2-3x）</td>
+<td>CPU 是瓶颈、热数据&#x2F;中间数据</td>
+</tr>
+<tr>
+<td>Zstd</td>
+<td>可调，较快</td>
+<td>高（~3-5x+）</td>
+<td>带宽&#x2F;存储是瓶颈、冷数据</td>
+</tr>
+</tbody></table>
+<ul>
+<li>权衡：压缩省带宽与存储，但解压耗 CPU。<strong>CPU 紧张选 Snappy，IO&#x2F;存储紧张选 Zstd</strong>。</li>
+</ul>
+<h2 id="3-小文件合并（降元数据与调度开销）"><a href="#3-小文件合并（降元数据与调度开销）" class="headerlink" title="3. 小文件合并（降元数据与调度开销）"></a>3. 小文件合并（降元数据与调度开销）</h2><ul>
+<li>大量小文件 → NameNode&#x2F;文件句柄元数据压力大、每文件一个 task 导致调度开销高、随机寻址成本高。</li>
+<li>手段：写入时合并大文件、定期 Compaction（HDFS 小文件合并、ORC&#x2F;Parquet 合并）、使用面向大文件的格式。合并后 task 数下降，吞吐提升明显。</li>
+</ul>
+<h2 id="4-异步预取与-MMap（掩盖延迟）"><a href="#4-异步预取与-MMap（掩盖延迟）" class="headerlink" title="4. 异步预取与 MMap（掩盖延迟）"></a>4. 异步预取与 MMap（掩盖延迟）</h2><ul>
+<li><strong>异步预取（Async Prefetch）</strong>：后台线程提前读取后续数据，与计算重叠，掩盖 IO 延迟（类比 CPU 硬件预取）。</li>
+<li><strong>内存映射（MMap）</strong>：文件映射到进程地址空间，由 OS 页缓存管理，免系统调用拷贝，适合大文件顺序&#x2F;随机读；但大文件 MMap 可能挤占页缓存，需权衡。</li>
+</ul>
+<blockquote>
+<p>参考：Apache Parquet &#x2F; ORC 官方文档（Pushdown、压缩）；Linux <code>mmap</code> 手册</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/data-pipeline-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/data-pipeline-design/" class="post-title-link" itemprop="url">数据管道全链路设计范式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 10:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据管道全链路设计范式"><a href="#数据管道全链路设计范式" class="headerlink" title="数据管道全链路设计范式"></a>数据管道全链路设计范式</h1><p>一句话定位：数据管道不是”一串脚本”，而是一套”分层解耦 + 算子可复用 + 可重跑 + 资源隔离”的工程系统。面试要把”接入→清洗→转换→输出”讲成可治理的范式。</p>
+<h2 id="1-分层解耦：接入-→-清洗-→-转换-→-输出"><a href="#1-分层解耦：接入-→-清洗-→-转换-→-输出" class="headerlink" title="1. 分层解耦：接入 → 清洗 → 转换 → 输出"></a>1. 分层解耦：接入 → 清洗 → 转换 → 输出</h2><ul>
+<li>每层职责单一，通过<strong>标准数据契约</strong>（schema &#x2F; 格式）衔接；</li>
+<li>单层可独立替换、独立扩缩（如换 source 不影响 transform）；</li>
+<li>故障定位时按层切分，避免”一处坏全线瘫”。</li>
+</ul>
+<h2 id="2-算子抽象与可复用性"><a href="#2-算子抽象与可复用性" class="headerlink" title="2. 算子抽象与可复用性"></a>2. 算子抽象与可复用性</h2><ul>
+<li>把处理单元抽象为统一接口的算子（map &#x2F; filter &#x2F; join &#x2F; aggregate；Flink 算子、Spark 算子、Ray Actor）；</li>
+<li>沉淀为<strong>可复用算子库 + 编排模板</strong>，业务逻辑靠组合而非重写；</li>
+<li>对应”平台化意识”：一次优化沉淀为通用能力。</li>
+</ul>
+<h2 id="3-幂等与重试设计"><a href="#3-幂等与重试设计" class="headerlink" title="3. 幂等与重试设计"></a>3. 幂等与重试设计</h2><ul>
+<li><strong>幂等</strong>：同一输入多次执行结果一致（唯一键 &#x2F; 去重表 &#x2F; upsert &#x2F; 幂等写入），使重试安全；</li>
+<li><strong>重试 + 断点续跑</strong>：失败任务可重跑（至少一次 → 配合幂等达成”有效一次”），靠位点&#x2F;offset&#x2F;checkpoint 续跑，避免全量重算；</li>
+<li>对应 1.1.4 Flink 的 Exactly-Once 思想。</li>
+</ul>
+<h2 id="4-CPU-密集与-GPU-密集的资源池分离"><a href="#4-CPU-密集与-GPU-密集的资源池分离" class="headerlink" title="4. CPU 密集与 GPU 密集的资源池分离"></a>4. CPU 密集与 GPU 密集的资源池分离</h2><ul>
+<li>解析&#x2F;清洗&#x2F;特征（CPU 密集）与推理&#x2F;打标（GPU 密集）<strong>分属不同资源池</strong>（如 CPU 集群 vs GPU 集群）；</li>
+<li>用 Ray &#x2F; 调度器做异构编排（如 head 在 CPU 集群、worker 在 GPU 集群），避免互相抢占；</li>
+<li>对应 1.1.5 Ray 的异构资源调度优势。</li>
+</ul>
+<h2 id="5-可观测与背压"><a href="#5-可观测与背压" class="headerlink" title="5. 可观测与背压"></a>5. 可观测与背压</h2><ul>
+<li>监控各环节吞吐&#x2F;延迟&#x2F;积压；</li>
+<li><strong>背压（Backpressure）</strong>：下游过载时反向限速，防止雪崩（Flink 原生背压机制）。</li>
+</ul>
+<blockquote>
+<p>参考：Google《Data Pipelines》相关实践；Flink &#x2F; Spark Structured Streaming 背压机制文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/data-format-comparison/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/data-format-comparison/" class="post-title-link" itemprop="url">数据格式对比：JSONL / Parquet / Arrow / ORC</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 10:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据格式对比：JSONL-Parquet-Arrow-ORC"><a href="#数据格式对比：JSONL-Parquet-Arrow-ORC" class="headerlink" title="数据格式对比：JSONL &#x2F; Parquet &#x2F; Arrow &#x2F; ORC"></a>数据格式对比：JSONL &#x2F; Parquet &#x2F; Arrow &#x2F; ORC</h1><p>一句话定位：选数据格式本质是在”解析成本 &#x2F; 存储扫描 &#x2F; 跨语言传输”之间取舍。面试常考”为什么把 JSONL 换成 Parquet&#x2F;Arrow 吞吐能翻倍”。</p>
+<h2 id="1-四种格式速览"><a href="#1-四种格式速览" class="headerlink" title="1. 四种格式速览"></a>1. 四种格式速览</h2><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>形态</th>
+<th>解析成本</th>
+<th>存储&#x2F;扫描</th>
+<th>跨语言</th>
+<th>生态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JSONL</td>
+<td>文本，每行一对象</td>
+<td>高（逐行 JSON decode，CPU 瓶颈）</td>
+<td>无压缩&#x2F;列裁剪</td>
+<td>通用</td>
+<td>日志、交换</td>
+</tr>
+<tr>
+<td>Parquet</td>
+<td>列式 + 压缩</td>
+<td>低（二进制列读）</td>
+<td>友好（列裁剪+谓词下推+高压缩）</td>
+<td>好</td>
+<td>Hadoop 事实标准</td>
+</tr>
+<tr>
+<td>Arrow</td>
+<td>内存列式</td>
+<td>极低（零拷贝）</td>
+<td>内存计算友好</td>
+<td>极佳（C++&#x2F;Python&#x2F;Java 共享）</td>
+<td>内存计算&#x2F;传输</td>
+</tr>
+<tr>
+<td>ORC</td>
+<td>列式 + 压缩</td>
+<td>低</td>
+<td>友好</td>
+<td>好</td>
+<td>Hive 生态强绑定</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>JSONL</strong>：可读但需逐行解析，无 schema&#x2F;压缩弱，适合采集交换，查询慢。</li>
+<li><strong>Parquet</strong>：列式 + 嵌套支持 + 高压缩，分析型存储首选。</li>
+<li><strong>Arrow</strong>：内存中的列式格式，跨语言零拷贝共享（Spark↔Pandas、Ray Plasma），避免序列化。</li>
+<li><strong>ORC</strong>：与 Parquet 类似，但和 Hive&#x2F;Impala 集成更深。</li>
+</ul>
+<h2 id="2-面试话术：JSONL-→-Parquet-Arrow-吞吐提升的三点"><a href="#2-面试话术：JSONL-→-Parquet-Arrow-吞吐提升的三点" class="headerlink" title="2. 面试话术：JSONL → Parquet&#x2F;Arrow 吞吐提升的三点"></a>2. 面试话术：JSONL → Parquet&#x2F;Arrow 吞吐提升的三点</h2><ol>
+<li><strong>消除文本解析</strong>：免去逐行 JSON <code>decode</code>（最贵的 CPU 环节）；</li>
+<li><strong>只读需要的列</strong>（列裁剪）：不必把整行反序列化；</li>
+<li><strong>零拷贝 &#x2F; 二进制列式</strong>：Arrow 在内存层免序列化，Parquet 在存储层免文本解析。</li>
+</ol>
+<blockquote>
+<p>参考：Apache Parquet &#x2F; Arrow &#x2F; ORC 官方文档；Google Dremel 论文（Parquet 思想来源）</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-stream-batch-state/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-stream-batch-state/" class="post-title-link" itemprop="url">Flink 流批一体与状态管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 10:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T10:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bigdata/" itemprop="url" rel="index"><span itemprop="name">bigdata</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Flink-流批一体与状态管理"><a href="#Flink-流批一体与状态管理" class="headerlink" title="Flink 流批一体与状态管理"></a>Flink 流批一体与状态管理</h1><p>一句话定位：Flink 的杀手锏是”一套引擎跑流和批”（流批一体），以及可扩缩、可容错的状态管理（State + Checkpoint）；二者共同支撑 Exactly-Once。面试重点在 State Backend 选型、Barrier 对齐、以及 Exactly-Once 是怎么串起来的。</p>
+<h2 id="1-流批一体（Unified-Engine）"><a href="#1-流批一体（Unified-Engine）" class="headerlink" title="1. 流批一体（Unified Engine）"></a>1. 流批一体（Unified Engine）</h2><ul>
+<li>Flink 认为<strong>批是流的特例（有界流）</strong>：同一套 DataStream API &#x2F; Table-SQL API，通过 <code>ExecutionMode.BATCH</code> 即可跑有界数据，无需维护两套代码。</li>
+<li>统一 Runtime：调度、容错、shuffle、状态后端对批流一致；降低了”流一套、批一套”的维护成本，也保证了语义一致。</li>
+<li>面试话术：把”流批一体”讲成”统一 API + 统一 Runtime + 有界即无界特例”，比单纯说”支持批处理”更有深度。</li>
+</ul>
+<h2 id="2-状态管理：State-Backend-选型"><a href="#2-状态管理：State-Backend-选型" class="headerlink" title="2. 状态管理：State Backend 选型"></a>2. 状态管理：State Backend 选型</h2><table>
+<thead>
+<tr>
+<th>Backend</th>
+<th>存储位置</th>
+<th>优势</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HashMapStateBackend</td>
+<td>JVM 堆</td>
+<td>读写最快、无需序列化</td>
+<td>小状态、低延迟</td>
+</tr>
+<tr>
+<td>EmbeddedRocksDBStateBackend</td>
+<td>本地磁盘 + 堆外</td>
+<td>支持超大状态、增量 Checkpoint</td>
+<td>大状态、长窗口、高吞吐</td>
+</tr>
+</tbody></table>
+<ul>
+<li>选型看<strong>状态规模</strong>与<strong>延迟预算</strong>：状态放得下堆就用 HashMap（快），放不下或要做增量 checkpoint 就用 RocksDB（慢但可扩展）。</li>
+<li>状态类型：Keyed State（按 key 分区，随 key 路由）&#x2F; Operator State（算子级，如 source offset）。</li>
+</ul>
+<h2 id="3-Checkpoint-的-Barrier-对齐机制"><a href="#3-Checkpoint-的-Barrier-对齐机制" class="headerlink" title="3. Checkpoint 的 Barrier 对齐机制"></a>3. Checkpoint 的 Barrier 对齐机制</h2><ul>
+<li>Barrier 由 Source 按固定间隔注入数据流，随数据向下游流动，标记”属于第 n 个 checkpoint 的数据边界”。</li>
+<li><strong>对齐（Alignment）</strong>：算子收到某个输入通道的 barrier-n 后，<strong>该通道后续数据被缓存阻塞</strong>，直到所有输入通道都收到 barrier-n，才做状态快照（snapshot）并向下游广播 barrier-n。</li>
+<li>对齐的意义：<strong>保证 Exactly-Once</strong>——barrier 之后的数据绝不会混入本次 checkpoint 的状态。</li>
+<li><strong>非对齐 Checkpoint（Unaligned）</strong>：把正在传输中的缓冲也纳入快照，避免反压下 barrier 被”堵”在通道里导致 checkpoint 超时，降低尾延迟，但快照更大。</li>
+</ul>
+<h2 id="4-Exactly-Once-如何达成"><a href="#4-Exactly-Once-如何达成" class="headerlink" title="4. Exactly-Once 如何达成"></a>4. Exactly-Once 如何达成</h2><p>端到端 Exactly-Once &#x3D; <strong>可重放 Source + Checkpoint 状态持久化 + 事务&#x2F;幂等 Sink</strong>：</p>
+<ol>
+<li>Source 记录位点（Kafka offset &#x2F; 文件偏移），失败可从 checkpoint 重放；</li>
+<li>基于 <strong>Chandy-Lamport 分布式快照算法</strong>，barrier 对齐保证各算子状态对应同一逻辑时间点；</li>
+<li>Sink 用<strong>两阶段提交（2PC，如 Flink-Kafka 事务）<strong>或</strong>幂等写入</strong>，使”状态提交”与”外部输出”原子化。</li>
+</ol>
+<blockquote>
+<p>参考：Apache Flink 官方文档 State Backends &#x2F; Checkpointing；论文《Lightweight Asynchronous Snapshots for Distributed Dataflows》(Chandy-Lamport)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">354</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

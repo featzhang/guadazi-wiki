@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">354</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/rag-retrieval-pipeline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/rag-retrieval-pipeline/" class="post-title-link" itemprop="url">RAG 检索增强链路</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 16:40:00" itemprop="dateCreated datePublished" datetime="2026-08-22T16:40:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="RAG-检索增强链路"><a href="#RAG-检索增强链路" class="headerlink" title="RAG 检索增强链路"></a>RAG 检索增强链路</h1><p>一句话定位：RAG 的核心价值是让模型的回答<strong>基于真实检索到的文档</strong>而不是内部记忆生成，链路上每一环（切片、召回、重排）质量都直接决定最终答案的忠实度。</p>
+<h2 id="1-完整链路"><a href="#1-完整链路" class="headerlink" title="1. 完整链路"></a>1. 完整链路</h2><ol>
+<li><strong>切片策略</strong>：把长文档切成适合检索和塞入上下文的小块。<ul>
+<li>固定长度切片：简单但可能把语义完整的一段话切断。</li>
+<li>语义切片：按段落&#x2F;章节等语义边界切分，更贴合内容结构。</li>
+<li>重叠切片（overlap）：相邻切片间保留一定重叠内容，避免关键信息刚好落在切片边界被切碎。</li>
+</ul>
+</li>
+<li><strong>Embedding 模型选型</strong>：把文本切片转成向量，选型要看语义相似度效果、向量维度（影响存储成本）、是否支持中文&#x2F;多语言、是否支持长文本。</li>
+<li><strong>混合召回</strong>：向量检索（语义相似）+ 关键词检索（BM25 等，精确匹配专有名词&#x2F;数字效果更好）结合，弥补纯向量检索对精确匹配不敏感的短板。</li>
+<li><strong>Rerank 重排</strong>：召回阶段为了效率通常召回较多候选（如 top 50），再用更精细但更慢的模型（Cross-Encoder）对候选重新打分排序，取 top-k（如 top 5）送入生成阶段，平衡效率与精度。</li>
+<li><strong>上下文组装</strong>：把重排后的文档片段按相关性排序拼接进 Prompt，注意控制总长度不超过上下文窗口。</li>
+<li><strong>生成</strong>：模型基于拼接好的上下文生成最终答案。</li>
+</ol>
+<h2 id="2-评估维度"><a href="#2-评估维度" class="headerlink" title="2. 评估维度"></a>2. 评估维度</h2><ul>
+<li><strong>召回率（Recall）</strong>：真正相关的文档有多大比例被召回进候选集，是链路上限的天花板——召回没找到的信息，后面无论怎么优化都补不回来。</li>
+<li><strong>忠实度（Faithfulness）</strong>：生成的答案是否完全基于检索到的上下文，而不是模型凭内部记忆编造（幻觉的直接度量）。</li>
+<li><strong>答案相关性</strong>：生成的答案是否真正回应了用户的问题（即使忠实于上下文，也可能答非所问）。</li>
+</ul>
+<h2 id="3-面试落点-我的缺口"><a href="#3-面试落点-我的缺口" class="headerlink" title="3. 面试落点 &#x2F; 我的缺口"></a>3. 面试落点 &#x2F; 我的缺口</h2><ul>
+<li>这是目前的知识缺口（原条目标注”需做最小落地项目”），面试中应诚实说明”这是近期重点补齐的方向”（呼应第 5 章表达五原则第 4 条），同时展示对链路和评估体系的清晰理解。</li>
+<li>目标产出：一个”多模态检索 + RAG”最小可用项目作为差异化素材（结合 8.5 全模态数据处理认知）。</li>
+<li>可迁移话术：切片策略 ≈ 大数据里的分区&#x2F;分片设计；混合召回 ≈ 数据库的”索引扫描 + 全文检索”组合查询思路；Rerank 的”先粗筛再精排”模式和搜索&#x2F;推荐系统的”召回-排序”两阶段架构完全一致。</li>
+</ul>
+<blockquote>
+<p>参考：暂无固定论文来源，链路设计综合自主流 RAG 工程实践（LangChain&#x2F;LlamaIndex 文档、Pinecone&#x2F;Milvus 检索增强指南）</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/vector-database-selection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/vector-database-selection/" class="post-title-link" itemprop="url">向量数据库选型与应用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 16:30:00" itemprop="dateCreated datePublished" datetime="2026-08-22T16:30:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="向量数据库选型与应用"><a href="#向量数据库选型与应用" class="headerlink" title="向量数据库选型与应用"></a>向量数据库选型与应用</h1><p>一句话定位：向量数据库的选型核心是在<strong>召回率、延迟、内存成本</strong>三者之间做权衡，索引结构决定了这个权衡的基本形态，自建 vs 托管则是运维成本与灵活性的权衡。</p>
+<h2 id="1-索引结构：HNSW-vs-IVF-PQ"><a href="#1-索引结构：HNSW-vs-IVF-PQ" class="headerlink" title="1. 索引结构：HNSW vs IVF-PQ"></a>1. 索引结构：HNSW vs IVF-PQ</h2><ul>
+<li><strong>HNSW（Hierarchical Navigable Small World，图索引）</strong>：构建多层近邻图，查询时从顶层稀疏图逐层下探到底层稠密图，<strong>延迟低、召回率高</strong>，但需要把完整向量和图结构都放在内存里，<strong>内存占用大</strong>。</li>
+<li><strong>IVF-PQ（倒排文件 + 乘积量化）</strong>：先用聚类把向量分桶（倒排），查询只在候选桶内搜索；用乘积量化压缩向量存储（有损压缩），<strong>省内存</strong>，但召回率和精度略有损失，适合超大规模、内存敏感的场景。</li>
+<li>选型判断：数据量在千万级以内且对延迟&#x2F;召回率要求高 → HNSW；数据量上亿、内存成本敏感、能接受召回率略降 → IVF-PQ。</li>
+</ul>
+<h2 id="2-召回率-vs-延迟的调参"><a href="#2-召回率-vs-延迟的调参" class="headerlink" title="2. 召回率 vs 延迟的调参"></a>2. 召回率 vs 延迟的调参</h2><ul>
+<li>HNSW 的 <code>ef_search</code>（搜索时探索的候选数）越大，召回率越高但延迟越高；IVF 的 <code>nprobe</code>（搜索的桶数）同理。</li>
+<li>实践中要先定业务可接受的延迟上限，再反向调参数找到该延迟预算下的最高召回率，而不是先追求”召回率最高”再看延迟能不能接受。</li>
+</ul>
+<h2 id="3-过滤条件与向量检索结合"><a href="#3-过滤条件与向量检索结合" class="headerlink" title="3. 过滤条件与向量检索结合"></a>3. 过滤条件与向量检索结合</h2><ul>
+<li>实际业务常需要”向量相似 + 满足某些结构化过滤条件”（如”语义相似 + 时间在近 7 天 + 用户属于某分组”），即混合查询。</li>
+<li>实现方式一是先过滤再向量搜索（过滤后候选集小则快，候选集仍大则退化成暴力搜索）；二是把过滤条件也编码进索引结构（如带 payload 过滤的图索引），各产品支持程度不同，选型时要专门核实。</li>
+</ul>
+<h2 id="4-写入与索引重建成本"><a href="#4-写入与索引重建成本" class="headerlink" title="4. 写入与索引重建成本"></a>4. 写入与索引重建成本</h2><ul>
+<li>HNSW 类图索引的增量写入和删除相对复杂（删除通常是软删除标记，需要定期重建索引清理），这是运维时容易被低估的成本点。</li>
+</ul>
+<h2 id="5-自建（Milvus）vs-托管（Pinecone）"><a href="#5-自建（Milvus）vs-托管（Pinecone）" class="headerlink" title="5. 自建（Milvus）vs 托管（Pinecone）"></a>5. 自建（Milvus）vs 托管（Pinecone）</h2><ul>
+<li><strong>自建</strong>：可控性强、成本可能更低（大规模下），但需要自己承担运维、扩缩容、高可用的工程投入。</li>
+<li><strong>托管</strong>：开箱即用、免运维，但成本随规模线性增长且数据出境&#x2F;合规需额外考虑（尤其是国内业务场景）。</li>
+</ul>
+<h2 id="6-面试落点"><a href="#6-面试落点" class="headerlink" title="6. 面试落点"></a>6. 面试落点</h2><ul>
+<li>能讲清楚 HNSW&#x2F;IVF-PQ 的核心 Tradeoff（延迟&#x2F;召回率 vs 内存），并给出具体场景的选型建议，而不是只说”用 Milvus”。</li>
+<li>可迁移话术：这套”索引结构决定查询性能形态”的思路和大数据里”选 B+树索引还是 LSM 索引”的权衡是同一类工程决策模式。</li>
+</ul>
+<blockquote>
+<p>参考：Milvus 官方文档；Pinecone《Vector database fundamentals》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/model-hosting-service-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/model-hosting-service-design/" class="post-title-link" itemprop="url">模型托管服务设计要点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 16:20:00" itemprop="dateCreated datePublished" datetime="2026-08-22T16:20:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="模型托管服务设计要点"><a href="#模型托管服务设计要点" class="headerlink" title="模型托管服务设计要点"></a>模型托管服务设计要点</h1><p>一句话定位：模型托管服务的核心设计目标是”让上层业务像调用普通 API 一样调用模型”，背后要解决环境标准化、弹性伸缩、多版本灰度、多租户隔离、统一网关五个工程问题。</p>
+<h2 id="1-镜像与环境标准化"><a href="#1-镜像与环境标准化" class="headerlink" title="1. 镜像与环境标准化"></a>1. 镜像与环境标准化</h2><ul>
+<li>把模型 + 推理框架（vLLM&#x2F;TensorRT-LLM 等）+ 依赖打包成标准化镜像，避免”在我机器上能跑”的环境漂移问题。</li>
+<li>标准化后才能谈自动化部署、弹性伸缩，否则每次部署都是手工事故现场。</li>
+</ul>
+<h2 id="2-弹性伸缩与冷启动"><a href="#2-弹性伸缩与冷启动" class="headerlink" title="2. 弹性伸缩与冷启动"></a>2. 弹性伸缩与冷启动</h2><ul>
+<li>根据流量自动增减推理实例数量，应对峰谷差异，控制成本。</li>
+<li><strong>冷启动</strong>是关键痛点：大模型加载到显存本身就需要较长时间，扩容时新实例”来不及热身”会导致请求超时；常见缓解手段包括预留最小实例数（Warm Pool）、模型分层加载、镜像预热。</li>
+</ul>
+<h2 id="3-多版本灰度与-A-B"><a href="#3-多版本灰度与-A-B" class="headerlink" title="3. 多版本灰度与 A&#x2F;B"></a>3. 多版本灰度与 A&#x2F;B</h2><ul>
+<li>同时运行新旧版本模型，按流量比例分配（如 5% 流量走新版本），观察效果指标无异常后逐步放量，异常则快速回滚。</li>
+<li>这是控制”模型更新风险”的核心手段，尤其在效果指标滞后（需要积累数据才能判断好坏）的场景更重要。</li>
+</ul>
+<h2 id="4-资源配额与多租户隔离"><a href="#4-资源配额与多租户隔离" class="headerlink" title="4. 资源配额与多租户隔离"></a>4. 资源配额与多租户隔离</h2><ul>
+<li>多个业务&#x2F;团队共享同一套推理基础设施时，需要配额限制（避免一个业务占满所有资源）和隔离机制（避免一个业务的异常流量拖垮其他业务）。</li>
+</ul>
+<h2 id="5-推理网关：统一鉴权与限流"><a href="#5-推理网关：统一鉴权与限流" class="headerlink" title="5. 推理网关：统一鉴权与限流"></a>5. 推理网关：统一鉴权与限流</h2><ul>
+<li>所有推理请求统一走网关层做鉴权、限流、路由，业务方不需要关心底层有多少个模型实例、部署在哪。</li>
+</ul>
+<h2 id="6-面试落点"><a href="#6-面试落点" class="headerlink" title="6. 面试落点"></a>6. 面试落点</h2><ul>
+<li>能讲清”从零设计一个模型托管服务”要覆盖的核心模块，而不是只说”用 K8s 部署一下”。</li>
+<li>可迁移话术：多版本灰度 ≈ 大数据平台里新旧计算引擎并行验证再切流的思路；资源配额隔离 ≈ YARN&#x2F;K8s 的资源池隔离经验直接迁移。</li>
+</ul>
+<blockquote>
+<p>参考：华为云 ModelArts 官方文档；AWS SageMaker 官方文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/platform/mlops-full-pipeline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/platform/mlops-full-pipeline/" class="post-title-link" itemprop="url">AI 平台全流程架构（MLOps）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 16:10:00" itemprop="dateCreated datePublished" datetime="2026-08-22T16:10:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="AI-平台全流程架构（MLOps）"><a href="#AI-平台全流程架构（MLOps）" class="headerlink" title="AI 平台全流程架构（MLOps）"></a>AI 平台全流程架构（MLOps）</h1><p>一句话定位：MLOps 的核心是把”数据标注 → 训练 → 评估 → 部署 → 监控 → 反馈”变成一个<strong>闭环流水线</strong>，而不是一次性的人工串联，关键能力是可复现、可追溯、可回滚。</p>
+<h2 id="1-全流程六个环节"><a href="#1-全流程六个环节" class="headerlink" title="1. 全流程六个环节"></a>1. 全流程六个环节</h2><ul>
+<li><strong>数据标注</strong>：原始数据到可训练样本的加工，需要标注质量校验与一致性检查。</li>
+<li><strong>训练</strong>：实验管理（超参、代码版本、数据版本三者绑定），保证任意一次训练<strong>可复现</strong>。</li>
+<li><strong>评估</strong>：离线基准测试 + 人工评审，作为是否允许上线的门禁（对应 8.7 的评估门禁）。</li>
+<li><strong>部署</strong>：模型打包、灰度发布、多版本并存。</li>
+<li><strong>监控</strong>：线上效果指标（业务指标 + 模型指标）与资源指标（延迟、吞吐、错误率）双线监控。</li>
+<li><strong>反馈闭环</strong>：线上数据&#x2F;用户反馈回流成为下一轮训练的数据来源，形成”越用越好”的迭代循环。</li>
+</ul>
+<h2 id="2-关键能力：血缘与可追溯"><a href="#2-关键能力：血缘与可追溯" class="headerlink" title="2. 关键能力：血缘与可追溯"></a>2. 关键能力：血缘与可追溯</h2><ul>
+<li><strong>模型版本与血缘</strong>：任意一个上线模型，要能追溯到”用哪份数据、哪个代码版本、哪套超参训练出来的”，这是排查线上问题（效果突然下降）的前提。</li>
+<li><strong>实验可复现</strong>：同样的代码 + 数据 + 超参，任何人任何时候跑出来的结果应该一致（或在可接受误差内），否则无法信任对比实验的结论。</li>
+</ul>
+<h2 id="3-面试落点"><a href="#3-面试落点" class="headerlink" title="3. 面试落点"></a>3. 面试落点</h2><ul>
+<li>能画出这六个环节的闭环图，并指出每个环节最容易出问题的地方（标注质量、训练不可复现、评估门禁形同虚设、监控缺失导致线上问题发现滞后）。</li>
+<li>可迁移话术：这套闭环和大数据平台的”数据接入 → ETL → 存储 → 查询 → 监控告警”全链路思路是同构的，只是流转的对象从数据变成了模型，多了”训练”和”评估门禁”两个 AI 特有环节。</li>
+</ul>
+<blockquote>
+<p>参考：Google Cloud《MLOps: Continuous delivery and automation pipelines in machine learning》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/agent/agent-reliability-safeguards/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/agent/agent-reliability-safeguards/" class="post-title-link" itemprop="url">Agent 可靠性保障</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 16:00:00" itemprop="dateCreated datePublished" datetime="2026-08-22T16:00:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Agent-可靠性保障"><a href="#Agent-可靠性保障" class="headerlink" title="Agent 可靠性保障"></a>Agent 可靠性保障</h1><p>一句话定位：Agent 可靠性不是靠单一手段解决的，而是”幻觉控制 + 异常处理 + 人工介入 + 可观测”四条防线组合，其中<strong>人工介入关键节点</strong>是金融等高风险场景不可省略的最后一道防线。</p>
+<h2 id="1-幻觉控制"><a href="#1-幻觉控制" class="headerlink" title="1. 幻觉控制"></a>1. 幻觉控制</h2><ul>
+<li><strong>检索接地（Grounding）</strong>：让回答基于检索到的真实文档而非模型的内部记忆生成，是 RAG（8.4）最直接的幻觉控制手段。</li>
+<li><strong>结构化输出约束</strong>：用 JSON Schema &#x2F; 正则等强制模型输出符合格式规范的结果，减少模型”自由发挥”编造字段的空间。</li>
+<li><strong>自校验（Self-check）</strong>：让模型（或另一个 Agent）对自己的输出做二次校验，或要求模型给出引用来源以便交叉核对。</li>
+</ul>
+<h2 id="2-异常处理"><a href="#2-异常处理" class="headerlink" title="2. 异常处理"></a>2. 异常处理</h2><ul>
+<li><strong>超时</strong>：工具调用&#x2F;模型推理设置合理超时，避免任务无限挂起。</li>
+<li><strong>重试</strong>：区分”可重试错误”（网络抖动）与”不可重试错误”（参数错误、权限不足），只对前者做有限次重试。</li>
+<li><strong>降级</strong>：多次失败后走降级路径（返回明确的”暂不可用”提示，而不是硬凑一个错误答案）。</li>
+</ul>
+<h2 id="3-Human-in-the-loop（人工介入）"><a href="#3-Human-in-the-loop（人工介入）" class="headerlink" title="3. Human-in-the-loop（人工介入）"></a>3. Human-in-the-loop（人工介入）</h2><ul>
+<li>在关键节点（如涉及资金操作、不可逆动作）设置人工确认检查点，Agent 执行到该节点时暂停并等待人工审核后才继续（对应 7.3 LangGraph 的 Checkpoint 机制）。</li>
+<li>金融场景尤其要强调<strong>可审计</strong>：每一步 Thought&#x2F;Action&#x2F;Observation 都要留痕，方便事后追溯”Agent 为什么做出了这个决策”。</li>
+</ul>
+<h2 id="4-全链路可观测与回放"><a href="#4-全链路可观测与回放" class="headerlink" title="4. 全链路可观测与回放"></a>4. 全链路可观测与回放</h2><ul>
+<li>记录每次 Agent 运行的完整轨迹（输入、每一步推理、工具调用参数与结果、最终输出），支持事后回放定位问题根因。</li>
+<li>这和大数据&#x2F;线上系统的全链路日志追踪（Trace）是同一套工程思路，只是记录对象从”请求链路”变成了”Agent 推理链路”。</li>
+</ul>
+<h2 id="5-面试落点"><a href="#5-面试落点" class="headerlink" title="5. 面试落点"></a>5. 面试落点</h2><ul>
+<li>能针对”金融场景 Agent 如何控制风险”给出体系化答案，而不是只说”加个 prompt 让它别瞎说”。</li>
+<li>可迁移话术：这四条防线本质上和传统系统可靠性工程（熔断&#x2F;降级&#x2F;重试&#x2F;可观测）是同构的，只是多了”幻觉”这个 LLM 特有的新问题类型，其余方法论完全可以从工程可靠性经验迁移过来。</li>
+</ul>
+<blockquote>
+<p>参考：论文《Survey of Hallucination in Natural Language Generation》；LangChain 官方文档《Human-in-the-loop》章节</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/agent/agent-memory-mechanism/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/agent/agent-memory-mechanism/" class="post-title-link" itemprop="url">Agent 记忆机制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 15:50:00" itemprop="dateCreated datePublished" datetime="2026-08-22T15:50:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Agent-记忆机制"><a href="#Agent-记忆机制" class="headerlink" title="Agent 记忆机制"></a>Agent 记忆机制</h1><p>一句话定位：Agent 记忆分短期（上下文窗口）和长期（外部存储）两层，MemGPT 的关键洞察是把这两层当成”内存 vs 磁盘”来做分页调度——用有限的上下文窗口，管理无限增长的历史信息。</p>
+<h2 id="1-短期记忆：上下文窗口"><a href="#1-短期记忆：上下文窗口" class="headerlink" title="1. 短期记忆：上下文窗口"></a>1. 短期记忆：上下文窗口</h2><ul>
+<li>直接把最近的对话历史塞进 Prompt，简单直接，但受上下文窗口长度限制，历史一长就要做取舍。</li>
+<li>常见策略：滑动窗口（只保留最近 N 轮）、摘要压缩（把较早的历史用 LLM 总结成一段摘要再保留），后者是更常见的生产做法。</li>
+</ul>
+<h2 id="2-长期记忆：向量库存储-相关性召回"><a href="#2-长期记忆：向量库存储-相关性召回" class="headerlink" title="2. 长期记忆：向量库存储 + 相关性召回"></a>2. 长期记忆：向量库存储 + 相关性召回</h2><ul>
+<li>把历史交互、用户画像等信息切片、embedding 后存入向量库；当前轮对话时，用当前问题去检索最相关的历史片段，动态拼进上下文。</li>
+<li>本质是把”记忆”从”必须全部塞进上下文”变成”按需检索”，这正是 RAG（8.4）思路在记忆场景的应用。</li>
+</ul>
+<h2 id="3-MemGPT-的核心思路：把上下文当”内存”"><a href="#3-MemGPT-的核心思路：把上下文当”内存”" class="headerlink" title="3. MemGPT 的核心思路：把上下文当”内存”"></a>3. MemGPT 的核心思路：把上下文当”内存”</h2><ul>
+<li>类比操作系统的虚拟内存分页：上下文窗口 &#x3D; 有限的物理内存（快但小），外部存储（向量库&#x2F;数据库）&#x3D; 磁盘（慢但几乎无限大）。</li>
+<li>MemGPT 让 Agent 自己决定”什么时候把当前不常用的上下文换出到外部存储，什么时候把需要的历史信息换入上下文”，通过自我调用的”分页”函数管理这个过程，从而让 Agent 拥有远超单次上下文窗口长度的”有效记忆”。</li>
+</ul>
+<h2 id="4-面试落点"><a href="#4-面试落点" class="headerlink" title="4. 面试落点"></a>4. 面试落点</h2><ul>
+<li>能清楚区分短期&#x2F;长期记忆的实现方式与各自的取舍（窗口限制 vs 检索延迟与召回质量）。</li>
+<li>可迁移话术：这套”内存 vs 磁盘”分页管理思路，和 3.2&#x2F;3.5 里 GPU 显存的分页管理（PagedAttention）、大数据里”热数据在内存、冷数据落盘”的分层存储设计是同一个思想在不同层次的复用——这是一个很好的跨知识域连接点，面试时可以主动串联。</li>
+</ul>
+<blockquote>
+<p>参考：论文《MemGPT: Towards LLMs as Operating Systems》；LangChain 官方文档《Memory》章节</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/agent/multi-agent-collaboration-patterns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/agent/multi-agent-collaboration-patterns/" class="post-title-link" itemprop="url">多 Agent 协作模式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 15:40:00" itemprop="dateCreated datePublished" datetime="2026-08-22T15:40:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="多-Agent-协作模式"><a href="#多-Agent-协作模式" class="headerlink" title="多 Agent 协作模式"></a>多 Agent 协作模式</h1><p>一句话定位：多 Agent 协作解决的是”单个 Agent 在复杂任务上容易顾此失彼”的问题——用职责分工（Supervisor 模式）换取清晰可控，或用交叉校验（辩论模式）换取更高准确性，代价是协调复杂度或成本翻倍。</p>
+<h2 id="1-Supervisor-模式"><a href="#1-Supervisor-模式" class="headerlink" title="1. Supervisor 模式"></a>1. Supervisor 模式</h2><ul>
+<li>结构：一个主 Agent（Supervisor）负责理解总任务、拆解子任务、分派给专职的子 Agent 执行，最后汇总子 Agent 的结果给出最终答案。</li>
+<li>优点：职责清晰，每个子 Agent 只需专注做好一件事（工具集更小、Prompt 更聚焦），整体流程可控、易调试（能定位是哪个子 Agent 出的问题）。</li>
+<li>适用场景：任务可以清晰拆解成若干独立子任务（如”查数据 + 分析 + 生成报告”分别交给三个专职 Agent）。</li>
+</ul>
+<h2 id="2-辩论-互评模式"><a href="#2-辩论-互评模式" class="headerlink" title="2. 辩论 &#x2F; 互评模式"></a>2. 辩论 &#x2F; 互评模式</h2><ul>
+<li>结构：多个 Agent（通常配置相同或不同的模型&#x2F;Prompt）各自独立产出答案，再互相审视、质疑、修正对方的答案，经过若干轮迭代收敛到最终答案。</li>
+<li>优点：通过交叉校验减少单一模型的幻觉与偏见，在需要高事实性的任务上有实测提升。</li>
+<li>代价：每轮都要多次模型调用，成本和延迟直接翻倍甚至更多；且不保证收敛（可能陷入分歧）。</li>
+</ul>
+<h2 id="3-选型判断依据"><a href="#3-选型判断依据" class="headerlink" title="3. 选型判断依据"></a>3. 选型判断依据</h2><ul>
+<li><strong>任务是否可清晰分解</strong> → 可分解、职责边界清楚 → Supervisor 模式；任务是”同一个问题需要多角度校验” → 辩论模式。</li>
+<li><strong>对准确性的要求 vs 对成本的容忍度</strong> → 准确性要求极高且预算充足 → 辩论模式；追求效率与可控性 → Supervisor 模式。</li>
+<li>实践中两者也可以组合：Supervisor 分派的某个子任务本身用辩论模式做双重校验。</li>
+</ul>
+<h2 id="4-面试落点"><a href="#4-面试落点" class="headerlink" title="4. 面试落点"></a>4. 面试落点</h2><ul>
+<li>能讲清两种模式各自的优缺点和适用边界，避免”多 Agent 一定更好”的笼统结论——多 Agent 的核心成本是<strong>协调开销和调用成本</strong>，不是免费的能力提升。</li>
+<li>可迁移话术：Supervisor 模式 ≈ 分布式系统里的”主从架构 + 任务分片”；辩论模式 ≈ 多副本一致性校验（如分布式存储的多副本读一致性检查），本质都是用冗余换正确性&#x2F;可靠性。</li>
+</ul>
+<blockquote>
+<p>参考：论文《AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation》；论文《Improving Factuality and Reasoning in Language Models through Multiagent Debate》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/agent/function-calling-tool-use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/agent/function-calling-tool-use/" class="post-title-link" itemprop="url">工具调用（Function Calling / Tool Use）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 15:30:00" itemprop="dateCreated datePublished" datetime="2026-08-22T15:30:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="工具调用（Function-Calling-Tool-Use）"><a href="#工具调用（Function-Calling-Tool-Use）" class="headerlink" title="工具调用（Function Calling &#x2F; Tool Use）"></a>工具调用（Function Calling &#x2F; Tool Use）</h1><p>一句话定位：工具调用让 LLM 从”只能生成文本”变成”能读写外部世界”——通过 JSON Schema 描述工具，模型生成结构化参数，框架校验并路由执行，结果回填上下文供模型继续推理。</p>
+<h2 id="1-基本机制"><a href="#1-基本机制" class="headerlink" title="1. 基本机制"></a>1. 基本机制</h2><ol>
+<li><strong>工具注册</strong>：用 JSON Schema 描述每个工具的名称、功能说明、参数结构（类型、是否必填），提供给模型作为上下文的一部分。</li>
+<li><strong>模型生成调用</strong>：模型根据当前任务判断需要调用哪个工具，输出结构化的调用请求（工具名 + 参数，通常是 JSON），而不是自由文本。</li>
+<li><strong>框架校验与执行</strong>：应用层框架解析模型输出，校验参数是否符合 Schema，路由到真实的函数&#x2F;API 执行。</li>
+<li><strong>结果回填</strong>：把工具执行结果作为新的上下文（Observation）追加回对话历史，模型基于结果继续下一轮推理（呼应 7.1 的 ReAct 循环）。</li>
+</ol>
+<h2 id="2-核心难点"><a href="#2-核心难点" class="headerlink" title="2. 核心难点"></a>2. 核心难点</h2><ul>
+<li><strong>参数幻觉</strong>：模型可能生成不符合 Schema 的参数（类型错误、编造不存在的字段值、缺失必填项），需要框架层做严格校验并给出明确的错误反馈让模型重试，而不是直接执行错误参数。</li>
+<li><strong>失败重试与降级</strong>：工具调用可能因为网络、权限、业务逻辑失败，需要设计重试策略和失败后的降级路径（如告知用户”该操作暂不可用”而不是卡死或硬编答案）。</li>
+<li><strong>工具选择模糊</strong>：当可选工具很多、功能相近时，模型可能选错工具；解决思路包括工具描述写得更精确、限制单次可见的工具数量（分层筛选后再暴露）。</li>
+</ul>
+<h2 id="3-面试落点"><a href="#3-面试落点" class="headerlink" title="3. 面试落点"></a>3. 面试落点</h2><ul>
+<li>能讲清”为什么需要 JSON Schema”：把模型的自由文本输出约束成结构化、可校验、可编程处理的格式，是连接”语言模型”和”确定性系统”的关键桥梁。</li>
+<li>可迁移话术：这和微服务里”用 OpenAPI&#x2F;Protobuf 定义接口契约”是同一个思路——都是用 Schema 把”意图”转换成”可执行、可校验的结构化调用”。</li>
+</ul>
+<blockquote>
+<p>参考：OpenAI 官方文档《Function calling》；论文《Toolformer: Language Models Can Teach Themselves to Use Tools》</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/agent/langgraph-state-machine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/agent/langgraph-state-machine/" class="post-title-link" itemprop="url">LangGraph 状态机式编排</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 15:20:00" itemprop="dateCreated datePublished" datetime="2026-08-22T15:20:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="LangGraph-状态机式编排"><a href="#LangGraph-状态机式编排" class="headerlink" title="LangGraph 状态机式编排"></a>LangGraph 状态机式编排</h1><p>一句话定位：LangGraph 把 Agent 的执行流程从”线性 Chain”升级为”带状态的图（Graph）”，天然支持条件分支、循环和检查点，适合线性 Chain 处理不了的复杂可控流程。</p>
+<h2 id="1-为什么-Chain-不够用"><a href="#1-为什么-Chain-不够用" class="headerlink" title="1. 为什么 Chain 不够用"></a>1. 为什么 Chain 不够用</h2><ul>
+<li>LangChain 的 Chain 本质是一条固定顺序的流水线：A → B → C，很难表达”如果 A 的结果满足条件 X 就走 B，否则走 D，并且可能要循环回到 A 重试”这类复杂控制流。</li>
+<li>Agent 的真实执行往往需要循环（反复调用工具直到任务完成）、分支（根据中间结果选择不同后续动作）、以及在关键节点暂停等待人工确认——这些都是”图”更自然的表达方式，而不是”链”。</li>
+</ul>
+<h2 id="2-LangGraph-核心概念"><a href="#2-LangGraph-核心概念" class="headerlink" title="2. LangGraph 核心概念"></a>2. LangGraph 核心概念</h2><ul>
+<li><strong>节点（Node）</strong>：图中的每个处理单元（可以是一次 LLM 调用、一次工具执行、一次条件判断）。</li>
+<li><strong>边（Edge）</strong>：节点间的转移关系，可以是固定的（无条件转移）也可以是条件的（根据上一步状态动态决定下一个节点）。</li>
+<li><strong>状态（State）</strong>：贯穿整个图执行过程、可被各节点读写的共享数据结构，取代了 Chain 里”只能顺序传递”的局限。</li>
+<li><strong>检查点（Checkpoint）</strong>：可以在图执行到某个节点时持久化当前状态，支持中断后恢复、支持人工审核后继续（对应 7.7 的 Human-in-the-loop）。</li>
+</ul>
+<h2 id="3-类比大数据的-DAG-编排"><a href="#3-类比大数据的-DAG-编排" class="headerlink" title="3. 类比大数据的 DAG 编排"></a>3. 类比大数据的 DAG 编排</h2><ul>
+<li>LangGraph 的图结构和大数据任务调度的 DAG 编排（1.9）高度同构：节点 ≈ 算子，边 ≈ 依赖关系，状态 ≈ 算子间传递的数据，检查点 ≈ Checkpoint&#x2F;Savepoint 机制（1.4 Flink 的 Checkpoint）。</li>
+<li>区别在于：大数据 DAG 通常是<strong>静态</strong>的（编译期确定），LangGraph 的边可以是<strong>运行时动态决定</strong>的（根据 LLM 输出内容选择走哪条边），更接近”动态 DAG”或状态机。</li>
+</ul>
+<h2 id="4-面试落点"><a href="#4-面试落点" class="headerlink" title="4. 面试落点"></a>4. 面试落点</h2><ul>
+<li>能讲清”什么场景该用 LangGraph 而不是简单 Chain”：需要循环、条件分支、或需要人工介入检查点的复杂 Agent 流程。</li>
+<li>可迁移话术：直接把大数据 DAG 编排经验类比过来——“我在大数据平台做过的任务依赖编排、失败重试、Checkpoint 恢复，本质上和 LangGraph 的状态机编排是同一套设计哲学，只是执行的节点从数据处理算子换成了 LLM 调用&#x2F;工具调用”。</li>
+</ul>
+<blockquote>
+<p>参考：LangGraph 官方文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/AI/agent/langchain-core-components/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AI/agent/langchain-core-components/" class="post-title-link" itemprop="url">LangChain 核心组件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2026-08-22 15:10:00" itemprop="dateCreated datePublished" datetime="2026-08-22T15:10:00+00:00">2026-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="LangChain-核心组件"><a href="#LangChain-核心组件" class="headerlink" title="LangChain 核心组件"></a>LangChain 核心组件</h1><p>一句话定位：LangChain 本质是”LLM 调用的编排与抽象层”——把 Prompt 组装、状态管理、外部检索、工具调用这些重复性工作抽象成可复用组件，让开发者不用每次都手写胶水代码。</p>
+<h2 id="1-四大核心组件"><a href="#1-四大核心组件" class="headerlink" title="1. 四大核心组件"></a>1. 四大核心组件</h2><ul>
+<li><strong>Chain（任务链组合）</strong>：把多个 LLM 调用&#x2F;处理步骤串联成一条流水线（如”先摘要 → 再翻译 → 再格式化”），本质是函数组合，让复杂任务拆解为可复用的小步骤。</li>
+<li><strong>Memory（会话状态）</strong>：管理多轮对话的历史上下文，包括简单的”保留全部历史”和更复杂的”滚动摘要压缩历史”策略，解决上下文窗口有限的问题。</li>
+<li><strong>Retriever（检索增强）</strong>：把外部知识库（向量库&#x2F;搜索引擎）接入，在生成前先检索相关文档拼进上下文，即 RAG 的检索侧组件（对应 8.4）。</li>
+<li><strong>Tool（外部能力）</strong>：把外部 API&#x2F;函数包装成模型可调用的”工具”，配合 Function Calling（7.4）让模型能读写外部世界。</li>
+</ul>
+<h2 id="2-设计本质"><a href="#2-设计本质" class="headerlink" title="2. 设计本质"></a>2. 设计本质</h2><ul>
+<li>LangChain 不改变 LLM 本身的能力，它解决的是”编排”问题：如何把一次孤立的模型调用，变成一个有状态、能用工具、能查资料的完整应用。</li>
+<li>这也是它经常被诟病”过度抽象”的原因——简单任务直接裸调 API 可能更清晰，LangChain 的价值在<strong>复杂、多步骤、需要状态管理</strong>的场景才明显。</li>
+</ul>
+<h2 id="3-面试落点"><a href="#3-面试落点" class="headerlink" title="3. 面试落点"></a>3. 面试落点</h2><ul>
+<li>能说清四个组件各自解决什么问题，避免把 LangChain 当成”黑盒框架”泛泛而谈。</li>
+<li>可迁移话术：Chain ≈ 数据处理流水线里的算子编排（1.9）；Memory 的滚动摘要压缩 ≈ 大数据里的增量聚合思路；Retriever ≈ 数据平台里”先查元数据索引再拉数据”的两段式查询。</li>
+</ul>
+<blockquote>
+<p>参考：LangChain 官方文档</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">354</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

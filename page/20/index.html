@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/20/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/20/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">354</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/multithread/11.async-wait-with-cycleBarrier/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/multithread/11.async-wait-with-cycleBarrier/" class="post-title-link" itemprop="url">使用CycleBarrier实现异步等待</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-03T00:00:00+00:00">2019-07-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>可循环利用的屏障  </li>
+<li>每个线程执行时，都会碰到一个屏障，直到所有线程执行结束，然后屏障便会打开，使所有线程继续往下执行</li>
+</ul>
+<p><code>CyclicBarrier(int parties)</code>和<code>CyclicBarrier(int parties, Runnable barrierAction)</code></p>
+<ul>
+<li>前者只需要声明需要拦截的线程数即可</li>
+<li>后者还需要定义一个等待所有线程到达屏障优先执行的Runnable对象</li>
+</ul>
+<p>实现原理：</p>
+<p>在CyclicBarrier的内部定义了一个Lock对象，每当一个线程调用await方法时，将拦截的线程数减1，然后判断剩余拦截数是否为初始值parties，如果不是，进入Lock对象的条件队列等待。如果是，执行barrierAction对象的Runnable方法，然后将锁的条件队列中的所有线程放入锁等待队列中，这些线程会依次的获取锁、释放锁。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/multithread/10.async-wait-with-latch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/multithread/10.async-wait-with-latch/" class="post-title-link" itemprop="url">使用CountLatch实现异步等待</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-07-03T00:00:00+00:00">2019-07-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="10-async-wait-with-latch"><a href="#10-async-wait-with-latch" class="headerlink" title="10.async-wait-with-latch"></a>10.async-wait-with-latch</h1><p>利用CountLatch异步等待</p>
+<blockquote>
+<p>摘自JavaFx源码</p>
+<p><code>com.sun.javafx.application.LauncherImpl#launchApplication(java.lang.Class&lt;? extends javafx.application.Application&gt;, java.lang.Class&lt;? extends javafx.application.Preloader&gt;, java.lang.String[])</code></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接收异常</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="type">RuntimeException</span> <span class="variable">launchException</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="type">CountDownLatch</span> <span class="variable">launchLatch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CountDownLatch</span>(<span class="number">1</span>);</span><br><span class="line"><span class="type">Thread</span> <span class="variable">launcherThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        launchApplication1(appClass, preloaderClass, args);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RuntimeException rte) &#123;</span><br><span class="line">        launchException = rte;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">        launchException =</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Application launch exception&quot;</span>, ex);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Error err) &#123;</span><br><span class="line">        launchException =</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Application launch error&quot;</span>, err);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// countDown</span></span><br><span class="line">        launchLatch.countDown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">launcherThread.setName(<span class="string">&quot;JavaFX-Launcher&quot;</span>);</span><br><span class="line">launcherThread.start();</span><br><span class="line"><span class="comment">// 异步线程启动</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Wait for FX launcher thread to finish before returning to user</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    launchLatch.await();</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Unexpected exception: &quot;</span>, ex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (launchException != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> launchException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-cep-office/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-cep-office/" class="post-title-link" itemprop="url">【转载】flink cep官方文档</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-09T00:00:00+00:00">2019-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://github.com/crestofwave1/oneFlink/blob/master/doc/CEP/FlinkCEPOfficeWeb.md">转载自 https://github.com/crestofwave1/oneFlink/blob/master/doc/CEP/FlinkCEPOfficeWeb.md</a></p>
+<h2 id="0-本文概述简介"><a href="#0-本文概述简介" class="headerlink" title="0. 本文概述简介"></a>0. 本文概述简介</h2><p>FlinkCEP是在Flink之上实现的复杂事件处理（CEP）库。 它允许你在无界的事件流中检测事件模式，让你有机会掌握数据中重要的事项。</p>
+<p>本文描述了Flink CEP中可用的API调用。 首先介绍Pattern API，它允许你指定要在流中检测的模式，然后介绍如何检测匹配事件序列并对其进行操作。 然后，我们将介绍CEP库在处理事件时间延迟时所做的假设。</p>
+<h2 id="1-入门"><a href="#1-入门" class="headerlink" title="1.入门"></a>1.入门</h2><p>首先是要在你的pom.xml文件中，引入CEP库。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.flink<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>flink-cep_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意要应用模式匹配的DataStream中的事件必须实现正确的equals（）和hashCode（）方法，因为FlinkCEP使用它们来比较和匹配事件。</p>
+<p>第一个demo如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DataStream</span>&lt;Event&gt; <span class="variable">input</span> <span class="operator">=</span> ...</span><br><span class="line"></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">pattern</span> <span class="operator">=</span> Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>).where(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event event)</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> event.getId() == <span class="number">42</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ).next(<span class="string">&quot;middle&quot;</span>).subtype(SubEvent.class).where(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(SubEvent subEvent)</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> subEvent.getVolume() &gt;= <span class="number">10.0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ).followedBy(<span class="string">&quot;end&quot;</span>).where(</span><br><span class="line">         <span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event event)</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> event.getName().equals(<span class="string">&quot;end&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="type">PatternStream</span>&lt;Event&gt; <span class="variable">patternStream</span> <span class="operator">=</span> CEP.pattern(input, pattern);</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;Alert&gt; <span class="variable">result</span> <span class="operator">=</span> patternStream.select(</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">PatternSelectFunction</span>&lt;Event, Alert&gt; &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">Alert</span> <span class="title function_">select</span><span class="params">(Map&lt;String, List&lt;Event&gt;&gt; pattern)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">            <span class="keyword">return</span> createAlertFrom(pattern);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Pattern-API"><a href="#2-Pattern-API" class="headerlink" title="2.Pattern API"></a>2.Pattern API</h2><p>Pattern API允许你定义要从输入流中提取的复杂模式序列。</p>
+<p>每个复杂模式序列都是由多个简单模式组成，即寻找具有相同属性的单个事件的模式。我们可以先定义一些简单的模式，然后组合成复杂的模式序列。 可以将模式序列视为此类模式的结构图，基于用户指定的条件从一个模式转换到下一个模式，例如， event.getName().equals(“start”)。 匹配是一系列输入事件，通过一系列有效的模式转换访问复杂模式图中的所有模式。</p>
+<p>注意每个模式必须具有唯一的名称，以便后续可以使用该名称来标识匹配的事件。</p>
+<p>注意模式名称不能包含字符“：”。</p>
+<p>在本节接下来的部分，我们将首先介绍如何定义单个模式，然后如何将各个模式组合到复杂模式中。</p>
+<h3 id="2-1-单个模式"><a href="#2-1-单个模式" class="headerlink" title="2.1 单个模式"></a>2.1 单个模式</h3><p>Pattern可以是单单个，也可以是循环模式。单个模式接受单个事件，而循环模式可以接受多个事件。在模式匹配符号中，模式“a b + c？d”（或“a”，后跟一个或多个“b”，可选地后跟“c”，后跟“d”），a，c ？，和d是单例模式，而b +是循环模式。 默认情况下，模式是单个模式，您可以使用Quantifiers将其转换为循环模式。每个模式可以有一个或多个条件，基于它接受事件。</p>
+<h4 id="2-1-1-Quantifiers"><a href="#2-1-1-Quantifiers" class="headerlink" title="2.1.1 Quantifiers"></a>2.1.1 Quantifiers</h4><p>在FlinkCEP中，您可以使用以下方法指定循环模式：pattern.oneOrMore（），用于期望一个或多个事件发生的模式（例如之前提到的b +）;和pattern.times（#ofTimes）， 用于期望给定类型事件的特定出现次数的模式，例如4个;和patterntimes（#fromTimes，＃toTimes），用于期望给定类型事件的最小出现次数和最大出现次数的模式，例如， 2-4。</p>
+<p>您可以使用pattern.greedy（）方法使循环模式变得贪婪，但是还不能使组模式变得贪婪。您可以使用pattern.optional（）方法使得所有模式，循环与否，变为可选。</p>
+<p>对于名为start的模式，以下是有效的Quantifiers：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// expecting 4 occurrences</span></span><br><span class="line">start.times(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 0 or 4 occurrences</span></span><br><span class="line">start.times(<span class="number">4</span>).optional();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 2, 3 or 4 occurrences</span></span><br><span class="line">start.times(<span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 2, 3 or 4 occurrences and repeating as many as possible</span></span><br><span class="line">start.times(<span class="number">2</span>, <span class="number">4</span>).greedy();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 0, 2, 3 or 4 occurrences</span></span><br><span class="line">start.times(<span class="number">2</span>, <span class="number">4</span>).optional();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 0, 2, 3 or 4 occurrences and repeating as many as possible</span></span><br><span class="line">start.times(<span class="number">2</span>, <span class="number">4</span>).optional().greedy();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 1 or more occurrences</span></span><br><span class="line">start.oneOrMore();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 1 or more occurrences and repeating as many as possible</span></span><br><span class="line">start.oneOrMore().greedy();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 0 or more occurrences</span></span><br><span class="line">start.oneOrMore().optional();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 0 or more occurrences and repeating as many as possible</span></span><br><span class="line">start.oneOrMore().optional().greedy();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 2 or more occurrences</span></span><br><span class="line">start.timesOrMore(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 2 or more occurrences and repeating as many as possible</span></span><br><span class="line">start.timesOrMore(<span class="number">2</span>).greedy();</span><br><span class="line"></span><br><span class="line"><span class="comment">// expecting 0, 2 or more occurrences and repeating as many as possible</span></span><br><span class="line">start.timesOrMore(<span class="number">2</span>).optional().greedy();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-2-Conditions-条件"><a href="#2-1-2-Conditions-条件" class="headerlink" title="2.1.2 Conditions-条件"></a>2.1.2 Conditions-条件</h4><p>在每个模式中，从一个模式转到下一个模式，可以指定其他条件。您可以将使用下面这些条件：</p>
+<ol>
+<li>传入事件的属性，例如其值应大于5，或大于先前接受的事件的平均值。</li>
+<li>匹配事件的连续性，例如检测模式a，b，c，序列中间不能有任何非匹配事件。</li>
+</ol>
+<h4 id="2-1-3-Conditions-on-Properties-关于属性的条件"><a href="#2-1-3-Conditions-on-Properties-关于属性的条件" class="headerlink" title="2.1.3 Conditions on Properties-关于属性的条件"></a>2.1.3 Conditions on Properties-关于属性的条件</h4><p>可以通过pattern.where（），pattern.or（）或pattern.until（）方法指定事件属性的条件。 条件可以是IterativeConditions或SimpleConditions。</p>
+<ol>
+<li>迭代条件：</li>
+</ol>
+<p>这是最常见的条件类型。 你可以指定一个条件，该条件基于先前接受的事件的属性或其子集的统计信息来接受后续事件。</p>
+<p>下面代码说的是：如果名称以“foo”开头同时如果该模式的先前接受的事件的价格总和加上当前事件的价格不超过该值 5.0，则迭代条件接受名为“middle”的模式的下一个事件，。 迭代条件可以很强大的，尤其是与循环模式相结合，例如， oneOrMore()。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">middle.oneOrMore().where(<span class="keyword">new</span> <span class="title class_">IterativeCondition</span>&lt;SubEvent&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(SubEvent value, Context&lt;SubEvent&gt; ctx)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">if</span> (!value.getName().startsWith(<span class="string">&quot;foo&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">double</span> <span class="variable">sum</span> <span class="operator">=</span> value.getPrice();</span><br><span class="line">        <span class="keyword">for</span> (Event event : ctx.getEventsForPattern(<span class="string">&quot;middle&quot;</span>)) &#123;</span><br><span class="line">            sum += event.getPrice();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Double.compare(sum, <span class="number">5.0</span>) &lt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注意对context.getEventsForPattern（…）的调用,将为给定潜在匹配项查找所有先前接受的事件。 此操作的代价可能会变化巨大，因此在使用条件时，请尽量减少其使用。</p>
+<ol>
+<li>简单条件：</li>
+</ol>
+<p>这种类型的条件扩展了前面提到的IterativeCondition类，并且仅根据事件本身的属性决定是否接受事件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">start.where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> value.getName().startsWith(<span class="string">&quot;foo&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>最后，还可以通过pattern.subtype（subClass）方法将接受事件的类型限制为初始事件类型的子类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">start.subtype(SubEvent.class).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;SubEvent&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(SubEvent value)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">// some condition</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>组合条件：</li>
+</ol>
+<p>如上所示，可以将子类型条件与其他条件组合使用。 这适用于所有条件。 您可以通过顺序调用where（）来任意组合条件。 最终结果将是各个条件的结果的逻辑AND。 要使用OR组合条件，可以使用or（）方法，如下所示。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pattern.where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">// some condition</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).or(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">// or condition</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>停止条件：</li>
+</ol>
+<p>在循环模式（oneOrMore()和oneOrMore().optional()）的情况下，还可以指定停止条件，例如： 接受值大于5的事件，直到值的总和小于50。</p>
+<p>为了更好的理解，可以看看下面的例子：</p>
+<p>给定模式：(a+ until b)，b之前，要出现一个或者多个a。</p>
+<p>给定输入序列：a1，c，a2，b，a3</p>
+<p>输出结果: {a1 a2}{a1}{a2}{a3}</p>
+<p>可以看到{a1,a2,a3},{a2,a3}这两个并没有输出，这就是停止条件的作用。</p>
+<ol>
+<li>连续事件条件</li>
+</ol>
+<p>FlinkCEP支持事件之间以下形式进行连续：</p>
+<ul>
+<li>严格连续性：希望所有匹配事件一个接一个地出现，中间没有任何不匹配的事件。</li>
+<li>宽松连续性：忽略匹配的事件之间出现的不匹配事件。 不能忽略两个事件之间的匹配事件。</li>
+<li>非确定性轻松连续性：进一步放宽连续性，允许忽略某些匹配事件的其他匹配。</li>
+</ul>
+<p>为了解释上面的内容，我们举个例子。假如有个模式序列”a+ b”，输入序列”a1,c,a2,b”，不同连续条件下有不同的区别：</p>
+<ol>
+<li>严格连续性：{a2 b} - 由于c的存在导致a1被废弃</li>
+<li>宽松连续性：{a1,b}和{a1 a2 b} - c被忽略</li>
+<li>非确定性宽松连续性：{a1 b}, {a2 b}, 和 {a1 a2 b}</li>
+</ol>
+<p>对于循环模式（例如oneOrMore()和times()），默认是宽松的连续性。 如果你想要严格的连续性，你必须使用consecutive()显式指定它， 如果你想要非确定性的松弛连续性，你可以使用allowCombinations()方法。</p>
+<p>注意在本节中，我们讨论的是单个循环模式中的连续性，并且需要在该上下文中理解consecutive()和allowCombinations()。 稍后在讲解组合模式时，我们将讨论其他方法，例如next（）和followedBy（），用于指定模式之间的连续条件。</p>
+<h4 id="2-1-4-API简介"><a href="#2-1-4-API简介" class="headerlink" title="2.1.4 API简介"></a>2.1.4 API简介</h4><h5 id="1-where-condition"><a href="#1-where-condition" class="headerlink" title="1. where(condition)"></a>1. where(condition)</h5><p>定义当前模式的条件。 为了匹配模式，事件必须满足条件。 多个连续的where()，其条件为AND：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pattern.where(<span class="keyword">new</span> <span class="title class_">IterativeCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value, Context ctx)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">// some condition</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-or-condition"><a href="#2-or-condition" class="headerlink" title="2. or(condition)"></a>2. or(condition)</h5><p>添加与现有条件进行OR运算的新条件。 只有在至少通过其中一个条件时，事件才能匹配该模式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pattern.where(<span class="keyword">new</span> <span class="title class_">IterativeCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value, Context ctx)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">// some condition</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).or(<span class="keyword">new</span> <span class="title class_">IterativeCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value, Context ctx)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">// alternative condition</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-until-condition"><a href="#3-until-condition" class="headerlink" title="3. until(condition)"></a>3. until(condition)</h5><p>指定循环模式的停止条件。 意味着如果匹配给定条件的事件发生，则不再接受该模式中的事件。</p>
+<p>仅适用于oneOrMore（）</p>
+<p>注意：它允许在基于事件的条件下清除相应模式的状态。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pattern.oneOrMore().until(<span class="keyword">new</span> <span class="title class_">IterativeCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value, Context ctx)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">// alternative condition</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-subtype-subClass"><a href="#4-subtype-subClass" class="headerlink" title="4. subtype(subClass)"></a>4. subtype(subClass)</h5><p>定义当前模式的子类型条件。 如果事件属于此子类型，则事件只能匹配该模式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern.subtype(SubEvent.class);</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-oneOrMore"><a href="#5-oneOrMore" class="headerlink" title="5. oneOrMore()"></a>5. oneOrMore()</h5><p>指定此模式至少发生一次匹配事件。</p>
+<p>默认情况下，使用宽松的内部连续性。</p>
+<p>注意：建议使用until（）或within（）来启用状态清除</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pattern.oneOrMore().until(<span class="keyword">new</span> <span class="title class_">IterativeCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value, Context ctx)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> ... <span class="comment">// alternative condition</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-timesOrMore-times"><a href="#6-timesOrMore-times" class="headerlink" title="6. timesOrMore(#times)"></a>6. timesOrMore(#times)</h5><p>指定此模式至少需要#times次出现匹配事件。</p>
+<p>默认情况下，使用宽松的内部连续性（在后续事件之间）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern.timesOrMore(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-times-ofTimes"><a href="#7-times-ofTimes" class="headerlink" title="7. times(#ofTimes)"></a>7. times(#ofTimes)</h5><p>指定此模式需要匹配事件的确切出现次数。</p>
+<p>默认情况下，使用宽松的内部连续性（在后续事件之间）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern.times(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-times-fromTimes-toTimes"><a href="#8-times-fromTimes-toTimes" class="headerlink" title="8. times(fromTimes, toTimes)"></a>8. times(fromTimes, toTimes)</h5><p>指定此模式期望在匹配事件的#fromTimes次和#toTimes次之间出现。</p>
+<p>默认情况下，使用宽松的内部连续性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern.times(<span class="number">2</span>, <span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="9-optional"><a href="#9-optional" class="headerlink" title="9. optional()"></a>9. optional()</h5><p>指定此模式是可选的，即有可能根本不会发生。 这适用于所有上述量词。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern.oneOrMore().optional();</span><br></pre></td></tr></table></figure>
+
+<h5 id="10-greedy"><a href="#10-greedy" class="headerlink" title="10. greedy()"></a>10. greedy()</h5><p>指定此模式是贪婪的，即它将尽可能多地重复。 这仅适用于quantifiers，目前不支持组模式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern.oneOrMore().greedy();</span><br></pre></td></tr></table></figure>
+
+<h5 id="11-consecutive"><a href="#11-consecutive" class="headerlink" title="11. consecutive()"></a>11. consecutive()</h5><p>与oneOrMore（）和times（）一起使用并在匹配事件之间强加严格的连续性，即任何不匹配的元素都会中断匹配。</p>
+<p>如果不使用，则使用宽松的连续性（如followBy（））。</p>
+<p>例如，这样的模式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> value.getName().equals(<span class="string">&quot;c&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.followedBy(<span class="string">&quot;middle&quot;</span>).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> value.getName().equals(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).oneOrMore().consecutive()</span><br><span class="line">.followedBy(<span class="string">&quot;end1&quot;</span>).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> value.getName().equals(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>针对上面的模式，我们假如输入序列如：C D A1 A2 A3 D A4 B</p>
+<p>使用consecutive：{C A1 B}, {C A1 A2 B}, {C A1 A2 A3 B}</p>
+<p>不使用:{C A1 B}, {C A1 A2 B}, {C A1 A2 A3 B}, {C A1 A2 A3 A4 B}</p>
+<h5 id="12-allowCombinations"><a href="#12-allowCombinations" class="headerlink" title="12. allowCombinations()"></a>12. allowCombinations()</h5><p>与oneOrMore（）和times（）一起使用，并在匹配事件之间强加非确定性宽松连续性（如 followedByAny()）。</p>
+<p>如果不应用，则使用宽松的连续性（如followBy()）。</p>
+<p>例如,这样的模式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> value.getName().equals(<span class="string">&quot;c&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.followedBy(<span class="string">&quot;middle&quot;</span>).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> value.getName().equals(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).oneOrMore().allowCombinations()</span><br><span class="line">.followedBy(<span class="string">&quot;end1&quot;</span>).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> value.getName().equals(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>针对上面的模式，我们假如输入序列如：C D A1 A2 A3 D A4 B</p>
+<p>使用allowCombinations：{C A1 B}, {C A1 A2 B}, {C A1 A3 B}, {C A1 A4 B}, {C A1 A2 A3 B}, {C A1 A2 A4 B}, {C A1 A3 A4 B}, {C A1 A2 A3 A4 B}</p>
+<p>不使用:{C A1 B}, {C A1 A2 B}, {C A1 A2 A3 B}, {C A1 A2 A3 A4 B}</p>
+<h3 id="2-2-组合模式"><a href="#2-2-组合模式" class="headerlink" title="2.2 组合模式"></a>2.2 组合模式</h3><h4 id="2-2-1-简介"><a href="#2-2-1-简介" class="headerlink" title="2.2.1 简介"></a>2.2.1 简介</h4><p>已经了解了单个模式的样子，现在是时候看看如何将它们组合成一个完整的模式序列。</p>
+<p>模式序列必须以初始模式开始，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">start</span> <span class="operator">=</span> Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>接下来，您可以通过指定它们之间所需的连续条件，为模式序列添加更多模式。 在上一节中，我们描述了Flink支持的不同邻接模式，即严格，宽松和非确定性宽松，以及如何在循环模式中应用它们。 要在连续模式之间应用它们，可以使用：</p>
+<blockquote>
+<p>next() 对应 严格, followedBy() 对应 宽松连续性 followedByAny() 对应 非确定性宽松连续性</p>
+</blockquote>
+<p>亦或</p>
+<blockquote>
+<p>notNext() 如果不希望一个事件类型紧接着另一个类型出现。 notFollowedBy() 不希望两个事件之间任何地方出现该事件。</p>
+</blockquote>
+<blockquote>
+<p>注意 模式序列不能以notFollowedBy（）结束。</p>
+</blockquote>
+<blockquote>
+<p>注意 NOT模式前面不能有可选模式。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// strict contiguity</span></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">strict</span> <span class="operator">=</span> start.next(<span class="string">&quot;middle&quot;</span>).where(...);</span><br><span class="line"></span><br><span class="line"><span class="comment">// relaxed contiguity</span></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">relaxed</span> <span class="operator">=</span> start.followedBy(<span class="string">&quot;middle&quot;</span>).where(...);</span><br><span class="line"></span><br><span class="line"><span class="comment">// non-deterministic relaxed contiguity</span></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">nonDetermin</span> <span class="operator">=</span> start.followedByAny(<span class="string">&quot;middle&quot;</span>).where(...);</span><br><span class="line"></span><br><span class="line"><span class="comment">// NOT pattern with strict contiguity</span></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">strictNot</span> <span class="operator">=</span> start.notNext(<span class="string">&quot;not&quot;</span>).where(...);</span><br><span class="line"></span><br><span class="line"><span class="comment">// NOT pattern with relaxed contiguity</span></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">relaxedNot</span> <span class="operator">=</span> start.notFollowedBy(<span class="string">&quot;not&quot;</span>).where(...);</span><br></pre></td></tr></table></figure>
+
+<p>宽松连续性指的是仅第一个成功匹配的事件会被匹配到，然而非确定性宽松连续性，相同的开始会有多个匹配结果发出。距离，如果一个模式是”a b”，给定输入序列是”a c b1 b2”。对于不同连续性会有不同输出。</p>
+<ol>
+<li>a和b之间严格连续性，将会返回{},也即是没有匹配。因为c的出现导致a，抛弃了。</li>
+<li>a和b之间宽松连续性，返回的是{a，b1},因为宽松连续性将会抛弃为匹配成功的元素，直至匹配到下一个要匹配的事件。</li>
+<li>a和b之间非确定性宽松连续性，返回的是{a,b1},{a,b2}。</li>
+</ol>
+<p>也可以为模式定义时间约束。 例如，可以通过pattern.within（）方法定义模式应在10秒内发生。 时间模式支持处理和事件时间。 注意模式序列只能有一个时间约束。 如果在不同的单独模式上定义了多个这样的约束，则应用最小的约束。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">next.within(Time.seconds(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+
+<p>可以为begin，followBy，followByAny和next定义一个模式序列作为条件。模式序列将被逻辑地视为匹配条件，而且将返回GroupPattern并且 可对GroupPattern使用oneOrMore（），times（#ofTimes），times（＃fromTimes，＃toTimes），optional（），consecutive（）， allowCombinations（）等方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PatternPatte</span> &lt;Event, ?&gt; <span class="variable">start</span> <span class="operator">=</span> Pattern.begin(</span><br><span class="line">    Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>).where(...).followedBy(<span class="string">&quot;start_middle&quot;</span>).where(...)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// strict contiguity</span></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">strict</span> <span class="operator">=</span> start.next(</span><br><span class="line">    Pattern.&lt;Event&gt;begin(<span class="string">&quot;next_start&quot;</span>).where(...).followedBy(<span class="string">&quot;next_middle&quot;</span>).where(...)</span><br><span class="line">).times(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// relaxed contiguity</span></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">relaxed</span> <span class="operator">=</span> start.followedBy(</span><br><span class="line">    Pattern.&lt;Event&gt;begin(<span class="string">&quot;followedby_start&quot;</span>).where(...).followedBy(<span class="string">&quot;followedby_middle&quot;</span>).where(...)</span><br><span class="line">).oneOrMore();</span><br><span class="line"></span><br><span class="line"><span class="comment">// non-deterministic relaxed contiguity</span></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">nonDetermin</span> <span class="operator">=</span> start.followedByAny(</span><br><span class="line">    Pattern.&lt;Event&gt;begin(<span class="string">&quot;followedbyany_start&quot;</span>).where(...).followedBy(<span class="string">&quot;followedbyany_middle&quot;</span>).where(...)</span><br><span class="line">).optional();</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2-API"><a href="#2-2-2-API" class="headerlink" title="2.2.2 API"></a>2.2.2 API</h4><ol>
+<li>begin(#name)</li>
+</ol>
+<p>定义一个开始模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">start</span> <span class="operator">=</span> Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>begin(#pattern_sequence)</li>
+</ol>
+<p>定义一个开始模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">start</span> <span class="operator">=</span> Pattern.&lt;Event&gt;begin(</span><br><span class="line">    Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>).where(...).followedBy(<span class="string">&quot;middle&quot;</span>).where(...)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>next(#name)</li>
+</ol>
+<p>追加一个新的模式。匹配事件必须直接跟着先前的匹配事件（严格连续性）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">next</span> <span class="operator">=</span> start.next(<span class="string">&quot;middle&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>next(#pattern_sequence)</li>
+</ol>
+<p>追加一个新的模式。匹配事件必须直接接着先前的匹配事件（严格连续性）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">next</span> <span class="operator">=</span> start.next(</span><br><span class="line">    Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>).where(...).followedBy(<span class="string">&quot;middle&quot;</span>).where(...)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>followedBy(#name)</li>
+</ol>
+<p>追加加新模式。 匹配事件和先前匹配事件（宽松连续）之间可能发生其他非匹配事件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">followedBy</span> <span class="operator">=</span> start.followedBy(<span class="string">&quot;middle&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>followedBy(#pattern_sequence)</li>
+</ol>
+<p>追加新模式。 匹配事件和先前匹配事件（宽松连续）之间可能发生其他非匹配事件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">followedBy</span> <span class="operator">=</span> start.followedBy(</span><br><span class="line">    Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>).where(...).followedBy(<span class="string">&quot;middle&quot;</span>).where(...)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>followedByAny(#name)</li>
+</ol>
+<p>添加新模式。 匹配事件和先前匹配事件之间可能发生其他事件，并且将针对每个备选匹配事件（非确定性放松连续性）呈现替代匹配：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">followedByAny</span> <span class="operator">=</span> start.followedByAny(<span class="string">&quot;middle&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>followedByAny(#pattern_sequence)</li>
+</ol>
+<p>添加新模式。 匹配事件和先前匹配事件之间可能发生其他事件，并且将针对每个备选匹配事件（非确定性放松连续性）呈现替代匹配：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">followedByAny</span> <span class="operator">=</span> start.followedByAny(</span><br><span class="line">    Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>).where(...).followedBy(<span class="string">&quot;middle&quot;</span>).where(...)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>notNext()</li>
+</ol>
+<p>添加新的否定模式。 匹配（否定）事件必须直接跟着先前的匹配事件（严格连续性）才能丢弃部分匹配：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">notNext</span> <span class="operator">=</span> start.notNext(<span class="string">&quot;not&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>notFollowedBy()</li>
+</ol>
+<p>追加一个新的否定模式匹配。即使在匹配（否定）事件和先前匹配事件（宽松连续性）之间发生其他事件，也将丢弃部分匹配事件序列：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">notFollowedBy</span> <span class="operator">=</span> start.notFollowedBy(<span class="string">&quot;not&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>within(time)</li>
+</ol>
+<p>定义事件序列进行模式匹配的最大时间间隔。 如果未完成的事件序列超过此时间，则将其丢弃：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pattern.within(Time.seconds(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-匹配后的跳过策略"><a href="#2-3-匹配后的跳过策略" class="headerlink" title="2.3 匹配后的跳过策略"></a>2.3 匹配后的跳过策略</h3><p>对于给定模式，可以将同一事件分配给多个成功匹配。 要控制将分配事件的匹配数，需要指定名为AfterMatchSkipStrategy的跳过策略。 跳过策略有四种类型，如下所示：</p>
+<ul>
+<li>NO_SKIP：将发出每个可能的匹配。</li>
+<li>SKIP_PAST_LAST_EVENT：丢弃包含匹配事件的每个部分匹配。</li>
+<li>SKIP_TO_FIRST：丢弃包含PatternName第一个之前匹配事件的每个部分匹配。</li>
+<li>SKIP_TO_LAST：丢弃包含PatternName最后一个匹配事件之前的每个部分匹配。</li>
+</ul>
+<p>请注意，使用SKIP_TO_FIRST和SKIP_TO_LAST跳过策略时，还应指定有效的PatternName。</p>
+<p>例如，对于给定模式a b {2}和数据流ab1，ab2，ab3，ab4，ab5，ab6，这四种跳过策略之间的差异如下：</p>
+<p><a href="https://github.com/crestofwave1/oneFlink/blob/master/pic/CEP/%E8%B7%B3%E8%BF%87%E7%AD%96%E7%95%A5.png"><img src="/images/bigdata/Flink/%E8%B7%B3%E8%BF%87%E7%AD%96%E7%95%A5.png" alt="image"></a></p>
+<p>要指定要使用的跳过策略，只需调用以下命令创建AfterMatchSkipStrategy：</p>
+<p><a href="https://github.com/crestofwave1/oneFlink/blob/master/pic/CEP/%E5%88%9B%E5%BB%BA%E8%B7%B3%E8%BF%87%E7%AD%96%E7%95%A5.png"><img src="/images/bigdata/Flink/%E5%88%9B%E5%BB%BA%E8%B7%B3%E8%BF%87%E7%AD%96%E7%95%A5.png" alt="image"></a></p>
+<p>使用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">AfterMatchSkipStrategy</span> <span class="variable">skipStrategy</span> <span class="operator">=</span> ...</span><br><span class="line">Pattern.begin(<span class="string">&quot;patternName&quot;</span>, skipStrategy);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-检测模式-Detecting-Patterns"><a href="#2-4-检测模式-Detecting-Patterns" class="headerlink" title="2.4 检测模式-Detecting Patterns"></a>2.4 检测模式-Detecting Patterns</h3><p>指定要查找的模式序列后，就可以将其应用于输入流以检测潜在匹配。 要针对模式序列运行事件流，必须创建PatternStream。 给定输入流 input，模式 pattern 和可选的比较器 comparator，用于在EventTime的情况下对具有相同时间戳的事件进行排序或在同一时刻到达，通过调用以下命令创建PatternStream：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DataStream</span>&lt;Event&gt; <span class="variable">input</span> <span class="operator">=</span> ...</span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">pattern</span> <span class="operator">=</span> ...</span><br><span class="line"><span class="type">EventComparator</span>&lt;Event&gt; <span class="variable">comparator</span> <span class="operator">=</span> ... <span class="comment">// optional</span></span><br><span class="line"></span><br><span class="line"><span class="type">PatternStream</span>&lt;Event&gt; <span class="variable">patternStream</span> <span class="operator">=</span> CEP.pattern(input, pattern, comparator);</span><br></pre></td></tr></table></figure>
+
+<p>根据实际情况，创建的流可以是有key，也可以是无key的。</p>
+<p>请注意，在无key的流上使用模式，将导致job的并行度为1。</p>
+<h3 id="2-5-Selecting-from-Patterns"><a href="#2-5-Selecting-from-Patterns" class="headerlink" title="2.5 Selecting from Patterns"></a>2.5 Selecting from Patterns</h3><p>获得PatternStream后，您可以通过select或flatSelect方法从检测到的事件序列中进行查询。</p>
+<p>select（）方法需要PatternSelectFunction的实现。 PatternSelectFunction具有为每个匹配事件序列调用的select方法。 它以Map &lt;String，List &gt;的形式接收匹配，其中key是模式序列中每个模式的名称，值是该模式的所有已接受事件的列表（IN是输入元素的类型）。 给定模式的事件按时间戳排序。 返回每个模式的接受事件列表的原因是当使用循环模式（例如oneToMany（）和times（））时，对于给定模式可以接受多个事件。 选择函数只返回一个结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyPatternSelectFunction</span>&lt;IN, OUT&gt; <span class="keyword">implements</span> <span class="title class_">PatternSelectFunction</span>&lt;IN, OUT&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">OUT</span> <span class="title function_">select</span><span class="params">(Map&lt;String, List&lt;IN&gt;&gt; pattern)</span> &#123;</span><br><span class="line">        <span class="type">IN</span> <span class="variable">startEvent</span> <span class="operator">=</span> pattern.get(<span class="string">&quot;start&quot;</span>).get(<span class="number">0</span>);</span><br><span class="line">        <span class="type">IN</span> <span class="variable">endEvent</span> <span class="operator">=</span> pattern.get(<span class="string">&quot;end&quot;</span>).get(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OUT</span>(startEvent, endEvent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PatternFlatSelectFunction类似于PatternSelectFunction，唯一的区别是它可以返回任意数量的结果。 为此，select方法有一个额外的Collector参数，用于将输出元素向下游转发。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyPatternFlatSelectFunction</span>&lt;IN, OUT&gt; <span class="keyword">implements</span> <span class="title class_">PatternFlatSelectFunction</span>&lt;IN, OUT&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">flatSelect</span><span class="params">(Map&lt;String, List&lt;IN&gt;&gt; pattern, Collector&lt;OUT&gt; collector)</span> &#123;</span><br><span class="line">        <span class="type">IN</span> <span class="variable">startEvent</span> <span class="operator">=</span> pattern.get(<span class="string">&quot;start&quot;</span>).get(<span class="number">0</span>);</span><br><span class="line">        <span class="type">IN</span> <span class="variable">endEvent</span> <span class="operator">=</span> pattern.get(<span class="string">&quot;end&quot;</span>).get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; startEvent.getValue(); i++ ) &#123;</span><br><span class="line">            collector.collect(<span class="keyword">new</span> <span class="title class_">OUT</span>(startEvent, endEvent));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-处理超时部分模式"><a href="#2-6-处理超时部分模式" class="headerlink" title="2.6 处理超时部分模式"></a>2.6 处理超时部分模式</h3><p>每当模式具有通过within关键字附加的时间窗口长度时，部分事件序列可能因为超出时间窗口长度而被丢弃。 为了对这些超时的部分匹配作出相应的处理，select和flatSelect API调用允许指定超时处理程序。 为每个超时的部分事件序列调用此超时处理程序。 超时处理程序接收到目前为止由模式匹配的所有事件，以及检测到超时时的时间戳。</p>
+<p>为了处理部分模式，select和flatSelect API提供了一个带参数的重载版本</p>
+<ul>
+<li>PatternTimeoutFunction&#x2F; PatternFlatTimeoutFunction。</li>
+<li>OutputTag 超时的匹配将会在其中返回。</li>
+<li>PatternSelectFunction &#x2F; PatternFlatSelectFunction。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">PatternStreamPatte</span> &lt;Event&gt; <span class="variable">patternStream</span> <span class="operator">=</span> CEP.pattern(input, pattern);</span><br><span class="line"></span><br><span class="line"><span class="type">OutputTag</span>&lt;String&gt; <span class="variable">outputTag</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OutputTag</span>&lt;String&gt;(<span class="string">&quot;side-output&quot;</span>)&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">SingleOutputStreamOperator</span>&lt;ComplexEvent&gt; <span class="variable">result</span> <span class="operator">=</span> patternStream.select(</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">PatternTimeoutFunction</span>&lt;Event, TimeoutEvent&gt;() &#123;...&#125;,</span><br><span class="line">    outputTag,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">PatternSelectFunction</span>&lt;Event, ComplexEvent&gt;() &#123;...&#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;TimeoutEvent&gt; <span class="variable">timeoutResult</span> <span class="operator">=</span> result.getSideOutput(outputTag);</span><br><span class="line"></span><br><span class="line"><span class="type">SingleOutputStreamOperator</span>&lt;ComplexEvent&gt; <span class="variable">flatResult</span> <span class="operator">=</span> patternStream.flatSelect(</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">PatternFlatTimeoutFunction</span>&lt;Event, TimeoutEvent&gt;() &#123;...&#125;,</span><br><span class="line">    outputTag,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">PatternFlatSelectFunction</span>&lt;Event, ComplexEvent&gt;() &#123;...&#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;TimeoutEvent&gt; <span class="variable">timeoutFlatResult</span> <span class="operator">=</span> flatResult.getSideOutput(outputTag);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-事件事件模式下处理滞后数据"><a href="#2-7-事件事件模式下处理滞后数据" class="headerlink" title="2.7 事件事件模式下处理滞后数据"></a>2.7 事件事件模式下处理滞后数据</h3><p>在CEP中，元素处理的顺序很重要。为了保证在采用事件事件时以正确的顺序处理事件，最初将传入的事件放入缓冲区，其中事件基于它们的时间戳以升序排序， 并且当watermark到达时，处理该缓冲区中时间戳小于watermark时间的所有元素。这意味着watermark之间的事件按事件时间顺序处理。</p>
+<p>请注意，在采用事件时间时，CEP library会假设watermark是正确的。</p>
+<p>为了保证跨watermark的记录按照事件事件顺序处理，Flink的CEP库假定watermark是正确的，并将时间戳小于上次可见watermark的时间视为滞后事件。滞后事件不会被进一步处理。</p>
+<h3 id="2-8-栗子"><a href="#2-8-栗子" class="headerlink" title="2.8 栗子"></a>2.8 栗子</h3><p>以下示例检测事件的带key数据流上的模式start，middle（name &#x3D;“error”） - &gt; end（name &#x3D;“critical”）。 事件的key是其id，并且有效模式必须在10秒内发生。 整个处理是用事件时间完成的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span> ...</span><br><span class="line">env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;Event&gt; <span class="variable">input</span> <span class="operator">=</span> ...</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;Event&gt; <span class="variable">partitionedInput</span> <span class="operator">=</span> input.keyBy(<span class="keyword">new</span> <span class="title class_">KeySelector</span>&lt;Event, Integer&gt;() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="type">Integer</span> <span class="title function_">getKey</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="keyword">return</span> value.getId();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="type">Pattern</span>&lt;Event, ?&gt; <span class="variable">pattern</span> <span class="operator">=</span> Pattern.&lt;Event&gt;begin(<span class="string">&quot;start&quot;</span>)</span><br><span class="line">	.next(<span class="string">&quot;middle&quot;</span>).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">			<span class="keyword">return</span> value.getName().equals(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).followedBy(<span class="string">&quot;end&quot;</span>).where(<span class="keyword">new</span> <span class="title class_">SimpleCondition</span>&lt;Event&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">filter</span><span class="params">(Event value)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">			<span class="keyword">return</span> value.getName().equals(<span class="string">&quot;critical&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).within(Time.seconds(<span class="number">10</span>));</span><br><span class="line"></span><br><span class="line"><span class="type">PatternStream</span>&lt;Event&gt; <span class="variable">patternStream</span> <span class="operator">=</span> CEP.pattern(partitionedInput, pattern);</span><br><span class="line"></span><br><span class="line"><span class="type">DataStream</span>&lt;Alert&gt; <span class="variable">alerts</span> <span class="operator">=</span> patternStream.select(<span class="keyword">new</span> <span class="title class_">PatternSelectFunction</span>&lt;Event, Alert&gt;() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="type">Alert</span> <span class="title function_">select</span><span class="params">(Map&lt;String, List&lt;Event&gt;&gt; pattern)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">		<span class="keyword">return</span> createAlert(pattern);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Flink/Flink-config-dynamic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Flink/Flink-config-dynamic/" class="post-title-link" itemprop="url">Flink/Storm 动态更新配置实现方案</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-09T00:00:00+00:00">2019-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>实时计算处理无限数据流，对系统可用性十分敏感，然而业务需求具有必然的更新需求，动态更新实时计算的配置是常见的需求，比如动态增加用户白名单、业务数据在线 debug、新增广告位统计等等。然而，实现并不简单，Apache Strom 和 Apache Storm 具有不同的架构，实现方式也不尽相同。</p>
+<p>Apache Strom(这里不包括 Trident)，所有的计算逻辑都是通过实现spout 和 bolt，运行在 task节点上，因此与业务逻辑相关的状态管理、配置管理以及输入输出的控制等均可以定义在 bolt 中，如定时一分钟轮询配置变化、定时 checkpoint 近似数据集等。此外，配置同样可以通过控制流的方式与数据流 uion 到一起，在计算节点检测判断控制流的关键字来实现配置更新的目的。</p>
+<p>Apache Flink 的函数式 API 封装要比 Storm 要完善，而灵活性不比 Strom。实现配置动态更新有两种方式，一是在算子中定时轮询拉取配置信息，二是利用广播状态和控制流。</p>
+<h1 id="asyncIO"><a href="#asyncIO" class="headerlink" title="asyncIO"></a>asyncIO</h1><h1 id="stateBroadcast"><a href="#stateBroadcast" class="headerlink" title="stateBroadcast"></a>stateBroadcast</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/%E5%AE%9E%E6%97%B6%E6%95%B0%E4%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/%E5%AE%9E%E6%97%B6%E6%95%B0%E4%BB%93/" class="post-title-link" itemprop="url">[思考] 实时数仓</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="实时数仓"><a href="#实时数仓" class="headerlink" title="实时数仓"></a>实时数仓</h1><h2 id="为什么构建实时数仓"><a href="#为什么构建实时数仓" class="headerlink" title="为什么构建实时数仓"></a>为什么构建实时数仓</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/collection/ConcurrentSkipListMap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/collection/ConcurrentSkipListMap/" class="post-title-link" itemprop="url">[转载]基于跳跃表的 ConcurrentSkipListMap 内部实现（Java 8）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:31" itemprop="dateModified" datetime="2026-08-23T12:59:31+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基于跳跃表的-ConcurrentSkipListMap-内部实现（Java-8）"><a href="#基于跳跃表的-ConcurrentSkipListMap-内部实现（Java-8）" class="headerlink" title="基于跳跃表的 ConcurrentSkipListMap 内部实现（Java 8）"></a>基于跳跃表的 ConcurrentSkipListMap 内部实现（Java 8）</h1><p>我们知道 HashMap 是一种键值对形式的数据存储容器，但是它有一个缺点是，元素内部无序。由于它内部根据键的 hash 值取模表容量来得到元素的存储位置，所以整体上说 HashMap 是无序的一种容器。当然，jdk 中也为我们提供了基于红黑树的存储的 TreeMap 容器，它的内部元素是有序的，但是由于它内部通过红黑结点的各种变换来维持二叉搜索树的平衡，相对复杂，并且在并发环境下碍于 rebalance 操作，性能会受到一定的影响。</p>
+<p>跳表（SkipList）是一种随机化的数据结构，通过“空间来换取时间”的一个算法，建立多级索引，实现以二分查找遍历一个有序链表。时间复杂度等同于红黑树，O(log n)。但实现却远远比红黑树要简单，本篇我们主要从以下几个方面来对这种并发版本的数据结构进行学习：</p>
+<ul>
+<li>跳跃表的数据结构介绍</li>
+<li>ConcurrentSkipListMap 的前导知识预备</li>
+<li>基本的成员属性介绍</li>
+<li>put 方法并发添加</li>
+<li>remove 方法的并发删除</li>
+<li>get 方法获取指定结点的 value</li>
+<li>其它的一些方法的简单描述</li>
+</ul>
+<h2 id="一、跳跃表的数据结构介绍"><a href="#一、跳跃表的数据结构介绍" class="headerlink" title="一、跳跃表的数据结构介绍"></a>一、跳跃表的数据结构介绍</h2><p><img src="/images/Java/collection/20200819194446142_966009886.jpg" alt="这里写图片描述"></p>
+<p>跳跃表具有以下几个必备的性质：</p>
+<ul>
+<li>最底层包含所有节点的一个有序的链表</li>
+<li>每一层都是一个有序的链表</li>
+<li>每个节点都有两个指针，一个指向右侧节点（没有则为空），一个指向下层节点（没有则为空）</li>
+<li>必备一个头节点指向最高层的第一个节点，通过它可以遍历整张表</li>
+</ul>
+<p>当我们查找一个元素的时候就是这样的：</p>
+<p><img src="/images/Java/collection/20200819194445937_815191891.jpg" alt="这里写图片描述"></p>
+<p>查找的过程有点像我们的二分查找，不过这里我们是通过为链表建立多级索引，以空间换时间来实现二分查找。所以，跳表的查询操作的时间复杂度为 O(logN)。</p>
+<p>接着我们看看跳表的插入操作：<br>首先，跳表的插入必然会在底层增加一个节点，但是往上的层次是否需要增加节点则完全是随机的，SkipList 通过概率保证整张表的节点分布均匀，它不像红黑树是通过人为的 rebalance 操作来保证二叉树的平衡性。（数学对于计算机还是很重要的）。</p>
+<p>通过概率算法得到新插入节点的一个 level 值，如果小于当前表的最大 level，从最底层到 level 层都添加一个该节点。例如：</p>
+<p><img src="/images/Java/collection/20200819194445733_1944248029.jpg" alt="这里写图片描述"></p>
+<p>如图，首先 119 节点会被添加到最底层链表的合适位置，然后通过概率算法得到 level 为 2，于是 1—level 层中的每一层都添加了 119 节点。</p>
+<p>如果概率算法得到的 level 大于当前表的最大 level 值的话，那么将会新增一个 level，并且将新节点添加到该 level 上。</p>
+<p><img src="/images/Java/collection/20200819194445529_52135211.jpg" alt="这里写图片描述"></p>
+<p>跳表的删除操作其实就是一个查找加删除节点的操作</p>
+<p><img src="/images/Java/collection/20200819194445324_1213153640.jpg" alt="这里写图片描述"></p>
+<p>好了，有关跳表这种数据结构的基本理论知识已经简单的介绍了，下面我们看 jdk 中对该数据结构的基本实现情况，并了解它的并发版本是如何实现的。</p>
+<h2 id="二、ConcurrentSkipListMap-的前导知识预备"><a href="#二、ConcurrentSkipListMap-的前导知识预备" class="headerlink" title="二、ConcurrentSkipListMap 的前导知识预备"></a>二、ConcurrentSkipListMap 的前导知识预备</h2><p>在实际分析 put 方法之前，有一些预备的知识我们需要先有个大致的了解，否则在实际分析源码的时候会感觉吃力些。</p>
+<p>首先是删除操作，在我们上述的跳表数据结构中谈及的删除操作主要是定位待删结点+删除该结点的一个复合操作。而在我们的并发跳表中，删除操作相对复杂点，需要分为以下三个步骤：</p>
+<ul>
+<li>找到待删结点并将其 value 属性值由 notnull 置为 null，整个过程是基于 CAS 无锁式算法的</li>
+<li>向待删结点的 next 位置新增一个 marker 标记结点，整个过程也是基于 CAS 无锁式算法</li>
+<li>CAS 式删除具体的结点，实际上也就是跳过该待删结点，让待删结点的前驱节点直接越过本身指向待删结点的后继结点即可</li>
+</ul>
+<p>例如我们有以下三个结点，n 为待删除的结点。</p>
+<blockquote>
+<p>+------+ +------+ +——+<br>… | b |——&gt;| n |—–&gt;| f | …<br>+------+ +------+ +——+</p>
+</blockquote>
+<p>第一步是找到 n ，然后 CAS 该结点的 value 值为 null。如果该步骤失败了，那么 ConcurrentSkipListMap 会通过循环再次尝试 CAS 将 n 的 value 属性赋值为 null。</p>
+<p>第二步是建立在第一步成功的前提下的，n 的当前 value 属性的值为 null，ConcurrentSkipListMap 试图在 n 的后面增加一个空的 node 结点（marker）以分散下一步的并发冲突性。</p>
+<blockquote>
+<p>+------+ +------+ +------+ +——+<br>… | b |——&gt;| n |—–&gt;|marker|—-&gt;| f | …<br>+------+ +------+ +------+ +——+</p>
+</blockquote>
+<p>第三步，断链操作。如果 marker 添加失败，将不会有第三步，直接回重新回到第一步。如果成功添加，那么将试图断开 b 到 n 的链接，直接绕过 n，让 b 的 next 指向 f。那么，这个 n 结点将作为内存中的一个游离结点，最终被 GC 掉。断开失败的话，也将回到第一步。</p>
+<blockquote>
+<p>+------+ +——+<br>… | b |———————–&gt;| f | …<br>+------+ +——+</p>
+</blockquote>
+<p>主要还是有关删除这方面的预备知识，其它的信息点我们将从实际方法的源码中再进行分析。</p>
+<h2 id="三、基本的成员属性介绍"><a href="#三、基本的成员属性介绍" class="headerlink" title="三、基本的成员属性介绍"></a>三、基本的成员属性介绍</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">Node</span>&lt;K,V&gt; &#123;</span><br><span class="line">    <span class="keyword">final</span> K key;</span><br><span class="line">    <span class="keyword">volatile</span> Object value;</span><br><span class="line">    <span class="keyword">volatile</span> Node&lt;K,V&gt; next;</span><br><span class="line"></span><br><span class="line">    Node(K key, Object value, Node&lt;K,V&gt; next) &#123;</span><br><span class="line">        <span class="built_in">this</span>.key = key;</span><br><span class="line">        <span class="built_in">this</span>.value = value;</span><br><span class="line">        <span class="built_in">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//省略其它的一些基于当前结点的 CAS 方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这是 node 结点类型的定义，是最基本的数据存储单元。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Index</span>&lt;K,V&gt; &#123;</span><br><span class="line">    <span class="keyword">final</span> Node&lt;K,V&gt; node;</span><br><span class="line">    <span class="keyword">final</span> Index&lt;K,V&gt; down;</span><br><span class="line">    <span class="keyword">volatile</span> Index&lt;K,V&gt; right;</span><br><span class="line"></span><br><span class="line">    Index(Node&lt;K,V&gt; node, Index&lt;K,V&gt; down, Index&lt;K,V&gt; right) &#123;</span><br><span class="line">        <span class="built_in">this</span>.node = node;</span><br><span class="line">        <span class="built_in">this</span>.down = down;</span><br><span class="line">        <span class="built_in">this</span>.right = right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//省略其它的一些基于当前结点的 CAS 方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Index 结点封装了 node 结点，作为跳表的最基本组成单元。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">HeadIndex</span>&lt;K,V&gt; <span class="keyword">extends</span> <span class="title class_">Index</span>&lt;K,V&gt; &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> level;</span><br><span class="line">    HeadIndex(Node&lt;K,V&gt; node, Index&lt;K,V&gt; down, Index&lt;K,V&gt; right, <span class="type">int</span> level) &#123;</span><br><span class="line">        <span class="built_in">super</span>(node, down, right);</span><br><span class="line">        <span class="built_in">this</span>.level = level;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>封装了 Index 结点，作为每层的头结点，level 属性用于标识当前层次的序号。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The topmost head index of the skiplist.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">volatile</span> HeadIndex&lt;K,V&gt; head;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>整个跳表的头结点，通过它可以遍历访问整张跳表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//比较器，用于比较两个元素的键值大小，如果没有显式传入则默认为自然排序</span></span><br><span class="line"><span class="keyword">final</span> Comparator&lt;? <span class="built_in">super</span> K&gt; comparator;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Special value used to identify base-level header</span></span><br><span class="line"><span class="comment"> * 特殊的值，用于初始化跳表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Object</span> <span class="variable">BASE_HEADER</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>紧接着，我们看看它的几个构造器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//未传入比较器，则为默认值</span></span><br><span class="line"><span class="type">public</span> <span class="title function_">ConcurrentSkipListMap</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.comparator = <span class="literal">null</span>;</span><br><span class="line">    initialize();</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">public</span> <span class="title function_">ConcurrentSkipListMap</span><span class="params">(Comparator&lt;? <span class="built_in">super</span> K&gt; comparator)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.comparator = comparator;</span><br><span class="line">    initialize();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//所有的构造器都会调用这个初始化的方法</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">void</span> <span class="title function_">initialize</span><span class="params">()</span> &#123;</span><br><span class="line">    keySet = <span class="literal">null</span>;</span><br><span class="line">    entrySet = <span class="literal">null</span>;</span><br><span class="line">    values = <span class="literal">null</span>;</span><br><span class="line">    descendingMap = <span class="literal">null</span>;</span><br><span class="line">    head = <span class="keyword">new</span> <span class="title class_">HeadIndex</span>&lt;K,V&gt;(<span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(<span class="literal">null</span>, BASE_HEADER, <span class="literal">null</span>),<span class="literal">null</span>, <span class="literal">null</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个初始化方法主要完成的是对整张跳表的一个初始化操作，head 头指针指向这个并没有什么实际意义的头结点。</p>
+<p>基本的成员属性就简单介绍到这，重点还是那三个内部类，都分别代表了什么样的结点类型，都使用在何种场景下，务必清晰。</p>
+<h3 id="四、put-并发添加的内部实现"><a href="#四、put-并发添加的内部实现" class="headerlink" title="四、put 并发添加的内部实现"></a>四、put 并发添加的内部实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基本的 put 方法，向跳表中添加一个节点</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">V</span> <span class="title function_">put</span><span class="params">(K key, V value)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (value == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">    <span class="keyword">return</span> doPut(key, value, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>put 方法的内部调用的是 doPut 方法来实现添加元素的，但是由于 doPut 方法的方法体很长，我们分几个部分进行分析。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一部分</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">V</span> <span class="title function_">doPut</span><span class="params">(K key, V value, <span class="type">boolean</span> onlyIfAbsent)</span> &#123;</span><br><span class="line">    Node&lt;K,V&gt; z;</span><br><span class="line">    <span class="comment">//边界值判断，空的 key 自然是不允许插入的</span></span><br><span class="line">    <span class="keyword">if</span> (key == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">    <span class="comment">//拿到比较器的引用</span></span><br><span class="line">    <span class="type">Comparator</span>&lt;? <span class="built_in">super</span> K&gt; <span class="variable">cmp</span> <span class="operator">=</span> comparator;</span><br><span class="line">    outer: <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">	    <span class="comment">//根据 key，找到待插入的位置</span></span><br><span class="line">	    <span class="comment">//b 叫做前驱节点，将来作为新加入结点的前驱节点</span></span><br><span class="line">	    <span class="comment">//n 叫做后继结点，将来作为新加入结点的后继结点</span></span><br><span class="line">	    <span class="comment">//也就是说，新节点将插入在 b 和 n 之间</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">Node</span>&lt;K,V&gt; <span class="variable">b</span> <span class="operator">=</span> findPredecessor(key, cmp), n = b.next;;) &#123;</span><br><span class="line">	        <span class="comment">//如果 n 为 null，那么说明 b 是链表的最尾端的结点，这种情况比较简单，直接构建新节点插入即可</span></span><br><span class="line">	        <span class="comment">//否则走下面的判断体</span></span><br><span class="line">            <span class="keyword">if</span> (n != <span class="literal">null</span>) &#123;</span><br><span class="line">                Object v; <span class="type">int</span> c;</span><br><span class="line">                <span class="type">Node</span>&lt;K,V&gt; <span class="variable">f</span> <span class="operator">=</span> n.next;</span><br><span class="line">                <span class="comment">//如果 n 不再是 b 的后继结点了，说明有其他线程向 b 后面添加了新元素</span></span><br><span class="line">                <span class="comment">//那么我们直接退出内循环，重新计算新节点将要插入的位置</span></span><br><span class="line">                <span class="keyword">if</span> (n != b.next)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="comment">//value =0 说明 n 已经被标识位待删除，其他线程正在进行删除操作</span></span><br><span class="line">                <span class="comment">//调用 helpDelete 帮助删除，并退出内层循环重新计算待插入位置</span></span><br><span class="line">                <span class="keyword">if</span> ((v = n.value) == <span class="literal">null</span>) &#123; </span><br><span class="line">                    n.helpDelete(b, f);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//b 已经被标记为待删除，前途结点 b 都丢了，可不得重新计算待插入位置吗</span></span><br><span class="line">                <span class="keyword">if</span> (b.value == <span class="literal">null</span> || v == n) </span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">				<span class="comment">//如果新节点的 key 大于 n 的 key 说明找到的前驱节点有误，按序往后挪一个位置即可</span></span><br><span class="line">				<span class="comment">//回到内层循环重新试图插入</span></span><br><span class="line">                <span class="keyword">if</span> ((c = cpr(cmp, key, n.key)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    b = n;</span><br><span class="line">                    n = f;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//新节点的 key 等于 n 的 key，这是一次 update 操作，CAS 更新即可</span></span><br><span class="line">                <span class="comment">//如果更新失败，重新进循环再来一次</span></span><br><span class="line">                <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (onlyIfAbsent || n.casValue(v, value)) &#123;</span><br><span class="line">                        <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span> <span class="type">V</span> <span class="variable">vv</span> <span class="operator">=</span> (V)v;</span><br><span class="line">                        <span class="keyword">return</span> vv;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">	    <span class="comment">//无论遇到何种问题，到这一步说明待插位置已经确定</span></span><br><span class="line">            z = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(key, value, n);</span><br><span class="line">            <span class="keyword">if</span> (!b.casNext(n, z))</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//如果成功了，退出最外层循环，完成了底层的插入工作        </span></span><br><span class="line">            <span class="keyword">break</span> outer;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以上这一部分主要完成了向底层链表插入一个节点，至于其中具体的怎么找前驱节点的方法稍后介绍。但这其实只不过才完成一小半的工作，就像红黑树在插入后需要 rebalance 一样，我们的跳表需要根据概率算法保证节点分布稳定，它的调节措施相对于红黑树来说就简单多了，通过往上层索引层添加相关引用即可，以空间换时间。具体的我们来看：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第二部分</span></span><br><span class="line"><span class="comment">//获取一个线程无关的随机数，占四个字节，32 个比特位</span></span><br><span class="line"><span class="type">int</span> <span class="variable">rnd</span> <span class="operator">=</span> ThreadLocalRandom.nextSecondarySeed();</span><br><span class="line">	<span class="comment">//和 1000 0000 0000 0000 0000 0000 0000 0001 与</span></span><br><span class="line">	<span class="comment">//如果等于 0，说明这个随机数最高位和最低位都为 0，这种概率很大</span></span><br><span class="line">	<span class="comment">//如果不等于 0，那么将仅仅把新节点插入到最底层的链表中即可，不会往上层递归</span></span><br><span class="line">    <span class="keyword">if</span> ((rnd &amp; <span class="number">0x80000001</span>) == <span class="number">0</span>) &#123; </span><br><span class="line">        <span class="type">int</span> <span class="variable">level</span> <span class="operator">=</span> <span class="number">1</span>, max;</span><br><span class="line">        <span class="comment">//用低位连续为 1 的个数作为 level 的值，也是一种概率策略</span></span><br><span class="line">        <span class="keyword">while</span> (((rnd &gt;&gt;&gt;= <span class="number">1</span>) &amp; <span class="number">1</span>) != <span class="number">0</span>)</span><br><span class="line">            ++level;</span><br><span class="line">        <span class="type">Index</span>&lt;K,V&gt; <span class="variable">idx</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">HeadIndex</span>&lt;K,V&gt; <span class="variable">h</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="comment">//如果概率算得的 level 在当前跳表 level 范围内</span></span><br><span class="line">        <span class="comment">//构建一个从 1 到 level 的纵列 index 结点引用</span></span><br><span class="line">        <span class="keyword">if</span> (level &lt;= (max = h.level)) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= level; ++i)</span><br><span class="line">                idx = <span class="keyword">new</span> <span class="title class_">Index</span>&lt;K,V&gt;(z, idx, <span class="literal">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//否则需要新增一个 level 层</span></span><br><span class="line">        <span class="keyword">else</span> &#123; </span><br><span class="line">            level = max + <span class="number">1</span>; </span><br><span class="line">            <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">            <span class="type">Index</span>&lt;K,V&gt;[] <span class="variable">idxs</span> <span class="operator">=</span>(Index&lt;K,V&gt;[])<span class="keyword">new</span> <span class="title class_">Index</span>&lt;?,?&gt;[level+<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= level; ++i)</span><br><span class="line">                idxs[i] = idx = <span class="keyword">new</span> <span class="title class_">Index</span>&lt;K,V&gt;(z, idx, <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">                h = head;</span><br><span class="line">                <span class="type">int</span> <span class="variable">oldLevel</span> <span class="operator">=</span> h.level;</span><br><span class="line">                <span class="comment">//level 肯定是比 oldLevel 大一的，如果小了说明其他线程更新过表了</span></span><br><span class="line">                <span class="keyword">if</span> (level &lt;= oldLevel) </span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="type">HeadIndex</span>&lt;K,V&gt; <span class="variable">newh</span> <span class="operator">=</span> h;</span><br><span class="line">                <span class="type">Node</span>&lt;K,V&gt; <span class="variable">oldbase</span> <span class="operator">=</span> h.node;</span><br><span class="line">                <span class="comment">//正常情况下，循环只会执行一次，如果由于其他线程的并发操作导致 oldLevel 的值不稳定，那么会执行多次循环体</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> oldLevel+<span class="number">1</span>; j &lt;= level; ++j)</span><br><span class="line">                    newh = <span class="keyword">new</span> <span class="title class_">HeadIndex</span>&lt;K,V&gt;(oldbase, newh, idxs[j], j);</span><br><span class="line">                <span class="comment">//更新头指针</span></span><br><span class="line">                <span class="keyword">if</span> (casHead(h, newh)) &#123;</span><br><span class="line">                    h = newh;</span><br><span class="line">                    idx = idxs[level = oldLevel];</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这一部分的代码主要完成的是根据 level 的值，确认是否需要增加一层索引，如果不需要则构建好底层到 level 层的 index 结点的纵向引用。如果需要，则新创建一层索引，完成 head 结点的指针转移，并构建好纵向的 index 结点引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第三部分</span></span><br><span class="line"><span class="keyword">if</span> ((rnd &amp; <span class="number">0x80000001</span>) == <span class="number">0</span>)&#123;</span><br><span class="line"><span class="comment">//省略第二部分的代码段</span></span><br><span class="line"><span class="comment">//第三部分的代码是紧接着第二部分代码段后面的</span></span><br><span class="line">	splice: <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">insertionLevel</span> <span class="operator">=</span> level;;) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> h.level;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">Index</span>&lt;K,V&gt; <span class="variable">q</span> <span class="operator">=</span> h, r = q.right, t = idx;;) &#123;</span><br><span class="line">	            <span class="comment">//其他线程并发操作导致头结点被删除，直接退出外层循环</span></span><br><span class="line">	            <span class="comment">//这种情况发生的概率很小，除非并发量实在太大</span></span><br><span class="line">                <span class="keyword">if</span> (q == <span class="literal">null</span> || t == <span class="literal">null</span>)</span><br><span class="line">                    <span class="keyword">break</span> splice;</span><br><span class="line">                <span class="keyword">if</span> (r != <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="type">Node</span>&lt;K,V&gt; <span class="variable">n</span> <span class="operator">=</span> r.node;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> cpr(cmp, key, n.key);</span><br><span class="line">                    <span class="comment">//如果 n 正在被其他线程删除，那么调用 unlink 去删除它</span></span><br><span class="line">                    <span class="keyword">if</span> (n.value == <span class="literal">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (!q.unlink(r))</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="comment">//重新获取 q 的右结点，再次进入循环</span></span><br><span class="line">                        r = q.right;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//c &gt; 0 说明前驱结点定位有误，重新进入</span></span><br><span class="line">                    <span class="keyword">if</span> (c &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        q = r;</span><br><span class="line">                        r = r.right;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (j == insertionLevel) &#123;</span><br><span class="line">		            <span class="comment">//尝试着将 t 插在 q 和 r 之间，如果失败了，退出内循环重试</span></span><br><span class="line">                    <span class="keyword">if</span> (!q.link(r, t))</span><br><span class="line">                        <span class="keyword">break</span>; <span class="comment">// restart</span></span><br><span class="line">                    <span class="comment">//如果插入完成后，t 结点被删除了，那么结束插入操作</span></span><br><span class="line">                    <span class="keyword">if</span> (t.node.value == <span class="literal">null</span>) &#123;</span><br><span class="line">                        findNode(key);</span><br><span class="line">                        <span class="keyword">break</span> splice;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// insertionLevel-- 处理底层链接</span></span><br><span class="line">                    <span class="keyword">if</span> (--insertionLevel == <span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">break</span> splice;</span><br><span class="line">                &#125;</span><br><span class="line">				<span class="comment">//--j，j 应该与 insertionLevel 同步，它代表着我们创建的那个纵向的结点数组的索引</span></span><br><span class="line">				<span class="comment">//并完成层次下移操作</span></span><br><span class="line">                <span class="keyword">if</span> (--j &gt;= insertionLevel &amp;&amp; j &lt; level)</span><br><span class="line">                    t = t.down;</span><br><span class="line">                <span class="comment">//至此，新节点在当前层次的前后引用关系已经被链接完成，现在处理下一层</span></span><br><span class="line">                q = q.down;</span><br><span class="line">                r = q.right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们根据概率算法得到了一个 level 值，并且通过第二步创建了 level 个新节点并构成了一个纵向的引用关联，但是这些纵向的结点并没有链接到每层中。而我们的第三部分代码就是完成的这个工作，将我们的新节点在每个索引层都构建好前后的链接关系。下面用三张图描述着三个部分所完成的主要工作。</p>
+<p>初始化的跳表如下：</p>
+<p><img src="/images/Java/collection/20200819194445120_1704156511.png" alt="这里写图片描述"></p>
+<p>第一部分，新增一个结点到最底层的链表上。</p>
+<p><img src="/images/Java/collection/20200819194444915_223530245.png" alt="这里写图片描述"></p>
+<p>第二部分，假设概率得出一个 level 值为 10，那么根据跳表的算法描述需要新建一层索引层。</p>
+<p><img src="/images/Java/collection/20200819194444711_692580724.png" alt="这里写图片描述"></p>
+<p>第三步，链接各个索引层次上的新节点。</p>
+<p><img src="/images/Java/collection/20200819194444122_943848032.png" alt="这里写图片描述"></p>
+<p>这样就完成了新增结点到跳表中的全部过程，大体上已如上图描述，至于 ConcurrentSkipListMap 中关于并发处理的细节之处，图中无法展示，大家可据此重新感受下源码的实现过程。下面我们着重描述下整个 doPut 方法中还涉及的其他几个方法的具体实现。</p>
+<p><strong>首先是 findPredecessor 方法</strong>，我们说该方法将根据给定的 key，为我们返回最合适的前驱节点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">Node</span>&lt;K,V&gt; <span class="title function_">findPredecessor</span><span class="params">(Object key, Comparator&lt;? <span class="built_in">super</span> K&gt; cmp)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>(); </span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">Index</span>&lt;K,V&gt; <span class="variable">q</span> <span class="operator">=</span> head, r = q.right, d;;) &#123;</span><br><span class="line">            <span class="comment">//r 为空说明 head 后面并没有其他节点了</span></span><br><span class="line">            <span class="keyword">if</span> (r != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="type">Node</span>&lt;K,V&gt; <span class="variable">n</span> <span class="operator">=</span> r.node;</span><br><span class="line">				<span class="comment">// r 节点处于待删除状态，那么尝试 unlink 它，失败了将重新进入循环再此尝试</span></span><br><span class="line">				<span class="comment">//否则重新获取 q 的右结点并重新进入循环查找前驱节点</span></span><br><span class="line">                <span class="keyword">if</span> (n.value == <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!q.unlink(r))</span><br><span class="line">                        <span class="keyword">break</span>;           <span class="comment">// restart</span></span><br><span class="line">                    r = q.right;         <span class="comment">// reread r</span></span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//大于零说明当前位置上的 q 还不是我们要的前驱节点，继续往后找</span></span><br><span class="line">                <span class="keyword">if</span> (cpr(cmp, key, k) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    q = r;</span><br><span class="line">                    r = r.right;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果当前的 level 结束了或者 cpr(cmp, key, k) &lt;= 0 会达到此位置</span></span><br><span class="line">            <span class="comment">//往低层递归，如果没有低层了，那么当前的 q 就是最合适的前驱节点</span></span><br><span class="line">            <span class="comment">//整个循环只有这一个出口，无论如何最终都会从此处结束方法</span></span><br><span class="line">            <span class="keyword">if</span> ((d = q.down) == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> q.node;</span><br><span class="line">           <span class="comment">//否则向低层递归并重置 q 和 r</span></span><br><span class="line">            q = d;</span><br><span class="line">            r = d.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最后总结下 findPredecessor 方法的大体逻辑，首先程序会从 head 节点开始在当前的索引层上寻找最后一个比给定 key 小的结点，它就是我们需要的前驱节点（q），我们只需要返回它即可。</p>
+<p><strong>其次我们看看 helpDelete 方法</strong>，当检测到某个结点的 value 属性值为 null 的时候，一般都会调用这个方法来删除该结点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   一般的调用形式如下：</span></span><br><span class="line"><span class="comment">   n.helpDelete(b, f);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">helpDelete</span><span class="params">(Node&lt;K,V&gt; b, Node&lt;K,V&gt; f)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (f == next &amp;&amp; <span class="built_in">this</span> == b.next) &#123;</span><br><span class="line">       <span class="keyword">if</span> (f == <span class="literal">null</span> || f.value != f) </span><br><span class="line">            casNext(f, <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(f));</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            b.casNext(<span class="built_in">this</span>, f.next);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>该方法是 Node 结点的内部实例方法，逻辑相对简单，此处不再赘述。通过该方法可以完成将 b.next 指向 f，完成对 n 结点的删除。</p>
+<p>至此，有关 put 方法的源码分析就简单到这，大部分的代码还是用于实现跳表这种数据结构的构建和插入，关于并发的处理，你会发现基本都是双层 for 循环+ CAS 无锁式更新，如果遇到竞争失利将退出里层循环重新进行尝试，否则成功的话就会直接 return 或者退出外层循环并结束 CAS 操作。下面我们看删除操作是如何实现的。</p>
+<h2 id="五、remove-并发删除操作的内部实现"><a href="#五、remove-并发删除操作的内部实现" class="headerlink" title="五、remove 并发删除操作的内部实现"></a>五、remove 并发删除操作的内部实现</h2><p>remove 方法的部分内容我们在介绍相关预备知识中已经提及过，此处的理解想必会容易些。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">V</span> <span class="title function_">remove</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> doRemove(key, <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码比较多，建议读者结合自己的 jdk 源码共同来分析</span></span><br><span class="line"><span class="keyword">final</span> <span class="type">V</span> <span class="title function_">doRemove</span><span class="params">(Object key, Object value)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">    <span class="type">Comparator</span>&lt;? <span class="built_in">super</span> K&gt; <span class="variable">cmp</span> <span class="operator">=</span> comparator;</span><br><span class="line">    outer: <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		<span class="comment">//找到 key 的前驱节点</span></span><br><span class="line">		<span class="comment">//因为删除不单单是根据 key 找到对应的结点，然后赋 null 就完事的，还要负责链接该结点前后的关联</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">Node</span>&lt;K,V&gt; <span class="variable">b</span> <span class="operator">=</span> findPredecessor(key, cmp), n = b.next;;) &#123;</span><br><span class="line">            Object v; <span class="type">int</span> c;</span><br><span class="line">            <span class="comment">//目前 n 基本上就是我们要删除的结点，它为 null，那自然不用继续了，已经被删除了</span></span><br><span class="line">            <span class="keyword">if</span> (n == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">break</span> outer;</span><br><span class="line">            <span class="type">Node</span>&lt;K,V&gt; <span class="variable">f</span> <span class="operator">=</span> n.next;</span><br><span class="line">            <span class="comment">//再次确认 n 还是不是 b 的后继结点，如果不是将退出里层循环重新进入</span></span><br><span class="line">            <span class="keyword">if</span> (n != b.next)               </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//如果有人正在删除 n，那么帮助它删除</span></span><br><span class="line">            <span class="keyword">if</span> ((v = n.value) == <span class="literal">null</span>) &#123;     </span><br><span class="line">                n.helpDelete(b, f);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//b 被删除了，重新定位前驱节点</span></span><br><span class="line">            <span class="keyword">if</span> (b.value == <span class="literal">null</span> || v == n)     </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//正常情况下，key 应该等于 n.key</span></span><br><span class="line">            <span class="comment">//key 大于 n.key 说明我们要找的结点可能在 n 的后面，往后递归即可</span></span><br><span class="line">            <span class="comment">//key 小于 n.key 说明 key 所代表的结点根本不存在</span></span><br><span class="line">            <span class="keyword">if</span> ((c = cpr(cmp, key, n.key)) &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span> outer;</span><br><span class="line">            <span class="keyword">if</span> (c &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                b = n;</span><br><span class="line">                n = f;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果删除是根据键和值两个参数来删除的话，value 是不为 null 的</span></span><br><span class="line">            <span class="comment">//这种情况下，如果 n 的 value 属性不等于我们传入的 value ，那么是不进行删除的</span></span><br><span class="line">            <span class="keyword">if</span> (value != <span class="literal">null</span> &amp;&amp; !value.equals(v))</span><br><span class="line">                <span class="keyword">break</span> outer;</span><br><span class="line">			<span class="comment">//下面三个步骤才是整个删除操作的核心，大致的逻辑我们也在上文提及过了，此处想必会容易理解些</span></span><br><span class="line">			<span class="comment">//第一步，尝试将待删结点的 value 属性赋值 null，失败将退出重试</span></span><br><span class="line">            <span class="keyword">if</span> (!n.casValue(v, <span class="literal">null</span>))</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//第二步和第三步如果有一步由于竞争失败，将调用 findNode 方法根据我们第一步的成果，也就是删除所有 value 为 null 的结点</span></span><br><span class="line">            <span class="keyword">if</span> (!n.appendMarker(f) || !b.casNext(n, f))</span><br><span class="line">                findNode(key);  </span><br><span class="line">            <span class="comment">//否则说明三个步骤都成功完成了   </span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                findPredecessor(key, cmp);  </span><br><span class="line">                <span class="comment">//判断此次删除后是否导致某一索引层没有其他节点了，并适情况删除该层索引  </span></span><br><span class="line">                <span class="keyword">if</span> (head.right == <span class="literal">null</span>)</span><br><span class="line">                    tryReduceLevel();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span> <span class="type">V</span> <span class="variable">vv</span> <span class="operator">=</span> (V)v;</span><br><span class="line">            <span class="keyword">return</span> vv;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>remove 方法其实从整体上来看，首先会有一堆的判断，根据给定的 key 和 value 会判断是否存在与 key 对应的一个节点，也会判断和待删结点相关的前后结点是否正在被删除，并适情况帮助删除。其次才是删除的三大步骤，核心步骤还是将待删结点的 value 属性赋 null 以标记该结点无用了，至于这个 marker 也是为了分散并发冲突的，最后通过 casNext 完成结点的删除。</p>
+<h2 id="六、get-方法获取指定结点的-value"><a href="#六、get-方法获取指定结点的-value" class="headerlink" title="六、get 方法获取指定结点的 value"></a><strong>六、get 方法获取指定结点的 value</strong></h2><p>算上本小节将要介绍的 “查” 方法，我们就完成了对并发跳表 “增删改查” 的全部分析。 相对于“增”来说，其他的三种操作还是相对容易的，尤其是本小节的“查”操作，下面我们看看它的内部实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">V</span> <span class="title function_">get</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> doGet(key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">V</span> <span class="title function_">doGet</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="literal">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullPointerException</span>();</span><br><span class="line">    <span class="type">Comparator</span>&lt;? <span class="built_in">super</span> K&gt; <span class="variable">cmp</span> <span class="operator">=</span> comparator;</span><br><span class="line">	<span class="comment">//依然是双层循环来处理并发</span></span><br><span class="line">    outer: <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">Node</span>&lt;K,V&gt; <span class="variable">b</span> <span class="operator">=</span> findPredecessor(key, cmp), n = b.next;;) &#123;</span><br><span class="line">            Object v; <span class="type">int</span> c;</span><br><span class="line">            <span class="comment">//以下的一些判断的作用已经描述了多次，此处不再赘述了</span></span><br><span class="line">            <span class="keyword">if</span> (n == <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">break</span> outer;</span><br><span class="line">            <span class="type">Node</span>&lt;K,V&gt; <span class="variable">f</span> <span class="operator">=</span> n.next;</span><br><span class="line">            <span class="keyword">if</span> (n != b.next)           </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> ((v = n.value) == <span class="literal">null</span>) &#123;    </span><br><span class="line">                n.helpDelete(b, f);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (b.value == <span class="literal">null</span> || v == n)  </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">//c = 0 说明 n 就是我们要的结点</span></span><br><span class="line">            <span class="keyword">if</span> ((c = cpr(cmp, key, n.key)) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span> <span class="type">V</span> <span class="variable">vv</span> <span class="operator">=</span> (V)v;</span><br><span class="line">                <span class="keyword">return</span> vv;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//c &lt; 0 说明不存在这个 key 所对应的结点</span></span><br><span class="line">            <span class="keyword">if</span> (c &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">break</span> outer;</span><br><span class="line">            b = n;</span><br><span class="line">            n = f;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>doGet 方法的实现相对还是比较简单的，所以并没有给出太多的注释，主要还是由于大量的并发判断的代码都是一样的，大多都已经在 doPut 方法中给予了详细的注释了。</p>
+<h2 id="七、其它的一些方法的简单描述"><a href="#七、其它的一些方法的简单描述" class="headerlink" title="七、其它的一些方法的简单描述"></a><strong>七、其它的一些方法的简单描述</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//是否包含指定 key 的结点</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">containsKey</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> doGet(key) != <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据 key 返回该 key 所代表的结点的 value 值，不存在该结点则返回默认的 defaultValue</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">V</span> <span class="title function_">getOrDefault</span><span class="params">(Object key, V defaultValue)</span> &#123;</span><br><span class="line">    V v;</span><br><span class="line">    <span class="keyword">return</span> (v = doGet(key)) == <span class="literal">null</span> ? defaultValue : v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回跳表的实际存储元素个数，采取遍历来进行统计</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">long</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">Node</span>&lt;K,V&gt; <span class="variable">n</span> <span class="operator">=</span> findFirst(); n != <span class="literal">null</span>; n = n.next) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n.getValidValue() != <span class="literal">null</span>)</span><br><span class="line">            ++count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (count &gt;= Integer.MAX_VALUE) ? Integer.MAX_VALUE : (<span class="type">int</span>) count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回所有键的集</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">NavigableSet</span>&lt;K&gt; <span class="title function_">keySet</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">KeySet</span>&lt;K&gt; <span class="variable">ks</span> <span class="operator">=</span> keySet;</span><br><span class="line">    <span class="keyword">return</span> (ks != <span class="literal">null</span>) ? ks : (keySet = <span class="keyword">new</span> <span class="title class_">KeySet</span>&lt;K&gt;(<span class="built_in">this</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回所有值的集</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">Collection</span>&lt;V&gt; <span class="title function_">values</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Values</span>&lt;V&gt; <span class="variable">vs</span> <span class="operator">=</span> values;</span><br><span class="line">    <span class="keyword">return</span> (vs != <span class="literal">null</span>) ? vs : (values = <span class="keyword">new</span> <span class="title class_">Values</span>&lt;V&gt;(<span class="built_in">this</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里需要说明一点的是，虽然返回来的是键或者值的一个集合，但是无论你是通过这个集合获取键或者值，还是删除集合中的键或者值，都会直接映射到当前跳表实例中。原因是这个集合中没有一个方法是自己实现的，都是调用传入的跳表实例的内部方法，具体的大家查看源码即可知晓，此处不再贴出源码。</p>
+<p>至此，有关 SkipList 这种跳表数据结构及其在 jdk 中的实现，以及它的并发版本 ConcurrentSkipListMap 的实现，我们都已经简单的分析完了，有理解错误之处，望指出，相互学习！</p>
+<h4 id="参考的几篇优秀博文"><a href="#参考的几篇优秀博文" class="headerlink" title="参考的几篇优秀博文"></a><strong>参考的几篇优秀博文</strong></h4><p><a href="http://xiaobaoqiu.github.io/blog/2014/12/19/javabing-fa-rong-qi-zhi-skiplist/">Java并发容器之SkipList（需要科学上网）  
+</a></p>
+<p><a href="http://blog.csdn.net/lihui6636/article/details/48947407">深入Java集合学习系列：ConcurrentSkipListMap实现原理</a></p>
+<p><a href="http://blog.csdn.net/guangcigeyun/article/details/8278349">Java多线程（四）之ConcurrentSkipListMap深入分析</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/JavaFx/basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/JavaFx/basic/" class="post-title-link" itemprop="url">JavaFx</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:31" itemprop="dateModified" datetime="2026-08-23T12:59:31+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="basic"><a href="#basic" class="headerlink" title="basic"></a>basic</h1><h2 id="UI框架"><a href="#UI框架" class="headerlink" title="UI框架"></a>UI框架</h2><ul>
+<li><a href="https://github.com/FXMisc/RichTextFX/tree/master/richtextfx-demos">RichTextFx 文本编辑框</a></li>
+<li><a href="http://fxexperience.com/controlsfx">ControllsFx</a></li>
+<li><a href="http://github.com/jfoenixadmin/JFoenix">JFoenix</a></li>
+<li><a href="http://bitbucket.org/Jerady/fontawesomefx">fontawesomefx</a></li>
+</ul>
+<p><a href="https://dlsc.com/products/calendarfx/">https://dlsc.com/products/calendarfx/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/jvm/CodeGen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/jvm/CodeGen/" class="post-title-link" itemprop="url">字节码增强技术</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:31" itemprop="dateModified" datetime="2026-08-23T12:59:31+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="字节码增强技术"><a href="#字节码增强技术" class="headerlink" title="字节码增强技术"></a>字节码增强技术</h1><p><img src="/images/Java/jvm/20210623214817.png" alt="图16 字节码增强技术"></p>
+<ul>
+<li>ASM</li>
+<li>JavaAssist</li>
+<li>ByteBuddy</li>
+<li>CGLIB</li>
+</ul>
+<p><a href="https://juejin.cn/post/6844903970658320391">https://juejin.cn/post/6844903970658320391</a></p>
+<p><a href="https://www.wwwbuild.net/E-MapReduce_Spark/22025.html">https://www.wwwbuild.net/E-MapReduce_Spark/22025.html</a></p>
+<p><a href="https://blog.csdn.net/junerli/article/details/112687385">https://blog.csdn.net/junerli/article/details/112687385</a></p>
+<p>Presto使用了一个基于ASM的字节码生成工具airlift-bytecode（facebook内部库）来进行字节码的构建</p>
+<p>Spark 和 Flink 都是使用 Janino 来做codeGen的，<br>Presto是使用airlift-bytecode</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// org.apache.flink.table.runtime.generated.CompileUtils#doCompile</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="type">Class</span>&lt;T&gt; <span class="title function_">doCompile</span><span class="params">(ClassLoader cl, String name, String code)</span> &#123;</span><br><span class="line">		checkNotNull(cl, <span class="string">&quot;Classloader must not be null.&quot;</span>);</span><br><span class="line">		CODE_LOG.debug(<span class="string">&quot;Compiling: &#123;&#125; \n\n Code:\n&#123;&#125;&quot;</span>, name, code);</span><br><span class="line">		<span class="type">SimpleCompiler</span> <span class="variable">compiler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleCompiler</span>();</span><br><span class="line">		compiler.setParentClassLoader(cl);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			compiler.cook(code);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">			System.out.println(addLineNumber(code));</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">InvalidProgramException</span>(</span><br><span class="line">				<span class="string">&quot;Table program cannot be compiled. This is a bug. Please file an issue.&quot;</span>, t);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//noinspection unchecked</span></span><br><span class="line">			<span class="keyword">return</span> (Class&lt;T&gt;) compiler.getClassLoader().loadClass(name);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;Can not load class &quot;</span> + name, e);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Spring如何实现AOP，请不要再说cglib了！<br><a href="https://juejin.cn/post/6844903970658320391">https://juejin.cn/post/6844903970658320391</a></p>
+<p>Spring AOP原理分析一次看懂 - 知乎<br><a href="https://zhuanlan.zhihu.com/p/36617574">https://zhuanlan.zhihu.com/p/36617574</a></p>
+<p>Spring系列之AOP的原理及手动实现<br><a href="https://juejin.cn/post/6844903744530808840">https://juejin.cn/post/6844903744530808840</a></p>
+<p>【Spring基础】CGLIB动态代理实现原理_yhl_jxy的博客-CSDN博客_cglib动态代理<br><a href="https://blog.csdn.net/yhl_jxy/article/details/80633194">https://blog.csdn.net/yhl_jxy/article/details/80633194</a></p>
+<p>Spring源码剖析5：JDK和cglib动态代理原理详解 - SegmentFault 思否<br><a href="https://segmentfault.com/a/1190000020178773">https://segmentfault.com/a/1190000020178773</a></p>
+<p>CGLIB(Code Generation Library) 介绍与原理 | 菜鸟教程<br><a href="https://www.runoob.com/w3cnote/cglibcode-generation-library-intro.html">https://www.runoob.com/w3cnote/cglibcode-generation-library-intro.html</a></p>
+<p>JDK动态代理生成class文件和cglib动态代理生成class文件_RainSun-CSDN博客_cglib生成的class文件<br><a href="https://blog.csdn.net/u010811939/article/details/80763336">https://blog.csdn.net/u010811939/article/details/80763336</a></p>
+<p>Java动态生成类以及动态添加属性 - 有梦就能实现 - 博客园<br><a href="https://www.cnblogs.com/firstdream/p/10078673.html">https://www.cnblogs.com/firstdream/p/10078673.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/jvm/JaninoCompiler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/jvm/JaninoCompiler/" class="post-title-link" itemprop="url">JaninoCompiler</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:31" itemprop="dateModified" datetime="2026-08-23T12:59:31+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JaninoCompiler"><a href="#JaninoCompiler" class="headerlink" title="JaninoCompiler"></a>JaninoCompiler</h1><p><a href="http://janino-compiler.github.io/janino/">http://janino-compiler.github.io/janino/</a></p>
+<p>Janino is a super-small, super-fast Java™ compiler.</p>
+<p>极小、极快、开源，不依赖JDK(只依赖JRE，free)的动态编译器</p>
+<p>从内存获取classes文件，不依赖IO</p>
+<p>类似的工具:</p>
+<ul>
+<li>Jasper: 需要依赖JDK</li>
+<li>Eclipse compiler</li>
+</ul>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ol>
+<li><p>类似Javac，Java源文件文件编译成字节码文件</p>
+</li>
+<li><p>编译Java表达式、块、类和源码文件</p>
+</li>
+<li><p>静态代码分析和代码操作</p>
+</li>
+<li><p>性能优化</p>
+<ol>
+<li>动态编译类取代Java代理类，避免所有的反射，显著提高性能。</li>
+<li>Codegen</li>
+</ol>
+</li>
+<li><p>规则引擎: 取代DSL(预定义语言: Domain-Specific Language)</p>
+</li>
+<li><p>Codegen</p>
+</li>
+</ol>
+<h2 id="Janino应用"><a href="#Janino应用" class="headerlink" title="Janino应用"></a>Janino应用</h2><ol>
+<li>Kettle: ETL工具 [<a href="../../bigdata/ETL/Kettle/Kettle-JavaNode" title="Kettle中的Java节点与代码生成">Kettle-JavaNode</a>]</li>
+<li>slf4j + log4j&#x2F;logback [[JaninoEventEvaluator]]</li>
+<li>Apache Commons JCL</li>
+<li>JBoss Rules&#x2F;Drools</li>
+<li>Flink SQL</li>
+<li>Spark SQL</li>
+</ol>
+<p>问题:</p>
+<ol>
+<li>能否动态卸载?</li>
+</ol>
+<h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.janino<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>janino<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 首先定义一个表达式模拟器ExpressionEvaluator对象</span></span><br><span class="line"><span class="type">ExpressionEvaluator</span> <span class="variable">ee</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExpressionEvaluator</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个算术表达式，表达式中需要有2个int类型的参数a和b</span></span><br><span class="line"><span class="type">String</span> <span class="variable">expression</span> <span class="operator">=</span> <span class="string">&quot;2 * (a + b)&quot;</span>;</span><br><span class="line">ee.setParameters(<span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span> &#125;, <span class="keyword">new</span> <span class="title class_">Class</span>[] &#123; <span class="type">int</span>.class, <span class="type">int</span>.class &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置表达式的返回结果也为int类型</span></span><br><span class="line">ee.setExpressionType(<span class="type">int</span>.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里处理（扫描，解析，编译和加载）上面定义的算数表达式.</span></span><br><span class="line">ee.cook(expression);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据输入的a和b参数执行实际的表达式计算过程</span></span><br><span class="line"><span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> (Integer) ee.evaluate(<span class="keyword">new</span> <span class="title class_">Object</span>[] &#123; <span class="number">19</span>, <span class="number">23</span> &#125;);</span><br><span class="line">System.out.println(expression + <span class="string">&quot; = &quot;</span> + result);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ScriptEvaluator</span> <span class="variable">se</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ScriptEvaluator</span>();</span><br><span class="line">se.setParameters(<span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;arg2&quot;</span> &#125;, <span class="keyword">new</span> <span class="title class_">Class</span>[] &#123; String.class, <span class="type">int</span>.class &#125;);</span><br><span class="line">se.cook(</span><br><span class="line">    <span class="string">&quot;System.out.println(arg1);\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;System.out.println(arg2);\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;static void method1() &#123;\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;    System.out.println(\&quot;run in method1()\&quot;);\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;&#125;\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;public static void method2() &#123;\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;    System.out.println(\&quot;run in method2()\&quot;);\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;&#125;\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;method1();\n&quot;</span></span><br><span class="line">    + <span class="string">&quot;method2();\n&quot;</span></span><br><span class="line">);</span><br><span class="line">se.evaluate(<span class="keyword">new</span> <span class="title class_">Object</span>[]&#123;<span class="string">&quot;aaa&quot;</span>,<span class="number">22</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">bar</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">Foo</span> <span class="variable">f</span> <span class="operator">=</span> (Foo) ClassBodyEvaluator.createFastClassBodyEvaluator(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Scanner</span>(<span class="literal">null</span>, <span class="keyword">new</span> <span class="title class_">StringReader</span>(<span class="string">&quot;public int bar(int a, int b) &#123; return a + b; &#125;&quot;</span>)),</span><br><span class="line">        Foo.class,                  <span class="comment">// 实现的父类或接口</span></span><br><span class="line">        (ClassLoader) <span class="literal">null</span>          <span class="comment">// 这里设置为null表示使用当前线程的class loader</span></span><br><span class="line">    );</span><br><span class="line">    System.out.println(<span class="string">&quot;1 + 2 = &quot;</span> + f.bar(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/multithread/monitor-synchronized-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/multithread/monitor-synchronized-2/" class="post-title-link" itemprop="url">深度分析：锁升级过程和锁状态，看完这篇你就懂了！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="深度分析：锁升级过程和锁状态，看完这篇你就懂了！"><a href="#深度分析：锁升级过程和锁状态，看完这篇你就懂了！" class="headerlink" title="深度分析：锁升级过程和锁状态，看完这篇你就懂了！"></a>深度分析：锁升级过程和锁状态，看完这篇你就懂了！</h1><blockquote>
+<p>转载自 <a href="https://segmentfault.com/a/1190000022904663">https://segmentfault.com/a/1190000022904663</a></p>
+</blockquote>
+<h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>锁的状态总共有四种，级别由低到高依次为：<code>无锁</code>、<code>偏向锁</code>、<code>轻量级锁</code>、<code>重量级锁</code><br>其实在 JDK 1.6之前，synchronized 还是一个<code>重量级锁</code>，是一个效率比较低下的锁，<br>但是在JDK 1.6后，JVM为了提高锁的获取与释放效率对（synchronized ）进行了优化，引入了 <code>偏向锁</code> 和 <code>轻量级锁</code> ，<br>从此以后锁的状态就有了四种（<code>无锁</code>、<code>偏向锁</code>、<code>轻量级锁</code>、<code>重量级锁</code>），并且四种状态会随着竞争的情况逐渐升级，而且是不可逆的过程，即不可降级，<br>也就是说只能进行锁升级（从低级别到高级别），不能锁降级（高级别到低级别），意味着<code>偏向锁</code>升级成<code>轻量级锁</code>后不能降级成<code>偏向锁</code>。<br>这种锁升级却不能降级的策略，目的是为了提高获得锁和释放锁的效率。</p>
+<h2 id="二、锁的四种状态"><a href="#二、锁的四种状态" class="headerlink" title="二、锁的四种状态"></a>二、锁的四种状态</h2><p>在 synchronized 最初的实现方式是 “阻塞或唤醒一个Java线程需要操作系统切换CPU状态来完成，这种状态切换需要耗费处理器时间，如果同步代码块中内容过于简单，这种切换的时间可能比用户代码执行的时间还长”，这种方式就是 synchronized实现同步最初的方式，这也是当初开发者诟病的地方，这也是在JDK6以前 synchronized效率低下的原因，JDK6中为了减少获得锁和释放锁带来的性能消耗，引入了“<code>偏向锁</code>”和“<code>轻量级锁</code>”。</p>
+<p>所以目前锁状态一种有四种，从级别由低到高依次是：<code>无锁</code>、<code>偏向锁</code>，<code>轻量级锁</code>，<code>重量级锁</code>，锁状态只能升级，不能降级</p>
+<p>如图所示：<br><img src="/images/Java/multithread/324636426357655.png"></p>
+<h2 id="三、锁状态的思路以及特点"><a href="#三、锁状态的思路以及特点" class="headerlink" title="三、锁状态的思路以及特点"></a>三、锁状态的思路以及特点</h2><p><img src="/images/Java/multithread/316596829933991.png"></p>
+<h2 id="四、锁对比"><a href="#四、锁对比" class="headerlink" title="四、锁对比"></a>四、锁对比</h2><p><img src="/images/Java/multithread/310576108657266.png"></p>
+<h2 id="五、Synchronized锁"><a href="#五、Synchronized锁" class="headerlink" title="五、Synchronized锁"></a>五、Synchronized锁</h2><p>synchronized 用的锁是存在Java对象头里的，那么什么是对象头呢？</p>
+<h3 id="5-1-Java-对象头"><a href="#5-1-Java-对象头" class="headerlink" title="5.1 Java 对象头"></a>5.1 Java 对象头</h3><p>我们以 Hotspot 虚拟机为例，Hopspot 对象头主要包括两部分数据：Mark Word（标记字段） 和 Klass Pointer（类型指针）</p>
+<p>Mark Word：默认存储对象的HashCode，分代年龄和锁标志位信息。这些信息都是与对象自身定义无关的数据，所以Mark Word被设计成一个非固定的数据结构以便在极小的空间内存存储尽量多的数据。它会根据对象的状态复用自己的存储空间，也就是说在运行期间Mark Word里存储的数据会随着锁标志位的变化而变化。</p>
+<p>Klass Point：对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。</p>
+<p>在上面中我们知道了，synchronized 用的锁是存在Java对象头里的，那么具体是存在对象头哪里呢？答案是：存在锁对象的对象头的Mark Word中，那么MarkWord在对象头中到底长什么样，它到底存储了什么呢？</p>
+<p>在64位的虚拟机中：<br><img src="/images/Java/multithread/304535461830268.png"></p>
+<p>在32位的虚拟机中：<br><img src="/images/Java/multithread/298506161792168.png"></p>
+<p>下面我们以 32位虚拟机为例，来看一下其 Mark Word 的字节具体是如何分配的</p>
+<p><code>无锁</code> ：对象头开辟 25bit 的空间用来存储对象的 hashcode ，4bit 用于存放对象分代年龄，1bit 用来存放是否<code>偏向锁</code>的标识位，2bit 用来存放锁标识位为01</p>
+<p><code>偏向锁</code>： 在<code>偏向锁</code>中划分更细，还是开辟 25bit 的空间，其中23bit 用来存放线程ID，2bit 用来存放 Epoch，4bit 存放对象分代年龄，1bit 存放是否<code>偏向锁</code>标识， 0表示<code>无锁</code>，1表示<code>偏向锁</code>，锁的标识位还是01</p>
+<p><code>轻量级锁</code>：在<code>轻量级锁</code>中直接开辟 30bit 的空间存放指向栈中锁记录的指针，2bit 存放锁的标志位，其标志位为00</p>
+<p><code>重量级锁</code>： 在<code>重量级锁</code>中和<code>轻量级锁</code>一样，30bit 的空间用来存放指向<code>重量级锁</code>的指针，2bit 存放锁的标识位，为11</p>
+<p>GC标记： 开辟30bit 的内存空间却没有占用，2bit 空间存放锁标志位为11。</p>
+<p>其中<code>无锁</code>和<code>偏向锁</code>的锁标志位都是01，只是在前面的1bit区分了这是<code>无锁</code>状态还是<code>偏向锁</code>状态</p>
+<p>关于内存的分配，我们可以在git中openJDK中 markOop.hpp 可以看出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">// Constants</span></span><br><span class="line">  <span class="keyword">enum</span> &#123; age\_bits                 = <span class="number">4</span>,</span><br><span class="line">         lock\_bits                = <span class="number">2</span>,</span><br><span class="line">         biased\_lock\_bits         = <span class="number">1</span>,</span><br><span class="line">         max\_hash\_bits            = BitsPerWord - age\_bits - lock\_bits - biased\_lock\_bits,</span><br><span class="line">         hash\_bits                = max\_hash\_bits &gt; <span class="number">31</span> ? <span class="number">31</span> : max\_hash\_bits,</span><br><span class="line">         cms\_bits                 = LP64\_ONLY(<span class="number">1</span>) NOT\_LP64(<span class="number">0</span>),</span><br><span class="line">         epoch\_bits               = <span class="number">2</span></span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>age_bits： 就是我们说的分代回收的标识，占用4字节<br>lock_bits： 是锁的标志位，占用2个字节<br>biased_lock_bits： 是是否<code>偏向锁</code>的标识，占用1个字节<br>max_hash_bits： 是针对<code>无锁</code>计算的hashcode 占用字节数量，如果是32位虚拟机，就是 32 - 4 - 2 -1 &#x3D; 25 byte，如果是64 位虚拟机，64 - 4 - 2 - 1 &#x3D; 57 byte，但是会有 25 字节未使用，所以64位的 hashcode 占用 31 byte<br>hash_bits： 是针对 64 位虚拟机来说，如果最大字节数大于 31，则取31，否则取真实的字节数<br>cms_bits： 不是64位虚拟机就占用 0 byte，是64位就占用 1byte<br>epoch_bits： 就是 epoch 所占用的字节大小，2字节。</p>
+<h3 id="5-2-Monitor"><a href="#5-2-Monitor" class="headerlink" title="5.2 Monitor"></a>5.2 Monitor</h3><p>Monitor 可以理解为一个同步工具或一种同步机制，通常被描述为一个对象。每一个 Java 对象就有一把看不见的锁，称为内部锁或者 Monitor 锁。</p>
+<p>Monitor 是线程私有的数据结构，每一个线程都有一个可用 monitor record 列表，同时还有一个全局的可用列表。每一个被锁住的对象都会和一个 monitor 关联，同时 monitor 中有一个 Owner 字段存放拥有该锁的线程的唯一标识，表示该锁被这个线程占用。</p>
+<p>Synchronized是通过对象内部的一个叫做监视器锁（monitor）来实现的，监视器锁本质又是依赖于底层的操作系统的 Mutex Lock（互斥锁）来实现的。而操作系统实现线程之间的切换需要从用户态转换到核心态，这个成本非常高，状态之间的转换需要相对比较长的时间，这就是为什么 Synchronized 效率低的原因。因此，这种依赖于操作系统 Mutex Lock 所实现的锁我们称之为<code>重量级锁</code>。</p>
+<p>随着锁的竞争，锁可以从<code>偏向锁</code>升级到<code>轻量级锁</code>，再升级的<code>重量级锁</code>（但是锁的升级是单向的，也就是说只能从低到高升级，不会出现锁的降级）。JDK 1.6中默认是开启<code>偏向锁</code>和<code>轻量级锁</code>的，我们也可以通过-XX:-UseBiasedLocking&#x3D;false来禁用<code>偏向锁</code>。</p>
+<h2 id="六、锁的分类"><a href="#六、锁的分类" class="headerlink" title="六、锁的分类"></a>六、锁的分类</h2><h3 id="6-2-无锁"><a href="#6-2-无锁" class="headerlink" title="6.2 无锁"></a>6.2 无锁</h3><p><code>无锁</code>是指没有对资源进行锁定，所有的线程都能访问并修改同一个资源，但同时只有一个线程能修改成功。</p>
+<p><code>无锁</code>的特点是修改操作会在循环内进行，线程会不断的尝试修改共享资源。如果没有冲突就修改成功并退出，否则就会继续循环尝试。如果有多个线程修改同一个值，必定会有一个线程能修改成功，而其他修改失败的线程会不断重试直到修改成功。</p>
+<h3 id="6-3-偏向锁"><a href="#6-3-偏向锁" class="headerlink" title="6.3 偏向锁"></a>6.3 偏向锁</h3><p>初次执行到synchronized代码块的时候，锁对象变成<code>偏向锁</code>（通过CAS修改对象头里的锁标志位），字面意思是“偏向于第一个获得它的线程”的锁。执行完同步代码块后，线程并不会主动释放<code>偏向锁</code>。当第二次到达同步代码块时，线程会判断此时持有锁的线程是否就是自己（持有锁的线程ID也在对象头里），如果是则正常往下执行。由于之前没有释放锁，这里也就不需要重新加锁。如果自始至终使用锁的线程只有一个，很明显<code>偏向锁</code>几乎没有额外开销，性能极高。</p>
+<p><code>偏向锁</code>是指当一段同步代码一直被同一个线程所访问时，即不存在多个线程的竞争时，那么该线程在后续访问时便会自动获得锁，从而降低获取锁带来的消耗，即提高性能。</p>
+<p>当一个线程访问同步代码块并获取锁时，会在 Mark Word 里存储锁偏向的线程 ID。在线程进入和退出同步块时不再通过 CAS 操作来加锁和解锁，而是检测 Mark Word 里是否存储着指向当前线程的<code>偏向锁</code>。<code>轻量级锁</code>的获取及释放依赖多次 CAS 原子指令，而<code>偏向锁</code>只需要在置换 ThreadID 的时候依赖一次 CAS 原子指令即可。</p>
+<p><code>偏向锁</code>只有遇到其他线程尝试竞争<code>偏向锁</code>时，持有<code>偏向锁</code>的线程才会释放锁，线程是不会主动释放<code>偏向锁</code>的。</p>
+<p>关于<code>偏向锁</code>的撤销，需要等待全局安全点，即在某个时间点上没有字节码正在执行时，它会先暂停拥有<code>偏向锁</code>的线程，然后判断锁对象是否处于被锁定状态。如果线程不处于活动状态，则将对象头设置成<code>无锁</code>状态，并撤销<code>偏向锁</code>，恢复到<code>无锁</code>（标志位为01）或<code>轻量级锁</code>（标志位为00）的状态。</p>
+<h3 id="6-4-轻量级锁（自旋锁）"><a href="#6-4-轻量级锁（自旋锁）" class="headerlink" title="6.4 轻量级锁（自旋锁）"></a>6.4 轻量级锁（自旋锁）</h3><p><img src="/images/Java/multithread/287756959344307.png"></p>
+<p><code>轻量级锁</code>是指当锁是<code>偏向锁</code>的时候，却被另外的线程所访问，此时<code>偏向锁</code>就会升级为<code>轻量级锁</code>，<br>其他线程会通过自旋（关于自旋的介绍见文末）的形式尝试获取锁，<br>线程不会阻塞，从而提高性能。</p>
+<p><code>轻量级锁</code>的获取主要由两种情况：</p>
+<ul>
+<li>① 当关闭<code>偏向锁</code>功能时；</li>
+<li>② 由于多个线程竞争<code>偏向锁</code>导致<code>偏向锁</code>升级为<code>轻量级锁</code>。</li>
+</ul>
+<p>一旦有第二个线程加入锁竞争，<code>偏向锁</code>就升级为<code>轻量级锁</code>（自旋锁）。</p>
+<p>这里要明确一下什么是锁竞争：<br>如果多个线程轮流获取一个锁，但是每次获取锁的时候都很顺利，没有发生阻塞，那么就不存在锁竞争。<br>只有当某线程尝试获取锁的时候，发现该锁已经被占用，只能等待其释放，这才发生了锁竞争。</p>
+<p>在<code>轻量级锁</code>状态下继续锁竞争，没有抢到锁的线程将自旋，即不停地循环判断锁是否能够被成功获取。<br>获取锁的操作，其实就是通过CAS修改对象头里的锁标志位。先比较当前锁标志位是否为“释放”，<br>如果是则将其设置为“锁定”，比较并设置是原子性发生的。这就算抢到锁了，然后线程将当前锁的持有者信息修改为自己。</p>
+<p>长时间的自旋操作是非常消耗资源的，一个线程持有锁，其他线程就只能在原地空耗CPU，执行不了任何有效的任务，这种现象叫做忙等（busy-waiting）。<br>如果多个线程用一个锁，但是没有发生锁竞争，或者发生了很轻微的锁竞争，那么synchronized就用<code>轻量级锁</code>，允许短时间的忙等现象。<br>这是一种折衷的想法，短时间的忙等，换取线程在用户态和内核态之间切换的开销。</p>
+<h3 id="6-4-重量级锁"><a href="#6-4-重量级锁" class="headerlink" title="6.4 重量级锁"></a>6.4 重量级锁</h3><p><code>重量级锁</code>显然，此忙等是有限度的（有个计数器记录自旋次数，默认允许循环10次，可以通过虚拟机参数更改）。<br>如果锁竞争情况严重，某个达到最大自旋次数的线程，会将<code>轻量级锁</code>升级为<code>重量级锁</code>（依然是CAS修改锁标志位，但不修改持有锁的线程ID）。<br>当后续线程尝试获取锁时，发现被占用的锁是<code>重量级锁</code>，则直接将自己挂起（而不是忙等），等待将来被唤醒。</p>
+<p><code>重量级锁</code>是指当有一个线程获取锁之后，其余所有等待获取该锁的线程都会处于阻塞状态。</p>
+<p>简言之，就是所有的控制权都交给了操作系统，由操作系统来负责线程间的调度和线程的状态变更。而这样会出现频繁地对线程运行状态的切换，<br>线程的挂起和唤醒，从而消耗大量的系统资</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">354</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

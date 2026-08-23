@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="My wiki -  flat kownledages library">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guadazi">
+<meta property="og:url" content="http://yoursite.com/page/21/index.html">
+<meta property="og:site_name" content="Guadazi">
+<meta property="og:description" content="My wiki -  flat kownledages library">
+<meta property="og:locale">
+<meta property="article:author" content="averyzhang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/21/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Guadazi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Guadazi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-ai">
+
+    <a href="/AI/AI/" rel="section"><i class="fa fa-calendar fa-fw"></i>AI</a>
+
+  </li>
+        <li class="menu-item menu-item-bigdata">
+
+    <a href="/categories/bigdata/" rel="section"><i class="fa fa-calendar fa-fw"></i>BigData</a>
+
+  </li>
+        <li class="menu-item menu-item-flink">
+
+    <a href="/bigdata/Flink/Flink/" rel="section"><i class="fa fa-th fa-fw"></i>Flink</a>
+
+  </li>
+        <li class="menu-item menu-item-java">
+
+    <a href="/Java/Java/" rel="section"><i class="fa fa-user fa-fw"></i>Java</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">354</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/tool/Maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/tool/Maven/" class="post-title-link" itemprop="url">Maven</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-07-14 13:03:41" itemprop="dateModified" datetime="2022-07-14T13:03:41+00:00">2022-07-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><ul>
+<li><p><input disabled="" type="checkbox"> 
+插件编写</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+构建模板</p>
+</li>
+</ul>
+<h2 id="phase-and-goal"><a href="#phase-and-goal" class="headerlink" title="phase and goal"></a>phase and goal</h2><p><a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">Introduction to the Build Lifecycle</a></p>
+<p>一个lifecycle有多个phase，一个phase可以有多个goal</p>
+<p>Mojo</p>
+<p>三种内置的lifecycle：default、clean和site</p>
+<p>列出所有的plugin、phase、id、goal</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印插件的所有命令详情</span></span><br><span class="line">mvn <span class="built_in">help</span>:describe -Dplugin=javafx -Ddetail</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install -DskipTests -Dfast -Drat.skip=<span class="literal">true</span> -Dhaoop.version=2.6.0-cdh5.15.1 -Pvendor-repos -Dinclude-hadoop -Dscala-2.11 -T2C</span><br><span class="line"></span><br><span class="line"><span class="comment"># -Dfast  #在flink根目录下pom.xml文件中fast配置项目中含快速设置,其中包含了多项构建时的跳过参数. #例如apache的文件头(rat)合法校验，代码风格检查，javadoc生成的跳过等，详细可阅读pom.xml</span></span><br><span class="line"><span class="comment"># install maven的安装命令</span></span><br><span class="line"><span class="comment"># -T2C #支持多处理器或者处理器核数参数,加快构建速度,推荐Maven3.3及以上</span></span><br><span class="line"><span class="comment"># -Pinclude-hadoop  将hadoop的 jar包，打入到lib/中</span></span><br><span class="line"><span class="comment"># -Pvendor-repos   # 如果需要指定hadoop的发行商，如CDH，需要使用-Pvendor-repos</span></span><br><span class="line"><span class="comment"># -Dscala-2.11     # 指定scala的版本为2.11</span></span><br><span class="line"><span class="comment"># -Dhadoop.version=2.6.0-cdh5.15.1  指定 hadoop 的版本</span></span><br><span class="line"></span><br><span class="line">————————————————</span><br><span class="line">版权声明：本文为CSDN博主「实力不允许偷懒」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。</span><br><span class="line">原文链接：https://blog.csdn.net/qq_17310871/article/details/106677165</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>pl.project13.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>git-commit-id-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>get-the-git-infos<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 默认绑定阶段initialize --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>initialize<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 目标：revision --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>revision<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 检查的仓库根目录，$&#123;project.basedir&#125;：项目根目录，即包含pom.xml文件的目录 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dotGitDirectory</span>&gt;</span>$&#123;project.basedir&#125;/.git<span class="tag">&lt;/<span class="name">dotGitDirectory</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- false：扫描路径时不打印更多信息，默认值false，可以不配置 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">verbose</span>&gt;</span>false<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 定义插件中所有时间格式，默认值：yyyy-MM-dd’T’HH:mm:ssZ --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dateFormat</span>&gt;</span>yyyy-MM-dd HH:mm:ss<span class="tag">&lt;/<span class="name">dateFormat</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- git属性文件中各属性前缀，默认值git，可以不配置 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prefix</span>&gt;</span>git<span class="tag">&lt;/<span class="name">prefix</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 生成git属性文件，默认false：不生成 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">generateGitPropertiesFile</span>&gt;</span>true<span class="tag">&lt;/<span class="name">generateGitPropertiesFile</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 生成git属性文件路径及文件名，默认$&#123;project.build.outputDirectory&#125;/git.properties --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">generateGitPropertiesFilename</span>&gt;</span>$&#123;project.build.outputDirectory&#125;/conf/git.properties</span><br><span class="line">        <span class="tag">&lt;/<span class="name">generateGitPropertiesFilename</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 生成git属性文件格式，默认值properties --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">format</span>&gt;</span>json<span class="tag">&lt;/<span class="name">format</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 配置git-describe命令 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">gitDescribe</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">skip</span>&gt;</span>false<span class="tag">&lt;/<span class="name">skip</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">always</span>&gt;</span>false<span class="tag">&lt;/<span class="name">always</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dirty</span>&gt;</span>-dirty<span class="tag">&lt;/<span class="name">dirty</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">gitDescribe</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="shade"><a href="#shade" class="headerlink" title="shade"></a>shade</h2><ol>
+<li>打包文件增加时间戳，并指定时间戳格式</li>
+<li>排除代码路径与排除文件路径, 排除整个目录需要增加<code>**</code></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">maven.build.timestamp.format</span>&gt;</span>yyyyMMdd-HHmmss<span class="tag">&lt;/<span class="name">maven.build.timestamp.format</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">finalName</span>&gt;</span></span><br><span class="line">$&#123;project.artifactId&#125;-$&#123;project.version&#125;-$&#123;maven.build.timestamp&#125;-shaded</span><br><span class="line"><span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--                            &lt;shadeTestJar&gt;true&lt;/shadeTestJar&gt;--&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--                            &lt;shadedArtifactAttached&gt;false&lt;/shadedArtifactAttached&gt;--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">createDependencyReducedPom</span>&gt;</span>true<span class="tag">&lt;/<span class="name">createDependencyReducedPom</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">transformers</span> <span class="attr">combine.children</span>=<span class="string">&quot;append&quot;</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- The service transformer is needed to merge META-INF/services files --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">transformer</span> <span class="attr">implementation</span>=<span class="string">&quot;org.apache.maven.plugins.shade.resource.ServicesResourceTransformer&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">transformer</span> <span class="attr">implementation</span>=<span class="string">&quot;org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;/<span class="name">transformers</span>&gt;</span></span><br><span class="line">														<span class="tag">&lt;<span class="name">minimizeJar</span>&gt;</span>true<span class="tag">&lt;/<span class="name">minimizeJar</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">shadeTestJar</span>&gt;</span>false<span class="tag">&lt;/<span class="name">shadeTestJar</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">shadedArtifactAttached</span>&gt;</span>false<span class="tag">&lt;/<span class="name">shadedArtifactAttached</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">createDependencyReducedPom</span>&gt;</span>false<span class="tag">&lt;/<span class="name">createDependencyReducedPom</span>&gt;</span></span><br><span class="line">                            <span class="comment">&lt;!--                            &lt;dependencyReducedPomLocation&gt;--&gt;</span></span><br><span class="line">                            <span class="comment">&lt;!--                                $&#123;project.basedir&#125;/target/dependency-reduced-pom.xml--&gt;</span></span><br><span class="line">                            <span class="comment">&lt;!--                            &lt;/dependencyReducedPomLocation&gt;--&gt;</span></span><br><span class="line">                            </span><br><span class="line">                            <span class="tag">&lt;<span class="name">filters</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">artifact</span>&gt;</span>*:*<span class="tag">&lt;/<span class="name">artifact</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>log4j.properties<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>version-info.properties<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>org/slf4j/**<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>flake/**<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.SF<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.DSA<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.RSA<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>org/apache/commons/**<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">filters</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">relocations</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>com.tencent.oceanus.common<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">shadedPattern</span>&gt;</span>shaded.flake.com.tencent.oceanus.common</span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">shadedPattern</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>com.tencent.oceanus.util<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">shadedPattern</span>&gt;</span>shaded.flake.com.tencent.oceanus.util</span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">shadedPattern</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>com.tencent.oceanus.exception<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">shadedPattern</span>&gt;</span>shaded.flake.com.tencent.oceanus.exception</span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">shadedPattern</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">relocation</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>com.tencent.oceanus.dto<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">shadedPattern</span>&gt;</span>shaded.flake.com.tencent.oceanus.dto</span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">shadedPattern</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">relocation</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">relocations</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--                    &lt;createSourcesJar&gt;true&lt;/createSourcesJar&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="发布test-jar"><a href="#发布test-jar" class="headerlink" title="发布test jar"></a>发布test jar</h3><p>对那些有着良好设计，能够重复使用在项目的不同模块中、甚至不同项目中的测试代码，也需要打包成构件重复使用，从而减少编写测试代码的工作量。而 mvn package 只会对主代码和资源文件进行打包安装与部署，对测试代码和资源文件是不会处理的</p>
+<p>发布</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-jar-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">goal</span>&gt;</span>test-jar<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<p>maven-jar-plugin 有两个目标：一个是 jar；另一个是 test-jar。<br>jar 目标有内置绑定到 Maven 的 default 生命周期的 package 阶段，会在 Maven 工程进行构建的时候自动执行，将项目的主代码和资源文件进行打包。</p>
+<p>test-jar 目标没有内置绑定，所以需要用户在插件配置中声明该目标，从而达到在 Maven 工程构建的时候将测试代码和资源文件打包。<br>test-jar 目标是默认绑定到 default 生命周期的 package 阶段，<br>所以当运行 mvn clean package 命令的时候，能同时将主代码和测试代码分别打包。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.dalong<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>testpacakge<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">classifier</span>&gt;</span>tests<span class="tag">&lt;/<span class="name">classifier</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>test-jar<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="module-dependency-tree"><a href="#module-dependency-tree" class="headerlink" title="module-dependency-tree"></a>module-dependency-tree</h2><p><a href="https://github.com/ferstl/depgraph-maven-plugin">https://github.com/ferstl/depgraph-maven-plugin</a><br><a href="https://ferstl.github.io/depgraph-maven-plugin/plugin-info.html">https://ferstl.github.io/depgraph-maven-plugin/plugin-info.html</a></p>
+<p><a href="https://ferstl.github.io/depgraph-maven-plugin/graph-mojo.html#graphFormat">https://ferstl.github.io/depgraph-maven-plugin/graph-mojo.html#graphFormat</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mvn com.github.ferstl:depgraph-maven-plugin:3.0.1:aggregate \</span><br><span class="line">		-DcreateImage=true \</span><br><span class="line">		-DreduceEdges=false \</span><br><span class="line">		-Dscope=compile \</span><br></pre></td></tr></table></figure>
+
+<h2 id="archetype"><a href="#archetype" class="headerlink" title="archetype"></a>archetype</h2><h2 id="resources-filtered"><a href="#resources-filtered" class="headerlink" title="resources-filtered"></a>resources-filtered</h2><p>在 Maven 项目中，<code>resources-filtered</code> 是一个配置选项，用于指示 Maven 是否应该对资源文件（如 <code>*.properties</code> 或 <code>*.xml</code> 文件）中的变量进行过滤和替换</p>
+<h3 id="资源过滤的作用"><a href="#资源过滤的作用" class="headerlink" title="资源过滤的作用"></a>资源过滤的作用</h3><p>资源过滤的主要目的是允许开发者在构建过程中动态地替换资源文件中的占位符（例如 <code>${project.version}</code>）为实际的值。这在以下场景中非常有用：</p>
+<ol>
+<li><strong>版本管理</strong>：可以在资源文件中使用 <code>${project.version}</code> 占位符，Maven 会在构建时自动将其替换为项目的实际版本号。</li>
+<li><strong>环境特定配置</strong>：可以为不同的部署环境（如开发、测试、生产）创建不同的配置文件，并在构建时选择合适的文件进行替换。</li>
+<li><strong>避免硬编码</strong>：通过使用占位符而不是硬编码的值，可以使项目更加灵活和可维护。</li>
+</ol>
+<h3 id="如何启用资源过滤"><a href="#如何启用资源过滤" class="headerlink" title="如何启用资源过滤"></a>如何启用资源过滤</h3><p>在 Maven 的 <code>pom.xml</code> 文件中，可以通过以下方式启用资源过滤：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>true<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>&lt;filtering&gt;</code> 元素被设置为 <code>true</code>，表示 Maven 应该对 <code>src/main/resources</code> 目录下的所有资源文件进行过滤。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>资源过滤可能会导致构建过程中的性能开销，特别是在处理大量资源文件时。</li>
+<li>如果资源文件中的某些内容不应该被过滤（例如，包含敏感信息的密码字段），可以使用 Maven 的 <code>delimiters</code> 配置来指定自定义的分隔符，以避免不必要的替换。</li>
+</ul>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>可以替换的属性，包含maven properties和git属性</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">project.version</span>=<span class="string">$&#123;project.version&#125;  </span></span><br><span class="line"><span class="attr">scala.binary.version</span>=<span class="string">$&#123;scala.binary.version&#125;  </span></span><br><span class="line">  </span><br><span class="line"><span class="attr">git.commit.id</span>=<span class="string">$&#123;git.commit.id&#125;  </span></span><br><span class="line"><span class="attr">git.commit.id.abbrev</span>=<span class="string">$&#123;git.commit.id.abbrev&#125;  </span></span><br><span class="line"><span class="attr">git.commit.time</span>=<span class="string">$&#123;git.commit.time&#125;  </span></span><br><span class="line"><span class="attr">git.build.time</span>=<span class="string">$&#123;git.build.time&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/log/logback/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/log/logback/" class="post-title-link" itemprop="url">logback</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:31" itemprop="dateModified" datetime="2026-08-23T12:59:31+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="logback"><a href="#logback" class="headerlink" title="logback"></a>logback</h1><h2 id="configuration"><a href="#configuration" class="headerlink" title="configuration"></a>configuration</h2><p><img src="/images/Java/log/1731892-20200131175016637-426425946.png" alt="logback_configuration_01"></p>
+<h3 id="appender"><a href="#appender" class="headerlink" title="appender"></a>appender</h3><table>
+<thead>
+<tr>
+<th>类名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ConsoleAppender</td>
+<td>将日志通过 <em>System.out</em> 或者 <em>System.err</em> 来进行输出，即输出到控制台。</td>
+</tr>
+<tr>
+<td>FileAppender</td>
+<td>将日志输出到文件中。</td>
+</tr>
+<tr>
+<td>RollingFileAppender</td>
+<td>继承自 FileAppender，也是将日志输出到文件，但文件具有轮转功能。</td>
+</tr>
+<tr>
+<td>DBAppender</td>
+<td>将日志输出到数据库</td>
+</tr>
+<tr>
+<td>SocketAppender</td>
+<td>将日志以明文方式输出到远程机器</td>
+</tr>
+<tr>
+<td>SSLSocketAppender</td>
+<td>将日志以加密方式输出到远程机器</td>
+</tr>
+<tr>
+<td>SMTPAppender</td>
+<td>将日志输出到邮件</td>
+</tr>
+</tbody></table>
+<h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><p><img src="/images/Java/log/image-20211026212759209.png" alt="image-20211026212759209"></p>
+<h4 id="EvaluatorFilter"><a href="#EvaluatorFilter" class="headerlink" title="EvaluatorFilter"></a>EvaluatorFilter</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- groovy --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.groovy<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>groovy<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0-rc-3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="GEventEvaluator"><a href="#GEventEvaluator" class="headerlink" title="GEventEvaluator"></a>GEventEvaluator</h4><p><code>ch.qos.logback.classic.boolex.GEventEvaluator</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">scan</span>=<span class="string">&quot;true&quot;</span> <span class="attr">scanPeriod</span>=<span class="string">&quot;10 seconds&quot;</span> <span class="attr">debug</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- 定义变量 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">scope</span>=<span class="string">&quot;system&quot;</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATTERN&quot;</span> <span class="attr">value</span>=<span class="string">&quot;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n&quot;</span>/&gt;</span>   </span><br><span class="line">   <span class="comment">&lt;!-- 控制台输出 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;STDOUT&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span>&gt;</span>   </span><br><span class="line">      <span class="tag">&lt;<span class="name">target</span>&gt;</span>system.err<span class="tag">&lt;/<span class="name">target</span>&gt;</span>      </span><br><span class="line">       <span class="tag">&lt;<span class="name">encoder</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span>       </span><br><span class="line">       <span class="comment">&lt;!-- 设置过滤器 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.filter.EvaluatorFilter&quot;</span>&gt;</span>      </span><br><span class="line">         <span class="tag">&lt;<span class="name">evaluator</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.classic.boolex.GEventEvaluator&quot;</span>&gt;</span> </span><br><span class="line">           <span class="tag">&lt;<span class="name">expression</span>&gt;</span></span><br><span class="line">              e.level.toInt() &gt;= ERROR.toInt() <span class="symbol">&amp;amp;</span><span class="symbol">&amp;amp;</span> </span><br><span class="line">              !(e.mdc?.get(&quot;req.userAgent&quot;) =~ /Googlebot|msnbot|Yahoo/ )</span><br><span class="line">           <span class="tag">&lt;/<span class="name">expression</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">evaluator</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">OnMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">OnMismatch</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">OnMatch</span>&gt;</span>NEUTRAL<span class="tag">&lt;/<span class="name">OnMatch</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">appender</span>&gt;</span>   </span><br><span class="line">   <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;STDOUT&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="JaninoEventEvalutor"><a href="#JaninoEventEvalutor" class="headerlink" title="JaninoEventEvalutor"></a>JaninoEventEvalutor</h4><h3 id="JaninoEventEvaluator"><a href="#JaninoEventEvaluator" class="headerlink" title="JaninoEventEvaluator"></a>JaninoEventEvaluator</h3><p>Logback-classic 附带了另一个名为<a href="http://logback.qos.ch/xref/ch/qos/logback/classic/boolex/JaninoEventEvaluator.html">JaninoEventEvaluator</a>的具体<code>EventEvaluator</code>实现，它采用任意 Java 语言块返回布尔值作为评估标准。我们将此类 Java 语言布尔表达式称为“ * evaluation expressions *”。评估表达式为事件过滤提供了极大的灵 Active。 <code>JaninoEventEvaluator</code>要求<a href="http://docs.codehaus.org/display/JANINO/Home">Janino library</a>。请参阅安装文档的<a href="http://logback.qos.ch/setup.html#janino">corresponding section</a>。与<code>JaninoEventEvaluator</code>相比，借助 Groovy 语言，<code>GEventEvaluator</code>更加方便使用，但是<code>JaninoEventEvaluator</code>通常对于等效表达式运行(快得多)。</p>
+<p>评估表达式是在配置文件的解释过程中即时编译的。作为用户，您不必担心实际的管道问题。但是，您有责任确保 Java 语言表达式返回一个布尔值，即它的计算结果为 true 或 false。</p>
+<p>评估表达式是在当前日志记录事件上评估的。 Logback-classic 自动将日志记录事件的各个字段导出为可从评估表达式访问的变量。下面列出了这些导出变量的区分大小写的名称。</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>event</td>
+<td><code>LoggingEvent</code></td>
+<td>与日志记录请求关联的原始日志记录事件。事件中还提供以下所有变量。例如，<code>event.getMessage()</code>返回与下面描述的* message *变量相同的 String 值。</td>
+</tr>
+<tr>
+<td>message</td>
+<td><code>String</code></td>
+<td>日志记录请求的原始消息。对于某些 Logger* l *，当您编写 l.info(“ Hello{}”，name);其中为名称分配了值“ Alice”，则消息为“ Hello{}”。</td>
+</tr>
+<tr>
+<td>formattedMessage</td>
+<td><code>String</code></td>
+<td>日志记录请求中的格式化消息。对于某些 Logger* l *，当您编写 l.info(“ Hello{}”，name);其中为名称分配了值“ Alice”，则“ Hello Alice”是格式化的消息。</td>
+</tr>
+<tr>
+<td>logger</td>
+<td><code>String</code></td>
+<td>Logger 的名称。</td>
+</tr>
+<tr>
+<td>loggerContext</td>
+<td><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/spi/LoggerContextVO.html">LoggerContextVO</a></td>
+<td>记录事件所属的 Logger 上下文的受限(值对象)视图。</td>
+</tr>
+<tr>
+<td>level</td>
+<td><code>int</code></td>
+<td>对应于级别的 int 值。为了帮助轻松创建涉及级别的表达式，还提供了默认值* DEBUG <em>，</em> INFO <em>，</em> WARN <em>和</em> ERROR <em>。因此，使用</em> level&gt; INFO *是正确的表达式。</td>
+</tr>
+<tr>
+<td>timeStamp</td>
+<td><code>long</code></td>
+<td>与记录事件的创建相对应的时间戳。</td>
+</tr>
+<tr>
+<td>marker</td>
+<td><code>Marker</code></td>
+<td>与日志记录请求关联的<code>Marker</code>对象。请注意，标记可以为 null，您有责任检查此条件以避免<code>NullPointerException</code>。</td>
+</tr>
+<tr>
+<td>mdc</td>
+<td><code>Map</code></td>
+<td>在创建日志记录事件时包含所有 MDC 值的 Map。可以使用以下表达式访问值：* mdc.get(“ myKey”)*。从经典 logback 版本 0.9.30 开始，“ mdc”变量将永远不会为 null。<code>java.util.Map</code>类型是非参数化的，因为 Janino 不支持泛型。因此，由<code>mdc.get()</code>返回的类型是<code>Object</code>而不是<code>String</code>。要对返回的值调用<code>String</code>方法，必须将其强制转换为<code>String</code>。例如<code>((String) mdc.get(&quot;k&quot;)).contains(&quot;val&quot;)</code>。</td>
+</tr>
+<tr>
+<td>throwable</td>
+<td>java.lang.Throwable</td>
+<td>如果没有异常与事件关联，则“ throwable”变量的值将为 null。不幸的是，“ throwable”无法在序列化中幸免。因此，在远程系统上，其值将始终为 null。对于位置无关的表达式，请使用下面描述的<code>throwableProxy</code>变量。</td>
+</tr>
+<tr>
+<td>throwableProxy</td>
+<td><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/spi/IThrowableProxy.html">IThrowableProxy</a></td>
+<td>与日志记录事件关联的异常的代理。如果没有异常与事件关联，则“ throwableProxy”变量的值将为 null。与“ throwable”相反，当异常与事件相关联时，即使在远程系统上(即在序列化之后)，“ throwableProxy”的值也不会为空。</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">scan</span>=<span class="string">&quot;true&quot;</span> <span class="attr">scanPeriod</span>=<span class="string">&quot;10 seconds&quot;</span> <span class="attr">debug</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 定义变量 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">scope</span>=<span class="string">&quot;system&quot;</span> <span class="attr">name</span>=<span class="string">&quot;LOG_PATTERN&quot;</span> <span class="attr">value</span>=<span class="string">&quot;%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;50&#125; - %msg%n&quot;</span>/&gt;</span>    </span><br><span class="line">    <span class="comment">&lt;!-- 控制台输出 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">&quot;STDOUT&quot;</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.ConsoleAppender&quot;</span>&gt;</span>    </span><br><span class="line">       <span class="tag">&lt;<span class="name">target</span>&gt;</span>system.err<span class="tag">&lt;/<span class="name">target</span>&gt;</span>       </span><br><span class="line">        <span class="tag">&lt;<span class="name">encoder</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>$&#123;LOG_PATTERN&#125;<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span>        </span><br><span class="line">        <span class="comment">&lt;!-- 设置过滤器 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;ch.qos.logback.core.filter.EvaluatorFilter&quot;</span>&gt;</span>      </span><br><span class="line">          <span class="tag">&lt;<span class="name">evaluator</span>&gt;</span> <span class="comment">&lt;!-- defaults to type ch.qos.logback.classic.boolex.JaninoEventEvaluator --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">expression</span>&gt;</span>return message.contains(&quot;ERROR&quot;);<span class="tag">&lt;/<span class="name">expression</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">evaluator</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">OnMismatch</span>&gt;</span>DENY<span class="tag">&lt;/<span class="name">OnMismatch</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">OnMatch</span>&gt;</span>NEUTRAL<span class="tag">&lt;/<span class="name">OnMatch</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">&quot;STDOUT&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><strong>slf4j 通过 StaticLoggerBinder 类与具体日志实现进行关联，从而实现门面模式</strong>。</p>
+<h4 id="加载StaticLoggerBinder"><a href="#加载StaticLoggerBinder" class="headerlink" title="加载StaticLoggerBinder"></a>加载StaticLoggerBinder</h4><p><img src="/images/Java/log/image-20211026205834511.png" alt="image-20211026205834511"></p>
+<p><code>LoggerFactory.performInitialization()</code>，会执行初始化，所谓的初始化就是查找 <code>StaticLoggerBinder</code> 这个类是不是存在，如果存在会将该类绑定到当前应用，同时，根据不同情况修改<code>INITIALIZATION_STATE</code>。代码比较多，我概括下执行的步骤：</p>
+<ol>
+<li>如果 StaticLoggerBinder <strong>存在且唯一</strong>，修改初始化状态为 SUCCESSFUL_INITIALIZATION；</li>
+<li>如果 StaticLoggerBinder <strong>存在但为多个</strong>，由 JVM 决定绑定哪个 StaticLoggerBinder，修改初始化状态为 SUCCESSFUL_INITIALIZATION，同时，会在控制台打印存在哪几个 StaticLoggerBinder，并提醒用户最终选择了哪一个 ；</li>
+<li>如果 StaticLoggerBinder <strong>不存在</strong>，打印提醒，并修改初始化状态为 NOP_FALLBACK_INITIALIZATION;</li>
+<li>如果 StaticLoggerBinder <strong>存在但 getSingleton() 方法不存在</strong>，打印提醒，并修改初始化状态为 FAILED_INITIALIZATION;</li>
+</ol>
+<h3 id="加载配置"><a href="#加载配置" class="headerlink" title="加载配置"></a>加载配置</h3><p>支持采用 xml、grovy 和 SPI 的方式配置文件</p>
+<p>Joran（一个成熟的，灵活的并且强大的配置框架 ）</p>
+<p><img src="/images/Java/log/1731892-20200131175715266-1340465434.png" alt="logback_joran"></p>
+<h3 id="获取logger"><a href="#获取logger" class="headerlink" title="获取logger"></a>获取logger</h3><p><code>LoggerContext.getLogger(String)</code></p>
+<h2 id="JaninoEventEvaluator-1"><a href="#JaninoEventEvaluator-1" class="headerlink" title="JaninoEventEvaluator"></a>JaninoEventEvaluator</h2><p><a href="https://github.com/qos-ch/logback/blob/master/logback-core/src/main/java/ch/qos/logback/core/boolex/JaninoEventEvaluatorBase.java">https://github.com/qos-ch/logback/blob/master/logback-core/src/main/java/ch/qos/logback/core/boolex/JaninoEventEvaluatorBase.java</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/log/minlog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/log/minlog/" class="post-title-link" itemprop="url">minlog</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:31" itemprop="dateModified" datetime="2026-08-23T12:59:31+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="minLog"><a href="#minLog" class="headerlink" title="minLog"></a>minLog</h1><p>最小开销的Java日志</p>
+<hr>
+<h2 id="overview"><a href="#overview" class="headerlink" title="overview"></a>overview</h2><p>MinLog: 一个很小的Java日志库:</p>
+<p><strong>零开销</strong><br>	低于给定级别的日志记录在编译时被javac自动删除。这意味着应用程序可以有详细的跟踪和调试日志，而不会对最终产品产生任何影响。 </p>
+<p><strong>极致轻薄</strong><br>	整个项目由<a href="https://github.com/EsotericSoftware/minlog/blob/master/src/com/esotericsoftware/minlog/Log.java">一个Java文件</a>和大约100行非注释代码组成。<br><strong>简单有效</strong> 简单的API，高效的运行时。</p>
+<p><a href="https://github.com/jdanbrown/minlog-slf4j">minlog-slf4j</a>适配slf4j的替代实现.</p>
+<hr>
+<p>Usage:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.esotericsoftware<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>minlog<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>Messages are logged using static methods:  </p>
+<pre><code class="language-java">Log.info(&quot;Some message.&quot;);  
+Log.debug(&quot;Error reading file: &quot; + file, ex);  
+</code></pre>
+<p>A static import can be used to make the logging more concise:  </p>
+<pre><code class="language-java">import static com.esotericsoftware.minlog.Log.*;  
+// ...  
+info(&quot;Some message.&quot;);  
+debug(&quot;Error reading file: &quot; + file, ex);  
+</code></pre>
+<p>While optional, for brevity the rest of this documentation assumes this static import is in place.  </p>
+<p>If log statements from different libraries or areas of an application need to be differentiated, a category can be specified as the first argument:  </p>
+<pre><code class="language-java">info(&quot;some lib&quot;, &quot;Some message.&quot;);  
+debug(&quot;some lib&quot;, &quot;Error reading file: &quot; + file, ex);  
+</code></pre>
+<h2 id="Log-level"><a href="#Log-level" class="headerlink" title="Log level"></a>Log level</h2><p>Setting the level will log that level, as well as all higher levels. There are multiple ways to set the current level:  </p>
+<pre><code class="language-java">Log.set(LEVEL_INFO);  
+Log.INFO();  
+INFO();  
+</code></pre>
+<p>The levels are:  </p>
+<ul>
+<li>NONE disables all logging.  </li>
+<li>ERROR is for critical errors. The application may no longer work correctly.  </li>
+<li>WARN is for important warnings. The application will continue to work correctly.  </li>
+<li>INFO is for informative messages. Typically used for deployment.  </li>
+<li>DEBUG is for debug messages. This level is useful during development.  </li>
+<li>TRACE is for trace messages. A lot of information is logged, so this level is usually only needed when debugging a problem.</li>
+</ul>
+<h2 id="Conditional-logging"><a href="#Conditional-logging" class="headerlink" title="Conditional logging"></a>Conditional logging</h2><p>If a logging method below the current level is called, it will return without logging the message. In order to avoid string concatenation, the current log level can be checked before the message is logged:  </p>
+<pre><code class="language-java">if (ERROR) error(&quot;Error reading file: &quot; + file, ex);  
+if (TRACE) {  
+   StringBuilder builder = new StringBuilder();  
+   // Do work, append to the builder.  
+   trace(builder);  
+}  
+</code></pre>
+<h2 id="Fixed-logging-levels"><a href="#Fixed-logging-levels" class="headerlink" title="Fixed logging levels"></a>Fixed logging levels</h2><p>MinLog users can choose from the regular “minlog.jar” or from from a JAR file like “minlog-info.jar” which has a fixed logging level that cannot be changed at runtime. When a fixed level JAR is used, code that changes the level will have no affect. During compilation, any conditional logging statements below the fixed level will be automatically removed by the Java compiler. This means they will have absolutely no impact on the application.  </p>
+<h2 id="Output-customization"><a href="#Output-customization" class="headerlink" title="Output customization"></a>Output customization</h2><p>The default logger outputs messages in this format:  </p>
+<pre><code>time level: [category] message  
+</code></pre>
+<p>Where “time” is the time elapsed since the application started. For example:  </p>
+<pre><code class="language-bash">00:00 TRACE: [kryo] Wrote string: moo  
+00:00 TRACE: [kryo] Wrote object: NonNullTestClass  
+00:01 TRACE: [kryo] Wrote string: this is some data  
+00:01 TRACE: [kryo] Compressed to 7.97% using: DeflateCompressor  
+00:12 TRACE: [kryo] Decompressed using: DeflateCompressor  
+00:12 TRACE: [kryo] Read string: this is some data  
+</code></pre>
+<p>The output can be customized:  </p>
+<pre><code class="language-java">static public class MyLogger extends Logger {  
+   public void log (int level, String category, String message, Throwable ex) {  
+	  StringBuilder builder = new StringBuilder(256);  
+	  builder.append(new Date());  
+	  builder.append(&#39; &#39;);  
+	  builder.append(level);  
+	  builder.append(&#39;[&#39;);  
+	  builder.append(category);  
+	  builder.append(&quot;] &quot;);  
+	  builder.append(message);  
+	  if (ex != null) {  
+		 StringWriter writer = new StringWriter(256);  
+		 ex.printStackTrace(new PrintWriter(writer));  
+		 builder.append(&#39;\n&#39;);  
+		 builder.append(writer.toString().trim());  
+	  }  
+	  System.out.println(builder);  
+   }  
+}    // ...  
+Log.setLogger(new MyLogger());  
+</code></pre>
+<p>Using this mechanism, log messages can be filtered (eg, by category), written to a file, etc.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/metric/MAT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/metric/MAT/" class="post-title-link" itemprop="url">性能分析利器: mat</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:31" itemprop="dateModified" datetime="2026-08-23T12:59:31+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MAT"><a href="#MAT" class="headerlink" title="MAT"></a>MAT</h1><p>为了演示MAT的使用方法，本文采用jamp生成了一个Java继承的dump文件。</p>
+<h2 id="4-1-Overview选项"><a href="#4-1-Overview选项" class="headerlink" title="4.1 Overview选项"></a>4.1 Overview选项</h2><p>当成功启动MAT后，通过菜单选项“File-&gt;Open heap dump…”打开指定的dump文件后，将会生成Overview选项，如下所示：</p>
+<p><img src="/images/Java/metric/20201115133304752_1908958530.png">  </p>
+<pre><code>在Overview选项中，以饼状图的形式列举出了程序内存消耗的一些基本信息，其中每一种不同颜色的饼块都代表了不同比例的内存消耗情况。
+</code></pre>
+<h3 id="4-2-Dominator-Tree"><a href="#4-2-Dominator-Tree" class="headerlink" title="4.2 Dominator Tree"></a>4.2 Dominator Tree</h3><p>如果说需要定位内存泄露的代码点，我们可以通过Dominator Tree菜单选项来进行排查。Dominator Tree提供了一个列表。<br>Dominator Tree：对象之间dominator关系树。如果从GC Root到达Y的的所有path都经过X，那么我们称X dominates Y，或者X是Y的Dominator 。<br>Dominator Tree由系统中复杂的对象图计算而来。从MAT的dominator tree中可以看到占用内存最大的对象以及每个对象的dominator，如下所示：</p>
+<p> <img src="/images/Java/metric/20201115133304642_1953557219.png"></p>
+<p>点开“+”符号，可以进一步查看内层应用情况，同时还可以看到对应类对象的属性值，如下所示：</p>
+<p><img src="/images/Java/metric/20201115133304535_2038220777.png">  </p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="4-3-Histogram选项"><a href="#4-3-Histogram选项" class="headerlink" title="4.3 Histogram选项"></a>4.3 Histogram选项</h3><p>进一步，可以通过Histogram分析，Histogram列出了每个类的实例数量，点击Action下的Histogram，得到以下结果：</p>
+<p><img src="/images/Java/metric/20201115133304326_712812495.png">  </p>
+<p>如果需要查询特性的某个类，我们可以在第一行输入类名或者关键词进行正则匹配查找，如查找“netty”：</p>
+<p><img src="/images/Java/metric/20201115133304118_1508343283.png">  </p>
+<p>可以看出，查找“netty”输出的结果列表是无序的，如果匹配到的结果很多，查找起来比较困难，因此，我们可以对结果进行排序：选中结果列表的任意一行，鼠标右键-》Colums-&gt;Sort By-&gt;如Class Name，结果如下：</p>
+<p><img src="/images/Java/metric/20201115133303913_1472138606.png">  </p>
+<pre><code>当我们找到疑似存在泄漏的类之后，我们可以进行进一步分析。比较重要的一点，选中疑似类，右键出来选中List Objects,得到的结果再右键选中&quot;Paths to GC Roots&quot;,我们可以通过它快速找到GC ROOT，如果存在GC ROOT，它就不会被回收。
+</code></pre>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="4-4-Path-to-GC-Roots"><a href="#4-4-Path-to-GC-Roots" class="headerlink" title="4.4 Path to GC Roots"></a>4.4 Path to GC Roots</h3><pre><code>查看一个对象到RC Roots的引用链  
+
+通常在排查内存泄漏的时候，我们会选择exclude all phantom/weak/soft etc.references，意思是查看排除虚引用/弱引用/软引用等的引用链，因为被虚引用/弱引用/软引用的对象可以直接被GC给回收，我们要看的就是某个对象否还存在Strong 引用链（在导出HeapDump之前要手动出发GC来保证），如果有，则说明存在内存泄漏，然后再去排查具体引用。 
+</code></pre>
+<p><img src="/images/Java/metric/20201115133303706_1037916552.png">  </p>
+<p><strong>其它重要选项：</strong></p>
+<p>1. List objects ：<br>with incoming references 引用到该对象的对象<br>with outcoming references 被该对象引用的对象</p>
+<p>2. Show objects by class ：<br>incoming references 引用到该对象的对象<br>outcoming references 被该对象引用的对象 </p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>4.5 OQL(Object Query Language)</p>
+<p>类似SQL查询语言<br>Classes：Table<br>Objects：Rows<br>Fileds： Cols</p>
+<p><code>select  *  from com.example.mat.Listener</code></p>
+<p><strong>查找size＝0并且未使用过的ArrayList</strong><br><code>select  *  from java.util.ArrayList  where size=0  and modCount=0</code></p>
+<p><strong>查找所有的Activity</strong><br>select * from instanceof android.app.Activity</p>
+<h3 id="4-6-利用Histogram和Dominator-Tree分析内存泄露"><a href="#4-6-利用Histogram和Dominator-Tree分析内存泄露" class="headerlink" title="4.6  利用Histogram和Dominator Tree分析内存泄露"></a>4.6  利用Histogram和Dominator Tree分析内存泄露</h3><pre><code>在分析内存泄露时，必须要掌握粒度，所谓粒度就是你此刻dump的hprof文件究竟是分析谁的泄露，如果你在开始前心中没有个目标，最后取出来的hprof也分析不出什么原因。粒度越小，对你分析问题也就越有利，当你把一个个小粒度问题解决后，整个App的泄露就迎刃而解了。也许这么说，大家心中有点迷糊。下面就举例来说吧：
+
+假如现在有个项目包含Module几十个，每个Module包含的Activity数以百计，现在让你分析它是否内存泄露，如果你只是胡乱抓个hprof根本分析不出什么。假如你就针对某个Activity分析这样问题就简单多了。比如你现在分析ActivityA的内存泄露问题，你可以参考如下步骤：
+
+Step1：进入ActivityA之前，你先dump个hprof文件HprofA；
+
+Step2：进入ActivityA操作一会，再退出ActivityA后dump个hprof文件HprofB；
+
+Step3：采用Histogram和Dominator Tree对比分析这两个Hprof文件，即可得出ActivityA是否泄露
+</code></pre>
+<p>现在以分析TestActivity为例，按上述步骤实战分析，先抓取进入TestActivity前后的hprof文件，按如下步骤对比两个hprof的异同，如下图1,2：</p>
+<p><img src="/images/Java/metric/20201115133303497_195864697.png">  </p>
+<p>图1 选择所需比较的hprof  </p>
+<p><img src="/images/Java/metric/20201115133303286_1803136553.png">  </p>
+<p>图2 比较两个hprof  </p>
+<pre><code>正如图2所示，易知在执行进出TestActivity后，多出了个TestActivity对象，按理论上来说在进入Activity后会创建个Activity，但是按Back键返回后这个Activity就会被销毁进而从Task栈上被移除，也就是说这个操作前后不应该会多出个Activity，因此可以断定TestActivity存在泄漏。
+
+TestActivity存在泄漏，那我们应该怎么解决呢？因此我们就需要找到为何泄漏，为什么本该销毁的Activity却没有被销毁？如知真相如何，请看下图3-4
+</code></pre>
+<p><img src="/images/Java/metric/20201115133303070_1797820935.png">  </p>
+<p>图3 获取TestActivity的Reference chain  </p>
+<p><img src="/images/Java/metric/20201115133302509_954891646.png">  </p>
+<p>图4 TestActivity的引用关系  </p>
+<pre><code>从图4易知TestActivity没有被释放就是因为GC Root(TestActivity$1)引用着TestActivity，到此原因也一目了然。找到了只是开始，解决才是关键。这时让我们查看下TestActivity代码：  
+</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestActivity</span> <span class="keyword">extends</span> <span class="title class_">Activity</span> &#123;       <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Object</span> <span class="variable">mLock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();     <span class="meta">@Override</span>    <span class="keyword">protected</span> <span class="type">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;                <span class="built_in">super</span>.onCreate(savedInstanceState);        DebugUtil.StrictModeDebug();        setContentView(R.layout.test_main);           <span class="keyword">new</span> <span class="title class_">Thread</span>()&#123;<span class="comment">//匿名线程            public void run() &#123;                synchronized (mLock) &#123;                    try &#123;                        mLock.wait();                    &#125; catch (InterruptedException e) &#123;                        // TODO Auto-generated catch block                        e.printStackTrace();                    &#125;                &#125;            &#125;        &#125;.start();    &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>从代码上可以发现TestActivity里存在个匿名线程，且一直处于等待状态，直到退出TestActivity仍未被唤醒，进而导致该线程就一直没有结束，它所持有的TestActivity也就无法被释放了（可能大家听到此处会很疑惑，线程没有结束可以理解，但是它并没有持有TestActivity呀？我只能说是隐含this，如还不明白，请自行参阅java内部类相关内容），如要解决此泄露，只需在Activity的onDestory里将线程唤醒让其可以正常结束就OK了。
+</code></pre>
+<p><strong>优化建议</strong></p>
+<ol>
+<li>使用线程时，一定要确保线程在周期性对象（如Activity）销毁时能正常结束，如能正常结束，但是Activity销毁后还需执行一段时间，也可能造成泄露，此时可采用WeakReference方法来解决，另外在使用Handler的时候，如存在Delay操作，也可以采用WeakReference；</li>
+<li>使用Handler + HandlerThread时，记住在周期性对象销毁时调用looper.quit()方法；</li>
+<li>建议少使用匿名类或内部类，可考虑使用嵌套类（带static那种类），减少对周期性对象的隐性持有；</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Java/metric/%E6%A0%88%E4%B8%8A%E5%88%86%E9%85%8D%E4%B8%8ETLAB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/Java/metric/%E6%A0%88%E4%B8%8A%E5%88%86%E9%85%8D%E4%B8%8ETLAB/" class="post-title-link" itemprop="url">栈上分配与TLAB</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:31" itemprop="dateModified" datetime="2026-08-23T12:59:31+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flink/" itemprop="url" rel="index"><span itemprop="name">Flink</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="栈上分配与TLAB"><a href="#栈上分配与TLAB" class="headerlink" title="栈上分配与TLAB"></a>栈上分配与TLAB</h1><h2 id="逃逸分析-Escape-Analysis"><a href="#逃逸分析-Escape-Analysis" class="headerlink" title="逃逸分析(Escape Analysis)"></a>逃逸分析(Escape Analysis)</h2><h2 id="栈上分配"><a href="#栈上分配" class="headerlink" title="栈上分配"></a>栈上分配</h2><p>针对那些作用域不会逃逸出方法的对象，在分配内存时不再将对象分配在堆内存中，而是将对象属性打散后分配在栈（线程私有的，属于栈内存）上，这样，随着方法的调用结束，栈空间的回收就会随着将栈上分配的打散后的对象回收掉，不再给gc增加额外的无用负担，从而提升应用程序整体的性能</p>
+<p>优点：</p>
+<p>　　　　1）可以在函数调用结束后自行销毁对象，不需要垃圾回收器的介入，有效避免垃圾回收带来的负面影响</p>
+<p>　　　　2）栈上分配速度快，提高系统性能</p>
+<p>线程私有变量，大对象虚拟机会分配到TLAB中，<a href="https://www.jianshu.com/p/a7414c0ebb17">TLAB（Thread Local Allocation Buffer）要不要了解下？</a></p>
+<p>在栈上分配该对象的内存,当栈帧从Java虚拟机栈中弹出，就自动销毁这个对象。减小垃圾回收器压力。</p>
+<h2 id="TLAB"><a href="#TLAB" class="headerlink" title="TLAB"></a>TLAB</h2><p>TLAB全称ThreadLocalAllocBuffer，是线程的一块私有内存，如果设置了虚拟机参数 -XX:UseTLAB，在线程初始化时，同时也会申请一块指定大小的内存，只给当前线程使用，这样每个线程都单独拥有一个Buffer，如果需要分配内存，就在自己的Buffer上分配，这样就不存在竞争的情况，可以大大提升分配效率，当Buffer容量不够的时候，再重新从Eden区域申请一块继续使用，这个申请动作还是需要原子操作的。</p>
+<p>TLAB的目的是在为新对象分配内存空间时，让每个Java应用线程能使用自己专属的分配指针来分配空间，均摊对GC堆（eden区）里共享的分配指针做更新而带来的同步开销。</p>
+<p>TLAB只是让每个线程有私有的分配指针，但底下存对象的内存空间还是给所有线程访问的，只是其它线程无法在这个区域分配而已。当一个TLAB用满（分配指针top撞上分配极限end了），就新申请一个TLAB，而在老TLAB里的对象还留在原地什么都不用管——它们无法感知自己是否是曾经从TLAB分配出来的，而只关心自己是在eden里分配的。</p>
+<table>
+<thead>
+<tr>
+<th>启动参数</th>
+<th>JVM内存分配模式</th>
+<th>Eden区</th>
+<th>YoungGC</th>
+<th>耗时</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-XX:+DoEscapeAnalysis（开逃逸分析）-XX:+UseTLAB （开启TLAB）</td>
+<td>虚拟机栈上分配模式(小对象)</td>
+<td>较少使用</td>
+<td>较少使用</td>
+<td>很低</td>
+</tr>
+<tr>
+<td>-XX:-DoEscapeAnalysis（关闭逃逸分析）-XX:+UseTLAB（开启TLAB）</td>
+<td>TLAB区分配模式</td>
+<td>大量使用</td>
+<td>大量使用</td>
+<td>较高</td>
+</tr>
+<tr>
+<td>-XX:-DoEscapeAnalysis（关闭逃逸分析）-XX:-UseTLAB（关闭TLAB）</td>
+<td>Eden区分配模式</td>
+<td>大量使用</td>
+<td>大量使用</td>
+<td>特别高</td>
+</tr>
+</tbody></table>
+<p>在学习Java的过程中，一般认为new出来的对象都是被分配在堆上的，其实这个结论不完全正确，因为是大部分new出来的对象被分配在堆上，而不是全部。通过对Java对象分配的过程分析，可以知道有另外两个地方也是可以存放对象的。这两个地方分别栈 （涉及逃逸分析相关知识）和TLAB（Thread Local Allocation Buffer）。我们首先对这两者进行介绍，而后对Java对象分配过程进行介绍。</p>
+<h3 id="栈上分配-1"><a href="#栈上分配-1" class="headerlink" title="栈上分配"></a><strong>栈上分配</strong></h3><p>在JVM中，堆是线程共享的，因此堆上的对象对于各个线程都是共享和可见的，只要持有对象的引用，就可以访问堆中存储的对象数据。虚拟机的垃圾收集系统可以回收堆中不再使用的对象，但对于垃圾收集器来说，无论筛选可回收对象，还是回收和整理内存都需要耗费时间。</p>
+<p>如果确定一个对象的作用域不会逃逸出方法之外，那可以将这个对象分配在栈上，这样，对象所占用的内存空间就可以随栈帧出栈而销毁。在一般应用中，不会逃逸的局部对象所占的比例很大，如果能使用栈上分配，那大量的对象就会随着方法的结束而自动销毁了，无须通过垃圾收集器回收，可以减小垃圾收集器的负载。</p>
+<p>JVM允许将线程私有的对象打散分配在栈上，而不是分配在堆上。分配在栈上的好处是可以在函数调用结束后自行销毁，而不需要垃圾回收器的介入，从而提高系统性能。<br><strong>栈上分配的技术基础：</strong><br>**一是逃逸分析：**逃逸分析的目的是判断对象的作用域是否有可能逃逸出函数体。关于逃逸分析的问题可以看我另一篇文章：</p>
+<p>**二是标量替换：**允许将对象打散分配在栈上，比如若一个对象拥有两个字段，会将这两个字段视作局部变量进行分配。</p>
+<p>只能在server模式下才能启用逃逸分析，参数-XX:DoEscapeAnalysis启用逃逸分析，参数-XX:+EliminateAllocations开启标量替换（默认打开）。Java SE 6u23版本之后，HotSpot中默认就开启了逃逸分析，可以通过选项-XX:+PrintEscapeAnalysis查看逃逸分析的筛选结果。</p>
+<h3 id="TLAB-1"><a href="#TLAB-1" class="headerlink" title="TLAB"></a><strong>TLAB</strong></h3><p>TLAB的全称是Thread Local Allocation Buffer，即线程本地分配缓存区，这是一个线程专用的内存分配区域。<br>由于对象一般会分配在堆上，而堆是全局共享的。因此在同一时间，可能会有多个线程在堆上申请空间。因此，每次对象分配都必须要进行同步（虚拟机采用CAS配上失败重试的方式保证更新操作的原子性），而在竞争激烈的场合分配的效率又会进一步下降。JVM使用TLAB来避免多线程冲突，在给对象分配内存时，每个线程使用自己的TLAB，这样可以避免线程同步，提高了对象分配的效率。  </p>
+<p>TLAB本身占用eEden区空间，在开启TLAB的情况下，虚拟机会为<strong>每个Java线程分配一块TLAB空间</strong>。参数-XX:+UseTLAB开启TLAB，默认是开启的。TLAB空间的内存非常小，缺省情况下仅占有整个Eden空间的1%，当然可以通过选项-XX:TLABWasteTargetPercent设置TLAB空间所占用Eden空间的百分比大小。<br>由于TLAB空间一般不会很大，因此大对象无法在TLAB上进行分配，总是会直接分配在堆上。TLAB空间由于比较小，因此很容易装满。比如，一个100K的空间，已经使用了80KB，当需要再分配一个30KB的对象时，肯定就无能为力了。这时虚拟机会有两种选择，第一，废弃当前TLAB，这样就会浪费20KB空间；第二，将这30KB的对象直接分配在堆上，保留当前的TLAB，这样可以希望将来有小于20KB的对象分配请求可以直接使用这块空间。实际上虚拟机内部会维护一个叫作refill_waste的值，当请求对象大于refill_waste时，会选择在堆中分配，若小于该值，则会废弃当前TLAB，新建TLAB来分配对象。这个阈值可以使用TLABRefillWasteFraction来调整，它表示TLAB中允许产生这种浪费的比例。默认值为64，即表示使用约为1&#x2F;64的TLAB空间作为refill_waste。默认情况下，TLAB和refill_waste都会在运行时不断调整的，使系统的运行状态达到最优。如果想要禁用自动调整TLAB的大小，可以使用-XX:-ResizeTLAB禁用ResizeTLAB，并使用-XX:TLABSize手工指定一个TLAB的大小。<br>-XX:+PrintTLAB可以跟踪TLAB的使用情况。一般不建议手工修改TLAB相关参数，推荐使用虚拟机默认行为。</p>
+<h3 id="对象内存分配的两种方法"><a href="#对象内存分配的两种方法" class="headerlink" title="对象内存分配的两种方法"></a><strong>对象内存分配的两种方法</strong></h3><p>为对象分配空间的任务等同于把一块确定大小的内存从Java堆中划分出来。</p>
+<p>指针碰撞(Serial、ParNew等带Compact过程的收集器)<br>假设Java堆中内存是绝对规整的，所有用过的内存都放在一边，空闲的内存放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间那边挪动一段与对象大小相等的距离，这种分配方式称为“指针碰撞”（Bump the Pointer）。<br>空闲列表(CMS这种基于Mark-Sweep算法的收集器)<br>如果Java堆中的内存并不是规整的，已使用的内存和空闲的内存相互交错，那就没有办法简单地进行指针碰撞了，虚拟机就必须维护一个列表，记录上哪些内存块是可用的，在分配的时候从列表中找到一块足够大的空间划分给对象实例，并更新列表上的记录，这种分配方式称为“空闲列表”（Free List）。  
+  </p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p><strong>总体流程</strong><br><img src="/images/Java/metric/20200818211412253_811602284.png" alt="这里写图片描述"></p>
+<p><strong>对象分配流程</strong><br><img src="/images/Java/metric/20200818211412147_1281640355.png" alt="这里写图片描述"><br>如果开启栈上分配，JVM会先进行栈上分配，如果没有开启栈上分配或则不符合条件的则会进行TLAB分配，如果TLAB分配不成功，再尝试在eden区分配，如果对象满足了直接进入老年代的条件，那就直接分配在老年代。</p>
+<p><strong>对象在内存的引用方式</strong><br><img src="/images/Java/metric/20200818211411943_2105805507.png" alt="这里写图片描述"></p>
+<p><strong>对象在内存中的结构</strong><br><img src="/images/Java/metric/20200818211411726_1562017878.png" alt="这里写图片描述"></p>
+<p><a href="https://segmentfault.com/a/1190000004606059">参考</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/HBase/HBase-DDL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/HBase/HBase-DDL/" class="post-title-link" itemprop="url">[实践] HBase shell</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="查看组"><a href="#查看组" class="headerlink" title="查看组"></a>查看组</h2><p>list_rsgroups</p>
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><p>create ‘rtc_activity_dispatch_act_test’,{NAME &#x3D;&gt; ‘i’, VERSIONS &#x3D;&gt; 1 , TTL &#x3D;&gt; 2592000 , BLOCKCACHE &#x3D;&gt; true}</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/HBase/HBase-HFile-make/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/HBase/HBase-HFile-make/" class="post-title-link" itemprop="url">HFile创建:Spark、MapReduce、Flink</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:33" itemprop="dateModified" datetime="2026-08-23T12:59:33+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="HFile创建-Spark、MapReduce、Flink"><a href="#HFile创建-Spark、MapReduce、Flink" class="headerlink" title="HFile创建:Spark、MapReduce、Flink"></a>HFile创建:Spark、MapReduce、Flink</h1><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">CreateHfile</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</span><br><span class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setAppName(<span class="string">&quot;CreateHfile&quot;</span>).setMaster(args(<span class="number">0</span>))</span><br><span class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</span><br><span class="line"><span class="keyword">val</span> hbaseConf = <span class="type">HBaseConfiguration</span>.create()</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">val</span> rdd = sc.textFile(args(<span class="number">1</span>))</span><br><span class="line">.flatMap(v =&gt;&#123;</span><br><span class="line">	<span class="keyword">val</span> x = <span class="keyword">new</span> javaList[<span class="type">String</span>]()</span><br><span class="line">	<span class="keyword">for</span>( a &lt;- <span class="number">1</span> to <span class="number">9999</span>)&#123;</span><br><span class="line">		x.add(v + <span class="string">&quot;%04d&quot;</span>.format(a))</span><br><span class="line">    &#125;</span><br><span class="line">     x.toArray</span><br><span class="line">    &#125;</span><br><span class="line"> )</span><br><span class="line">.sortBy(v=&gt;v.toString)</span><br><span class="line">.map(r =&gt;(</span><br><span class="line">    <span class="keyword">new</span> <span class="type">ImmutableBytesWritable</span>(<span class="type">Bytes</span>.toBytes(r.toString)),</span><br><span class="line">	<span class="keyword">new</span> <span class="type">KeyValue</span>(</span><br><span class="line">    	<span class="type">Bytes</span>.toBytes(r.toString), <span class="type">Bytes</span>.toBytes(<span class="string">&quot;phoneFamliy&quot;</span>), <span class="type">Bytes</span>.toBytes(<span class="string">&quot;phoneCol&quot;</span>),</span><br><span class="line">    	<span class="type">System</span>.currentTimeMillis(),</span><br><span class="line">    	<span class="type">KeyValue</span>.<span class="type">Type</span>.<span class="type">DeleteColumn</span>)</span><br><span class="line">         ))</span><br><span class="line">rdd.saveAsNewAPIHadoopFile(args(<span class="number">2</span>), classOf[<span class="type">ImmutableBytesWritable</span>],classOf[<span class="type">KeyValue</span>],classOf[<span class="type">HFileOutputFormat2</span>], hbaseConf)</span><br><span class="line">sc.stop()</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Kafka/kafka-schema-registry/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Kafka/kafka-schema-registry/" class="post-title-link" itemprop="url">Kafka Schema Registy</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Kafka-Schema-Registy"><a href="#Kafka-Schema-Registy" class="headerlink" title="Kafka Schema Registy"></a>Kafka Schema Registy</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>读写Kafka的数据时，需要维护数据的序列化方式和Schema，每个topic有独立的schema，如何管理schema信息呢？</p>
+<p>Confluent创建了Kafka Schema Registy项目</p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><img src="https://wbatisstoragebucket-1252887353.cos.ap-guangzhou.myqcloud.com/img/20210527124021.svg" alt="img"></p>
+<p>向 kafka 发送数据时，需要先向 Schema Registry 注册 schema，然后序列化发送到 kafka 里。当我们需要从 kafka 消费数据时，也需要先从 Schema Registry 获取 schema，然后才能解析数据。</p>
+<h3 id="Schema的保存"><a href="#Schema的保存" class="headerlink" title="Schema的保存"></a>Schema的保存</h3><p>Registry 服务端将数据格式存储到 Kafka 中，对应的 topic 名称为 _schemas。存储消息的格式如下：</p>
+<ul>
+<li>Key 部分，包含数据格式名称，版本号，由 SchemaRegistryKey 类表示。</li>
+<li>Value部分，包含数据格式名称，版本号， 数据格式 id 号，数据格式的内容，是否被删除， 由 SchemaRegistryValue 类表示。</li>
+</ul>
+<p>Registry 服务端在存储Kafka之前，还会将上述的 Key 和 Value 序列化，目前序列化由两种方式：</p>
+<ul>
+<li>json 序列化，由 ZkStringSerializer 类负责</li>
+<li>将 SchemaRegistryKey 或 SchemaRegistryValue 强制转换为 String 类型保存起来</li>
+</ul>
+<h3 id="处理请求"><a href="#处理请求" class="headerlink" title="处理请求"></a>处理请求</h3><p>Registry 服务端主要负责两种请求，注册数据格式 schema 请求和 获取数据格式 schema 请求。</p>
+<p>如果 Registry 服务端启动了高可用，说明有多个服务端在运行。如果注册 schema 请求发送给了 follower，那么 follower 会将请求转发给 leader。</p>
+<p><strong>读写分离</strong></p>
+<p>至于获取 schema 请求，follower 和 leader 都能处理，因为 schema 最后都存在了 kafka 中，它们直接从 kafka 里读取。</p>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p>如果要实现高可用，需要运行多个 Registry 服务，这些服务中必须选择出一个 leader，所有的请求都是最终 由 leader 来负责。当 leader 挂掉之后，就会触发选举操作，来选举出新的 leader。选举的实现有两种方式: 基于kafka 和 基于 zookeeper。</p>
+<h4 id="基于-kafka"><a href="#基于-kafka" class="headerlink" title="基于 kafka"></a>基于 kafka</h4><p>原理是利用消费组，因为消费组的每个成员都需要和 kafka coordinator 服务端保持心跳，如果有成员挂了，那么就会触发组的重分配操作。重分配操作会从存活的成员中，选出 leader 角色。</p>
+<p>KafkaGroupMasterElector 启动了一个心跳线程，定期发送心跳请求。它 实现了监听器的接口，当出发开始选举时会调用onRevoked方法，当选举完之后会调用onAssigned方法。</p>
+<h4 id="基于-zookeeper"><a href="#基于-zookeeper" class="headerlink" title="基于 zookeeper"></a>基于 zookeeper</h4><p>更加简单，效率也更高。因为只有 leader 挂掉，zookeeper 才会触发重新选举。而基于 kafka 的方式，只要是有一个成员挂掉，不管它是不是 leader，都会触发重新选举。如果这个成员不是 leader，则会造成不必要的选举。</p>
+<p>使用zookeeper方式的原理是，所有 Registry 服务都会监听一个临时节点，而只有 leader 才会占有这个节点。当 leader 挂掉之后，临时节点会消失。其余的服务发现临时节点不存在，就会立即尝试重新创建，而只有一个服务能够创建成功，成为 leader。</p>
+<p>[参考文献]</p>
+<ol>
+<li><a href="https://zhmin.github.io/2019/04/23/kafka-schema-registry/">https://zhmin.github.io/2019/04/23/kafka-schema-registry/</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Kafka/Kafka-offset-delivery-guarantee/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Kafka/Kafka-offset-delivery-guarantee/" class="post-title-link" itemprop="url">Kafka offset与一致性语义</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Kafka-offset-delivery-guarantee"><a href="#Kafka-offset-delivery-guarantee" class="headerlink" title="Kafka-offset-delivery-guarantee"></a>Kafka-offset-delivery-guarantee</h1><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>什么是 offset？</p>
+<p>offset 是 consumer position，Topic 的每个 Partition 都有各自的 offset</p>
+<p>消费者需要自己保留一个 offset，从 kafka 获取消息时，只拉去当前 offset 以后的消息</p>
+<p>Kafka 的 scala&#x2F;java 版的 client 已经实现了这部分的逻辑</p>
+<p>之前 offset 保存到 zookeeper 上，broker 存放 offset 是 kafka 从 0.9 版本开始，提供的新的消费方式原因是zookeeper来存放，还是有许多弊端，不方便灵活控制，效率不高</p>
+<h4 id="offset-记录位置"><a href="#offset-记录位置" class="headerlink" title="offset 记录位置"></a>offset 记录位置</h4><p>kafka 消费者在会保存其消费的进度，也就是offset，存储的位置根据选用的 kafka api 不同而不同。具体可以参看<a href="https://blog.csdn.net/u013063153/article/details/78122088">kafka 消费者offset记录位置和方式</a></p>
+<h4 id="Kafka-支持三种消息投递语义"><a href="#Kafka-支持三种消息投递语义" class="headerlink" title="Kafka 支持三种消息投递语义"></a>Kafka 支持三种消息投递语义</h4><ul>
+<li>At most once 消息可能会丢，但绝不会重复传递</li>
+<li>At least one 消息绝不会丢，但可能会重复传递</li>
+<li>Exactly once 每条消息肯定会被传输一次且仅传输一次</li>
+</ul>
+<p>consumer在从broker读取消息后，可以选择commit，该操作会在Zookeeper中存下该consumer在该partition下读取的消息的offset，该consumer下一次再读该partition时会从下一条开始读取。如未commit，下一次读取的开始位置会跟上一次commit之后的开始位置相同。</p>
+<p>可以将consumer设置为autocommit，即consumer一旦读到数据立即自动commit。如果只讨论这一读取消息的过程，那Kafka是确保了Exactly once。但实际上实际使用中consumer并非读取完数据就结束了，而是要进行进一步处理，而数据处理与commit的顺序在很大程度上决定了消息从broker和consumer的delivery guarantee semantic。</p>
+<ul>
+<li>读完消息先commit再处理消息。这种模式下，如果consumer在commit后还没来得及处理消息就crash了，下次重新开始工作后就无法读到刚刚已提交而未处理的消息，这就对应于At most once。</li>
+<li>读完消息先处理再commit消费状态(保存offset)。这种模式下，如果在处理完消息之后commit之前Consumer crash了，下次重新开始工作时还会处理刚刚未commit的消息，实际上该消息已经被处理过了，这就对应于At least once。</li>
+<li>如果一定要做到Exactly once，就需要协调offset和实际操作的输出。经典的做法是引入两阶段提交，但由于许多输出系统不支持两阶段提交，更为通用的方式是将offset和操作输入存在同一个地方。比如，consumer拿到数据后可能把数据放到HDFS，如果把最新的offset和数据本身一起写到HDFS，那就可以保证数据的输出和offset的更新要么都完成，要么都不完成，间接实现Exactly once。（目前就high level API而言，offset是存于Zookeeper中的，无法存于HDFS，而low level API的offset是由自己去维护的，可以将之存于HDFS中）。</li>
+</ul>
+<p>总之，Kafka默认保证At least once，并且允许通过设置producer异步提交来实现At most once，而Exactly once要求与目标存储系统协作，Kafka提供的offset可以较为容易地实现这种方式。</p>
+<hr>
+<p>参考链接</p>
+<ul>
+<li><a href="https://blog.csdn.net/u012129558/article/details/80075270">Kafka的offset管理</a></li>
+<li><a href="https://blog.csdn.net/u013063153/article/details/78122088">kafka 消费者offset记录位置和方式</a></li>
+<li><a href="https://blog.csdn.net/camel84/article/details/82433075">kafka系列-进阶篇之消息和offset存储</a></li>
+<li><a href="https://www.cnblogs.com/FG123/p/10091599.html">Kafka提交offset机制</a></li>
+<li><a href="https://mp.weixin.qq.com/s/tHEd8eOCQ3sXwcmP9F1H9Q">大数据kafka理论实操面试题</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/bigdata/Kafka/kafka-producer-ack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="name" content="averyzhang">
+      <meta itemprop="description" content="My wiki -  flat kownledages library">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Guadazi">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/bigdata/Kafka/kafka-producer-ack/" class="post-title-link" itemprop="url">Kafka producer与ack机制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+00:00">2019-06-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2026-08-23 12:59:32" itemprop="dateModified" datetime="2026-08-23T12:59:32+00:00">2026-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed/" itemprop="url" rel="index"><span itemprop="name">Distributed</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="kafka-producer-ack"><a href="#kafka-producer-ack" class="headerlink" title="kafka-producer-ack"></a>kafka-producer-ack</h1><p>Kafka有两个很重要的配置参数，<code>acks</code>与<code>min.insync.replicas</code> .其中<code>acks</code>是producer的配置参数，<code>min.insync.replicas</code>是Broker端的配置参数，这两个参数对于生产者不丢失数据起到了很大的作用.接下来，本文会以图示的方式讲解这两个参数的含义和使用方式。通过本文，你可以了解到：</p>
+<ul>
+<li>Kafka的分区副本</li>
+<li>什么是同步副本(In-sync replicas)</li>
+<li>什么是acks确认机制</li>
+<li>什么是最小同步副本</li>
+<li>ack&#x3D;all与最小同步副本是如何发挥作用的</li>
+</ul>
+<h2 id="分区副本"><a href="#分区副本" class="headerlink" title="分区副本"></a>分区副本</h2><p>Kafka的topic是可以分区的，并且可以为分区配置多个副本，改配置可以通过<code>replication.factor</code>参数实现. Kafka中的分区副本包括两种类型：领导者副本（Leader Replica）和追随者副本（Follower Replica)，每个分区在创建时都要选举一个副本作为领导者副本，其余的副本自动变为追随者副本. 在 Kafka 中，追随者副本是不对外提供服务的，也就是说，任何一个追随者副本都不能响应消费者和生产者的读写请求. 所有的请求都必须由领导者副本来处理. 换句话说，所有的读写请求都必须发往领导者副本所在的 Broker，由该 Broker 负责处理. 追随者副本不处理客户端请求，它唯一的任务就是从领导者副本<strong>异步拉取</strong>消息，并写入到自己的提交日志中，从而实现与领导者副本的同步.</p>
+<p>Kafka默认的副本因子是3，即每个分区只有1个leader副本和2个follower副本.具体如下图所示：</p>
+<p><img src="/images/bigdata/Kafka/573204286797805.png"></p>
+<p>上面提到生产者客户端仅写入Leader broker，跟随者异步复制数据。由于Kafka是一个分布式系统，必然会存在与 Leader 不能实时同步的风险，所以需要一种方法来判断这些追随者是否跟上了领导者的步伐, 即追随者是否同步了最新的数据.换句话说，Kafka 要明确地告诉我们，追随者副本到底在什么条件下才算与 Leader 同步？这就是下面所要说的ISR同步副本机制.</p>
+<h2 id="同步副本-In-sync-replicas"><a href="#同步副本-In-sync-replicas" class="headerlink" title="同步副本(In-sync replicas)"></a>同步副本(In-sync replicas)</h2><p>In-sync replica(ISR)称之为同步副本，ISR中的副本都是与Leader进行同步的副本，所以不在该列表的follower会被认为与Leader是不同步的. 那么，ISR中存在是什么副本呢？首先可以明确的是：Leader副本总是存在于ISR中. 而follower副本是否在ISR中，取决于该follower副本是否与Leader副本保持了“同步”.</p>
+<blockquote>
+<p>尖叫提示：对于”follower副本是否与Leader副本保持了同步”的理解如下：</p>
+<p>(1)上面所说的同步不是指完全的同步，即并不是说一旦follower副本同步滞后与Leader副本，就会被踢出ISR列表.</p>
+<p>(2)Kafka的broker端有一个参数<code>replica.lag.time.max.ms</code>, 该参数表示follower副本滞后与Leader副本的最长时间间隔，默认是10秒. 这就意味着，只要follower副本落后于leader副本的时间间隔不超过10秒，就可以认为该follower副本与leader副本是同步的，所以哪怕当前follower副本落后于Leader副本几条消息，只要在10秒之内赶上Leader副本，就不会被踢出出局.</p>
+<p>（3）如果follower副本被踢出ISR列表，等到该副本追上了Leader副本的进度，该副本会被再次加入到ISR列表中，所以ISR是一个动态列表，并不是静态不变的。</p>
+</blockquote>
+<p><img src="/images/bigdata/Kafka/565174576927619.png"></p>
+<p>如上图所示：Broker3上的partition1副本超过了规定时间，未与Leader副本同步，所以被踢出ISR列表，此时的ISR为[1,3].</p>
+<h2 id="acks确认机制"><a href="#acks确认机制" class="headerlink" title="acks确认机制"></a>acks确认机制</h2><p>acks参数指定了必须要有多少个分区副本收到消息，生产者才认为该消息是写入成功的，这个参数对于消息是否丢失起着重要作用，该参数的配置具体如下：</p>
+<ul>
+<li>acks&#x3D;0，表示生产者在成功写入消息之前不会等待任何来自服务器的响应. 换句话说，一旦出现了问题导致服务器没有收到消息，那么生产者就无从得知，消息也就丢失了. 改配置由于不需要等到服务器的响应，所以可以以网络支持的最大速度发送消息，从而达到很高的吞吐量。</li>
+</ul>
+<p><img src="/images/bigdata/Kafka/555144828113275.png"></p>
+<ul>
+<li><p>acks&#x3D;1，表示只要集群的leader分区副本接收到了消息，就会向生产者发送一个成功响应的ack，此时生产者接收到ack之后就可以认为该消息是写入成功的. 一旦消息无法写入leader分区副本(比如网络原因、leader节点崩溃),生产者会收到一个错误响应，当生产者接收到该错误响应之后，为了避免数据丢失，会重新发送数据.这种方式的吞吐量取决于使用的是异步发送还是同步发送.</p>
+<blockquote>
+<p>尖叫提示：如果生产者收到了错误响应，即便是重新发消息，还是会有可能出现丢数据的现象. 比如，如果一个没有收到消息的节点成为了新的Leader，消息就会丢失.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/images/bigdata/Kafka/549044129566797.png"></p>
+<ul>
+<li>acks &#x3D;all,表示只有所有参与复制的节点(ISR列表的副本)全部收到消息时，生产者才会接收到来自服务器的响应. 这种模式是最高级别的，也是最安全的，可以确保不止一个Broker接收到了消息. 该模式的延迟会很高.</li>
+</ul>
+<p><img src="/images/bigdata/Kafka/543005800880155.png"></p>
+<h2 id="最小同步副本"><a href="#最小同步副本" class="headerlink" title="最小同步副本"></a>最小同步副本</h2><p>上面提到，当acks&#x3D;all时，需要所有的副本都同步了才会发送成功响应到生产者. 其实这里面存在一个问题：如果Leader副本是唯一的同步副本时会发生什么呢？此时相当于acks&#x3D;1.所以是不安全的.</p>
+<p>Kafka的Broker端提供了一个参数**<code>min.insync.replicas</code>**,该参数控制的是消息至少被写入到多少个副本才算是”真正写入”,该值默认值为1，生产环境设定为一个大于1的值可以提升消息的持久性. 因为如果同步副本的数量低于该配置值，则生产者会收到错误响应，从而确保消息不丢失.</p>
+<h3 id="Case-1"><a href="#Case-1" class="headerlink" title="Case 1"></a>Case 1</h3><p>如下图，当min.insync.replicas&#x3D;2且acks&#x3D;all时，如果此时ISR列表只有[1,2],3被踢出ISR列表，只需要保证两个副本同步了，生产者就会收到成功响应.</p>
+<p><img src="/images/bigdata/Kafka/536985636931751.png"></p>
+<h3 id="Case-2"><a href="#Case-2" class="headerlink" title="Case 2"></a>Case 2</h3><p>如下图，当min.insync.replicas&#x3D;2，如果此时ISR列表只有[1],2和3被踢出ISR列表，那么当acks&#x3D;all时，则不能成功写入数；当acks&#x3D;0或者acks&#x3D;1可以成功写入数据.</p>
+<p><img src="/images/bigdata/Kafka/529955013606000.png"></p>
+<h3 id="Case-3"><a href="#Case-3" class="headerlink" title="Case 3"></a>Case 3</h3><p>这种情况是很容易引起误解的，如果acks&#x3D;all且min.insync.replicas&#x3D;2，此时ISR列表为[1,2,3],那么还是会等到所有的同步副本都同步了消息，才会向生产者发送成功响应的ack.因为min.insync.replicas&#x3D;2只是一个最低限制，即同步副本少于该配置值，则会抛异常，而acks&#x3D;all，是需要保证所有的ISR列表的副本都同步了才可以发送成功响应. 如下图所示：</p>
+<p><img src="/images/bigdata/Kafka/517113904816908.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>acks&#x3D;0，生产者在成功写入消息之前不会等待任何来自服务器的响应.</p>
+<p>acks&#x3D;1,只要集群的leader分区副本接收到了消息，就会向生产者发送一个成功响应的ack.</p>
+<p>acks&#x3D;all,表示只有所有参与复制的节点(ISR列表的副本)全部收到消息时，生产者才会接收到来自服务器的响应，此时如果ISR同步副本的个数小于<code>min.insync.replicas</code>的值，消息不会被写入.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="averyzhang"
+      src="/images/logo.png">
+  <p class="site-author-name" itemprop="name">averyzhang</p>
+  <div class="site-description" itemprop="description">My wiki -  flat kownledages library</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">354</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">averyzhang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
